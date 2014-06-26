@@ -1,4 +1,3 @@
-cms
-===
+# CMS
 
-The MAS CMS
+The MAS CMS.
