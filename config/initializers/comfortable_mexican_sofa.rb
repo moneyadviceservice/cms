@@ -9,12 +9,12 @@ ComfortableMexicanSofa.configure do |config|
 
   # Module responsible for authentication. You can replace it with your own.
   # It simply needs to have #authenticate method. See http_auth.rb for reference.
-  #   config.admin_auth = 'ComfortableMexicanSofa::HttpAuth'
+    config.admin_auth = 'ComfortableMexicanSofa::DummyAuth'
 
   # Module responsible for public authentication. Similar to the above. You also
   # will have access to @cms_site, @cms_layout, @cms_page so you can use them in
   # your logic. Default module doesn't do anything.
-  #   config.public_auth = 'ComfortableMexicanSofa::DummyAuth'
+    config.public_auth = 'ComfortableMexicanSofa::DummyAuth'
 
   # When arriving at /cms-admin you may chose to redirect to arbirtary path,
   # for example '/cms-admin/users'
