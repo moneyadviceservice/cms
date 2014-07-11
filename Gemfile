@@ -14,3 +14,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'spring', group: :development
 
 gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
+
+# Used in comfy. pegging version fixes asset pipeline error.
+# See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
+gem 'jquery-ui-rails', '~> 4.2'
