@@ -19,6 +19,7 @@ gem 'jquery-ui-rails', '~> 4.2'
 
 group :development do
   gem 'spring'
+  gem 'spring-commands-cucumber'
 end
 
 group :test do
