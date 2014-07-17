@@ -20,6 +20,7 @@ gem 'jquery-ui-rails', '~> 4.2'
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
+  gem 'spring-commands-rspec'
 end
 
 group :test do
