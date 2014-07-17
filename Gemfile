@@ -11,15 +11,22 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-gem 'spring', group: :development
-
 gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
 
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
 gem 'jquery-ui-rails', '~> 4.2'
 
+group :development do
+  gem 'spring'
+end
+
+group :test do
+  gem 'rspec_junit_formatter'
+end
+
 group :test, :development do
   gem 'mas-development_dependencies',
       git: 'https://github.com/moneyadviceservice/mas-development_dependencies.git'
+  gem 'rspec-rails', '~> 3.0'
 end
