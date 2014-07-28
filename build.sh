@@ -17,6 +17,8 @@ cat > public/version <<EOT
 }
 EOT
 
+cp config/database{-ci,}.yml
+
 echo "Cleaning temporary files"
 echo "----"
 rm -rf public/assets vendor/cache coverage log/* tmp/*
