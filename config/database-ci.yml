@@ -1,4 +1,4 @@
-test:
+test: &test
   adapter: mysql2
   username: mas
   password: mas
