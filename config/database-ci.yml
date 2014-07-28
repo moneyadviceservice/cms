@@ -14,3 +14,6 @@ assets:
   database: db/assets.sqlite3
   pool: 5
   timeout: 5000
+
+production:
+  <<: *test
