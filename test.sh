@@ -6,6 +6,8 @@ export PATH=./bin:$PATH
 export RAILS_ENV=test
 export BUNDLE_WITHOUT=development
 
+cp config/database{-ci,}.yml
+
 CORES=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 BUNDLE_JOBS=$((CORES-1))
 
