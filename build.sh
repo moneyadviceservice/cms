@@ -17,9 +17,6 @@ cat > public/version <<EOT
 }
 EOT
 
-cp config/database{,-original}.yml
-cp config/database{-ci,}.yml
-
 echo "Cleaning temporary files"
 echo "----"
 rm -rf public/assets vendor/cache coverage log/* tmp/*
@@ -39,5 +36,3 @@ cd ..
 
 #prune packaged gems
 rm -rf vendor/cache
-
-cp config/database{-original,}.yml
