@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/version', to: 'versions#show'
+
   comfy_route :cms_admin, :path => '/cms'
 
   # Make sure this routeset is defined last
