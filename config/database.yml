@@ -14,16 +14,20 @@ test:
   timeout: 5000
   encoding: utf8
 
-pipeline:
+# Do not keep production credentials in the repository,
+# instead read the configuration from the environment.
+#
+# Example:
+#   sqlite3://myuser:mypass@localhost/full/path/to/somedatabase
+#
+production:
   adapter: mysql2
-  database: <%= ENV['pipeline_db_name'] %>
-  username: <%= ENV['pipeline_db_user'] %>
-  password: <%= ENV['pipeline_db_password'] %>
-  host: <%= ENV['pipeline_db_host'] %>
-  port: <%= ENV['pipeline_db_port'] %>
   pool: 5
   timeout: 5000
   encoding: utf8
+  reconnect: true
+  url: <%= ENV["MAS_CMS_DATABASE_URL"] %>
+
 
 # We have this database configuration because we use the gem `js-routes` to allow us to access Rails routes from
 # our JavaScript assets. Normally you configure the Rails application's `initialize_on_precompile` setting to false
