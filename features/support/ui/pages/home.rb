@@ -3,7 +3,7 @@ require_relative '../sections/header'
 
 module UI::Pages
   class Home < UI::Page
-    set_url '/cms'
+    set_url '/admin'
 
     section :header, UI::Sections::Header, '.page-header'
   end
