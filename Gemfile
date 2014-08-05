@@ -16,7 +16,7 @@ gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comforta
 
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
-gem 'jquery-ui-rails', '~> 4.2'
+gem 'jquery-ui-rails', '~> 5.0'
 
 group :development do
   gem 'spring'
