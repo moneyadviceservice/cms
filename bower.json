@@ -1,0 +1,12 @@
+{
+  "name": "cms",
+  "author": "Money Advice Service",
+  "private": true,
+  "ignore": [
+    "node_modules"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.11",
+    "mas-cms-editor": ""
+  }
+}
