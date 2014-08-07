@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   comfy_route :cms_admin, :path => '/admin'
 
   # Make sure this routeset is defined last
-  comfy_route :cms, :path => '/cms', :sitemap => false
+  comfy_route :cms, :sitemap => false
 end
