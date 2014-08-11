@@ -7,6 +7,6 @@
   ],
   "dependencies": {
     "requirejs": "2.1.11",
-    "mas-cms-editor": ""
+    "mas-cms-editor": "git://github.com/moneyadviceservice/cms-editor.git#develop"
   }
 }
