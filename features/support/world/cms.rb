@@ -7,7 +7,7 @@ module World
     end
 
     def cms_layout
-      self.layout ||= cms_site.layouts.create(identifier: identifier, content: '{{cms:page:content}}')
+      self.layout ||= cms_site.layouts.create(identifier: identifier, content: '{{ cms:page:content:rich_text }}')
     end
 
     def cms_root
