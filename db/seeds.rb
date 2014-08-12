@@ -13,7 +13,7 @@ puts "Seeding for site with hostname: #{ENV['HOSTNAME']}"
 site_data = {
   label: "Money Advice Service",
   identifier: "money-advice-service",
-  hostname: ENV['HOSTNAME'],
+  hostname: ENV['HOSTNAME'] || 'localhost:3000',
   path: "cms",
   locale: "en",
   is_mirrored: false
