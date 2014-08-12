@@ -8,15 +8,22 @@
 
 categories = YAML::load_file("#{Rails.root}/config/categories.yml")
 
-site = Comfy::Cms::Site.create(
+puts "Seeding for site with hostname: #{ENV['HOSTNAME']}"
+
+site_data = {
   label: "Money Advice Service",
   identifier: "money-advice-service",
-  hostname: "cms.dev",
+  hostname: ENV['HOSTNAME'] || 'localhost:3000',
   path: "cms",
   locale: "en",
-  is_mirrored: false) if Rails.env == "development"
+  is_mirrored: false
+}
 
+puts "Seeding MAS site..."
+site = Comfy::Cms::Site.first_or_create(site_data)
+
+puts "Seeding categories..."
 categories.each do |parent, children|
   labels = children.nil? ? [parent] : children
-  labels.each { |label| Comfy::Cms::Category.create(site_id: site.id, label: label, categorized_type: "Comfy::Cms::Page") }
+  labels.each { |label| Comfy::Cms::Category.first_or_create(site_id: site.id, label: label, categorized_type: "Comfy::Cms::Page") }
 end
