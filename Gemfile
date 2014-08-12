@@ -12,6 +12,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+gem 'dotenv-rails'
+
 gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
 
 # Used in comfy. pegging version fixes asset pipeline error.
