@@ -5,10 +5,8 @@ Feature: Preview
 
   Scenario: Preview unpublished article
     When I am working on an unpublished article
-    And I preview it
-    Then I should see the article in a new window as it would appear on the actual site
+    Then I should be able to preview it in a new window
 
   Scenario: Preview published article
     When I am working on a published article
-    And I preview it
-    Then I should see the article in a new window as it would appear on the actual site
+    Then I should be able to preview it in a new window
