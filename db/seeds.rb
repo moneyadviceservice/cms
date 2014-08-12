@@ -25,5 +25,5 @@ site = Comfy::Cms::Site.first_or_create(site_data)
 puts "Seeding categories..."
 categories.each do |parent, children|
   labels = children.nil? ? [parent] : children
-  labels.each { |label| Comfy::Cms::Category.create(site_id: site.id, label: label, categorized_type: "Comfy::Cms::Page") }
+  labels.each { |label| Comfy::Cms::Category.first_or_create(site_id: site.id, label: label, categorized_type: "Comfy::Cms::Page") }
 end
