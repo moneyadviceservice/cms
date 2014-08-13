@@ -22,6 +22,7 @@ define('mas-editor', [
       this.htmlEditorNode = this.options.htmlEditorNode;
       this.htmlEditorContentNode = this.options.htmlEditorContentNode;
       this.markdownEditorNode = this.options.markdownEditorNode;
+      this.switchModeButtonNodes = this.options.switchModeButtonNodes;
 
       this.editor = new Editor(
         this.htmlEditorContentNode,
@@ -60,8 +61,7 @@ define('mas-editor', [
      * @return {Object} this
      */
     setupModeButton: function() {
-      var buttonNodes = document.querySelectorAll('.js-switch-mode'),
-          i = buttonNodes.length,
+      var i = this.switchModeButtonNodes.length,
           _this = this;
 
       while(i--) {
@@ -69,7 +69,7 @@ define('mas-editor', [
           button.addEventListener('click', function() {
             _this.changeMode(button.dataset.mode);
           });
-        })(buttonNodes[i]);
+        })(this.switchModeButtonNodes[i]);
       }
       return this;
     },

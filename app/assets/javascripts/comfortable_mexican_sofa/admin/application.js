@@ -18,6 +18,7 @@ window.CMS.wysiwyg = function() {
       htmlEditorNode: document.querySelector('.js-html-editor'),
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
       markdownEditorNode: markdownEditorNode,
+      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
     });
   });
 };
