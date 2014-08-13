@@ -5,11 +5,13 @@ module.exports = function(config) {
     files: [
       'spec/javascripts/fixtures/*.html',
       'spec/javascripts/test-main.js',
+      {pattern: 'app/assets/javascripts/comfortable_mexican_sofa/**/*.js', included: false},
       {pattern: 'spec/javascripts/tests/*_spec.js', included: false},
+      {pattern: 'spec/javascripts/helpers/shims/*.js', included: false},
       {pattern: 'vendor/assets/bower_components/**/*.js', included: false}
     ],
     exclude: [
-      'vendor/assets/bower_components/**/**/*.js'
+      'vendor/assets/bower_components/**/test/**/*.js'
     ],
     preprocessors: {
       '**/*.html': ['html2js']
