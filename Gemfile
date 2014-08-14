@@ -34,6 +34,7 @@ group :test, :development do
   gem 'mas-development_dependencies',
       git: 'https://github.com/moneyadviceservice/mas-development_dependencies.git'
   gem 'rspec-rails', '~> 3.0'
+  gem 'pry-rails'
 end
 
 group :production do
