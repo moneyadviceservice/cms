@@ -19,6 +19,7 @@ define('mas-editor', [
       this.classActive = this.options.classActive ||'is-active';
       this.cmsFormNode = this.options.cmsFormNode;
       this.toolbarNode = this.options.toolbarNode;
+      this.editorContainer = this.options.editorContainer;
       this.htmlEditorNode = this.options.htmlEditorNode;
       this.htmlEditorContentNode = this.options.htmlEditorContentNode;
       this.markdownEditorNode = this.options.markdownEditorNode;

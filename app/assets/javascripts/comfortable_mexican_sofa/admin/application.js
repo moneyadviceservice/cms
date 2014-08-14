@@ -19,6 +19,7 @@ window.CMS.wysiwyg = function() {
     console.log(document.querySelector('.js-html-editor-toolbar'));
 
     masEditor.init({
+      editorContainer: document.querySelector('.l-editor'),
       cmsFormNode: document.querySelector('#edit_page'),
       toolbarNode: document.querySelector('.js-html-editor-toolbar'),
       htmlEditorNode: htmlEditorNode,
