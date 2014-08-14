@@ -3,6 +3,64 @@
 // Styleguide Toolbar
 
 .toolbar {
+  text-align: center;
+
+  &.is-sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.toolbar__inner {
   @extend %editor-bar;
-  min-height: 30px;
+  display: table;
+  height: 36px;
+  width: 100%;
+}
+
+.toolbar button {
+  background-color: transparent;
+  border: 0;
+  color: white;
+  font-size: 16px;
+  display: table-cell;
+  margin: 0;
+  padding: 7px 10px;
+  position: relative;
+  font-weight: bold;
+}
+
+.toolbar button:before,
+.toolbar button:after {
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+.toolbar button:before {
+  background: #000;
+  right: 1px;
+}
+
+.toolbar button:after {
+  background: #444;
+  right: 0;
+}
+
+.toolbar button:last-child:before,
+.toolbar button:last-child:after {
+  display: none;
+}
+
+.toolbar button.active {
+  background: black;
+  color: white;
+}
+
+.toolbar button[disabled] {
+  opacity: .5;
 }
