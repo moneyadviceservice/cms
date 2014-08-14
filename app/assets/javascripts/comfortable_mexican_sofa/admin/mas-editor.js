@@ -32,7 +32,7 @@ define('mas-editor', [
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
       this.editor.render(this.mode);
 
-      this.appendHTMLEditorNode(this.htmlEditorNode, this.markdownEditorNode);
+      this.appendChildNode(this.htmlEditorNode, this.markdownEditorNode);
 
       this.bindEvents();
     },
@@ -75,12 +75,12 @@ define('mas-editor', [
     },
 
     /**
-     * Appends one DOM node to another
-     * Used to move the HTML editor node into the same parent as Markdown editor
-     * @param  {Object} options Options
+     * Appends a DOM node to another
+     * @param {Object} node Node to append
+     * @param {Object} target Node to append to
      * @return {Object} this
      */
-    appendHTMLEditorNode: function(node, target) {
+    appendChildNode: function(node, target) {
       target.parentNode.appendChild(node);
       return this;
     },
