@@ -40,12 +40,6 @@ describe('MAS Editor', function () {
     this.sandbox.parentNode.removeChild(this.sandbox);
   });
 
-  describe('Setup', function() {
-    it('should append the HTML editor to the same parent as the Markdown editor', function() {
-      expect(this.htmlEditorNode.parentNode).to.equal(this.markdownEditorNode.parentNode);
-    });
-  });
-
   describe('Switching Edit mode', function() {
     it('allows the mode to be changed', function() {
       this.masEditor.mode = 'markdown';

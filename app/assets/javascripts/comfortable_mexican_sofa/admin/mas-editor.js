@@ -32,8 +32,6 @@ define('mas-editor', [
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
       this.editor.render(this.mode);
 
-      this.appendChildNode(this.htmlEditorNode, this.markdownEditorNode);
-
       this.bindEvents();
     },
 
@@ -71,17 +69,6 @@ define('mas-editor', [
           });
         })(this.switchModeButtonNodes[i]);
       }
-      return this;
-    },
-
-    /**
-     * Appends a DOM node to another
-     * @param {Object} node Node to append
-     * @param {Object} target Node to append to
-     * @return {Object} this
-     */
-    appendChildNode: function(node, target) {
-      target.parentNode.appendChild(node);
       return this;
     },
 
