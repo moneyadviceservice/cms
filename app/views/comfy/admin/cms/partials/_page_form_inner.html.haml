@@ -3,7 +3,7 @@
     = __FILE__.split('/').last(5).join('/').gsub(/\.html\.haml\z/, '')
 
 .editor.editor--html.js-html-editor
-  %nav.editor__toolbar.js-html-editor-toolbar
+  %nav.toolbar.js-html-editor-toolbar
     =button_tag("Bold", type: 'button', data: { "command-name" => "bold"})
     =button_tag("Link", type: 'button', data: { "command-name" => "linkPrompt"})
     =button_tag("Unlink", type: 'button', data: { "command-name" => "unlink"})
@@ -16,7 +16,8 @@
     =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"})
   .editor__content.js-html-editor-content
 
-%button.js-switch-mode{type: "button", data: { "mode" => "html" }}
-  HTML
-%button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
-  Markdown
+%nav.view-options.js-switch-mode-buttons
+  %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
+    HTML
+  %button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
+    Markdown

@@ -1,0 +1,8 @@
+// Toolbar
+//
+// Styleguide Toolbar
+
+.toolbar {
+  @extend %editor-bar;
+  min-height: 30px;
+}
