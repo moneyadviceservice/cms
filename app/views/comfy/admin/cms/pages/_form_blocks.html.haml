@@ -1,0 +1,41 @@
+- namespace = { }
+- cms_object = @page || cms_object
+- tags = cms_object.tags(true).select{|t| t.is_cms_block?}.uniq{|t| t.identifier}
+- tags.each do |tag|
+  - namespace[tag.namespace || 'default'] ||= []
+  - namespace[tag.namespace || 'default'] << tag
+
+#form-blocks
+  - if tags.empty?
+    .no-tags
+      = link_to cms_object.layout.label, edit_comfy_admin_cms_site_layout_path(@site, cms_object.layout)
+      = t('.no_tags').html_safe
+
+  - else
+    .l-editor
+      .editor.editor--html.is-active.js-html-editor
+        %nav.toolbar.js-html-editor-toolbar
+          =button_tag("Bold", type: 'button', data: { "command-name" => "bold"})
+          =button_tag("Link", type: 'button', data: { "command-name" => "linkPrompt"})
+          =button_tag("Unlink", type: 'button', data: { "command-name" => "unlink"})
+          =button_tag("OL", type: 'button', data: { "command-name" => "insertOrderedList"})
+          =button_tag("UL", type: 'button', data: { "command-name" => "insertUnorderedList"})
+          =button_tag("h1", type: 'button', data: { "command-name" => "h1"})
+          =button_tag("h2", type: 'button', data: { "command-name" => "h2"})
+          =button_tag("h3", type: 'button', data: { "command-name" => "h3"})
+          =button_tag("h4", type: 'button', data: { "command-name" => "h4"})
+          =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"})
+        .editor__content.js-html-editor-content
+
+      %nav.view-options.js-switch-mode-buttons
+        %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
+          HTML
+        %button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
+          Markdown
+
+      .editor.editor--markdown.js-markdown-editor
+        %textarea.editor__content.js-markdown-editor-content{ name: 'page[blocks_attributes][0][content]' }
+          :plain
+            # Heading
+
+
