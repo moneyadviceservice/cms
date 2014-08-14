@@ -26,19 +26,21 @@
             =button_tag("h3", type: 'button', data: { "command-name" => "h3"})
             =button_tag("h4", type: 'button', data: { "command-name" => "h4"})
             =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"})
+            %nav.view-options.js-switch-mode-buttons
+              %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
+                HTML
+              %button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
+                Markdown
         .editor__content.js-html-editor-content
 
-      %nav.view-options.js-switch-mode-buttons
-        %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
-          HTML
-        %button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
-          Markdown
-
       .editor.editor--markdown.js-markdown-editor
-        %nav.toolbar.js-html-editor-toolbar
+        %nav.toolbar
           .toolbar__inner
+            %nav.view-options.js-switch-mode-buttons
+              %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
+                HTML
+              %button.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
+                Markdown
         %textarea.editor__content.js-markdown-editor-content{ name: 'page[blocks_attributes][0][content]' }
           :plain
-            # Heading
-
-
+            # What is an apprenticeship?
