@@ -78,7 +78,7 @@ define('mas-editor', [
      * @return {Object} this
      */
     handleSubmit: function() {
-      // Convert to Markdown
+      this.editor.changeEditingMode('markdown');
       this.cmsFormNode.submit();
       return this;
     },
