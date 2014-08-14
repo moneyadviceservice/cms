@@ -10,10 +10,16 @@
   }
 }
 
-.editor__toolbar {
-  @extend %editor-bar;
-}
-
 .editor__content {
 
+}
+
+.editor--markdown {
+  min-height: 500px;
+}
+
+.editor--html {
+  .editor__content {
+    min-height: 500px;
+  }
 }
