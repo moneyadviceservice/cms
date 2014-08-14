@@ -3,11 +3,14 @@
 @import "components/_toolbar";
 @import "components/_view-options-toolbar";
 
+// Layouts
+@import "layout/_editor";
+
 // State
 @import "state/_editor";
 
 // Helpers
 @import "helpers/_background";
 
-// Utilties
+// Utilities
 @import "utilities/_utilities";
