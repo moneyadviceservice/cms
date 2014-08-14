@@ -23,11 +23,12 @@ define('mas-editor', [
       this.htmlEditorNode = this.options.htmlEditorNode;
       this.htmlEditorContentNode = this.options.htmlEditorContentNode;
       this.markdownEditorNode = this.options.markdownEditorNode;
+      this.markdownEditorContentNode = this.options.markdownEditorContentNode;
       this.switchModeButtonNodes = this.options.switchModeButtonNodes;
 
       this.editor = new Editor(
         this.htmlEditorContentNode,
-        this.markdownEditorNode,
+        this.markdownEditorContentNode,
         this.toolbarNode
       );
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));

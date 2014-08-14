@@ -8,28 +8,22 @@ window.CMS.wysiwyg = function() {
   ], function (
     masEditor
   ) {
-    var markdownEditorNode = document.querySelector('textarea[data-cms-rich-text]'),
+    var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content'),
         classActive = 'is-active',
         htmlEditorNode;
 
-    htmlEditorNode = document.querySelector('.js-html-editor');
-
-    if(!markdownEditorNode) return;
-
-    console.log(document.querySelector('.js-html-editor-toolbar'));
+    if(!markdownEditorContentNode) return;
 
     masEditor.init({
       editorContainer: document.querySelector('.l-editor'),
       cmsFormNode: document.querySelector('#edit_page'),
       toolbarNode: document.querySelector('.js-html-editor-toolbar'),
-      htmlEditorNode: htmlEditorNode,
+      htmlEditorNode: document.querySelector('.js-html-editor'),
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
-      markdownEditorNode: markdownEditorNode,
+      markdownEditorNode: document.querySelector('.js-markdown-editor'),
+      markdownEditorContentNode: markdownEditorContentNode,
       switchModeButtonNodes: document.querySelectorAll('.js-switch-mode'),
       classActive : 'is-active'
     });
-
-    markdownEditorNode.classList.add('editor','editor--markdown');
-    htmlEditorNode.classList.add(classActive);
   });
 };
