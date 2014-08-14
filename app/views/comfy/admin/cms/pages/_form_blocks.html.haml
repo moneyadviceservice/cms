@@ -16,16 +16,22 @@
       .editor.editor--html.is-active.js-html-editor
         %nav.toolbar.js-html-editor-toolbar
           .toolbar__inner
-            =button_tag("Bold", type: 'button', data: { "command-name" => "bold"})
-            =button_tag("Link", type: 'button', data: { "command-name" => "linkPrompt"})
-            =button_tag("Unlink", type: 'button', data: { "command-name" => "unlink"})
-            =button_tag("OL", type: 'button', data: { "command-name" => "insertOrderedList"})
-            =button_tag("UL", type: 'button', data: { "command-name" => "insertUnorderedList"})
-            =button_tag("h1", type: 'button', data: { "command-name" => "h1"})
-            =button_tag("h2", type: 'button', data: { "command-name" => "h2"})
-            =button_tag("h3", type: 'button', data: { "command-name" => "h3"})
-            =button_tag("h4", type: 'button', data: { "command-name" => "h4"})
-            =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"})
+            =button_tag(type: 'button', data: { "command-name" => "bold"}) do
+              %span.fa.fa-bold
+            =button_tag("Link", type: 'button', data: { "command-name" => "linkPrompt"}) do
+              %span.fa.fa-link
+            =button_tag("Unlink", type: 'button', data: { "command-name" => "unlink"}) do
+              %span.fa.fa-unlink
+            =button_tag("OL", type: 'button', data: { "command-name" => "insertOrderedList"}) do
+              %span.fa.fa-list-ol
+            =button_tag("UL", type: 'button', data: { "command-name" => "insertUnorderedList"}) do
+              %span.fa.fa-list-ul
+            =button_tag("H1", type: 'button', data: { "command-name" => "h1"})
+            =button_tag("H2", type: 'button', data: { "command-name" => "h2"})
+            =button_tag("H3", type: 'button', data: { "command-name" => "h3"})
+            =button_tag("H4", type: 'button', data: { "command-name" => "h4"})
+            =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"}) do
+              %span.fa.fa-square-o
             %nav.view-options.js-switch-mode-buttons
               %button.js-switch-mode{type: "button", data: { "mode" => "html" }}
                 HTML
