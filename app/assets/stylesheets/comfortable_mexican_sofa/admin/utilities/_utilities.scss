@@ -1,0 +1,13 @@
+// Utility classes
+//
+// No styleguide reference.
+
+%is-hidden,
+.is-hidden {
+  display: none;
+}
+
+%is-active,
+.is-active {
+  display: block;
+}

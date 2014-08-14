@@ -16,7 +16,7 @@ define('mas-editor', [
 
       this.options = options;
       this.mode = this.options.mode || 'html';
-      this.classActive = 'is-active';
+      this.classActive = this.options.classActive ||'is-active';
       this.cmsFormNode = this.options.cmsFormNode;
       this.toolbarNode = this.options.toolbarNode;
       this.htmlEditorNode = this.options.htmlEditorNode;

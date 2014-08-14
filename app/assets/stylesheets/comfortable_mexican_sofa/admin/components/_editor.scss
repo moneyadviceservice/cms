@@ -1,0 +1,19 @@
+// Editor state
+//
+// Styleguide Editor
+
+.editor {
+  display: none;
+
+  &.is-active {
+    @extend %is-active;
+  }
+}
+
+.editor__toolbar {
+  @extend %editor-bar;
+}
+
+.editor__content {
+
+}

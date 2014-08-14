@@ -8,17 +8,27 @@ window.CMS.wysiwyg = function() {
   ], function (
     masEditor
   ) {
-    var markdownEditorNode = document.querySelector('textarea[data-cms-rich-text]');
+    var markdownEditorNode = document.querySelector('textarea[data-cms-rich-text]'),
+        classActive = 'is-active',
+        htmlEditorNode;
+
+    htmlEditorNode = document.querySelector('.js-html-editor');
 
     if(!markdownEditorNode) return;
+
+    console.log(document.querySelector('.js-html-editor-toolbar'));
 
     masEditor.init({
       cmsFormNode: document.querySelector('#edit_page'),
       toolbarNode: document.querySelector('.js-html-editor-toolbar'),
-      htmlEditorNode: document.querySelector('.js-html-editor'),
+      htmlEditorNode: htmlEditorNode,
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
       markdownEditorNode: markdownEditorNode,
-      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
+      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode'),
+      classActive : 'is-active'
     });
+
+    markdownEditorNode.classList.add('editor');
+    htmlEditorNode.classList.add(classActive);
   });
 };
