@@ -28,7 +28,7 @@ window.CMS.wysiwyg = function() {
       classActive : 'is-active'
     });
 
-    markdownEditorNode.classList.add('editor');
+    markdownEditorNode.classList.add('editor','editor--markdown');
     htmlEditorNode.classList.add(classActive);
   });
 };
