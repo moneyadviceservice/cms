@@ -47,5 +47,5 @@
               %button.toolbar__btn.toolbar__btn--mode.js-switch-mode{type: "button", data: { "mode" => "html" }}
                 Layout
         %textarea.editor__content.js-markdown-editor-content{ name: 'page[blocks_attributes][0][content]' }
-          :plain
-            # What is an apprenticeship?
+          =cms_object.blocks.first.content
+        %input{type: 'hidden', name: 'page[blocks_attributes][0][identifier]', value: 'content'}
