@@ -31,7 +31,6 @@ define('mas-editor', [
         this.toolbarNode
       );
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
-      this.editor.render(this.mode);
 
       this.bindEvents();
     },
