@@ -25,7 +25,6 @@ define('mas-editor', [
       this.markdownEditorNode = this.options.markdownEditorNode;
       this.markdownEditorContentNode = this.options.markdownEditorContentNode;
       this.switchModeButtonNodes = this.options.switchModeButtonNodes;
-
       this.editor = new Editor(
         this.htmlEditorContentNode,
         this.markdownEditorContentNode,

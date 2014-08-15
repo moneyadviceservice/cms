@@ -16,7 +16,8 @@ describe('MAS Editor', function () {
       self.sandbox = sandbox;
       self.cmsFormNode = sandbox.querySelector('#edit_page');
       self.toolbarNode = sandbox.querySelector('.js-html-editor-toolbar');
-      self.markdownEditorNode = sandbox.querySelector('textarea[data-cms-rich-text]');
+      self.markdownEditorNode = sandbox.querySelector('.js-markdown-editor');
+      self.markdownEditorContentNode = sandbox.querySelector('.js-markdown-editor-content');
       self.htmlEditorNode = sandbox.querySelector('.js-html-editor');
       self.htmlEditorContentNode = document.querySelector('.js-html-editor-content');
       self.switchModeButtonNodes = document.querySelectorAll('.js-switch-mode');
@@ -29,6 +30,7 @@ describe('MAS Editor', function () {
         htmlEditorNode: self.htmlEditorNode,
         htmlEditorContentNode: self.htmlEditorContentNode,
         markdownEditorNode: self.markdownEditorNode,
+        markdownEditorContentNode: self.markdownEditorContentNode,
         switchModeButtonNodes: self.switchModeButtonNodes
       });
 
