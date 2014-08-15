@@ -6,6 +6,7 @@ $responsive: false;
   @import "dough/assets/stylesheets/basic";
   @import "dough/assets/stylesheets/lib";
   @import "dough/assets/stylesheets/common";
+  @import "lib/dough/_resets";
 }
 
 // Components
