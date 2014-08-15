@@ -14,7 +14,7 @@ describe('MAS Editor', function () {
       sandbox.innerHTML = window.__html__['spec/javascripts/fixtures/mas-editor.html'];
       document.body.appendChild(sandbox);
       self.sandbox = sandbox;
-      self.cmsFormNode = sandbox.querySelector('#edit_page');
+      self.cmsFormNode = sandbox.querySelector('.js-edit-form');
       self.toolbarNode = sandbox.querySelector('.js-html-editor-toolbar');
       self.markdownEditorNode = sandbox.querySelector('.js-markdown-editor');
       self.markdownEditorContentNode = sandbox.querySelector('.js-markdown-editor-content');
