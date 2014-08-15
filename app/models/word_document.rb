@@ -1,4 +1,4 @@
-class WordConverter
+class WordDocument
   attr_reader :file, :parser
 
   def initialize(file, parser=WordToMarkdown)

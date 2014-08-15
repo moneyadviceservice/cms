@@ -1,5 +1,5 @@
-describe WordConverter do
-  subject { WordConverter.new(file) }
+describe WordDocument do
+  subject { WordDocument.new(file) }
 
   describe '#to_s' do
     context 'structured doc' do
