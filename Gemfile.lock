@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:moneyadviceservice/comfortable-mexican-sofa.git
-  revision: a1f00c7c9078bda6937b690fb8609cba5a33b655
+  revision: 6e693df29c0739063e7839708af129b9dceb8562
   specs:
     comfortable_mexican_sofa (1.12.1)
       active_link_to (>= 1.0.0)
