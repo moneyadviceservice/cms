@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :word_documents
+
   get '/version', to: 'versions#show'
 
   root to: redirect('/admin')

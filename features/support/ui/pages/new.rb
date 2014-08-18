@@ -9,5 +9,6 @@ module UI::Pages
     section :header, UI::Sections::Header, '.page-header'
 
     element :publish, '#new_page input.btn-primary'
+    element :upload_word, '#upload-word-doc'
   end
 end

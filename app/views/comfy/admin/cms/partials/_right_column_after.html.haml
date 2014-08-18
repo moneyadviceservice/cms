@@ -1,0 +1,4 @@
+%div.box#upload-word-doc
+  = form_for :word, url: word_documents_path, multipart: true do |form|
+    = form.file_field :document, accept: WordDocumentsController::ACCEPTED_CONTENT_TYPES.join(',')
+    = form.submit 'Upload Word Doc'
