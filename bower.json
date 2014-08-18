@@ -1,4 +1,15 @@
 {
+  "__warning__": [
+    " ************************************************************************** ",
+    " *                                                                        * ",
+    " * WARNING!                                                               * ",
+    " * This file is generated. ANY CHANGES YOU MAKE MAY BE OVERWRITTEN.       * ",
+    " *                                                                        * ",
+    " * To add/edit bower dependencies, please edit bower.json.erb, and run    * ",
+    " * `bowndler bower_configure` to regenerate this file.                    * ",
+    " *                                                                        * ",
+    " ************************************************************************** "
+  ],
   "name": "cms",
   "author": "Money Advice Service",
   "private": true,
@@ -6,7 +17,9 @@
     "node_modules"
   ],
   "dependencies": {
+    "dough": "/Users/jaredfraser/.rvm/gems/ruby-2.1.2/bundler/gems/dough-28cb3029f919",
     "requirejs": "2.1.11",
-    "mas-cms-editor": "git://github.com/moneyadviceservice/cms-editor.git#develop"
+    "mas-cms-editor": "git://github.com/moneyadviceservice/cms-editor.git#develop",
+    "components-font-awesome": "4.1.0"
   }
 }
