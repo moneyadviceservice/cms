@@ -338,6 +338,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 5.0)
   mas-development_dependencies!
   mysql2
+  pry-rails
   rails (= 4.1.1)
   rspec-rails (~> 3.0)
   rspec_junit_formatter
