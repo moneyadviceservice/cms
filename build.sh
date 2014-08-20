@@ -25,6 +25,14 @@ echo "Running Bundle package"
 echo "----"
 bundle package --all
 
+echo "Running Bower cache clean"
+echo "----"
+bower cache clean
+
+echo "Running Bower install (via bowndler)"
+echo "----"
+bowndler install --production --config.interactive=false
+
 echo "Precompiling assets"
 echo "----"
 RAILS_ENV=production RAILS_GROUPS=assets rake assets:precompile
