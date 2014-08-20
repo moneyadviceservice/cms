@@ -25,4 +25,4 @@ CI_EXECUTOR_NUMBER=${EXECUTOR_NUMBER-0}
 
 rake spec
 rake cucumber
-npm test
+./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js --single-run
