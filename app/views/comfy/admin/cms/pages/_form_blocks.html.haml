@@ -10,42 +10,23 @@
     .no-tags
       = link_to cms_object.layout.label, edit_comfy_admin_cms_site_layout_path(@site, cms_object.layout)
       = t('.no_tags').html_safe
-
+  
   - else
-    .l-editor
-      .editor.editor--html.is-active.js-html-editor
-        %nav.toolbar.js-html-editor-toolbar
-          .toolbar__inner
-            =button_tag(type: 'button', data: { "command-name" => "bold"}) do
-              %span.fa.fa-bold
-            =button_tag("Link", type: 'button', data: { "command-name" => "linkPrompt"}) do
-              %span.fa.fa-link
-            =button_tag("Unlink", type: 'button', data: { "command-name" => "unlink"}) do
-              %span.fa.fa-unlink
-            =button_tag("OL", type: 'button', data: { "command-name" => "insertOrderedList"}) do
-              %span.fa.fa-list-ol
-            =button_tag("UL", type: 'button', data: { "command-name" => "insertUnorderedList"}) do
-              %span.fa.fa-list-ul
-            =button_tag("H1", type: 'button', data: { "command-name" => "h1"})
-            =button_tag("H2", type: 'button', data: { "command-name" => "h2"})
-            =button_tag("H3", type: 'button', data: { "command-name" => "h3"})
-            =button_tag("H4", type: 'button', data: { "command-name" => "h4"})
-            =button_tag("Remove Formatting", type: "button", data: { "command-name" => "removeFormat"}) do
-              %span.fa.fa-square-o
-            %button.toolbar__btn.toolbar__btn--mode.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
-              Advanced
-            %button.toolbar__btn.toolbar__btn--mode.js-switch-mode{type: "button", data: { "mode" => "html" }}
-              Layout
-        .editor__content.theme.theme--dough.js-html-editor-content
-
-      .editor.editor--markdown.js-markdown-editor
-        %nav.toolbar
-          .toolbar__inner
-            %nav.view-options.js-switch-mode-buttons
-              %button.toolbar__btn.toolbar__btn--mode.js-switch-mode{type: "button", data: { "mode" => "markdown" }}
-                Advanced
-              %button.toolbar__btn.toolbar__btn--mode.js-switch-mode{type: "button", data: { "mode" => "html" }}
-                Layout
-        %textarea.editor__content.js-markdown-editor-content{ name: 'page[blocks_attributes][0][content]' }
-          =cms_object.blocks.first.content
-        %input{type: 'hidden', name: 'page[blocks_attributes][0][identifier]', value: 'content'}
+    = fields_for :blocks, nil, :builder => Cms::FormBuilder, :layout => :horizontal do |cms_blocks|
+      
+      .tabbable
+        - if namespace.size > 1
+          %ul.nav.nav-tabs
+            - namespace.each_with_index do |(name, tags), index|
+              %li{:class => index == 0 ? 'active' : nil}
+                = link_to name.humanize, "#ns-#{name}", :data => {:toggle => 'tab'}
+        .tab-content
+          - block_index = 0
+          - namespace.each_with_index do |(name, tags), index|
+            .tab-pane{:id => "ns-#{name}", :class => index == 0 ? 'active' : nil}
+              - tags.each do |tag|
+                - begin
+                  = cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, block_index)
+                - rescue
+                  - Rails.env.production?? nil : raise
+                - block_index += 1
