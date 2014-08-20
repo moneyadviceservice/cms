@@ -9,8 +9,7 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "test": "./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js",
-    "postinstall" : "bundle exec bowndler install"
+    "test": "./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js"
   },
   "devDependencies": {
     "karma": "^0.12.2",
