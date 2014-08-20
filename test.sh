@@ -11,6 +11,7 @@ BUNDLE_JOBS=$((CORES-1))
 
 bundle install --jobs $BUNDLE_JOBS
 bundle exec bowndler install
+npm install
 
 if [ -n "$GO_PIPELINE_NAME" ]; then
   cp config/database{-ci,}.yml
