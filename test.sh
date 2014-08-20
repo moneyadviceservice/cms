@@ -10,7 +10,7 @@ CORES=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 BUNDLE_JOBS=$((CORES-1))
 
 bundle install --jobs $BUNDLE_JOBS
-bowndler install
+bundle exec bowndler install
 
 if [ -n "$GO_PIPELINE_NAME" ]; then
   cp config/database{-ci,}.yml
