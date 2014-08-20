@@ -1,7 +1,6 @@
 When(/^I am (?:working on|editing) an? (un)?published article$/) do |unpublished|
   site = cms_site.id
-  page = cms_page(unpublished.nil?).id
-
+  page = cms_page(published: unpublished.nil?).id
   edit_page.load(site: site, page: page)
 end
 
