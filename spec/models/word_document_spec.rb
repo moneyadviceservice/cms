@@ -4,7 +4,9 @@ describe WordDocument do
   describe '#to_s' do
     context 'structured doc' do
       let(:file) { File.new(Rails.root.join('spec/fixtures/structured_doc.docx')) }
-#       it 'is converted to structured markdown' do
+      it 'is converted to structured markdown' do
+#         pending
+
 #         expect(subject.to_s.strip).to eql(%q{# Heading One
 
 # The first paragraph summarises the main points of the article in no more than five sentences giving the reader a chance to decide whether to continue reading or not.
@@ -36,7 +38,7 @@ describe WordDocument do
 # | **London** | 8,308,369 | Londongrad |
 # | **Edinburgh** | 495,360 | Deadinburgh |
 # | **Manchester** | 514,417 | Cottonopolis |})
-#       end
-    # end
+      end
+    end
   end
 end
