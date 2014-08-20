@@ -1,3 +1,4 @@
+@wip
 Feature: As a content editor
   I want to upload a word document that follows the guidelines
   and have its contents imported and formatted into the CMS editor
