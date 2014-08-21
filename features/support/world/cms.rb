@@ -1,6 +1,6 @@
 module World
   module Cms
-    attr_accessor :site, :layout, :root, :page, :categories
+    attr_accessor :site, :layout, :root, :a_page, :categories
 
     def cms_site
       self.site ||= Comfy::Cms::Site.create(identifier: identifier)
@@ -21,10 +21,10 @@ module World
     end
 
     def cms_page(published: true)
-      self.page ||= cms_site.pages.create(parent: cms_root, layout: cms_layout, label: identifier, slug: identifier.downcase)
-      self.page.blocks.create(identifier: 'content', content: 'test') if self.page.blocks.empty?
-      self.page.update_columns(is_published: published)
-      self.page
+      self.a_page ||= cms_site.pages.create(parent: cms_root, layout: cms_layout, label: identifier, slug: identifier.downcase)
+      self.a_page.blocks.create(identifier: 'content', content: 'test') if self.a_page.blocks.empty?
+      self.a_page.update_columns(is_published: published)
+      self.a_page
     end
 
     private
