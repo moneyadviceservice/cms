@@ -13,5 +13,6 @@ module UI::Pages
     element :update, 'input.btn-primary'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '.chosen-choices'
+    elements :categories_selected, '#categories--select > option[selected]'
   end
 end
