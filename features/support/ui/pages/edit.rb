@@ -9,5 +9,10 @@ module UI::Pages
     section :header, UI::Sections::Header, '.page-header'
 
     element :preview, '#preview'
+    element :categories, '#categories--select'
+    element :update, 'input.btn-primary'
+    element :category_remove, '.search-choice-close'
+    element :category_chosen, '.chosen-choices'
+    elements :categories_selected, '#categories--select > option[selected]'
   end
 end
