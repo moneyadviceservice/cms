@@ -4,6 +4,8 @@ require.config({
   baseUrl : '../',
   paths: {
     // Editor core
+    'constants' : '<%= requirejs_path("mas-cms-editor/src/modules/constants/constants") %>',
+    'config' : '<%= requirejs_path("mas-cms-editor/src/modules/config/config") %>',
     'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/editor") %>',
 

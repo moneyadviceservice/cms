@@ -17,6 +17,8 @@ requirejs.config({
   baseUrl: '/base',
   deps: tests,
   paths: {
+    'constants': bowerPath + 'mas-cms-editor/src/modules/constants/constants',
+    'config': bowerPath + 'mas-cms-editor/src/modules/config/config',
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/mas-editor',
     'editor' : bowerPath + 'mas-cms-editor/src/editor',
     'source-converter': bowerPath + 'mas-cms-editor/src/modules/lib/source-converter/source-converter',
