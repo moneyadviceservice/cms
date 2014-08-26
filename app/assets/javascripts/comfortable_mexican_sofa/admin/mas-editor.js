@@ -90,6 +90,8 @@ define('mas-editor', [
      * @return {Object} this
      */
     changeMode: function(mode) {
+      if(mode === this.mode) return;
+
       this.mode = mode;
 
       switch(mode) {
