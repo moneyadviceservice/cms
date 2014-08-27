@@ -27,3 +27,10 @@ categories.each do |parent, children|
   labels = children.nil? ? [parent] : children
   labels.each { |label| Comfy::Cms::Category.create(site_id: site.id, label: label, categorized_type: "Comfy::Cms::Page") }
 end
+
+puts "Seeding layouts..."
+default_content = <<-END
+{{ cms:page:meta_description:string }}
+{{ cms:page:content:rich_text }}
+END
+Comfy::Cms::Layout.find_or_create_by(site: site, content: default_content, label: "default", identifier: "default")
