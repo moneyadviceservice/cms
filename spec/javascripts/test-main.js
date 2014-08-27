@@ -17,6 +17,7 @@ requirejs.config({
   baseUrl: '/base',
   deps: tests,
   paths: {
+    // Editor
     'constants': bowerPath + 'mas-cms-editor/src/modules/constants/constants',
     'config': bowerPath + 'mas-cms-editor/src/modules/config/config',
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/mas-editor',
@@ -25,7 +26,7 @@ requirejs.config({
     'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
     'scribe-wrapper': bowerPath + 'mas-cms-editor/src/modules/lib/scribe-wrapper/scribe-wrapper',
 
-    // PhantomJS shims
+    // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0
     'phantom-shims' : 'spec/javascripts/helpers/shims/phantom-shims',
 
     // 3rd-party libraries
