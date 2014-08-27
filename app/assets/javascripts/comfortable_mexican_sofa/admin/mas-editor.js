@@ -15,7 +15,6 @@ define('mas-editor', [
       if(typeof options !== 'object') return;
 
       this.options = options;
-      this.mode = this.options.mode || 'html';
       this.classActive = this.options.classActive ||'is-active';
       this.cmsFormNode = this.options.cmsFormNode;
       this.toolbarNode = this.options.toolbarNode;
@@ -31,6 +30,7 @@ define('mas-editor', [
         this.toolbarNode
       );
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
+      this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
       this.bindEvents();
     },
