@@ -31,6 +31,8 @@ requirejs.config({
 
     // 3rd-party libraries
     'text': bowerPath + 'requirejs-text/text',
+    'rsvp': bowerPath + 'rsvp/rsvp.amd',
+    'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
     'to-markdown': bowerPath + 'to-markdown/src/to-markdown',
     'marked': bowerPath + 'marked/lib/marked',
     'he': bowerPath + 'he/he',
