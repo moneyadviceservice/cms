@@ -34,7 +34,7 @@ define('mas-editor', [
       this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
-      this.bindEvents();
+      this.addUIEvents();
     },
 
 
@@ -42,7 +42,7 @@ define('mas-editor', [
      * Bind DOM events
      * @return {Object} this
      */
-    bindEvents: function() {
+    addUIEvents: function() {
       var _this = this;
 
       // Catches form submit and delegates to a handler function
