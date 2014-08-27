@@ -15,7 +15,6 @@ define('mas-editor', [
       if(typeof options !== 'object') return;
 
       this.options = options;
-      this.classActive = this.options.classActive ||'is-active';
       this.cmsFormNode = this.options.cmsFormNode;
       this.toolbarNode = this.options.toolbarNode;
       this.editorContainer = this.options.editorContainer;
@@ -30,6 +29,7 @@ define('mas-editor', [
         this.toolbarNode
       );
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
+      this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
       this.bindEvents();
@@ -77,8 +77,8 @@ define('mas-editor', [
      * @return {Object} this
      */
     handleSubmit: function() {
-      if(this.mode === 'html') {
-        this.editor.changeEditingMode('markdown');
+      if(this.mode === this.editor.constants.MODES.HTML) {
+        this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
       }
       this.cmsFormNode.submit();
       return this;
@@ -95,10 +95,10 @@ define('mas-editor', [
       this.mode = mode;
 
       switch(mode) {
-        case 'html':
+        case this.editor.constants.MODES.HTML:
           this.show(this.htmlEditorNode).hide(this.markdownEditorNode);
           break;
-        case 'markdown':
+        case this.editor.constants.MODES.MARKDOWN:
           this.show(this.markdownEditorNode).hide(this.htmlEditorNode);
           break;
         default:
