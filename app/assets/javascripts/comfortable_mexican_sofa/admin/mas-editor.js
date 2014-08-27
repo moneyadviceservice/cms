@@ -4,8 +4,7 @@ define('mas-editor', [
   'eventsWithPromises'
 ], function (
   Editor,
-  editorPluginStickyToolbar,
-  events
+  editorPluginStickyToolbar
 ) {
   return {
     /**
