@@ -35,6 +35,7 @@ define('mas-editor', [
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
       this.addUIEvents();
+      this.setupAppEvents();
     },
 
 
@@ -57,6 +58,15 @@ define('mas-editor', [
     },
 
     /**
+     * [setupAppEvents description]
+     * @return {[type]} [description]
+     */
+    setupAppEvents: function() {
+      this.editor.events.subscribe('mode:changed', this.handleChangeModeEvent, this);
+      return this;
+    },
+
+    /**
      * Setups mode switching buttons
      * @return {Object} this
      */
@@ -67,7 +77,7 @@ define('mas-editor', [
       while(i--) {
         (function(button) {
           button.addEventListener('click', function() {
-            _this.handleModeButtonClick(button);
+            _this.changeMode(button.dataset.mode);
           });
         })(this.switchModeButtonNodes[i]);
       }
@@ -79,16 +89,14 @@ define('mas-editor', [
      * @param  {Object} button Button DOM node
      * @return {[type]}        [description]
      */
-    handleModeButtonClick: function(buttonNode) {
-      var i = this.switchModeButtonNodes.length;
-
-      while(i--) {
-        this.switchModeButtonNodes[i].classList.remove(this.classActive);
-      }
-      buttonNode.classList.add(this.classActive);
-      this.changeMode(buttonNode.dataset.mode);
+    handleChangeModeEvent: function(mode) {
+      Array.prototype.map.call(this.switchModeButtonNodes, function(buttonNode) {
+        buttonNode.classList.remove(this.classActive);
+        if(buttonNode.dataset.mode === mode) {
+          buttonNode.classList.add(this.classActive);
+        }
+      }.bind(this));
     },
-
 
 
     /**
