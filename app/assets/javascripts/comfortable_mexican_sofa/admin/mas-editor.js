@@ -65,12 +65,29 @@ define('mas-editor', [
       while(i--) {
         (function(button) {
           button.addEventListener('click', function() {
-            _this.changeMode(button.dataset.mode);
+            _this.handleModeButtonClick(button);
           });
         })(this.switchModeButtonNodes[i]);
       }
       return this;
     },
+
+    /**
+     * Handles Mode button click
+     * @param  {Object} button Button DOM node
+     * @return {[type]}        [description]
+     */
+    handleModeButtonClick: function(buttonNode) {
+      var i = this.switchModeButtonNodes.length;
+
+      while(i--) {
+        this.switchModeButtonNodes[i].classList.remove(this.classActive);
+      }
+      buttonNode.classList.add(this.classActive);
+      this.changeMode(buttonNode.dataset.mode);
+    },
+
+
 
     /**
      * Converts HTML input into Markdown then submits form
