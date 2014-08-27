@@ -15,7 +15,6 @@
 
 .toolbar__inner {
   @extend %editor-bar;
-  display: table;
   height: 36px;
   width: 100%;
 }
@@ -29,7 +28,6 @@
   border: 0;
   color: white;
   font-size: 16px;
-  display: table-cell;
   margin: 0;
   padding: 7px 10px;
   position: relative;
