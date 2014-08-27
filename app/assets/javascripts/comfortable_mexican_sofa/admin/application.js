@@ -11,6 +11,7 @@ window.CMS.wysiwyg = function() {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content'),
         classActive = 'is-active',
         htmlEditorNode;
+    'use strict';
 
     if(!markdownEditorContentNode) return;
 
