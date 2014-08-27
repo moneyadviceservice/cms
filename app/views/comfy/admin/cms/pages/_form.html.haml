@@ -18,9 +18,6 @@
 - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
   = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
-- if (options = ::Comfy::Cms::Page.options_for_select(@site, @page)).present?
-  = form.select :parent_id, options
-
 - if (options = ::Comfy::Cms::Page.options_for_select(@site, @page, nil, 0, false)).present?
   = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options
 
