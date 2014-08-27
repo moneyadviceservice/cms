@@ -6,6 +6,7 @@ define('mas-editor', [
   Editor,
   editorPluginStickyToolbar
 ) {
+  'use strict';
   return {
     /**
      * Setups options and instantiates Editor instance
