@@ -8,10 +8,9 @@ window.CMS.wysiwyg = function() {
   ], function (
     masEditor
   ) {
-    var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content'),
-        classActive = 'is-active',
-        htmlEditorNode;
     'use strict';
+
+    var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
     if(!markdownEditorContentNode) return;
 
@@ -25,8 +24,7 @@ window.CMS.wysiwyg = function() {
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
       markdownEditorNode: document.querySelector('.js-markdown-editor'),
       markdownEditorContentNode: markdownEditorContentNode,
-      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode'),
-      classActive : 'is-active'
+      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
     });
   });
 };
