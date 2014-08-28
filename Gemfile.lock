@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git@github.com:moneyadviceservice/comfortable-mexican-sofa.git
-  revision: 6e693df29c0739063e7839708af129b9dceb8562
+  revision: a72f841bcf50ce8d9cb7243dda17f0997f55743b
   specs:
     comfortable_mexican_sofa (1.12.1)
       active_link_to (>= 1.0.0)
@@ -107,7 +107,7 @@ GEM
     cliver (0.3.2)
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
-    codemirror-rails (4.4)
+    codemirror-rails (4.5)
       railties (>= 3.0, < 5)
     coderay (1.1.0)
     coffee-rails (4.0.1)
@@ -116,7 +116,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.1)
+    coffee-script-source (1.8.0)
     css_parser (1.3.5)
       addressable
     cucumber (1.3.15)
