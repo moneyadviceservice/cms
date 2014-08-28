@@ -1,7 +1,6 @@
 define('mas-editor', [
   'editor',
-  'editor-plugin-sticky-toolbar',
-  'eventsWithPromises'
+  'editor-plugin-sticky-toolbar'
 ], function (
   Editor,
   editorPluginStickyToolbar
