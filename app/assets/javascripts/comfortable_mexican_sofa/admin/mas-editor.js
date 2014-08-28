@@ -5,6 +5,7 @@ define('mas-editor', [
   Editor,
   editorPluginStickyToolbar
 ) {
+  'use strict';
   return {
     /**
      * Setups options and instantiates Editor instance
@@ -15,8 +16,6 @@ define('mas-editor', [
       if(typeof options !== 'object') return;
 
       this.options = options;
-      this.mode = this.options.mode || 'html';
-      this.classActive = this.options.classActive ||'is-active';
       this.cmsFormNode = this.options.cmsFormNode;
       this.toolbarNode = this.options.toolbarNode;
       this.editorContainer = this.options.editorContainer;
@@ -31,8 +30,11 @@ define('mas-editor', [
         this.toolbarNode
       );
       this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
+      this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
+      this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
-      this.bindEvents();
+      this.addUIEvents();
+      this.setupAppEvents();
     },
 
 
@@ -40,7 +42,7 @@ define('mas-editor', [
      * Bind DOM events
      * @return {Object} this
      */
-    bindEvents: function() {
+    addUIEvents: function() {
       var _this = this;
 
       // Catches form submit and delegates to a handler function
@@ -51,6 +53,15 @@ define('mas-editor', [
 
       this.setupModeButton();
 
+      return this;
+    },
+
+    /**
+     * [setupAppEvents description]
+     * @return {[type]} [description]
+     */
+    setupAppEvents: function() {
+      this.editor.events.subscribe('mode:changed', this.handleChangeModeEvent, this);
       return this;
     },
 
@@ -73,12 +84,27 @@ define('mas-editor', [
     },
 
     /**
+     * Handles Mode button click
+     * @param  {Object} button Button DOM node
+     * @return {[type]}        [description]
+     */
+    handleChangeModeEvent: function(mode) {
+      Array.prototype.map.call(this.switchModeButtonNodes, function(buttonNode) {
+        buttonNode.classList.remove(this.classActive);
+        if(buttonNode.dataset.mode === mode) {
+          buttonNode.classList.add(this.classActive);
+        }
+      }.bind(this));
+    },
+
+
+    /**
      * Converts HTML input into Markdown then submits form
      * @return {Object} this
      */
     handleSubmit: function() {
-      if(this.mode === 'html') {
-        this.editor.changeEditingMode('markdown');
+      if(this.mode === this.editor.constants.MODES.HTML) {
+        this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
       }
       this.cmsFormNode.submit();
       return this;
@@ -90,13 +116,15 @@ define('mas-editor', [
      * @return {Object} this
      */
     changeMode: function(mode) {
+      if(mode === this.mode) return;
+
       this.mode = mode;
 
       switch(mode) {
-        case 'html':
+        case this.editor.constants.MODES.HTML:
           this.show(this.htmlEditorNode).hide(this.markdownEditorNode);
           break;
-        case 'markdown':
+        case this.editor.constants.MODES.MARKDOWN:
           this.show(this.markdownEditorNode).hide(this.htmlEditorNode);
           break;
         default:

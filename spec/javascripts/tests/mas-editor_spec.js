@@ -59,12 +59,21 @@ describe('MAS Editor', function () {
       expect(this.markdownEditorNode.classList.contains(this.classActive)).to.be.true;
     });
 
-    it('should add active class to a node', function() {
+    // TODO: Add a test for button mode switching
+    // it('ensures the selected mode button has an active class', function() {
+    //   expect(this.toolbarNode.classList.contains(this.classActive)).to.be.true;
+    // });
+
+    it('should throw an error if an unknown mode is selected', function() {
+      expect(function(){this.masEditor.changeMode('foo');}.bind(this)).to.throw('That conversion isn\'t supported');
+    });
+
+    it('should add active class to the editor node', function() {
       this.masEditor.show(this.htmlEditorNode);
       expect(this.htmlEditorNode.classList.contains(this.classActive)).to.be.true;
     });
 
-    it('should remove active class from a node', function() {
+    it('should remove active class from the editor node', function() {
       this.masEditor.hide(this.htmlEditorNode);
       expect(this.htmlEditorNode.classList.contains(this.classActive)).to.be.false;
     });

@@ -17,17 +17,22 @@ requirejs.config({
   baseUrl: '/base',
   deps: tests,
   paths: {
+    // Editor
+    'constants': bowerPath + 'mas-cms-editor/src/modules/constants/constants',
+    'config': bowerPath + 'mas-cms-editor/src/modules/config/config',
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/mas-editor',
     'editor' : bowerPath + 'mas-cms-editor/src/editor',
     'source-converter': bowerPath + 'mas-cms-editor/src/modules/lib/source-converter/source-converter',
     'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
     'scribe-wrapper': bowerPath + 'mas-cms-editor/src/modules/lib/scribe-wrapper/scribe-wrapper',
 
-    // PhantomJS shims
+    // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0
     'phantom-shims' : 'spec/javascripts/helpers/shims/phantom-shims',
 
     // 3rd-party libraries
     'text': bowerPath + 'requirejs-text/text',
+    'rsvp': bowerPath + 'rsvp/rsvp.amd',
+    'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
     'to-markdown': bowerPath + 'to-markdown/src/to-markdown',
     'marked': bowerPath + 'marked/lib/marked',
     'he': bowerPath + 'he/he',

@@ -4,6 +4,8 @@ require.config({
   baseUrl : '../',
   paths: {
     // Editor core
+    'constants' : '<%= requirejs_path("mas-cms-editor/src/modules/constants/constants") %>',
+    'config' : '<%= requirejs_path("mas-cms-editor/src/modules/config/config") %>',
     'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/editor") %>',
 
@@ -13,9 +15,12 @@ require.config({
 
     // Editor plugins
     'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
+    'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/modules/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
 
     // Third-party dependencies
     'he': '<%= requirejs_path("he/he") %>',
+    'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
+    'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",
     'scribe': '<%= requirejs_path("scribe/scribe") %>',
     'scribe-plugin-blockquote-command': '<%= requirejs_path("scribe-plugin-blockquote-command/scribe-plugin-blockquote-command") %>',
     'scribe-plugin-formatter-plain-text-convert-new-lines-to-html': '<%= requirejs_path("scribe-plugin-formatter-plain-text-convert-new-lines-to-html/scribe-plugin-formatter-plain-text-convert-new-lines-to-html") %>',
