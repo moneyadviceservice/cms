@@ -3,13 +3,12 @@
 //= require require_config
 
 window.CMS.wysiwyg = function() {
+  'use strict';
   require([
     'mas-editor'
   ], function (
     masEditor
   ) {
-    'use strict';
-
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
     if(!markdownEditorContentNode) return;
