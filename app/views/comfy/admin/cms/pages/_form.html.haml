@@ -8,7 +8,7 @@
 
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
-= form.text_field :label, :data => {:slugify => @page.new_record?}
+= form.text_field :label, :data => {:slugify => @page.new_record?}, :autofocus => true
 
 - unless @site.pages.count == 0 || @site.pages.root == @page
   = form.text_field :slug, :data => {:slug => true}
