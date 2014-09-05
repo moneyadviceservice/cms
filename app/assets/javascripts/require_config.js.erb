@@ -1,18 +1,40 @@
 <% def requirejs_path(asset) ; javascript_path(asset).sub(/.js\z/, ''); end %>
 
 require.config({
-  baseUrl : '<%= Rails.application.config.assets.prefix %>',
+  baseUrl: '../',
   paths: {
     // Editor core
+    'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
+    'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
     'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
-    'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>'
+    'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
+
+    // Editor modules
+    'scribe-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper") %>',
+    'source-converter': '<%= requirejs_path("mas-cms-editor/src/app/modules/source-converter/source-converter") %>',
 
     // Editor plugins
     'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
+    'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
+
+    // Third-party dependencies
+    'he': '<%= requirejs_path("he/he") %>',
+    'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
+    'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",
+    'scribe': '<%= requirejs_path("scribe/scribe") %>',
+    'scribe-plugin-blockquote-command': '<%= requirejs_path("scribe-plugin-blockquote-command/scribe-plugin-blockquote-command") %>',
+    'scribe-plugin-formatter-plain-text-convert-new-lines-to-html': '<%= requirejs_path("scribe-plugin-formatter-plain-text-convert-new-lines-to-html/scribe-plugin-formatter-plain-text-convert-new-lines-to-html") %>',
+    'scribe-plugin-heading-command': '<%= requirejs_path("scribe-plugin-heading-command/scribe-plugin-heading-command") %>',
+    'scribe-plugin-keyboard-shortcuts': '<%= requirejs_path("scribe-plugin-keyboard-shortcuts/scribe-plugin-keyboard-shortcuts") %>',
+    'scribe-plugin-link-prompt-command': '<%= requirejs_path("scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command") %>',
+    'scribe-plugin-sanitizer': '<%= requirejs_path("scribe-plugin-sanitizer/scribe-plugin-sanitizer") %>',
+    'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
+    'marked': '<%= requirejs_path("marked/lib/marked") %>',
+    'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>'
   },
   shim: {
-    'mas-editor': {
-      deps : ['editor']
+    'to-markdown' : {
+      deps : ['he']
     }
   }
 });
