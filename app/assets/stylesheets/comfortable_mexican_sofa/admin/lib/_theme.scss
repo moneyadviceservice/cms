@@ -1,0 +1,26 @@
+// -------------- COLORS --------------- //
+
+// Core colors -------------------------------------------------------------- //
+// IMPORTANT: These should never be referenced directly within a Sass partial
+// Instead, create a component variable reference
+
+$color-grey-alpha: #666;
+$color-grey-beta: #f5f6f9;
+
+// Component colors -------------------------------------------------------------- //
+
+$color-text-default: $color-grey-alpha;
+$base-font-size: 16 !default;
+
+$baseline-unit: if($responsive, 0.375rem, 6px);
+
+// Default Links
+$color-link-default: $color-grey-alpha !default;
+$color-link-visited: $color-grey-alpha !default;
+$color-link-focus: $color-grey-alpha !default;
+
+$color-heading-default: $color-grey-alpha !default;
+$color-heading-medium: $color-grey-alpha !default;
+$color-heading-extra-small: $color-grey-alpha !default;
+
+$color-paragraph-intro: $color-grey-alpha !default;
