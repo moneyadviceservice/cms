@@ -1,0 +1,12 @@
+// -------------- COLORS --------------- //
+
+// Core colors -------------------------------------------------------------- //
+// IMPORTANT: These should never be referenced directly within a Sass partial
+// Instead, create a component variable reference
+
+$color-grey-alpha: #666;
+$color-grey-beta: #f5f6f9;
+
+// Component colors -------------------------------------------------------------- //
+
+$color-body-text: $color-grey-alpha;
