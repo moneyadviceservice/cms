@@ -25,5 +25,12 @@ window.CMS.wysiwyg = function() {
       markdownEditorContentNode: markdownEditorContentNode,
       switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
     });
+
+    var focusOnTitle = function() {
+      var el = document.querySelector('input#page_label');
+      el.value = el.value;
+    };
+
+    setTimeout(focusOnTitle, 500);
   });
 };
