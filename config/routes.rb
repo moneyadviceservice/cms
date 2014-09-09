@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :word_documents
 
   get '/version', to: 'versions#show'
+  get '/frontend', to: 'frontend#index'
 
   root to: redirect('/admin')
 
