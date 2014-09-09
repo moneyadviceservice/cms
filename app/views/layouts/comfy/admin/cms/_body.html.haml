@@ -1,0 +1,8 @@
+%body#comfy.theme.theme--cms{:class => "c-#{params[:controller].slugify} a-#{params[:action].slugify}"}
+  .l-app
+    = render 'comfy/admin/cms/partials/body_before'
+    = render :partial => 'layouts/comfy/admin/cms/nav_main'
+    / = render :partial => 'layouts/comfy/admin/cms/right'
+    = render :partial => 'layouts/comfy/admin/cms/main'
+    = render :partial => 'layouts/comfy/admin/cms/footer'
+    = render :partial => 'layouts/comfy/admin/cms/footer_js'
