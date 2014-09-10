@@ -21,6 +21,9 @@ module Cms
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
-    config.assets.precompile += %w(requirejs/require.js)
+    config.assets.precompile += %w(
+        requirejs/require.js
+        comfortable_mexican_sofa/admin/mas-editor.js
+    )
   end
 end
