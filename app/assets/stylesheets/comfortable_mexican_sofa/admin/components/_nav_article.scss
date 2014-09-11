@@ -11,6 +11,12 @@
   width: 100%;
 }
 
+.nav-article.is-fixed { 
+  bottom: 0;
+  left: 0;
+  position: fixed;
+}
+
 .nav-article__item {
   display: table-cell;
   padding-right: 30px;
