@@ -11,6 +11,8 @@ $color-black: #000;
 $color-grey-alpha: #666;
 $color-grey-beta: #f5f6f9;
 $color-grey-charlie: #686b7a;
+$color-grey-delta: #404353;
+$color-grey-echo: #2d2f3a;
 
 $color-green-alpha: #93e490;
 
@@ -25,10 +27,16 @@ $base-font-size: 16 !default;
 
 $baseline-unit: if($responsive, 0.375rem, 6px);
 
-// Navigation main
-$nav-main-background: $color-grey-charlie;
-$nav-main-foreground: $color-white;
-$nav-main-foreground-active: $color-green-alpha;
+// Navigation
+$color-nav-background: $color-grey-charlie;
+$color-nav-foreground: $color-grey-charlie;
+
+// Navigation primary
+$gradient-nav-background: linear-gradient(bottom, $color-grey-delta 0%, $color-grey-delta 60%, $color-grey-echo 100%);
+$color-nav-primary-border: $color-grey-charlie;
+$color-nav-primary-background: $color-nav-background;
+$color-nav-primary-foreground: $color-white;
+$color-nav-primary-foreground-active: $color-green-alpha;
 
 // Default Links
 $color-link-default: $color-grey-alpha !default;

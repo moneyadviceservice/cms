@@ -7,6 +7,7 @@
   = render 'comfy/admin/cms/files/index'
 
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
+
 .l-constrained
 
 = form.text_field :label, :data => {:slugify => @page.new_record?}, :autofocus => true

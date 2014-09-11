@@ -1,0 +1,40 @@
+// Navigation primary
+//
+// Styleguide Navigation primary
+
+.nav-primary {
+  @include body(0,0);
+  margin-top: -1px;
+}
+
+.nav-primary__link {
+  @include body(14, 60);
+  display: inline-block;
+  padding: 0 $baseline-unit*3;
+  text-transform: uppercase;
+
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $color-nav-primary-foreground;
+    text-decoration: none;
+  }
+
+  &.is-active {
+    background: $color-nav-primary-background;
+    border-top: 1px solid $color-nav-primary-background;
+  }
+
+  &,
+  &:hover,
+  &.is-active {
+    transition: color .2s ease-in-out, border-top-color .2s ease-in-out;
+  }
+
+  &:hover,
+  &.is-active {
+    border-top-color: $color-nav-primary-foreground-active;
+    color: $color-nav-primary-foreground-active;
+  }
+}
