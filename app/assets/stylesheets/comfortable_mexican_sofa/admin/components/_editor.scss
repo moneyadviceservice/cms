@@ -11,6 +11,7 @@
 }
 
 .editor__content {
+  background: $color-editor-background;
   border: 1px solid #ccc;
   min-height: 500px;
   outline: none;
