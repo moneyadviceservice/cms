@@ -9,28 +9,29 @@
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
 .l-constrained
+  .l-content
 
-= form.text_field :label, :data => {:slugify => @page.new_record?}, :autofocus => true
+  = form.text_field :label, :data => {:slugify => @page.new_record?}
 
-  - unless @site.pages.count == 0 || @site.pages.root == @page
-    = form.text_field :slug, :data => {:slug => true}
-    - unless @page.new_record?
-      = form.text_field :full_path, :id => 'full-path', :disabled => true
+    - unless @site.pages.count == 0 || @site.pages.root == @page
+      = form.text_field :slug, :data => {:slug => true}
+      - unless @page.new_record?
+        = form.text_field :full_path, :id => 'full-path', :disabled => true
 
-  - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
-    = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
+    - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
+      = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
-  - if (options = ::Comfy::Cms::Page.options_for_select(@site, @page, nil, 0, false)).present?
-    = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options
+    - if (options = ::Comfy::Cms::Page.options_for_select(@site, @page, nil, 0, false)).present?
+      = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options
 
-    = render 'comfy/admin/cms/partials/page_form_inner', :object => form
+      = render 'comfy/admin/cms/partials/page_form_inner', :object => form
 
-    = render :partial => 'comfy/admin/cms/categories/form', :object => form
+      = render :partial => 'comfy/admin/cms/categories/form', :object => form
 
-    = render :partial => 'form_blocks'
+      = render :partial => 'form_blocks'
 
 .form-group
-  .col-sm-12
+  .l-constrained
     = form.check_box :is_published, :label => t('.is_published')
 
 = render 'comfy/admin/cms/partials/page_form_after', :object => form
