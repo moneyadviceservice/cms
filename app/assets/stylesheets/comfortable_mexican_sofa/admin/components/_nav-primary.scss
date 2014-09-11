@@ -26,6 +26,10 @@
     border-top: 1px solid $color-nav-primary-background;
   }
 
+  &:hover {
+    border-top: 1px solid $color-nav-primary-background;
+  }
+
   &,
   &:hover,
   &.is-active {
