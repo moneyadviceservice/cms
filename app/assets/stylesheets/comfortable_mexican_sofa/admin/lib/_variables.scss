@@ -15,6 +15,7 @@ $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
 
 $color-green-alpha: #93e490;
+$color-green-beta: #94e58f;
 
 // Typography -------------------------------------------------------------- //
 
@@ -40,6 +41,12 @@ $color-nav-primary-foreground-active: $color-green-alpha;
 
 // Navigation article
 $color-nav-article-background: $color-grey-charlie;
+
+// Buttons
+$color-button-foreground: $color-white;
+$color-button-foreground-hover: $color-green-alpha;
+$color-button-action-background: $color-green-beta;
+$shadow-button-action: 0 1px $baseline-unit/2 rgba(0,0,0,.2);
 
 // Panels
 $color-panel-content: $color-grey-beta;
