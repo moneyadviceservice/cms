@@ -1,0 +1,27 @@
+// Article navigation
+//
+// Styleguide Article navigation 
+
+.nav-article {
+  background: $color-nav-article-background;
+  display: table;
+  height: 60px;
+  padding: 12px 0;
+  color: #fff;
+  width: 100%;
+}
+
+.nav-article__item {
+  display: table-cell;
+  padding-right: 30px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.nav-article__item--right {
+  display: table-cell;
+  padding-left: 30px;
+  padding-right: 0; 
+  text-align: right;
+  width: 100%;
+}
