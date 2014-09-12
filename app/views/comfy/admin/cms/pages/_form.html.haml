@@ -32,7 +32,17 @@
 
 .nav-article.is-fixed
   .l-constrained
-    = form.check_box :is_published, :label => t('.is_published')
+    .nav-article__item
+      %span{:href => '#'}
+        EN Status: Published
+    .nav-article__item
+      %a.button.button--capitalized{:href => '#'}
+        Activity Log
+    .nav-article__item
+      %a.button.button--capitalized{:href => '#'}
+        Notes
+    / .nav-article__item
+    / = form.check_box :is_published, :label => t('.is_published')
 
 = render 'comfy/admin/cms/partials/page_form_after', :object => form
 
