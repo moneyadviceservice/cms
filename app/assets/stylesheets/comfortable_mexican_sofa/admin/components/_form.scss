@@ -1,0 +1,18 @@
+// Form
+//
+// Styleguide Form 
+
+// TODO - This layout is a quick fix
+
+.form-group {
+  @include row();
+  margin-bottom: $baseline-unit*4;
+}
+
+.control-label.col-sm-2 {
+  @include column(2);
+}
+
+.col-sm-10 {
+  @include column(10);
+}
