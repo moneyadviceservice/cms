@@ -1,0 +1,19 @@
+// Inline input
+//
+// Styleguide Inline input 
+
+.inline-input {
+  @include body(16,16);
+  border: none;
+  background: transparent;
+  color: $color-inline-input-foreground;
+  font-weight: 300;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.inline-input--article-title {
+  @include body(32,32);
+}
