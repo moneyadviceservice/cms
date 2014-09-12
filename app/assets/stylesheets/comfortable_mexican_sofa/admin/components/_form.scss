@@ -9,10 +9,10 @@
   margin-bottom: $baseline-unit*4;
 }
 
-.control-label.col-sm-2 {
+.form__label-heading {
   @include column(2);
 }
 
-.col-sm-10 {
-  @include column(10);
+.form__input-wrapper {
+  @include column(8);
 }
