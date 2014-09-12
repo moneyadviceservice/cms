@@ -2,7 +2,7 @@
 //
 // Styleguide Inline input 
 
-.inline-input {
+@include textInput(".inline-input") {
   @include body(16,16);
   border: none;
   background: transparent;
@@ -12,8 +12,8 @@
   &:focus {
     outline: none;
   }
-}
+};
 
-.inline-input--article-title {
+@include textInput(".inline-input--article-title") {
   @include body(32,32);
-}
+};

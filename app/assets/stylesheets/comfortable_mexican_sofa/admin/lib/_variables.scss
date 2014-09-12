@@ -12,6 +12,8 @@ $color-grey-beta: #f5f6f9;
 $color-grey-charlie: #686b7a;
 $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
+$color-grey-foxtrot: #cfd1d1;
+$color-grey-golf: #2c2c2c;
 
 $color-green-alpha: #93e490;
 $color-green-beta: #94e58f;
@@ -53,6 +55,16 @@ $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
 
 // Panels
 $color-panel-content: $color-grey-beta;
+
+// FORMS
+
+// Base
+$color-input-background: $color-white;
+$color-input-border-color: $color-grey-foxtrot;
+$color-input-text-color: $color-grey-golf;
+$color-input-disabled-background: $color-white;
+$color-input-disabled-text-color: $color-grey-foxtrot;
+$color-input-focus-border-color: $color-grey-alpha;
 
 // Inline input
 $color-inline-input-foreground: $color-grey-alpha;
