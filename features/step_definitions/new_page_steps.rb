@@ -8,8 +8,8 @@ When(/^I upload a word document$/) do
   pending
 end
 
-Then(/^I should be able to publish it$/) do
-  new_page.should have_publish
+Then(/^I should not be able to publish it$/) do
+  new_page.should_not have_publish
 end
 
 Then(/^I should be able to upload a word document$/) do
@@ -26,7 +26,7 @@ end
 
 When(/^I save the article page$/) do
   new_page.page_name.set('New page')
-  new_page.create_page.click
+  new_page.save.click
 end
 
 Then(/^the article's "(.*?)" content should be "(.*?)"$/) do |indentifier, value|
