@@ -8,8 +8,8 @@
 
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
-.l-constrained
-  .l-content
+.l-panel-content
+  .l-constrained
 
   = form.text_field :label, :data => {:slugify => @page.new_record?}
 
@@ -28,7 +28,8 @@
 
       = render :partial => 'comfy/admin/cms/categories/form', :object => form
 
-      = render :partial => 'form_blocks'
+.l-constrained
+  = render :partial => 'form_blocks'
 
 .nav-article.is-fixed
   .l-constrained
@@ -41,6 +42,7 @@
     %span.nav-article__item
       %a.button.button--capitalized{:href => '#'}
         Notes
+        
     / %span.nav-article__item
     / = form.check_box :is_published, :label => t('.is_published')
 
