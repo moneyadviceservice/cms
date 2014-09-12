@@ -1,8 +1,7 @@
-// -------------- COLORS --------------- //
+// Core colors --------------------------------------------------------------------------- //
 
-// Core colors -------------------------------------------------------------- //
 // IMPORTANT: These should never be referenced directly within a Sass partial
-// Instead, create a component variable reference
+// Instead, create a component variable reference e.g. $color-nav-background: $color-black;
 
 $color-white: #fff;
 
@@ -16,6 +15,10 @@ $color-grey-echo: #2d2f3a;
 
 $color-green-alpha: #93e490;
 $color-green-beta: #94e58f;
+
+// Transitions -------------------------------------------------------------- //
+
+$transition-hover-params: .2s ease-in-out;
 
 // Typography -------------------------------------------------------------- //
 

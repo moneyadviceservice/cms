@@ -9,6 +9,7 @@
 
 .nav-primary__text {
   @include body(14, 60);
+  border-top: 1px solid transparent;
   display: inline-block;
   padding: 0 $baseline-unit*3;
   text-transform: uppercase;
@@ -33,7 +34,7 @@
   &,
   &:hover,
   &.is-active {
-    transition: color .2s ease-in-out, border-top-color .2s ease-in-out;
+    transition: color $transition-hover-params, border-top-color $transition-hover-params;
   }
 
   &:hover,
