@@ -20,15 +20,29 @@
 .toolbar__inner {
   background-color: transparent;
   text-align: left;
-  padding: $baseline-unit*4 0;
+  padding: $baseline-unit*4 0 $baseline-unit*6;
   width: 100%;
 }
 
-.toolbar__btn--mode {
-  float: right;
+
+.toolbar__item-group {
+  display: inline-block;
+  margin-right: 40px;
+
+  & + &:last-child {
+    margin-right: 0;
+  }
 }
 
-.toolbar button {
+.toolbar__item {
+  margin: 0 4px 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.toolbar__button {
   border: 0;
   border-radius: 3px;
   color: white;
@@ -36,29 +50,28 @@
   font-weight: bold;
   height: 30px;
   line-height: 25px;
-  margin: 0 8px 0 0;
   position: relative;
   text-align: center;
   transition: background, $transition-hover-params;
   width: 30px;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
 }
 
-.toolbar button,
-.toolbar button[disabled],
-.toolbar.is-active button[disabled] {
+.toolbar .toolbar__button,
+.toolbar .toolbar__button[disabled],
+.toolbar.is-active .toolbar__button[disabled] {
   background: $color-toolbar-button-disabled-background;
 }
 
-.toolbar.is-active button {
-  background-color: rgba($color-toolbar-button-background,.4);
+.toolbar.is-active .toolbar__button {
+  background-color: rgba($color-toolbar-button-background,.55);
 }
 
-.toolbar button:last-child:before,
-.toolbar button:last-child:after {
-  display: none;
-}
-
-.toolbar button.active,
-.toolbar button:hover {
+.toolbar .toolbar__button.active,
+.toolbar .toolbar__button:hover {
   background-color: $color-toolbar-button-background;
 }
