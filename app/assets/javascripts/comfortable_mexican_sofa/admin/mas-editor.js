@@ -32,6 +32,7 @@ define('mas-editor', [
 
       this.addUIEvents();
       this.setupAppEvents();
+      this.setupToolbar();
     },
 
 
@@ -77,6 +78,15 @@ define('mas-editor', [
           });
         })(this.switchModeButtonNodes[i]);
       }
+      return this;
+    },
+
+    /**
+     * [setupToolbar description]
+     * @return {[type]} [description]
+     */
+    setupToolbar: function() {
+      this.toolbarNode.classList.add(this.classActive);
       return this;
     },
 

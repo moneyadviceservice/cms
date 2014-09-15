@@ -3,11 +3,17 @@
 // Styleguide Toolbar
 
 .toolbar {
+  pointer-events: none;
+
   &.is-sticky {
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
+  }
+
+  &.is-active {
+    pointer-events: auto;
   }
 }
 
@@ -41,7 +47,7 @@
   background: #e3e3e3;
 }
 
-.toolbar.is-enabled button {
+.toolbar.is-active button {
   background-color: rgba(#94e58f,.4);
 }
 

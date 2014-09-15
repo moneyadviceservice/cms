@@ -34,6 +34,12 @@ describe('MAS Editor', function () {
     this.sandbox.parentNode.removeChild(this.sandbox);
   });
 
+  describe('Initialisation', function () {
+    it('should enable the toolbar', function() {
+      expect(this.masEditor.toolbarNode.classList.contains(this.classActive)).to.be.true;
+    });
+  });
+
   describe('Switching Edit mode', function() {
     it('allows the mode to be changed', function() {
       this.masEditor.mode = 'markdown';
