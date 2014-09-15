@@ -15,5 +15,10 @@
   border: none;
   min-height: 500px;
   outline: none;
+  padding: 0;
   width: 100%;
+}
+
+.editor__content--markdown {
+  font-family: monospace;
 }

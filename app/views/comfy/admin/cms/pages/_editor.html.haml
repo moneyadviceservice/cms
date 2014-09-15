@@ -25,6 +25,6 @@
     .editor__content.theme.theme--dough.js-html-editor-content
 
   .editor.editor--markdown.js-markdown-editor
-    %textarea.editor__content.js-markdown-editor-content{ name: "#{fieldname}[blocks_attributes][#{index}][content]" }
+    %textarea.editor__content.editor__content--markdown.js-markdown-editor-content{ name: "#{fieldname}[blocks_attributes][#{index}][content]" }
       =editor.content
     %input{type: 'hidden', name: "#{fieldname}[blocks_attributes][#{index}][identifier]", value: 'content'}
