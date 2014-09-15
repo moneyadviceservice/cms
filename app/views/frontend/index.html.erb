@@ -1,20 +1,8 @@
-<h1>Frontend components</h1>
+<div class="l-constrained l-padded">
+  <h1>Frontend components</h1>
 
-<h2>.nav-primary</h2>
+  <h2>.nav-primary</h2>
 
-<nav class="nav-primary">
-  <a class="nav-primary__text is-active" href="#">Pages</a>
-  <a class="nav-primary__text" href="#">Files</a>
-  <a class="nav-primary__text" href="#">Snippets</a>
-  <a class="nav-primary__text" href="#">Layouts</a>
-  <a class="nav-primary__text" href="#">Categories</a>
-  <a class="nav-primary__text" href="#">Reporting</a>
-  <a class="nav-primary__text" href="#">Admin</a>
-</nav>
-
-<h2>.nav-primary inside .l-nav-primary</h2>
-
-<div class="l-nav-primary">
   <nav class="nav-primary">
     <a class="nav-primary__text is-active" href="#">Pages</a>
     <a class="nav-primary__text" href="#">Files</a>
@@ -24,65 +12,107 @@
     <a class="nav-primary__text" href="#">Reporting</a>
     <a class="nav-primary__text" href="#">Admin</a>
   </nav>
+
+  <h2>.nav-primary inside .l-nav-primary</h2>
+
+  <div class="l-nav-primary">
+    <nav class="nav-primary">
+      <a class="nav-primary__text is-active" href="#">Pages</a>
+      <a class="nav-primary__text" href="#">Files</a>
+      <a class="nav-primary__text" href="#">Snippets</a>
+      <a class="nav-primary__text" href="#">Layouts</a>
+      <a class="nav-primary__text" href="#">Categories</a>
+      <a class="nav-primary__text" href="#">Reporting</a>
+      <a class="nav-primary__text" href="#">Admin</a>
+    </nav>
+  </div>
+
+  <h2>.nav-article</h2>
+
+  <aside class="nav-article">
+    <span class="nav-article__item">Item 1</span>
+    <span class="nav-article__item">Item 2</span>
+    <span class="nav-article__item">Item 3</span>
+    <span class="nav-article__item nav-article__item--right">Right item 1</span>
+    <span class="nav-article__item nav-article__item--right">Right item 2</span>
+    <span class="nav-article__item nav-article__item--right">Right item 3</span>
+  </aside>
+
+  <h3>.nav-article.is-fixed</h3>
+
+  <p>Fixes to bottom of view</p>
+
+  <h2>.toolbar</h2>
+
+  <nav class="toolbar">
+    <div class="toolbar__inner">
+      <button class="toolbar__item toolbar__button">B</button>
+      <button class="toolbar__item toolbar__button">I</button>
+      <button class="toolbar__item toolbar__button">H1</button>
+      <button class="toolbar__item toolbar__button">H2</button>
+    </div>
+  </nav>
+
+  <h2>.toolbar.is-active <i>with .toolbar__item-group</i></h2>
+
+  <nav class="toolbar is-active">
+    <div class="toolbar__inner">
+      <div class="toolbar__item-group">
+        <button class="toolbar__item toolbar__button">B</button>
+        <button class="toolbar__item toolbar__button">I</button>
+        <button class="toolbar__item toolbar__button active">H1</button>
+        <button class="toolbar__item toolbar__button">H2</button>
+      </div>
+      <div class="toolbar__item-group">
+        <button class="toolbar__item toolbar__button">UL</button>
+        <button class="toolbar__item toolbar__button">OL</button>
+      </div>
+    </div>
+  </nav>
+
+  <h2>.l-panel-content</h2>
+
+  <div class="l-panel-content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+
+  <h2>.l-panel-content--form</h2>
+
+  <div class="l-panel-content l-panel-content--form">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+
+  <h2>.button</h2>
+
+  <button class="button">Default button</button>
+
+  <h2>.button--text</h2>
+
+  <button class="button button--text">Text button</button>
+
+  <h2>.button--text</h2>
+
+  <button class="button button--text">Text button<span class="icon"></span></button>
+
+  <h2>.button--action</h2>
+
+  <button class="button button--action">Action button</button>
+
+  <h2>.inline-input</h2>
+
+  <input type="text" class="inline-input" value="Reducing your energy bills">
+
+  <h2>.inline-input--article-title</h2>
+
+  <input type="text" class="inline-input inline-input--article-title" value="Reducing your energy bills">
 </div>
-
-<h2>.nav-article</h2>
-
-<aside class="nav-article">
-  <span class="nav-article__item">Item 1</span>
-  <span class="nav-article__item">Item 2</span>
-  <span class="nav-article__item">Item 3</span>
-  <span class="nav-article__item nav-article__item--right">Right item 1</span>
-  <span class="nav-article__item nav-article__item--right">Right item 2</span>
-  <span class="nav-article__item nav-article__item--right">Right item 3</span>
-</aside>
-
-<h3>.nav-article.is-fixed</h3>
-
-<p>Fixes to bottom of view</p>
-
-<h2>.l-panel-content</h2>
-
-<div class="l-panel-content">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-
-<h2>.l-panel-content--form</h2>
-
-<div class="l-panel-content l-panel-content--form">
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</div>
-
-<h2>.button</h2>
-
-<button class="button">Default button</button>
-
-<h2>.button--text</h2>
-
-<button class="button button--text">Text button</button>
-
-<h2>.button--text</h2>
-
-<button class="button button--text">Text button<span class="icon"></span></button>
-
-<h2>.button--action</h2>
-
-<button class="button button--action">Action button</button>
-
-<h2>.inline-input</h2>
-
-<input type="text" class="inline-input" value="Reducing your energy bills">
-
-<h2>.inline-input--article-title</h2>
-
-<input type="text" class="inline-input inline-input--article-title" value="Reducing your energy bills">
