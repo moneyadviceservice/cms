@@ -3,8 +3,6 @@
 // Styleguide Toolbar
 
 .toolbar {
-  text-align: center;
-
   &.is-sticky {
     left: 0;
     position: fixed;
@@ -14,8 +12,9 @@
 }
 
 .toolbar__inner {
-  @extend %editor-bar;
-  height: 36px;
+  background-color: transparent;
+  text-align: left;
+  padding: $baseline-unit*4 0;
   width: 100%;
 }
 
@@ -24,34 +23,26 @@
 }
 
 .toolbar button {
-  background-color: transparent;
   border: 0;
+  border-radius: 3px;
   color: white;
-  font-size: 16px;
-  margin: 0;
-  padding: 7px 10px;
-  position: relative;
+  font-size: 15px;
   font-weight: bold;
+  height: 30px;
+  line-height: 25px;
+  margin: 0 8px 0 0;
+  position: relative;
+  text-align: center;
+  width: 30px;
 }
 
-.toolbar button:before,
-.toolbar button:after {
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 1px;
+.toolbar button,
+.toolbar button[disabled] {
+  background: #e3e3e3;
 }
 
-.toolbar button:before {
-  background: #000;
-  right: 1px;
-}
-
-.toolbar button:after {
-  background: #444;
-  right: 0;
+.toolbar.is-enabled button {
+  background-color: rgba(#94e58f,.4);
 }
 
 .toolbar button:last-child:before,
@@ -60,10 +51,5 @@
 }
 
 .toolbar button.active {
-  background: black;
-  color: white;
-}
-
-.toolbar button[disabled] {
-  opacity: .5;
+  background-color: #94e58f;
 }
