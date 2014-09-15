@@ -1,5 +1,5 @@
+source 'http://gems.test.mas'
 source 'https://rubygems.org'
-
 
 gem 'rails', '4.1.1'
 gem 'sqlite3'
@@ -15,7 +15,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'dotenv-rails'
 
-gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
+gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
 gem 'word-to-markdown'
 
