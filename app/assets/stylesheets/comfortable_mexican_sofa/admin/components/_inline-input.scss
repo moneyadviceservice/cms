@@ -20,11 +20,11 @@
   }
 };
 
-.inline-input--article-title[type="text"],
-.inline-input--article-title[type="number"],
-.inline-input--article-title[type="email"],
-.inline-input--article-title[type="search"],
-.inline-input--article-title[type="password"] {
+.inline-input--page-title[type="text"],
+.inline-input--page-title[type="number"],
+.inline-input--page-title[type="email"],
+.inline-input--page-title[type="search"],
+.inline-input--page-title[type="password"] {
   @include body(32,42);
   height: 42px;
 };
