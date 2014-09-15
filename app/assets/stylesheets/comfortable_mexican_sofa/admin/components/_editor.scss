@@ -12,9 +12,8 @@
 
 .editor__content {
   background: $color-editor-background;
-  border: 1px solid #ccc;
+  border: none;
   min-height: 500px;
   outline: none;
-  padding: 5px;
   width: 100%;
 }
