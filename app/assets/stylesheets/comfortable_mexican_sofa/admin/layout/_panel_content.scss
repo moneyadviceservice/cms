@@ -1,8 +1,12 @@
-// Content panel
+// Content panels
 //
-// Styleguide Content panel
+// Styleguide Content panels
 
 .l-panel-content {
-  background: $color-panel-content;
-  padding: $baseline-unit*4;
+  background: $color-panel-content-background;
+  padding: $baseline-unit*4 24px $baseline-unit*6;
+}
+
+.l-panel-content--form {
+  background: $color-panel-content-form-background;
 }
