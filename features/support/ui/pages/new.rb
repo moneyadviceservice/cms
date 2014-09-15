@@ -12,6 +12,6 @@ module UI::Pages
     element :upload_word, '#upload-word-doc'
     element :page_name, '#page_label'
     element :meta_description, '#page_blocks_attributes_0_content'
-    element :create_page, "input[value='Create Page']"
+    element :save, 'button.dropdown-toggle'
   end
 end

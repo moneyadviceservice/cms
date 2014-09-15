@@ -3,8 +3,8 @@ Feature: Preview
   I want to see the article I am working on in the actual site
   so that I can see the content as a website visitor would see it
 
-  Scenario: Preview unpublished article
-    When I am working on an unpublished article
+  Scenario: Preview draft article
+    When I am working on an draft article
     Then I should be able to preview it in a new window
 
   Scenario: Preview published article

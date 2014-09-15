@@ -17,18 +17,18 @@ end
 
 When(/^I add a category to the article$/) do
   edit_page.categories.select cms_categories.first.label
-  edit_page.update.click
+  edit_page.save.click
 end
 
 When(/^I change the article's category$/) do
   edit_page.categories.unselect cms_categories.first.label
   edit_page.categories.select cms_categories.second.label
-  edit_page.update.click
+  edit_page.save.click
 end
 
 When(/^I remove the article's categories$/) do
   edit_page.category_remove.click
-  edit_page.update.click
+  edit_page.save.click
 end
 
 Then(/^I see no categories listed on the article's page$/) do
