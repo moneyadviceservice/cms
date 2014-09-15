@@ -1,19 +1,30 @@
 // Inline input
 //
-// Styleguide Inline input 
+// Styleguide Inline input
 
-@include textInput(".inline-input") {
+.inline-input[type="text"],
+.inline-input[type="number"],
+.inline-input[type="email"],
+.inline-input[type="search"],
+.inline-input[type="password"] {
   @include body(16,16);
   border: none;
   background: transparent;
   color: $color-inline-input-foreground;
   font-weight: 300;
+  padding-left: 0;
 
   &:focus {
+    background: transparent;
     outline: none;
   }
 };
 
-@include textInput(".inline-input--article-title") {
-  @include body(32,32);
+.inline-input--article-title[type="text"],
+.inline-input--article-title[type="number"],
+.inline-input--article-title[type="email"],
+.inline-input--article-title[type="search"],
+.inline-input--article-title[type="password"] {
+  @include body(32,42);
+  height: 42px;
 };
