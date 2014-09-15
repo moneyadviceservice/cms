@@ -2,24 +2,39 @@
 //
 // Styleguide Toggle button
 
-.toggle-button {
+.toggle {
+  font-size: 0;
+  user-select: none;
   position: relative;
 }
 
-.toggle-button__label-heading {
+.toggle__label-heading {
+  @include body(16,16);
   cursor: pointer;
   display: inline-block;
   position: relative;
   text-transform: uppercase;
-  user-select: none;
+  transition: color $transition-hover-params;
   z-index: 30;
 }
 
-.toggle-button__icon {
+.toggle__label-heading:first-of-type {
+  margin-right: 6px;
+}
+
+.toggle__label-heading:last-of-type {
+  margin-left: 6px;
+}
+
+.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
+  color: $color-toggle-foreground;
+}
+
+.toggle__indicator {
   background: $color-toggle-icon-panel-background;
   border-radius: 12.5px;
   display: inline-block;
-  margin: 0 6px;
   height: 25px;
   position: relative;
   vertical-align: middle;
@@ -40,7 +55,7 @@
   }
 }
 
-.toggle-button__control {
+.toggle__control {
   cursor: pointer;
   display: block;
   height: 100%;
@@ -58,19 +73,14 @@
     outline: none;
   }
 }
-.toggle-button__control:last-of-type:checked {
+.toggle__control:last-of-type:checked {
   z-index: 10;
 }
 
-.toggle-button__control:first-of-type:checked ~ .toggle-button__icon:before {
+.toggle__control:first-of-type:checked ~ .toggle__indicator:before {
   transform: translateX(0);
 }
 
-.toggle-button__control:first-of-type:checked ~ .toggle-button__label-heading:first-of-type,
-.toggle-button__control:last-of-type:checked ~ .toggle-button__label-heading:last-of-type {
-  color: $color-toggle-foreground;
-}
-
-.toggle-button__control:last-of-type:checked ~ .toggle-button__icon:before {
+.toggle__control:last-of-type:checked ~ .toggle__indicator:before {
   transform: translateX(100%);
 }
