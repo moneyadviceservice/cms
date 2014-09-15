@@ -13,6 +13,7 @@
   color: $color-inline-input-foreground;
   font-weight: 300;
   padding-left: 0;
+  box-shadow: none;
 
   &:focus {
     background: transparent;

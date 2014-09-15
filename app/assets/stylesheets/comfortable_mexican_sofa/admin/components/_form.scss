@@ -14,9 +14,9 @@
 }
 
 .form__label-heading {
-  @include column(2);
+  @include column(1.5);
 }
 
 .form__input-wrapper {
-  @include column(8);
+  @include column(8.5);
 }
