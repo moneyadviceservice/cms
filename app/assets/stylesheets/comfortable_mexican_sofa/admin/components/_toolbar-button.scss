@@ -1,0 +1,37 @@
+// Button
+//
+// Styleguide Button
+
+.toolbar-button {
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 25px;
+  position: relative;
+  text-align: center;
+  transition: background, $transition-hover-params;
+  width: 30px;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+.toolbar-button,
+.toolbar-button[disabled],
+.is-active .toolbar-button[disabled] {
+  background: $color-toolbar-button-disabled-background;
+}
+
+.is-active .toolbar-button {
+  background-color: rgba($color-toolbar-button-background,.55);
+}
+
+.is-active .toolbar-button.active,
+.toolbar-button:hover {
+  background-color: $color-toolbar-button-background;
+}

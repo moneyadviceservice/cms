@@ -41,37 +41,3 @@
     margin-right: 0;
   }
 }
-
-.toolbar__button {
-  border: 0;
-  border-radius: 3px;
-  color: white;
-  font-size: 15px;
-  font-weight: bold;
-  height: 30px;
-  line-height: 25px;
-  position: relative;
-  text-align: center;
-  transition: background, $transition-hover-params;
-  width: 30px;
-
-  &:focus {
-    border: none;
-    outline: none;
-  }
-}
-
-.toolbar .toolbar__button,
-.toolbar .toolbar__button[disabled],
-.toolbar.is-active .toolbar__button[disabled] {
-  background: $color-toolbar-button-disabled-background;
-}
-
-.toolbar.is-active .toolbar__button {
-  background-color: rgba($color-toolbar-button-background,.55);
-}
-
-.toolbar .toolbar__button.active,
-.toolbar .toolbar__button:hover {
-  background-color: $color-toolbar-button-background;
-}
