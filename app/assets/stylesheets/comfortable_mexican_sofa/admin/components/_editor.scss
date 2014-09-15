@@ -21,4 +21,8 @@
 
 .editor__content--markdown {
   font-family: monospace;
+
+  &:focus {
+    outline: none;
+  }
 }
