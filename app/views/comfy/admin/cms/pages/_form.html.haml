@@ -10,7 +10,7 @@
 
 .l-panel-content.l-panel-content--form
   .l-constrained
-    = form.text_field :label, hide_label: true, :class => 'inline-input inline-input--article-title', :data => {:slugify => @page.new_record?}
+    = form.text_field :label, hide_label: true, :class => 'inline-input inline-input--article-title', :placeholder => 'Untitled page', :data => {:slugify => @page.new_record?}
 
     - unless @site.pages.count == 0 || @site.pages.root == @page
       = form.text_field :slug, :data => {:slug => true}
