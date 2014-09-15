@@ -1,0 +1,73 @@
+// Toggle button
+//
+// Styleguide Toggle button
+
+.toggle-button {
+  position: relative;
+}
+
+.toggle-button__label-heading {
+  display: inline-block;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.toggle-button__icon {
+  background: $color-toggle-icon-panel-background;
+  border-radius: 12.5px;
+  display: inline-block;
+  margin: 0 6px;
+  height: 25px;
+  position: relative;
+  vertical-align: middle;
+  width: 50px;
+  z-index: 1;
+
+  &:before {
+    background: $color-toggle-icon-foreground;
+    border-radius: 50%;
+    border: 2px solid $color-toggle-icon-panel-background;
+    content: '';
+    display: block;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    width: 25px;
+    transition: transform .2s ease-out;
+  }
+}
+
+.toggle-button__control {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 50;
+
+  &,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+}
+.toggle-button__control:last-of-type:checked {
+  z-index: 40;
+}
+
+.toggle-button__control:first-of-type:checked ~ .toggle-button__icon:before {
+  transform: translateX(0);
+}
+
+.toggle-button__control:first-of-type:checked ~ .toggle-button__label-heading:first-of-type,
+.toggle-button__control:last-of-type:checked ~ .toggle-button__label-heading:last-of-type {
+  color: $color-toggle-foreground;
+}
+
+.toggle-button__control:last-of-type:checked ~ .toggle-button__icon:before {
+  transform: translateX(100%);
+}

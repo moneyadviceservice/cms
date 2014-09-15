@@ -16,7 +16,6 @@ $color-grey-foxtrot: #cfd1d1;
 $color-grey-golf: #2c2c2c;
 
 $color-green-alpha: #93e490;
-$color-green-beta: #94e58f;
 
 // Transitions -------------------------------------------------------------- //
 
@@ -50,11 +49,16 @@ $color-nav-article-background: $color-grey-charlie;
 // Buttons
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
-$color-button-action-background: $color-green-beta;
+$color-button-action-background: $color-green-alpha;
 $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
 $color-toolbar-button-foreground: $color-white;
-$color-toolbar-button-background: $color-green-beta;
+$color-toolbar-button-background: $color-green-alpha;
 $color-toolbar-button-disabled-background: rgba($color-grey-foxtrot,.55);
+
+// Toggle buttons
+$color-toggle-foreground: $color-green-alpha;
+$color-toggle-icon-foreground: $color-green-alpha;
+$color-toggle-icon-panel-background: $color-grey-alpha;
 
 // Panels
 $color-panel-content-background: $color-white;
