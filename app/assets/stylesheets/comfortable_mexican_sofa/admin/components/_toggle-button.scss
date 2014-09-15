@@ -7,9 +7,12 @@
 }
 
 .toggle-button__label-heading {
+  cursor: pointer;
   display: inline-block;
+  position: relative;
   text-transform: uppercase;
-  z-index: 1;
+  user-select: none;
+  z-index: 30;
 }
 
 .toggle-button__icon {
@@ -46,7 +49,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 50;
+  z-index: 20;
 
   &,
   &:focus,
@@ -56,7 +59,7 @@
   }
 }
 .toggle-button__control:last-of-type:checked {
-  z-index: 40;
+  z-index: 10;
 }
 
 .toggle-button__control:first-of-type:checked ~ .toggle-button__icon:before {
