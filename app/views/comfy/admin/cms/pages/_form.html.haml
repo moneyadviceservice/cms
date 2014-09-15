@@ -8,7 +8,7 @@
 
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
-.l-panel-content
+.l-panel-content.l-panel-content--form
   .l-constrained
     = form.text_field :label, hide_label: true, :class => 'inline-input inline-input--article-title', :data => {:slugify => @page.new_record?}
 
