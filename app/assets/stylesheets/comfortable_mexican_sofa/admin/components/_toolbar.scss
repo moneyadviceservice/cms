@@ -46,11 +46,11 @@
 .toolbar button,
 .toolbar button[disabled],
 .toolbar.is-active button[disabled] {
-  background: #e3e3e3;
+  background: $color-toolbar-button-disabled-background;
 }
 
 .toolbar.is-active button {
-  background-color: rgba(#94e58f,.4);
+  background-color: rgba($color-toolbar-button-background,.4);
 }
 
 .toolbar button:last-child:before,
@@ -60,5 +60,5 @@
 
 .toolbar button.active,
 .toolbar button:hover {
-  background-color: #94e58f;
+  background-color: $color-toolbar-button-background;
 }
