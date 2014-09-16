@@ -27,5 +27,5 @@
 .inline-input--page-title[type="search"],
 .inline-input--page-title[type="password"] {
   @include body(32,42);
-  height: 42px;
+  height: $baseline-unit*7;
 };
