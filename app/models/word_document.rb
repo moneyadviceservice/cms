@@ -11,6 +11,6 @@ class WordDocument
   end
 
   def to_s
-    @_converted ||= parser.new(path).to_s
+    @_converted ||= parser.new(path, display: ':99').to_s
   end
 end

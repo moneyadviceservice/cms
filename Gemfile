@@ -17,7 +17,7 @@ gem 'dotenv-rails'
 
 gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
-gem 'word-to-markdown'
+gem 'word-to-markdown', :git => 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486

@@ -33,6 +33,16 @@ GIT
       site_prism
       timecop
 
+GIT
+  remote: https://github.com/moneyadviceservice/word-to-markdown.git
+  revision: c98d5a5a5b8f9242bdd90b8f398689692cab82de
+  specs:
+    word-to-markdown (1.0.0)
+      descriptive_statistics (~> 1.1)
+      nokogiri-styles (~> 0.1)
+      premailer (~> 1.8)
+      reverse_markdown (~> 0.5)
+
 GEM
   remote: http://gems.test.mas/
   remote: https://rubygems.org/
@@ -234,7 +244,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
-    reverse_markdown (0.5.1)
+    reverse_markdown (0.6.0)
       nokogiri
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
@@ -313,11 +323,6 @@ GEM
       rack
       unicorn
     websocket-driver (0.3.4)
-    word-to-markdown (1.0.0)
-      descriptive_statistics (~> 1.1)
-      nokogiri-styles (~> 0.1)
-      premailer (~> 1.8)
-      reverse_markdown (~> 0.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -349,4 +354,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn-rails
-  word-to-markdown
+  word-to-markdown!
