@@ -2,43 +2,6 @@
 
   %h1 Frontend components
 
-  %h2 .nav-primary
-
-  %nav.nav-primary
-    %a.nav-primary__text.is-active{:href => "#"} Pages
-    %a.nav-primary__text{:href => "#"} Files
-    %a.nav-primary__text{:href => "#"} Snippets
-    %a.nav-primary__text{:href => "#"} Layouts
-    %a.nav-primary__text{:href => "#"} Categories
-    %a.nav-primary__text{:href => "#"} Reporting
-    %a.nav-primary__text{:href => "#"} Admin
-
-  %h2 .nav-primary inside .l-nav-primary
-
-  .l-nav-primary
-    %nav.nav-primary
-      %a.nav-primary__text.is-active{:href => "#"} Pages
-      %a.nav-primary__text{:href => "#"} Files
-      %a.nav-primary__text{:href => "#"} Snippets
-      %a.nav-primary__text{:href => "#"} Layouts
-      %a.nav-primary__text{:href => "#"} Categories
-      %a.nav-primary__text{:href => "#"} Reporting
-      %a.nav-primary__text{:href => "#"} Admin
-
-  %h2 .nav-article
-
-  %aside.nav-article
-    %span.nav-article__item Item 1
-    %span.nav-article__item Item 2
-    %span.nav-article__item Item 3
-    %span.nav-article__item.nav-article__item--right Right item 1
-    %span.nav-article__item.nav-article__item--right Right item 2
-    %span.nav-article__item.nav-article__item--right Right item 3
-
-  %h3 .nav-article.is-fixed
-
-  %p Fixes to bottom of view
-
   %h2 .toolbar
 
   %nav.toolbar
@@ -70,6 +33,44 @@
     %label.toggle__label-heading{:for => "a"} Option 1
     %span.toggle__indicator
     %label.toggle__label-heading{:for => "b"} Option 2
+
+  %h2 .nav-primary
+
+  %nav.nav-primary
+    %a.nav-primary__text.is-active{:href => "#"} Pages
+    %a.nav-primary__text{:href => "#"} Files
+    %a.nav-primary__text{:href => "#"} Snippets
+    %a.nav-primary__text{:href => "#"} Layouts
+    %a.nav-primary__text{:href => "#"} Categories
+    %a.nav-primary__text{:href => "#"} Reporting
+    %a.nav-primary__text{:href => "#"} Admin
+
+  %h2 .nav-primary inside .l-nav-primary
+
+  .l-nav-primary
+    %nav.nav-primary
+      %a.nav-primary__text.is-active{:href => "#"} Pages
+      %a.nav-primary__text{:href => "#"} Files
+      %a.nav-primary__text{:href => "#"} Snippets
+      %a.nav-primary__text{:href => "#"} Layouts
+      %a.nav-primary__text{:href => "#"} Categories
+      %a.nav-primary__text{:href => "#"} Reporting
+      %a.nav-primary__text{:href => "#"} Admin
+
+  %h2 .nav-article.is-fixed
+
+  %p Fixes to bottom of view
+
+  %h2 .nav-article
+
+  %aside.nav-article
+    .nav-article__inner
+      %span.nav-article__item Item 1
+      %span.nav-article__item Item 2
+      %span.nav-article__item Item 3
+      %span.nav-article__item.nav-article__item--right Right item 1
+      %span.nav-article__item.nav-article__item--right Right item 2
+      %span.nav-article__item.nav-article__item--right Right item 3
 
   %h2 .l-panel-content
   .l-panel-content
