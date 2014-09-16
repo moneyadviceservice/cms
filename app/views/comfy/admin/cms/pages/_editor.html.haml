@@ -26,7 +26,7 @@
             %span.fa.fa-square-o
 
       .toolbar__item-group.js-switch-mode-buttons
-        .toggle.js-switch-mode
+        .toggle
           =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control')
           =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control')
           =label_tag('edit-mode_html', 'Layout', class: 'toggle__label-heading js-switch-mode', data: { "mode" => "html" })
