@@ -15,7 +15,7 @@
   position: relative;
   text-transform: uppercase;
   transition: color $transition-hover-params;
-  @extend z-index--toggle__label-heading;
+  @extend %z-index--toggle__label-heading;
 }
 
 .toggle__label-heading:first-of-type {
@@ -26,11 +26,6 @@
   margin-left: 6px;
 }
 
-.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
-.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
-  color: $color-toggle-foreground;
-}
-
 .toggle__indicator {
   background: $color-toggle-icon-panel-background;
   border-radius: 12.5px;
@@ -39,7 +34,7 @@
   position: relative;
   vertical-align: middle;
   width: 50px;
-  @extend z-index--toggle__indicator;
+  @extend %z-index--toggle__indicator;
 
   &:before {
     background: $color-toggle-icon-foreground;
@@ -64,7 +59,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  @extend z-index--toggle__control;
+  @extend %z-index--toggle__control;
 
   &,
   &:focus,
@@ -73,8 +68,14 @@
     outline: none;
   }
 }
+
+.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
+  color: $color-toggle-foreground;
+}
+
 .toggle__control:last-of-type:checked {
-  @extend z-index--toggle__control--last-of-type--checked;
+  @extend %z-index--toggle__control--last-of-type--checked;
 }
 
 .toggle__control:first-of-type:checked ~ .toggle__indicator:before {
