@@ -54,7 +54,7 @@ $color-button-action-background: $color-green-alpha;
 $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
 $color-toolbar-button-foreground: $color-white;
 $color-toolbar-button-background: $color-green-alpha;
-$color-toolbar-button-disabled-background: rgba($color-grey-foxtrot,.55);
+$color-toolbar-button-disabled-background: $color-grey-foxtrot;
 
 // Toggle buttons
 $color-toggle-foreground: $color-green-alpha;
