@@ -107,7 +107,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    comfortable_mexican_sofa (1.12.1.13)
+    comfortable_mexican_sofa (1.12.1.14)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
@@ -179,7 +179,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
-    kramdown (1.4.1)
+    kramdown (1.4.2)
     launchy (2.4.2)
       addressable (~> 2.3)
     mail (2.5.4)
