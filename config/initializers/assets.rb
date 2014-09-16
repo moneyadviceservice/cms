@@ -2,24 +2,23 @@ Rails.application.configure do
 
   config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
 
-# Application Stylesheets
-  config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css
-                                  components-font-awesome/css/font-awesome.css)
-
 # Fonts and images
   config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
 
+# Application Stylesheets
+  config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css
+                                  components-font-awesome/css/font-awesome.css)
 # Application JavaScript
   config.assets.precompile += %w(application.js)
 
 # Editor JavaScript
-  config.assets.precompile += %w(mas-cms-editor/src/editor.js
-                                  mas-cms-editor/src/modules/constants/constants.js
-                                  mas-cms-editor/src/modules/config/config.js
-                                  mas-cms-editor/src/modules/lib/scribe-wrapper/scribe-wrapper.js
-                                  mas-cms-editor/src/modules/lib/source-converter/source-converter.js
-                                  mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
-                                  mas-cms-editor/src/modules/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
+  config.assets.precompile += %w(mas-cms-editor/src/app/constants/constants.js
+                                  mas-cms-editor/src/app/config/config.js
+                                  mas-cms-editor/src/app/app.js
+                                  mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper.js
+                                  mas-cms-editor/src/app/modules/source-converter/source-converter.js
+                                  mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
+                                  mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
                                   comfortable_mexican_sofa/admin/mas-editor.js)
 
 # Vendor JavaScript
