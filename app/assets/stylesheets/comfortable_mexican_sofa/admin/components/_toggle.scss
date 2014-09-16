@@ -15,7 +15,7 @@
   position: relative;
   text-transform: uppercase;
   transition: color $transition-hover-params;
-  z-index: 30;
+  @extend z-index--toggle__label-heading;
 }
 
 .toggle__label-heading:first-of-type {
@@ -39,7 +39,7 @@
   position: relative;
   vertical-align: middle;
   width: 50px;
-  z-index: 1;
+  @extend z-index--toggle__indicator;
 
   &:before {
     background: $color-toggle-icon-foreground;
@@ -64,7 +64,7 @@
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 20;
+  @extend z-index--toggle__control;
 
   &,
   &:focus,
@@ -74,7 +74,7 @@
   }
 }
 .toggle__control:last-of-type:checked {
-  z-index: 10;
+  @extend z-index--toggle__control--last-of-type--checked;
 }
 
 .toggle__control:first-of-type:checked ~ .toggle__indicator:before {

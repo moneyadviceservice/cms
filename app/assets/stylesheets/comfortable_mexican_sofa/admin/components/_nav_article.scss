@@ -1,6 +1,6 @@
 // Article navigation
 //
-// Styleguide Article navigation 
+// Styleguide Article navigation
 
 .nav-article {
   background: $color-nav-article-background;
@@ -11,10 +11,11 @@
   width: 100%;
 }
 
-.nav-article.is-fixed { 
+.nav-article.is-fixed {
   bottom: 0;
   left: 0;
   position: fixed;
+  @extend %z-index--nav-article.is-fixed;
 }
 
 .nav-article__item {
@@ -27,7 +28,7 @@
 .nav-article__item--right {
   display: table-cell;
   padding-left: 25px;
-  padding-right: 0; 
+  padding-right: 0;
   text-align: right;
   width: 100%;
 }
