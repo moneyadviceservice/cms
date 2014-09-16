@@ -1,6 +1,7 @@
 // Z-indexing - The application's layering should be specified in this file.
 //
 // Levels - the master z-index level variables should only be referenced and never edited.
+// These should then be referenced within a placeholder selector below
 
 $z-index10: 1000;
 $z-index9: 900;
