@@ -8,7 +8,8 @@
   color: $color-button-foreground;
   @include body(14,14);
 
-  &:link:hover {
+  &:link:hover,
+  &:focus {
     color: $color-button-foreground-hover;
   }
 }
@@ -26,7 +27,8 @@
   text-shadow: $shadow-button-action;
   transition: background, $transition-hover-params;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: lighten($color-button-action-background, 5%);
     color: $color-button-foreground;
   }
