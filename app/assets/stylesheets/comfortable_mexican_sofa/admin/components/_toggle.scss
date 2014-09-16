@@ -9,6 +9,7 @@
 
 .toggle__label-heading {
   @include body(16,16);
+  border-bottom: 1px solid transparent;
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -24,6 +25,16 @@
 
 .toggle__label-heading:last-of-type {
   margin-left: 3px;
+}
+
+.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
+  color: $color-toggle-foreground;
+}
+
+.toggle__control:first-of-type:focus ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:focus ~ .toggle__label-heading:last-of-type {
+  border-bottom-color: $color-toggle-foreground;
 }
 
 .toggle__indicator {
@@ -67,11 +78,6 @@
     border: none;
     outline: none;
   }
-}
-
-.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
-.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
-  color: $color-toggle-foreground;
 }
 
 .toggle__control:last-of-type:checked {
