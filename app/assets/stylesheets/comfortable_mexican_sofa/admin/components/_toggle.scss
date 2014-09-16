@@ -3,7 +3,6 @@
 // Styleguide Toggle button
 
 .toggle {
-  font-size: 0;
   user-select: none;
   position: relative;
 }
@@ -15,15 +14,16 @@
   position: relative;
   text-transform: uppercase;
   transition: color $transition-hover-params;
+  vertical-align: middle;
   @extend %z-index--toggle__label-heading;
 }
 
 .toggle__label-heading:first-of-type {
-  margin-right: 6px;
+  margin-right: 3px;
 }
 
 .toggle__label-heading:last-of-type {
-  margin-left: 6px;
+  margin-left: 3px;
 }
 
 .toggle__indicator {
