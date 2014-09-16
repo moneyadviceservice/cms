@@ -1,0 +1,112 @@
+.l-constrained.l-padded
+
+  %h1 Frontend components
+
+  %h2 .nav-primary
+
+  %nav.nav-primary
+    %a.nav-primary__text.is-active{:href => "#"} Pages
+    %a.nav-primary__text{:href => "#"} Files
+    %a.nav-primary__text{:href => "#"} Snippets
+    %a.nav-primary__text{:href => "#"} Layouts
+    %a.nav-primary__text{:href => "#"} Categories
+    %a.nav-primary__text{:href => "#"} Reporting
+    %a.nav-primary__text{:href => "#"} Admin
+
+  %h2 .nav-primary inside .l-nav-primary
+
+  .l-nav-primary
+    %nav.nav-primary
+      %a.nav-primary__text.is-active{:href => "#"} Pages
+      %a.nav-primary__text{:href => "#"} Files
+      %a.nav-primary__text{:href => "#"} Snippets
+      %a.nav-primary__text{:href => "#"} Layouts
+      %a.nav-primary__text{:href => "#"} Categories
+      %a.nav-primary__text{:href => "#"} Reporting
+      %a.nav-primary__text{:href => "#"} Admin
+
+  %h2 .nav-article
+
+  %aside.nav-article
+    %span.nav-article__item Item 1
+    %span.nav-article__item Item 2
+    %span.nav-article__item Item 3
+    %span.nav-article__item.nav-article__item--right Right item 1
+    %span.nav-article__item.nav-article__item--right Right item 2
+    %span.nav-article__item.nav-article__item--right Right item 3
+
+  %h3 .nav-article.is-fixed
+
+  %p Fixes to bottom of view
+
+  %h2 .toolbar
+
+  %nav.toolbar
+    .toolbar__inner
+      %button.toolbar__item.toolbar-button B
+      %button.toolbar__item.toolbar-button I
+      %button.toolbar__item.toolbar-button H1
+      %button.toolbar__item.toolbar-button H2
+
+  %h2
+    /.toolbar.is-active
+    %i with .toolbar__item-group
+
+  %nav.toolbar.is-active
+    .toolbar__inner
+      .toolbar__item-group
+        %button.toolbar__item.toolbar-button B
+        %button.toolbar__item.toolbar-button I
+        %button.toolbar__item.toolbar-button.active H1
+        %button.toolbar__item.toolbar-button H2
+      .toolbar__item-group
+        %button.toolbar__item.toolbar-button UL
+        %button.toolbar__item.toolbar-button OL
+
+  %h2 .toggle
+
+  %span.toggle
+    %input#a.toggle__control{:checked => "checked", :name => "toggle", :type => "radio", :value => "a"}
+    %input#b.toggle__control{:name => "toggle", :type => "radio", :value => "b"}
+    %label.toggle__label-heading{:for => "a"} Option 1
+    %span.toggle__indicator
+    %label.toggle__label-heading{:for => "b"} Option 2
+
+  %h2 .l-panel-content
+  .l-panel-content
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  %h2 .l-panel-content--form
+  .l-panel-content.l-panel-content--form
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  %h2 .button
+  %button.button Default button
+
+  %h2 .button--text
+  %button.button.button--text Text button
+
+  %h2 .button--text
+  %button.button.button--text
+    Text button
+    %span.icon
+
+  %h2 .button--action
+  %button.button.button--action Action button
+
+  %h2 .inline-input
+  %input.inline-input{:type => "text", :value => "Reducing your energy bills"}/
+
+  %h2 .inline-input--page-title
+  %input.inline-input.inline-input--page-title{:type => "text", :value => "Reducing your energy bills"}
+
