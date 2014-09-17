@@ -27,11 +27,11 @@
 
       .toolbar__item-group.js-switch-mode-buttons
         .toggle
-          =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control')
-          =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control')
-          =label_tag('edit-mode_html', 'Layout', class: 'toggle__label-heading js-switch-mode', data: { "mode" => "html" })
+          =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control js-switch-mode')
+          =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control js-switch-mode')
+          =label_tag('edit-mode_html', 'Layout', class: 'toggle__label-heading')
           %span.toggle__indicator
-          =label_tag('edit-mode_markdown', 'Advanced', class: 'toggle__label-heading js-switch-mode', data: { "mode" => "markdown" })
+          =label_tag('edit-mode_markdown', 'Advanced', class: 'toggle__label-heading')
 
 
   .editor.editor--html.is-active.js-html-editor

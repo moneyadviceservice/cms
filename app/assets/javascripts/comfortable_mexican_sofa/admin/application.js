@@ -25,7 +25,7 @@ window.CMS.wysiwyg = function() {
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
       markdownEditorNode: document.querySelector('.js-markdown-editor'),
       markdownEditorContentNode: markdownEditorContentNode,
-      switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
+      switchModeTriggerNodes: document.querySelectorAll('.js-switch-mode')
     });
 
     masEditor.editor.use(editorPluginAutoResizeTextarea(markdownEditorContentNode));
