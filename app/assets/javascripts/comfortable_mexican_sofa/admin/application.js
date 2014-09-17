@@ -38,3 +38,9 @@ window.CMS.wysiwyg = function() {
     setTimeout(focusOnTitle, 500);
   });
 };
+
+window.CMS.mirrors = function() {
+  $('#site__mirrors').change(function() {
+    window.location = $(this).find('input:checked').data()['value']
+  })
+}

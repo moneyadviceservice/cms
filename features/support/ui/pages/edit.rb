@@ -16,5 +16,8 @@ module UI::Pages
     element :category_remove, '.search-choice-close'
     element :category_chosen, '.chosen-choices'
     elements :categories_selected, '#categories--select > option[selected]'
+    element :site_toggle_cy, "#site__mirrors input#edit-mode_cy"
+    element :site_toggle_en, "#site__mirrors input#edit-mode_en"
+    element :status, '#t-status'
   end
 end
