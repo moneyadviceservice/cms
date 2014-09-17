@@ -28,8 +28,10 @@
   transition: background, $transition-hover-params;
 
   &:hover,
+  &:link:hover,
   &:focus {
     background: lighten($color-button-action-background, 5%);
     color: $color-button-foreground;
+    text-decoration: none;
   }
 }
