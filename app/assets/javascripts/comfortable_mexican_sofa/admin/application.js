@@ -5,9 +5,11 @@
 window.CMS.wysiwyg = function() {
   'use strict';
   require([
-    'mas-editor'
+    'mas-editor',
+    'editor-plugin-auto-resize-textarea'
   ], function (
-    masEditor
+    masEditor,
+    editorPluginAutoResizeTextarea
   ) {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
@@ -25,6 +27,8 @@ window.CMS.wysiwyg = function() {
       markdownEditorContentNode: markdownEditorContentNode,
       switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
     });
+
+    masEditor.editor.use(editorPluginAutoResizeTextarea(markdownEditorContentNode));
 
     var focusOnTitle = function() {
       var el = document.querySelector('input#page_label');
