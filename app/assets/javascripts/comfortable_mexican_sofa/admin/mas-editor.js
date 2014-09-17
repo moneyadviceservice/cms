@@ -98,8 +98,8 @@ define('mas-editor', [
     handleChangeModeEvent: function(mode) {
       Array.prototype.map.call(this.switchModeTriggerNodes, function(node) {
         node.classList.remove(this.classActive);
-        if(node.dataset.mode === mode) {
-          node.classList.add(this.classActive);
+        if(node.value === mode) {
+          node.click();
         }
       }.bind(this));
     },
