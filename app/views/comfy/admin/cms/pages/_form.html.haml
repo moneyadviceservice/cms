@@ -43,19 +43,16 @@
         %a.button.button--capitalized{:href => '#'}
           Notes
 
-      / %span.nav-article__item
-      / = form.check_box :is_published, :label => t('.is_published')
-
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
           = link_to t('.preview'), "https://www.moneyadviceservice.org.uk/#{I18n.locale}/articles#{@page.full_path}/preview", :class => 'btn btn-default', id: 'preview', target: '_blank'
         .btn-group.dropup
-          = button_tag(class: 'btn btn-primary dropdown-toggle', "data-toggle" => "dropdown") do
+          = button_tag(class: 'button button--action', "data-toggle" => "dropdown") do
             save
             %span.caret
           %ul{class: 'dropdown-menu', role: 'menu'}
             - page_state_buttons(@page.current_state).each do |state_event|
               %li
-                = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: 'btn btn-primary state-event'
+                = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: 'button button--action'
 
 = render 'comfy/admin/cms/partials/page_form_after', :object => form
