@@ -27,13 +27,16 @@ $responsive: true;
 @import "dough/assets/stylesheets/helpers/_unstyled_list";
 @import "dough/assets/stylesheets/helpers/_visually_hidden";
 
+// Third-party libs -------------------------------------------------------------- //
+
+@import "comfortable_mexican_sofa/lib/chosen-cms";
+
 // Custom Components and Layouts -------------------------------------------------------------- //
 
 // Base
 @import "base/_forms";
 
 // Components
-
 @import "components/_dropdown";
 @import "components/_editor";
 @import "components/_form";
