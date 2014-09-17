@@ -3,7 +3,7 @@
 // Styleguide Toolbar button
 
 .toolbar-button {
-  border: 2px solid transparent;
+  border: none;
   border-radius: 3px;
   color: white;
   font-size: 15px;
@@ -21,7 +21,6 @@
   }
 }
 
-
 .is-active .toolbar-button {
   background-color: rgba($color-toolbar-button-background,.5);
 }
@@ -29,10 +28,6 @@
 .is-active .toolbar-button.active,
 .is-active .toolbar-button:hover {
   background-color: $color-toolbar-button-background;
-}
-
-.is-active .toolbar-button:focus {
-  border-color: darken($color-toolbar-button-background, 20%);
 }
 
 .toolbar-button[disabled],
