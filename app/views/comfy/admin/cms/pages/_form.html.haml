@@ -52,6 +52,6 @@
             %ul{class: 'dropdown-menu', role: 'menu'}
               - page_state_buttons(@page.current_state).each do |state_event|
                 %li
-                  = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: 'button button--action'
+                  = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button button--action t-#{state_event[:value]}"
 
 = render 'comfy/admin/cms/partials/page_form_after', :object => form
