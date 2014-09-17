@@ -21,7 +21,7 @@ define('mas-editor', [
       this.htmlEditorContentNode = this.options.htmlEditorContentNode;
       this.markdownEditorNode = this.options.markdownEditorNode;
       this.markdownEditorContentNode = this.options.markdownEditorContentNode;
-      this.switchModeButtonNodes = this.options.switchModeButtonNodes;
+      this.switchModeTriggerNodes = this.options.switchModeTriggerNodes;
       this.editor = new Editor(
         this.htmlEditorContentNode,
         this.markdownEditorContentNode,
@@ -68,15 +68,15 @@ define('mas-editor', [
      * @return {Object} this
      */
     setupModeButton: function() {
-      var i = this.switchModeButtonNodes.length,
+      var i = this.switchModeTriggerNodes.length,
           _this = this;
 
       while(i--) {
-        (function(button) {
-          button.addEventListener('click', function() {
-            _this.changeMode(button.dataset.mode);
+        (function(node) {
+          node.addEventListener('click', function() {
+            _this.changeMode(node.value);
           });
-        })(this.switchModeButtonNodes[i]);
+        })(this.switchModeTriggerNodes[i]);
       }
       return this;
     },
@@ -96,10 +96,10 @@ define('mas-editor', [
      * @return {[type]}        [description]
      */
     handleChangeModeEvent: function(mode) {
-      Array.prototype.map.call(this.switchModeButtonNodes, function(buttonNode) {
-        buttonNode.classList.remove(this.classActive);
-        if(buttonNode.dataset.mode === mode) {
-          buttonNode.classList.add(this.classActive);
+      Array.prototype.map.call(this.switchModeTriggerNodes, function(node) {
+        node.classList.remove(this.classActive);
+        if(node.value === mode) {
+          node.click();
         }
       }.bind(this));
     },

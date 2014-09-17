@@ -12,6 +12,6 @@ module UI::Pages
     element :upload_word, '#upload-word-doc'
     element :page_name, '#page_label'
     element :meta_description, '#page_blocks_attributes_0_content'
-    element :save, 'button.dropdown-toggle'
+    element :save, '.t-save_unsaved'
   end
 end

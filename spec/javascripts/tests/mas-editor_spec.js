@@ -23,7 +23,7 @@ describe('MAS Editor', function () {
         htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
         markdownEditorNode: self.sandbox.querySelector('.js-markdown-editor'),
         markdownEditorContentNode: self.sandbox.querySelector('.js-markdown-editor-content'),
-        switchModeButtonNodes: document.querySelectorAll('.js-switch-mode')
+        switchModeTriggerNodes: document.querySelectorAll('.js-switch-mode')
       });
 
       done();
@@ -88,7 +88,7 @@ describe('MAS Editor', function () {
 
     it('should call changeMode when a mode button is clicked', function(){
       var spy = sinon.spy(this.masEditor, 'changeMode');
-      this.masEditor.switchModeButtonNodes[0].click();
+      this.masEditor.switchModeTriggerNodes[0].click();
       expect(spy.called).to.be.true;
     });
   });
