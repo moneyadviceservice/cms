@@ -1,21 +1,21 @@
 <% def requirejs_path(asset) ; javascript_path(asset).sub(/.js\z/, ''); end %>
 
 require.config({
-  baseUrl : '../',
+  baseUrl: '../',
   paths: {
     // Editor core
-    'constants' : '<%= requirejs_path("mas-cms-editor/src/modules/constants/constants") %>',
-    'config' : '<%= requirejs_path("mas-cms-editor/src/modules/config/config") %>',
+    'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
+    'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
     'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
-    'editor': '<%= requirejs_path("mas-cms-editor/src/editor") %>',
+    'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
 
     // Editor modules
-    'scribe-wrapper': '<%= requirejs_path("mas-cms-editor/src/modules/lib/scribe-wrapper/scribe-wrapper") %>',
-    'source-converter': '<%= requirejs_path("mas-cms-editor/src/modules/lib/source-converter/source-converter") %>',
+    'scribe-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper") %>',
+    'source-converter': '<%= requirejs_path("mas-cms-editor/src/app/modules/source-converter/source-converter") %>',
 
     // Editor plugins
-    'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
-    'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/modules/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
+    'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
+    'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
 
     // Third-party dependencies
     'he': '<%= requirejs_path("he/he") %>',

@@ -1,0 +1,22 @@
+// Form
+//
+// Styleguide Form
+
+// TODO - This layout is a quick fix
+
+.form-group {
+  @include row();
+  margin-bottom: $baseline-unit*5;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.form__label-heading {
+  @include column(1.5);
+}
+
+.form__input-wrapper {
+  @include column(8.5);
+}

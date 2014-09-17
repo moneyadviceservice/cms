@@ -1,1 +1,93 @@
-// -------------- COLORS --------------- //
+// Core colors --------------------------------------------------------------------------- //
+
+// IMPORTANT: These should never be referenced directly within a Sass partial
+// Instead, create a component variable reference e.g. $color-nav-background: $color-black;
+
+$color-white: #fff;
+
+$color-black: #000;
+
+$color-grey-alpha: #666;
+$color-grey-beta: #f5f6f9;
+$color-grey-charlie: #686b7a;
+$color-grey-delta: #404353;
+$color-grey-echo: #2d2f3a;
+$color-grey-foxtrot: #cfd1d1;
+$color-grey-golf: #2c2c2c;
+
+$color-green-alpha: #93e490;
+
+// Transitions -------------------------------------------------------------- //
+
+$transition-hover-params: .15s ease-in-out;
+
+// Typography -------------------------------------------------------------- //
+
+$line-height: 16;
+
+// Component colors -------------------------------------------------------------- //
+
+$color-text-default: $color-grey-alpha;
+$base-font-size: 16 !default;
+
+$baseline-unit: if($responsive, 0.375rem, 6px);
+
+// Navigation
+$color-nav-background: $color-grey-charlie;
+$color-nav-foreground: $color-grey-charlie;
+
+// Navigation primary
+$gradient-nav-background: linear-gradient(bottom, $color-grey-delta 0%, $color-grey-delta 60%, $color-grey-echo 100%);
+$color-nav-primary-border: $color-grey-charlie;
+$color-nav-primary-background: $color-nav-background;
+$color-nav-primary-foreground: $color-white;
+$color-nav-primary-foreground-active: $color-green-alpha;
+
+// Navigation article
+$color-nav-article-foreground: $color-white;
+$color-nav-article-background: $color-grey-charlie;
+
+// Buttons
+$color-button-foreground: $color-white;
+$color-button-foreground-hover: $color-green-alpha;
+$color-button-action-background: $color-green-alpha;
+$shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
+$color-toolbar-button-foreground: $color-white;
+$color-toolbar-button-background: $color-green-alpha;
+$color-toolbar-button-disabled-background: $color-grey-foxtrot;
+
+// Toggle buttons
+$color-toggle-foreground: $color-green-alpha;
+$color-toggle-icon-foreground: $color-green-alpha;
+$color-toggle-icon-panel-background: $color-grey-alpha;
+
+// Panels
+$color-panel-content-background: $color-white;
+$color-panel-content-form-background: $color-grey-beta;
+
+// FORMS
+
+// Base
+$color-input-background: $color-white;
+$color-input-border-color: $color-grey-foxtrot;
+$color-input-text-color: $color-grey-golf;
+$color-input-disabled-background: $color-white;
+$color-input-disabled-text-color: $color-grey-foxtrot;
+$color-input-focus-border-color: $color-grey-alpha;
+
+// Inline input
+$color-inline-input-foreground: $color-grey-alpha;
+
+// Editor
+$color-editor-background: $color-white;
+
+// Default Links
+$color-link-default: $color-grey-alpha !default;
+$color-link-visited: $color-grey-alpha !default;
+$color-link-focus: $color-grey-alpha !default;
+
+$color-heading-default: $color-grey-alpha !default;
+$color-heading-medium: $color-grey-alpha !default;
+$color-heading-extra-small: $color-grey-alpha !default;
+
+$color-paragraph-intro: $color-grey-alpha !default;

@@ -1,0 +1,52 @@
+// Z-indexing - The application's layering should be specified in this file.
+//
+// Levels - the master z-index level variables should only be referenced and never edited.
+// These should then be referenced within a placeholder selector below
+
+$z-index10: 1000;
+$z-index9: 900;
+$z-index8: 800;
+$z-index7: 700;
+$z-index6: 600;
+$z-index5: 500;
+$z-index5: 500;
+$z-index4: 400;
+$z-index3: 300;
+$z-index2: 200;
+$z-index1: 100;
+
+
+  //----------//
+ //   1000   //
+//----------//
+
+%z-index--toolbar,
+%z-index--toolbar.is-sticky,
+%z-index--nav-article.is-fixed {
+  z-index: $z-index10;
+}
+
+  //----------//
+ //   300    //
+//----------//
+
+%z-index--toggle__label-heading {
+  z-index: $z-index3;
+}
+
+  //----------//
+ //   200    //
+//----------//
+
+%z-index--toggle__control {
+  z-index: $z-index2;
+}
+
+  //----------//
+ //   100    //
+//----------//
+
+%z-index--toggle__indicator,
+%z-index--toggle__control--last-of-type--checked {
+  z-index: $z-index1;
+}

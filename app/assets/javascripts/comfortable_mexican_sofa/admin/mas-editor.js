@@ -1,9 +1,7 @@
 define('mas-editor', [
-  'editor',
-  'editor-plugin-sticky-toolbar'
+  'editor'
 ], function (
-  Editor,
-  editorPluginStickyToolbar
+  Editor
 ) {
   'use strict';
   return {
@@ -29,12 +27,12 @@ define('mas-editor', [
         this.markdownEditorContentNode,
         this.toolbarNode
       );
-      this.editor.use(editorPluginStickyToolbar(this.toolbarNode));
       this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
       this.addUIEvents();
       this.setupAppEvents();
+      this.setupToolbar();
     },
 
 
@@ -80,6 +78,15 @@ define('mas-editor', [
           });
         })(this.switchModeButtonNodes[i]);
       }
+      return this;
+    },
+
+    /**
+     * [setupToolbar description]
+     * @return {[type]} [description]
+     */
+    setupToolbar: function() {
+      this.toolbarNode.classList.add(this.classActive);
       return this;
     },
 

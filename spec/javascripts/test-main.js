@@ -18,13 +18,13 @@ requirejs.config({
   deps: tests,
   paths: {
     // Editor
-    'constants': bowerPath + 'mas-cms-editor/src/modules/constants/constants',
-    'config': bowerPath + 'mas-cms-editor/src/modules/config/config',
+    'constants': bowerPath + 'mas-cms-editor/src/app/constants/constants',
+    'config': bowerPath + 'mas-cms-editor/src/app/config/config',
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/mas-editor',
-    'editor' : bowerPath + 'mas-cms-editor/src/editor',
-    'source-converter': bowerPath + 'mas-cms-editor/src/modules/lib/source-converter/source-converter',
-    'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/modules/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
-    'scribe-wrapper': bowerPath + 'mas-cms-editor/src/modules/lib/scribe-wrapper/scribe-wrapper',
+    'editor' : bowerPath + 'mas-cms-editor/src/app/app',
+    'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
+    'scribe-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper',
+    'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
 
     // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0
     'phantom-shims' : 'spec/javascripts/helpers/shims/phantom-shims',

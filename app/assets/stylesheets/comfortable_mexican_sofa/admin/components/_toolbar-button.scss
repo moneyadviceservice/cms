@@ -1,0 +1,36 @@
+// Toolbar button
+//
+// Styleguide Toolbar button
+
+.toolbar-button {
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  height: 30px;
+  line-height: 25px;
+  position: relative;
+  text-align: center;
+  transition: background, $transition-hover-params;
+  width: 32px;
+
+  &:focus {
+    outline: none;
+    border-color: none;
+  }
+}
+
+.is-active .toolbar-button {
+  background-color: rgba($color-toolbar-button-background,.5);
+}
+
+.is-active .toolbar-button.active,
+.is-active .toolbar-button:hover {
+  background-color: $color-toolbar-button-background;
+}
+
+.toolbar-button[disabled],
+.is-active .toolbar-button[disabled] {
+  background: lighten($color-toolbar-button-disabled-background, .5);
+}

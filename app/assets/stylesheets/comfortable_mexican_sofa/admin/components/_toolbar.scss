@@ -3,67 +3,42 @@
 // Styleguide Toolbar
 
 .toolbar {
-  text-align: center;
+  pointer-events: none;
 
   &.is-sticky {
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
+    @extend %z-index--toolbar.is-sticky;
+  }
+
+  &.is-active {
+    pointer-events: auto;
   }
 }
 
 .toolbar__inner {
-  @extend %editor-bar;
-  height: 36px;
+  background-color: transparent;
+  text-align: left;
+  padding: $baseline-unit*4 0 $baseline-unit*6;
   width: 100%;
 }
 
-.toolbar__btn--mode {
-  float: right;
+
+.toolbar__item-group {
+  display: inline-block;
+  margin-right: 40px;
+
+  & + &:last-child {
+    margin-right: 0;
+  }
 }
 
-.toolbar button {
-  background-color: transparent;
-  border: 0;
-  color: white;
-  font-size: 16px;
-  margin: 0;
-  padding: 7px 10px;
-  position: relative;
-  font-weight: bold;
-}
+.toolbar__item {
+  margin: 0 4px 0 0;
 
-.toolbar button:before,
-.toolbar button:after {
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  width: 1px;
-}
-
-.toolbar button:before {
-  background: #000;
-  right: 1px;
-}
-
-.toolbar button:after {
-  background: #444;
-  right: 0;
-}
-
-.toolbar button:last-child:before,
-.toolbar button:last-child:after {
-  display: none;
-}
-
-.toolbar button.active {
-  background: black;
-  color: white;
-}
-
-.toolbar button[disabled] {
-  opacity: .5;
+  &:last-child {
+    margin-right: 0;
+  }
 }

@@ -1,27 +1,62 @@
-// Dough
-$responsive: false;
+$responsive: true;
+
 @import "dough/assets/stylesheets/font_base64";
 
-.theme.theme--dough {
-  @import "dough/assets/stylesheets/basic";
-  @import "dough/assets/stylesheets/lib";
-  @import "dough/assets/stylesheets/common";
-  @import "lib/dough/_resets";
-}
+// CMS settings and mixins -------------------------------------------------------------- //
+
+@import "lib/_variables";
+@import "lib/_resets";
+@import "lib/z-index";
+@import "helpers/_forms";
+@import "utilities/_utilities";
+
+// Dough imports -------------------------------------------------------------- //
+
+// lib
+@import "dough/assets/stylesheets/base/base";
+@import "dough/assets/stylesheets/lib/_css3";
+@import "dough/assets/stylesheets/lib/_grid";
+@import "dough/assets/stylesheets/lib/_mediaqueries";
+@import "dough/assets/stylesheets/lib/_shapes";
+@import "dough/assets/stylesheets/lib/_typography";
+@import "dough/assets/stylesheets/base/_forms";
+@import "dough/assets/stylesheets/layout/common/common";
+
+// helpers
+@import "dough/assets/stylesheets/helpers/_form-input-focus";
+@import "dough/assets/stylesheets/helpers/_form-input";
+@import "dough/assets/stylesheets/helpers/_clearfix";
+@import "dough/assets/stylesheets/helpers/_inline_block";
+@import "dough/assets/stylesheets/helpers/_unstyled_list";
+@import "dough/assets/stylesheets/helpers/_visually_hidden";
+
+// Custom Components and Layouts -------------------------------------------------------------- //
+
+// Base
+@import "base/_forms";
 
 // Components
+
 @import "components/_dropdown";
 @import "components/_editor";
+@import "components/_form";
+@import "components/_buttons";
 @import "components/_toolbar";
+@import "components/_toolbar-button";
+@import "components/_toggle";
+@import "components/_nav_primary";
+@import "components/_nav_article";
+@import "components/_panels";
+@import "components/_inline-input";
 
 // Layouts
 @import "layout/_editor";
+@import "layout/_panel_content";
+@import "layout/components/_nav_primary";
+@import "layout/_panel_content";
 
 // State
 @import "state/_editor";
 
-// Helpers
-@import "helpers/_background";
-
-// Utilities
-@import "utilities/_utilities";
+// Shame
+@import "shame";

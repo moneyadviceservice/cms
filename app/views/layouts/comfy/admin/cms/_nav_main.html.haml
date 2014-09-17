@@ -1,0 +1,22 @@
+.l-nav-primary
+  .l-constrained
+    %nav.nav-primary
+      - if @site && !@site.new_record?
+        =active_link_to t('comfy.admin.cms.base.pages'), comfy_admin_cms_site_pages_path(@site), :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text'
+
+        =active_link_to t('comfy.admin.cms.base.files'), comfy_admin_cms_site_files_path(@site), :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text'
+
+        =active_link_to t('comfy.admin.cms.base.snippets'), comfy_admin_cms_site_snippets_path(@site), :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text'
+
+        =active_link_to t('comfy.admin.cms.base.layouts'), comfy_admin_cms_site_layouts_path(@site), :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text'
+
+        / @TODO @modsognir @douglasroper @finitud Add entries for Categories, Reporting and Admin
+        /= active_link_to t('comfy.admin.cms.base.categories'), comfy_admin_cms_site_categories_path(@site)
+        /= active_link_to t('comfy.admin.cms.base.reporting'),
+        /   comfy_admin_cms_site_reporting_path(@site)
+        /= active_link_to t('comfy.admin.cms.base.admin'),
+        /   comfy_admin_cms_site_admin_path(@site)
+
+        = cms_hook :navigation
+.panel
+  

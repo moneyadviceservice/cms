@@ -1,0 +1,45 @@
+// Primary navigation
+//
+// Styleguide Primary navigation
+
+.nav-primary {
+  @include body(0,0);
+  margin-top: -1px;
+}
+
+.nav-primary__text {
+  @include body(14, 60);
+  border-top: 1px solid transparent;
+  display: inline-block;
+  padding: 0 $baseline-unit*3;
+  text-transform: uppercase;
+
+  &,
+  &:visited,
+  &:hover,
+  &:active {
+    color: $color-nav-primary-foreground;
+    text-decoration: none;
+  }
+
+  &.is-active {
+    background: $color-nav-primary-background;
+    border-top: 1px solid $color-nav-primary-background;
+  }
+
+  &:hover {
+    border-top: 1px solid $color-nav-primary-background;
+  }
+
+  &,
+  &:hover,
+  &.is-active {
+    transition: color $transition-hover-params, border-top-color $transition-hover-params;
+  }
+
+  &:hover,
+  &.is-active {
+    border-top-color: $color-nav-primary-foreground-active;
+    color: $color-nav-primary-foreground-active;
+  }
+}

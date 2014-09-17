@@ -11,9 +11,18 @@
 }
 
 .editor__content {
-  border: 1px solid #ccc;
+  background: $color-editor-background;
+  border: none;
   min-height: 500px;
   outline: none;
-  padding: 5px;
+  padding: 0;
   width: 100%;
+}
+
+.editor__content--markdown {
+  font-family: monospace;
+
+  &:focus {
+    outline: none;
+  }
 }

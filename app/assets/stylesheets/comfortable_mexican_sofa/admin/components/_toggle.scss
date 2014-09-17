@@ -1,0 +1,93 @@
+// Toggle button
+//
+// Styleguide Toggle button
+
+.toggle {
+  user-select: none;
+  position: relative;
+}
+
+.toggle__label-heading {
+  @include body(16,16);
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  transition: color $transition-hover-params;
+  vertical-align: middle;
+  @extend %z-index--toggle__label-heading;
+}
+
+.toggle__label-heading:first-of-type {
+  margin-right: 3px;
+}
+
+.toggle__label-heading:last-of-type {
+  margin-left: 3px;
+}
+
+.toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
+  color: $color-toggle-foreground;
+}
+
+.toggle__control:first-of-type:focus ~ .toggle__label-heading:first-of-type,
+.toggle__control:last-of-type:focus ~ .toggle__label-heading:last-of-type {
+  border-bottom-color: $color-toggle-foreground;
+}
+
+.toggle__indicator {
+  background: $color-toggle-icon-panel-background;
+  border-radius: 12.5px;
+  display: inline-block;
+  height: 25px;
+  position: relative;
+  vertical-align: middle;
+  width: 50px;
+  @extend %z-index--toggle__indicator;
+
+  &:before {
+    background: $color-toggle-icon-foreground;
+    border-radius: 50%;
+    border: 2px solid $color-toggle-icon-panel-background;
+    content: '';
+    display: block;
+    height: 25px;
+    left: 0;
+    position: absolute;
+    width: 25px;
+    transition: transform .2s ease-out;
+  }
+}
+
+.toggle__control {
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  @extend %z-index--toggle__control;
+
+  &,
+  &:focus,
+  &:active {
+    border: none;
+    outline: none;
+  }
+}
+
+.toggle__control:last-of-type:checked {
+  @extend %z-index--toggle__control--last-of-type--checked;
+}
+
+.toggle__control:first-of-type:checked ~ .toggle__indicator:before {
+  transform: translateX(0);
+}
+
+.toggle__control:last-of-type:checked ~ .toggle__indicator:before {
+  transform: translateX(100%);
+}
