@@ -1,0 +1,23 @@
+// Secondary navigation
+//
+// Styleguide Secondary navigation
+
+.nav-secondary {
+  display: table;
+  height: 40px;
+  width: 100%;
+}
+
+.nav-secondary__item {
+  display: table-cell;
+  padding-right: 25px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.nav-secondary__item--right {
+  padding-left: 25px;
+  padding-right: 0;
+  text-align: right;
+  width: 100%;
+}
