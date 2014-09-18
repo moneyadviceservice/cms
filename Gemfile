@@ -26,6 +26,8 @@ gem 'jquery-ui-rails', '~> 5.0'
 gem 'dough-ruby', '~> 3.0', :git => 'https://github.com/moneyadviceservice/dough.git'
 gem 'bowndler', :git => 'git@github.com:moneyadviceservice/bowndler'
 
+gem 'hippo_xml_parser'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
