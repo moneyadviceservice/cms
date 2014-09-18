@@ -9,6 +9,14 @@ require.config({
     'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
 
+    // Dough
+    'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
+    'DoughBaseComponent': "<%= requirejs_path('dough/assets/js/components/DoughBaseComponent') %>",
+    'featureDetect': "<%= requirejs_path('dough/assets/js/lib/featureDetect') %>",
+
+    // Dough components
+    'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
+
     // Editor modules
     'scribe-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper") %>',
     'source-converter': '<%= requirejs_path("mas-cms-editor/src/app/modules/source-converter/source-converter") %>',
@@ -18,6 +26,7 @@ require.config({
     'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
 
     // Third-party dependencies
+    'jquery' : '<%= requirejs_path("jquery/dist/jquery.min") %>',
     'he': '<%= requirejs_path("he/he") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
     'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",

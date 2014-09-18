@@ -1,7 +1,9 @@
 define('mas-editor', [
-  'editor'
+  'editor',
+  'componentLoader'
 ], function (
-  Editor
+  Editor,
+  componentLoader
 ) {
   'use strict';
   return {
@@ -33,6 +35,8 @@ define('mas-editor', [
       this.addUIEvents();
       this.setupAppEvents();
       this.setupToolbar();
+
+      componentLoader.init($('body'));
     },
 
 
@@ -114,7 +118,6 @@ define('mas-editor', [
         this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
       }
       this.cmsFormNode.submit();
-      return this;
     },
 
     /**

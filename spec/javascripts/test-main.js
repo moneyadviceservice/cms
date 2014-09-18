@@ -30,6 +30,7 @@ requirejs.config({
     'phantom-shims' : 'spec/javascripts/helpers/shims/phantom-shims',
 
     // 3rd-party libraries
+    'jquery': bowerPath + 'jquery/dist/jquery.min',
     'text': bowerPath + 'requirejs-text/text',
     'rsvp': bowerPath + 'rsvp/rsvp.amd',
     'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
@@ -43,7 +44,15 @@ requirejs.config({
     'scribe-plugin-keyboard-shortcuts': bowerPath + 'scribe-plugin-keyboard-shortcuts/scribe-plugin-keyboard-shortcuts',
     'scribe-plugin-link-prompt-command': bowerPath + 'scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command',
     'scribe-plugin-sanitizer': bowerPath + 'scribe-plugin-sanitizer/scribe-plugin-sanitizer',
-    'scribe-plugin-toolbar': bowerPath + 'scribe-plugin-toolbar/scribe-plugin-toolbar'
+    'scribe-plugin-toolbar': bowerPath + 'scribe-plugin-toolbar/scribe-plugin-toolbar',
+
+    // Dough
+    'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
+    'DoughBaseComponent': bowerPath + 'dough/assets/js/components/DoughBaseComponent',
+    'featureDetect': bowerPath + 'dough/assets/js/lib/featureDetect',
+
+    // Dough components
+    'Collapsable': bowerPath + 'dough/assets/js/components/Collapsable'
   },
   shim : {
     'to-markdown' : {
