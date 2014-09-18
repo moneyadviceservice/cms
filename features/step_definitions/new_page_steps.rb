@@ -29,8 +29,7 @@ When(/^I save the article page$/) do
   new_page.save.click
 end
 
-Then(/^the article's "(.*?)" content should be "(.*?)"$/) do |indentifier, value|
-  content = Comfy::Cms::Page.last.blocks.detect {|b| b.identifier == indentifier }.content
-  expect(content).to eq(value)
+Then(/^the article's "(.*?)" should be "(.*?)"$/) do |field, value|
+  expect(Comfy::Cms::Page.last.send(field.to_sym)).to eq(value)
 end
 

@@ -7,4 +7,4 @@ Feature: Page meta data
     When I create a new article
     And I fill in "description" as the meta_description
     And I save the article page
-    Then the article's "meta_description" content should be "description"
+    Then the article's "meta_description" should be "description"
