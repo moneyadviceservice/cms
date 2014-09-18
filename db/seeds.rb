@@ -30,7 +30,6 @@ end
 
 puts "Seeding layouts..."
 default_content = <<-END
-{{ cms:page:meta_description:string }}
 {{ cms:page:content:rich_text }}
 END
 Comfy::Cms::Layout.find_or_create_by(site: site, content: default_content, label: "default", identifier: "default")
