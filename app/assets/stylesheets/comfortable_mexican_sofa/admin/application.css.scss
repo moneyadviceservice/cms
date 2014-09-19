@@ -31,6 +31,8 @@ $responsive: true;
 // Third-party libs -------------------------------------------------------------- //
 
 @import "comfortable_mexican_sofa/lib/chosen-cms";
+@import "codemirror";
+@import "comfortable_mexican_sofa/codemirror_overrides";
 
 // Custom Components and Layouts -------------------------------------------------------------- //
 
