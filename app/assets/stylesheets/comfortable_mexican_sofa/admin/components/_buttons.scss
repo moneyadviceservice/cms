@@ -3,6 +3,7 @@
 // Styleguide Button
 
 // Default button
+
 .button {
   background: transparent;
   border: none;
@@ -16,11 +17,13 @@
 }
 
 // Default button helper modifier
+
 .button--h-capitalized {
   text-transform: uppercase;
 }
 
 // Article button
+
 .button--article {
   &,
   &:visited,
@@ -30,32 +33,36 @@
 }
 
 // Action button
-.button--action {
-  background: $color-button-action-background;
-  border-radius: 4px;
-  padding: $baseline-unit*2 20px;
-  transition: background, $transition-hover-params;
 
-  &:hover,
-  &:link:hover,
-  &:focus {
-    background: lighten($color-button-action-background, 5%);
-    text-decoration: none;
-  }
+.button--action {
+  @extend %button-action;
 }
 
 .button--action .button__text {
-  color: $color-button-foreground;
-  font-weight: 500;
-  @include body(16,16);
-  text-shadow: $shadow-button-action;
+  @extend %button-action__text;
+}
 
-  &:hover,
-  &:link:hover,
-  &:focus {
-    background: lighten($color-button-action-background, 5%);
-    color: $color-button-foreground;
-    text-decoration: none;
-  }
+
+// Menu button
+
+.button-menu {
+  @extend %button-action;
+}
+
+.button-menu .button__text,
+.button-menu .unstyled-button {
+  @extend %button-action__text;
+}
+
+.button-menu .unstyled-button {
+  border-left: 1px solid $color-button-action-separator;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.button-menu .button__toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 

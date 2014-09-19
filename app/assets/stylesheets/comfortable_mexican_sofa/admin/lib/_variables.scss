@@ -25,7 +25,7 @@ $transition-hover-params: .15s ease-in-out;
 
 $line-height: 16;
 
-// Component colors -------------------------------------------------------------- //
+// Components -------------------------------------------------------------- //
 
 $color-text-default: $color-grey-alpha;
 $base-font-size: 16 !default;
@@ -56,6 +56,7 @@ $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
 $color-button-action-background: $color-green-alpha;
 $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
+$button-border-radius: 4px;
 $color-toolbar-button-foreground: $color-white;
 $color-toolbar-button-background: $color-green-alpha;
 $color-toolbar-button-disabled-background: $color-grey-foxtrot;
@@ -65,9 +66,16 @@ $color-toggle-foreground: $color-green-alpha;
 $color-toggle-icon-foreground: $color-green-alpha;
 $color-toggle-icon-panel-background: $color-grey-alpha;
 
+// Action buttons
+$button-action-padding: $baseline-unit*2 20px;
+$color-button-action-separator: darken($color-green-alpha, 10%);
+
 // Panels
 $color-panel-content-background: $color-white;
 $color-panel-content-form-background: $color-grey-beta;
+
+// Menu
+$color-menu-body-background: rgba($color-green-alpha, .5);
 
 // FORMS
 

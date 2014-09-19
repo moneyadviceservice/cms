@@ -1,0 +1,37 @@
+// Action button
+
+%button-action {
+  background: $color-button-action-background;
+  border-radius: $button-border-radius;
+  border: none;
+  display: inline-block;
+  padding: 0;
+  transition: background, $transition-hover-params;
+
+  &:hover,
+  &:link:hover,
+  &:focus {
+    background: lighten($color-button-action-background, 7%);
+    outline: none;
+    text-decoration: none;
+  }
+}
+
+%button-action__text {
+  background: transparent;
+  border: none;
+  color: $color-button-foreground;
+  display: inline-block;
+  font-weight: 500;
+  @include body(16,16);
+  padding: $button-action-padding;
+  text-shadow: $shadow-button-action;
+
+  &:hover,
+  &:link:hover,
+  &:focus {
+    color: $color-button-foreground;
+    outline: none;
+    text-decoration: none;
+  }
+}

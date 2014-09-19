@@ -4,8 +4,15 @@
 
   %h2 .toolbar
 
-  %button.button--menu
-    Dropdown
+  %span.button-menu
+    %button.button__text
+      Save
+    %button.unstyled-button
+      %span.fa.fa-caret-up
+
+  %button.button--action
+    %span.button__text
+      Save
 
   %ul.menu
     %li.menu__item
@@ -132,4 +139,3 @@
 
   %h2 .inline-input--page-title
   %input.inline-input.inline-input--page-title{:type => "text", :value => "Reducing your energy bills"}
-
