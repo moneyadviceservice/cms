@@ -1,3 +1,12 @@
 .control-label[for="page_label"] {
   display: none;
 }
+
+.c-comfy-admin-cms-files,
+.c-comfy-admin-cms-layouts,
+.c-comfy-admin-cms-snippets {
+  main {
+    @extend .l-constrained;
+    @extend .l-panel-content;
+  }
+}
