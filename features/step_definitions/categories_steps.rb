@@ -28,7 +28,6 @@ end
 
 When(/^I remove the article's categories$/) do
   edit_page.category_remove.click
-  edit_page.save.click
 end
 
 Then(/^I see no categories listed on the article's page$/) do
