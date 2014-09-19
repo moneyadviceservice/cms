@@ -14,8 +14,11 @@ $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
 $color-grey-foxtrot: #cfd1d1;
 $color-grey-golf: #2c2c2c;
+$color-grey-hotel : #999;
 
 $color-green-alpha: #93e490;
+
+$color-blue-alpha: #277bb9;
 
 // Transitions -------------------------------------------------------------- //
 
@@ -77,6 +80,10 @@ $color-panel-content-form-background: $color-grey-beta;
 // Menu
 $color-menu-body-background: rgba($color-green-alpha, .5);
 
+// Meta
+$color-meta-title-foreground: $color-grey-hotel;
+$color-meta-title-separator: $color-grey-alpha;
+
 // FORMS
 
 // Base
@@ -94,9 +101,9 @@ $color-inline-input-foreground: $color-grey-alpha;
 $color-editor-background: $color-white;
 
 // Default Links
-$color-link-default: $color-grey-alpha !default;
-$color-link-visited: $color-grey-alpha !default;
-$color-link-focus: $color-grey-alpha !default;
+$color-link-default: $color-blue-alpha !default;
+$color-link-visited: $color-blue-alpha !default;
+$color-link-focus: $color-blue-alpha !default;
 
 $color-heading-default: $color-grey-alpha !default;
 $color-heading-medium: $color-grey-alpha !default;

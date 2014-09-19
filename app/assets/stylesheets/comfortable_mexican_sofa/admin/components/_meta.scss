@@ -1,0 +1,45 @@
+// Meta
+//
+// Styleguide Meta
+
+.meta {
+  margin: 0;
+  padding: 0;
+}
+
+.meta--inline {
+  display: inline-block;
+}
+
+.meta__title,
+.meta__description {
+  display: inline-block;
+}
+
+.meta__title {
+  @extend %body-text;
+  color: $color-meta-title-foreground;
+}
+
+.meta__description {
+  @extend %body-text;
+  margin-left: 0;
+
+  &:after {
+    border-right: 1px solid $color-meta-title-separator;
+    content: '';
+    display: inline;
+    height: 20px;
+    margin-left: 10px;
+    margin-right: 4px;
+  }
+}
+
+.meta:only-of-type .meta__description:last-child:after {
+  display: none;
+}
+
+.meta__link {
+  @extend %body-text;
+  margin-left: 0;
+}
