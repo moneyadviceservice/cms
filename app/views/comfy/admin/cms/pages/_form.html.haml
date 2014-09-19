@@ -39,21 +39,30 @@
           EN Status:
           =current_status(@page.current_state)
       %span.nav-article__item
-        %a.button.button--capitalized{:href => '#'}
+        %span.fa.fa-list-ul
+        %a.button.button--article.button--capitalized{:href => '#'}
           Activity Log
       %span.nav-article__item
-        %a.button.button--capitalized{:href => '#'}
+        %span.fa.fa-file-o
+        %a.button.button--article.button--capitalized{:href => '#'}
           Notes
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
-          = link_to t('.preview'), "https://www.moneyadviceservice.org.uk/#{I18n.locale}/articles#{@page.full_path}/preview", :class => 'button button--article', id: 'preview', target: '_blank'
-        .btn-group.dropup
-          = button_tag(class: 'button button--action', "data-toggle" => "dropdown") do
-            Save
-            %ul{class: 'dropdown-menu', role: 'menu'}
-              - page_state_buttons(@page.current_state).each do |state_event|
-                %li
-                  = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button button--action t-#{state_event[:value]}"
+          = link_to t('.preview'), "https://www.moneyadviceservice.org.uk/#{I18n.locale}/articles#{@page.full_path}/preview", :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
+
+      %span.nav-article__item.nav-article__item--right
+        .menu
+          %span.button-menu
+            = button_tag(class: 'button__text') do
+              Save
+            %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"selectors": {"activeClass": "is-active"}}'}}
+              %span.fa.fa-caret-up
+
+          .menu__body{:data => { :'dough-collapsable-target' => 1 }}
+            - page_state_buttons(@page.current_state).each do |state_event|
+              = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
+                %span.button__text
+                  =state_event[:label]
 
 = render 'comfy/admin/cms/partials/page_form_after', :object => form

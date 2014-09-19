@@ -23,6 +23,7 @@ Rails.application.configure do
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js
+                                  jquery/dist/jquery.min.js
                                   he/he.js
                                   rsvp/rsvp.amd.js
                                   eventsWithPromises/src/eventsWithPromises.js
@@ -35,6 +36,10 @@ Rails.application.configure do
                                   scribe-plugin-sanitizer/scribe-plugin-sanitizer.js
                                   scribe-plugin-toolbar/scribe-plugin-toolbar.js
                                   marked/lib/marked.js
-                                  to-markdown/src/to-markdown.js)
+                                  to-markdown/src/to-markdown.js
+                                  dough/assets/js/lib/componentLoader.js
+                                  dough/assets/js/lib/featureDetect.js
+                                  dough/assets/js/components/DoughBaseComponent.js
+                                  dough/assets/js/components/Collapsable.js)
 
 end

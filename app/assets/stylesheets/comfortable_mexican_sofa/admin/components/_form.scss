@@ -2,8 +2,6 @@
 //
 // Styleguide Form
 
-// TODO - This layout is a quick fix
-
 .form-group {
   @include row();
   margin-bottom: $baseline-unit*5;

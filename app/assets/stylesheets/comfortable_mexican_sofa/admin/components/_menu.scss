@@ -1,0 +1,22 @@
+// Menu
+//
+// Styleguide Menu
+
+.menu {
+  position: relative;
+}
+
+.menu__body {
+  @extend %is-hidden;
+  background: $color-menu-body-background;
+  border-radius: $button-border-radius;
+  margin-bottom: $baseline-unit/2;
+  padding: $baseline-unit;
+}
+
+.menu__body.is-active {
+  @extend %is-active;
+  bottom: 100%;
+  right: 0;
+  position: absolute;
+}
