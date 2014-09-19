@@ -20,6 +20,9 @@ $color-green-alpha: #93e490;
 
 $color-blue-alpha: #277bb9;
 
+$color-red-alpha: #ffcccc;
+$color-red-beta: #cc0000;
+
 // Transitions -------------------------------------------------------------- //
 
 $transition-hover-params: .15s ease-in-out;
@@ -53,6 +56,12 @@ $color-nav-secondary-foreground: $color-white;
 // Navigation article
 $color-nav-article-foreground: $color-white;
 $color-nav-article-background: $color-grey-charlie;
+
+// Alerts
+$color-alert-success-background: $color-green-alpha;
+$color-alert-success-foreground: $color-white;
+$color-alert-danger-background: $color-red-alpha;
+$color-alert-danger-foreground: $color-red-beta;
 
 // Buttons
 $color-button-foreground: $color-white;

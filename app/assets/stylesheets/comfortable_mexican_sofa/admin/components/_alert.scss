@@ -1,0 +1,30 @@
+// Alert
+//
+// Styleguide Alert
+
+.alert {
+  font-weight: 700;
+  padding: 20px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.alert-success {
+  background: $color-alert-success-background;
+  color: $color-alert-success-foreground;
+}
+
+.alert-danger {
+  background: $color-alert-danger-background;
+  color: $color-alert-danger-foreground;
+}
+
+.alert .close {
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  line-height: 30px;
+  position: absolute;
+  right: 5px;
+}
