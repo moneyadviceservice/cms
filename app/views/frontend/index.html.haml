@@ -149,6 +149,27 @@
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+  %h2 .l-panel-content with columns
+  .l-panel-content
+    .l-panel-content__col
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi
+    .l-panel-content__col.l-panel-content__col--primary
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi
+
+  .alert.alert--success
+    .alert__inner
+      %button.alert__close-button &times;
+      Page updated
+
+  .alert.alert--danger
+    .alert__inner
+      %button.alert__close-button &times;
+      Error on page
+
   %h2 .button
   %button.button Default button
 
@@ -173,9 +194,6 @@
   %button.button--action
     %span.button__text
       Save
-
-  %h2 .button--action
-  %button.button.button--action Action button
 
   %h2 .inline-input
   %input.inline-input{:type => "text", :value => "Reducing your energy bills"}/
