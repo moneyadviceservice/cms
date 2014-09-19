@@ -35,8 +35,9 @@
   .l-constrained
     .nav-article__inner
       %span.nav-article__item
-        %span
-          EN Status:
+        %span#t-status
+          =@site.label.upcase
+          Status:
           =current_status(@page.current_state)
       %span.nav-article__item
         %span.fa.fa-list-ul

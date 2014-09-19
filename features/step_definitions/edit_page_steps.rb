@@ -22,3 +22,22 @@ Then(/^I should be able to publish it$/) do
   edit_page.publish.click
   expect(cms_page.reload.current_state).to eq(:published)
 end
+
+Given(/^there is an English and Welsh site$/) do
+  cms_sites
+end
+
+When(/^I am working on an draft article on the "(.*?)" site$/) do |locale|
+  cms_page(locale: locale).save_unsaved!
+  edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
+end
+
+When(/^I switch to the "(.*?)" article$/) do |locale|
+  toggle = locale == "en" ? :site_toggle_en : :site_toggle_cy
+  edit_page.send(toggle).click
+end
+
+When(/^I should be working on the "(.*?)" article$/) do |locale|
+  expect(edit_page.current_url).to match(/\/sites\/#{cms_site(locale).id}\/pages/)
+  expect(edit_page.status.text).to match(/#{locale}/i)
+end

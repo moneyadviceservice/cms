@@ -19,6 +19,13 @@
   @extend %z-index--toggle__label-heading;
 }
 
+.toggle__mirrors .toolbar__item {
+  padding: 8px 10px 0 0;
+  .toggle__label-heading {
+    color: $color-white;
+  }
+}
+
 .toggle__label-heading:first-of-type {
   margin-right: 3px;
 }
