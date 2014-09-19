@@ -1,10 +1,19 @@
 require 'htmlentities'
 
 class HippoImport
+  TYPES = [
+    'contentauthoringwebsite:Guide',
+    'contentauthoringwebsite:ActionPlan',
+    'contentauthoringwebsite:ToolPage',
+    'contentauthoringwebsite:StaticPage',
+    'contentauthoringwebsite:VideoPage',
+    'contentauthoringwebsite:News'
+  ]
+
 
   attr_reader :records, :html_decoder
   def initialize(data, parser=HippoXmlParser, html_decoder=HTMLEntities.new)
-    @records = parser.parse(data)
+    @records = parser.parse(data, TYPES)
     @html_decoder = html_decoder
   end
 
