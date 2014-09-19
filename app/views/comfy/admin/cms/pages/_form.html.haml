@@ -49,7 +49,7 @@
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
-          = link_to t('.preview'), "https://www.moneyadviceservice.org.uk/#{I18n.locale}/articles#{@page.full_path}/preview", :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
+          = link_to t('.preview'), "https://#{ComfortableMexicanSofa.config.preview_domain}/#{I18n.locale}/articles#{@page.full_path}/preview", :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
 
       %span.nav-article__item.nav-article__item--right
         .menu
