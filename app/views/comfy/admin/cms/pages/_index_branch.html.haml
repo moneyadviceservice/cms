@@ -7,17 +7,23 @@
 - category_view = @filters_present
 
 %li{:class => 'listing__item', :id => dom_id(page)}
-  / .icon{:class => page.is_published?? 'published' : 'draft'}
-  /   - if !category_view && has_siblings
-  /     .dragger
-  /       %span &#8645;
-
-  .listing__heading
+  %h2.listing__heading
     = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page), :class => 'item-label'
     = render :partial => 'comfy/admin/cms/categories/categories', :object => page
 
+  %p.listing__text
+    = truncate(page.blocks.find {|b| b.identifier == "content"}.content, length: 100)
   .listing__meta
-    /= link_to page.url, page.url, :target => '_blank'
+    %dl.meta
+      %dt.meta__title Status:
+      %dd.meta__description= @site.label.upcase
+      %dt.meta__title Type:
+      %dd.meta__description= current_status(page.current_state)
+      %dt.meta__title Last edit:
+      %dd.meta__description= page.updated_at.strftime("%d/%m/%Y, %H:%M")
+
+  .listing__link
+    = link_to page.url, page.url, :target => '_blank'
 
   - if !category_view && has_children && branch_open
     %ul.children.sortable
