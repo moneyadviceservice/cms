@@ -8,9 +8,7 @@
 
 %li{:class => 'listing__item', :id => dom_id(page)}
   %h2.listing__heading
-    = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page), :class => 'item-label'
-    = render :partial => 'comfy/admin/cms/categories/categories', :object => page
-
+    = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page)
   %p.listing__text
     = truncate(page.blocks.find {|b| b.identifier == "content"}.content, length: 100)
   .listing__meta
