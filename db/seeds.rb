@@ -6,8 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-categories = YAML::load_file("#{Rails.root}/config/categories.yml")
-
 puts "Seeding for site with hostname: #{ENV['HOSTNAME']}   within environment #{Rails.env}"
 
 site_data_en = {
@@ -33,9 +31,12 @@ site_en = Comfy::Cms::Site.find_or_create_by(site_data_en)
 site_cy = Comfy::Cms::Site.find_or_create_by!(site_data_cy)
 
 puts "Seeding categories..."
+categories = YAML::load_file("#{Rails.root}/config/categories.yml")
 categories.each do |parent, children|
   labels = children.nil? ? [parent] : children
-  labels.each { |label| Comfy::Cms::Category.create(site_id: site_en.id, label: label, categorized_type: "Comfy::Cms::Page") }
+  [site_en, site_cy].each do |site|
+    labels.each { |label| Comfy::Cms::Category.create!(site: site, label: label, categorized_type: "Comfy::Cms::Page") rescue nil }
+  end
 end
 
 puts "Seeding layouts..."
