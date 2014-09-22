@@ -1,3 +1,7 @@
+- content_for :nav_secondary do
+  %li.nav-secondary__item.nav-secondary__item--right
+    = render 'comfy/admin/cms/sites/mirrors', :object => @page
+
 - content_for :right_column do
   #form-save.box
     %label.checkbox-inline
@@ -10,7 +14,7 @@
 
 .l-panel-content.l-panel-content--form
   .l-constrained
-    = form.text_field :label, hide_label: true, :class => 'inline-input inline-input--page-title', :placeholder => 'Untitled page', :data => {:slugify => @page.new_record?}
+    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {:slugify => @page.new_record?}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)

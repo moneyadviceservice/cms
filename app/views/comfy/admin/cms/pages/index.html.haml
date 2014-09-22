@@ -1,15 +1,25 @@
 .l-panel-content.l-panel-content--form
   .l-constrained
-    = link_to t('.new_link'), new_comfy_admin_cms_site_page_path(@site), :class => 'btn btn-default pull-right'
-    %div.btn.pull-right
-      = form_tag(comfy_admin_cms_site_pages_path, method: "get", id: "search-form") do
-        = text_field_tag(:search, params[:search], placeholder: "Search by label")
-        = submit_tag("Search", name: nil)
-
-    - if params[:search]
-      %h2 Search Results
-    - else
-      %h2= t('.title')
+    .l-panel-content__row
+      .l-panel-content__col
+        - if params[:search]
+          %h2 Search Results
+        - else
+          %h2= t('.title')
+      .l-panel-content__col
+        = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
+          .search
+            .search__item
+              - if params[:search]
+                X pages found for '#{params[:search]}'
+              = label_tag(:search, nil, class: 'visually-hidden')
+              = text_field_tag(:search, params[:search], placeholder: 'Keyword', class: 'search__item form__input form__input--constrained')
+              = button_tag('Search', type: 'submit', name: nil, class: 'search__item button--action button--h-match-input-height') do
+                %span.button__text Search
+              %span.search__item
+                = link_to new_comfy_admin_cms_site_page_path(@site), :class => 'button--action button--h-match-input-height' do
+                  %span.button__text
+                    = t('.new_link')
 
 - content_for :right_column do
   = render 'comfy/admin/cms/sites/mirrors'

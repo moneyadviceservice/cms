@@ -5,8 +5,27 @@
 .l-panel-content {
   background: $color-panel-content-background;
   padding: $baseline-unit*4 24px $baseline-unit*6;
+  width: 100%;
 }
 
 .l-panel-content--form {
   background: $color-panel-content-form-background;
+}
+
+.l-panel-content__row {
+  display: table;
+  width: 100%;
+}
+
+.l-panel-content__col {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+}
+
+.l-panel-content__col--left{
+}
+
+.l-panel-content__col--right {
+
 }

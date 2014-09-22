@@ -18,7 +18,7 @@
 
 .listing__heading {
   @include body(22,28);
-  font-weight: 500;
+  font-weight: 300;
   margin: 0 0 $baseline-unit*2;
 }
 
@@ -29,6 +29,10 @@
   }
 }
 
-.listing__meta {
+.listing__link {
+  @extend %body-text;
+}
 
+.listing__meta {
+  margin-bottom: $baseline-unit/2;
 }

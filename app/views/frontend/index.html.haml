@@ -1,100 +1,89 @@
-.l-constrained.l-padded
+.l-constrained
+  .l-padded
 
-  %h1 CMS frontend components
+    %h1 CMS frontend components
 
-  %h2 .menu
+    %h2 .menu
 
-  %menu.menu
-    .menu__body
+    %menu.menu
+      .menu__body
 
-  %h2 .listing
+    %h2 .listing
 
-  %ol.listing
-    %li.listing__item
-      %h2.listing__heading
-        %a{:href => '#'} Taking control of <b>debt</b>
-      %p.listing__text Where to get free <b>debt</b> advice, how to speak to the people you owe money to, and tips to help you pay back your <b>debts</b> in the right order.
-      .listing__meta
-        %dl.meta.meta--inline
-          %dt.meta__title Status:
-          %dd.meta__description EN Published with draft, CY Retired
-          %dt.meta__title Type:
-          %dd.meta__description Article
-          %dt.meta__title Last edit:
-          %dd.meta__description TDoyle, 12/08/14, 14:45
-        %a{:href => '#'} View Welsh version
-      %a{:class => 'listing__link', :href => '#'} http://www.moneyadviceservice.org.uk/en/my-
-    %li.listing__item
-      %h2.listing__heading
-        %a{:href => '#'} Should you save, or pay off loans and cards?
-      %p.listing__text Decide whether to start saving or repay money you owe, and make a plan to save regularly once you’ve cleared your <b>debts</b>
-      .listing__meta
-        %dl.meta.meta--inline
-          %dt.meta__title Status:
-          %dd.meta__description EN Published with draft, CY Retired
-          %dt.meta__title Type:
-          %dd.meta__description Article
-          %dt.meta__title Last edit:
-          %dd.meta__description TDoyle, 12/08/14, 14:45
-        %a{:href => '#'} View Welsh version
-      %a{:class => 'listing__link', :href => '#'} http://www.moneyadviceservice.org.uk/en/my-article
+    %ol.listing
+      %li.listing__item
+        %h2.listing__heading
+          %a{:href => '#'} Taking control of <b>debt</b>
+        %p.listing__text Where to get free <b>debt</b> advice, how to speak to the people you owe money to, and tips to help you pay back your <b>debts</b> in the right order.
+        .listing__meta
+          %dl.meta.meta--inline
+            %dt.meta__title Status:
+            %dd.meta__description EN Published with draft, CY Retired
+            %dt.meta__title Type:
+            %dd.meta__description Article
+            %dt.meta__title Last edit:
+            %dd.meta__description TDoyle, 12/08/14, 14:45
+          %a.listing__link{:href => '#'} View Welsh version
+        %a.listing__link{:href => '#'} http://www.moneyadviceservice.org.uk/en/my-
+      %li.listing__item
+        %h2.listing__heading
+          %a{:href => '#'} Should you save, or pay off loans and cards?
+        %p.listing__text Decide whether to start saving or repay money you owe, and make a plan to save regularly once you’ve cleared your <b>debts</b>
+        .listing__meta
+          %dl.meta.meta--inline
+            %dt.meta__title Status:
+            %dd.meta__description EN Published with draft, CY Retired
+            %dt.meta__title Type:
+            %dd.meta__description Article
+            %dt.meta__title Last edit:
+            %dd.meta__description TDoyle, 12/08/14, 14:45
+          %a.listing__link{:href => '#'} View Welsh version
+        %a.listing__link{:href => '#'} http://www.moneyadviceservice.org.uk/en/my-article
 
-  %h2 .meta
+    %h2 .meta
 
-  %dl.meta
-    %dt.meta__title Status:
-    %dd.meta__description EN Published with draft, CY Retired
-    %dt.meta__title Type:
-    %dd.meta__description Article
-    %dt.meta__title Last edit:
-    %dd.meta__description TDoyle, 12/08/14, 14:45
+    %dl.meta
+      %dt.meta__title Status:
+      %dd.meta__description EN Published with draft, CY Retired
+      %dt.meta__title Type:
+      %dd.meta__description Article
+      %dt.meta__title Last edit:
+      %dd.meta__description TDoyle, 12/08/14, 14:45
 
-  %h2 .toolbar
+    %h2 .toolbar
 
-  %nav.toolbar
-    .toolbar__inner
-      %button.toolbar__item.toolbar-button B
-      %button.toolbar__item.toolbar-button I
-      %button.toolbar__item.toolbar-button H1
-      %button.toolbar__item.toolbar-button H2
-
-  %h2 .toolbar.is-active
-  %i with .toolbar__item-group
-
-  %nav.toolbar.is-active
-    .toolbar__inner
-      .toolbar__item-group
+    %nav.toolbar
+      .toolbar__inner
         %button.toolbar__item.toolbar-button B
         %button.toolbar__item.toolbar-button I
-        %button.toolbar__item.toolbar-button.active H1
+        %button.toolbar__item.toolbar-button H1
         %button.toolbar__item.toolbar-button H2
-      .toolbar__item-group
-        %button.toolbar__item.toolbar-button UL
-        %button.toolbar__item.toolbar-button OL
 
-  %h2 .toggle
+    %h2 .toolbar.is-active
+    %i with .toolbar__item-group
 
-  %span.toggle
-    %input#a.toggle__control{:checked => "checked", :name => "toggle", :type => "radio", :value => "a"}
-    %input#b.toggle__control{:name => "toggle", :type => "radio", :value => "b"}
-    %label.toggle__label-heading{:for => "a"} Option 1
-    %span.toggle__indicator
-    %label.toggle__label-heading{:for => "b"} Option 2
+    %nav.toolbar.is-active
+      .toolbar__inner
+        .toolbar__item-group
+          %button.toolbar__item.toolbar-button B
+          %button.toolbar__item.toolbar-button I
+          %button.toolbar__item.toolbar-button.active H1
+          %button.toolbar__item.toolbar-button H2
+        .toolbar__item-group
+          %button.toolbar__item.toolbar-button UL
+          %button.toolbar__item.toolbar-button OL
 
-  %h2 .nav-primary
+    %h2 .toggle
 
-  %nav.nav-primary
-    %a.nav-primary__text.is-active{:href => "#"} Pages
-    %a.nav-primary__text{:href => "#"} Files
-    %a.nav-primary__text{:href => "#"} Snippets
-    %a.nav-primary__text{:href => "#"} Layouts
-    %a.nav-primary__text{:href => "#"} Categories
-    %a.nav-primary__text{:href => "#"} Reporting
-    %a.nav-primary__text{:href => "#"} Admin
+    %span.toggle
+      %input#a.toggle__control{:checked => "checked", :name => "toggle", :type => "radio", :value => "a"}
+      %input#b.toggle__control{:name => "toggle", :type => "radio", :value => "b"}
+      %label.toggle__label-heading{:for => "a"} Option 1
+      %span.toggle__indicator
+      %label.toggle__label-heading{:for => "b"} Option 2
 
-  %h2 .nav-primary inside .l-nav-primary
+    %h2 .nav-primary
 
-  .l-nav-primary
     %nav.nav-primary
       %a.nav-primary__text.is-active{:href => "#"} Pages
       %a.nav-primary__text{:href => "#"} Files
@@ -104,99 +93,118 @@
       %a.nav-primary__text{:href => "#"} Reporting
       %a.nav-primary__text{:href => "#"} Admin
 
-  %h2 .nav-secondary
+    %h2 .nav-primary inside .l-nav-primary
 
-  %ul.nav-secondary
-    %li.nav-secondary__item Item 1
-    %li.nav-secondary__item Item 2
-    %li.nav-secondary__item.nav-secondary__item--right Item 3
+    .l-nav-primary
+      %nav.nav-primary
+        %a.nav-primary__text.is-active{:href => "#"} Pages
+        %a.nav-primary__text{:href => "#"} Files
+        %a.nav-primary__text{:href => "#"} Snippets
+        %a.nav-primary__text{:href => "#"} Layouts
+        %a.nav-primary__text{:href => "#"} Categories
+        %a.nav-primary__text{:href => "#"} Reporting
+        %a.nav-primary__text{:href => "#"} Admin
 
-  %h2 .nav-secondary inside .l-nav-secondary
+    %h2 .nav-secondary
 
-  .l-nav-secondary
     %ul.nav-secondary
+      %li.nav-secondary__item Item 1
+      %li.nav-secondary__item Item 2
+      %li.nav-secondary__item.nav-secondary__item--right Item 3
 
-  %h2 .nav-article.is-fixed
+    %h2 .nav-secondary inside .l-nav-secondary
 
-  %p Fixes to bottom of view
+    .l-nav-secondary
+      %ul.nav-secondary
 
-  %h2 .nav-article
+    %h2 .nav-article.is-fixed
 
-  %aside.nav-article
-    .nav-article__inner
-      %span.nav-article__item Item 1
-      %span.nav-article__item Item 2
-      %span.nav-article__item Item 3
-      %span.nav-article__item.nav-article__item--right Right item 1
-      %span.nav-article__item.nav-article__item--right Right item 2
-      %span.nav-article__item.nav-article__item--right Right item 3
+    %p Fixes to bottom of view
 
-  %h2 .l-panel-content
-  .l-panel-content
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    %h2 .nav-article
 
-  %h2 .l-panel-content--form
-  .l-panel-content.l-panel-content--form
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    %aside.nav-article
+      .nav-article__inner
+        %span.nav-article__item Item 1
+        %span.nav-article__item Item 2
+        %span.nav-article__item Item 3
+        %span.nav-article__item.nav-article__item--right Right item 1
+        %span.nav-article__item.nav-article__item--right Right item 2
+        %span.nav-article__item.nav-article__item--right Right item 3
 
-  %h2 .l-panel-content with columns
-  .l-panel-content
-    .l-panel-content__col
+    %h2 .l-panel-content
+    .l-panel-content
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi
-    .l-panel-content__col.l-panel-content__col--primary
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+    %h2 .l-panel-content--form
+    .l-panel-content.l-panel-content--form
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-  .alert.alert--success
-    .alert__inner
-      %button.alert__close-button &times;
-      Page updated
+    %h2 .l-panel-content with columns
+    .l-panel-content
+      .l-panel-content__col
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi
+      .l-panel-content__col.l-panel-content__col--right
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi
 
-  .alert.alert--danger
-    .alert__inner
-      %button.alert__close-button &times;
-      Error on page
+    %h2 .alert--success
 
-  %h2 .button
-  %button.button Default button
+    .alert.alert--success.alert--static
+      .alert__inner
+        %button.alert__close-button &times;
+        Page updated
 
-  %h2 .button--text
-  %button.button.button--text Text button
+    %h2 .alert--danger
 
-  %h2 .button--text
-  %button.button.button--text
-    Text button
-    %span.icon
+    .alert.alert--danger.alert--static
+      .alert__inner
+        %button.alert__close-button &times;
+        Error on page
 
-  %h2 .button-menu
+    %h2 .button
+    %button.button Default button
 
-  %span.button-menu
-    %button.button__text
-      Save
-    %button.unstyled-button
-      %span.fa.fa-caret-up
+    %h2 .button--text
+    %button.button.button--text Text button
 
-  %h2 .button--action
+    %h2 .button--text
+    %button.button.button--text
+      Text button
+      %span.icon
 
-  %button.button--action
-    %span.button__text
-      Save
+    %h2 .button-menu
 
-  %h2 .inline-input
-  %input.inline-input{:type => "text", :value => "Reducing your energy bills"}/
+    %span.button-menu
+      %button.button__text
+        Save
+      %button.unstyled-button
+        %span.fa.fa-caret-up
 
-  %h2 .inline-input--page-title
-  %input.inline-input.inline-input--page-title{:type => "text", :value => "Reducing your energy bills"}
+    %h2 .button--action
+
+    %button.button--action
+      %span.button__text
+        Save
+
+    %h2 .form__input
+    %input.form__input{:type => "text", :value => "Reducing your energy bills"}/
+
+    %h2 .form__input--inline
+    %input.form__input.form__input--inline{:type => "text", :value => "Reducing your energy bills"}
+
+    %h2 .form__input--inline--page-title
+    %input.form__input.form__input--inline.form__input--inline--page-title{:type => "text", :value => "Reducing your energy bills"}

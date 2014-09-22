@@ -22,6 +22,14 @@
   text-transform: uppercase;
 }
 
+.button--h-match-input-height .button__text{
+  line-height: $button-match-input-height;
+  height: $button-match-input-height;
+  padding-bottom: 0;
+  padding-top: 0;
+  vertical-align: middle;
+}
+
 // Article button
 
 .button--article {
