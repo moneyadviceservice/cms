@@ -22,7 +22,29 @@ module Cms
 
         [en, cy]
       end
+
+      def highlighted_terms(content, term='')
+        return truncated_content(content) if term.blank?
+        highlight_term(truncated_content(content), term).html_safe
+      end
+
+      private
+
+      def highlight_term(content, term)
+        content.split(" ").map do |word|
+          word.match(Regexp.new(term, true)) ? content_tag('b', word) : word
+        end.join(" ")
+      end
+
+      def truncated_content(content, length=100)
+        sanitize_content(content).truncate(length)
+      end
+
+      def sanitize_content(content)
+        ActionView::Base.full_sanitizer.sanitize(Kramdown::Document.new(content).to_html)
+      end
     end
   end
+
   ActionView::Base.send :include, Cms::ViewMethods::Helpers
 end

@@ -10,7 +10,7 @@
   %h2.listing__heading
     = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page)
   %p.listing__text
-    = truncate(page.blocks.find {|b| b.identifier == "content"}.content, length: 100)
+    = highlighted_terms(page.block_content, params[:search])
   .listing__meta
     %dl.meta
       %dt.meta__title Status:
