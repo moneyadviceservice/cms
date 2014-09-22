@@ -9,6 +9,6 @@
       .toggle
         =radio_button_tag('edit-mode', en.first, en.last == request.fullpath, class: 'toggle__control', data: { "value" => en.last })
         =radio_button_tag('edit-mode', cy.first, cy.last == request.fullpath, class: 'toggle__control', data: { "value" => cy.last })
-        =label_tag('edit-mode_html', en.first, class: 'toggle__label-heading')
+        =label_tag('edit-mode_en', en.first, class: 'toggle__label-heading')
         %span.toggle__indicator
-        =label_tag('edit-mode_html', cy.first, class: 'toggle__label-heading')
+        =label_tag('edit-mode_cy', cy.first, class: 'toggle__label-heading')
