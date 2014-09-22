@@ -29,6 +29,10 @@
   }
 }
 
-.listing__meta {
+.listing__link {
+  @extend %body-text;
+}
 
+.listing__meta {
+  margin-bottom: $baseline-unit/2;
 }
