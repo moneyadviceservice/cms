@@ -1,0 +1,28 @@
+- page        ||= index_branch
+- children      = @pages_by_parent[page.id]
+- siblings      = @pages_by_parent[page.parent_id]
+- has_children  = children.present?
+- has_siblings  = siblings.size > 1
+- branch_open   = (session[:cms_page_tree] || []).member?(page.id.to_s) || page.root?
+- category_view = @filters_present
+
+%li{:class => 'listing__item', :id => dom_id(page)}
+  %h2.listing__heading
+    = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page)
+  %p.listing__text
+    = truncate(page.blocks.find {|b| b.identifier == "content"}.content, length: 100)
+  .listing__meta
+    %dl.meta
+      %dt.meta__title Status:
+      %dd.meta__description= @site.label.upcase
+      %dt.meta__title Type:
+      %dd.meta__description= current_status(page.current_state)
+      %dt.meta__title Last edit:
+      %dd.meta__description= page.updated_at.strftime("%d/%m/%Y, %H:%M")
+
+  .listing__link
+    = link_to page.url, page.url, :target => '_blank'
+
+  - if !category_view && has_children && branch_open
+    %ul.children.sortable
+      = render :partial => 'index_branch', :collection => children

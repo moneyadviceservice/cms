@@ -2,25 +2,54 @@
 
   %h1 CMS frontend components
 
+  %h2 .menu
+
+  %menu.menu
+    .menu__body
+
+  %h2 .listing
+
+  %ol.listing
+    %li.listing__item
+      %h2.listing__heading
+        %a{:href => '#'} Taking control of <b>debt</b>
+      %p.listing__text Where to get free <b>debt</b> advice, how to speak to the people you owe money to, and tips to help you pay back your <b>debts</b> in the right order.
+      .listing__meta
+        %dl.meta.meta--inline
+          %dt.meta__title Status:
+          %dd.meta__description EN Published with draft, CY Retired
+          %dt.meta__title Type:
+          %dd.meta__description Article
+          %dt.meta__title Last edit:
+          %dd.meta__description TDoyle, 12/08/14, 14:45
+        %a{:href => '#'} View Welsh version
+      %a{:class => 'listing__link', :href => '#'} http://www.moneyadviceservice.org.uk/en/my-
+    %li.listing__item
+      %h2.listing__heading
+        %a{:href => '#'} Should you save, or pay off loans and cards?
+      %p.listing__text Decide whether to start saving or repay money you owe, and make a plan to save regularly once you’ve cleared your <b>debts</b>
+      .listing__meta
+        %dl.meta.meta--inline
+          %dt.meta__title Status:
+          %dd.meta__description EN Published with draft, CY Retired
+          %dt.meta__title Type:
+          %dd.meta__description Article
+          %dt.meta__title Last edit:
+          %dd.meta__description TDoyle, 12/08/14, 14:45
+        %a{:href => '#'} View Welsh version
+      %a{:class => 'listing__link', :href => '#'} http://www.moneyadviceservice.org.uk/en/my-article
+
+  %h2 .meta
+
+  %dl.meta
+    %dt.meta__title Status:
+    %dd.meta__description EN Published with draft, CY Retired
+    %dt.meta__title Type:
+    %dd.meta__description Article
+    %dt.meta__title Last edit:
+    %dd.meta__description TDoyle, 12/08/14, 14:45
+
   %h2 .toolbar
-
-  %span.button-menu
-    %button.button__text
-      Save
-    %button.unstyled-button
-      %span.fa.fa-caret-up
-
-  %button.button--action
-    %span.button__text
-      Save
-
-  %ul.menu
-    %li.menu__item
-      %button.menu__text Action
-    %li.menu__item
-      %button.menu__text Another action
-    %li.menu__item
-      %button.menu__text Separated action
 
   %nav.toolbar
     .toolbar__inner
@@ -120,6 +149,27 @@
     cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
     proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
+  %h2 .l-panel-content with columns
+  .l-panel-content
+    .l-panel-content__col
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi
+    .l-panel-content__col.l-panel-content__col--primary
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi
+
+  .alert.alert--success
+    .alert__inner
+      %button.alert__close-button &times;
+      Page updated
+
+  .alert.alert--danger
+    .alert__inner
+      %button.alert__close-button &times;
+      Error on page
+
   %h2 .button
   %button.button Default button
 
@@ -131,8 +181,19 @@
     Text button
     %span.icon
 
+  %h2 .button-menu
+
+  %span.button-menu
+    %button.button__text
+      Save
+    %button.unstyled-button
+      %span.fa.fa-caret-up
+
   %h2 .button--action
-  %button.button.button--action Action button
+
+  %button.button--action
+    %span.button__text
+      Save
 
   %h2 .inline-input
   %input.inline-input{:type => "text", :value => "Reducing your energy bills"}/

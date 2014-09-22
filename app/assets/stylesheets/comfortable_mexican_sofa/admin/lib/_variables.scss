@@ -14,8 +14,13 @@ $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
 $color-grey-foxtrot: #cfd1d1;
 $color-grey-golf: #2c2c2c;
+$color-grey-hotel : #999;
 
 $color-green-alpha: #93e490;
+
+$color-blue-alpha: #277bb9;
+
+$color-red-alpha: #ca5f75;
 
 // Transitions -------------------------------------------------------------- //
 
@@ -51,6 +56,12 @@ $color-nav-secondary-foreground: $color-white;
 $color-nav-article-foreground: $color-white;
 $color-nav-article-background: $color-grey-charlie;
 
+// Alerts
+$color-alert-success-background: $color-green-alpha;
+$color-alert-success-foreground: $color-white;
+$color-alert-danger-background: $color-red-alpha;
+$color-alert-danger-foreground: $color-white;
+
 // Buttons
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
@@ -77,6 +88,10 @@ $color-panel-content-form-background: $color-grey-beta;
 // Menu
 $color-menu-body-background: rgba($color-green-alpha, .5);
 
+// Meta
+$color-meta-title-foreground: $color-grey-hotel;
+$color-meta-title-separator: $color-grey-alpha;
+
 // FORMS
 
 // Base
@@ -94,9 +109,9 @@ $color-inline-input-foreground: $color-grey-alpha;
 $color-editor-background: $color-white;
 
 // Default Links
-$color-link-default: $color-grey-alpha !default;
-$color-link-visited: $color-grey-alpha !default;
-$color-link-focus: $color-grey-alpha !default;
+$color-link-default: $color-blue-alpha !default;
+$color-link-visited: $color-blue-alpha !default;
+$color-link-focus: $color-blue-alpha !default;
 
 $color-heading-default: $color-grey-alpha !default;
 $color-heading-medium: $color-grey-alpha !default;

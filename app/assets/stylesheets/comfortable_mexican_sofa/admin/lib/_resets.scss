@@ -7,3 +7,9 @@ p, li {
   font-family: 'museo_sans';
   font-weight: 300;
 }
+
+a{
+  &:link {
+    // color: $color-link-active;
+  }
+}

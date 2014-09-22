@@ -1,0 +1,40 @@
+// Alert
+//
+// Styleguide Alert
+
+.alert {
+  @extend %z-index--alert;
+  left: 0;
+  position: fixed;
+  text-align: center;
+  top: 50px;
+  width: 100%;
+}
+
+.alert__inner {
+  @include body(18,18);
+  display: inline-block;
+  font-weight: 700;
+  padding: $baseline-unit*2 100px;
+  position: relative;
+}
+
+.alert--success .alert__inner {
+  background: $color-alert-success-background;
+  color: $color-alert-success-foreground;
+}
+
+.alert--danger .alert__inner {
+  background: $color-alert-danger-background;
+  color: $color-alert-danger-foreground;
+}
+
+.alert__close-button {
+  border: none;
+  background: transparent;
+  font-size: 24px;
+  line-height: 24px;
+  margin-top: -6px;
+  position: absolute;
+  right: 10px;
+}
