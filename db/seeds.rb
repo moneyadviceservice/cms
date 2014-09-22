@@ -29,7 +29,7 @@ site_data_cy = {
 }
 
 puts "Seeding MAS sites..."
-site_en = Comfy::Cms::Site.find_or_create_by!(site_data_en)
+site_en = Comfy::Cms::Site.find_or_create_by(site_data_en)
 site_cy = Comfy::Cms::Site.find_or_create_by!(site_data_cy)
 
 puts "Seeding categories..."
@@ -42,5 +42,7 @@ puts "Seeding layouts..."
 default_content = <<-END
 {{ cms:page:content:rich_text }}
 END
-Comfy::Cms::Layout.find_or_create_by(site: site_en, content: default_content, label: "default", identifier: "default")
-Comfy::Cms::Layout.find_by(site_id: site_cy.id).update_attributes!(content: default_content)
+%w(article news action_plan tool).each do |name|
+  Comfy::Cms::Layout.find_or_create_by(site: site_en, content: default_content, label: name.titleize, identifier: name)
+  Comfy::Cms::Layout.find_or_create_by(site: site_cy, identifier: name).update_attributes!(content: default_content)
+end
