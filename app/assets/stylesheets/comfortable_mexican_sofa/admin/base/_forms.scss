@@ -65,3 +65,11 @@
   @include body(32,42);
   height: $baseline-unit*7;
 };
+
+.form__input.form__input--constrained[type="text"],
+.form__input.form__input--constrained[type="number"],
+.form__input.form__input--constrained[type="email"],
+.form__input.form__input--constrained[type="search"],
+.form__input.form__input--constrained[type="password"] {
+  width: auto;
+}

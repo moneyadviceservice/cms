@@ -63,6 +63,8 @@ $color-alert-danger-background: $color-red-alpha;
 $color-alert-danger-foreground: $color-white;
 
 // Buttons
+$input-height: $baseline-unit*5;
+$button-match-input-height: $input-height;
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
 $color-button-action-background: $color-green-alpha;
@@ -95,6 +97,7 @@ $color-meta-title-separator: $color-grey-alpha;
 // FORMS
 
 // Base
+
 $color-input-background: $color-white;
 $color-input-border-color: $color-grey-foxtrot;
 $color-input-text-color: $color-grey-golf;
