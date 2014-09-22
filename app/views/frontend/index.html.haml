@@ -155,17 +155,21 @@
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       quis nostrud exercitation ullamco laboris nisi
-    .l-panel-content__col.l-panel-content__col--primary
+    .l-panel-content__col.l-panel-content__col--right
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
       quis nostrud exercitation ullamco laboris nisi
 
-  .alert.alert--success
+  %h2 Alert Success
+
+  .alert.alert--success.alert--static
     .alert__inner
       %button.alert__close-button &times;
       Page updated
 
-  .alert.alert--danger
+  %h2 Alert Danger
+
+  .alert.alert--danger.alert--static
     .alert__inner
       %button.alert__close-button &times;
       Error on page
@@ -195,8 +199,11 @@
     %span.button__text
       Save
 
-  %h2 .inline-input
-  %input.inline-input{:type => "text", :value => "Reducing your energy bills"}/
+  %h2 .form__input
+  %input.form__input{:type => "text", :value => "Reducing your energy bills"}/
 
-  %h2 .inline-input--page-title
-  %input.inline-input.inline-input--page-title{:type => "text", :value => "Reducing your energy bills"}
+  %h2 .form__input--inline
+  %input.form__input.form__input--inline{:type => "text", :value => "Reducing your energy bills"}
+
+  %h2 .form__input--inline--page-title
+  %input.form__input.form__input--inline.form__input--inline--page-title{:type => "text", :value => "Reducing your energy bills"}
