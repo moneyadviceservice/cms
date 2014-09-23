@@ -10,7 +10,7 @@ describe "#highlighted_terms" do
   let(:content) { "Some Words" }
 
   it "returns the original content when no term is provided" do
-    expect(subject.highlighted_terms(content)).to eq(content + "\n")
+    expect(subject.highlighted_terms(content)).to eq(content)
   end
 
   it "highlights the matching terms" do

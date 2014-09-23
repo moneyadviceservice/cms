@@ -10,7 +10,7 @@
   %h2.listing__heading
     = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page)
   %p.listing__text
-    = highlighted_terms(page.block_content, params[:search])
+    = highlighted_terms(page.preview_cache, params[:search])
   .listing__meta
     %dl.meta
       %dt.meta__title Status:
