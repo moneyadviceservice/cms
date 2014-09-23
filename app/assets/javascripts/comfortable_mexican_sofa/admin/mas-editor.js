@@ -24,10 +24,12 @@ define('mas-editor', [
       this.markdownEditorNode = this.options.markdownEditorNode;
       this.markdownEditorContentNode = this.options.markdownEditorContentNode;
       this.switchModeTriggerNodes = this.options.switchModeTriggerNodes;
+      this.editorOptions = this.options.editorOptions || {};
       this.editor = new Editor(
         this.htmlEditorContentNode,
         this.markdownEditorContentNode,
-        this.toolbarNode
+        this.toolbarNode,
+        this.editorOptions
       );
       this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
