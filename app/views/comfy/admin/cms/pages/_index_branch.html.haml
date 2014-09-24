@@ -1,28 +1,19 @@
-- page        ||= index_branch
-- children      = @pages_by_parent[page.id]
-- siblings      = @pages_by_parent[page.parent_id]
-- has_children  = children.present?
-- has_siblings  = siblings.size > 1
-- branch_open   = (session[:cms_page_tree] || []).member?(page.id.to_s) || page.root?
-- category_view = @filters_present
-
-%li{:class => 'listing__item', :id => dom_id(page)}
-  %h2.listing__heading
-    = link_to page.label, edit_comfy_admin_cms_site_page_path(@site, page)
-  %p.listing__text
-    = highlighted_terms(page.preview_cache, params[:search])
-  .listing__meta
-    %dl.meta
-      %dt.meta__title Status:
-      %dd.meta__description= @site.label.upcase
-      %dt.meta__title Type:
-      %dd.meta__description= current_status(page.current_state)
-      %dt.meta__title Last edit:
-      %dd.meta__description= page.updated_at.strftime("%d/%m/%Y, %H:%M")
-
-  .listing__link
-    = link_to page.url, page.url, :target => '_blank'
-
-  - if !category_view && has_children && branch_open
-    %ul.children.sortable
-      = render :partial => 'index_branch', :collection => children
+- pages.each do |page|
+  - cy = page.mirrors.first
+  %li{:class => 'listing__item', :id => dom_id(page)}
+    %h2.listing__heading
+      = link_to highlighted_terms(page.label, params[:search]), edit_comfy_admin_cms_site_page_path(@site, page)
+    %p.listing__text
+      = highlighted_terms(page.preview_cache, params[:search])
+    .listing__meta
+      %dl.meta
+        %dt.meta__title Status:
+        = @site.label.upcase + " " + current_status(page.current_state)
+        = cy.site.label.upcase + " " + current_status(cy.current_state) if cy
+        %dd.meta__description
+        %dt.meta__title Type:
+        = page.layout.label
+        %dd.meta__description
+        %dt.meta__title Last edit:
+        %dd.meta__description= page.updated_at.strftime("%d/%m/%Y, %H:%M")
+        = link_to "View welsh version", edit_comfy_admin_cms_site_page_path(cy.site_id, cy) if cy

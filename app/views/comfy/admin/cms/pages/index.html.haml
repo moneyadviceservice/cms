@@ -2,16 +2,17 @@
   .l-constrained
     .l-panel-content__row
       .l-panel-content__col
-        - if params[:search]
+        - if params[:search].present?
           %h2 Search Results
         - else
           %h2= t('.title')
+          = paginate @pages
       .l-panel-content__col
         = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
           .search
             .search__item
-              - if params[:search]
-                X pages found for '#{params[:search]}'
+              - if params[:search].present?
+                = "#{@pages.count} pages found for '#{params[:search]}'"
               = label_tag(:search, nil, class: 'visually-hidden')
               = text_field_tag(:search, params[:search], placeholder: 'Keyword', class: 'search__item form__input form__input--constrained')
               = button_tag('Search', type: 'submit', name: nil, class: 'search__item button--action button--h-match-input-height') do
@@ -29,6 +30,6 @@
 .l-panel-content
   .l-constrained
     %ol.listing
-      = render :partial => 'index_branch', :collection => @pages
+      = render :partial => 'index_branch', :locals => {:pages => @pages}
 
 = render 'comfy/admin/cms/partials/pages_after'
