@@ -11,7 +11,7 @@ module UI::Pages
     element :preview, '#preview'
 
     element :categories, '#categories--select'
-    element :save, '.t-save'
+    element :save, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '.chosen-choices'
