@@ -31,7 +31,7 @@ module Cms
       private
 
       def highlight_term(content, term)
-        content.split(" ").map do |word|
+        content.to_s.split(" ").map do |word|
           word.match(Regexp.new(term, true)) ? content_tag('b', word) : word
         end.join(" ")
       end

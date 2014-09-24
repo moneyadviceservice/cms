@@ -20,4 +20,11 @@ describe "#highlighted_terms" do
   it "doesn't highlight non matching terms" do
     expect(subject.highlighted_terms(content, 'no match')).to eq(content)
   end
+
+  context "content is nil" do
+    let(:content) { nil }
+    it "returns an empty string" do
+      expect(subject.highlighted_terms(content, "word")).to eq("")
+    end
+  end
 end
