@@ -17,12 +17,10 @@
 }
 
 .meta__title {
-  @extend %body-text;
   color: $color-meta-title-foreground;
 }
 
 .meta__description {
-  @extend %body-text;
   margin-left: 0;
 
   &:after {
@@ -40,6 +38,5 @@
 }
 
 .meta__link {
-  @extend %body-text;
   margin-left: 0;
 }
