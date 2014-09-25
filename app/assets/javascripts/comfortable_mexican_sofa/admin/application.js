@@ -27,7 +27,27 @@ window.CMS.wysiwyg = function() {
       markdownEditorContentNode: markdownEditorContentNode,
       switchModeTriggerNodes: document.querySelectorAll('.js-switch-mode'),
       editorOptions: {
-        editorLibOptions : {}
+        editorLibOptions : {
+          sanitizer : {
+            tags: {
+              p: {},
+              br: {},
+              b: {},
+              strong: {},
+              i: {},
+              strike: {},
+              blockquote: {},
+              ol: {},
+              ul: {},
+              li: {},
+              a: { href: true },
+              h2: {},
+              h3: {},
+              h4: {},
+              h5: {}
+            }
+          }
+        }
       }
     });
 
@@ -45,5 +65,5 @@ window.CMS.wysiwyg = function() {
 window.CMS.mirrors = function() {
   $('#site__mirrors').change(function() {
     window.location = $(this).find('input:checked').data()['value']
-  })
+  });
 }
