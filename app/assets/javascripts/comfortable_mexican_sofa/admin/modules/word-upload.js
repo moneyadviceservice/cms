@@ -10,16 +10,16 @@ define('word-upload', [], function () {
       }
       this.activateWordUploadForm = this.activateWordUploadForm.bind(this);
       this.submitWordUploadForm = this.submitWordUploadForm.bind(this);
-      this.handleActivateNodeKeyDown = this.handleActivateNodeKeyDown.bind(this);
+      this.handleActivateNodeEvent = this.handleActivateNodeEvent.bind(this);
       this.setupEventListeners();
     },
 
     setupEventListeners: function() {
       this.elements.wordFormNode.addEventListener('change', this.submitWordUploadForm);
-      this.elements.activateFileInputNode.addEventListener('click', this.handleActivateNodeKeyDown);
+      this.elements.activateFileInputNode.addEventListener('click', this.handleActivateNodeEvent);
     },
 
-    handleActivateNodeKeyDown: function(e) {
+    handleActivateNodeEvent: function(e) {
       if(e.type === 'keydown' && e.keyCode !== 13) return;
       this.activateWordUploadForm();
     },
