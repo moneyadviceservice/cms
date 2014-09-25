@@ -33,6 +33,9 @@
           %span.toggle__indicator
           =label_tag('edit-mode_markdown', 'Advanced', class: 'toggle__label-heading')
 
+      .toolbar__item-group.toolbar__item-group--right
+        = button_tag(class: 'js-activate-word-upload-form button button--action button--secondary', type: 'button') do
+          %span.button__text Upload Word Doc
 
   .editor.editor--html.is-active.js-html-editor
     .editor__content.theme.theme--dough.js-html-editor-content

@@ -62,7 +62,7 @@
                 %span.button__text
                   =state_event[:label]
               - unless page_state_buttons(@page.current_state).empty?
-                %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"selectors": {"activeClass": "is-active"}}'}}
+                %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
                   %span.fa.fa-caret-up
 
           .menu__body{:data => { :'dough-collapsable-target' => 1 }}

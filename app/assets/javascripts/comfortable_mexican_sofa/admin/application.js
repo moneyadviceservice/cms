@@ -6,10 +6,12 @@ window.CMS.wysiwyg = function() {
   'use strict';
   require([
     'mas-editor',
-    'editor-plugin-auto-resize-textarea'
+    'editor-plugin-auto-resize-textarea',
+    'word-upload'
   ], function (
     masEditor,
-    editorPluginAutoResizeTextarea
+    editorPluginAutoResizeTextarea,
+    wordUpload
   ) {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
@@ -25,7 +27,30 @@ window.CMS.wysiwyg = function() {
       htmlEditorContentNode: document.querySelector('.js-html-editor-content'),
       markdownEditorNode: document.querySelector('.js-markdown-editor'),
       markdownEditorContentNode: markdownEditorContentNode,
-      switchModeTriggerNodes: document.querySelectorAll('.js-switch-mode')
+      switchModeTriggerNodes: document.querySelectorAll('.js-switch-mode'),
+      editorOptions: {
+        editorLibOptions : {
+          sanitizer : {
+            tags: {
+              p: {},
+              br: {},
+              b: {},
+              strong: {},
+              i: {},
+              strike: {},
+              blockquote: {},
+              ol: {},
+              ul: {},
+              li: {},
+              a: { href: true },
+              h2: {},
+              h3: {},
+              h4: {},
+              h5: {}
+            }
+          }
+        }
+      }
     });
 
     masEditor.editor.use(editorPluginAutoResizeTextarea(markdownEditorContentNode));
@@ -36,11 +61,18 @@ window.CMS.wysiwyg = function() {
     };
 
     setTimeout(focusOnTitle, 500);
+
+    // Setup Word upload form elements
+    wordUpload.init({
+      fileInputNode: document.querySelector('.js-word-upload-file-input'),
+      activateFileInputNode: document.querySelector('.js-activate-word-upload-form'),
+      wordFormNode: document.querySelector('.js-word-upload-form')
+    });
   });
 };
 
 window.CMS.mirrors = function() {
   $('#site__mirrors').change(function() {
     window.location = $(this).find('input:checked').data()['value']
-  })
+  });
 }

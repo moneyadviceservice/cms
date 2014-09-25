@@ -24,15 +24,17 @@ define('mas-editor', [
       this.markdownEditorNode = this.options.markdownEditorNode;
       this.markdownEditorContentNode = this.options.markdownEditorContentNode;
       this.switchModeTriggerNodes = this.options.switchModeTriggerNodes;
+      this.editorOptions = this.options.editorOptions || {};
       this.editor = new Editor(
         this.htmlEditorContentNode,
         this.markdownEditorContentNode,
-        this.toolbarNode
+        this.toolbarNode,
+        this.editorOptions
       );
       this.classActive = this.options.classActive || this.editor.constants.CLASSES.ACTIVE;
       this.mode = this.options.mode || this.editor.config.defaultEditingMode;
 
-      this.addUIEvents();
+      this.setupEventListeners();
       this.setupAppEvents();
       this.setupToolbar();
 
@@ -44,7 +46,7 @@ define('mas-editor', [
      * Bind DOM events
      * @return {Object} this
      */
-    addUIEvents: function() {
+    setupEventListeners: function() {
       var _this = this;
 
       // Catches form submit and delegates to a handler function

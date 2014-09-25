@@ -15,11 +15,12 @@ Rails.application.configure do
   config.assets.precompile += %w(mas-cms-editor/src/app/constants/constants.js
                                   mas-cms-editor/src/app/config/config.js
                                   mas-cms-editor/src/app/app.js
-                                  mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper.js
+                                  mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper.js
                                   mas-cms-editor/src/app/modules/source-converter/source-converter.js
                                   mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
-                                  comfortable_mexican_sofa/admin/mas-editor.js)
+                                  comfortable_mexican_sofa/admin/modules/mas-editor.js
+                                  comfortable_mexican_sofa/admin/modules/word-upload.js)
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js

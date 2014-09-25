@@ -23,7 +23,7 @@ requirejs.config({
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/mas-editor',
     'editor' : bowerPath + 'mas-cms-editor/src/app/app',
     'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
-    'scribe-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper',
+    'editor-lib-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper',
     'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
 
     // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0

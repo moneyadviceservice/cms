@@ -4,5 +4,10 @@
       %button.alert__close-button{:type => 'button', :data => {:dismiss => 'alert'}} &times;
       = message
 
+= form_for :word, url: word_documents_path, multipart: true, :html => {:class => 'js-word-upload-form visually-hidden'} do |form|
+  =label_tag('word_document', 'Upload Word document', class: 'visually-hidden')
+  = form.file_field :document, accept: WordDocumentsController::ACCEPTED_CONTENT_TYPES.join(','), :class => 'js-word-upload-file-input', :tabindex => '-1'
+  %button Go
+
 %main
   = yield

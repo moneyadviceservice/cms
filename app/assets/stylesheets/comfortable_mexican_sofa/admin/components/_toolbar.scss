@@ -20,6 +20,7 @@
 
 .toolbar__inner {
   background-color: transparent;
+  display: table;
   text-align: left;
   padding: $baseline-unit*4 0 $baseline-unit*6;
   width: 100%;
@@ -27,12 +28,22 @@
 
 
 .toolbar__item-group {
-  display: inline-block;
-  margin-right: 40px;
+  display: table-cell;
+  padding-right: 40px;
 
   & + &:last-child {
-    margin-right: 0;
+    padding-right: 0;
+    width: 100%;
   }
+}
+
+.toolbar__inner > .toolbar__item-group {
+  white-space: nowrap;
+}
+
+.toolbar__item-group--right {
+  text-align: right;
+  width: 100%;
 }
 
 .toolbar__item {

@@ -6,8 +6,11 @@ require.config({
     // Editor core
     'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
     'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
-    'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/mas-editor") %>',
+    'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
+
+    // Word upload
+    'word-upload': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/word-upload") %>',
 
     // Dough
     'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
@@ -18,7 +21,7 @@ require.config({
     'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
 
     // Editor modules
-    'scribe-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/scribe-wrapper/scribe-wrapper") %>',
+    'editor-lib-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper") %>',
     'source-converter': '<%= requirejs_path("mas-cms-editor/src/app/modules/source-converter/source-converter") %>',
 
     // Editor plugins

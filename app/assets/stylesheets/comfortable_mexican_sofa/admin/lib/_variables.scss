@@ -19,6 +19,7 @@ $color-grey-hotel : #999;
 $color-green-alpha: #93e490;
 
 $color-blue-alpha: #277bb9;
+$color-blue-beta: #9fa7cb;
 
 $color-red-alpha: #ca5f75;
 
@@ -68,11 +69,13 @@ $button-match-input-height: $input-height;
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
 $color-button-action-background: $color-green-alpha;
+$color-button-secondary-background: $color-blue-beta;
 $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
 $button-border-radius: 4px;
 $color-toolbar-button-foreground: $color-white;
 $color-toolbar-button-background: $color-green-alpha;
 $color-toolbar-button-disabled-background: $color-grey-foxtrot;
+
 
 // Toggle buttons
 $color-toggle-foreground: $color-green-alpha;
