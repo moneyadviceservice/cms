@@ -6,10 +6,12 @@ window.CMS.wysiwyg = function() {
   'use strict';
   require([
     'mas-editor',
-    'editor-plugin-auto-resize-textarea'
+    'editor-plugin-auto-resize-textarea',
+    'word-upload'
   ], function (
     masEditor,
-    editorPluginAutoResizeTextarea
+    editorPluginAutoResizeTextarea,
+    wordUpload
   ) {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
@@ -59,6 +61,13 @@ window.CMS.wysiwyg = function() {
     };
 
     setTimeout(focusOnTitle, 500);
+
+    // Setup Word upload form elements
+    wordUpload.init({
+      fileInputNode: document.querySelector('.js-word-upload-file-input'),
+      activateFileInputNode: document.querySelector('.js-activate-word-upload-form'),
+      wordFormNode: document.querySelector('.js-word-upload-form')
+    });
   });
 };
 

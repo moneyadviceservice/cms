@@ -64,8 +64,22 @@
 
 .button-menu .unstyled-button {
   border-left: 1px solid $color-button-action-separator;
+  border-bottom-right-radius: $button-border-radius;
+  border-top-right-radius: $button-border-radius;
   padding-left: 15px;
   padding-right: 15px;
+
+  &:focus {
+    background: darken($color-button-action-background, 10%);
+  }
+
+  &.is-active {
+    background: darken($color-button-action-background, 30%);
+  }
+
+  &.is-active:focus {
+    background: darken($color-button-action-background, 45%);
+  }
 }
 
 .button-menu .button__toggle {
@@ -74,3 +88,6 @@
   padding: 0;
 }
 
+.button--secondary {
+  background: $color-button-secondary-background;
+}
