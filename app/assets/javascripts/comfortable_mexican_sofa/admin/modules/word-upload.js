@@ -8,6 +8,7 @@ define('word-upload', [], function () {
         activateFileInputNode: options.activateFileInputNode,
         wordFormNode: options.wordFormNode
       }
+      this.showConfirm = false;
       this.activateWordUploadForm = this.activateWordUploadForm.bind(this);
       this.submitWordUploadForm = this.submitWordUploadForm.bind(this);
       this.handleActivateNodeEvent = this.handleActivateNodeEvent.bind(this);
@@ -29,6 +30,12 @@ define('word-upload', [], function () {
     },
 
     submitWordUploadForm: function() {
+      if(this.showConfirm) {
+        if(!confirm('Uploading a Word document will delete the current content. Are you sure you wish to continue?')) {
+          this.elements.wordFormNode.reset();
+          return;
+        }
+      }
       this.elements.wordFormNode.submit();
     }
   };
