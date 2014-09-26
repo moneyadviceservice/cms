@@ -14,7 +14,7 @@ $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
 $color-grey-foxtrot: #cfd1d1;
 $color-grey-golf: #2c2c2c;
-$color-grey-hotel : #999;
+$color-grey-hotel: #999;
 
 $color-green-alpha: #93e490;
 
@@ -107,7 +107,9 @@ $color-input-text-color: $color-grey-golf;
 $color-input-disabled-background: $color-white;
 $color-input-disabled-text-color: $color-grey-foxtrot;
 $color-input-focus-border-color: $color-grey-alpha;
+$color-input-meta: $color-grey-hotel;
 $color-error-foreground: $color-red-alpha;
+$form-element-width: 60%;
 
 // Inline input
 $color-inline-input-foreground: $color-grey-alpha;
