@@ -55,11 +55,13 @@
 
 .button-menu {
   @extend %button-action;
+  display: table;
 }
 
 .button-menu .button__text,
 .button-menu .unstyled-button {
   @extend %button-action__text;
+  display: table-cell;
 }
 
 .button-menu .unstyled-button {
