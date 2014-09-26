@@ -79,12 +79,7 @@
   width: auto;
 }
 
-.form-control[type="text"],
-.form-control[type="number"],
-.form-control[type="email"],
-.form-control[type="search"],
-.form-control[type="password"],
-select {
-  // display: block;
-  // width: $form-element-width;
+select.form-control {
+  display: block;
+  width: $form-element-width;
 }
