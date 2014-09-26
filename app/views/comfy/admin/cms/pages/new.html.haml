@@ -1,2 +1,2 @@
-= comfy_form_for @page, :as => :page, label_col: "form__label-heading", control_col: "form__input-wrapper", :url => {:action => :create}, :html => {:multipart => true, :autocomplete => 'off'} do |form|
+= comfy_form_for @page, :as => :page, label_col: "form__label-heading", control_col: "form__input-wrapper", :url => comfy_admin_cms_site_pages_path(@site), :method => :post, :html => {:multipart => true, :autocomplete => 'off'} do |form|
   = render form

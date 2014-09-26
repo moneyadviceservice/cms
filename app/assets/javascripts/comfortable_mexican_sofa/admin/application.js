@@ -1,6 +1,7 @@
 // Overwrite this file in your application /app/assets/javascripts/comfortable_mexican_sofa/admin/application.js
 //= require requirejs/require
 //= require require_config
+//= require jquery.remotipart
 
 window.CMS.wysiwyg = function() {
   'use strict';
