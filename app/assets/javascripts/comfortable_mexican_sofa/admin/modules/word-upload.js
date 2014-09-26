@@ -31,7 +31,7 @@ define('word-upload', [], function () {
 
     submitWordUploadForm: function() {
       if (this.showConfirm) {
-        if (!confirm('Uploading a Word document will delete the current content. Are you sure you wish to continue?')) {
+        if (!confirm('You will lose any modifications you may have made. Are you sure you wish to continue?')) {
           this.elements.wordFormNode.reset();
           return;
         }
