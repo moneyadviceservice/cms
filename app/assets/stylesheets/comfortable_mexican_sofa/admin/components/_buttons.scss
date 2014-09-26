@@ -12,6 +12,7 @@
   &:focus,
   &:hover,
   &:link:hover {
+    color: $color-button-foreground;
     text-decoration: underline;
   }
 }
@@ -35,6 +36,7 @@
 .button--article {
   &,
   &:visited,
+  &:link:visited
   &:hover {
     color: $color-button-foreground;
   }
