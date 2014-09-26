@@ -17,7 +17,9 @@ window.CMS.wysiwyg = function() {
 
     if(!markdownEditorContentNode) return;
 
-    markdownEditorContentNode.value = markdownEditorContentNode.value.split("\n").map(function(e) { return e.trim() }).join("\n");
+    markdownEditorContentNode.value = markdownEditorContentNode.value.split('\n').map(function(e) {
+      return e.trim();
+    }).join('\n');
 
     masEditor.init({
       editorContainer: document.querySelector('.l-editor'),
