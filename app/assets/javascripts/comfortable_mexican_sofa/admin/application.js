@@ -17,7 +17,9 @@ window.CMS.wysiwyg = function() {
 
     if(!markdownEditorContentNode) return;
 
-    markdownEditorContentNode.value = markdownEditorContentNode.value.split("\n").map(function(e) { return e.trim() }).join("\n");
+    markdownEditorContentNode.value = markdownEditorContentNode.value.split('\n').map(function(e) {
+      return e.trim();
+    }).join('\n');
 
     masEditor.init({
       editorContainer: document.querySelector('.l-editor'),
@@ -64,6 +66,7 @@ window.CMS.wysiwyg = function() {
 
     // Setup Word upload form elements
     wordUpload.init({
+      showConfirm: true,
       fileInputNode: document.querySelector('.js-word-upload-file-input'),
       activateFileInputNode: document.querySelector('.js-activate-word-upload-form'),
       wordFormNode: document.querySelector('.js-word-upload-form')
@@ -72,7 +75,8 @@ window.CMS.wysiwyg = function() {
 };
 
 window.CMS.mirrors = function() {
+  'use strict';
   $('#site__mirrors').change(function() {
-    window.location = $(this).find('input:checked').data()['value']
+    window.location = $(this).find('input:checked').data()['value'];
   });
-}
+};
