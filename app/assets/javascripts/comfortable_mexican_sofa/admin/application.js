@@ -72,7 +72,8 @@ window.CMS.wysiwyg = function() {
 };
 
 window.CMS.mirrors = function() {
+  'use strict';
   $('#site__mirrors').change(function() {
-    window.location = $(this).find('input:checked').data()['value']
+    window.location = $(this).find('input:checked').data()['value'];
   });
-}
+};
