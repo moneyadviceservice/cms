@@ -4,11 +4,11 @@ define('word-upload', [], function () {
     init: function(options) {
       this.options = options;
       this.elements = {
-        fileInputNode: options.fileInputNode,
-        activateFileInputNode: options.activateFileInputNode,
-        wordFormNode: options.wordFormNode
-      }
-      this.showConfirm = false;
+        fileInputNode: this.options.fileInputNode,
+        activateFileInputNode: this.options.activateFileInputNode,
+        wordFormNode: this.options.wordFormNode
+      };
+      this.showConfirm = this.options.showConfirm || false;
       this.activateWordUploadForm = this.activateWordUploadForm.bind(this);
       this.submitWordUploadForm = this.submitWordUploadForm.bind(this);
       this.handleActivateNodeEvent = this.handleActivateNodeEvent.bind(this);
@@ -21,7 +21,7 @@ define('word-upload', [], function () {
     },
 
     handleActivateNodeEvent: function(e) {
-      if(e.type === 'keydown' && e.keyCode !== 13) return;
+      if (e.type === 'keydown' && e.keyCode !== 13) return;
       this.activateWordUploadForm();
     },
 
@@ -30,8 +30,8 @@ define('word-upload', [], function () {
     },
 
     submitWordUploadForm: function() {
-      if(this.showConfirm) {
-        if(!confirm('Uploading a Word document will delete the current content. Are you sure you wish to continue?')) {
+      if (this.showConfirm) {
+        if (!confirm('Uploading a Word document will delete the current content. Are you sure you wish to continue?')) {
           this.elements.wordFormNode.reset();
           return;
         }

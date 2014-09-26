@@ -64,6 +64,7 @@ window.CMS.wysiwyg = function() {
 
     // Setup Word upload form elements
     wordUpload.init({
+      showConfirm: true,
       fileInputNode: document.querySelector('.js-word-upload-file-input'),
       activateFileInputNode: document.querySelector('.js-activate-word-upload-form'),
       wordFormNode: document.querySelector('.js-word-upload-form')
