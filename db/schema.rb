@@ -10,7 +10,7 @@
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema.define(version: 20140922155752) do
+ActiveRecord::Schema.define(version: 20140924134247) do
 
   create_table "cms_blocks", force: true do |t|
     t.integer  "page_id",                     null: false
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20140922155752) do
     t.string   "state"
     t.string   "meta_description"
     t.string   "preview_cache"
+    t.string   "meta_title"
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree

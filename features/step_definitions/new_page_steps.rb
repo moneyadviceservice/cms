@@ -20,8 +20,8 @@ Then(/^I should see its contents inside the CMS editor$/) do
   pending
 end
 
-When(/^I fill in "(.*?)" as the meta_description$/) do |value|
-  new_page.meta_description.set(value)
+When(/^I fill in "(.*?)" as the meta_(.*)$/) do |value, field|
+  new_page.send(("meta_" + field).to_sym).set(value)
 end
 
 When(/^I save the article page$/) do
