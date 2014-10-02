@@ -41,6 +41,9 @@ end
 group :test, :development do
   gem 'mas-development_dependencies',
       git: 'https://github.com/moneyadviceservice/mas-development_dependencies.git'
+  # temporarily pin capybara, the following breaks Rake:
+  # https://github.com/jnicklas/capybara/commit/385a7507f6525d9b2d1e23bef0bb2e6fe5ad0c97
+  gem 'capybara', '2.4.1'
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
 end
