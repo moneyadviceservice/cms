@@ -7,11 +7,13 @@ window.CMS.wysiwyg = function() {
   require([
     'mas-editor',
     'editor-plugin-auto-resize-textarea',
-    'word-upload'
+    'word-upload',
+    'hide-and-remove-element'
   ], function (
     masEditor,
     editorPluginAutoResizeTextarea,
-    wordUpload
+    wordUpload,
+    hideAndRemoveElement
   ) {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
@@ -70,6 +72,12 @@ window.CMS.wysiwyg = function() {
       fileInputNode: document.querySelector('.js-word-upload-file-input'),
       activateFileInputNode: document.querySelector('.js-activate-word-upload-form'),
       wordFormNode: document.querySelector('.js-word-upload-form')
+    });
+
+    hideAndRemoveElement.init({
+      mainNode: document.querySelector('.js-alert'),
+      closeNode: document.querySelector('.js-close-alert'),
+      delay: 3000
     });
   });
 };
