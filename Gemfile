@@ -34,6 +34,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
+  gem 'byebug'
 end
 
 group :test do
