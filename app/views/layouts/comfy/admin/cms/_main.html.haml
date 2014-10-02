@@ -1,7 +1,7 @@
 - flash.each do |type, message|
-  .alert{:class => "alert--#{type}"}
+  .alert{:class => "alert--#{type} js-alert is-active"}
     .alert__inner
-      %button.alert__close-button{:type => 'button', :data => {:dismiss => 'alert'}} &times;
+      %button.alert__close-button.js-close-alert{:type => 'button', } &times;
       = message
 
 = form_for :word, url: word_documents_path, multipart: true, :html => {:class => 'js-word-upload-form visually-hidden'} do |form|
