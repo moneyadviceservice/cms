@@ -21,7 +21,7 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
                                   comfortable_mexican_sofa/admin/modules/mas-editor.js
                                   comfortable_mexican_sofa/admin/modules/word-upload.js
-                                  comfortable_mexican_sofa/admin/modules/hide-and-remove-element.js)
+                                  comfortable_mexican_sofa/admin/modules/element-hider.js)
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js

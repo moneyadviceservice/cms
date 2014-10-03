@@ -4,30 +4,26 @@ describe('Hide and Remove element', function () {
   beforeEach(function(done) {
     var self = this;
 
-    require.config({
-      context : 'ctx' + new Date().getTime()
-    });
-
     requirejs([
-      'hide-and-remove-element',
+      'element-hider',
       'phantom-shims'
     ],
     function (
-      hideAndRemoveElement
+      ElementHider
     ) {
       self.sandbox = document.createElement('div');
-      self.sandbox.innerHTML = window.__html__['spec/javascripts/fixtures/hide-and-remove-element.html'];
+      self.sandbox.innerHTML = window.__html__['spec/javascripts/fixtures/element-hider.html'];
       document.body.appendChild(self.sandbox);
       self.classActive = 'is-active';
-      self.classMainNode = '.js-alert';
+      self.classMainNode = '.js-element';
       self.delay = 1000;
-      self.hideAndRemoveElement = hideAndRemoveElement;
-      self.hideSpy = sinon.spy(self.hideAndRemoveElement, 'hide');
-      self.hideAndRemoveElement.init({
+      self.elementHider = new ElementHider({
         mainNode: document.querySelector(self.classMainNode),
-        closeNode: document.querySelector('.js-close-alert'),
+        closeNode: document.querySelector('.js-close-element'),
         delay: self.delay
       });
+      self.elementHider.init();
+      self.hideSpy = sinon.spy(self.elementHider, 'hide');
       done();
     }, done);
   });
@@ -36,17 +32,17 @@ describe('Hide and Remove element', function () {
     this.sandbox.parentNode.removeChild(this.sandbox);
   });
 
-  describe('Clicking the alert', function () {
-    it('should hide it and remove it from the DOM', function() {
+  describe('Clicking the close node', function () {
+    it('should hide and remove the element from the DOM', function() {
       var evt = document.createEvent('HTMLEvents'),
-          mainNode = this.hideAndRemoveElement.elements.mainNode,
-          closeNode = this.hideAndRemoveElement.elements.closeNode;
+          mainNode = this.elementHider.elements.mainNode,
+          closeNode = this.elementHider.elements.closeNode;
 
       evt.initEvent('transitionend', false);
 
       closeNode.click();
       expect(this.hideSpy).to.have.been.called;
-      expect(mainNode.classList.contains(this.hideAndRemoveElement.activeClass)).to.be.false;
+      expect(mainNode.classList.contains(this.elementHider.activeClass)).to.be.false;
       mainNode.dispatchEvent(evt);
       expect(document.body.querySelector(this.classMainNode)).to.be.null;
     });
@@ -58,16 +54,16 @@ describe('Hide and Remove element', function () {
       evt.initEvent('transitionend', false);
 
       setTimeout(function() {
-        this.hideAndRemoveElement.elements.mainNode.addEventListener('transitionend', function() {});
-        this.hideAndRemoveElement.elements.mainNode.dispatchEvent(evt);
+        this.elementHider.elements.mainNode.addEventListener('transitionend', function() {});
+        this.elementHider.elements.mainNode.dispatchEvent(evt);
         done();
       }.bind(this), this.delay);
     });
 
-    it('should hide it and remove it from the DOM', function() {
-      var mainNode = this.hideAndRemoveElement.elements.mainNode;
+    it('should hide and remove the element from the DOM', function() {
+      var mainNode = this.elementHider.elements.mainNode;
       expect(this.hideSpy).to.have.been.called;
-      expect(mainNode.classList.contains(this.hideAndRemoveElement.activeClass)).to.be.false;
+      expect(mainNode.classList.contains(this.elementHider.activeClass)).to.be.false;
       expect(document.body.querySelector(this.classMainNode)).to.be.null;
     });
   });

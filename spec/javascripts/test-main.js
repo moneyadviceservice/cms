@@ -21,7 +21,7 @@ requirejs.config({
     'constants': bowerPath + 'mas-cms-editor/src/app/constants/constants',
     'config': bowerPath + 'mas-cms-editor/src/app/config/config',
     'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mas-editor',
-    'hide-and-remove-element': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/hide-and-remove-element',
+    'element-hider': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/element-hider',
     'editor' : bowerPath + 'mas-cms-editor/src/app/app',
     'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
     'editor-lib-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper',

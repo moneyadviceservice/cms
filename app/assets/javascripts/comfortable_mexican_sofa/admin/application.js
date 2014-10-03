@@ -8,12 +8,12 @@ window.CMS.wysiwyg = function() {
     'mas-editor',
     'editor-plugin-auto-resize-textarea',
     'word-upload',
-    'hide-and-remove-element'
+    'element-hider'
   ], function (
     masEditor,
     editorPluginAutoResizeTextarea,
     wordUpload,
-    hideAndRemoveElement
+    ElementHider
   ) {
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
@@ -74,11 +74,13 @@ window.CMS.wysiwyg = function() {
       wordFormNode: document.querySelector('.js-word-upload-form')
     });
 
-    hideAndRemoveElement.init({
-      mainNode: document.querySelector('.js-alert'),
-      closeNode: document.querySelector('.js-close-alert'),
-      delay: 3000
-    });
+    if(document.querySelector('.js-alert')) {
+      new ElementHider({
+        mainNode: document.querySelector('.js-alert'),
+        closeNode: document.querySelector('.js-close-alert'),
+        delay: 3000
+      }).init();
+    }
   });
 };
 
