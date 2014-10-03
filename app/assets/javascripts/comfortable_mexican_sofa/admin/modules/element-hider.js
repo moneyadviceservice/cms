@@ -4,7 +4,7 @@ define('element-hider', [], function () {
   function ElementHider(options) {
     this.options = options;
     this.activeClass = this.options.activeClass || 'is-active';
-    this.transitionEnd = 'transitionend' || 'webkitTransitionEnd' || 'MSTransitionEnd' || 'oTransitionEnd';
+    this.transitionEnd = 'transitionend' || 'webkitTransitionEnd' || 'MSTransitionEnd' || 'mozTransitionEnd' || 'oTransitionEnd';
     this.elements = {
       mainNode: this.options.mainNode,
       closeNode: this.options.closeNode
