@@ -19,8 +19,8 @@
   @extend %z-index--toggle__label-heading;
 }
 
-.toggle--mirrors .toggle__label-heading {
-  color: $color-white;
+.toggle--on-dark .toggle__label-heading {
+  color: $color-toggle-foreground-inverted;
 }
 
 .toggle__label-heading:first-of-type {
@@ -39,6 +39,16 @@
 .toggle__control:first-of-type:focus ~ .toggle__label-heading:first-of-type,
 .toggle__control:last-of-type:focus ~ .toggle__label-heading:last-of-type {
   border-bottom-color: $color-toggle-foreground;
+}
+
+.toggle--on-dark .toggle__control:first-of-type:checked ~ .toggle__label-heading:first-of-type,
+.toggle--on-dark .toggle__control:last-of-type:checked ~ .toggle__label-heading:last-of-type {
+  color: $color-toggle-foreground-inverted;
+}
+
+.toggle--on-dark .toggle__control:first-of-type:focus ~ .toggle__label-heading:first-of-type,
+.toggle--on-dark .toggle__control:last-of-type:focus ~ .toggle__label-heading:last-of-type {
+  border-bottom-color: $color-toggle-foreground-inverted;
 }
 
 .toggle__indicator {

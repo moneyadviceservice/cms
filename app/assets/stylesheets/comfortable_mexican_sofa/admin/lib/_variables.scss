@@ -13,7 +13,7 @@ $color-grey-charlie: #686b7a;
 $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
 $color-grey-foxtrot: #cfd1d1;
-$color-grey-golf: #2c2c2c;
+$color-grey-golf: #333;
 $color-grey-hotel: #999;
 
 $color-green-alpha: #93e490;
@@ -21,7 +21,7 @@ $color-green-alpha: #93e490;
 $color-blue-alpha: #277bb9;
 $color-blue-beta: #9fa7cb;
 
-$color-red-alpha: #ca5f75;
+$color-red-alpha: #cc3333;
 
 // Transitions -------------------------------------------------------------- //
 
@@ -39,15 +39,15 @@ $base-font-size: 16 !default;
 $baseline-unit: if($responsive, 0.375rem, 6px);
 
 // Navigation
-$color-nav-background: $color-grey-charlie;
-$color-nav-foreground: $color-grey-charlie;
+$color-nav-background: $color-grey-alpha;
+$color-nav-foreground: $color-grey-alpha;
 
 // Navigation primary
-$gradient-nav-background: linear-gradient(bottom, $color-grey-delta 0%, $color-grey-delta 60%, $color-grey-echo 100%);
+$color-nav-primary-item-background: $color-nav-background;
+$color-nav-primary-background: $color-grey-golf;
 $color-nav-primary-border: $color-grey-charlie;
-$color-nav-primary-background: $color-nav-background;
 $color-nav-primary-foreground: $color-white;
-$color-nav-primary-foreground-active: $color-green-alpha;
+$color-nav-primary-foreground-active: $color-white;
 
 // Navigation secondary
 $color-nav-secondary-background: $color-nav-background;
@@ -58,7 +58,7 @@ $color-nav-article-foreground: $color-white;
 $color-nav-article-background: $color-grey-charlie;
 
 // Alerts
-$color-alert-success-background: $color-green-alpha;
+$color-alert-success-background: $color-blue-alpha;
 $color-alert-success-foreground: $color-white;
 $color-alert-danger-background: $color-red-alpha;
 $color-alert-danger-foreground: $color-white;
@@ -68,30 +68,31 @@ $input-height: $baseline-unit*5;
 $button-match-input-height: $input-height;
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
-$color-button-action-background: $color-green-alpha;
+$color-button-action-background: $color-blue-alpha;
 $color-button-secondary-background: $color-blue-beta;
 $shadow-button-action: 0 1px 0 rgba(0,0,0,.2);
 $button-border-radius: 4px;
 $color-toolbar-button-foreground: $color-white;
-$color-toolbar-button-background: $color-green-alpha;
+$color-toolbar-button-background: $color-blue-alpha;
 $color-toolbar-button-disabled-background: $color-grey-foxtrot;
 
 
 // Toggle buttons
-$color-toggle-foreground: $color-green-alpha;
-$color-toggle-icon-foreground: $color-green-alpha;
-$color-toggle-icon-panel-background: $color-grey-alpha;
+$color-toggle-foreground: $color-blue-alpha;
+$color-toggle-foreground-inverted: $color-white;
+$color-toggle-icon-foreground: $color-blue-alpha;
+$color-toggle-icon-panel-background: $color-grey-golf;
 
 // Action buttons
 $button-action-padding: $baseline-unit*2 20px;
-$color-button-action-separator: darken($color-green-alpha, 10%);
+$color-button-action-separator: darken($color-blue-alpha, 10%);
 
 // Panels
 $color-panel-content-background: $color-white;
 $color-panel-content-form-background: $color-grey-beta;
 
 // Menu
-$color-menu-body-background: rgba($color-green-alpha, .5);
+$color-menu-body-background: rgba($color-blue-alpha, .5);
 
 // Meta
 $color-meta-title-foreground: $color-grey-hotel;

@@ -23,12 +23,12 @@
   }
 
   &.is-active {
-    background: $color-nav-primary-background;
-    border-top: 1px solid $color-nav-primary-background;
+    background: $color-nav-primary-item-background;
+    border-top: 1px solid $color-nav-primary-item-background;
   }
 
   &:hover {
-    border-top: 1px solid $color-nav-primary-background;
+    border-top: 1px solid $color-nav-primary-item-background;
   }
 
   &,
