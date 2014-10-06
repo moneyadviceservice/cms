@@ -26,6 +26,7 @@ production:
   timeout: 5000
   encoding: utf8
   reconnect: true
+  strict: false
   url: <%= ENV["MAS_CMS_DATABASE_URL"] %>
 
 
