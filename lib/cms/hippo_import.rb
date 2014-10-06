@@ -35,20 +35,25 @@ class HippoImport
 
   def import!
     records.map do |record|
-      page = Comfy::Cms::Page.where(slug: record.id).first
-      (page || Comfy::Cms::Page.new).tap do |p|
-        p.site = site
-        p.layout = layout
-        p.parent = parent
-        p.label = record.title
-        p.slug = record.id
-        p.created_at = record.created_at
-        p.updated_at = record.updated_at
-        p.state = 'draft'
-        p.blocks = [
-          Comfy::Cms::Block.new(identifier: 'content', content: decoded(record.body.to_s))
-        ]
-        p.save unless (page && page.state == "published")
+      begin
+        puts "Importing: #{record.id}"
+        page = Comfy::Cms::Page.where(slug: record.id).first
+        (page || Comfy::Cms::Page.new).tap do |p|
+          p.site = site
+          p.layout = layout
+          p.parent = parent
+          p.label = record.title
+          p.slug = record.id
+          p.created_at = record.created_at
+          p.updated_at = record.updated_at
+          p.state = 'draft'
+          p.blocks = [
+            Comfy::Cms::Block.new(identifier: 'content', content: decoded(record.body.to_s))
+          ]
+          p.save unless (page && page.state == "published")
+        end
+      rescue => e
+        puts "ERROR: #{e.inspect}"
       end
     end
   end
