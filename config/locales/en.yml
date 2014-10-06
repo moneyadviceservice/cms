@@ -20,4 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  cms:
+    admin:
+      cms:
+        base:
+          tags: Tags
+
   hello: "Hello world"
