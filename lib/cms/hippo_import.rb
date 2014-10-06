@@ -2,12 +2,12 @@ require 'htmlentities'
 
 class HippoImport
   TYPES = [
-    'contentauthoringwebsite:Guide',
-    'contentauthoringwebsite:ActionPlan',
-    'contentauthoringwebsite:ToolPage',
-    'contentauthoringwebsite:StaticPage',
-    'contentauthoringwebsite:VideoPage',
-    'contentauthoringwebsite:News'
+    'contentauthoringwebsite:Guide'
+    # 'contentauthoringwebsite:ActionPlan',
+    # 'contentauthoringwebsite:ToolPage',
+    # 'contentauthoringwebsite:StaticPage',
+    # 'contentauthoringwebsite:VideoPage',
+    # 'contentauthoringwebsite:News'
   ]
 
 
