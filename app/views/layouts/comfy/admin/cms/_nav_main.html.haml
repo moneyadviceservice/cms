@@ -2,8 +2,7 @@
   .l-constrained
     %nav.nav-primary
       - if @site && !@site.new_record?
-        - admin_main_menu_options_of_site(@site).each do |_, properties|
-          = active_link_to(properties[:display_name], properties[:path], :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text')
+        != render_main_menu(site: @site)
 
         / @TODO @modsognir @douglasroper @finitud Add entries for Categories, Reporting and Admin
         /= active_link_to t('comfy.admin.cms.base.categories'), comfy_admin_cms_site_categories_path(@site)
