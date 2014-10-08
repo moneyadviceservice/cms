@@ -86,7 +86,7 @@ window.CMS.wysiwyg = function() {
     }
 
     new Taggle(document.querySelector('.js-tags-display'), {
-      tags: document.querySelector('.js-tags-input').value.split(/\s/),
+      tags: document.querySelector('.js-tags-input').value.split(/,/igm),
       placeholder: '',
       hiddenInputName: 'tags[]'
     });
