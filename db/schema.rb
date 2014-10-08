@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 20140924134247) do
     t.string   "meta_description"
     t.string   "preview_cache"
     t.string   "meta_title"
+    t.boolean  "regulated",                         default: false
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree

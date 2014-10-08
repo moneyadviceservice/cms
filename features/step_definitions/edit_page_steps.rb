@@ -41,3 +41,16 @@ When(/^I should be working on the "(.*?)" article$/) do |locale|
   expect(edit_page.current_url).to match(/\/sites\/#{cms_site(locale).id}\/pages/)
   expect(edit_page.status.text).to match(/#{locale}/i)
 end
+
+Given(/^I (select|deselect) the regulated check box$/) do |selection|
+  edit_page.regulated_checkbox.set(selection == "select")
+  edit_page.publish.click
+end
+
+Then(/^the article should( not)? be regulated$/) do |negate|
+  expect(cms_page.reload.regulated?).to be !!!negate
+end
+
+Given(/^the article is regulated$/) do
+  cms_page.update_attributes!(regulated: true)
+end
