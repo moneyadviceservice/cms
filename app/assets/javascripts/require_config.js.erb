@@ -4,8 +4,9 @@ requirejs.config({
   baseUrl: '../',
   paths: {
     // Editor core
-    'constants': '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
-    'config': '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
+    'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
+    'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
+    'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
 
     // Editor modules
@@ -47,6 +48,7 @@ requirejs.config({
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
+    'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>'
   },
   shim: {
@@ -56,6 +58,9 @@ requirejs.config({
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']
+		},
+    'taggle': {
+      exports: 'Taggle'
     }
   }
 });
