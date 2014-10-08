@@ -46,6 +46,8 @@ class HippoImport
           p.slug = record.id
           p.created_at = record.created_at
           p.updated_at = record.updated_at
+          p.meta_description = record.meta_description
+          p.meta_title = record.title_tag
           p.state = 'draft'
           p.blocks = [
             Comfy::Cms::Block.new(identifier: 'content', content: decoded(record.body.to_s))
