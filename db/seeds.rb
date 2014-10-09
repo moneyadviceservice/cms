@@ -12,7 +12,7 @@ site_data_en = {
   label: "en",
   identifier: "money-advice-service-en",
   hostname: ENV['HOSTNAME'] || 'localhost:3000',
-  path: "cms/en",
+  path: "en",
   locale: "en",
   is_mirrored: true
 }
@@ -21,7 +21,7 @@ site_data_cy = {
   label: "cy",
   identifier: "money-advice-service-cy",
   hostname: ENV['HOSTNAME'] || 'localhost:3000',
-  path: "cms/cy",
+  path: "cy",
   locale: "en",
   is_mirrored: true
 }
