@@ -36,7 +36,7 @@ define('word-upload', [], function () {
           return;
         }
       }
-      this.elements.wordFormNode.submit();
+      this.elements.wordFormNode.children.upload_submit.click();
     }
   };
 });

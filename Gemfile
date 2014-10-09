@@ -28,6 +28,8 @@ gem 'bowndler', :git => 'git@github.com:moneyadviceservice/bowndler'
 
 gem 'hippo_xml_parser'
 
+gem 'remotipart', '~> 1.2'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'

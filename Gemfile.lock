@@ -248,6 +248,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.3.2)
+    remotipart (1.2.1)
     reverse_markdown (0.6.0)
       nokogiri
     rspec (3.1.0)
@@ -349,6 +350,7 @@ DEPENDENCIES
   mysql2
   pry-rails
   rails (= 4.1.1)
+  remotipart (~> 1.2)
   rspec-rails (~> 3.0)
   rspec_junit_formatter
   sass-rails (~> 4.0.3)
