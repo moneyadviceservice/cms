@@ -1,0 +1,43 @@
+// Taggle
+// Class names are dictated by the Taggle library <https://github.com/okcoker/taggle.js>
+// Styleguide Taggle
+
+.taggle_list {
+  @extend .unstyled-list;
+  margin: 0;
+  padding: $input-height + $baseline-unit 0 0;
+  position: relative;
+}
+
+.taggle_list li:not(.taggle) {
+  display: block;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.taggle {
+  border-radius: 3px;
+}
+
+.taggle_input {
+  /* RE: Use of !important - Taggle applies a size to the input. We don't want that so we have to override it */
+  width: 100% !important;
+}
+
+.taggle_list .taggle {
+  background: $color-tags-background;
+  color: $color-tags-foreground;
+  display: inline-block;
+  margin: 0 5px $baseline-unit 0;
+  padding: 5px;
+}
+
+.taggle_list .close {
+  padding-left: 5px;
+}
+
+.taggle_sizer {
+  display: none;
+}
