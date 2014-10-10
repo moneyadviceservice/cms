@@ -1,5 +1,31 @@
 .l-panel-content.l-panel-content--form
   .l-constrained
-    .l-panel-content__row
-      .l-panel-content__col
-        %h1= t('cms.admin.cms.base.tags')
+
+    -# header
+    .page-header
+      %h2= t('.title')
+
+    -# create new tags
+    = form_for(Tag.new, remote: true, method: :post, data: {no_turbolinks: true}) do |form|
+      = form.hidden_field :value
+      = form.submit id: 'tag_submit', hidden: true
+    %label= t('.add_tag.info')
+    .js-tags-display
+
+    -# used tags
+    %label= t('.tags_in_use.info')
+    %div!= index_of_tags_in_use
+    .js-tags-used
+
+
+- content_for :javascript do
+  :javascript
+    require(['taggle'], function(Taggle) {
+      new Taggle(document.querySelector('.js-tags-display'), {
+        placeholder: '',
+        onTagAdd: function(event, tag) {
+          $('#tag_value').val(tag);
+          $('#tag_submit').click();
+        }
+      });
+    });
