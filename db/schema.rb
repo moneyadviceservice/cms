@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141006141647) do
+ActiveRecord::Schema.define(version: 20141010125530) do
 
   create_table "cms_blocks", force: true do |t|
     t.integer  "page_id",                     null: false
@@ -390,10 +390,20 @@ ActiveRecord::Schema.define(version: 20141006141647) do
   add_index "seo_meta", ["id"], name: "index_seo_meta_on_id", using: :btree
   add_index "seo_meta", ["seo_meta_id", "seo_meta_type"], name: "id_type_index_on_seo_meta", using: :btree
 
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tags", force: true do |t|
     t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "tags", ["value"], name: "index_tags_on_value", unique: true, using: :btree
 
 end

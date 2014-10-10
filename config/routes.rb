@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     resources :tags, only: [:index, :create] do
-      get :starting_by, on: :collection
+      collection do
+        get    :starting_by
+        delete :delete_from_value
+      end
     end
   end
 

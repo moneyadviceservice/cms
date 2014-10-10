@@ -6,11 +6,16 @@
       %h2= t('.title')
 
     -# create new tags
-    = form_for(Tag.new, remote: true, method: :post, data: {no_turbolinks: true}) do |form|
-      = form.hidden_field :value
-      = form.submit id: 'tag_submit', hidden: true
+    = form_for(Tag.new, remote: true, method: :post) do |form|
+      = form.hidden_field :value, class: 'js-tags-add-value'
+      = form.submit class: 'js-tags-add-submit', hidden: true
     %label= t('.add_tag.info')
     .js-tags-display
+
+    -# delete tags
+    = form_for(:tag, url: delete_from_value_tags_path, remote: true, method: :delete) do |form|
+      = form.hidden_field :value, class: 'js-tags-delete-value'
+      = form.submit class: 'js-tags-delete-submit', hidden: true
 
     -# used tags
     %label= t('.tags_in_use.info')
@@ -24,8 +29,12 @@
       new Taggle(document.querySelector('.js-tags-display'), {
         placeholder: '',
         onTagAdd: function(event, tag) {
-          $('#tag_value').val(tag);
-          $('#tag_submit').click();
+          $('.js-tags-add-value').val(tag);
+          $('.js-tags-add-submit').click();
+        },
+        onTagRemove: function(event, tag) {
+          $('.js-tags-delete-value').val(tag);
+          $('.js-tags-delete-submit').click();
         }
       });
     });

@@ -1,26 +1,22 @@
-class Tag < ActiveRecord::Base
+class Tagging < ActiveRecord::Base
 
   # -- Relationships --------------------------------------------------------
-  has_many :taggings
-
+  belongs_to :taggable, polymorphic: true
+  belongs_to :tag
 
   # -- Callbacks ------------------------------------------------------------
 
 
   # -- Validations ----------------------------------------------------------
-  validates_presence_of   :value
-  validates_uniqueness_of :value
-  validates_format_of     :value, :with => /\A[\-a-z0-9 ]+\z/i
+  validates_presence_of   :tag_id, :taggable_id,  :taggable_type
+  validates_uniqueness_of :tag_id, scope: [:taggable_id, :taggable_type]
 
   # -- Scopes ---------------------------------------------------------------
-  scope :valued,      ->(value) {where(value: value.is_a?(Hash) ? value[:value] : value)}
-  scope :starting_by, ->(start) {where(value: start...start.next).order(:value)}
 
   # -- Class Methods --------------------------------------------------------
 
+
   # -- Instance Methods -----------------------------------------------------
-  def in_use?
-    taggings.exists?
-  end
+
 
 end
