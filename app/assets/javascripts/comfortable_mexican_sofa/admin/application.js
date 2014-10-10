@@ -18,6 +18,7 @@ window.CMS.wysiwyg = function() {
     ElementHider,
     Taggle
   ) {
+
     var markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
 
     if(!markdownEditorContentNode) return;
@@ -84,12 +85,6 @@ window.CMS.wysiwyg = function() {
         delay: 3000
       }).init();
     }
-
-    new Taggle(document.querySelector('.js-tags-display'), {
-      tags: document.querySelector('.js-tags-input').value.split(/,/igm),
-      placeholder: '',
-      hiddenInputName: 'tags[]'
-    });
 
   });
 };
