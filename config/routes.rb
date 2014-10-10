@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :word_documents
 
   scope '/admin' do
-    resources :tags, :only => [:index, :create]
+    resources :tags, only: [:index, :create] do
+      get :starting_by, on: :collection
+    end
   end
 
   get '/version', to: 'versions#show'
