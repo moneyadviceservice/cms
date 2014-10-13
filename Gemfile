@@ -34,7 +34,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
-  gem 'byebug'
 end
 
 group :test do
@@ -49,6 +48,7 @@ group :test, :development do
   gem 'capybara', '2.4.1'
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
+  gem 'byebug'
 end
 
 group :production do
