@@ -14,7 +14,7 @@ class Tag < ActiveRecord::Base
 
   # -- Scopes ---------------------------------------------------------------
   scope :valued,      ->(value) {where(value: value.is_a?(Hash) ? value[:value] : value)}
-  scope :starting_by, ->(start) {where(value: start...start.next).order(:value)}
+  scope :starting_by, ->(start) {where("value LIKE ?", "#{start}%").order(:value)}
 
   # -- Class Methods --------------------------------------------------------
 
