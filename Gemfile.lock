@@ -35,9 +35,9 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/word-to-markdown.git
-  revision: c98d5a5a5b8f9242bdd90b8f398689692cab82de
+  revision: 6906e9caa3df2e53a3f88a06cc3f9067d554648d
   specs:
-    word-to-markdown (1.0.0)
+    word-to-markdown (1.0.1)
       descriptive_statistics (~> 1.1)
       nokogiri-styles (~> 0.1)
       premailer (~> 1.8)
