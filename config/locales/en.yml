@@ -29,8 +29,8 @@ en:
     index:
       add_tag:
         info: Add a single tag or add multiple tags separated by commas
-      tags_in_use:
-        info: Select a letter to see all tags that are currently in use
+      existing:
+        info: Select a letter to see all the existing tags starting by that letter
       title: Tags
     starting_by:
       no_tags: No tags starting by %{prefix}

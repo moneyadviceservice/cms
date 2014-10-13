@@ -1,2 +1,2 @@
-<% new_html_for_used_tags = @tags.any? ? render(@tags) : content_tag(:span, t('.no_tags', prefix: @prefix)) %>
-$(".js-tags-used").html("<%= escape_javascript(new_html_for_used_tags) %>");
+<% new_html_for_existing_tag_list = @tags.any? ? render(@tags) : content_tag(:span, t('.no_tags', prefix: @prefix)) %>
+$(".js-tags-existing").html("<%= escape_javascript(new_html_for_existing_tag_list) %>");
