@@ -21,7 +21,8 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
                                   comfortable_mexican_sofa/admin/modules/mas-editor.js
                                   comfortable_mexican_sofa/admin/modules/word-upload.js
-                                  comfortable_mexican_sofa/admin/modules/element-hider.js)
+                                  comfortable_mexican_sofa/admin/modules/element-hider.js
+                                  comfortable_mexican_sofa/admin/views/*.js)
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js
@@ -42,6 +43,7 @@ Rails.application.configure do
                                   dough/assets/js/lib/componentLoader.js
                                   dough/assets/js/lib/featureDetect.js
                                   dough/assets/js/components/DoughBaseComponent.js
-                                  dough/assets/js/components/Collapsable.js)
+                                  dough/assets/js/components/Collapsable.js
+                                  chosen-build/chosen.jquery.js)
 
 end
