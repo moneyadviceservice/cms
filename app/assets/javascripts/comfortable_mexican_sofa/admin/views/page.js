@@ -81,8 +81,9 @@ require([
     }).init();
   }
 
-  // Enables switching between EN and CY versions of article
-  $('.js-language-switcher').change(function() {
-    window.location = $(this).find('input:checked').data()['value'];
-  });
+});
+
+// Enables switching between EN and CY versions of article
+$('.js-language-switcher').change(function() {
+  window.location = $(this).find('input:checked').data()['value'];
 });
