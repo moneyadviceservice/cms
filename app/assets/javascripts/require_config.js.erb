@@ -1,25 +1,12 @@
 <% def requirejs_path(asset) ; javascript_path(asset).sub(/.js\z/, ''); end %>
 
-require.config({
+requirejs.config({
   baseUrl: '../',
   paths: {
     // Editor core
-    'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
-    'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
-    'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
+    'constants': '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
+    'config': '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
-
-    // Application modules
-    'word-upload': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/word-upload") %>',
-    'element-hider': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/element-hider") %>',
-
-    // Dough
-    'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
-    'DoughBaseComponent': "<%= requirejs_path('dough/assets/js/components/DoughBaseComponent') %>",
-    'featureDetect': "<%= requirejs_path('dough/assets/js/lib/featureDetect') %>",
-
-    // Dough components
-    'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
 
     // Editor modules
     'editor-lib-wrapper': '<%= requirejs_path("mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper") %>',
@@ -29,8 +16,22 @@ require.config({
     'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
     'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
 
+    // Application modules
+    'mas-editor': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
+    'word-upload': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/word-upload") %>',
+    'element-hider': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/element-hider") %>',
+    'tags': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/tags") %>',
+
+    // Dough base modules
+    'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
+    'DoughBaseComponent': "<%= requirejs_path('dough/assets/js/components/DoughBaseComponent') %>",
+    'featureDetect': "<%= requirejs_path('dough/assets/js/lib/featureDetect') %>",
+
+    // Dough components
+    'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
+
     // Third-party dependencies
-    'jquery' : '<%= requirejs_path("jquery/dist/jquery.min") %>',
+    'jquery': '<%= requirejs_path("jquery/dist/jquery.min") %>',
     'he': '<%= requirejs_path("he/he") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
     'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",
@@ -43,11 +44,16 @@ require.config({
     'scribe-plugin-sanitizer': '<%= requirejs_path("scribe-plugin-sanitizer/scribe-plugin-sanitizer") %>',
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
-    'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>'
+    'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
+    'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>'
   },
   shim: {
     'to-markdown' : {
-      deps : ['he']
+      deps: ['he']
+    },
+    'chosen': {
+      exports: 'Chosen',
+      deps: ['jquery']
     }
   }
 });
