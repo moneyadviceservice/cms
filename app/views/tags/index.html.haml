@@ -6,21 +6,25 @@
       %h2= t('.title')
 
     -# create new tags
-    = form_for(Tag.new, remote: true, method: :post) do |form|
-      = form.hidden_field :value, class: 'js-tags-add-value'
-      = form.submit class: 'js-tags-add-submit', hidden: true
-    %label= t('.add_tag.info')
-    .js-tags-display
+    .js-tags-creation
+      = form_for(Tag.new, remote: true, method: :post) do |form|
+        = form.hidden_field :value, class: 'js-tags-add-value'
+        = form.submit class: 'js-tags-add-submit', hidden: true
+      %label= t('.add_tag.info')
+      .js-tags-display
 
     -# delete tags
-    = form_for(:tag, url: delete_from_value_tags_path, remote: true, method: :delete) do |form|
-      = form.hidden_field :value, class: 'js-tags-delete-value'
-      = form.submit class: 'js-tags-delete-submit', hidden: true
+    .js-tags-deletion
+      = form_for(:tag, url: delete_from_value_tags_path, remote: true, method: :delete) do |form|
+        = form.hidden_field :value, class: 'js-tags-delete-value'
+        = form.submit class: 'js-tags-delete-submit', hidden: true
 
     -# existing tags
-    %label= t('.existing.info')
-    %div!= index_of_existing_tags
-    .js-tags-existing
+    .js-tags-listing
+      %label= t('.existing.info')
+      %div!= index_of_existing_tags
+      .js-tags-existing
+
 
 
 - content_for :javascript do
