@@ -48,8 +48,9 @@ requirejs.config({
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
-    'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>',
-    'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>'
+    'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
+		'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
+
   },
   shim: {
     'to-markdown' : {
@@ -58,8 +59,8 @@ requirejs.config({
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']
-		},
-    'taggle': {
+    },
+		'taggle': {
       exports: 'Taggle'
     }
   }
