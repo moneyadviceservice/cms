@@ -32,13 +32,12 @@
 
     = form.text_field :meta_description
     = form.text_field :meta_title
-    = form.check_box :regulated
 
     .form-group
-      .form__label-heading Tags
+      .form__label-heading
+        ="&nbsp;".html_safe
       .form__input-wrapper
-        = form.hidden_field :tags, :class => 'js-tags-input', :value => ''
-        .tags.js-tags-display
+        = form.check_box :regulated, label: 'Regulated Content'
 
 = render :partial => 'form_blocks'
 
