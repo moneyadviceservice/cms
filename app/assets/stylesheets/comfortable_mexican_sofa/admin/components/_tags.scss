@@ -8,7 +8,7 @@
   background: $color-tags-container-background;
   border: 1px solid $color-tags-container-border;
   cursor: text;
-  padding: 0 3px $baseline-unit/2;
+  padding: 0 3px 1px;
   position: relative;
 }
 
@@ -31,11 +31,14 @@
 
 .taggle_list .tag {
   @extend %tag;
-  margin-top: $baseline-unit/2;
 }
 
 .taggle_list .close {
   @extend %tag-remove;
+
+  &:hover {
+    @extend %tag-remove-hover;
+  }
 }
 
 .taggle_input {
