@@ -45,7 +45,7 @@
 
     // returns the prefix (letter) of the currently displayed tag list
     function displayedTagsPrefix() {
-      var active_link = $('.js-tags-starting-by-link.active')[0];
+      var active_link = $('.js-tags-starting-by-link.active');
       if (active_link) {
         return active_link.attr('data-prefix');
       }
