@@ -10,6 +10,8 @@
 
         =active_link_to t('comfy.admin.cms.base.layouts'), comfy_admin_cms_site_layouts_path(@site), :class_active => 'nav-primary__text is-active', :class_inactive => 'nav-primary__text'
 
+        =link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "signin"
+
         / @TODO @modsognir @douglasroper @finitud Add entries for Categories, Reporting and Admin
         /= active_link_to t('comfy.admin.cms.base.categories'), comfy_admin_cms_site_categories_path(@site)
         /= active_link_to t('comfy.admin.cms.base.reporting'),
