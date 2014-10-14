@@ -49,8 +49,7 @@ requirejs.config({
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
-		'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
-
+	'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
   },
   shim: {
     'to-markdown' : {
@@ -60,7 +59,7 @@ requirejs.config({
       exports: 'Chosen',
       deps: ['jquery']
     },
-		'taggle': {
+	'taggle': {
       exports: 'Taggle'
     }
   }
