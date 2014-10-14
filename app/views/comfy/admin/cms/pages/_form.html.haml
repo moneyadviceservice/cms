@@ -30,12 +30,17 @@
 
     = render :partial => 'comfy/admin/cms/categories/form', :object => form
 
+    / .form-group
+    /   .form__label-heading Tags
+    /   .form__input-wrapper
+    /     = form.hidden_field :tags, :class => 'js-tags-input', value: ''
+    /     .tags.js-tags-display
+
     = form.text_field :meta_description
     = form.text_field :meta_title
 
     .form-group
       .form__label-heading
-        ="&nbsp;".html_safe
         &nbsp;
       .form__input-wrapper
         = form.check_box :regulated, label: 'Regulated Content'

@@ -1,9 +1,0 @@
-@mixin textInput($class: "") {
-  #{$class}[type="text"],
-  #{$class}[type="number"],
-  #{$class}[type="email"],
-  #{$class}[type="search"],
-  #{$class}[type="password"] {
-    @content;
-  }
-};

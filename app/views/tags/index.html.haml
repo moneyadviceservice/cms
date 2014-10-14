@@ -10,20 +10,21 @@
       = form_for(Tag.new, remote: true, method: :post) do |form|
         = form.hidden_field :value, class: 'js-tags-add-value'
         = form.submit class: 'js-tags-add-submit', hidden: true
-      %label= t('.add_tag.info')
-      .js-tags-display
+      %p= t('.add_tag.info')
+      .taggle-container.js-tags-display
 
     -# delete tags
-    .js-tags-deletion
+    %p.js-tags-deletion
       = form_for(:tag, url: delete_from_value_tags_path, remote: true, method: :delete) do |form|
         = form.hidden_field :value, class: 'js-tags-delete-value'
         = form.submit class: 'js-tags-delete-submit', hidden: true
 
+.l-panel-content
+  .l-constrained
     -# existing tags
-    .js-tags-listing
-      %label= t('.existing.info')
-      %div!= index_of_existing_tags
-      .js-tags-existing
+    %p.js-tags-listing= t('.existing.info')
+    %p!= index_of_existing_tags
+    %ul.taggle_list.js-tags-existing
 
 
 - content_for :footer_js do

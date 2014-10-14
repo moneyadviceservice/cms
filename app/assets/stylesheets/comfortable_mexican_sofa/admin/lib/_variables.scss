@@ -64,8 +64,12 @@ $color-alert-danger-background: $color-red-alpha;
 $color-alert-danger-foreground: $color-white;
 
 // Tags
-$color-tags-background: $color-grey-hotel;
-$color-tags-foreground: $color-white;
+$color-tags-container-background: $color-white;
+$color-tags-container-foreground: $color-white;
+$color-tags-container-border: $color-grey-foxtrot;
+$color-tags-container-active-border: $color-grey-hotel;
+$color-tags-list-background: $color-grey-hotel;
+$color-tags-list-foreground: $color-white;
 
 // Buttons
 $input-height: $baseline-unit*5;

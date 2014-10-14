@@ -1,0 +1,56 @@
+// Tags
+// Class names are dictated by the Taggle library <https://github.com/okcoker/taggle.js>
+// Makes use of helpers/_tags.scss
+// Category "tag" styling can be found in chosen-cms.scss and helpers/_tags.scss
+// Styleguide Tags
+
+.taggle-container {
+  background: $color-tags-container-background;
+  border: 1px solid $color-tags-container-border;
+  cursor: text;
+  padding: 0 3px $baseline-unit/2;
+  position: relative;
+}
+
+.taggle-container.is-active {
+  border-color: $color-tags-container-active-border;
+}
+
+.taggle_list {
+  @extend .unstyled-list;
+  @extend %clearfix;
+  margin: 0;
+}
+
+.taggle_list li {
+  display: inline-block;
+  float: left;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.taggle_list .tag {
+  @extend %tag;
+  margin-top: $baseline-unit/2;
+}
+
+.taggle_list .close {
+  @extend %tag-remove;
+}
+
+.taggle_input {
+  @extend %unstyled-input;
+  float: left;
+  height: 28px;
+  background: 0;
+  max-width: 100%;
+}
+
+.taggle_sizer {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -500px;
+  visibility: hidden;
+  z-index: -1;
+}

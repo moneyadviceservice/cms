@@ -1,0 +1,30 @@
+%tag {
+  color: $color-categories-item-foreground;
+  position: relative;
+  margin: $baseline-unit 5px 0 0;
+  padding: 4px 10px;
+  border: none;
+  border-radius: 3px;
+  background-color: $color-categories-item-background;
+  background-clip: padding-box;
+  box-shadow: none;
+  display: inline-block;
+  line-height: 13px;
+  cursor: default;
+  font-size: 13px;
+}
+
+%tag-remove {
+  border-radius: 50%;
+  border: 1px solid $color-categories-item-foreground;
+  content: '\00d7';
+  color: $color-categories-item-foreground;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  height: 17px;
+  margin-left: 6px;
+  padding: 1px 0;
+  text-align: center;
+  width: 17px;
+}
