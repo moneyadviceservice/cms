@@ -4,6 +4,8 @@
       - if @site && !@site.new_record?
         != render_main_menu(site: @site)
 
+        =link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "signin"
+
         / @TODO @modsognir @douglasroper @finitud Add entries for Categories, Reporting and Admin
         /= active_link_to t('comfy.admin.cms.base.categories'), comfy_admin_cms_site_categories_path(@site)
         /= active_link_to t('comfy.admin.cms.base.reporting'),

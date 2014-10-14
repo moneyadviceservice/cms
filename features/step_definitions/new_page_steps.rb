@@ -1,6 +1,6 @@
 When(/^I create a new article$/) do
   site = cms_site.id; cms_layout
-
+  step("I am logged in")
   new_page.load(site: site)
 end
 

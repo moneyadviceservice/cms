@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users, class_name: "Comfy::Cms::User"
+
   resources :word_documents
 
   scope '/admin' do
