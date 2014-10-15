@@ -1,7 +1,7 @@
 - flash.each do |type, message|
-  .alert{:class => "alert--#{type} js-alert is-active"}
+  .alert{:class => "alert--#{type} js-alert is-active", :data => {'dough-component' => 'ElementHider'}}
     .alert__inner
-      %button.alert__close-button.js-close-alert{:type => 'button', } &times;
+      %button.alert__close-button{:type => 'button', :data => {'dough-element-hider-close' => ''} } &times;
       = message
 
 = form_for :word, url: word_documents_path, remote: true, :html => {:class => 'js-word-upload-form visually-hidden', multipart: true} do |form|
