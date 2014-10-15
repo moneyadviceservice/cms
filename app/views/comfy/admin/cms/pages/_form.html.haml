@@ -33,8 +33,10 @@
     / .form-group
     /   .form__label-heading Tags
     /   .form__input-wrapper
-    /     = form.hidden_field :tags, :class => 'js-tags-input', value: ''
-    /     .tags.js-tags-display
+    /     %select.js-tags{:multiple => ''}
+    /       %option pensions
+    /       %option borrowing
+    /       %option managing your money
 
     = form.text_field :meta_description
     = form.text_field :meta_title
