@@ -19,9 +19,7 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/modules/source-converter/source-converter.js
                                   mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
-                                  comfortable_mexican_sofa/admin/modules/mas-editor.js
-                                  comfortable_mexican_sofa/admin/modules/word-upload.js
-                                  comfortable_mexican_sofa/admin/modules/element-hider.js
+                                  comfortable_mexican_sofa/admin/modules/*.js
                                   comfortable_mexican_sofa/admin/views/*.js)
 
 # Vendor JavaScript
@@ -44,6 +42,7 @@ Rails.application.configure do
                                   dough/assets/js/lib/featureDetect.js
                                   dough/assets/js/components/DoughBaseComponent.js
                                   dough/assets/js/components/Collapsable.js
+                                  taggle.js/dist/taggle.min.js
                                   chosen-build/chosen.jquery.js)
 
 end
