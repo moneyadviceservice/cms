@@ -15,18 +15,30 @@ end
 
 Then(/^I introduce a non-existing value in the tags creation box$/) do
   @page.tags_creation.wait_for_box
-  @page.tags_creation.box.native.send_key("a-tag")
+  @page.tags_creation.box.set("a-non-existing-tag")
 end
 
 Then(/^I introduce an existing value in the tags creation box$/) do
   @page.tags_creation.wait_for_box
-  @page.tags_creation.box.native.send_key("a-tag")
+  @page.tags_creation.box.set("an-existing-tag")
 end
 
-Then(/^(?:I|The) new tag should be persisted$/) do
-  expect {@page.tags_creation.box.native.send_key(:Enter)}.to change(Tag, :count).by(1)
+When(/^I submit the tag$/) do
+  @page.tags_creation.submit_button.click
+end
+
+Then(/^The new tag should be persisted$/) do
+  wait_for_ajax_complete
+  expect(Tag.count).to eq(1)
 end
 
 Then(/^(?:I|The) new tag should not be persisted$/) do
-  expect {@page.tags_creation.box.native.send_key(:Enter)}.not_to change(Tag, :count)
+  expect {@page.tags_creation.box.trigger(:Enter)}.not_to change(Tag, :count)
+end
+
+
+def wait_for_ajax_complete
+  Timeout.timeout(Capybara.default_wait_time) do
+    loop until page.evaluate_script('$.active').zero?
+  end
 end

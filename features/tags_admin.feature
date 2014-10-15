@@ -13,6 +13,7 @@ Feature: Tags administration
   Scenario: Creating a valid tag
     Given I am on the tags admin page
     And   I introduce a non-existing value in the tags creation box
+    When  I submit the tag
     Then  The new tag should be persisted
 
   @javascript
