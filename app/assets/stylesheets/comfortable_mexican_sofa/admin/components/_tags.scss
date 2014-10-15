@@ -41,6 +41,10 @@
   }
 }
 
+.taggle_list .taggle_list__close:after {
+  @extend %tag-remove-hover;
+}
+
 .taggle_input {
   @extend %unstyled-input;
   float: left;
