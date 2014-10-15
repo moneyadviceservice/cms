@@ -9,13 +9,13 @@ require(['taggle'], function(Taggle) {
 
   // set 'active' class to selected letter tags link when clicking.
   $('.js-tags-starting-by-link').click(function() {
-    $('.js-tags-existing .tag').removeClass('active');
+    $('.js-tags-starting-by-link').removeClass('active');
     $(this).addClass("active");
   });
 
   // update the list of tags starting by <prefix> if needed.
   function maybeUpdateDisplayedTagList(prefix) {
-    if (displayedTagsPrefix() === prefix) {
+    if (displayedTagsPrefix().toLowerCase() === prefix.toLowerCase()) {
       displayTagList(prefix);
     }
   }
@@ -23,15 +23,29 @@ require(['taggle'], function(Taggle) {
   // returns the prefix (letter) of the currently displayed tag list
   function displayedTagsPrefix() {
     var active_link = $('.js-tags-starting-by-link.active');
-    if (active_link) {
+    if (active_link.length) {
       return active_link.attr('data-prefix');
     }
   }
 
   // render the list of tags starting by the given prefix (letter)
   function displayTagList(prefix) {
-    $(".js-tags-starting-by-link[data-prefix*='" + prefix + "']")[0].click();
+    $(".js-tags-starting-by-link[data-prefix*='" + prefix.toLowerCase() + "']")[0].click();
   }
+
+  // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
+  $('.js-tags-existing').on('click', 'a.close', function() {
+    var tag_value = $(this).parent().find('.taggle_text').text();
+    delete_tag(tag_value);
+  });
+
+  // removes a tag from the server and updates the list of existing tags
+  function delete_tag(value) {
+    $('.js-tags-delete-value').val(value);
+    $('.js-tags-delete-submit').click();
+    maybeUpdateDisplayedTagList(value[0]);
+  }
+
 
   // inits the tag box
   taggle = new Taggle(document.querySelector('.js-tags-display'), {
@@ -46,9 +60,7 @@ require(['taggle'], function(Taggle) {
       tagListNodes[tagListNodes.length - 1].querySelector('.close').setAttribute('tabIndex', -1);
     },
     onTagRemove: function(event, tag) {
-      $('.js-tags-delete-value').val(tag);
-      $('.js-tags-delete-submit').click();
-      maybeUpdateDisplayedTagList(tag[0]);
+      delete_tag(tag);
     }
   });
 });

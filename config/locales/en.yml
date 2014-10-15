@@ -33,4 +33,5 @@ en:
         info: Select a letter to see all the existing tags starting by that letter
       title: Tags
     starting_by:
-      no_tags: No tags starting by %{prefix}
+     header: Displaying all tags for '%{prefix}'
+     no_tags: No tags starting by '%{prefix}'
