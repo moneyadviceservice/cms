@@ -34,9 +34,9 @@
     /   .form__label-heading Tags
     /   .form__input-wrapper
     /     %select.js-tags{:multiple => ''}
-    /       %option pensions
-    /       %option borrowing
-    /       %option managing your money
+    /       %option{:value => 'pensions'} pensions
+    /       %option{:value => 'borrowing'} borrowing
+    /       %option{:value => 'managing your money'} managing your money
 
     = form.text_field :meta_description
     = form.text_field :meta_title
