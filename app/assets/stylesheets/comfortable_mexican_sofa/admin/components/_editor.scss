@@ -19,11 +19,18 @@
   width: 100%;
 }
 
-.editor__content--markdown {
+.editor--markdown .editor__content {
   font-family: monospace;
   resize: none;
 
   &:focus {
     outline: none;
+  }
+}
+
+.editor--html .editor__content {
+  h2 {
+    @include body(30, 36);
+    font-weight: 700;
   }
 }
