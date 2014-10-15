@@ -4,7 +4,7 @@
       %button.alert__close-button{:type => 'button', :data => {'dough-element-hider-close' => ''} } &times;
       = message
 
-= form_for :word, url: word_documents_path, remote: true, :html => {:class => 'js-word-upload-form visually-hidden', multipart: true} do |form|
+= form_for :word, url: word_documents_path, remote: true, :html => {:class => 'js-word-upload-form visually-hidden', :data => {'dough-component' => 'FileInputSubmit'}, multipart: true} do |form|
   =label_tag('word_document', 'Upload Word document', class: 'visually-hidden')
   = form.file_field :document, accept: WordDocumentsController::ACCEPTED_CONTENT_TYPES.join(','), :class => 'js-word-upload-file-input', :tabindex => '-1'
   = form.submit("Upload word doc", id: "upload_submit")
