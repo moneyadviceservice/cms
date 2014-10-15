@@ -10,12 +10,12 @@ module UI::Pages
 
     element :preview, '#preview'
 
-    element :categories, '#categories--select'
+    element :categories, '.t-categories-select'
     element :save, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '.chosen-choices'
-    elements :categories_selected, '#categories--select > option[selected]'
+    elements :categories_selected, '.t-categories-select > option[selected]'
     element :site_toggle_cy, "#site__mirrors input#edit-mode_cy"
     element :site_toggle_en, "#site__mirrors input#edit-mode_en"
     element :status, '#t-status'
