@@ -1,8 +1,2 @@
-<% if @tags.any? %>
-  $(".js-tags-existing-header").html("<%= escape_javascript(t('.header', prefix: @prefix)) %>");
-  $(".js-tags-existing-header").show();
-  $(".js-tags-existing").html("<%= escape_javascript(render(@tags)) %>");
-<% else %>
-  $(".js-tags-existing-header").hide();
-  $(".js-tags-existing").html("<%= escape_javascript(content_tag(:span, t('.no_tags', prefix: @prefix))) %>");
-<% end %>
+$(".js-tags-existing-header").html("<%= escape_javascript(header_for_list_of_tags(@tags, @prefix)) %>");
+$(".js-tags-existing").html("<%= escape_javascript(render(@tags)) %>");

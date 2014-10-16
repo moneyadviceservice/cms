@@ -15,9 +15,17 @@ module UI::Pages
     end
 
     section :tags_listing, '.js-tags-listing' do
-      element :label, 'label'
-      section :list,  '.js-tags-existing' do
-        elements :tags, '.tag'
+      element  :info,            'h2'
+      elements :tag_index_links, '.js-tags-starting-by-link'
+      section  :header, '.js-tags-existing-header' do
+        element :existing_tags_msg, '.js-existing-tags-msg'
+        element :no_tags_msg,       '.js-tags-no-tags-msg'
+      end
+      section  :list, '.js-tags-existing' do
+        sections :tags, '.tag' do
+          element :value, 'span'
+          element :close, '.close'
+        end
       end
     end
   end

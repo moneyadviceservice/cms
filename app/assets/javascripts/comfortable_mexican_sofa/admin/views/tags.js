@@ -15,7 +15,7 @@ require(['taggle'], function(Taggle) {
 
   // update the list of tags starting by <prefix> if needed.
   function maybeUpdateDisplayedTagList(prefix) {
-    if (displayedTagsPrefix().toLowerCase() === prefix.toLowerCase()) {
+    if (displayedTagsPrefix() === prefix.toLowerCase()) {
       displayTagList(prefix);
     }
   }
@@ -23,20 +23,24 @@ require(['taggle'], function(Taggle) {
   // returns the prefix (letter) of the currently displayed tag list
   function displayedTagsPrefix() {
     var active_link = $('.js-tags-starting-by-link.active');
-    if (active_link.length) {
+    if (active_link.length > 0) {
       return active_link.attr('data-prefix');
     }
   }
 
   // render the list of tags starting by the given prefix (letter)
   function displayTagList(prefix) {
-    $(".js-tags-starting-by-link[data-prefix*='" + prefix.toLowerCase() + "']")[0].click();
+    $(".js-tags-starting-by-link[data-prefix='" + prefix.toLowerCase() + "']").trigger('click');
   }
 
   // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
   $('.js-tags-existing').on('click', 'a.close', function() {
     var tag_value = $(this).parent().find('.taggle_text').text();
-    delete_tag(tag_value);
+    if (taggle.getTagValues().indexOf(tag_value) > -1) {
+      taggle.remove(tag_value);
+    } else {
+      delete_tag(tag_value);
+    }
   });
 
   // removes a tag from the server and updates the list of existing tags
