@@ -13,14 +13,14 @@
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
 .l-panel-content.l-panel-content--form
-  .l-constrained
-    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {:slugify => @page.new_record?}
+  .l-constrained{:data => {'dough-component' => 'Slugifier'}}
+    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {'dough-slugifier-input' => '', :slugify => @page.new_record?}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
     - unless @site.pages.count == 0 || @site.pages.root == @page
-      = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{I18n.locale}/articles#{@page.full_path}", class: 'form__input--has-meta', :data => {:slug => true}
+      = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{I18n.locale}/articles#{@page.full_path}", class: 'form__input--has-meta', :data => {'dough-slugifier-slug' => '', :slug => true}
 
     - if (options = ::Comfy::Cms::Page.options_for_select(@site, @page, nil, 0, false)).present?
       = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options
