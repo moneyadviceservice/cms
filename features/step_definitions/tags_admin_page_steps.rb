@@ -81,8 +81,6 @@ end
 
 Then(/^The tag should be removed from its displayed listing$/) do
   wait_for_ajax_complete
-  save_screenshot("/Users/lorenzotello/railspj/mas/cms/pict1.png")
-  sleep(1)
   expect(@page.tags_listing.list.tags).to be_empty
 end
 
