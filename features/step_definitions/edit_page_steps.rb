@@ -7,6 +7,7 @@ end
 When(/^I am working on an draft article$/) do
   cms_site
   cms_page.save_unsaved!
+  step("I am logged in")
   edit_page.load(site: cms_site.id, page: cms_page.id)
 end
 
@@ -14,6 +15,7 @@ When(/^I am working on a published article$/) do
   cms_site
   cms_page.save_unsaved!
   cms_page.publish!
+  step("I am logged in")
   edit_page.load(site: cms_site.id, page: cms_page.id)
 end
 
@@ -29,6 +31,7 @@ end
 
 When(/^I am working on an draft article on the "(.*?)" site$/) do |locale|
   cms_page(locale: locale).save_unsaved!
+  step("I am logged in")
   edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
 end
 
@@ -38,8 +41,9 @@ When(/^I switch to the "(.*?)" article$/) do |locale|
 end
 
 When(/^I should be working on the "(.*?)" article$/) do |locale|
-  expect(edit_page.current_url).to match(/\/sites\/#{cms_site(locale).id}\/pages/)
+  sleep(0.1) # wait for page to load
   expect(edit_page.status.text).to match(/#{locale}/i)
+  expect(edit_page.current_url).to match(/\/sites\/#{cms_site(locale).id}\/pages/)
 end
 
 Given(/^I (select|deselect) the regulated check box$/) do |selection|

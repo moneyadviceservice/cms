@@ -1,4 +1,5 @@
 Given(/^I (?:am on|visit) the home page$/) do
+  step("I am logged in")
   home_page.load
 end
 
