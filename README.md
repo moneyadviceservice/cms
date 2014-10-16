@@ -5,8 +5,9 @@ The MAS CMS.
 ## Install dependencies
 
 ```sh
+bundle update dough-ruby
 npm install
-bower install
+bowndler install
 ```
 
 ## Configuration
