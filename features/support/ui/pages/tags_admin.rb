@@ -10,8 +10,7 @@ module UI::Pages
 
     section :tags_creation, '.js-tags-creation' do
       element :label, 'label'
-      element :box,   '.js-tags-add-value'
-      element :submit_button,  '.js-tags-add-submit'
+      element :box,   '.js-tags-display input.taggle_input'
     end
 
     section :tags_listing, '.js-tags-listing' do
