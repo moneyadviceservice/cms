@@ -1,3 +1,5 @@
+//= require jquery.remotipart
+
 define('word-upload', [], function () {
   'use strict';
   return {
