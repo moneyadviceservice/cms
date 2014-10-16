@@ -1,6 +1,7 @@
 When(/^I (?:am on|visit) the tags admin page$/) do
   cms_site
   @page = tags_admin_page
+  step("I am logged in")
   @page.load
   define_bind rescue nil
   wait_for_ajax_complete
