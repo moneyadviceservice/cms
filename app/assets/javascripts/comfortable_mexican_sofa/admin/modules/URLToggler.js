@@ -16,7 +16,7 @@ define([
 
   function URLToggler($el, config) {
     URLToggler.baseConstructor.call(this, $el, config, defaultConfig);
-  };
+  }
 
   DoughBaseComponent.extend(URLToggler);
 
