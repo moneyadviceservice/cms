@@ -4,6 +4,7 @@ var file;
 var bowerPath = 'vendor/assets/bower_components/';
 
 replaceModulePath = function (path) {
+  'use strict';
   return path.replace(/^\/base\//, '').replace(/\.js$/, '');
 };
 
@@ -17,27 +18,44 @@ requirejs.config({
   baseUrl: '/base',
   deps: tests,
   paths: {
-    // Editor
-    'constants': bowerPath + 'mas-cms-editor/src/app/constants/constants',
-    'config': bowerPath + 'mas-cms-editor/src/app/config/config',
-    'mas-editor' : 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mas-editor',
-    'element-hider': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/element-hider',
-    'editor' : bowerPath + 'mas-cms-editor/src/app/app',
-    'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
-    'editor-lib-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper',
-    'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
 
-    // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0
+     // PhantomJS shims NOTE: Can be retired upon release of PhantomJS v2.0
     'phantom-shims' : 'spec/javascripts/helpers/shims/phantom-shims',
 
-    // 3rd-party libraries
+    // Editor core
+    'constants': bowerPath + 'mas-cms-editor/src/app/constants/constants',
+    'config': bowerPath + 'mas-cms-editor/src/app/config/config',
+    'editor': bowerPath + 'mas-cms-editor/src/app/app',
+
+    // Editor modules
+    'editor-lib-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper',
+    'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
+
+    // Editor plugins
+    'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
+    'editor-plugin-auto-resize-textarea': bowerPath + 'mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea',
+
+    // Application modules
+    'URLToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLToggler',
+    'MASEditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MASEditor',
+    'ElementHider': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementHider',
+    'FileInputSubmit': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/FileInputSubmit',
+    'AutoComplete': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/AutoComplete',
+    'Slugifier': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Slugifier',
+
+    // Dough base modules
+    'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
+    'DoughBaseComponent': bowerPath + 'dough/assets/js/components/DoughBaseComponent',
+    'featureDetect': bowerPath + 'dough/assets/js/lib/featureDetect',
+
+    // Dough components
+    'Collapsable': bowerPath + 'dough/assets/js/components/Collapsable',
+
+    // Third-party dependencies
     'jquery': bowerPath + 'jquery/dist/jquery.min',
-    'text': bowerPath + 'requirejs-text/text',
+    'he': bowerPath + 'he/he',
     'rsvp': bowerPath + 'rsvp/rsvp.amd',
     'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
-    'to-markdown': bowerPath + 'to-markdown/src/to-markdown',
-    'marked': bowerPath + 'marked/lib/marked',
-    'he': bowerPath + 'he/he',
     'scribe': bowerPath + 'scribe/scribe',
     'scribe-plugin-blockquote-command': bowerPath + 'scribe-plugin-blockquote-command/scribe-plugin-blockquote-command',
     'scribe-plugin-formatter-plain-text-convert-new-lines-to-html': bowerPath + 'scribe-plugin-formatter-plain-text-convert-new-lines-to-html/scribe-plugin-formatter-plain-text-convert-new-lines-to-html',
@@ -46,18 +64,17 @@ requirejs.config({
     'scribe-plugin-link-prompt-command': bowerPath + 'scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command',
     'scribe-plugin-sanitizer': bowerPath + 'scribe-plugin-sanitizer/scribe-plugin-sanitizer',
     'scribe-plugin-toolbar': bowerPath + 'scribe-plugin-toolbar/scribe-plugin-toolbar',
-
-    // Dough
-    'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
-    'DoughBaseComponent': bowerPath + 'dough/assets/js/components/DoughBaseComponent',
-    'featureDetect': bowerPath + 'dough/assets/js/lib/featureDetect',
-
-    // Dough components
-    'Collapsable': bowerPath + 'dough/assets/js/components/Collapsable'
+    'marked': bowerPath + 'marked/lib/marked',
+    'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
+    'chosen': bowerPath + 'chosen-build/chosen.jquery'
   },
   shim : {
     'to-markdown' : {
       deps : ['he']
+    },
+    'chosen': {
+      exports: 'Chosen',
+      deps: ['jquery']
     }
   },
   callback: window.__karma__.start

@@ -20,6 +20,7 @@ define(['jquery','DoughBaseComponent'], function ($, DoughBaseComponent) {
   ElementHiderProto = ElementHider.prototype;
 
   ElementHiderProto.init = function(initialised) {
+    this.$closeBtn = this.$el.find('[data-dough-element-hider-close]');
 
     if(this.config.delay) {
       setTimeout($.proxy(function() {
