@@ -3,5 +3,3 @@
 
 = comfy_form_for @page, :as => :page, label_col: "form__label-heading", control_col: "form__input-wrapper", :url => comfy_admin_cms_site_page_path(@site, @page), :html => {:multipart => true, :autocomplete => 'off'} do |form|
   = render form
-- content_for :footer_js do
-  = javascript_include_tag "comfortable_mexican_sofa/admin/views/page"

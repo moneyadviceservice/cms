@@ -1,13 +1,17 @@
-<form class="js-edit-form">
-  <div class="js-html-editor">
+<form class="js-edit-form" data-dough-component="MASEditor">
+
+  <nav class="toolbar js-toolbar">
     <nav class="js-html-editor-toolbar"></nav>
+    <nav class="js-markdown-editor-toolbar"></nav>
+  </nav>
+
+  <div class="js-html-editor">
     <div class="js-html-editor-content"></div>
     <input class="js-switch-mode" type="radio" name="mode" value="html">
     <input class="js-switch-mode" type="radio" name="mode" value="markdown">
   </div>
 
   <div class="js-markdown-editor">
-    <nav class="js-markdown-editor-toolbar"></nav>
     <textarea class="js-markdown-editor-content"></textarea>
   </div>
 

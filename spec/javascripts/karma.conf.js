@@ -11,7 +11,8 @@ module.exports = function(config) {
       {pattern: 'vendor/assets/bower_components/**/*.js', included: false}
     ],
     exclude: [
-      'vendor/assets/bower_components/**/test/**/*.js'
+      'vendor/assets/bower_components/**/test/**/*.js',
+      'vendor/assets/bower_components/taggle.js/node_modules/**/*'
     ],
     preprocessors: {
       '**/*.html': ['html2js']
