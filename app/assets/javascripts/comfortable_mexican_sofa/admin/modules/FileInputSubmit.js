@@ -14,7 +14,7 @@ define([
 
     function FileInputSubmit($el, config) {
       FileInputSubmit.baseConstructor.call(this, $el, config, defaultConfig);
-    };
+    }
 
     DoughBaseComponent.extend(FileInputSubmit);
 
