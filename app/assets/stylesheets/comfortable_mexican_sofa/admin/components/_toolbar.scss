@@ -3,18 +3,12 @@
 // Styleguide Toolbar
 
 .toolbar {
-  pointer-events: none;
-
   &.is-sticky {
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
     @extend %z-index--toolbar.is-sticky;
-  }
-
-  &.is-active {
-    pointer-events: auto;
   }
 }
 
@@ -34,6 +28,14 @@
   & + &:last-child {
     padding-right: 0;
     width: 100%;
+  }
+}
+
+.toolbar__item-group--html {
+  pointer-events: none;
+  
+  &.is-active {
+    pointer-events: auto;
   }
 }
 
