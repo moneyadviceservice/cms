@@ -1,4 +1,4 @@
-.l-panel-content.l-panel-content--form
+.l-panel-content.l-panel-content--form{data: {dough_component: :Tags}}
   .l-constrained
 
     -# header
@@ -26,7 +26,3 @@
     %p.nav-pagination.nav-pagination--tags-index!= index_of_existing_tags
     %p.js-tags-existing-header
     %ul.taggle_list.js-tags-existing
-
-
-- content_for :footer_js do
-  = javascript_include_tag "comfortable_mexican_sofa/admin/views/tags"
