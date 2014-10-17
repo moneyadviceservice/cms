@@ -65,7 +65,7 @@
         .menu
           %span.button-menu
             - main_state_button(@page.current_state).each do |state_event|
-              = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
+              = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}", data: {dough_maseditor_form_submit: true} do
                 %span.button__text
                   =state_event[:label]
               - unless page_state_buttons(@page.current_state).empty?
