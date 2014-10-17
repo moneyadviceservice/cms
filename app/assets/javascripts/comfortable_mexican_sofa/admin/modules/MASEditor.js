@@ -26,7 +26,7 @@ define([
   function MASEditor($el, config) {
     MASEditor.baseConstructor.call(this, $el, config, defaultConfig);
     this.cmsFormNode = $el[0];
-    this.toolbarNode = document.querySelector('.js-html-editor-toolbar');
+    this.toolbarNode = document.querySelector('.js-toolbar');
     this.htmlEditorNode = document.querySelector('.js-html-editor');
     this.htmlEditorContentNode = document.querySelector('.js-html-editor-content');
     this.markdownEditorNode = document.querySelector('.js-markdown-editor');
