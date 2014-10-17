@@ -3,13 +3,3 @@ h1, h2, h3, h4{
     margin-top: 0;
   }
 }
-p, li {
-  font-family: 'museo_sans';
-  font-weight: 300;
-}
-
-a{
-  &:link {
-    // color: $color-link-active;
-  }
-}

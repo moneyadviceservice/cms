@@ -10,14 +10,16 @@ $responsive: true;
 
 // Dough imports -------------------------------------------------------------- //
 
-@import "dough/assets/stylesheets/base/base";
-@import "dough/assets/stylesheets/lib/_css3";
 @import "dough/assets/stylesheets/lib/_grid";
 @import "dough/assets/stylesheets/lib/_mediaqueries";
-@import "dough/assets/stylesheets/lib/_shapes";
 @import "dough/assets/stylesheets/lib/_typography";
+@import "dough/assets/stylesheets/lib/_css3";
+@import "dough/assets/stylesheets/lib/_shapes";
+@import "dough/assets/stylesheets/base/_base";
+@import "dough/assets/stylesheets/base/_type";
 @import "dough/assets/stylesheets/base/_forms";
 @import "dough/assets/stylesheets/layout/common/common";
+@import "dough/assets/stylesheets/layout/common/_constrained.scss";
 @import "dough/assets/stylesheets/helpers/_form-input-focus";
 @import "dough/assets/stylesheets/helpers/_form-input";
 @import "dough/assets/stylesheets/helpers/_clearfix";
@@ -38,10 +40,8 @@ $responsive: true;
 @import "lib/_resets";
 @import "lib/_z-index";
 @import "lib/_buttons";
-@import "lib/_typography";
 
 // Base
-@import "base/_base";
 @import "base/_forms";
 
 // Components
