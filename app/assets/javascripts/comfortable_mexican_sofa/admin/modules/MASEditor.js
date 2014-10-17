@@ -25,8 +25,8 @@ define([
 
   function MASEditor($el, config) {
     MASEditor.baseConstructor.call(this, $el, config, defaultConfig);
-    this.cmsFormNode = document.querySelector('#edit_page') || document.querySelector('#new_page');
-    this.toolbarNode = document.querySelector('.js-toolbar');
+    this.cmsFormNode = $el[0];
+    this.toolbarNode = document.querySelector('.js-html-editor-toolbar');
     this.htmlEditorNode = document.querySelector('.js-html-editor');
     this.htmlEditorContentNode = document.querySelector('.js-html-editor-content');
     this.markdownEditorNode = document.querySelector('.js-markdown-editor');
@@ -56,9 +56,9 @@ define([
       }
     };
 
-    this.classActive = 'is-active'
+    this.classActive = 'is-active';
     this.mode = 'html';
-  };
+  }
 
   DoughBaseComponent.extend(MASEditor);
   MASEditorProto = MASEditor.prototype;
