@@ -12,11 +12,7 @@ define([
   'use strict';
 
   var MASEditorProto,
-      defaultConfig = {
-        // uiEvents: {
-        //   'click [data-dough-element-hider-close]': 'hide'
-        // }
-      };
+      defaultConfig = {};
 
   /**
    * MASEditor
