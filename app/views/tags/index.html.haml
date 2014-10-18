@@ -8,8 +8,8 @@
     -# create new tags
     .js-tags-creation
       = form_for(Tag.new, remote: true, method: :post) do |form|
-        = form.text_field :value, class: 'js-tags-add-value visually-hidden'
-        = form.submit class: 'js-tags-add-submit', style: "position: absolute; top: 0px; right:0px; width: 0px;"
+        = form.hidden_field :value, class: 'js-tags-add-value'
+        = form.submit class: 'js-tags-add-submit', hidden: true
       %p= t('.add_tag.info')
       .taggle-container.js-tags-display
 
