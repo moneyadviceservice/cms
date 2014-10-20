@@ -1,6 +1,6 @@
 Then(/^I should be able to preview it in a new window$/) do
   edit_page.should have_preview
-  edit_page.preview['href'].should match /#{cms_page.full_path}\/preview/
+  edit_page.preview['href'].should match /#{cms_page.slug}\/preview/
   edit_page.preview['target'].should eq '_blank'
 end
 
