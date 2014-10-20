@@ -84,6 +84,10 @@ GEM
       sass (~> 3.2)
     bootstrap_form (2.1.1)
     builder (3.2.2)
+    byebug (3.5.1)
+      columnize (~> 0.8)
+      debugger-linecache (~> 1.2)
+      slop (~> 3.6)
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -110,7 +114,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     colored (1.2)
-    comfortable_mexican_sofa (1.12.1.30)
+    columnize (0.8.9)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
@@ -127,6 +131,7 @@ GEM
       sass-rails (>= 4.0.3)
       tinymce-rails (>= 4.0.0)
       transitions (>= 0.1.12)
+    comfortable_mexican_sofa (1.12.1.30)
     css_parser (1.3.5)
       addressable
     cucumber (1.3.17)
@@ -142,6 +147,7 @@ GEM
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
     database_cleaner (1.3.0)
+    debugger-linecache (1.2.0)
     descriptive_statistics (1.1.5)
     diff-lcs (1.2.5)
     dotenv (1.0.2)
@@ -336,6 +342,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bowndler!
+  byebug
   capybara (= 2.4.1)
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.1.0)

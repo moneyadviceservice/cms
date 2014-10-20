@@ -1,0 +1,28 @@
+.l-panel-content.l-panel-content--form{data: {dough_component: :Tags}}
+  .l-constrained
+
+    -# header
+    .page-header
+      %h1= t('.title')
+
+    -# create new tags
+    .js-tags-creation
+      = form_for(Tag.new, remote: true, method: :post, html: {class: 'js-tags-add-form'}) do |form|
+        = form.hidden_field :value, class: 'js-tags-add-value'
+        = form.submit class: 'js-tags-add-submit', hidden: true
+      %p= t('.add_tag.info')
+      .taggle-container.js-tags-display
+
+    -# delete tags
+    %p.js-tags-deletion
+      = form_for(:tag, url: delete_from_value_tags_path, remote: true, method: :delete, html: {class: 'js-tags-delete-form'}) do |form|
+        = form.hidden_field :value, class: 'js-tags-delete-value'
+        = form.submit class: 'js-tags-delete-submit', hidden: true
+
+.l-panel-content
+  .l-constrained.js-tags-listing
+    -# existing tags
+    %h2= t('.existing.info')
+    %p.nav-pagination.nav-pagination--tags-index!= index_of_existing_tags
+    %p.js-tags-existing-header
+    %ul.taggle_list.js-tags-existing

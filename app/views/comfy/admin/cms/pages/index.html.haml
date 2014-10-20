@@ -3,9 +3,9 @@
     .l-panel-content__row
       .l-panel-content__col
         - if params[:search].present?
-          %h2 Search Results
+          %h1 Search Results
         - else
-          %h2= t('.title')
+          %h1= t('.title')
           = paginate @pages
       .l-panel-content__col
         = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do

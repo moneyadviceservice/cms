@@ -8,7 +8,7 @@ $color-white: #fff;
 $color-black: #000;
 
 $color-grey-alpha: #666;
-$color-grey-beta: #f5f6f9;
+$color-grey-beta: #f3f3f3;
 $color-grey-charlie: #686b7a;
 $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
@@ -62,6 +62,14 @@ $color-alert-success-background: $color-blue-alpha;
 $color-alert-success-foreground: $color-white;
 $color-alert-danger-background: $color-red-alpha;
 $color-alert-danger-foreground: $color-white;
+
+// Tags
+$color-tags-container-background: $color-white;
+$color-tags-container-foreground: $color-white;
+$color-tags-container-border: $color-grey-foxtrot;
+$color-tags-container-active-border: $color-grey-hotel;
+$color-tags-list-background: $color-grey-hotel;
+$color-tags-list-foreground: $color-white;
 
 // Buttons
 $input-height: $baseline-unit*5;

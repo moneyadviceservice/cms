@@ -5,7 +5,8 @@ $responsive: true;
 // CMS settings and mixins -------------------------------------------------------------- //
 
 @import "lib/_variables";
-@import "helpers/_forms";
+@import "helpers/_unstyled_input";
+@import "helpers/_tags";
 @import "utilities/_utilities";
 
 // Dough imports -------------------------------------------------------------- //
@@ -54,10 +55,12 @@ $responsive: true;
 @import "components/_nav_primary";
 @import "components/_nav_secondary";
 @import "components/_nav_article";
+@import "components/_nav_pagination";
 @import "components/_listing";
 @import "components/_menu";
 @import "components/_meta";
 @import "components/_alert";
+@import "components/_tags";
 
 // Layouts
 @import "layout/_editor";

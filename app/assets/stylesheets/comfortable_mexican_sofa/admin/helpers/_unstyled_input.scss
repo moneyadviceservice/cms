@@ -1,0 +1,17 @@
+%unstyled-input {
+  &[type="text"],
+  &[type="number"],
+  &[type="email"],
+  &[type="search"],
+  &[type="password"] {
+    &,
+    &:hover,
+    &:focus {
+      background: none;
+      border: none;
+      outline: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}

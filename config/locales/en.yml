@@ -20,4 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  cms:
+    admin:
+      cms:
+        base:
+          tags: Tags
+  tags:
+    index:
+      add_tag:
+        info: Add a single tag or add multiple tags separated by commas
+      existing:
+        info: Select a letter to see all the existing tags starting by that letter
+      title: Tags
+    starting_by:
+     header: Displaying all tags for '%{prefix}'
+     no_tags: No tags starting by '%{prefix}'

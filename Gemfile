@@ -48,6 +48,7 @@ group :test, :development do
   gem 'capybara', '2.4.1'
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
+  gem 'byebug'
 end
 
 group :production do
