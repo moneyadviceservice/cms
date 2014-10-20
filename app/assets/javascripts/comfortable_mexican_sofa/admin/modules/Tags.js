@@ -16,15 +16,9 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
   TagsProto.init = function(initialised) {
     var taggle;
 
-    // set 'active' class to selected letter tags link when clicking.
-    $('.js-tags-starting-by-link').click(function() {
-      $('.js-tags-starting-by-link').removeClass('active');
-      $(this).addClass("active");
-    });
-
     // update the list of tags starting by <prefix> if needed.
     function maybeUpdateDisplayedTagList(prefix) {
-      if (displayedTagsPrefix() === prefix.toLowerCase()) {
+      if (displayedTagsPrefix() == prefix.toLowerCase()) {
         displayTagList(prefix);
       }
     }
@@ -48,15 +42,36 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
       if (taggle.getTagValues().indexOf(tag_value) > -1) {
         taggle.remove(tag_value);
       } else {
-        delete_tag(tag_value);
+        delete_tag_from_server(tag_value);
       }
     });
 
+    $('.js-tags-add-form').on("ajax:success", function (e, data, status, xhr) {
+      var value = $('.js-tags-add-value').val();
+      maybeUpdateDisplayedTagList(value[0]);
+    });
+
+    $('.js-tags-delete-form').on("ajax:success", function (e, data, status, xhr) {
+      var value = $('.js-tags-delete-value').val();
+      maybeUpdateDisplayedTagList(value[0]);
+    });
+
+    // set 'active' class to selected letter tags link when clicking.
+    $('.js-tags-starting-by-link').on("ajax:success", function (e, data, status, xhr) {
+      $('.js-tags-starting-by-link').removeClass('active');
+      $(this).addClass("active");
+    });
+
+    // creates a tag in the server and updates the list of existing tags
+    function create_tag_in_server(value) {
+      $('.js-tags-add-value').val(value);
+      $('.js-tags-add-submit').click();
+    }
+
     // removes a tag from the server and updates the list of existing tags
-    function delete_tag(value) {
+    function delete_tag_from_server(value) {
       $('.js-tags-delete-value').val(value);
       $('.js-tags-delete-submit').click();
-      maybeUpdateDisplayedTagList(value[0]);
     }
 
 
@@ -67,13 +82,11 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
       additionalTagClasses: 'tag',
       onTagAdd: function(event, tag) {
         var tagListNodes = taggle.getTags().elements;
-        $('.js-tags-add-value').val(tag);
-        $('.js-tags-add-submit').click();
-        maybeUpdateDisplayedTagList(tag[0]);
+        create_tag_in_server(tag);
         tagListNodes[tagListNodes.length - 1].querySelector('.close').setAttribute('tabIndex', -1);
       },
       onTagRemove: function(event, tag) {
-        delete_tag(tag);
+        delete_tag_from_server(tag);
       }
     });
 

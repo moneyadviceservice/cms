@@ -1,5 +1,5 @@
 //= require requirejs/require
-//= require require_config
+//= require app/assets/javascripts/require_config.js.erb
 //= require jquery.remotipart
 
 require(['taggle'], function(Taggle) {
