@@ -6,3 +6,5 @@ require 'mas/development_dependencies/cucumber/env'
 Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, js_errors: true, inspector: true)
 end
+
+Capybara.ignore_hidden_elements = false
