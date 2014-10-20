@@ -20,7 +20,7 @@ class TagsController < Comfy::Admin::Cms::BaseController
   end
 
   def delete_from_value
-    @tag.destroy if (@tag and !@tag.in_use?)
+    @tag.destroy if @tag
     render js: "#{@tag.present? && @tag.destroyed?}"
   end
 
