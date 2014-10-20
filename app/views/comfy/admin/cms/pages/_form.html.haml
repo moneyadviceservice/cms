@@ -55,7 +55,7 @@
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
-          = link_to t('.preview'), "https://#{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles#{@page.slug}/preview", :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
+          = link_to t('.preview'), "https://#{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}/preview", :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
 
       %span.nav-article__item.nav-article__item--right
         .menu
