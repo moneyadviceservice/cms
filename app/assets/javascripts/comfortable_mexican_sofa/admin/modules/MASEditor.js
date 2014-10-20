@@ -27,7 +27,6 @@ define([
         uiEvents: {
           'click [data-dough-maseditor-form-submit]': '_handleFormSubmit',
           'change [data-dough-maseditor-mode-switch]': '_handleChangeMode',
-          'blur [data-dough-maseditor-html-content]': 'disableHTMLToolbar',
           'focus [data-dough-maseditor-html-content]': 'enableHTMLToolbar'
         }
       };
@@ -68,7 +67,7 @@ define([
   DoughBaseComponent.extend(MASEditor);
   MASEditorProto = MASEditor.prototype;
 
-  MASEditorProto.init = function(initialised) {    
+  MASEditorProto.init = function(initialised) {
     this._cacheComponentElements();
     this._stripEditorWhitespace();
     this.enableHTMLToolbar();
@@ -84,6 +83,7 @@ define([
 
   MASEditorProto._cacheComponentElements = function() {
     this.$cmsForm = this.$el;
+    this.$cmsFormSubmit = this.$el.find(this.config.selectors.cmsFormSubmit);
     this.$toolbarContainer = this.$el.find(this.config.selectors.toolbarContainer);
     this.$htmlToolbar = this.$el.find(this.config.selectors.htmlToolbar);
     this.$htmlContainer = this.$el.find(this.config.selectors.htmlContainer);
@@ -162,7 +162,6 @@ define([
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
     }
-
     this.editor.changeEditingMode(this.mode);
 
     return this;
