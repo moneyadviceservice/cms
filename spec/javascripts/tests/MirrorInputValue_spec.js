@@ -23,23 +23,27 @@ describe('Mirror Input Value', function () {
 
   describe('General', function () {
     beforeEach(function (done) {
+      this.targetKeyupSpy = sinon.spy(this.MirrorInputValue.prototype, '_handleTargetKeyup');
       this.component = new this.MirrorInputValue(this.$html);
       this.component.init();
       done();
     });
-    it('should update the targets\'s value with the trigger\s value on keyup event', function() {
+
+    afterEach(function () {
+      this.targetKeyupSpy.restore();
+    });
+
+    it('should update the targets\'s value with the trigger\'s value on keyup event', function() {
       this.component.$triggerInput.val(this.dummyValue);
       this.component.$triggerInput.trigger('keyup');
       expect(this.component.$targetInput.val()).to.equal(this.dummyValue);
     });
 
     it('should unbind the trigger\'s and target\'s keyup events when it has been edited directly', function() {
-      var spy = sinon.spy(this.component, '_handleTargetKeyup');
-      // console.log(this.component._handleTargetKeyup());
-      this.component.$targetInput.val('poo');
+      this.component.$targetInput.val(this.dummyValue);
       this.component.$targetInput.trigger('keyup');
-      console.log(spy);
-      expect(spy.called).to.equal.false;
+      this.component.$targetInput.trigger('keyup');
+      expect(this.targetKeyupSpy.callCount).to.equal(1);
     });
   });
 

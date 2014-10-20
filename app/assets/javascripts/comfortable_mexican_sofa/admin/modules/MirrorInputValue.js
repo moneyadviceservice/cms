@@ -42,7 +42,7 @@ define([
   };
 
   MirrorInputValueProto._handleTargetKeyup = function() {
-    this.$el.off('keyup', this.config.selectors.targetInput , this._handleTargetKeyup);
+    this.destroy();
   };
 
   return MirrorInputValue;
