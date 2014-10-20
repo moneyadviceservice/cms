@@ -9,7 +9,7 @@ module World
     # Waits for every queued ajax to finish.
     def wait_for_ajax_complete
       Timeout.timeout(Capybara.default_wait_time) do
-        loop until page.evaluate_script('$.active').zero?
+        loop until page.evaluate_script('jQuery.active').zero?
       end
       wait_for_dom
     end
