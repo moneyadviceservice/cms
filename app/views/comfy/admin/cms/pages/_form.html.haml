@@ -1,4 +1,4 @@
-- dough_component = @page.new_record? ? {:data => {'dough-component' => 'Slugifier'}} : {}
+- dough_component_slugifier = @page.new_record? ? ' Slugifier' : ''
 
 - content_for :nav_secondary do
   %li.nav-secondary__item.nav-secondary__item--right
@@ -15,8 +15,8 @@
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
 .l-panel-content.l-panel-content--form
-  .l-constrained{dough_component}
-    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {'dough-slugifier-input' => '', :slugify => @page.new_record?}
+  .l-constrained{:data => {dough_component: 'MirrorInputValue Slugifier'}}
+    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => true, :slugify => @page.new_record?}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)

@@ -7,9 +7,9 @@ requirejs.config({
   baseUrl: '../',
   paths: {
     // Editor core
-    'constants' : '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
-    'config' : '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
-    'mas-editor' : '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
+    'constants': '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
+    'config': '<%= requirejs_path("mas-cms-editor/src/app/config/config") %>',
+    'mas-editor': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mas-editor") %>',
     'editor': '<%= requirejs_path("mas-cms-editor/src/app/app") %>',
 
     // Editor modules
@@ -27,6 +27,7 @@ requirejs.config({
     'FileInputSubmit': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/FileInputSubmit") %>',
     'AutoComplete': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/AutoComplete") %>',
     'Slugifier': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Slugifier") %>',
+    'MirrorInputValue': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/MirrorInputValue") %>',
     'Tags': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Tags") %>',
 
     // Dough base modules
@@ -53,7 +54,7 @@ requirejs.config({
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
-	'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
+		'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
   },
   shim: {
     'to-markdown' : {
@@ -63,7 +64,7 @@ requirejs.config({
       exports: 'Chosen',
       deps: ['jquery']
     },
-	'taggle': {
+		'taggle': {
       exports: 'Taggle'
     }
   }
