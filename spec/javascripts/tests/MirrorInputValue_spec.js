@@ -39,7 +39,7 @@ describe('Mirror Input Value', function () {
       expect(this.component.$targetInput.val()).to.equal(this.dummyValue);
     });
 
-    it('should unbind the trigger\'s and target\'s keyup events when it has been edited directly', function() {
+    it('should unbind the trigger\'s and target\'s keyup events when the target has been edited directly', function() {
       this.component.$targetInput.val(this.dummyValue);
       this.component.$targetInput.trigger('keyup');
       this.component.$targetInput.trigger('keyup');
