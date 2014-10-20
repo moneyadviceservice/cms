@@ -3,6 +3,7 @@ Feature: Tags administration
   I want to manage available tags
   So that pages, files, etc can be tagged using them
 
+  @javascript
   Scenario: Accessing tags admin page
     When I visit the tags admin page
     Then I should see a tags header
@@ -49,38 +50,36 @@ Feature: Tags administration
     When  I click on a letter to list the tags starting by it
     Then  I can delete a tag clicking on it
 
-# The next tests fail in Capybara/postergeist/phantomjs. The clicks to refresh the existing tags listing do nothing.
-#  @javascript
-#  Scenario: Creating a valid tag updates its listing if displayed
-#    Given I am on the tags admin page
-#    And   I click on a letter to list the tags starting by it
-#    When  I create a new tag starting by that letter
-#    Then  The new tag must appear in the displayed tag listing
-#
-#  @javascript
-#  Scenario: Deleting a tag from its listing updates it
-#    Given I am on the tags admin page
-#    And   There are tags starting by a certain letter
-#    When  I click on a letter to list the tags starting by it
-#    And   I delete the first tag
-#    Then  The tag should be removed from its displayed listing
-#    And   The items tagged with it should lose it
-#
-#  @javascript
-#  Scenario: Deleting a tag from its listing updates it and the one in the creation box if exists
-#    Given I am on the tags admin page
-#    And   I create a new tag
-#    When  I click on the letter to list the tags starting by the same letter
-#    And   I delete the tag in the listing
-#    Then  The tag should be removed from its displayed listing
-#    And   The items tagged with it should lose it
-#    And   The same tag in the creation box gets removed
-#
-#  @javascript
-#  Scenario: Deleting a tag from the creation box also deletes the one in its listing if open
-#    Given I am on the tags admin page
-#    And   I create a new tag
-#    When  I click on the letter to list the tags starting by the same letter
-#    And   I delete the tag in the creation box
-#    Then  The tag should be removed from its displayed listing
-#    And   The items tagged with it should lose it
+  @javascript
+  Scenario: Creating a valid tag updates its listing if displayed
+    Given I am on the tags admin page
+    And   I click on a letter to list the tags starting by it
+    When  I create a new tag starting by that letter
+    Then  The new tag must appear in the displayed tag listing
+
+  @javascript
+  Scenario: Deleting a tag from its listing updates it
+    Given I am on the tags admin page
+    And   There are tags starting by a certain letter
+    When  I click on a letter to list the tags starting by it
+    And   I delete the first tag
+    Then  The tag should be removed from its displayed listing
+
+  @javascript
+  Scenario: Deleting a tag from its listing updates it and the one in the creation box if exists
+    Given I am on the tags admin page
+    And   I create a new tag
+    When  I click on the letter to list the tags starting by the same letter
+    And   I delete the tag in the listing
+    Then  The tag should be removed from its displayed listing
+    And   The same tag in the creation box gets removed
+    And   The items tagged with it should lose it
+
+  @javascript
+  Scenario: Deleting a tag from the creation box also deletes the one in its listing if open
+    Given I am on the tags admin page
+    And   I create a new tag
+    When  I click on the letter to list the tags starting by the same letter
+    And   I delete the tag in the creation box
+    Then  The tag should be removed from its displayed listing
+    And   The items tagged with it should lose it
