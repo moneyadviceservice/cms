@@ -32,6 +32,10 @@ en:
       existing:
         info: Select a letter to see all the existing tags starting by that letter
       title: Tags
+    shared:
+      form:
+        label: Tags
+        placeholder: Enter tag
     starting_by:
      header: Displaying all tags for '%{prefix}'
      no_tags: No tags starting by '%{prefix}'
