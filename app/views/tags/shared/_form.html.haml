@@ -1,56 +1,7 @@
 - object = form.object
-.form-group.tags
-  .form__label-heading= t('.label')
-  .form__input-wrapper
-    .taggle-container.js-tags-display
-      = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {}, include_blank: false, multiple: true,
-                               id:    'tags--select',
-                               class: 't-tags-select',
-                               data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
-      =# select_tag "#{object.class.to_s.demodulize.underscore.downcase}[tags]",
-                   options_for_select(@categories.all, @categories.selected_for(object)), multiple: true, id: 'categories--select'
--#-#-# associate new tags
--#-#= form.form_group :label => {:text => t('.label')}, :class => 'tags' do
--#-#  - object.tags.each do |tag|
--#-#    = form.fields_for :tags, tag do |tagging_fields|
--#-#      = tagging_fields.hidden_field :value, class: 'js-taggings-add-tag-value'
--#-#= form.form_group :label => {:text => t('.label')}, :class => 'tags' do
--#-#-   = form.fields_for(:tags) do |tagging_fields|
--#-#      = tagging_fields.hidden_field :tag_value,     class: 'js-taggings-add-tag-value'
--#-#      = tagging_fields.hidden_field :taggable_id,   class: 'js-taggings-add-taggable-id'
--#-#      = tagging_fields.hidden_field :taggable_type, class: 'js-taggings-add-taggable-type'
--#-#= select_tag "#{object.class.to_s.demodulize.underscore.downcase}[category_ids]",
--#-#               options_for_select(@categories.all, @categories.selected_for(object)), multiple: true, id: 'categories--select'
--#-#-# associate new tags
--#-#- object = form.object
--#-#- if 1.present?
--#-#  -# create tags
--#-#  = form.fields_for(:tags, url: taggings_path, remote: true, method: :post) do |tagging_form|
--#-#    = tagging_form.hidden_field :tag_value,     class: 'js-taggings-add-tag-value'
--#-#    = tagging_form.hidden_field :taggable_id,   class: 'js-taggings-add-taggable-id'
--#-#    = tagging_form.hidden_field :taggable_type, class: 'js-taggings-add-taggable-type'
--#-#    = tagging_form.submit class: 'js-taggings-add-submit', hidden: true
--#
--#
--#-#  -# delete tags
--#-#  %p.js-tags-deletion
--#    = form_for(object.taggings.new, url: taggings_path, remote: true, method: :delete) do |tagging_form|
--#      = tagging_form.hidden_field :tag_value,     class: 'js-taggings-delete-tag-value'
--#      = tagging_form.hidden_field :taggable_id,   class: 'js-taggings-delete-taggable-id'
--#      = tagging_form.hidden_field :taggable_type, class: 'js-taggings-delete-taggable-type'
--#      = tagging_form.submit class: 'js-taggings-delete-submit', hidden: true
--#-#
--#-#
--#-#
--#-#- content_for :footer_js do
--#  = javascript_include_tag "comfortable_mexican_sofa/admin/views/pages"
--#-#
--#-#
--#-#/ .form-group
--#-#/   .form__label-heading Tags
--#-#/   .form__input-wrapper
--#-#/     %select.js-tags{:multiple => ''}
--#-#/       %option{:value => 'pensions'} pensions
--#-#/       %option{:value => 'borrowing'} borrowing
--#-#/       %option{:value => 'managing your money'} managing your money
--#-#
+= form.form_group :label => {:text => t('.label')}, :class => '.tags' do
+  .taggle-container.js-tags-display
+    = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {hide_label: :true}, include_blank: false, multiple: true,
+                             id:    'tags--select',
+                             class: 't-tags-select',
+                             data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
