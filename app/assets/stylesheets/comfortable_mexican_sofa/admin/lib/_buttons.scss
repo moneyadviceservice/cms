@@ -36,6 +36,9 @@
   }
 }
 
-%button-match-input {
-  height: $button-match-input-height;
+%button-input-height-inner {
+  line-height: $button-input-height;
+  height: $button-input-height;
+  padding-bottom: 0;
+  padding-top: 0;
 }

@@ -9,18 +9,18 @@
           = paginate @pages
       .l-panel-content__col
         = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
-          .search
-            .search__item
+          .search.search--header
+            %span.search__item
               - if params[:search].present?
                 = "#{@pages.count} pages found for '#{params[:search]}'"
               = label_tag(:search, nil, class: 'visually-hidden')
-              = text_field_tag(:search, params[:search], placeholder: 'Keyword', class: 'search__item form__input form__input--constrained')
-              = button_tag('Search', type: 'submit', name: nil, class: 'search__item button--action button--h-match-input-height') do
-                %span.button__text Search
-              %span.search__item
-                = link_to new_comfy_admin_cms_site_page_path(@site), :class => 'button--action button--h-match-input-height' do
-                  %span.button__text
-                    = t('.new_link')
+              = text_field_tag(:search, params[:search], placeholder: 'Keyword', class: 'form__input form__input--constrained search__input')
+              = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
+                %span.button__text.fa.fa-search
+            %span.search__item
+              = link_to new_comfy_admin_cms_site_page_path(@site), :class => 'button--action button--search' do
+                %span.button__text
+                  = t('.new_link')
 
 - content_for :right_column do
   = render 'comfy/admin/cms/sites/mirrors'

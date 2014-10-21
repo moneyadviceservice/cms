@@ -9,3 +9,7 @@
 %is-active {
   display: block;
 }
+
+@function parseInt($n) {
+  @return $n / ($n * 0 + 1);
+}

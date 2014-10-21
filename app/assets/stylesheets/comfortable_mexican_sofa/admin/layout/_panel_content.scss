@@ -4,7 +4,7 @@
 
 .l-panel-content {
   background: $color-panel-content-background;
-  padding: $baseline-unit*4 24px $baseline-unit*6;
+  padding: $baseline-unit*5 24px $baseline-unit*6;
   width: 100%;
 }
 
@@ -20,12 +20,12 @@
 .l-panel-content__col {
   display: table-cell;
   vertical-align: middle;
-  width: 50%;
 }
 
-.l-panel-content__col--left{
+.l-panel-content__col:first-child {
+  text-align: left;
 }
 
-.l-panel-content__col--right {
-
+.l-panel-content__col:last-child {
+  text-align: right;
 }
