@@ -32,10 +32,6 @@ When(/^I am working on an draft article on the "(.*?)" site$/) do |locale|
   edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
 end
 
-def wait_for_page_load
-  find('body[data-dough-component-loader-all-loaded="yes"]')
-end
-
 When(/^I switch to the "(.*?)" article$/) do |locale|
   wait_for_page_load
   toggle = locale == "en" ? :site_toggle_en : :site_toggle_cy
