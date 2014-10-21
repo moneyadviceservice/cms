@@ -1,0 +1,45 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 15
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/CollectionMethods:
+  Enabled: false
+Style/DotPosition:
+  EnforcedStyle: leading
+Style/FormatString:
+  Enabled: false
+Style/AndOr:
+  EnforcedStyle: conditionals
+Style/Not:
+  Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Style/RaiseArgs:
+  Enabled: false
+Style/RegexpLiteral:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+Lint/ShadowingOuterLocalVariable:
+  Enabled: false
+AllCops:
+  Exclude:
+  - 'app/helpers/application_helper.rb'
+  - 'bin/**/*'
+  - 'config/**/*'
+  - 'db/**/*'
+  - 'Guardfile'
+  - 'lib/tasks/**/*'
+  - 'node_modules/**/*'
+  - 'script/**/*'
+  - 'spec/spec_helper.rb'
+  - 'spec/cassettes/**/*'
+  - 'features/**/*'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
+  - 'spec/models/word_document_spec.rb'
+  - 'spec/lib/hippo_import_spec.rb'

@@ -10,15 +10,15 @@ class HippoImport
     # 'contentauthoringwebsite:News'
   ]
 
-
   attr_reader :records, :html_decoder
-  def initialize(data, parser=HippoXmlParser, html_decoder=HTMLEntities.new)
+
+  def initialize(data, parser = HippoXmlParser, html_decoder = HTMLEntities.new)
     @records = parser.parse(data, TYPES)
     @html_decoder = html_decoder
   end
 
   def site
-    @_site ||=Comfy::Cms::Site.first
+    @_site ||= Comfy::Cms::Site.first
   end
 
   def layout

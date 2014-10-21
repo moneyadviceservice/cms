@@ -17,14 +17,14 @@ gem 'dotenv-rails'
 
 gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
-gem 'word-to-markdown', :git => 'https://github.com/moneyadviceservice/word-to-markdown.git'
+gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
 gem 'jquery-ui-rails', '~> 5.0'
 
-gem 'dough-ruby', '~> 3.0', :git => 'https://github.com/moneyadviceservice/dough.git'
-gem 'bowndler', :git => 'git@github.com:moneyadviceservice/bowndler'
+gem 'dough-ruby', '~> 3.0', git: 'https://github.com/moneyadviceservice/dough.git'
+gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
 
 gem 'hippo_xml_parser'
 
@@ -49,6 +49,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'pry-rails'
   gem 'byebug'
+  gem 'rubocop', require: false
 end
 
 group :production do
