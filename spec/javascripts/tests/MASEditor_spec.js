@@ -22,19 +22,23 @@ describe('MAS Editor', function () {
   });
 
   describe('General', function () {
-    beforeEach(function (done) {
-      this.masEditor  = new this.MASEditor(this.$html);
-      this.masEditor.init();
-      done();
-    });
-
     describe('Initialisation', function () {
+      beforeEach(function (done) {
+        this.masEditor  = new this.MASEditor(this.$html);
+        this.masEditor.init();
+        done();
+      });
       it('should enable the toolbar', function() {
         expect(this.masEditor.$htmlToolbar.hasClass(this.classActive)).to.be.true;
       });
     });
 
     describe('Switching Edit mode', function() {
+      beforeEach(function (done) {
+        this.masEditor  = new this.MASEditor(this.$html);
+        this.masEditor.init();
+        done();
+      });
       it('allows the mode to be changed', function() {
         this.masEditor.mode = 'markdown';
         this.masEditor.changeMode('html');
@@ -51,11 +55,6 @@ describe('MAS Editor', function () {
         expect(this.masEditor.$markdownContainer.hasClass(this.classActive)).to.be.true;
       });
 
-      // TODO: Add a test for button mode switching
-      // it('ensures the selected mode button has an active class', function() {
-      //   expect(this.masEditor.toolbarNode.hasClass(this.classActive)).to.be.true;
-      // });
-
       it('should add active class to the editor node', function() {
         this.masEditor.show(this.masEditor.$htmlContainer);
         expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.true;
@@ -67,26 +66,44 @@ describe('MAS Editor', function () {
       });
     });
 
-
-    describe('Events', function() {
-      beforeEach(function (done) {
-        this.masEditor = new this.MASEditor(this.$html);
-        this.masEditor.init();
-        done();
-      });
-
-      it('should catch form submit and route through handler function', function(){
-        var spy = sinon.spy(this.masEditor, '_handleFormSubmit');
-        expect(spy).to.have.been.called;
-      });
-
-      it('should call changeMode when a mode button is clicked', function(){
-        var spy = sinon.spy(this.masEditor, 'changeMode');
-        this.masEditor.$switchModeContainer.find('[value="markdown"]').click();
-        expect(spy.called).to.be.true;
-      });
-    });
   });
 
+  describe('Events', function() {
+    beforeEach(function (done) {
+      this.handleFormSubmitSpy = sinon.spy(this.MASEditor.prototype, '_handleFormSubmit');
+      this.masEditor  = new this.MASEditor(this.$html);
+      this.masEditor.init();
+      done();
+    });
+
+    afterEach(function () {
+      this.handleFormSubmitSpy.restore();
+    });
+
+    it('should catch form submit and route through handler function', function(){
+      this.masEditor.$cmsForm.on('submit', function(e) {
+        e.preventDefault();
+      });
+      this.masEditor.$cmsFormSubmit.click();
+      expect(this.handleFormSubmitSpy.called).to.be.true;
+    });
+
+    it('should convert HTML content to Markdown before saving', function(){
+      this.masEditor.mode = 'html';
+      this.masEditor.$htmlContent.html('<h2>Title</h2>');
+      this.masEditor.$cmsForm.on('submit', function(e) {
+        e.preventDefault();
+      });
+      this.masEditor.$cmsFormSubmit.click();
+      expect(this.handleFormSubmitSpy.called).to.be.true;
+      expect(this.masEditor.$markdownContent.val()).to.equal('## Title');
+    });
+
+    it('should call changeMode when a mode button is clicked', function(){
+      var spy = sinon.spy(this.masEditor, 'changeMode');
+      this.masEditor.$switchModeContainer.find('[value="markdown"]').click();
+      expect(spy.called).to.be.true;
+    });
+  });
 
 });
