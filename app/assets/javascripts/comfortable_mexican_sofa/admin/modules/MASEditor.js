@@ -12,7 +12,24 @@ define([
   'use strict';
 
   var MASEditorProto,
-      defaultConfig = {};
+      defaultConfig = {
+        selectors: {
+          cmsForm: '[data-dough-component="MASEditor"]',
+          cmsFormSubmit: '[data-dough-maseditor-form-submit]',
+          toolbarContainer: '[data-dough-maseditor-toolbar]',
+          htmlToolbar: '[data-dough-maseditor-html-toolbar]',
+          htmlContainer: '[data-dough-maseditor-html-container]',
+          htmlContent: '[data-dough-maseditor-html-content]',
+          markdownContainer: '[data-dough-maseditor-markdown-container]',
+          markdownContent: '[data-dough-maseditor-markdown-content]',
+          switchModeContainer: '[data-dough-maseditor-mode-switch]'
+        },
+        uiEvents: {
+          'click [data-dough-maseditor-form-submit]': '_handleFormSubmit',
+          'change [data-dough-maseditor-mode-switch]': '_handleChangeMode',
+          'focus [data-dough-maseditor-html-content]': 'enableHTMLToolbar'
+        }
+      };
 
   /**
    * MASEditor
@@ -21,13 +38,6 @@ define([
 
   function MASEditor($el, config) {
     MASEditor.baseConstructor.call(this, $el, config, defaultConfig);
-    this.cmsFormNode = $el[0];
-    this.toolbarNode = document.querySelector('.js-toolbar');
-    this.htmlEditorNode = document.querySelector('.js-html-editor');
-    this.htmlEditorContentNode = document.querySelector('.js-html-editor-content');
-    this.markdownEditorNode = document.querySelector('.js-markdown-editor');
-    this.markdownEditorContentNode = document.querySelector('.js-markdown-editor-content');
-    this.switchModeTriggerNodes = document.querySelectorAll('.js-switch-mode');
     this.editorOptions = {
       editorLibOptions : {
         sanitizer : {
@@ -36,7 +46,6 @@ define([
             br: {},
             b: {},
             strong: {},
-            i: {},
             strike: {},
             blockquote: {},
             ol: {},
@@ -51,7 +60,6 @@ define([
         }
       }
     };
-
     this.classActive = 'is-active';
     this.mode = 'html';
   }
@@ -60,78 +68,35 @@ define([
   MASEditorProto = MASEditor.prototype;
 
   MASEditorProto.init = function(initialised) {
-    this.stripEditorWhitespace();
+    this._cacheComponentElements();
+    this._stripEditorWhitespace();
+    this.enableHTMLToolbar();
     this.editor = new Editor(
-      this.htmlEditorContentNode,
-      this.markdownEditorContentNode,
-      this.toolbarNode,
+      this.$htmlContent[0],
+      this.$markdownContent[0],
+      this.$htmlToolbar[0],
       this.editorOptions
     );
-    this.editor.use(editorPluginAutoResizeTextarea(this.markdownEditorContentNode));
-    this.setupEventListeners();
-    this.setupAppEvents();
-    this.setupToolbar();
+    this.editor.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
     this._initialisedSuccess(initialised);
   };
 
-  MASEditorProto.stripEditorWhitespace = function() {
-    this.markdownEditorContentNode.value = this.markdownEditorContentNode.value.split('\n').map(function(e) {
+  MASEditorProto._cacheComponentElements = function() {
+    this.$cmsForm = this.$el;
+    this.$cmsFormSubmit = this.$el.find(this.config.selectors.cmsFormSubmit);
+    this.$toolbarContainer = this.$el.find(this.config.selectors.toolbarContainer);
+    this.$htmlToolbar = this.$el.find(this.config.selectors.htmlToolbar);
+    this.$htmlContainer = this.$el.find(this.config.selectors.htmlContainer);
+    this.$htmlContent = this.$el.find(this.config.selectors.htmlContent);
+    this.$markdownContainer = this.$el.find(this.config.selectors.markdownContainer);
+    this.$markdownContent = this.$el.find(this.config.selectors.markdownContent);
+    this.$switchModeContainer = this.$el.find(this.config.selectors.switchModeContainer);
+  };
+
+  MASEditorProto._stripEditorWhitespace = function() {
+    this.$markdownContent[0].value = this.$markdownContent[0].value.split('\n').map(function(e) {
       return e.trim();
     }).join('\n');
-  };
-
-  /**
-   * Bind DOM events
-   * @return {Object} this
-   */
-  MASEditorProto.setupEventListeners = function() {
-    var _this = this;
-
-    // Catches form submit and delegates to a handler function
-    this.cmsFormNode.addEventListener('submit', function(event) {
-      event.preventDefault();
-      _this.handleSubmit();
-    });
-
-    this.setupModeButton();
-
-    return this;
-  };
-
-  /**
-   * [setupAppEvents description]
-   * @return {[type]} [description]
-   */
-  MASEditorProto.setupAppEvents = function() {
-    this.editor.events.subscribe('mode:changed', this.handleChangeModeEvent, this);
-    return this;
-  };
-
-  /**
-   * Setups mode switching buttons
-   * @return {Object} this
-   */
-  MASEditorProto.setupModeButton = function() {
-    var i = this.switchModeTriggerNodes.length,
-        _this = this;
-
-    while(i--) {
-      (function(node) {
-        node.addEventListener('click', function() {
-          _this.changeMode(node.value);
-        });
-      })(this.switchModeTriggerNodes[i]);
-    }
-    return this;
-  };
-
-  /**
-   * [setupToolbar description]
-   * @return {[type]} [description]
-   */
-  MASEditorProto.setupToolbar = function() {
-    this.toolbarNode.classList.add(this.classActive);
-    return this;
   };
 
   /**
@@ -139,25 +104,38 @@ define([
    * @param  {Object} button Button DOM node
    * @return {[type]}        [description]
    */
-  MASEditorProto.handleChangeModeEvent = function(mode) {
-    Array.prototype.map.call(this.switchModeTriggerNodes, function(node) {
-      node.classList.remove(this.classActive);
-      if(node.value === mode) {
-        node.click();
-      }
-    }.bind(this));
+  MASEditorProto._handleChangeMode = function() {
+    this.changeMode(this.$switchModeContainer.find(':checked').val());
   };
-
 
   /**
    * Converts HTML input into Markdown then submits form
    * @return {Object} this
    */
-  MASEditorProto.handleSubmit = function() {
+  MASEditorProto._handleFormSubmit = function(e) {
+    e.preventDefault();
     if(this.mode === this.editor.constants.MODES.HTML) {
       this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
     }
-    this.cmsFormNode.submit();
+    this.$cmsForm.submit();
+  };
+
+  /**
+   * [enableHTMLToolbar description]
+   * @return {[type]} [description]
+   */
+  MASEditorProto.enableHTMLToolbar = function() {
+    this.$htmlToolbar.addClass(this.classActive);
+    return this;
+  };
+
+  /**
+   * [disableHTMLToolbar description]
+   * @return {[type]} [description]
+   */
+  MASEditorProto.disableHTMLToolbar = function() {
+    this.$htmlToolbar.removeClass(this.classActive);
+    return this;
   };
 
   /**
@@ -172,16 +150,18 @@ define([
 
     switch(mode) {
       case this.editor.constants.MODES.HTML:
-        this.show(this.htmlEditorNode).hide(this.markdownEditorNode);
+        this.enableHTMLToolbar();
+        this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
       case this.editor.constants.MODES.MARKDOWN:
-        this.show(this.markdownEditorNode).hide(this.htmlEditorNode);
+        this.disableHTMLToolbar();
+        this.show(this.$markdownContainer).hide(this.$htmlContainer);
         break;
       default:
-        this.show(this.htmlEditorNode).hide(this.markdownEditorNode);
+        this.enableHTMLToolbar();
+        this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
     }
-
     this.editor.changeEditingMode(this.mode);
 
     return this;
@@ -192,8 +172,8 @@ define([
    * @param  {Object} node Target DOM node
    * @return {Object} this
    */
-  MASEditorProto.show = function(node) {
-    node.classList.add(this.classActive);
+  MASEditorProto.show = function($el) {
+    $el.addClass(this.classActive);
     return this;
   };
 
@@ -202,8 +182,8 @@ define([
    * @param  {Object} node Target DOM node
    * @return {Object} this
    */
-  MASEditorProto.hide = function(node) {
-    node.classList.remove(this.classActive);
+  MASEditorProto.hide = function($el) {
+    $el.removeClass(this.classActive);
     return this;
   };
 

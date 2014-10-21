@@ -1,19 +1,20 @@
-<form class="js-edit-form" data-dough-component="MASEditor">
+<form data-dough-component="MASEditor">
+  <nav data-dough-maseditor-toolbar>
+    <nav data-dough-maseditor-html-toolbar></nav>
 
-  <nav class="toolbar js-toolbar">
-    <nav class="js-html-editor-toolbar"></nav>
-    <nav class="js-markdown-editor-toolbar"></nav>
+    <div data-dough-maseditor-mode-switch>
+      <input type="radio" name="mode" value="html">
+      <input type="radio" name="mode" value="markdown">
+    </div>
   </nav>
 
-  <div class="js-html-editor">
-    <div class="js-html-editor-content"></div>
-    <input class="js-switch-mode" type="radio" name="mode" value="html">
-    <input class="js-switch-mode" type="radio" name="mode" value="markdown">
+  <div data-dough-maseditor-html-container>
+    <div data-dough-maseditor-html-content></div>
   </div>
 
-  <div class="js-markdown-editor">
-    <textarea class="js-markdown-editor-content"></textarea>
+  <div data-dough-maseditor-markdown-container>
+    <textarea data-dough-maseditor-markdown-content></textarea>
   </div>
 
-  <input class="js-submit" type="submit" value="Submit">
+  <input type="submit" value="Submit" data-dough-maseditor-form-submit>
 </form>

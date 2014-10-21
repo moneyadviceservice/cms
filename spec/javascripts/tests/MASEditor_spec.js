@@ -21,10 +21,6 @@ describe('MAS Editor', function () {
     }, done);
   });
 
-  // afterEach(function() {
-  //   this.sandbox.parentNode.removeChild(this.sandbox);
-  // });
-
   describe('General', function () {
     beforeEach(function (done) {
       this.masEditor  = new this.MASEditor(this.$html);
@@ -34,7 +30,7 @@ describe('MAS Editor', function () {
 
     describe('Initialisation', function () {
       it('should enable the toolbar', function() {
-        expect(this.masEditor.toolbarNode.classList.contains(this.classActive)).to.be.true;
+        expect(this.masEditor.$htmlToolbar.hasClass(this.classActive)).to.be.true;
       });
     });
 
@@ -47,27 +43,27 @@ describe('MAS Editor', function () {
 
       it('ensures the active classes are switched when mode is changed', function() {
         this.masEditor
-          .show(this.masEditor.htmlEditorNode)
-          .hide(this.masEditor.markdownEditorNode)
+          .show(this.masEditor.$htmlContainer)
+          .hide(this.masEditor.$markdownContainer)
           .changeMode('markdown');
 
-        expect(this.masEditor.htmlEditorNode.classList.contains(this.classActive)).to.be.false;
-        expect(this.masEditor.markdownEditorNode.classList.contains(this.classActive)).to.be.true;
+        expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.false;
+        expect(this.masEditor.$markdownContainer.hasClass(this.classActive)).to.be.true;
       });
 
       // TODO: Add a test for button mode switching
       // it('ensures the selected mode button has an active class', function() {
-      //   expect(this.masEditor.toolbarNode.classList.contains(this.classActive)).to.be.true;
+      //   expect(this.masEditor.toolbarNode.hasClass(this.classActive)).to.be.true;
       // });
 
       it('should add active class to the editor node', function() {
-        this.masEditor.show(this.masEditor.htmlEditorNode);
-        expect(this.masEditor.htmlEditorNode.classList.contains(this.classActive)).to.be.true;
+        this.masEditor.show(this.masEditor.$htmlContainer);
+        expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.true;
       });
 
       it('should remove active class from the editor node', function() {
-        this.masEditor.hide(this.masEditor.htmlEditorNode);
-        expect(this.masEditor.htmlEditorNode.classList.contains(this.classActive)).to.be.false;
+        this.masEditor.hide(this.masEditor.$htmlContainer);
+        expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.false;
       });
     });
 
@@ -80,13 +76,13 @@ describe('MAS Editor', function () {
       });
 
       it('should catch form submit and route through handler function', function(){
-        var spy = sinon.spy(this.masEditor, 'handleSubmit');
+        var spy = sinon.spy(this.masEditor, '_handleFormSubmit');
         expect(spy).to.have.been.called;
       });
 
       it('should call changeMode when a mode button is clicked', function(){
         var spy = sinon.spy(this.masEditor, 'changeMode');
-        this.masEditor.switchModeTriggerNodes[0].click();
+        this.masEditor.$switchModeContainer.find('[value="markdown"]').click();
         expect(spy.called).to.be.true;
       });
     });
