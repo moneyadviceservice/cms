@@ -18,12 +18,9 @@
 
 .search__item {
   display: inline-block;
-
-  &:first-child {
-    margin-right: 10px;
-  }
 }
 
-.search__action {
-
+.search__item--input {
+  margin-left: 10px;
+  margin-right: 10px;
 }

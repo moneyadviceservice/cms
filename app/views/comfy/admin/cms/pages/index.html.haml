@@ -13,6 +13,7 @@
             %span.search__item
               - if params[:search].present?
                 = "#{@pages.count} pages found for '#{params[:search]}'"
+            %span.search__item.search__item--input
               = label_tag(:search, nil, class: 'visually-hidden')
               = text_field_tag(:search, params[:search], placeholder: 'Keyword', class: 'form__input form__input--constrained search__input')
               = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
