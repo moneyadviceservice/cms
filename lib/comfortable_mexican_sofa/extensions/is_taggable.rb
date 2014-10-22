@@ -10,7 +10,7 @@ module ComfortableMexicanSofa::IsTaggable
     def is_taggable
       include ComfortableMexicanSofa::IsTaggable::InstanceMethods
       has_many :taggings,  as: :taggable
-      has_many :keywords, through: :taggings, class_name: "Tag", foreign_key: "tag_id", source: :tag
+      has_many :keywords, through: :taggings, class_name: 'Tag', foreign_key: 'tag_id', source: :tag
       accepts_nested_attributes_for :keywords
       a_tag_has_many_of_these_through_taggings
     end
@@ -20,7 +20,7 @@ module ComfortableMexicanSofa::IsTaggable
 
       # Create an inverse association from ::Tag model to this taggable one.
       def a_tag_has_many_of_these_through_taggings
-        ::Tag.class_exec(self.name, self.name.demodulize.underscore.pluralize.to_sym) do |class_name, association_name|
+        ::Tag.class_exec(name, name.demodulize.underscore.pluralize.to_sym) do |class_name, association_name|
           has_many association_name, class_name: class_name, through: :taggings, source: :taggable, source_type: class_name
         end
       end
