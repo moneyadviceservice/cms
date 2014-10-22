@@ -21,6 +21,10 @@ describe('Mirror Input Value', function () {
     }, done);
   });
 
+  afterEach(function() {
+    this.$html.remove();
+  });
+
   describe('General', function () {
     beforeEach(function (done) {
       this.targetKeyupSpy = sinon.spy(this.MirrorInputValue.prototype, '_handleTargetKeyup');

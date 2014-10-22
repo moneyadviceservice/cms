@@ -21,6 +21,10 @@ describe('Hide and Remove element', function () {
     }, done);
   });
 
+  afterEach(function() {
+    this.$html.remove();
+  });
+
   describe('Clicking the close node', function () {
     beforeEach(function (done) {
       this.elementHider = new this.ElementHider(this.$html);

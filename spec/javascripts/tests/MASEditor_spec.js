@@ -21,6 +21,10 @@ describe('MAS Editor', function () {
     }, done);
   });
 
+  afterEach(function() {
+    this.$html.remove();
+  });
+
   describe('General', function () {
     describe('Initialisation', function () {
       beforeEach(function (done) {
