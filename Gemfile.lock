@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/dough.git
-  revision: 14bb241b61750f65a0b0d08d46efc91a16b75706
+  revision: 8c96e19d71e7ebbae021269c6c746fa6285e8fda
   specs:
-    dough-ruby (3.2.0)
+    dough-ruby (4.0.0)
       activesupport
       rails (>= 3.2)
       sass-rails
@@ -392,7 +392,7 @@ DEPENDENCIES
   comfortable_mexican_sofa (~> 1.12.1.0)
   devise
   dotenv-rails
-  dough-ruby (~> 3.0)!
+  dough-ruby (~> 4.0)!
   hippo_xml_parser
   jbuilder (~> 2.0)
   jquery-rails
