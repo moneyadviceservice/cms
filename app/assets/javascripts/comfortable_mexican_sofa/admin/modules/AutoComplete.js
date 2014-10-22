@@ -12,8 +12,9 @@ define(['jquery','DoughBaseComponent','chosen'], function ($, DoughBaseComponent
   AutoCompleteProto = AutoComplete.prototype;
 
   AutoCompleteProto.init = function(initialised) {
+    var placeholderText = this.$el.attr('data-dough-placeholder-text');
     this.$el.chosen({
-      placeholder_text_multiple: this.$el.attr('data-dough-placeholder-text') || 'Enter text',
+      placeholder_text_multiple: !!placeholderText? placeholderText : ' ',
       width: "100%",
       single_backstroke_delete: false,
       inherit_select_classes: true
