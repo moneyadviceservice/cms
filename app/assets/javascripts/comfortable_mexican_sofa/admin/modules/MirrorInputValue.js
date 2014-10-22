@@ -41,7 +41,8 @@ define([
     this.$targetInput.val(this.$triggerInput.val());
   };
 
-  MirrorInputValueProto._handleTargetKeyup = function() {
+  MirrorInputValueProto._handleTargetKeyup = function(e) {
+    if(e.keyCode === 9) return;
     this.destroy();
   };
 

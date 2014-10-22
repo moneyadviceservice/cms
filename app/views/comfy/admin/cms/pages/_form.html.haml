@@ -1,5 +1,3 @@
-- dough_component_slugifier = @page.new_record? ? ' Slugifier' : ''
-
 - content_for :nav_secondary do
   %li.nav-secondary__item.nav-secondary__item--right
     = render 'comfy/admin/cms/sites/mirrors', :object => @page
@@ -15,7 +13,7 @@
 = render 'comfy/admin/cms/partials/page_form_before', :object => form
 
 .l-panel-content.l-panel-content--form
-  .l-constrained{:data => {dough_component: 'MirrorInputValue Slugifier'}}
+  .l-constrained{:data => dough_component(@page.new_record?, ['MirrorInputValue','Slugifier'])}
     = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', :slugify => @page.new_record?}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
@@ -31,7 +29,7 @@
     = render 'tags/shared/form',                         form: form
 
     = form.text_field :meta_description
-		= form.text_field :meta_title, :data => {'dough-mirrorinputvalue-target' => ''}
+    = form.text_field :meta_title, :data => {'dough-mirrorinputvalue-target' => ''}
 
     .form-group
       .form__label-heading
