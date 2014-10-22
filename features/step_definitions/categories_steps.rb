@@ -7,6 +7,7 @@ Given(/^I have an article with(out)? categories$/) do |uncategorized|
 end
 
 When(/^I visit the article's edit page$/) do
+  step("I am logged in")
   edit_page.load(site: cms_site.id, page: cms_page.id)
 end
 

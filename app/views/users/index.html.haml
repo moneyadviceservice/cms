@@ -1,0 +1,20 @@
+.l-panel-content
+  .l-constrained
+    %h2 Users
+
+    %table.table
+      %tr
+        %th name
+        %th email
+        %th edit
+      %tbody
+        -@users.each do |user|
+          %tr
+            %td
+              =user.name
+            %td
+              =user.email
+            %td
+              =link_to "edit", edit_user_path(user)
+
+    =link_to "Create User", new_user_path, :class => "t-new-user"

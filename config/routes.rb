@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, class_name: "Comfy::Cms::User"
+
   resources :word_documents
 
   scope '/admin' do
+    resources :users
     resources :tags, only: [:index, :create] do
       collection do
         get    :starting_by
@@ -19,5 +22,4 @@ Rails.application.routes.draw do
 
   # Make sure this routeset is defined last
   comfy_route :cms, :sitemap => false
-
 end

@@ -29,6 +29,7 @@ gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
 gem 'hippo_xml_parser'
 
 gem 'remotipart', '~> 1.2'
+gem 'devise'
 
 group :development do
   gem 'spring'
