@@ -23,12 +23,20 @@
   text-transform: uppercase;
 }
 
-.button--h-match-input-height .button__text{
-  line-height: $button-match-input-height;
-  height: $button-match-input-height;
-  padding-bottom: 0;
-  padding-top: 0;
-  vertical-align: middle;
+// Search button
+
+.button--search .button__text {
+  @extend %button-input-height-inner;
+}
+
+.button--search-action {
+  border-radius: 0;
+}
+
+.button--search-action .button__text {
+  @extend %button-input-height-inner;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 // Article button

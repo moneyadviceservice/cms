@@ -36,7 +36,9 @@ $line-height: 16;
 $color-text-default: $color-grey-alpha;
 $base-font-size: 16 !default;
 
-$baseline-unit: if($responsive, 0.375rem, 6px);
+$baseline-unit-standard: 0.6px;
+$baseline-unit-responsive: 0.375rem;
+$baseline-unit: if($responsive, $baseline-unit-responsive, $baseline-unit-standard);
 
 // Navigation
 $color-nav-background: $color-grey-alpha;
@@ -73,7 +75,7 @@ $color-tags-list-foreground: $color-white;
 
 // Buttons
 $input-height: $baseline-unit*5;
-$button-match-input-height: $input-height;
+$button-input-height: (parseInt($baseline-unit*5) + (2 / $line-height)) * 1rem;
 $color-button-foreground: $color-white;
 $color-button-foreground-hover: $color-green-alpha;
 $color-button-action-background: $color-blue-alpha;

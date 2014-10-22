@@ -1,0 +1,26 @@
+// Search - main content search
+//
+// Styleguide Search
+
+.search {}
+
+.search--header {
+  text-align: right;
+}
+
+.search * {
+  vertical-align: middle;
+}
+
+.search__input {
+  margin-right: -5px;
+}
+
+.search__item {
+  display: inline-block;
+}
+
+.search__item--input {
+  margin-left: 10px;
+  margin-right: 10px;
+}
