@@ -1,9 +1,9 @@
-.l-editor{:data => {'dough-component' => 'MASEditor'}}
-  %nav.toolbar.js-toolbar
+.l-editor
+  %nav.toolbar{data: {dough_maseditor_toolbar: true}}
 
     .toolbar__inner
 
-      .toolbar__item-group.js-html-editor-toolbar
+      .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
         .toolbar__item-group
           =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
             %span.fa.fa-bold
@@ -25,7 +25,7 @@
           =button_tag("Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
             %span.fa.fa-square-o
 
-      .toolbar__item-group.js-switch-mode-buttons
+      .toolbar__item-group{data: {dough_maseditor_mode_switch: true}}
         .toggle
           =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control js-switch-mode')
           =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control js-switch-mode')
@@ -37,10 +37,10 @@
         = button_tag(class: 'js-activate-word-upload-form button button--action button--secondary', type: 'button') do
           %span.button__text Upload Word Doc
 
-  .editor.editor--html.is-active.js-html-editor
-    .editor__content.js-html-editor-content
+  .editor.editor--html.is-active{data: {dough_maseditor_html_container: true}}
+    .editor__content.theme.theme--dough{data: {dough_maseditor_html_content: true}}
 
-  .editor.editor--markdown.js-markdown-editor
-    %textarea.editor__content.js-markdown-editor-content{ name: "#{fieldname}[blocks_attributes][#{index}][content]" }
+  .editor.editor--markdown{data: {dough_maseditor_markdown_container: true}}
+    %textarea.editor__content.editor__content--markdown{ name: "#{fieldname}[blocks_attributes][#{index}][content]", data: {dough_maseditor_markdown_content: true} }
       =editor.content
     %input{type: 'hidden', name: "#{fieldname}[blocks_attributes][#{index}][identifier]", value: 'content'}
