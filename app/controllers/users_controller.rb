@@ -1,4 +1,7 @@
 class UsersController < Comfy::Admin::Cms::PagesController
+  skip_before_action :load_cms_page
+  skip_before_action :build_file
+
   def index
     @users = Comfy::Cms::User.all
     render cms_site: Comfy::Cms::Site.first.identifier
