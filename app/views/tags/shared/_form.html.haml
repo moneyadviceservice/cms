@@ -1,7 +1,5 @@
 - object = form.object
-= form.form_group :label => {:text => t('.label')}, :class => '.tags' do
-  .taggle-container.js-tags-display
-    = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {hide_label: :true}, include_blank: false, multiple: true,
-                             id:    'tags--select',
-                             class: 't-tags-select',
-                             data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
+= form.collection_select(:keywords_attributes, Tag.all, :id, :value, {label: t('.label')}, include_blank: false, multiple: true,
+                         id:    'tags--select',
+                         class: 't-tags-select',
+                         data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
