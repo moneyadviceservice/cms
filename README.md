@@ -2,7 +2,7 @@
 
 The MAS CMS.
 
-## Install front-end dependencies
+## Installing front-end dependencies
 
 ```sh
 npm install
