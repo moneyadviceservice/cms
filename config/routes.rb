@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   get '/version', to: 'versions#show'
-  get '/frontend', to: 'frontend#index'
+  get '/styleguide', to: 'styleguide#index'
 
   root to: redirect('/admin')
 
