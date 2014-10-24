@@ -1,19 +1,20 @@
-describe('Popover Collapsable', function () {
+describe('Popover', function () {
   'use strict';
 
   beforeEach(function(done) {
     var self = this;
     requirejs([
       'jquery',
-      'PopoverCollapsable'
+      'Popover'
     ],
     function (
       $,
-      PopoverCollapsable
+      Popover
     ) {
-      self.$html = $(window.__html__['spec/javascripts/fixtures/PopoverCollapsable.html']).appendTo('body');
-      self.fixture = self.$html.find('[data-dough-component="PopoverCollapsable"]');
-      self.PopoverCollapsable = PopoverCollapsable;
+      self.$html = $(window.__html__['spec/javascripts/fixtures/Popover.html']).appendTo('body');
+      self.fixture = self.$html.find('[data-dough-component="Popover"]');
+      self.Popover = Popover;
+      $('body').height(1000);
       done();
     }, done);
   });
@@ -33,7 +34,7 @@ describe('Popover Collapsable', function () {
   describe('General', function () {
     describe('Position left', function () {
       beforeEach(function (done) {
-        this.component = new this.PopoverCollapsable(this.fixture, {
+        this.component = new this.Popover(this.fixture, {
           direction: 'left'
         });
         this.component.init();
@@ -52,7 +53,7 @@ describe('Popover Collapsable', function () {
 
     describe('Position right', function () {
       beforeEach(function (done) {
-        this.component = new this.PopoverCollapsable(this.fixture, {
+        this.component = new this.Popover(this.fixture, {
           direction: 'right'
         });
         this.component.init();
@@ -72,7 +73,7 @@ describe('Popover Collapsable', function () {
 
     describe('Position Top', function () {
       beforeEach(function (done) {
-        this.component = new this.PopoverCollapsable(this.fixture, {
+        this.component = new this.Popover(this.fixture, {
           direction: 'top'
         });
         this.component.init();
@@ -84,14 +85,14 @@ describe('Popover Collapsable', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(getBottomEdgePosition($target)).to.be.above($trigger.position().top);
+        expect(getBottomEdgePosition($target)).to.be.equal($trigger.position().top);
         expect($target.position().top).to.be.above(0);
       });
     });
 
     describe('Position Bottom', function () {
       beforeEach(function (done) {
-        this.component = new this.PopoverCollapsable(this.fixture, {
+        this.component = new this.Popover(this.fixture, {
           direction: 'bottom'
         });
         this.component.init();
