@@ -1,5 +1,5 @@
 - if item_taggable?(form.object)
-  - form.object.is_mirrored_with_taggings = true if form.object.respond_to?(:is_mirrored_with_taggings)
+  - form.object.is_mirrored_with_taggings = true
   = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {label: t('.label')}, include_blank: false, multiple: true,
                            id:    'tags--select',
                            class: 't-tags-select',
