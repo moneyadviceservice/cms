@@ -5,18 +5,11 @@ Then(/^I should be able to preview it in a new window$/) do
 end
 
 When(/^I am working on an draft article$/) do
-  cms_site
-  cms_page.save_unsaved!
-  step("I am logged in")
-  edit_page.load(site: cms_site.id, page: cms_page.id)
+  edit_page.load(site: cms_site.id, page: cms_draft_page.id)
 end
 
 When(/^I am working on a published article$/) do
-  cms_site
-  cms_page.save_unsaved!
-  cms_page.publish!
-  step("I am logged in")
-  edit_page.load(site: cms_site.id, page: cms_page.id)
+  edit_page.load(site: cms_site.id, page: cms_published_page.id)
 end
 
 Then(/^I should be able to publish it$/) do

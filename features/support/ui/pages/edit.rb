@@ -11,11 +11,14 @@ module UI::Pages
     element :preview, '#preview'
 
     element :categories, '.t-categories-select'
-    element :save, '.t-save_unsaved'
+    element :save_button, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '.categories .chosen-choices'
     elements :categories_selected, '.t-categories-select > option[selected]'
+    element :tags_input_box, '.t-tags-select .search-field input'
+    elements :tags_choices,  '.t-tags-select > option'
+    elements :tags_chosen, '.t-tags-select .search_choice'
     element :site_toggle_cy, "#site__mirrors input#edit-mode_cy"
     element :site_toggle_en, "#site__mirrors input#edit-mode_en"
     element :status, '#t-status'

@@ -11,8 +11,11 @@ module UI::Pages
     element :publish, '#new_page input.btn-primary'
     element :upload_word, '#upload-word-doc'
     element :page_name, '#page_label'
+    element :tags_input_box, '.t-tags-select .search-field input'
+    elements :tags_choices,  '.t-tags-select option'
+    elements :tags_chosen,   '.t-tags-select .search_choice'
     element :meta_description, '#page_meta_description'
     element :meta_title, '#page_meta_title'
-    element :save, '.t-save_unsaved'
+    element :save_button, '.t-save_unsaved'
   end
 end

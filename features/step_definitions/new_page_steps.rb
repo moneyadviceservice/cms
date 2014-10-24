@@ -1,4 +1,4 @@
-When(/^I create a new article$/) do
+When(/^I (?:am creating|create) a new article$/) do
   site = cms_site.id; cms_layout
   step("I am logged in")
   new_page.load(site: site)
@@ -26,10 +26,9 @@ end
 
 When(/^I save the article page$/) do
   new_page.page_name.set('New page')
-  new_page.save.click
+  new_page.save_button.click
 end
 
 Then(/^the article's "(.*?)" should be "(.*?)"$/) do |field, value|
   expect(Comfy::Cms::Page.last.send(field.to_sym)).to eq(value)
 end
-

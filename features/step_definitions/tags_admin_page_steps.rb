@@ -108,7 +108,7 @@ end
 
 def show_existing_tags(prefix:)
   @page.tags_listing.wait_until_tag_index_links_visible
-  click_link(prefix)
+  click_link_or_button(prefix)
   wait_for_ajax_complete
   @page.tags_listing.list.wait_for_tags
 end

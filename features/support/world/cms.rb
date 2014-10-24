@@ -34,6 +34,26 @@ module World
       self.a_page[locale]
     end
 
+    def cms_draft_page
+      cms_site
+      cms_page.save_unsaved!
+      log_me_in!
+      cms_page
+    end
+
+    def cms_published_page
+      cms_draft_page.publish!
+      cms_page
+    end
+
+    def set_current_user(email: 'user@test.com', password: 'password')
+      @current_user = Comfy::Cms::User.create_with(password: password).find_or_create_by!(:email => email)
+    end
+
+    def log_me_in!(user = set_current_user)
+      login_as(user, :scope => :user)
+    end
+
     private
 
     def identifier
