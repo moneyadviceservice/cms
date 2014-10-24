@@ -4,7 +4,9 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   var Popover,
       defaultConfig = {
-        direction: 'top'
+        direction: 'top',
+        halign: true,
+        valign: true
       };
 
   Popover = function($el, config) {
@@ -27,7 +29,6 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$target.css({
       position: 'absolute'
     });
-    console.log(this.getElementBoundaries(this.$trigger));
 
     $(window).on('resize', function() {
       clearTimeout(resize);
@@ -49,38 +50,72 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   };
 
   Popover.prototype.setOffset = function() {
-    this.$target.css(this.calculateOffsetFromAnchor(this.$trigger, this.$target, this.config.direction));
+    this.$target.css(this.calculateOffsetFromAnchor(this.config.direction));
   };
 
-  Popover.prototype.calculateOffsetFromAnchor = function($anchor, $target, direction) {
+  Popover.prototype.alignElement = function(val, direction) {
+    return (val -= this.getElementCenterPosition(this.$target)[direction]) +
+        (val += this.getElementCenterPosition(this.$trigger)[direction]);
+  };
+
+  Popover.prototype.calculateOffsetFromAnchor = function(direction) {
     var dispatch;
 
     dispatch = {
       top: function() {
+        var left = this.getElementBoundaries(this.$trigger).left;
+
+        if(this.config.halign) {
+          left = this.alignElement(left, 'horizontal');
+        }
+        if(left < 0) {
+          left = 0;
+        }
         return {
-          left: this.unitise(this.getElementBoundaries($anchor).left,'px'),
-          top: this.unitise(this.getElementBoundaries($anchor).bottom - $anchor.outerHeight() - $target.outerHeight(),'px')
+          left: Math.round(left),
+          top: Math.round(this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight())
         };
       },
 
       bottom: function() {
+        var left = this.getElementBoundaries(this.$trigger).left;
+
+        if(this.config.halign) {
+          left = this.alignElement(left, 'horizontal');
+        }
+        if(left < 0) {
+          left = 0;
+        }
+
         return {
-          left: this.unitise(this.getElementBoundaries($anchor).left,'px'),
-          top: this.unitise(this.getElementBoundaries($anchor).bottom,'px')
+          left: Math.round(left),
+          top: Math.round(this.getElementBoundaries(this.$trigger).bottom)
         };
       },
 
       left: function() {
+        var top = this.getElementBoundaries(this.$trigger).top;
+
+        if(this.config.valign) {
+          top -= this.getElementCenterPosition(this.$target).vertical;
+          top += this.getElementCenterPosition(this.$trigger).vertical;
+        }
         return {
-          right: this.unitise($('body').width() - this.getElementBoundaries($anchor).left,'px'),
-          top: this.unitise(this.getElementBoundaries($anchor).top,'px')
+          right: Math.round($('body').width() - this.getElementBoundaries(this.$trigger).left),
+          top: Math.round(top)
         };
       },
 
       right: function() {
+        var top = this.getElementBoundaries(this.$trigger).top;
+
+        if(this.config.valign) {
+          top -= this.getElementCenterPosition(this.$target).vertical;
+          top += this.getElementCenterPosition(this.$trigger).vertical;
+        }
         return {
-          left: this.unitise(this.getElementBoundaries($anchor).left + $anchor.outerWidth(),'px'),
-          top: this.unitise(this.getElementBoundaries($anchor).top,'px')
+          left: Math.round(this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth()),
+          top: Math.round(top)
         };
       }
     };
@@ -101,10 +136,6 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       horizontal: $el.outerWidth() / 2,
       vertical: $el.outerHeight() / 2
     };
-  };
-
-  Popover.prototype.unitise = function(val, unit) {
-    return Math.round(val) + unit;
   };
 
   return Popover;
