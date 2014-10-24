@@ -16,7 +16,7 @@ describe('Popover', function () {
       self.Popover = Popover;
       $('body')
         .height(1000)
-        .width(600);
+        .width(1000);
       done();
     }, done);
   });
