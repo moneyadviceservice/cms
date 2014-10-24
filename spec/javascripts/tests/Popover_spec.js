@@ -14,7 +14,9 @@ describe('Popover', function () {
       self.$html = $(window.__html__['spec/javascripts/fixtures/Popover.html']).appendTo('body');
       self.fixture = self.$html.find('[data-dough-component="Popover"]');
       self.Popover = Popover;
-      $('body').height(1000);
+      $('body')
+        .height(1000)
+        .width(600);
       done();
     }, done);
   });
@@ -22,14 +24,6 @@ describe('Popover', function () {
   afterEach(function() {
     this.$html.remove();
   });
-
-  function getBottomEdgePosition($el) {
-    return $el.position().top + $el.height();
-  }
-
-  function getRightEdgePosition($el) {
-    return $el.position().left + $el.width();
-  }
 
   describe('General', function () {
     describe('Position left', function () {
@@ -46,7 +40,7 @@ describe('Popover', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(getRightEdgePosition($target)).to.be.below(this.component.$trigger.position().left);
+        expect(this.component.getElementBoundaries($target).right).to.be.below(this.component.$trigger.position().left);
         expect($target.position().left).to.be.above(0);
       });
     });
@@ -65,7 +59,7 @@ describe('Popover', function () {
             $target = this.component.$target;
 
         $trigger.click();
-        expect($target.position().left).to.be.above(getRightEdgePosition($trigger));
+        expect($target.position().left).to.be.equal(this.component.getElementBoundaries($trigger).right);
         expect($target.position().top).to.be.above(0);
       });
     });
@@ -85,7 +79,7 @@ describe('Popover', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(getBottomEdgePosition($target)).to.be.equal($trigger.position().top);
+        expect(this.component.getElementBoundaries($target).bottom).to.be.equal($trigger.position().top);
         expect($target.position().top).to.be.above(0);
       });
     });
@@ -105,7 +99,7 @@ describe('Popover', function () {
 
         $trigger.click();
         expect($target.position().top).to.be.above($trigger.position().top);
-        expect(getBottomEdgePosition($target)).to.be.below($('body').height());
+        expect(this.component.getElementBoundaries($target).bottom).to.be.below($('body').height());
       });
 
       it('should reposition itself when the window is resized', function() {
