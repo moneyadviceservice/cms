@@ -95,8 +95,8 @@ ActiveRecord::Schema.define(version: 20141014143831) do
     t.string   "state"
     t.string   "meta_description"
     t.string   "preview_cache"
-    t.string   "meta_title"
     t.boolean  "regulated",                         default: false
+    t.string   "meta_title"
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
@@ -156,6 +156,14 @@ ActiveRecord::Schema.define(version: 20141014143831) do
   add_index "comfy_cms_users", ["email"], name: "index_comfy_cms_users_on_email", unique: true, using: :btree
   add_index "comfy_cms_users", ["reset_password_token"], name: "index_comfy_cms_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id"
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tags", force: true do |t|
     t.string   "value"
     t.datetime "created_at"
@@ -164,11 +172,4 @@ ActiveRecord::Schema.define(version: 20141014143831) do
 
   add_index "tags", ["value"], name: "index_tags_on_value", unique: true, using: :btree
 
-  create_table "taggings", force: true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 end

@@ -10,7 +10,10 @@ module TagsHelper
 
   # Renders the link to gather the list of tags that start with the given prefix:
   def link_to_tags_starting_by(prefix:)
-    link_to(prefix, starting_by_tags_path(prefix: prefix), remote: :true, data: {no_turbolink: :true, prefix: prefix}, class:'nav-pagination__item js-tags-starting-by-link')
+    link_to(prefix, starting_by_tags_path(prefix: prefix),
+            remote: :true,
+            data:   {no_turbolink: :true, prefix: prefix},
+            class:  'nav-pagination__item js-tags-starting-by-link')
   end
 
   # The header to display in the list of existing tags.

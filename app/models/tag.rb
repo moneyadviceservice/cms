@@ -10,7 +10,7 @@ class Tag < ActiveRecord::Base
   # -- Validations ----------------------------------------------------------
   validates_presence_of   :value
   validates_uniqueness_of :value
-  validates_format_of     :value, :with => /\A[\-a-z0-9 ]+\z/i
+  validates_format_of     :value, with: /\A[\-a-z0-9 ]+\z/i
 
   # -- Scopes ---------------------------------------------------------------
   scope :valued,      ->(value) {where(value: value.is_a?(Hash) ? value[:value] : value)}
