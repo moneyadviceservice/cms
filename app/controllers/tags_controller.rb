@@ -5,7 +5,6 @@ class TagsController < Comfy::Admin::Cms::BaseController
   before_action :build_tag_from_params, only: [:create]
   before_action :find_tag_from_params,  only: [:delete_from_value]
 
-
   def index
   end
 
@@ -24,7 +23,6 @@ class TagsController < Comfy::Admin::Cms::BaseController
     render js: "#{@tag.present? && @tag.destroyed?}"
   end
 
-
   private
 
   # Filters
@@ -37,7 +35,6 @@ class TagsController < Comfy::Admin::Cms::BaseController
     @tag = Tag.valued(tag_params).first
   end
 
-
   # Params
 
   def tag_params
@@ -47,5 +44,4 @@ class TagsController < Comfy::Admin::Cms::BaseController
   def starting_prefix_param
     params.require(:prefix)
   end
-
 end

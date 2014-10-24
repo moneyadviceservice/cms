@@ -52,7 +52,7 @@ class HippoImport
           p.blocks = [
             Comfy::Cms::Block.new(identifier: 'content', content: decoded(record.body.to_s))
           ]
-          p.save unless (page && page.state == "published")
+          p.save unless page && page.state == 'published'
         end
       rescue => e
         puts "ERROR: #{e.inspect}"

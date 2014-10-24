@@ -1,4 +1,4 @@
-RSpec.describe WordDocumentsController, :type => :controller do
+RSpec.describe WordDocumentsController, type: :controller do
   include_context 'cms'
 
   describe 'create' do
