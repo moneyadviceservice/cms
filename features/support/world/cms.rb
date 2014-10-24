@@ -47,11 +47,11 @@ module World
     end
 
     def set_current_user(email: 'user@test.com', password: 'password')
-      @current_user = Comfy::Cms::User.create_with(password: password).find_or_create_by!(:email => email)
+      @current_user = Comfy::Cms::User.create_with(password: password).find_or_create_by!(email: email)
     end
 
     def log_me_in!(user = set_current_user)
-      login_as(user, :scope => :user)
+      login_as(user, scope: :user)
     end
 
     private

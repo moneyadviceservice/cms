@@ -10,7 +10,7 @@ module ComfortableMexicanSofa::IsTaggable
     def is_taggable
       include ComfortableMexicanSofa::IsTaggable::InstanceMethods
       attr_accessor :is_mirrored_with_taggings
-      has_many :taggings,  as: :taggable, dependent: :destroy, validate: false
+      has_many :taggings, as: :taggable, dependent: :destroy, validate: false
       has_many :keywords, through: :taggings, class_name: "Tag", foreign_key: "tag_id", source: :tag
       accepts_nested_attributes_for :keywords
       after_save :sync_mirrors_with_taggings
@@ -79,4 +79,3 @@ module ComfortableMexicanSofa::IsTaggable
 end
 
 ActiveRecord::Base.send(:include, ComfortableMexicanSofa::IsTaggable)
-
