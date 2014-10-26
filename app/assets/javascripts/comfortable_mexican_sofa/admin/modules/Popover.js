@@ -46,16 +46,11 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   };
 
   Popover.prototype.updatePosition = function() {
-    this.setOffset();
-  };
-
-  Popover.prototype.setOffset = function() {
     this.$target.css(this.calculateOffsetFromAnchor(this.config.direction));
   };
 
-  Popover.prototype.alignElement = function(val, direction) {
-    return (val -= this.getElementCenterPosition(this.$target)[direction]) +
-        (val += this.getElementCenterPosition(this.$trigger)[direction]);
+  Popover.prototype.centerAlignTargetToTrigger = function(val, direction) {
+    return val = (val - this.getElementCenterPosition(this.$target)[direction]) + this.getElementCenterPosition(this.$trigger)[direction];
   };
 
   Popover.prototype.calculateOffsetFromAnchor = function(direction) {
@@ -66,7 +61,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
         var left = this.getElementBoundaries(this.$trigger).left;
 
         if(this.config.halign) {
-          left = this.alignElement(left, 'horizontal');
+          left = this.centerAlignTargetToTrigger(left, 'horizontal');
         }
         if(left < 0) {
           left = 0;
@@ -81,12 +76,11 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
         var left = this.getElementBoundaries(this.$trigger).left;
 
         if(this.config.halign) {
-          left = this.alignElement(left, 'horizontal');
+          left = this.centerAlignTargetToTrigger(left, 'horizontal');
         }
         if(left < 0) {
           left = 0;
         }
-
         return {
           left: Math.round(left),
           top: Math.round(this.getElementBoundaries(this.$trigger).bottom)
@@ -97,8 +91,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
         var top = this.getElementBoundaries(this.$trigger).top;
 
         if(this.config.valign) {
-          top -= this.getElementCenterPosition(this.$target).vertical;
-          top += this.getElementCenterPosition(this.$trigger).vertical;
+          top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {
           right: Math.round($('body').width() - this.getElementBoundaries(this.$trigger).left),
@@ -110,8 +103,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
         var top = this.getElementBoundaries(this.$trigger).top;
 
         if(this.config.valign) {
-          top -= this.getElementCenterPosition(this.$target).vertical;
-          top += this.getElementCenterPosition(this.$trigger).vertical;
+          top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {
           left: Math.round(this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth()),
