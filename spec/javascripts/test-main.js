@@ -35,6 +35,9 @@ requirejs.config({
     'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
     'editor-plugin-auto-resize-textarea': bowerPath + 'mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea',
 
+    // Editor Shims
+    'mutationobserver-shim': bowerPath + 'mas-cms-editor/src/app/shims/mutationobserver.min',
+
     // Application modules
     'URLToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLToggler',
     'MASEditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MASEditor',
