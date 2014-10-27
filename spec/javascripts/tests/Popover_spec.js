@@ -24,78 +24,168 @@ describe('Popover', function () {
     this.$html.remove();
   });
 
+  function checkElementCenterFromViewport(component, $el, direction) {
+    return component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction];
+  }
+
   describe('General', function () {
     describe('Position left', function () {
-      beforeEach(function (done) {
-        this.component = new this.Popover(this.$fixture, {
-          direction: 'left'
+      describe('Default', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'left'
+          });
+          this.component.init();
+          done();
         });
-        this.component.init();
-        done();
+
+        it('should position itself to the left of the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(this.component.getElementBoundaries($target).right).to.be.below($('body').width());
+        });
       });
 
-      it('should position itself to the left of the trigger', function() {
-        var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+      describe('With vertical alignment enabled', function () {
+        beforeEach(function (done) {
+          this.$fixture.css({
+            margin: 'auto'
+          });
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'left',
+            valign: true
+          });
+          this.component.init();
+          done();
+        });
 
-        $trigger.click();
-        expect(this.component.getElementBoundaries($target).right).to.be.below($('body').width());
+        it('should vertically centre itself to the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical')).to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+        });
       });
     });
 
     describe('Position right', function () {
-      beforeEach(function (done) {
-        this.component = new this.Popover(this.$fixture, {
-          direction: 'right'
+      describe('Default', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'right'
+          });
+          this.component.init();
+          done();
         });
-        this.component.init();
-        done();
+
+        it('should position itself to the right of the trigger', function() {
+          var $trigger = this.component.$trigger,
+              $target = this.component.$target;
+
+          $trigger.click();
+          expect($target.position().left).to.be.equal(this.component.getElementBoundaries($trigger).right);
+        });
       });
 
-      it('should position itself to the right of the trigger', function() {
-        var $trigger = this.component.$trigger,
-            $target = this.component.$target;
+      describe('With vertical alignment enabled', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'right',
+            valign: true
+          });
+          this.component.init();
+          done();
+        });
 
-        $trigger.click();
-        expect($target.position().left).to.be.equal(this.component.getElementBoundaries($trigger).right);
+        it('should vertically centre itself to the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical')).to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+        });
       });
     });
 
-
     describe('Position Top', function () {
-      beforeEach(function (done) {
-        this.component = new this.Popover(this.$fixture, {
-          direction: 'top'
+      describe('Default', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'top'
+          });
+          this.component.init();
+          done();
         });
-        this.component.init();
-        done();
+
+        it('should position itself above the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(this.component.getElementBoundaries($target).bottom).to.be.equal(Math.round($trigger.position().top));
+        });
       });
 
-      it('should position itself above the trigger', function() {
-        var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+      describe('With horizontal alignment enabled', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'top',
+            halign: true
+          });
+          this.component.init();
+          done();
+        });
 
-        $trigger.click();
-        expect(this.component.getElementBoundaries($target).bottom).to.be.equal(Math.round($trigger.position().top));
+        it('should horizontally centre itself to the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal')).to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+        });
       });
     });
 
     describe('Position Bottom', function () {
-      beforeEach(function (done) {
-        this.component = new this.Popover(this.$fixture, {
-          direction: 'bottom'
+      describe('Default', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'bottom'
+          });
+          this.component.init();
+          done();
         });
-        this.component.init();
-        done();
+
+        it('should position itself below the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect($target.position().top).to.be.above($trigger.position().top);
+          expect(this.component.getElementBoundaries($target).bottom).to.be.below($('body').height());
+        });
       });
 
-      it('should position itself below the trigger', function() {
-        var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+      describe('With horizontal alignment enabled', function () {
+        beforeEach(function (done) {
+          this.component = new this.Popover(this.$fixture, {
+            direction: 'bottom',
+            halign: true
+          });
+          this.component.init();
+          done();
+        });
 
-        $trigger.click();
-        expect($target.position().top).to.be.above($trigger.position().top);
-        expect(this.component.getElementBoundaries($target).bottom).to.be.below($('body').height());
+        it('should horizontally centre itself to the trigger', function() {
+          var $target = this.component.$target,
+              $trigger = this.component.$trigger;
+
+          $trigger.click();
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal')).to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+        });
       });
     });
   });
