@@ -115,17 +115,17 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   Popover.prototype.getElementBoundaries = function($el) {
     return {
-      top: Math.round($el.position().top),
-      bottom: Math.round($el.position().top + $el.outerHeight()),
-      left: Math.round($el.position().left),
-      right: Math.round($el.position().left + $el.outerWidth())
+      top: Math.floor($el.position().top),
+      bottom: Math.floor($el.position().top + $el.outerHeight()),
+      left: Math.floor($el.position().left),
+      right: Math.floor($el.position().left + $el.outerWidth())
     };
   };
 
   Popover.prototype.getElementCenterPosition = function($el) {
     return {
-      horizontal: $el.outerWidth() / 2,
-      vertical: $el.outerHeight() / 2
+      horizontal: Math.floor($el.outerWidth() / 2),
+      vertical: Math.floor($el.outerHeight() / 2)
     };
   };
 

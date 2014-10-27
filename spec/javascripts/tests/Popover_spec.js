@@ -25,7 +25,7 @@ describe('Popover', function () {
   });
 
   function getElementCenterFromViewport(component, $el, direction) {
-    return component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction];
+    return Math.floor(component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction]);
   }
 
   describe('General', function () {
