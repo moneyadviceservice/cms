@@ -19,6 +19,7 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/modules/source-converter/source-converter.js
                                   mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
+                                  mas-cms-editor/src/app/shims/mutationobserver.min.js
                                   comfortable_mexican_sofa/admin/modules/*.js)
 
 # Vendor JavaScript
