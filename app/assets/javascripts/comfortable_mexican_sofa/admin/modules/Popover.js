@@ -67,8 +67,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
           left = 0;
         }
         return {
-          left: Math.round(left),
-          top: Math.round(this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight())
+          left: left,
+          top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
         };
       },
 
@@ -82,8 +82,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
           left = 0;
         }
         return {
-          left: Math.round(left),
-          top: Math.round(this.getElementBoundaries(this.$trigger).bottom)
+          left: left,
+          top: this.getElementBoundaries(this.$trigger).bottom
         };
       },
 
@@ -94,8 +94,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
           top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {
-          right: Math.round($('body').width() - this.getElementBoundaries(this.$trigger).left),
-          top: Math.round(top)
+          right: $('body').width() - this.getElementBoundaries(this.$trigger).left,
+          top: top
         };
       },
 
@@ -106,8 +106,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
           top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {
-          left: Math.round(this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth()),
-          top: Math.round(top)
+          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth(),
+          top: top
         };
       }
     };
@@ -116,10 +116,10 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   Popover.prototype.getElementBoundaries = function($el) {
     return {
-      top: $el.position().top,
-      bottom: $el.position().top + $el.outerHeight(),
-      left: $el.position().left,
-      right: $el.position().left + $el.outerWidth()
+      top: Math.round($el.position().top),
+      bottom: Math.round($el.position().top + $el.outerHeight()),
+      left: Math.round($el.position().left),
+      right: Math.round($el.position().left + $el.outerWidth())
     };
   };
 
