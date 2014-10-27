@@ -49,8 +49,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$target.css(this.calculateOffsetFromAnchor(this.config.direction));
   };
 
-  Popover.prototype.centerAlignTargetToTrigger = function(val, direction) {
-    return val = (val - this.getElementCenterPosition(this.$target)[direction]) + this.getElementCenterPosition(this.$trigger)[direction];
+  Popover.prototype.centerAlignTargetToTrigger = function(pos, direction) {
+    return pos - this.getElementCenterPosition(this.$target)[direction] + this.getElementCenterPosition(this.$trigger)[direction];
   };
 
   Popover.prototype.calculateOffsetFromAnchor = function(direction) {
