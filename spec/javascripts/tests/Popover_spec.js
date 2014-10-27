@@ -24,7 +24,7 @@ describe('Popover', function () {
     this.$html.remove();
   });
 
-  function checkElementCenterFromViewport(component, $el, direction) {
+  function getElementCenterFromViewport(component, $el, direction) {
     return component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction];
   }
 
@@ -66,8 +66,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical'))
-            .to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+          expect(getElementCenterFromViewport(this.component, $trigger, 'vertical'))
+            .to.equal(getElementCenterFromViewport(this.component, $target, 'vertical'));
         });
       });
     });
@@ -106,8 +106,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical'))
-            .to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+          expect(getElementCenterFromViewport(this.component, $trigger, 'vertical'))
+            .to.equal(getElementCenterFromViewport(this.component, $target, 'vertical'));
         });
       });
     });
@@ -147,8 +147,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal'))
-            .to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+          expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+            .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
         });
       });
     });
@@ -188,8 +188,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal'))
-            .to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+          expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+            .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
         });
       });
     });
