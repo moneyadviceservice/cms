@@ -53,64 +53,51 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   };
 
   Popover.prototype.calculateOffsetFromTrigger = function(direction) {
-    var dispatch;
+    var directions;
+    
+    function calculateLeft() {
+      var left = this.getElementBoundaries(this.$trigger).left;
 
-    dispatch = {
-      top: function() {
-        var left = this.getElementBoundaries(this.$trigger).left;
+      if(this.config.centerAlign) {
+        left = this.centerAlignTargetToTrigger(left, 'horizontal');
+      }
+      if(left < 0) {
+        left = 0;
+      }
+      return left;
+    }
 
-        if(this.config.centerAlign) {
-          left = this.centerAlignTargetToTrigger(left, 'horizontal');
-        }
-        if(left < 0) {
-          left = 0;
-        }
-        return {
-          left: left,
-          top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
-        };
+    function calculateTop() {
+      var top = this.getElementBoundaries(this.$trigger).top;
+
+      if(this.config.centerAlign) {
+        top = this.centerAlignTargetToTrigger(top, 'vertical');
+      }
+      return top;
+    }
+
+    directions = {
+      top:  {
+        left: calculateLeft.call(this),
+        top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
       },
 
-      bottom: function() {
-        var left = this.getElementBoundaries(this.$trigger).left;
-
-        if(this.config.centerAlign) {
-          left = this.centerAlignTargetToTrigger(left, 'horizontal');
-        }
-        if(left < 0) {
-          left = 0;
-        }
-        return {
-          left: left,
-          top: this.getElementBoundaries(this.$trigger).bottom
-        };
+      bottom: {
+        left: calculateLeft.call(this),
+        top: this.getElementBoundaries(this.$trigger).bottom
       },
 
-      left: function() {
-        var top = this.getElementBoundaries(this.$trigger).top;
-
-        if(this.config.centerAlign) {
-          top = this.centerAlignTargetToTrigger(top, 'vertical');
-        }
-        return {
-          right: $('body').width() - this.getElementBoundaries(this.$trigger).left,
-          top: top
-        };
+      left: {
+        right: $('body').width() - this.getElementBoundaries(this.$trigger).left,
+        top: calculateTop.call(this)
       },
 
-      right: function() {
-        var top = this.getElementBoundaries(this.$trigger).top;
-
-        if(this.config.centerAlign) {
-          top = this.centerAlignTargetToTrigger(top, 'vertical');
-        }
-        return {
-          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth(),
-          top: top
-        };
+      right: {
+        left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth(),
+        top: calculateTop.call(this)
       }
     };
-    return $.proxy((dispatch[direction] || dispatch.right), this)();
+    return directions[direction] || directions.right;
   };
 
   Popover.prototype.getElementBoundaries = function($el) {
