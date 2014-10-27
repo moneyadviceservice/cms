@@ -5,8 +5,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   var Popover,
       defaultConfig = {
         direction: 'top',
-        halign: true,
-        valign: true
+        centerAlign: false
       };
 
   Popover = function($el, config) {
@@ -60,7 +59,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       top: function() {
         var left = this.getElementBoundaries(this.$trigger).left;
 
-        if(this.config.halign) {
+        if(this.config.centerAlign) {
           left = this.centerAlignTargetToTrigger(left, 'horizontal');
         }
         if(left < 0) {
@@ -75,7 +74,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       bottom: function() {
         var left = this.getElementBoundaries(this.$trigger).left;
 
-        if(this.config.halign) {
+        if(this.config.centerAlign) {
           left = this.centerAlignTargetToTrigger(left, 'horizontal');
         }
         if(left < 0) {
@@ -90,7 +89,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       left: function() {
         var top = this.getElementBoundaries(this.$trigger).top;
 
-        if(this.config.valign) {
+        if(this.config.centerAlign) {
           top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {
@@ -102,7 +101,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       right: function() {
         var top = this.getElementBoundaries(this.$trigger).top;
 
-        if(this.config.valign) {
+        if(this.config.centerAlign) {
           top = this.centerAlignTargetToTrigger(top, 'vertical');
         }
         return {

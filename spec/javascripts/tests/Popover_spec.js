@@ -55,7 +55,7 @@ describe('Popover', function () {
           });
           this.component = new this.Popover(this.$fixture, {
             direction: 'left',
-            valign: true
+            centerAlign: true
           });
           this.component.init();
           done();
@@ -66,7 +66,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical')).to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical'))
+            .to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
         });
       });
     });
@@ -94,7 +95,7 @@ describe('Popover', function () {
         beforeEach(function (done) {
           this.component = new this.Popover(this.$fixture, {
             direction: 'right',
-            valign: true
+            centerAlign: true
           });
           this.component.init();
           done();
@@ -105,7 +106,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical')).to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'vertical'))
+            .to.equal(checkElementCenterFromViewport(this.component, $target, 'vertical'));
         });
       });
     });
@@ -125,7 +127,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(this.component.getElementBoundaries($target).bottom).to.be.equal(Math.round($trigger.position().top));
+          expect(this.component.getElementBoundaries($target).bottom)
+            .to.be.equal(Math.round($trigger.position().top));
         });
       });
 
@@ -133,7 +136,7 @@ describe('Popover', function () {
         beforeEach(function (done) {
           this.component = new this.Popover(this.$fixture, {
             direction: 'top',
-            halign: true
+            centerAlign: true
           });
           this.component.init();
           done();
@@ -144,7 +147,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal')).to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+            .to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
         });
       });
     });
@@ -173,7 +177,7 @@ describe('Popover', function () {
         beforeEach(function (done) {
           this.component = new this.Popover(this.$fixture, {
             direction: 'bottom',
-            halign: true
+            centerAlign: true
           });
           this.component.init();
           done();
@@ -184,7 +188,8 @@ describe('Popover', function () {
               $trigger = this.component.$trigger;
 
           $trigger.click();
-          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal')).to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
+          expect(checkElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+            .to.equal(checkElementCenterFromViewport(this.component, $target, 'horizontal'));
         });
       });
     });
