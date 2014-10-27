@@ -34,13 +34,12 @@ describe('Popover', function () {
         done();
       });
 
-      it('should position itself to the left of the trigger without overlapping viewport edge', function() {
+      it('should position itself to the left of the trigger', function() {
         var $target = this.component.$target,
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        // expect(this.component.getElementBoundaries($target).right).to.be.below(this.component.$trigger.position().left);
-        // expect($target.position().left).to.be.above(0);
+        expect(this.component.getElementBoundaries($target).right).to.be.below($('body').width());
       });
     });
 
@@ -53,13 +52,12 @@ describe('Popover', function () {
         done();
       });
 
-      it('should position itself to the right of the trigger without overlapping viewport edge', function() {
+      it('should position itself to the right of the trigger', function() {
         var $trigger = this.component.$trigger,
             $target = this.component.$target;
 
         $trigger.click();
         expect($target.position().left).to.be.equal(this.component.getElementBoundaries($trigger).right);
-        expect($target.position().top).to.be.above(0);
       });
     });
 
@@ -73,13 +71,12 @@ describe('Popover', function () {
         done();
       });
 
-      it('should position itself above the trigger and without overlapping viewport edge', function() {
+      it('should position itself above the trigger', function() {
         var $target = this.component.$target,
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(this.component.getElementBoundaries($target).bottom).to.be.equal($trigger.position().top);
-        expect($target.position().top).to.be.above(0);
+        expect(this.component.getElementBoundaries($target).bottom).to.be.equal(Math.round($trigger.position().top));
       });
     });
 
@@ -92,7 +89,7 @@ describe('Popover', function () {
         done();
       });
 
-      it('should position itself below the trigger and without overlapping viewport edge', function() {
+      it('should position itself below the trigger', function() {
         var $target = this.component.$target,
             $trigger = this.component.$trigger;
 
