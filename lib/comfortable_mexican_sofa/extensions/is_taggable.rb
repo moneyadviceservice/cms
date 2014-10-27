@@ -22,7 +22,7 @@ module ComfortableMexicanSofa
         attr_accessor :is_mirrored_with_taggings
 
         # -- Relationships ----------------------------------------------------
-        has_many :taggings, as: :taggable
+        has_many :taggings, as: :taggable, dependent: :destroy, validate: false
         has_many :keywords, through: :taggings, class_name: 'Tag', foreign_key: 'tag_id', source: :tag
         accepts_nested_attributes_for :keywords
         a_tag_has_many_of_these_through_taggings
