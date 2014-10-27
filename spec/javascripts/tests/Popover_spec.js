@@ -12,11 +12,10 @@ describe('Popover', function () {
       Popover
     ) {
       self.$html = $(window.__html__['spec/javascripts/fixtures/Popover.html']).appendTo('body');
-      self.fixture = self.$html.find('[data-dough-component="Popover"]');
+      self.$fixture = self.$html.find('[data-dough-component="Popover"]');
+      self.$fixture.css({width:'200px'});
       self.Popover = Popover;
-      $('body')
-        .height(1000)
-        .width(1000);
+      $('body').height(1000).width(1000).css({position:'relative'});
       done();
     }, done);
   });
@@ -28,7 +27,7 @@ describe('Popover', function () {
   describe('General', function () {
     describe('Position left', function () {
       beforeEach(function (done) {
-        this.component = new this.Popover(this.fixture, {
+        this.component = new this.Popover(this.$fixture, {
           direction: 'left'
         });
         this.component.init();
@@ -47,7 +46,7 @@ describe('Popover', function () {
 
     describe('Position right', function () {
       beforeEach(function (done) {
-        this.component = new this.Popover(this.fixture, {
+        this.component = new this.Popover(this.$fixture, {
           direction: 'right'
         });
         this.component.init();
@@ -67,7 +66,7 @@ describe('Popover', function () {
 
     describe('Position Top', function () {
       beforeEach(function (done) {
-        this.component = new this.Popover(this.fixture, {
+        this.component = new this.Popover(this.$fixture, {
           direction: 'top'
         });
         this.component.init();
@@ -86,7 +85,7 @@ describe('Popover', function () {
 
     describe('Position Bottom', function () {
       beforeEach(function (done) {
-        this.component = new this.Popover(this.fixture, {
+        this.component = new this.Popover(this.$fixture, {
           direction: 'bottom'
         });
         this.component.init();
