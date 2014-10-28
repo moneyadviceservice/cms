@@ -25,19 +25,6 @@ a.signin{
   top: 30px;
 }
 
-._popover__trigger {
-  background: #ccc;
-  display: inline-block;
-}
-
-._popover__target {
-  background: #ddd;
-  border: 1px solid darken(#ddd,20%);
-  padding: 5px;
-  max-width: 400px;
-  @extend %is-hidden;
-}
-._popover__target.is-active {
-  @extend %is-active;
-  display: inline-block;
+.sg-block {
+  margin-bottom: $baseline-unit*6;
 }
