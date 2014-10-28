@@ -2,12 +2,18 @@
 
 The MAS CMS.
 
-## Install dependencies
+## Installing front-end dependencies
+
+```sh
+npm install
+bowndler install
+```
+
+## Updating Dough
 
 ```sh
 bundle update dough-ruby
-npm install
-bowndler install
+bowndler update
 ```
 
 ## Configuration

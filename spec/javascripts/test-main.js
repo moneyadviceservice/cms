@@ -46,6 +46,7 @@ requirejs.config({
     'AutoComplete': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/AutoComplete',
     'Slugifier': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Slugifier',
     'MirrorInputValue': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MirrorInputValue',
+    'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
