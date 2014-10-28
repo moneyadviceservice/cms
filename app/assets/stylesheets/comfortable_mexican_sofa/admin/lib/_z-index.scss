@@ -23,7 +23,8 @@ $z-index1: 100;
 %z-index--alert,
 %z-index--toolbar,
 %z-index--toolbar.is-sticky,
-%z-index--nav-article.is-fixed {
+%z-index--nav-article.is-fixed,
+%z-index--popover.is-active {
   z-index: $z-index10;
 }
 

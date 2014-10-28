@@ -8,6 +8,7 @@
   
   &.is-active {
     @extend %is-active;
+    @extend %z-index--popover.is-active;
   }
 }
 
