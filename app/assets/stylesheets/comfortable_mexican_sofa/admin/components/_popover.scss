@@ -1,0 +1,109 @@
+// Popover menu
+//
+// Styleguide Popover menu
+
+.popover {
+  @extend %is-hidden;
+  position: relative;
+  
+  &.is-active {
+    @extend %is-active;
+  }
+}
+
+.popover--top {
+  padding-bottom: 11px;
+}
+
+.popover--bottom {
+  padding-top: 11px;
+}
+
+.popover--left {
+  padding-right: 11px;
+}
+
+.popover--right {
+  padding-left: 11px;
+}
+
+.popover__inner {
+  background: $color-popover-body-background;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(black, .3);
+  position: relative;
+  z-index: 2;
+}
+
+.popover__inner--padded {
+  padding: $baseline-unit*2;
+}
+
+.popover__pointer {
+  position: absolute;
+  
+  &:before,
+  &:after{
+    background: $color-popover-body-background;
+    content: '';
+    display: block;
+    height: 15px;
+    margin: 0 auto;
+    position: absolute;
+    transform: rotate(45deg);
+    width: 15px;
+  }
+  &:before {
+    z-index: 3;
+  }
+  &:after {
+    box-shadow: 0 0 10px rgba(black, .3);
+    z-index: 1;
+  }
+}
+
+.popover--top .popover__pointer,
+.popover--bottom .popover__pointer {
+    left: 50%;
+    margin-left: -7px;    
+  &:before,
+  &:after {
+  }
+}
+
+.popover--top .popover__pointer {
+    bottom: 18px;
+  &:before,
+  &:after {
+  }
+}
+
+.popover--bottom .popover__pointer {
+    top: 6px;
+  &:before,
+  &:after {
+  }
+}
+
+.popover--left .popover__pointer,
+.popover--right .popover__pointer {
+  margin-top: -7px;
+  top: 50%;
+  &:before,
+  &:after {
+  }
+}
+
+.popover--left .popover__pointer {
+    right: 18px;
+  &:before,
+  &:after {
+  }
+}
+
+.popover--right .popover__pointer {
+    left: 6px;
+  &:before,
+  &:after {
+  }
+}
