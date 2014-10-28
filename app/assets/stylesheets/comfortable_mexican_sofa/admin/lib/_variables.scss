@@ -12,7 +12,7 @@ $color-grey-beta: #f3f3f3;
 $color-grey-charlie: #686b7a;
 $color-grey-delta: #404353;
 $color-grey-echo: #2d2f3a;
-$color-grey-foxtrot: #cfd1d1;
+$color-grey-foxtrot: #d6d6d6;
 $color-grey-golf: #333;
 $color-grey-hotel: #999;
 
@@ -102,7 +102,10 @@ $color-panel-content-background: $color-white;
 $color-panel-content-form-background: $color-grey-beta;
 
 // Menu
-$color-menu-body-background: rgba($color-blue-alpha, .5);
+$color-menu-body-background: $color-grey-beta;
+$color-menu-foreground: $color-blue-alpha;
+$color-menu-active-item-border: $color-blue-alpha;
+$color-menu-item-separator: $color-grey-foxtrot;
 
 // Meta
 $color-meta-title-foreground: $color-grey-hotel;
