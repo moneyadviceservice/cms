@@ -23,29 +23,11 @@
   width: 100%;
 
   &.is-active,
-  &:hover {
+  &:hover,
+  &:focus {
     background: lighten($color-menu-body-background, 40%);
     border-left: 5px solid $color-menu-active-item-border;
+    outline: none;
     padding-left: 10px;
   }
 }
-
-// .menu {
-// }
-
-// .menu__body {
-//   @extend %is-hidden;
-//   background: $color-menu-body-background;
-//   border-radius: $button-border-radius;
-//   margin-bottom: $baseline-unit/2;
-//   padding: $baseline-unit;
-// }
-
-// .menu__body.is-active {
-//   @extend %is-active;
-// }
-
-// .menu__item {
-  
-// }
-
