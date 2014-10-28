@@ -64,46 +64,28 @@
 
 .popover--top .popover__pointer,
 .popover--bottom .popover__pointer {
-    left: 50%;
-    margin-left: -7px;    
-  &:before,
-  &:after {
-  }
+  left: 50%;
+  margin-left: -7px;    
 }
 
 .popover--top .popover__pointer {
-    bottom: 18px;
-  &:before,
-  &:after {
-  }
+  bottom: 18px;
 }
 
 .popover--bottom .popover__pointer {
-    top: 6px;
-  &:before,
-  &:after {
-  }
+  top: 6px;
 }
 
 .popover--left .popover__pointer,
 .popover--right .popover__pointer {
   margin-top: -7px;
   top: 50%;
-  &:before,
-  &:after {
-  }
 }
 
 .popover--left .popover__pointer {
-    right: 18px;
-  &:before,
-  &:after {
-  }
+  right: 18px;
 }
 
 .popover--right .popover__pointer {
-    left: 6px;
-  &:before,
-  &:after {
-  }
+  left: 6px;
 }
