@@ -2,6 +2,7 @@
   .l-padded
 
     %h1 CMS Styleguide
+
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
 
@@ -12,28 +13,40 @@
     %h2 .popover
 
     .sg-block
+      %h3 .popover--top
       .popover.popover--top.is-active
-        .popover__inner.popover__inner--padded
+        .popover__inner
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
     .sg-block
+      %h3 .popover--bottom
       .popover.popover--bottom.is-active
-        .popover__inner.popover__inner--padded
+        .popover__inner
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
     .sg-block
+      %h3 .popover--left
       .popover.popover--left.is-active
-        .popover__inner.popover__inner--padded
+        .popover__inner
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
     .sg-block
+      %h3 .popover--right
       .popover.popover--right.is-active
+        .popover__inner
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
+          Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
+        .popover__pointer
+
+    .sg-block
+      %h3 .popover--top with .popover__inner--padded
+      .popover.popover--top.is-active
         .popover__inner.popover__inner--padded
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
@@ -93,10 +106,6 @@
           .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
 
-    %h2 .menu
-
-    %menu.menu
-      .menu__body
 
     %h2 .listing
 
