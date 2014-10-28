@@ -31,7 +31,8 @@ $z-index1: 100;
  //   300    //
 //----------//
 
-%z-index--toggle__label-heading {
+%z-index--toggle__label-heading,
+%z-index--popover__pointer-top {
   z-index: $z-index3;
 }
 
@@ -39,7 +40,8 @@ $z-index1: 100;
  //   200    //
 //----------//
 
-%z-index--toggle__control {
+%z-index--toggle__control,
+%z-index--popover__inner {
   z-index: $z-index2;
 }
 
@@ -48,6 +50,7 @@ $z-index1: 100;
 //----------//
 
 %z-index--toggle__indicator,
-%z-index--toggle__control--last-of-type--checked {
+%z-index--toggle__control--last-of-type--checked,
+%z-index--popover__pointer-bottom {
   z-index: $z-index1;
 }

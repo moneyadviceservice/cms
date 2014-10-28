@@ -32,7 +32,7 @@
   border-radius: 4px;
   box-shadow: 0 0 10px rgba(black, .3);
   position: relative;
-  z-index: 2;
+  @extend %z-index--popover__inner;
 }
 
 .popover__inner--padded {
@@ -54,11 +54,11 @@
     width: 15px;
   }
   &:before {
-    z-index: 3;
+    @extend %z-index--popover__pointer-top;
   }
   &:after {
     box-shadow: 0 0 10px rgba(black, .3);
-    z-index: 1;
+    @extend %z-index--popover__pointer-bottom;
   }
 }
 
