@@ -25,7 +25,7 @@ define([
           switchModeContainer: '[data-dough-maseditor-mode-switch]'
         },
         uiEvents: {
-          'click [data-dough-maseditor-form-submit]': '_handleFormSubmit',
+          'submit': '_handleFormSubmit',
           'change [data-dough-maseditor-mode-switch]': '_handleChangeMode',
           'focus [data-dough-maseditor-html-content]': 'enableHTMLToolbar'
         }
@@ -113,11 +113,9 @@ define([
    * @return {Object} this
    */
   MASEditorProto._handleFormSubmit = function(e) {
-    e.preventDefault();
     if(this.mode === this.editor.constants.MODES.HTML) {
       this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
     }
-    this.$cmsForm.submit();
   };
 
   /**
