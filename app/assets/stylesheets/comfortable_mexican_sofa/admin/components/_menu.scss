@@ -1,23 +1,33 @@
+// Menu
+//
+// Styleguide Menu
+
 .menu {
-  position: relative;
-}
-
-.menu__body {
-  @extend %is-hidden;
-  background: $color-menu-body-background;
-  border-radius: $button-border-radius;
-  margin-bottom: $baseline-unit/2;
-  padding: $baseline-unit;
-}
-
-.menu__body.is-active {
-  @extend %is-active;
-  bottom: 100%;
-  right: 0;
-  position: absolute;
+  @extend .unstyled-list;
 }
 
 .menu__item {
+  border-bottom: 1px solid $color-menu-item-separator;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.menu__action {
+  @extend .unstyled-button;
+  color: $color-menu-foreground;
   display: block;
-  margin-bottom: 2px;
+  padding: $baseline-unit*2 15px;
+  text-align: left;
+  width: 100%;
+
+  &.is-active,
+  &:hover,
+  &:focus {
+    background: lighten($color-menu-body-background, 40%);
+    border-left: 5px solid $color-menu-active-item-border;
+    outline: none;
+    padding-left: 10px;
+  }
 }
