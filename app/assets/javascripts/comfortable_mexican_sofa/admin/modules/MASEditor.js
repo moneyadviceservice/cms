@@ -112,7 +112,7 @@ define([
    * Converts HTML input into Markdown then submits form
    * @return {Object} this
    */
-  MASEditorProto._handleFormSubmit = function(e) {
+  MASEditorProto._handleFormSubmit = function() {
     if(this.mode === this.editor.constants.MODES.HTML) {
       this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
     }
