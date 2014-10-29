@@ -18,7 +18,10 @@ module MainMenuHelper
                                    layouts:  { display_name: t('comfy.admin.cms.base.layouts'),
                                                path: comfy_admin_cms_site_layouts_path(site) },
                                    tags:     { display_name: t('cms.admin.cms.base.tags'),
-                                               path:         tags_path } }
+                                               path:          tags_path },
+                                   admin:    { display_name: 'admin',
+                                               path:          users_path }
+                                  }
   end
 
   # Renders the links to every option of the main menu of a given site.
@@ -35,7 +38,7 @@ module MainMenuHelper
     css_classes_when_no_active = MAIN_MENU_OPTION_CSS_CLASS
     active_link_to(option[:display_name],
                    option[:path],
-                   class_active: css_classes_when_active,
+                   class_active:   css_classes_when_active,
                    class_inactive: css_classes_when_no_active)
   end
 end
