@@ -10,6 +10,7 @@ module UI::Pages
 
     element :preview, '#preview'
 
+    element :page_name, '#page_label'
     element :categories, '.t-categories-select'
     element :save_button, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
@@ -18,7 +19,7 @@ module UI::Pages
     elements :categories_selected, '.t-categories-select > option[selected]'
     element :tags_input_box, '.t-tags-select .search-field input'
     elements :tags_choices,  '.t-tags-select > option'
-    elements :tags_chosen, '.t-tags-select .search_choice'
+    elements :tags_chosen, '.t-tags-select .search-choice'
     element :site_toggle_cy, "#site__mirrors input#edit-mode_cy"
     element :site_toggle_en, "#site__mirrors input#edit-mode_en"
     element :status, '#t-status'
