@@ -5,7 +5,10 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   var Popover,
       defaultConfig = {
         direction: 'top',
-        centerAlign: false
+        centerAlign: false,
+        selectors: {
+          pointer: '[data-dough-collapsable-pointer]'
+        }
       };
 
   Popover = function($el, config) {
@@ -28,6 +31,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$target.css({
       position: 'absolute'
     });
+    this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
+    this.cacheComponentElements();
 
     $(window).on('resize', function() {
       clearTimeout(resize);
@@ -35,26 +40,33 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     });
   };
 
+  Popover.prototype.cacheComponentElements = function() {
+    this.$pointer = this.$target.find('[data-dough-collapsable-pointer]');
+  };
+
   Popover.prototype.handleResize = function() {
-    this.updatePosition();
+    this.updatePositions();
   };
 
   Popover.prototype.toggle = function() {
     Popover.superclass.toggle.call(this);
-    this.updatePosition();
+    this.updatePositions();
   };
 
-  Popover.prototype.updatePosition = function() {
-    this.$target.css(this.calculateOffsetFromTrigger(this.config.direction));
+  Popover.prototype.updatePositions = function() {
+    this.$target.css(this.calculateTargetOffsetFromTrigger(this.config.direction));
+    if(this.$pointer) {
+      this.$pointer.css(this.calculatePointerOffsetFromTrigger(this.direction));
+    }
   };
 
   Popover.prototype.centerAlignTargetToTrigger = function(pos, direction) {
     return pos - this.getElementCenterPosition(this.$target)[direction] + this.getElementCenterPosition(this.$trigger)[direction];
   };
 
-  Popover.prototype.calculateOffsetFromTrigger = function(direction) {
+  Popover.prototype.calculateTargetOffsetFromTrigger = function(direction) {
     var directions;
-    
+
     function calculateLeft() {
       var left = this.getElementBoundaries(this.$trigger).left;
 
@@ -98,6 +110,18 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       }
     };
     return directions[direction] || directions.right;
+  };
+
+  Popover.prototype.calculatePointerOffsetFromTrigger = function(direction) {
+    var directions = {
+      horizontal: {
+        top: this.getElementBoundaries(this.$trigger).top + this.getElementCenterPosition(this.$trigger).vertical - this.getElementBoundaries(this.$target).top
+      },
+      vertical: {
+        left: this.getElementBoundaries(this.$trigger).left + this.getElementCenterPosition(this.$trigger).horizontal - this.getElementBoundaries(this.$target).left
+      }
+    };
+    return directions[direction] || directions.horizontal;
   };
 
   Popover.prototype.getElementBoundaries = function($el) {

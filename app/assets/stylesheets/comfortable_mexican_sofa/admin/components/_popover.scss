@@ -1,0 +1,92 @@
+// Popover menu
+//
+// Styleguide Popover menu
+
+.popover {
+  @extend %is-hidden;
+  position: relative;
+  
+  &.is-active {
+    @extend %is-active;
+    @extend %z-index--popover.is-active;
+  }
+}
+
+.popover--top {
+  padding-bottom: 11px;
+}
+
+.popover--bottom {
+  padding-top: 11px;
+}
+
+.popover--left {
+  padding-right: 11px;
+}
+
+.popover--right {
+  padding-left: 11px;
+}
+
+.popover__inner {
+  background: $color-popover-body-background;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(black, .3);
+  overflow: hidden;
+  position: relative;
+  @extend %z-index--popover__inner;
+}
+
+.popover__inner--padded {
+  padding: $baseline-unit*2;
+}
+
+.popover__pointer {
+  position: absolute;
+  
+  &:after{
+    margin: 0 auto;
+    position: absolute;
+    @extend %z-index--popover__pointer-top;
+  }
+}
+
+.popover--top .popover__pointer,
+.popover--bottom .popover__pointer {
+  left: 50%;
+  margin-left: -15px;    
+}
+
+.popover--top .popover__pointer {
+  bottom: 11px;
+  &:after{
+    @include triangle(bottom, 15, 30, $color-popover-body-background);
+  }
+}
+
+.popover--bottom .popover__pointer {
+  top: -4px;
+  &:after{
+    @include triangle(top, 15, 30, $color-popover-body-background);
+  }
+}
+
+.popover--left .popover__pointer,
+.popover--right .popover__pointer {
+  margin-top: -15px;
+  top: 50%;
+}
+
+.popover--left .popover__pointer {
+  right: 11px;
+  &:after{
+    @include triangle(right, 15, 30, $color-popover-body-background);
+  }
+}
+
+.popover--right .popover__pointer {
+  left: -4px;
+  &:after{
+    @include triangle(left, 15, 30, $color-popover-body-background);
+  }
+}
