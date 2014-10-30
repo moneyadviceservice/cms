@@ -41,9 +41,8 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
       var tag_value = $(this).parent().find('.taggle_text').text();
       if (taggle.getTagValues().indexOf(tag_value) > -1) {
         taggle.remove(tag_value);
-      } else {
-        delete_tag_from_server(tag_value);
       }
+      delete_tag_from_server(tag_value);
     });
 
     $('.js-tags-add-form').on("ajax:success", function (e, data, status, xhr) {
@@ -84,9 +83,6 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
         var tagListNodes = taggle.getTags().elements;
         create_tag_in_server(tag);
         tagListNodes[tagListNodes.length - 1].querySelector('.close').setAttribute('tabIndex', -1);
-      },
-      onTagRemove: function(event, tag) {
-        delete_tag_from_server(tag);
       }
     });
 
