@@ -76,10 +76,17 @@ Feature: Tags administration
     And   The items tagged with it should lose it
 
   @javascript
-  Scenario: Deleting a tag from the creation box also deletes the one in its listing if open
+  Scenario: Deleting a tag from the creation box does not delete the one in its listing when open
     Given I am on the tags admin page
     And   I create a new tag
     When  I click on the letter to list the tags starting by the same letter
     And   I delete the tag in the creation box
-    Then  The tag should be removed from its displayed listing
-    And   The items tagged with it should lose it
+    Then  The tag should not be removed from its displayed listing
+    And   The items tagged with it should not lose it
+
+  @javascript
+  Scenario: Deleting a tag from the creation box does not untag existing items
+    Given I am on the tags admin page
+    When  I create a new tag
+    And   I delete the tag in the creation box
+    Then  The items tagged with it should not lose it

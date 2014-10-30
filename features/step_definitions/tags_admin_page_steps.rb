@@ -91,12 +91,21 @@ Then(/^The tag should be removed from its displayed listing$/) do
   expect(@page.tags_listing.list).to have_no_tags
 end
 
+Then(/^The tag should not be removed from its displayed listing$/) do
+  wait_for_ajax_complete
+  expect(@page.tags_listing.list).to have_tags
+end
+
 Then(/^The same tag in the creation box gets removed$/) do
   expect(creation_box_tags).not_to include('another-non-existing-tag')
 end
 
 Then(/^The items tagged with it should lose it$/) do
   expect(Tagging.all.map(&:tag).map(&:value)).not_to include("another-non-existing-tag")
+end
+
+Then(/^The items tagged with it should not lose it$/) do
+  expect(Tagging.all.map(&:tag).map(&:value)).to include("another-non-existing-tag")
 end
 
 def simulate_create_tag(value)
