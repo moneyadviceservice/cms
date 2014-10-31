@@ -74,12 +74,11 @@
     %h2 Popover - default
     %ul
       %li
-        %div{:data => {dough_component: 'Popover', dough_collapsable_anchor: true}}
-          %div._popover__trigger{:data => {dough_popover_config: '{"direction": "right"}', dough_collapsable_trigger: 2}}
-            Right
-          %div.popover.popover--right{:data => {dough_collapsable_target: 2}}
-            .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            .popover__pointer{:data => {dough_collapsable_pointer: true}}
+        %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "right"}', dough_collapsable_trigger: 2}}
+          Right
+        %div.popover.popover--right{:data => {dough_collapsable_target: 2}}
+          .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          .popover__pointer{:data => {dough_collapsable_pointer: true}}
       %li
         %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "bottom"}', dough_collapsable_trigger: 4}}
           Bottom
@@ -93,8 +92,10 @@
           .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
       %li
-        %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "top"}', dough_collapsable_trigger: 3}}
+        %div._popover__trigger
           Top
+          %span{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "top"}', dough_collapsable_trigger: 3}} Yay
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque nulla nihil harum enim reprehenderit tempora dolorum earum, excepturi quas sint reiciendis, inventore eveniet? Doloremque facilis est nam sint voluptatem, ratione!
         %div.popover.popover--top{:data => {dough_collapsable_target: 3}}
           .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet
           .popover__pointer{:data => {dough_collapsable_pointer: true}}

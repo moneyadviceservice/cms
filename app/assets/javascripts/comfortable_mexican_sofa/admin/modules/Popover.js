@@ -114,13 +114,13 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       },
 
       left: {
-        right: $('body').width() - this.getElementBoundaries(this.$trigger).left,
-        top: calculateTop.call(this)
+        right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
+        top: calculateTop.call(this) + this.bodyOffset.top
       },
 
       right: {
-        left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth(),
-        top: calculateTop.call(this)
+        left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
+        top: calculateTop.call(this) + this.bodyOffset.top
       }
     };
     return directions[direction] || directions.right;
