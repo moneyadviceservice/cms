@@ -25,6 +25,16 @@ en:
       cms:
         base:
           tags: Tags
+  comfy:
+    admin:
+      cms:
+        files:
+          index:
+            found: "%{n} files found for '%{q}'"
+            search:
+              placeholder: Search term
+  search:
+    results: Search Results
   tags:
     index:
       add_tag:

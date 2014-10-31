@@ -1,0 +1,46 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        - if params[:search].present?
+          %h1= t('search.results')
+        - else
+          %h1= t('.title')
+      .l-panel-content__col
+        = form_tag(comfy_admin_cms_site_files_path, method: 'get', id: 'search-form') do
+          .search.search--header
+            %span.search__item
+              - if params[:search].present?
+                = t('.found', n: @files.count, q: params[:search])
+            %span.search__item.search__item--input
+              = label_tag(:search, nil, class: 'visually-hidden')
+              = text_field_tag(:search, params[:search], placeholder: t('.search.placeholder'), class: 'form__input form__input--constrained search__input')
+              = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
+                %span.button__text.fa.fa-search
+            %span.search__item
+              = link_to new_comfy_admin_cms_site_file_path(@site), :class => 'button--action button--search' do
+                %span.button__text
+                  = t('.new_link')
+
+= render 'comfy/admin/cms/partials/files_before'
+
+%table.table.table-hover.table-bordered
+  %tbody.sortable
+    - @files.each do |file|
+      %tr{:id => dom_id(file)}
+        %td
+          .icon{:style => "background: url(#{url_of_file_icon(file)}) no-repeat center"}
+            .dragger
+              %span &#8645;
+        %td.main
+          .item-title
+            = link_to file.label, edit_comfy_admin_cms_site_file_path(@site, file)
+            = render :partial => 'comfy/admin/cms/categories/categories', :object => file
+          .item-meta
+            = link_to file.file_file_name, file.file.url, :target => '_blank'
+        %td
+          .btn-group.btn-group-sm
+            = link_to t('.edit'), edit_comfy_admin_cms_site_file_path(@site, file), :class => 'btn btn-default'
+            = link_to t('.delete'), comfy_admin_cms_site_file_path(@site, file), :method => :delete, :data => {:confirm => t('.are_you_sure')}, :class => 'btn btn-danger'
+
+= render 'comfy/admin/cms/partials/files_after'
