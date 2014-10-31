@@ -98,7 +98,7 @@ describe('Popover', function () {
 
         $trigger.click();
         expect(this.component.getElementBoundaries($target).left)
-          .to.be.equal(this.component.getElementBoundaries($trigger).right - this.component.getBodyOffset().left);
+          .to.be.equal(this.component.getElementBoundaries($trigger).right);
       });
     });
 
@@ -162,7 +162,7 @@ describe('Popover', function () {
         });
 
         $trigger.click();
-        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal') - this.component.getBodyOffset().left)
+        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
           .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
       });
     });
@@ -210,7 +210,7 @@ describe('Popover', function () {
         });
 
         $trigger.click();
-        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal') - this.component.getBodyOffset().left)
+        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
           .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
       });
     });
