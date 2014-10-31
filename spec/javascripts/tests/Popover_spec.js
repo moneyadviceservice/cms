@@ -1,6 +1,6 @@
 describe('Popover', function () {
   'use strict';
-  
+
   beforeEach(function(done) {
     var self = this;
     requirejs([
@@ -12,10 +12,21 @@ describe('Popover', function () {
       Popover
     ) {
       self.$html = $(window.__html__['spec/javascripts/fixtures/Popover.html']).appendTo('body');
-      self.$fixture = self.$html.find('[data-dough-component="Popover"]');
-      self.$fixture.css({width:'200px'});
+      self.$fixture = $('body').find('[data-dough-component="Popover"]');
+      self.$trigger = self.$html.filter('[data-dough-collapsable-trigger]');
+      self.$trigger.css({
+        background: 'red',
+        height: '100px',
+        width: '200px'
+      });
+      self.$target = self.$html.filter('[data-dough-collapsable-target]');
+      self.$target.css({
+        background: 'blue',
+        height: '100px',
+        width: '200px'
+      });
       self.Popover = Popover;
-      $('body').height(1000).width(1000).css({position:'relative'});
+      $('body').css({'margin':'0', 'padding': '0'});
       done();
     }, done);
   });
@@ -65,7 +76,7 @@ describe('Popover', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(getElementCenterFromViewport(this.component, $trigger, 'vertical'))
+        expect(getElementCenterFromViewport(this.component, $trigger, 'vertical') - this.component.getBodyOffset().left)
           .to.equal(getElementCenterFromViewport(this.component, $target, 'vertical'));
       });
     });
@@ -86,7 +97,7 @@ describe('Popover', function () {
             $target = this.component.$target;
 
         $trigger.click();
-        expect($target.position().left).to.be.equal(this.component.getElementBoundaries($trigger).right);
+        expect(this.component.getElementBoundaries($target).left).to.be.equal(this.component.getElementBoundaries($trigger).right - this.component.getBodyOffset().left);
       });
     });
 
@@ -127,7 +138,7 @@ describe('Popover', function () {
 
         $trigger.click();
         expect(this.component.getElementBoundaries($target).bottom)
-          .to.be.equal(Math.round($trigger.position().top));
+          .to.be.equal(this.component.getElementBoundaries($target).bottom);
       });
     });
 
@@ -142,11 +153,16 @@ describe('Popover', function () {
       });
 
       it('should horizontally centre itself to the trigger', function() {
-        var $target = this.component.$target,
+        var $wrapper = this.component.$el,
+            $target = this.component.$target,
             $trigger = this.component.$trigger;
 
+        this.$trigger.css({
+          margin: '100px auto 0'
+        });
+
         $trigger.click();
-        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+        expect(getElementCenterFromViewport(this.component, $wrapper, 'horizontal'))
           .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
       });
     });
@@ -167,7 +183,7 @@ describe('Popover', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect($target.position().top).to.be.above($trigger.position().top);
+        expect($target.offset().top - this.component.getBodyOffset().top).to.be.above($trigger.offset().top);
         expect(this.component.getElementBoundaries($target).bottom).to.be.below($('body').height());
       });
     });
@@ -187,7 +203,7 @@ describe('Popover', function () {
             $trigger = this.component.$trigger;
 
         $trigger.click();
-        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal'))
+        expect(getElementCenterFromViewport(this.component, $trigger, 'horizontal') - this.component.getBodyOffset().left)
           .to.equal(getElementCenterFromViewport(this.component, $target, 'horizontal'));
       });
     });

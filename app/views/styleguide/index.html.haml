@@ -43,7 +43,7 @@
       %h3 .popover--bottom
       .popover.popover--bottom.is-active
         .popover__inner
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo.
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
@@ -51,7 +51,7 @@
       %h3 .popover--left
       .popover.popover--left.is-active
         .popover__inner
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo.
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
@@ -59,7 +59,7 @@
       %h3 .popover--right
       .popover.popover--right.is-active
         .popover__inner
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo.
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
@@ -67,18 +67,19 @@
       %h3 .popover--top with .popover__inner--padded
       .popover.popover--top.is-active
         .popover__inner.popover__inner--padded
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. 
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo.
           Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
         .popover__pointer
 
     %h2 Popover - default
     %ul
       %li
-        %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "right"}', dough_collapsable_trigger: 2}}
-          Right
-        %div.popover.popover--right{:data => {dough_collapsable_target: 2}}
-          .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          .popover__pointer{:data => {dough_collapsable_pointer: true}}
+        %div{:data => {dough_component: 'Popover', dough_collapsable_anchor: true}}
+          %div._popover__trigger{:data => {dough_popover_config: '{"direction": "right"}', dough_collapsable_trigger: 2}}
+            Right
+          %div.popover.popover--right{:data => {dough_collapsable_target: 2}}
+            .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            .popover__pointer{:data => {dough_collapsable_pointer: true}}
       %li
         %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "bottom"}', dough_collapsable_trigger: 4}}
           Bottom
@@ -118,21 +119,21 @@
         %div.popover.popover--left{:data => {dough_collapsable_target: 7}}
           .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
-      %li
-        %div._popover__trigger{:data => {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "top", "centerAlign": true}', dough_collapsable_trigger: 8}}
-          Top
-        %div.popover.popover--top{:data => {dough_collapsable_target: 8}}
-          .popover__inner
-            %ul.menu
-              %li.menu__item
-                %button.menu__action Save changes as draft
-              %li.menu__item
-                %button.menu__action Publish changes
-              %li.menu__item
-                %button.menu__action Unpublish
-              %li.menu__item
-                %button.menu__action Save
-          .popover__pointer{:data => {dough_collapsable_pointer: true}}
+      / %li
+    %h2._popover__trigger{style: 'width: 500px;', :data => {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "top", "centerAlign": true}', dough_collapsable_trigger: 8}}
+      Top
+    %div.popover.popover--top{:data => {dough_collapsable_target: 8}}
+      .popover__inner
+        %ul.menu
+          %li.menu__item
+            %button.menu__action Save changes as draft
+          %li.menu__item
+            %button.menu__action Publish changes
+          %li.menu__item
+            %button.menu__action Unpublish
+          %li.menu__item
+            %button.menu__action Save
+      .popover__pointer{:data => {dough_collapsable_pointer: true}}
 
 
     %h2 .listing

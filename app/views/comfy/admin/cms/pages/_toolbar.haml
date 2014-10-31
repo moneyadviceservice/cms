@@ -1,0 +1,44 @@
+%nav.toolbar{data: {dough_maseditor_toolbar: true}}
+
+  .toolbar__inner
+
+    .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
+      .toolbar__item-group
+        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
+          %span.fa.fa-bold
+        =button_tag("H2", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h2"})
+        =button_tag("H3", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h3"})
+        =button_tag("H4", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h4"})
+
+      .toolbar__item-group
+        %span.toolbar__item.toolbar-button{:data => {dough_component: 'Popover', dough_popover_config: '{"direction": "bottom", "centerAlign": true}', dough_collapsable_trigger: 2}}
+          %span.fa.fa-list-ol
+
+        %div.popover.popover--bottom{:data => {dough_collapsable_target: 2}}
+          .popover__inner.popover__inner--padded Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          .popover__pointer{:data => {dough_collapsable_pointer: true}}
+
+        =button_tag("OL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertOrderedList"}) do
+          %span.fa.fa-list-ol
+        =button_tag("UL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertUnorderedList"}) do
+          %span.fa.fa-list-ul
+        =button_tag("Link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "linkPrompt"}) do
+          %span.fa.fa-link
+        =button_tag("Unlink", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
+          %span.fa.fa-unlink
+
+      .toolbar__item-group
+        =button_tag("Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
+          %span.fa.fa-square-o
+
+    .toolbar__item-group{data: {dough_maseditor_mode_switch: true}}
+      .toggle
+        =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control js-switch-mode')
+        =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control js-switch-mode')
+        =label_tag('edit-mode_html', 'Layout', class: 'toggle__label-heading')
+        %span.toggle__indicator
+        =label_tag('edit-mode_markdown', 'Advanced', class: 'toggle__label-heading')
+
+    .toolbar__item-group.toolbar__item-group--right
+      = button_tag(class: 'js-activate-word-upload-form button button--action button--secondary', type: 'button') do
+        %span.button__text Upload Word Doc

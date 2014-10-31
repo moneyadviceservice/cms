@@ -8,5 +8,9 @@
 
 .l-editor {
   margin-bottom: $baseline-unit*20;
-  position: relative;
+  // position: relative;
+}
+
+.unstyled-button {
+  display: block;
 }

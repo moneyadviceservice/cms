@@ -33,6 +33,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     });
     this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
     this.cacheComponentElements();
+    console.log(this.getBodyOffset());
 
     $(window).on('resize', function() {
       clearTimeout(resize);
@@ -50,10 +51,23 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   Popover.prototype.toggle = function() {
     Popover.superclass.toggle.call(this);
+    this.isShown? this.detachTarget() : this.attachTarget();
     this.updatePositions();
   };
 
+  Popover.prototype.detachTarget = function() {
+    this.$locationMarker = $('<span />').insertBefore(this.$target);
+    this.$target.detach();
+    this.$target.appendTo('body');
+  };
+
+  Popover.prototype.attachTarget = function() {
+    this.$target.insertBefore(this.$locationMarker);
+    this.$locationMarker.remove();
+  };
+
   Popover.prototype.updatePositions = function() {
+    this.bodyOffset = this.getBodyOffset();
     this.$target.css(this.calculateTargetOffsetFromTrigger(this.config.direction));
     if(this.$pointer) {
       this.$pointer.css(this.calculatePointerOffsetFromTrigger(this.direction));
@@ -126,11 +140,18 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   Popover.prototype.getElementBoundaries = function($el) {
     return {
-      top: Math.floor($el.position().top),
-      bottom: Math.floor($el.position().top + $el.outerHeight()),
-      left: Math.floor($el.position().left),
-      right: Math.floor($el.position().left + $el.outerWidth())
+      top: Math.floor($el.offset().top - this.bodyOffset.top),
+      bottom: Math.floor($el.offset().top + $el.outerHeight()),
+      left: Math.floor($el.offset().left - this.bodyOffset.left),
+      right: Math.floor($el.offset().left + $el.outerWidth())
     };
+  };
+
+  Popover.prototype.getBodyOffset = function() {
+    var $offsetHook = $('<div />').css({'height': '1px','width':'1px'}).prependTo('body'),
+        offset = $offsetHook.position();
+    $offsetHook.remove();
+    return offset;
   };
 
   Popover.prototype.getElementCenterPosition = function($el) {
