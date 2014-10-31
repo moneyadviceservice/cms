@@ -33,7 +33,6 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     });
     this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
     this.cacheComponentElements();
-    console.log(this.getBodyOffset());
 
     $(window).on('resize', function() {
       clearTimeout(resize);
@@ -82,7 +81,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     var directions;
 
     function calculateLeft() {
-      var left = this.getElementBoundaries(this.$trigger).left;
+      var left = this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left;
 
       if(this.config.centerAlign) {
         left = this.centerAlignTargetToTrigger(left, 'horizontal');
@@ -94,7 +93,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     }
 
     function calculateTop() {
-      var top = this.getElementBoundaries(this.$trigger).top;
+      var top = this.getElementBoundaries(this.$trigger).top + this.bodyOffset.top;
 
       if(this.config.centerAlign) {
         top = this.centerAlignTargetToTrigger(top, 'vertical');
@@ -115,12 +114,12 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
       left: {
         right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
-        top: calculateTop.call(this) + this.bodyOffset.top
+        top: calculateTop.call(this)
       },
 
       right: {
         left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
-        top: calculateTop.call(this) + this.bodyOffset.top
+        top: calculateTop.call(this)
       }
     };
     return directions[direction] || directions.right;
