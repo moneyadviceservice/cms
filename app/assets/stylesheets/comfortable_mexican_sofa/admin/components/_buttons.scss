@@ -103,3 +103,7 @@
 .button--secondary {
   background: $color-button-secondary-background;
 }
+
+.button-menu .button__icon {
+  pointer-events: none;
+}
