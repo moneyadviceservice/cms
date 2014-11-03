@@ -19,14 +19,9 @@
 }
 
 .listing__text {
-  @extend %body-text;
   &:last-of-type {
     margin-bottom: $baseline-unit/2;
   }
-}
-
-.listing__link {
-  @extend %body-text;
 }
 
 .listing__meta {
