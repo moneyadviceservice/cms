@@ -48,6 +48,10 @@ requirejs.config({
     'MirrorInputValue': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MirrorInputValue',
     'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
 
+    // Snippets
+    'snippets':  '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/snippets") %>',
+    'scribe-plugin-mastalk': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk") %>',
+
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
     'DoughBaseComponent': bowerPath + 'dough/assets/js/components/DoughBaseComponent',

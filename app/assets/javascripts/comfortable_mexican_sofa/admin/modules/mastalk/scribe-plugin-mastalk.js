@@ -1,4 +1,5 @@
 define('scribe-plugin-mastalk',[],function () {
+  'use strict';
   require([
     'text',
     'text!/assets/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md'

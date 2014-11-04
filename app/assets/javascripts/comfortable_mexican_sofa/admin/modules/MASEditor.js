@@ -2,12 +2,14 @@ define([
   'jquery',
   'DoughBaseComponent',
   'editor-plugin-auto-resize-textarea',
-  'editor'
+  'editor',
+  'scribe-plugin-mastalk'
 ], function (
   $,
   DoughBaseComponent,
   editorPluginAutoResizeTextarea,
-  Editor
+  Editor,
+  scribePluginMastalk
 ) {
   'use strict';
 
@@ -78,6 +80,7 @@ define([
       this.editorOptions
     );
     this.editor.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
+    this.editor.editor.use(scribePluginMastalk('collapsible'));
     this._initialisedSuccess(initialised);
   };
 
