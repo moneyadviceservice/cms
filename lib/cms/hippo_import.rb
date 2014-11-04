@@ -30,7 +30,7 @@ class HippoImport
   end
 
   def decoded(str)
-    html_decoder.decode(str)
+    ReverseMarkdown.convert(html_decoder.decode(str))
   end
 
   def import!

@@ -31,6 +31,8 @@ gem 'hippo_xml_parser'
 gem 'remotipart', '~> 1.2'
 gem 'devise'
 
+gem 'reverse_markdown'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
