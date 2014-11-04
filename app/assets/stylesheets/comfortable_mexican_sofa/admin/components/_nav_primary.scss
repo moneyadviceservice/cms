@@ -3,15 +3,38 @@
 // Styleguide Primary navigation
 
 .nav-primary {
-  @include body(0,0);
-  margin-top: -1px;
+  display: table;
+  margin: 0;
+  padding: 0;
+}
+
+// Note: Selectors have been qualified with the element due to restriction with Comfy's active_link_to() plugin
+.nav-primary__item {
+  display: table-cell;
+  position: relative;
+  white-space: nowrap;
+
+  & > button {
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.nav-primary__item--right {
+  text-align: right;
+  width: 100%;
 }
 
 .nav-primary__text {
   @include body(14, 60);
+  @extend %z-index--nav-primary__text;
   border-top: 1px solid transparent;
   display: inline-block;
-  padding: 0 $baseline-unit*3;
+  float: left;
+  padding: 0 18px;
+  position: relative;
   text-transform: uppercase;
 
   &,
@@ -19,27 +42,60 @@
   &:hover,
   &:active {
     color: $color-nav-primary-foreground;
+    outline: none;
     text-decoration: none;
   }
 
-  &.is-active {
-    background: $color-nav-primary-item-background;
-    border-top: 1px solid $color-nav-primary-item-background;
-  }
-
   &:hover {
-    border-top: 1px solid $color-nav-primary-item-background;
+    background: $color-nav-primary-item-background;
   }
 
   &,
-  &:hover,
-  &.is-active {
-    transition: color $transition-hover-params, border-top-color $transition-hover-params;
+  &:hover {
+    transition: color $transition-hover-params;
   }
 
-  &:hover,
-  &.is-active {
-    border-top-color: $color-nav-primary-foreground-active;
+  &:hover {
     color: $color-nav-primary-foreground-active;
   }
+
+  // Button is auto-generated from Collapsable
+  button {
+    display: block;
+    text-transform: uppercase;
+  }
+}
+
+.nav-primary__text--no-hover:hover {
+  background: transparent;
+}
+
+.nav-primary__item.is-active .nav-primary__text {
+  background: $color-nav-primary-item-background;
+}
+
+.nav-primary__item--right .nav-primary__text {
+  float: right;
+}
+
+.nav-primary__item.has-dropdown:hover .nav-primary__text {
+  background: $color-nav-primary-item-background;
+}
+
+.nav-primary__menu {
+  @extend %z-index--nav-primary__menu;
+  @extend %is-hidden;
+  box-shadow: 0 0 10px rgba(black, .3);
+  min-width: 220px;
+  position: absolute;
+  top: 100%;
+}
+
+.nav-primary__item.has-dropdown:hover .nav-primary__menu {
+  @extend %is-active;
+  background: $color-nav-primary-item-background;
+}
+
+.nav-primary__icon {
+  padding: 0 $baseline-unit/3;
 }

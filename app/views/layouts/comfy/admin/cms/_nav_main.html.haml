@@ -1,9 +1,33 @@
 .l-nav-primary
   .l-constrained
-    %nav.nav-primary
-      - if @site && !@site.new_record?
-        != render_main_menu(site: @site)
+    %nav
+      %ul.nav-primary
+        %li.nav-primary__item
+          =link_to t('comfy.admin.cms.base.pages'), comfy_admin_cms_site_pages_path(@site), :class => "nav-primary__text"
+        %li.nav-primary__item
+          =link_to t('comfy.admin.cms.base.files'), comfy_admin_cms_site_files_path(@site), :class => "nav-primary__text"
+        / %li.nav-primary__item
+        /   =link_to t('comfy.admin.cms.base.reporting'), "#", :class => "nav-primary__text"
+        %li.nav-primary__item.has-dropdown
+          =link_to t('comfy.admin.cms.base.admin'), "#", :class => "nav-primary__text"
+          .nav-primary__menu
+            %ul.menu.menu--global
+              %li.menu__item
+                =link_to t('comfy.admin.cms.base.user_management'), users_path, :class => "menu__action"
+              %li.menu__item
+                =link_to t('comfy.admin.cms.base.page_types'), comfy_admin_cms_site_layouts_path(@site), :class => "menu__action"
+              %li.menu__item
+                =link_to t('comfy.admin.cms.base.tags'), tags_path, :class => "menu__action"
+              %li.menu__item
+                =link_to t('comfy.admin.cms.base.snippets_/_components'), comfy_admin_cms_site_snippets_path(@site), :class => "menu__action"
+              %li.menu__item
 
-        =link_to "Sign out", destroy_user_session_path, :method => :delete, :class => "signin"
+        %li.nav-primary__item.nav-primary__item--right
+          %span.nav-primary__text.nav-primary__text--no-hover
+            Alan Wong
+            %span.nav-primary__icon.fa.fa-user
+        %li.nav-primary__item.nav-primary__item--right
+          =link_to ("Sign out " + content_tag(:span, "", :class => 'nav-primary__icon fa fa-sign-out')).html_safe, destroy_user_session_path, :method => :delete, :class => "nav-primary__text"
+
 
         = cms_hook :navigation

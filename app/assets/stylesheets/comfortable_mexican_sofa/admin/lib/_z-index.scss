@@ -24,8 +24,17 @@ $z-index1: 100;
 %z-index--toolbar,
 %z-index--toolbar.is-sticky,
 %z-index--nav-article.is-fixed,
-%z-index--popover.is-active {
+%z-index--popover.is-active,
+%z-index--nav-primary__text {
   z-index: $z-index10;
+}
+
+  //----------//
+ //   900    //
+//----------//
+
+%z-index--nav-primary__menu {
+  z-index: $z-index9;
 }
 
   //----------//
