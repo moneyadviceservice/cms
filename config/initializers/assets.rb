@@ -36,6 +36,7 @@ Rails.application.configure do
                                   scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command.js
                                   scribe-plugin-sanitizer/scribe-plugin-sanitizer.js
                                   scribe-plugin-toolbar/scribe-plugin-toolbar.js
+                                  text/text.js
                                   marked/lib/marked.js
                                   to-markdown/src/to-markdown.js
                                   dough/assets/js/lib/componentLoader.js

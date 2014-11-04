@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require_tree ./comfortable_mexican_sofa/admin/modules/mastalk/snippets
 
 <% def requirejs_path(asset) ; javascript_path(asset).sub(/.js\z/, ''); end %>
 
@@ -34,6 +35,7 @@ requirejs.config({
     'Tags': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Tags") %>',
     'Popover': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Popover") %>',
     'SelectSubmitter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/SelectSubmitter") %>',
+    'scribe-plugin-mastalk': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk") %>',
 
     // Dough base modules
     'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
@@ -56,6 +58,8 @@ requirejs.config({
     'scribe-plugin-link-prompt-command': '<%= requirejs_path("scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command") %>',
     'scribe-plugin-sanitizer': '<%= requirejs_path("scribe-plugin-sanitizer/scribe-plugin-sanitizer") %>',
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
+    'text': '<%= requirejs_path("text/text") %>',
+
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
