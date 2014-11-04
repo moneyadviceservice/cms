@@ -13,13 +13,13 @@
           .nav-primary__menu
             %ul.menu.menu--global
               %li.menu__item
-                =link_to t('comfy.admin.cms.base.user_management'), users_path, :class => "menu__action"
+                =link_to t('comfy.admin.cms.base.admin'), users_path, :class => "menu__action"
               %li.menu__item
-                =link_to t('comfy.admin.cms.base.page_types'), comfy_admin_cms_site_layouts_path(@site), :class => "menu__action"
+                =link_to t('comfy.admin.cms.base.layouts'), comfy_admin_cms_site_layouts_path(@site), :class => "menu__action"
               %li.menu__item
                 =link_to t('comfy.admin.cms.base.tags'), tags_path, :class => "menu__action"
               %li.menu__item
-                =link_to t('comfy.admin.cms.base.snippets_/_components'), comfy_admin_cms_site_snippets_path(@site), :class => "menu__action"
+                =link_to t('comfy.admin.cms.base.snippets'), comfy_admin_cms_site_snippets_path(@site), :class => "menu__action"
               %li.menu__item
 
         %li.nav-primary__item.nav-primary__item--right

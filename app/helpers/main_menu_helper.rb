@@ -31,6 +31,10 @@ module MainMenuHelper
     end.join
   end
 
+  def is_active?(path)
+    request.url.match(path) ? " is-active" : ""
+  end
+
   # Renders the link to a given option of a site main menu.
   # option: hash of properties of the option (:display_name, :path)
   def render_main_menu_option(option:)
