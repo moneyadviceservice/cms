@@ -6,13 +6,16 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       defaultConfig = {
         direction: 'top',
         centerAlign: false,
+        hideOnBlur: false,
+        closeOnClick: false,
         selectors: {
-          pointer: '[data-dough-collapsable-pointer]'
+          pointer: '[data-dough-collapsable-pointer]',
+          target: '[data-dough-collapsable-target]' 
         }
       };
-
-  Popover = function($el, config) {
-    Popover.baseConstructor.call(this, $el, config, defaultConfig);
+  
+  function Popover($el, config, customConfig) {
+    Popover.baseConstructor.call(this, $el, config, customConfig || defaultConfig);
     this.$trigger.find('[data-dough-collapsable-icon]').remove();
   };
 
@@ -28,11 +31,13 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
         _this = this;
 
     this.handleResize = $.proxy(this.handleResize, this);
+    this.handleTargetClick = $.proxy(this.handleTargetClick, this);
     this.$target.css({
       position: 'absolute'
     });
     this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
     this.cacheComponentElements();
+    this.setupUIEvents();
 
     $(window).on('resize', function() {
       clearTimeout(resize);
@@ -44,8 +49,18 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$pointer = this.$target.find('[data-dough-collapsable-pointer]');
   };
 
+  Popover.prototype.setupUIEvents = function() {
+    if(this.config.closeOnClick) {
+      this.$target.on('click keyup touchend', this.handleTargetClick);
+    }
+  };
+
   Popover.prototype.handleResize = function() {
     this.setPositions();
+  };
+
+  Popover.prototype.handleTargetClick = function(e) {
+    this.toggle();
   };
 
   Popover.prototype.toggle = function() {
