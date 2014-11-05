@@ -6,6 +6,11 @@
   @extend .unstyled-list;
 }
 
+.menu--toolbar {
+  min-width: 180px;
+  max-width: 360px;
+}
+
 .menu__item {
   border-bottom: 1px solid $color-menu-item-separator;
 
