@@ -82,6 +82,10 @@ define([
     this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
     this.editorLib.editor.use(scribePluginMastalk('collapsible'));
     this.editorLib.editor.use(scribePluginMastalk('ticks'));
+    this.editorLib.editor.use(scribePluginMastalk('addAction'));
+    this.editorLib.editor.use(scribePluginMastalk('actionItem'));
+    this.editorLib.editor.use(scribePluginMastalk('video'));
+    this.editorLib.editor.use(scribePluginMastalk('callout'));
     this._initialisedSuccess(initialised);
   };
 
