@@ -33,6 +33,13 @@ en:
             found: "%{n} files found for '%{q}'"
             search:
               placeholder: Search term
+            sort_by:
+              date: date added (lattest first)
+              name: name (a to z)
+              placeholder: "sort by:"
+            filter_by:
+              placeholder: "file type:"
+              type: "doc, jpg, pdf, xls"
   search:
     results: Search Results
   tags:
