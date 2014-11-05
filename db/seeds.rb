@@ -35,7 +35,7 @@ categories = YAML::load_file("#{Rails.root}/config/categories.yml")
 categories.each do |parent, children|
   labels = children.nil? ? [parent] : children
   [site_en, site_cy].each do |site|
-    labels.each { |label| Comfy::Cms::Category.create!(site: site, label: label, categorized_type: "Comfy::Cms::Page") rescue nil }
+    labels.each { |label| Comfy::Cms::Category.create!(site: site, label: label, categorized_type: "Comfy::Cms::Page") }
   end
 end
 
