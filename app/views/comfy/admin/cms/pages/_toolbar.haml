@@ -20,7 +20,10 @@
         =button_tag("Unlink", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
 
-        =button_tag("collapsible", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "formatBlock"}) do
+        =button_tag("Insert Collapsible", type: 'button', title: 'Collapsible', class: 'toolbar__item toolbar-button', data: { "command-name" => "mastalk_collapsible"}) do
+          %span.fa.fa-scissors
+
+        =button_tag("Insert ticks", type: 'button', title: 'Ticks', class: 'toolbar__item toolbar-button', data: { "command-name" => "mastalk_ticks"}) do
           %span.fa.fa-scissors
 
       .toolbar__item-group

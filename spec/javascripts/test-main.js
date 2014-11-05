@@ -49,8 +49,13 @@ requirejs.config({
     'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
 
     // Snippets
-    'snippets':  '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/snippets") %>',
-    'scribe-plugin-mastalk': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk") %>',
+    'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',
+    'snippet-collapsible': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md',
+    'snippet-ticks': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/ticks.md',
+    'snippet-callout': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/callout.md',
+    'snippet-add-action': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/add-action.md',
+    'snippet-video': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/video.md',
+    'snippet-action-item': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/action-item.md',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
@@ -75,7 +80,8 @@ requirejs.config({
     'scribe-plugin-toolbar': bowerPath + 'scribe-plugin-toolbar/scribe-plugin-toolbar',
     'marked': bowerPath + 'marked/lib/marked',
     'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
-    'chosen': bowerPath + 'chosen-build/chosen.jquery'
+    'chosen': bowerPath + 'chosen-build/chosen.jquery',
+    'text': bowerPath + 'text/text'
   },
   shim : {
     'to-markdown' : {
