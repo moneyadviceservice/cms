@@ -1,8 +1,5 @@
 - if item_taggable?(form.object)
-  - form.object.is_mirrored_with_taggings = true
   = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {label: t('.label')}, include_blank: false, multiple: true,
                            id:    'tags--select',
                            class: 't-tags-select',
                            data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
-  = form.form_group do
-    = form.hidden_field :is_mirrored_with_taggings
