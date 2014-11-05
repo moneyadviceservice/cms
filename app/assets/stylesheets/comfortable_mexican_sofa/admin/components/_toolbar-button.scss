@@ -3,6 +3,7 @@
 // Styleguide Toolbar button
 
 .toolbar-button {
+  background: lighten($color-toolbar-button-disabled-background, .5);
   border: none;
   border-radius: 3px;
   color: white;
@@ -26,6 +27,10 @@
 }
 
 .is-active .toolbar-button.active,
+.is-active .toolbar-button.active:hover {
+  background-color: darken($color-toolbar-button-background,10%);
+}
+
 .is-active .toolbar-button:hover {
   background-color: $color-toolbar-button-background;
 }
