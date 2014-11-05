@@ -45,13 +45,13 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   };
 
   Popover.prototype.handleResize = function() {
-    this.updatePositions();
+    this.setPositions();
   };
 
   Popover.prototype.toggle = function() {
     Popover.superclass.toggle.call(this);
     this.isShown? this.detachTarget() : this.attachTarget();
-    this.updatePositions();
+    this.setPositions();
   };
 
   Popover.prototype.detachTarget = function() {
@@ -65,7 +65,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$locationMarker.remove();
   };
 
-  Popover.prototype.updatePositions = function() {
+  Popover.prototype.setPositions = function() {
     this.bodyOffset = this.getBodyOffset();
     this.$target.css(this.calculateTargetOffsetFromTrigger(this.config.direction));
     if(this.$pointer) {
