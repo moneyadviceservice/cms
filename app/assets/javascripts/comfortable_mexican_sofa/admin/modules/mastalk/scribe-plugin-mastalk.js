@@ -22,6 +22,8 @@ define([
       var commandName = "mastalk_" + type;
       var mastalkCommand = new scribe.api.Command('insertHTML');
 
+      mastalkCommand.nodeName = 'P';
+
       mastalkCommand.execute = function () {
         scribe.insertPlainText(this.getType()[type].trim() + '\n\n');
       };
@@ -42,7 +44,11 @@ define([
       };
 
       mastalkCommand.queryEnabled = function () {
-        return true;
+        var selection = new scribe.api.Selection();
+        return !! selection.getContaining(function (node) {
+          var innerText = node.innerText? node.innerText : node.parentElement.innerText;
+          return node.nodeName === this.nodeName && innerText.replace('\n','').length === 0;
+        }.bind(this));
       };
 
       scribe.commands[commandName] = mastalkCommand;
