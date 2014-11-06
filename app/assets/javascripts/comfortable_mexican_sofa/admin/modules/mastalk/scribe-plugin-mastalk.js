@@ -46,8 +46,16 @@ define([
       mastalkCommand.queryEnabled = function () {
         var selection = new scribe.api.Selection();
         return !! selection.getContaining(function (node) {
-          var innerText = node.innerText? node.innerText : node.parentElement.innerText;
-          return node.nodeName === this.nodeName && innerText.replace('\n','').length === 0;
+          var innerText;
+          if(node.innerText){
+            innerText = node.innerText;
+          }
+          else {
+            if(node !== document) {
+              innerText = node.parentElement.innerText;
+            }
+          }
+          return node.nodeName === this.nodeName && !innerText.replace('\n','').length;
         }.bind(this));
       };
 
