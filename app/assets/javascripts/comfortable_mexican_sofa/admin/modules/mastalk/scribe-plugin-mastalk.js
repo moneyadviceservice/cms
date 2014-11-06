@@ -23,7 +23,7 @@ define([
       var mastalkCommand = new scribe.api.Command('insertHTML');
 
       mastalkCommand.execute = function () {
-        scribe.insertPlainText(this.getType()[type].trim());
+        scribe.insertPlainText(this.getType()[type].trim() + '\n\n');
       };
 
       mastalkCommand.getType = function () {
