@@ -36,3 +36,14 @@
     padding-left: 10px;
   }
 }
+
+.menu__action[disabled] {
+  color: $color-menu-foreground-disabled;
+  font-style: italic;
+  text-shadow: 1px 1px 0 lighten($color-menu-foreground-disabled,20%);
+
+  &:hover {
+    background-color: transparent;
+    border-left-color: transparent;
+  }
+}

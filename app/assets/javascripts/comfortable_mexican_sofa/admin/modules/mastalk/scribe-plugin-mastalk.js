@@ -19,7 +19,7 @@ define([
    */
   return function (type) {
     return function (scribe) {
-      var commandName = "mastalk_" + type;
+      var commandName = 'mastalk_' + type;
       var mastalkCommand = new scribe.api.Command('insertHTML');
 
       mastalkCommand.nodeName = 'P';
