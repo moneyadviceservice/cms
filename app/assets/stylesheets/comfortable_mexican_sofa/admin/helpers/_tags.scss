@@ -1,11 +1,11 @@
 %tag {
-  color: $color-categories-item-foreground;
+  color: $color-tag-item-foreground;
   position: relative;
   margin: $baseline-unit/2 5px 0 0;
   padding: 4px 10px;
   border: none;
   border-radius: 3px;
-  background-color: $color-categories-item-background;
+  background-color: $color-tag-item-background;
   background-clip: padding-box;
   box-shadow: none;
   display: inline-block;
@@ -16,9 +16,9 @@
 
 %tag-remove {
   border-radius: 50%;
-  border: 1px solid $color-categories-item-foreground;
+  border: 1px solid $color-tag-item-foreground;
   content: '\00d7';
-  color: $color-categories-item-foreground;
+  color: $color-tag-item-foreground;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
@@ -31,8 +31,12 @@
 }
 
 %tag-remove-hover {
-  background: $color-categories-item-foreground;
-  border-color: $color-categories-item-foreground;
-  color: lighten($color-categories-item-foreground, 40%);
+  background: $color-tag-item-foreground;
+  border-color: $color-tag-item-foreground;
+  color: lighten($color-tag-item-foreground, 40%);
   text-decoration: none;
+}
+
+%tag-highlighted {
+  background: darken($color-tag-item-background, 20%);
 }

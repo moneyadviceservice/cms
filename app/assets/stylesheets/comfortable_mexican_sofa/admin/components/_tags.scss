@@ -61,3 +61,7 @@
   visibility: hidden;
   z-index: -1;
 }
+
+.taggle.taggle_hot {
+  @extend %tag-highlighted;
+}
