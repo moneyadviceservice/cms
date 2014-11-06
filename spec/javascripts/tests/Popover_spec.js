@@ -39,6 +39,23 @@ describe('Popover', function () {
     return Math.floor(component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction]);
   }
 
+  describe('Close target on click', function () {
+    beforeEach(function (done) {
+      this.component = new this.Popover(this.$fixture, {
+        direction: 'top',
+        closeOnClick: true
+      });
+      this.component.init();
+      done();
+    });
+    it('should close when a click/touchend event is detected inside the target container', function () {
+      this.component.$trigger.click();
+      expect(this.component.isShown).to.be.true;
+      this.component.$target.click();
+      expect(this.component.isShown).to.be.false;
+    });
+  });
+
   describe('Position left', function () {
     describe('Default', function () {
       beforeEach(function (done) {

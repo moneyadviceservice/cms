@@ -52,7 +52,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   Popover.prototype.setupUIEvents = function() {
     if(this.config.closeOnClick) {
-      this.$target.on('click keyup touchend', this.handleTargetClick);
+      this.$target.on('click touchend', this.handleTargetClick);
     }
   };
 
