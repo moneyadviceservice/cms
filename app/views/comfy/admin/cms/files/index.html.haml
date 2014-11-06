@@ -1,7 +1,7 @@
 .l-panel-content.l-panel-content--form
   .l-constrained
     .l-panel-content__row
-      .l-panel-content__col
+      .l-panel-content__col.page-header
         - if params[:search].present?
           %h1= t('search.results')
         - else
