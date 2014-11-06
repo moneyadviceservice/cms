@@ -24,7 +24,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
    */
   DoughBaseComponent.extend(Popover, Collapsable);
 
-  Popover.prototype.init = function() {
+  Popover.prototype.init = function(initialised) {
     Popover.superclass.init.call(this);
 
     var resize,
@@ -43,6 +43,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       clearTimeout(resize);
       resize = setTimeout(_this.handleResize, 100);
     });
+    this._initialisedSuccess(initialised);
   };
 
   Popover.prototype.cacheComponentElements = function() {
