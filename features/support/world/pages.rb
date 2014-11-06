@@ -1,6 +1,6 @@
 module World
   module Pages
-    %w(home edit new tags_admin user_management sign_in).each do |page|
+    %w(edit home new files_admin files_new sign_in tags_admin user_management).each do |page|
       define_method("#{page}_page") do
         "UI::Pages::#{page.camelize}".constantize.new
       end
