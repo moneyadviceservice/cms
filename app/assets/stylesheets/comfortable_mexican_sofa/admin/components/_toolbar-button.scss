@@ -39,3 +39,12 @@
 .is-active .toolbar-button[disabled] {
   background: lighten($color-toolbar-button-disabled-background, .5);
 }
+
+.toolbar-button__icon {
+  vertical-align: text-top;
+}
+
+.toolbar-button .unstyled-button {
+  height: 100%;
+  width: 100%;
+}
