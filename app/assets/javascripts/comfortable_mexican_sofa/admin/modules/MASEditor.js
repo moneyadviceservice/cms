@@ -86,6 +86,7 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('actionItem'));
     this.editorLib.editor.use(scribePluginMastalk('video'));
     this.editorLib.editor.use(scribePluginMastalk('callout'));
+    this.editorLib.editor.use(scribePluginMastalk('table'));
     this._initialisedSuccess(initialised);
   };
 
