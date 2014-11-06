@@ -11,7 +11,10 @@ Rails.application.configure do
 # Application JavaScript
   config.assets.precompile += %w(application.js)
 
-# Editor JavaScript
+# Snippets source files
+  config.assets.precompile += %w(comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md)
+
+# Editor JavaScript/snippet content
   config.assets.precompile += %w(mas-cms-editor/src/app/constants/constants.js
                                   mas-cms-editor/src/app/config/config.js
                                   mas-cms-editor/src/app/app.js
@@ -36,6 +39,7 @@ Rails.application.configure do
                                   scribe-plugin-link-prompt-command/scribe-plugin-link-prompt-command.js
                                   scribe-plugin-sanitizer/scribe-plugin-sanitizer.js
                                   scribe-plugin-toolbar/scribe-plugin-toolbar.js
+                                  text/text.js
                                   marked/lib/marked.js
                                   to-markdown/src/to-markdown.js
                                   dough/assets/js/lib/componentLoader.js

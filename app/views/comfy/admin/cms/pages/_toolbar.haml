@@ -20,6 +20,28 @@
         =button_tag("Unlink", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
 
+        =content_tag(:div, "Insert Collapsible", title: 'Collapsible', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
+          %span.toolbar-button__icon.fa.fa-scissors
+        %div.popover.popover--bottom{:data => {dough_collapsable_target: 2}}
+          .popover__inner
+            %ul.menu.menu--toolbar
+              %li.menu__item
+                =button_tag("Collapsible", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_collapsible"})
+              %li.menu__item
+                =button_tag("Action item", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_actionItem"})
+              %li.menu__item
+                =button_tag("Add action", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_addAction"})
+              %li.menu__item
+                =button_tag("Call out box", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_callout"})
+              %li.menu__item
+                =button_tag("Ticks", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_ticks"})
+              %li.menu__item
+                =button_tag("Table", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_table"})
+              %li.menu__item
+                =button_tag("Video", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_video"})
+
+          .popover__pointer{:data => {dough_collapsable_pointer: true}}
+
       .toolbar__item-group
         =button_tag("Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
           %span.fa.fa-square-o

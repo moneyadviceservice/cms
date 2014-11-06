@@ -33,7 +33,7 @@
 
 .toolbar__item-group--html {
   pointer-events: none;
-  
+
   &.is-active {
     pointer-events: auto;
   }
@@ -49,7 +49,9 @@
 }
 
 .toolbar__item {
+  display: inline-block;
   margin: 0 4px 0 0;
+  vertical-align: middle;
 
   &:last-child {
     margin-right: 0;

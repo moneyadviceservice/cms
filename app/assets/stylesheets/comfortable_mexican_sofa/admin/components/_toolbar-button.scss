@@ -3,6 +3,7 @@
 // Styleguide Toolbar button
 
 .toolbar-button {
+  background: lighten($color-toolbar-button-disabled-background, .5);
   border: none;
   border-radius: 3px;
   color: white;
@@ -16,7 +17,6 @@
   width: 32px;
 
   &:focus {
-    outline: none;
     border-color: none;
   }
 }
@@ -26,6 +26,10 @@
 }
 
 .is-active .toolbar-button.active,
+.is-active .toolbar-button.active:hover {
+  background-color: darken($color-toolbar-button-background,10%);
+}
+
 .is-active .toolbar-button:hover {
   background-color: $color-toolbar-button-background;
 }
@@ -33,4 +37,14 @@
 .toolbar-button[disabled],
 .is-active .toolbar-button[disabled] {
   background: lighten($color-toolbar-button-disabled-background, .5);
+}
+
+.toolbar-button__icon {
+  pointer-events: none;
+  vertical-align: text-top;
+}
+
+.toolbar-button .unstyled-button {
+  height: 100%;
+  width: 100%;
 }

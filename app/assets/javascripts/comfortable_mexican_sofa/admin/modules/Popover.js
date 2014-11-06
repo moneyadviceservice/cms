@@ -6,52 +6,68 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       defaultConfig = {
         direction: 'top',
         centerAlign: false,
+        hideOnBlur: false,
+        closeOnClick: false,
         selectors: {
-          pointer: '[data-dough-collapsable-pointer]'
+          pointer: '[data-dough-collapsable-pointer]',
+          target: '[data-dough-collapsable-target]'
         }
       };
 
-  Popover = function($el, config) {
-    Popover.baseConstructor.call(this, $el, config, defaultConfig);
+  function Popover($el, config, customConfig) {
+    Popover.baseConstructor.call(this, $el, config, customConfig || defaultConfig);
     this.$trigger.find('[data-dough-collapsable-icon]').remove();
-  };
+  }
 
   /**
    * Inherit from base module, for shared methods and interface
    */
   DoughBaseComponent.extend(Popover, Collapsable);
 
-  Popover.prototype.init = function() {
+  Popover.prototype.init = function(initialised) {
     Popover.superclass.init.call(this);
 
     var resize,
         _this = this;
 
     this.handleResize = $.proxy(this.handleResize, this);
+    this.handleTargetClick = $.proxy(this.handleTargetClick, this);
     this.$target.css({
       position: 'absolute'
     });
     this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
     this.cacheComponentElements();
+    this.setupUIEvents();
 
     $(window).on('resize', function() {
       clearTimeout(resize);
       resize = setTimeout(_this.handleResize, 100);
     });
+    this._initialisedSuccess(initialised);
   };
 
   Popover.prototype.cacheComponentElements = function() {
     this.$pointer = this.$target.find('[data-dough-collapsable-pointer]');
   };
 
+  Popover.prototype.setupUIEvents = function() {
+    if(this.config.closeOnClick) {
+      this.$target.on('click touchend', this.handleTargetClick);
+    }
+  };
+
   Popover.prototype.handleResize = function() {
-    this.updatePositions();
+    this.setPositions();
+  };
+
+  Popover.prototype.handleTargetClick = function(e) {
+    this.toggle();
   };
 
   Popover.prototype.toggle = function() {
     Popover.superclass.toggle.call(this);
     this.isShown? this.detachTarget() : this.attachTarget();
-    this.updatePositions();
+    this.setPositions();
   };
 
   Popover.prototype.detachTarget = function() {
@@ -65,7 +81,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.$locationMarker.remove();
   };
 
-  Popover.prototype.updatePositions = function() {
+  Popover.prototype.setPositions = function() {
     this.bodyOffset = this.getBodyOffset();
     this.$target.css(this.calculateTargetOffsetFromTrigger(this.config.direction));
     if(this.$pointer) {

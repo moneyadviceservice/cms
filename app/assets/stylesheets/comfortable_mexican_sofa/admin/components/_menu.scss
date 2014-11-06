@@ -6,6 +6,11 @@
   @extend .unstyled-list;
 }
 
+.menu--toolbar {
+  min-width: 180px;
+  max-width: 360px;
+}
+
 .menu__item {
   border-bottom: 1px solid $color-menu-item-separator;
 
@@ -29,5 +34,16 @@
     border-left: 5px solid $color-menu-active-item-border;
     outline: none;
     padding-left: 10px;
+  }
+}
+
+.menu__action[disabled] {
+  color: $color-menu-foreground-disabled;
+  font-style: italic;
+  text-shadow: 1px 1px 0 lighten($color-menu-foreground-disabled,20%);
+
+  &:hover {
+    background-color: transparent;
+    border-left-color: transparent;
   }
 }

@@ -2,12 +2,14 @@ define([
   'jquery',
   'DoughBaseComponent',
   'editor-plugin-auto-resize-textarea',
-  'editor'
+  'editor',
+  'scribe-plugin-mastalk'
 ], function (
   $,
   DoughBaseComponent,
   editorPluginAutoResizeTextarea,
-  Editor
+  Editor,
+  scribePluginMastalk
 ) {
   'use strict';
 
@@ -71,13 +73,20 @@ define([
     this._cacheComponentElements();
     this._stripEditorWhitespace();
     this.enableHTMLToolbar();
-    this.editor = new Editor(
+    this.editorLib = new Editor(
       this.$htmlContent[0],
       this.$markdownContent[0],
       this.$htmlToolbar[0],
       this.editorOptions
     );
-    this.editor.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
+    this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
+    this.editorLib.editor.use(scribePluginMastalk('collapsible'));
+    this.editorLib.editor.use(scribePluginMastalk('ticks'));
+    this.editorLib.editor.use(scribePluginMastalk('addAction'));
+    this.editorLib.editor.use(scribePluginMastalk('actionItem'));
+    this.editorLib.editor.use(scribePluginMastalk('video'));
+    this.editorLib.editor.use(scribePluginMastalk('callout'));
+    this.editorLib.editor.use(scribePluginMastalk('table'));
     this._initialisedSuccess(initialised);
   };
 
@@ -113,8 +122,8 @@ define([
    * @return {Object} this
    */
   MASEditorProto._handleFormSubmit = function() {
-    if(this.mode === this.editor.constants.MODES.HTML) {
-      this.editor.changeEditingMode(this.editor.constants.MODES.MARKDOWN);
+    if(this.mode === this.editorLib.constants.MODES.HTML) {
+      this.editorLib.changeEditingMode(this.editorLib.constants.MODES.MARKDOWN);
     }
   };
 
@@ -147,11 +156,11 @@ define([
     this.mode = mode;
 
     switch(mode) {
-      case this.editor.constants.MODES.HTML:
+      case this.editorLib.constants.MODES.HTML:
         this.enableHTMLToolbar();
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
-      case this.editor.constants.MODES.MARKDOWN:
+      case this.editorLib.constants.MODES.MARKDOWN:
         this.disableHTMLToolbar();
         this.show(this.$markdownContainer).hide(this.$htmlContainer);
         break;
@@ -160,7 +169,7 @@ define([
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
     }
-    this.editor.changeEditingMode(this.mode);
+    this.editorLib.changeEditingMode(this.mode);
 
     return this;
   };
