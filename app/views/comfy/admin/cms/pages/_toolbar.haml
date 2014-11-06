@@ -20,7 +20,7 @@
         =button_tag("Unlink", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
 
-        =content_tag(:div, "Insert Collapsible", title: 'Collapsible', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
+        =content_tag(:div, "Insert Collapsible", title: 'Collapsible', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
           %span.toolbar-button__icon.fa.fa-scissors
         %div.popover.popover--bottom{:data => {dough_collapsable_target: 2}}
           .popover__inner
