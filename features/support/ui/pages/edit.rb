@@ -23,6 +23,6 @@ module UI::Pages
     element :site_toggle_cy, "#site__mirrors input#edit-mode_cy"
     element :site_toggle_en, "#site__mirrors input#edit-mode_en"
     element :status, '#t-status'
-    element :regulated_checkbox, '#page_regulated'
+    element :regulated_checkbox, '#page_regulated_box'
   end
 end
