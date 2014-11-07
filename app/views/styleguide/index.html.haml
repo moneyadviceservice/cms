@@ -6,42 +6,49 @@
     %h2 Content grid
 
     %ul.content-grid
-      %li.content-grid__item
+      %li.content-grid__item.content-grid__item--media
         %span.content-grid__media-wrapper
           %img.content-grid__media{src: 'http://placehold.it/300x300'}
         %button.content-grid__action
           %span.fa.fa-trash
           %span.visually-hidden Delete
         %span.content-grid__outline
-      %li.content-grid__item
+
+      %li.content-grid__item.content-grid__item--file
+        %span.content-grid__heading Title of document
+        %span.content-grid__icon
+          %span.fa.fa-file-excel-o
+        %button.content-grid__action
+          %span.fa.fa-trash
+          %span.visually-hidden Delete
+        %span.content-grid__outline
+
+      %li.content-grid__item.content-grid__item--media
         %span.content-grid__media-wrapper
           %img.content-grid__media{src: 'http://placehold.it/300x300'}
         %button.content-grid__action
           %span.fa.fa-trash
           %span.visually-hidden Delete
         %span.content-grid__outline
-      %li.content-grid__item
+
+      %li.content-grid__item.content-grid__item--media
         %span.content-grid__media-wrapper
           %img.content-grid__media{src: 'http://placehold.it/300x300'}
         %button.content-grid__action
           %span.fa.fa-trash
           %span.visually-hidden Delete
         %span.content-grid__outline
-      %li.content-grid__item
-        %span.content-grid__media-wrapper
-          %img.content-grid__media{src: 'http://placehold.it/300x300'}
+
+      %li.content-grid__item.content-grid__item--file
+        %span.content-grid__heading Title of document
+        %span.content-grid__icon
+          %span.fa.fa-file-pdf-o
         %button.content-grid__action
           %span.fa.fa-trash
           %span.visually-hidden Delete
         %span.content-grid__outline
-      %li.content-grid__item
-        %span.content-grid__media-wrapper
-          %img.content-grid__media{src: 'http://placehold.it/300x300'}
-        %button.content-grid__action
-          %span.fa.fa-trash
-          %span.visually-hidden Delete
-        %span.content-grid__outline
-      %li.content-grid__item
+
+      %li.content-grid__item.content-grid__item--media
         %span.content-grid__media-wrapper
           %img.content-grid__media{src: 'http://placehold.it/300x300'}
         %button.content-grid__action
