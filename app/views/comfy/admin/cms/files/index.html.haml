@@ -24,29 +24,14 @@
 
 = render 'comfy/admin/cms/partials/files_before'
 
-= paginate @files
+.js-files-list_box
+  = paginate @files
+  .js-files-filters
+    = form_tag(comfy_admin_cms_site_files_path(site_id: @site), method: :get, remote: true) do
+      = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: t('comfy.admin.cms.files.index.sort_by.placeholder'),   data: {dough_component: 'SelectSubmitter'})
+      = select_tag(:type,  options_to_filter_files(selected_option: @type), prompt: t('comfy.admin.cms.files.index.filter_by.placeholder'), data: {dough_component: 'SelectSubmitter'})
 
-.js-files-filters
-  = form_tag(comfy_admin_cms_site_files_path(site_id: @site), method: :get) do
-    = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: t('.sort_by.placeholder'),   data: {dough_component: 'SelectSubmitter'})
-    = select_tag(:type,  options_to_filter_files(selected_option: @type), prompt: t('.filter_by.placeholder'), data: {dough_component: 'SelectSubmitter'})
-
-%table.table.table-hover.table-bordered.js-files-listing
-  %tbody.sortable
-    - @files.each do |file|
-      %tr{:id => dom_id(file)}
-        %td
-          .icon{:style => "background: url('#{url_of_file_icon(file)}') no-repeat center; height: 160px; width: 160px;"}
-        %td.main
-          .item-title
-            = link_to file.label, edit_comfy_admin_cms_site_file_path(@site, file)
-            = render :partial => 'comfy/admin/cms/categories/categories', :object => file
-          .item-meta
-            = link_to file.file_file_name, file.file.url, :target => '_blank'
-        %td
-          .btn-group.btn-group-sm
-            = link_to t('.edit'), edit_comfy_admin_cms_site_file_path(@site, file), :class => 'btn btn-default'
-            = link_to t('.delete'), comfy_admin_cms_site_file_path(@site, file), :method => :delete, :data => {:confirm => t('.are_you_sure')}, :class => 'btn btn-danger'
-= paginate @files
+  = render 'files_list', site: @site, files: @files
+  = paginate @files
 
 = render 'comfy/admin/cms/partials/files_after'
