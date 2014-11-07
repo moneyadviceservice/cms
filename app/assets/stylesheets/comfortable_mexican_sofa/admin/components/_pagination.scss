@@ -16,6 +16,10 @@
   text-decoration: underline;
 }
 
+.pagination__icon:hover {
+  border-bottom: 1px solid;
+}
+
 .pagination--tags .pagination__item {
   @include body(22,22);
   text-transform: uppercase;
