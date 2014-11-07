@@ -11,7 +11,7 @@ module TagsHelper
     link_to(prefix, starting_by_tags_path(prefix: prefix),
             remote: :true,
             data:   { no_turbolink: :true, prefix: prefix },
-            class:  'nav-pagination__item js-tags-starting-by-link')
+            class:  'pagination__item js-tags-starting-by-link')
   end
 
   # The header to display in the list of existing tags.

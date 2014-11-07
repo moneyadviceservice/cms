@@ -15,3 +15,12 @@
   font-weight: 700;
   text-decoration: underline;
 }
+
+.pagination--tags .pagination__item {
+  @include body(22,22);
+  text-transform: uppercase;
+
+  &:first-child {
+    padding-left: 0;
+  }
+}
