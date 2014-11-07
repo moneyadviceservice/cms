@@ -1,0 +1,16 @@
+%table.table.table-hover.table-bordered.js-files-listing
+  %tbody.sortable
+    - files.each do |file|
+      %tr{:id => dom_id(file)}
+        %td
+          .icon{:style => "background: url('#{url_of_file_icon(file)}') no-repeat center; height: 160px; width: 160px;"}
+        %td.main
+          .item-title
+            = link_to file.label, edit_comfy_admin_cms_site_file_path(site, file)
+            = render :partial => 'comfy/admin/cms/categories/categories', :object => file
+          .item-meta
+            = link_to file.file_file_name, file.file.url, :target => '_blank'
+        %td
+          .btn-group.btn-group-sm
+            = link_to t('.edit'), edit_comfy_admin_cms_site_file_path(site, file), :class => 'btn btn-default'
+            = link_to t('.delete'), comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('comfy.admin.cms.files.index.are_you_sure')}, :class => 'btn btn-danger'

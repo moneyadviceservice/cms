@@ -25,6 +25,23 @@ en:
       cms:
         base:
           tags: Tags
+  comfy:
+    admin:
+      cms:
+        files:
+          index:
+            found: "%{n} files found for '%{q}'"
+            search:
+              placeholder: Search term
+            filter_by:
+              placeholder: "file type:"
+              type: "doc, jpg, pdf, xls"
+            sort_by:
+              date: date added (lattest first)
+              name: name (a to z)
+              placeholder: "sort by:"
+  search:
+    results: Search Results
   tags:
     index:
       add_tag:

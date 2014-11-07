@@ -9,14 +9,19 @@ module World
     # Waits for every queued ajax to finish.
     def wait_for_ajax_complete
       wait_for_page_load
-      Timeout.timeout(Capybara.default_wait_time) do
-        loop until page.evaluate_script('jQuery.active').zero?
-      end
+      wait_for_ajax
     end
 
     # Waits for all the dough components to be loaded
     def wait_for_page_load
       find('body[data-dough-component-loader-all-loaded="yes"]')
+    end
+
+    # Waits for all ajax calls
+    def wait_for_ajax
+      Timeout.timeout(Capybara.default_wait_time) do
+        loop until page.evaluate_script('jQuery.active').zero?
+      end
     end
 
   end
