@@ -1,1 +1,0 @@
-# include Rack::Test::Methods
