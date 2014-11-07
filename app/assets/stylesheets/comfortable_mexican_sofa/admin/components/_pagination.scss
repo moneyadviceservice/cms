@@ -1,0 +1,17 @@
+// Pagination
+//
+// Styleguide Pagination
+
+.pagination {
+  padding: 5px 0;
+}
+
+.pagination__item {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.pagination__item.is-active {
+  font-weight: 700;
+  text-decoration: underline;
+}
