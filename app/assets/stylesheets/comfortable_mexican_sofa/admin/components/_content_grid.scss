@@ -1,0 +1,60 @@
+// Content grid§
+//
+// Styleguide Content grid
+
+.content-grid {
+  @extend %clearfix;
+  @extend .unstyled-list;
+  margin-left: -1.5%;
+}
+
+.content-grid__item {
+  cursor: pointer;
+  float: left;
+  height: 0;
+  margin-left: 1.5%;
+  margin-bottom: 1.5%;
+  padding-bottom: 18.5%;
+  position: relative;
+  width: 18.5%;
+}
+
+.content-grid__outline {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  pointer-events: none;
+  right: 0;
+  top: 0;
+}
+
+.content-grid__item.is-active .content-grid__outline,
+.content-grid__item:hover .content-grid__outline,
+.content-grid__action:focus ~ .content-grid__outline {
+  border: 4px solid $color-content-grid-outline;
+}
+
+.content-grid__media {
+  position: absolute;
+  width: 100%;
+}
+
+.content-grid__action {
+  @extend .unstyled-button;
+  @include body(22,22);
+  color: $color-content-grid-icon;
+  left: -99999em;
+  position: absolute;
+  top: -99999em;
+
+  &:hover {
+    color: darken($color-content-grid-icon, 10%);
+  }
+}
+
+.content-grid__action:focus,
+.content-grid__item:hover .content-grid__action {
+  left: auto;
+  right: 7%;
+  top: 7%;
+}
