@@ -6,13 +6,13 @@ namespace :cms do
 
     task :import => :environment do
       from  = ENV['FROM']
-      to    = ENV['TO'] || ENV['FROM']
+      to    = ENV['TO']
 
       puts "Importing CMS Data from file [#{from}]..."
 
       file = File.read(File.expand_path(from))
 
-      imported = HippoImport.new(file).import!
+      imported = HippoImport.new(file, to).import!
 
       puts "Imported #{imported.size} articles."
     end

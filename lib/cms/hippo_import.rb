@@ -1,5 +1,15 @@
 require 'htmlentities'
 
+module ReverseMarkdown
+  def self.site=(site)
+    @@site = site
+  end
+
+  def self.site
+    @@site
+  end
+end
+
 class HippoImport
   TYPES = [
     'contentauthoringwebsite:Guide'
@@ -12,17 +22,18 @@ class HippoImport
 
   attr_reader :records, :html_decoder
 
-  def initialize(data, parser = HippoXmlParser, html_decoder = HTMLEntities.new)
+  def initialize(data, site = nil, parser = HippoXmlParser, html_decoder = HTMLEntities.new)
     @records = parser.parse(data, TYPES)
+    @_site = site || 'en'
     @html_decoder = html_decoder
   end
 
   def site
-    @_site ||= Comfy::Cms::Site.first
+    @site ||= Comfy::Cms::Site.find_by(label: @_site)
   end
 
   def layout
-    @_layout ||= Comfy::Cms::Layout.first
+    @_layout ||= site.layouts.first
   end
 
   def parent
@@ -30,7 +41,15 @@ class HippoImport
   end
 
   def decoded(str)
-    ReverseMarkdown.convert(html_decoder.decode(str))
+    decoded = html_decoder.decode(str)
+    html = Nokogiri::HTML.parse(decoded)
+    ['//p[@class="intro"]/img', '//a[@class="action-email"]',
+      '//form[@class="action-form"]', '//span[@class="collapse"]'].each do |path|
+      html.xpath(path).remove
+    end
+
+    ReverseMarkdown.site = site
+    ReverseMarkdown.convert(html)
   end
 
   def import!
