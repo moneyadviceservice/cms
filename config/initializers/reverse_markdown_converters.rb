@@ -1,8 +1,32 @@
 module ReverseMarkdown
   module Converters
+    class Tr < Base
+      def convert(node)
+        content = treat_children(node).rstrip
+        result  = "|#{content}\n"
+        table_header_row?(node) ? result + underline_for(node) : result
+      end
+
+      def table_header_row?(node)
+        node.element_children.all? {|child| child.name.to_sym == :th} ||
+        node.parent.children.index(node) == 1
+      end
+
+      def underline_for(node)
+        "| " + (['---'] * node.element_children.size).join(' | ') + " |\n"
+      end
+    end
+
+    register :tr, Tr.new
+  end
+end
+
+module ReverseMarkdown
+  module Converters
     class Div < Base
       def convert(node)
         div = "\n" << treat_children(node) << "\n"
+        binding.pry if node.attributes["class"].try(:value) == 'action-item'
         if node.attributes["class"].try(:value) == 'callout'
           "\n$=callout\n#{div}\n=$\n"
         else
@@ -22,9 +46,14 @@ module ReverseMarkdown
         name  = treat_children(node)
         href  = node['href']
         title = extract_title(node)
-
         link = if href.to_s.start_with?('#') || href.to_s.empty? || name.empty?
-          name
+          data_action = node.attributes['data-action-id'].try(:value)
+          if data_action
+            href, name = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
+            " ^[#{name}](#{href}#{title})^"
+          else
+            name
+          end
         else
           href = ::LinkLookup.new.find(href) unless href.match("/")
           " [#{name}](#{href}#{title})"
