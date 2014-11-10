@@ -15,7 +15,7 @@ module UI::Pages
     element :save_button, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
     element :category_remove, '.search-choice-close'
-    element :category_chosen, '.categories .chosen-choices'
+    element :category_chosen, '#categories_chosen .chosen-choices'
     elements :categories_selected, '.t-categories-select > option[selected]'
     element :tags_input_box, '.t-tags-select .search-field input'
     elements :tags_choices,  '.t-tags-select > option'
