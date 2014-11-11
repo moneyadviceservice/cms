@@ -21,9 +21,6 @@
 
     = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}", class: 'form__input--has-meta', :data => {'dough-slugifier-slug' => '', :slug => true}
 
-    - if (options = ::Comfy::Cms::Page.options_for_select(@site, @page, nil, 0, false)).present?
-      = form.select :target_page_id, [["---- #{t('.select_target_page')} ----", nil]] + options
-
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
     = render 'tags/shared/form',                         form: form
