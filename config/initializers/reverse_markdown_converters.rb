@@ -26,9 +26,10 @@ module ReverseMarkdown
     class Div < Base
       def convert(node)
         div = "\n" << treat_children(node) << "\n"
-        binding.pry if node.attributes["class"].try(:value) == 'action-item'
         if node.attributes["class"].try(:value) == 'callout'
-          "\n$=callout\n#{div}\n=$\n"
+          "\n$~callout #{div} ~$\n"
+        elsif node.attributes["class"].try(:value) == 'collapsible-section'
+          "\n$- #{div} -$\n"
         else
           div
         end
@@ -36,6 +37,22 @@ module ReverseMarkdown
     end
 
     register :div, Div.new
+  end
+end
+
+module ReverseMarkdown
+  module Converters
+    class H < Base
+      def convert(node)
+        prefix = '#' * node.name[/\d/].to_i
+        if node.attributes['class'].try(:value) == 'collapsible'
+          ["\n", '$= ', treat_children(node), ' =$',  "\n"].join
+        else
+          ["\n", prefix, ' ', treat_children(node), "\n"].join
+        end
+      end
+    end
+    register :h2, H.new
   end
 end
 

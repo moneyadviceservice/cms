@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 RSpec.describe WordDocumentsController, type: :controller do
   include_context 'cms'
 

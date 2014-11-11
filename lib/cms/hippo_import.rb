@@ -33,7 +33,7 @@ class HippoImport
   end
 
   def layout
-    @_layout ||= site.layouts.first
+    @_layout ||= (site.try(:layouts) || []).first
   end
 
   def parent
@@ -46,6 +46,11 @@ class HippoImport
     ['//p[@class="intro"]/img', '//a[@class="action-email"]',
       '//form[@class="action-form"]', '//span[@class="collapse"]'].each do |path|
       html.xpath(path).remove
+    end
+
+    v = html.xpath('//iframe[starts-with(@src, "https://www.youtube.com/embed")]')
+    v.each  do |e|
+      e.replace("({" + e.attributes['src'].value.gsub('https://www.youtube.com/embed/', '') + "})")
     end
 
     ReverseMarkdown.site = site
