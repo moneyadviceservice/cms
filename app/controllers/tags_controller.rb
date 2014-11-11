@@ -5,9 +5,6 @@ class TagsController < Comfy::Admin::Cms::BaseController
   before_action :build_tag_from_params, only: [:create]
   before_action :find_tag_from_params,  only: [:delete_from_value]
 
-  def index
-  end
-
   def create
     render js: "#{@tag.save}"
   end
