@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141014143831) do
+ActiveRecord::Schema.define(version: 20141111164000) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20141014143831) do
     t.string   "preview_cache"
     t.boolean  "regulated",                         default: false
     t.string   "meta_title"
+    t.string   "translation_id"
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
