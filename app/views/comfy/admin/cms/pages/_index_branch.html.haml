@@ -11,6 +11,5 @@
           %th= select_tag(:language, options_for_select([['Language', nil], ['English', :en], ['Welsh', :cy]]), data: { dough_component: 'SelectSubmitter' })
       %tbody.js-filter-pages
         - @pages.each do |page|
-          - cy = page.mirrors.first
           = render page
-          = render cy if cy
+          = render page.mirrors.first if page.mirrors.present?
