@@ -9,7 +9,7 @@ module ReverseMarkdown
           data_action = node.attributes['data-action-id'].try(:value)
           if data_action
             href, name = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
-            " ^[#{name}](#{href}#{title})^"
+            " ^[#{name}](#{href}#{title}){:target='_blank'}^"
           else
             name
           end
