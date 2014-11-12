@@ -2,32 +2,26 @@
   .l-constrained
     %nav
       %ul.nav-primary
-        %li.nav-primary__item
-          =link_to t('comfy.admin.cms.base.pages'), comfy_admin_cms_site_pages_path(@site), :class => "nav-primary__text"
-        %li.nav-primary__item
-          =link_to t('comfy.admin.cms.base.files'), comfy_admin_cms_site_files_path(@site), :class => "nav-primary__text"
-        / %li.nav-primary__item
-        /   =link_to t('comfy.admin.cms.base.reporting'), "#", :class => "nav-primary__text"
-        %li.nav-primary__item.has-dropdown
-          =link_to t('comfy.admin.cms.base.admin'), "#", :class => "nav-primary__text"
-          .nav-primary__menu
-            %ul.menu.menu--global
-              %li.menu__item
-                =link_to t('comfy.admin.cms.base.admin'), users_path, :class => "menu__action"
-              %li.menu__item
-                =link_to t('comfy.admin.cms.base.layouts'), comfy_admin_cms_site_layouts_path(@site), :class => "menu__action"
-              %li.menu__item
-                =link_to t('comfy.admin.cms.base.tags'), tags_path, :class => "menu__action"
-              %li.menu__item
-                =link_to t('comfy.admin.cms.base.snippets'), comfy_admin_cms_site_snippets_path(@site), :class => "menu__action"
-              %li.menu__item
+        - menu_links.each do |menu_link|
+          - if menu_link.sublinks?
+            %li.nav-primary__item.has-dropdown
+              = link_to menu_link.name, menu_link.path, class: menu_link.link_class
+              .nav-primary__menu
+                %ul.menu.menu--global
+                  - menu_link.sublinks.each do |sublink|
+                    %li.menu__item{ class: sublink.add_active_class(self) }
+                      = link_to sublink.name, sublink.path, class: 'menu__action'
+          - else
+            %li.nav-primary__item{ class: menu_link.add_active_class(self) }
+              = link_to menu_link.name, menu_link.path, class: menu_link.link_class
 
+        %li.nav-primary__item
         %li.nav-primary__item.nav-primary__item--right
           %span.nav-primary__text.nav-primary__text--no-hover
-            Alan Wong
+            = current_user.name
             %span.nav-primary__icon.fa.fa-user
         %li.nav-primary__item.nav-primary__item--right
-          =link_to ("Sign out " + content_tag(:span, "", :class => 'nav-primary__icon fa fa-sign-out')).html_safe, destroy_user_session_path, :method => :delete, :class => "nav-primary__text"
+          = link_to ("Sign out " + content_tag(:span, '', class: 'nav-primary__icon fa fa-sign-out')).html_safe, destroy_user_session_path, method: :delete, class: 'nav-primary__text'
 
 
         = cms_hook :navigation
