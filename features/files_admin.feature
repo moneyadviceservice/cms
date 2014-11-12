@@ -20,17 +20,17 @@ Feature: Files administration
   Scenario: Sorting files by date
     Given I am on the files admin page
     When  I choose to sort files by date
-    Then  They get ordered by date (lattest first)
+    Then  They get ordered by date (latest first)
 
   @javascript
   Scenario: Switching files sort fields
     Given I am on the files admin page
     When  I choose to sort files by date
-    Then  They get ordered by date (lattest first)
+    Then  They get ordered by date (latest first)
     When  I choose to sort files by name
     Then  They get ordered by name
     When  I choose to sort files by date
-    Then  They get ordered by date (lattest first)
+    Then  They get ordered by date (latest first)
 
   @javascript
   Scenario: Filtering images files
@@ -60,7 +60,7 @@ Feature: Files administration
   Scenario: Sorting and Filtering at the same time
     Given I am on the files admin page
     When  I choose to sort files by date
-    Then  They get ordered by date (lattest first)
+    Then  They get ordered by date (latest first)
     When  I choose to filter files by jpg type
     Then  Only jpg files sorted by date are shown
     When  I choose to sort files by name

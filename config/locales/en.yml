@@ -37,7 +37,7 @@ en:
               placeholder: "file type:"
               type: "doc, jpg, pdf, xls"
             sort_by:
-              date: date added (lattest first)
+              date: date added (latest first)
               name: name (a to z)
               placeholder: "sort by:"
   search:

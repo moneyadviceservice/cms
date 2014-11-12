@@ -23,7 +23,7 @@ Then(/^I should see a files header$/) do
 end
 
 Then(/^(?:I should see |also )?a file (.+) section$/) do |section|
-  expect(@page).to have_selector(".js-files-#{section}")
+  expect(@page).to have_selector(".t-files-#{section}")
 end
 
 Then(/^I choose to sort files by name$/) do
@@ -43,7 +43,7 @@ Then(/^(?:The files|They) get (?:sorted|ordered) by name$/) do
   expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(sample_filenames.sort)
 end
 
-Then(/^(?:The files|They) get (?:sorted|ordered) by date \(lattest first\)$/) do
+Then(/^(?:The files|They) get (?:sorted|ordered) by date \(latest first\)$/) do
 
   expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:date])
   expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(sample_filenames.reverse)
@@ -96,7 +96,7 @@ def add_file(filename)
 end
 
 def file_type_options; %w(doc jpg pdf xls) end
-def sort_by_options; { name: 'name (a to z)', date: 'date added (lattest first)' } end
+def sort_by_options; { name: 'name (a to z)', date: 'date added (latest first)' } end
 def sample_file_description(filename); ['this is the description for file:', filename].join(' ') end
 def sample_files_path; File.join(Rails.root, 'features', 'support', 'files', '*') end
 def sample_filenames; @filenames ||= Dir.glob(sample_files_path) end
