@@ -1,15 +1,5 @@
 require 'htmlentities'
 
-module ReverseMarkdown
-  def self.site=(site)
-    @@site = site
-  end
-
-  def self.site
-    @@site
-  end
-end
-
 class HippoImport
   TYPES = [
     'contentauthoringwebsite:Guide'
@@ -22,7 +12,7 @@ class HippoImport
 
   attr_reader :records, :html_decoder
 
-  def initialize(data, site = nil, parser = HippoXmlParser, html_decoder = HTMLEntities.new)
+  def initialize(data, site = 'en', parser = HippoXmlParser, html_decoder = HTMLEntities.new)
     @records = parser.parse(data, TYPES)
     @_site = site || 'en'
     @html_decoder = html_decoder
@@ -37,24 +27,29 @@ class HippoImport
   end
 
   def parent
-    @_parent ||= Comfy::Cms::Page.where(parent_id: nil).first
+    @_parent ||= Comfy::Cms::Page.where(parent_id: nil, site: site).first
   end
 
   def decoded(str)
     decoded = html_decoder.decode(str)
     html = Nokogiri::HTML.parse(decoded)
-    ['//p[@class="intro"]/img', '//a[@class="action-email"]',
-      '//form[@class="action-form"]', '//span[@class="collapse"]'].each do |path|
-      html.xpath(path).remove
-    end
-
-    v = html.xpath('//iframe[starts-with(@src, "https://www.youtube.com/embed")]')
-    v.each  do |e|
-      e.replace("({" + e.attributes['src'].value.gsub('https://www.youtube.com/embed/', '') + "})")
-    end
-
+    remove_unused_elements(html)
+    convert_videos(html)
     ReverseMarkdown.site = site
     ReverseMarkdown.convert(html)
+  end
+
+  def remove_unused_elements(html)
+    ['//p[@class="intro"]/img', '//a[@class="action-email"]',
+     '//form[@class="action-form"]', '//span[@class="collapse"]'].each do |path|
+      html.xpath(path).remove
+    end
+  end
+
+  def convert_videos(html)
+    html.xpath('//iframe[starts-with(@src, "https://www.youtube.com/embed")]').each  do |e|
+      e.replace('({' + e.attributes['src'].value.gsub('https://www.youtube.com/embed/', '') + '})')
+    end
   end
 
   def import!
@@ -73,6 +68,7 @@ class HippoImport
           p.meta_description = record.meta_description
           p.meta_title = record.title_tag
           p.state = 'draft'
+          p.translation_id = record.translation_id
           p.blocks = [
             Comfy::Cms::Block.new(identifier: 'content', content: decoded(record.body.to_s))
           ]
