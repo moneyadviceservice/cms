@@ -31,7 +31,6 @@
   text-align: left;
   width: 100%;
 
-  &.is-active,
   &:hover,
   &:focus {
     background: lighten($color-menu-default-body-background, 40%);
@@ -52,16 +51,19 @@
   }
 }
 
-.menu--global .menu__action {
-  @include body(14,18);
-  color: $color-menu-global-foreground;
-  text-transform: uppercase;
+.menu--global .menu__item {
+  .menu__action {
+    @include body(14,18);
+    color: $color-menu-global-foreground;
+    text-transform: uppercase;
+  }
 
-  &.is-active,
-  &:hover,
-  &:focus {
+  &.is-active .menu__action,
+  .menu__action:hover,
+  .menu__action:focus {
     background: lighten($color-menu-global-body-background, 10%);
     border-left: 5px solid $color-menu-global-active-item-border;
+    padding-left: 10px;
     text-decoration: none;
   }
 }
