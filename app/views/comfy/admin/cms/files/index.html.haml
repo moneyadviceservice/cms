@@ -38,7 +38,7 @@
             = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: t('comfy.admin.cms.files.index.sort_by.placeholder'),   data: {dough_component: 'SelectSubmitter'})
             = select_tag(:type,  options_to_filter_files(selected_option: @type), prompt: t('comfy.admin.cms.files.index.filter_by.placeholder'), data: {dough_component: 'SelectSubmitter'})
 
-    .js-files-listing
+    .js-files-listing.t-files-listing
       = render 'files_list', site: @site, files: @files
     = paginate @files
 

@@ -1,6 +1,5 @@
 %ul.content-grid
   - files.each do |file|
-
     %li{ class: "content-grid__item content-grid__item--#{file.is_image? ? :media : :file}"}
       - if file.is_image?
         = link_to edit_comfy_admin_cms_site_file_path(site, file) do

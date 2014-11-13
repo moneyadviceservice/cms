@@ -29,16 +29,23 @@
 }
 
 .content-grid__heading {
+  bottom: 25%;
   font-size: 2vw;
   line-height: 2.5vw;
   display: inline-block;
-  margin: 10% 22% 10% 10%;
+  margin: 10%;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  left: 0;
+  top: 0;
+  right: 0;  
 }
 
 .content-grid__icon {
   color: $color-content-grid-icon;
-  font-size: 5.5vw;
-  line-height: 5.5vw;
+  font-size: 4.5vw;
+  line-height: 4.5vw;
   position: absolute;
   right: 8%;
   bottom: 7%;
