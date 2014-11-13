@@ -8,7 +8,7 @@ module UI::Pages
 
     element :files_header, '.page-header'
 
-    section :files_filters, '.js-files-filters' do
+    section :files_filters, '.t-files-filters' do
       section :form, 'form' do
         section  :sort_by,   'select#order' do
           element :name, "option[value='label']"
@@ -23,7 +23,7 @@ module UI::Pages
       end
     end
 
-    section :files_listing, '.js-files-listing' do
+    section :files_listing, '.t-files-listing' do
       sections :files, 'tr' do
         element :icon,  '.icon'
         element :label, '.item-title'

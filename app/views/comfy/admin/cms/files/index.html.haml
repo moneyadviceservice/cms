@@ -17,21 +17,27 @@
               = text_field_tag(:search, params[:search], placeholder: t('.search.placeholder'), class: 'form__input form__input--constrained search__input')
               = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
                 %span.button__text.fa.fa-search
-            %span.search__item
-              = link_to new_comfy_admin_cms_site_file_path(@site), :class => 'button--action button--search' do
-                %span.button__text
-                  = t('.new_link')
 
 = render 'comfy/admin/cms/partials/files_before'
 
-.js-files-list_box
-  = paginate @files
-  .js-files-filters
-    = form_tag(comfy_admin_cms_site_files_path(site_id: @site), method: :get, remote: true) do
-      = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: t('comfy.admin.cms.files.index.sort_by.placeholder'),   data: {dough_component: 'SelectSubmitter'})
-      = select_tag(:type,  options_to_filter_files(selected_option: @type), prompt: t('comfy.admin.cms.files.index.filter_by.placeholder'), data: {dough_component: 'SelectSubmitter'})
 
-  = render 'files_list', site: @site, files: @files
-  = paginate @files
+.l-panel-content
+  .l-constrained
+    %span.search__item
+      = link_to new_comfy_admin_cms_site_file_path(@site), :class => 'button--action button--search' do
+        %span.button__text
+          %span.fa.fa-file-o
+          = t('.new_link')
+
+.l-panel-content
+  .l-constrained
+    = paginate @files
+    .t-files-filters
+      = form_tag(comfy_admin_cms_site_files_path(site_id: @site), method: :get, remote: true) do
+        = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: t('comfy.admin.cms.files.index.sort_by.placeholder'),   data: {dough_component: 'SelectSubmitter'})
+        = select_tag(:type,  options_to_filter_files(selected_option: @type), prompt: t('comfy.admin.cms.files.index.filter_by.placeholder'), data: {dough_component: 'SelectSubmitter'})
+
+      = render 'files_list', site: @site, files: @files
+      = paginate @files
 
 = render 'comfy/admin/cms/partials/files_after'

@@ -1,16 +1,18 @@
-%table.table.table-hover.table-bordered.js-files-listing
-  %tbody.sortable
-    - files.each do |file|
-      %tr{:id => dom_id(file)}
-        %td
-          .icon{:style => "background: url('#{url_of_file_icon(file)}') no-repeat center; height: 160px; width: 160px;"}
-        %td.main
-          .item-title
-            = link_to file.label, edit_comfy_admin_cms_site_file_path(site, file)
-            = render :partial => 'comfy/admin/cms/categories/categories', :object => file
-          .item-meta
-            = link_to file.file_file_name, file.file.url, :target => '_blank'
-        %td
-          .btn-group.btn-group-sm
-            = link_to t('.edit'), edit_comfy_admin_cms_site_file_path(site, file), :class => 'btn btn-default'
-            = link_to t('.delete'), comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('comfy.admin.cms.files.index.are_you_sure')}, :class => 'btn btn-danger'
+%ul.content-grid
+  - files.each do |file|
+
+    %li{ class: "content-grid__item content-grid__item--#{file.is_image? ? :media : :file}"}
+      - if file.is_image?
+        %span.content-grid__media-wrapper
+          %img.content-grid__media{src: 'http://placehold.it/300x300'}
+      - else
+        %span.content-grid__heading
+          = link_to file.label, edit_comfy_admin_cms_site_file_path(site, file)
+        %span.content-grid__icon
+          %span{class: icon_class_of(file)}
+
+      %button.content-grid__action
+        = link_to comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('comfy.admin.cms.files.index.are_you_sure')}, :class => 'btn btn-danger' do
+          %span.fa.fa-trash
+          %span.visually-hidden= t('.delete')
+      %span.content-grid__outline
