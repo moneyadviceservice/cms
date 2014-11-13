@@ -1,19 +1,20 @@
 .l-nav-primary
   .l-constrained
     %nav
-      %ul.nav-primary
-        - menu_links.each do |menu_link|
-          - if menu_link.sublinks?
-            %li.nav-primary__item.has-dropdown
-              = link_to menu_link.name, menu_link.path, class: menu_link.link_class
-              .nav-primary__menu
-                %ul.menu.menu--global
-                  - menu_link.sublinks.each do |sublink|
-                    %li.menu__item{ class: sublink.add_active_class(self) }
-                      = link_to sublink.name, sublink.path, class: 'menu__action'
-          - else
-            %li.nav-primary__item{ class: menu_link.add_active_class(self) }
-              = link_to menu_link.name, menu_link.path, class: menu_link.link_class
+      - if @site && @site.persisted?
+        %ul.nav-primary
+          - menu_links.each do |menu_link|
+            - if menu_link.sublinks?
+              %li.nav-primary__item.has-dropdown
+                = link_to menu_link.name, menu_link.path, class: menu_link.link_class
+                .nav-primary__menu
+                  %ul.menu.menu--global
+                    - menu_link.sublinks.each do |sublink|
+                      %li.menu__item{ class: sublink.add_active_class(self) }
+                        = link_to sublink.name, sublink.path, class: 'menu__action'
+            - else
+              %li.nav-primary__item{ class: menu_link.add_active_class(self) }
+                = link_to menu_link.name, menu_link.path, class: menu_link.link_class
 
         %li.nav-primary__item
         %li.nav-primary__item.nav-primary__item--right
