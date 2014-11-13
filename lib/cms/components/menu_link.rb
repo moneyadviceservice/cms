@@ -18,4 +18,3 @@ module Cms
     end
   end
 end
-
