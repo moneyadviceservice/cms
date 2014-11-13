@@ -10,7 +10,9 @@
 
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
 
-    %h2 .menu
+    %h2 Menu
+
+    %h3 .menu
 
     %ul.menu
       %li.menu__item
@@ -21,6 +23,20 @@
         %button.menu__action Unpublish
       %li.menu__item
         %button.menu__action{disabled: :disabled} Save
+
+    %h3 .menu--global
+
+    %ul.menu.menu--global
+      %li.menu__item
+        %button.menu__action User management
+      %li.menu__item
+        %button.menu__action Page types
+      %li.menu__item
+        %button.menu__action Tags
+      %li.menu__item
+        %button.menu__action Snippets / components
+      %li.menu__item
+        %button.menu__action Categories
 
     %h2 .popover
 
@@ -228,28 +244,37 @@
       %span.toggle__indicator
       %label.toggle__label-heading{:for => "b"} Option 2
 
-    %h2 .nav-primary
-
-    %nav.nav-primary
-      %a.nav-primary__text.is-active{:href => "#"} Pages
-      %a.nav-primary__text{:href => "#"} Files
-      %a.nav-primary__text{:href => "#"} Snippets
-      %a.nav-primary__text{:href => "#"} Layouts
-      %a.nav-primary__text{:href => "#"} Categories
-      %a.nav-primary__text{:href => "#"} Reporting
-      %a.nav-primary__text{:href => "#"} Admin
-
-    %h2 .nav-primary inside .l-nav-primary
+    %h2 .nav-primary (inside .l-nav-primary)
 
     .l-nav-primary
-      %nav.nav-primary
-        %a.nav-primary__text.is-active{:href => "#"} Pages
-        %a.nav-primary__text{:href => "#"} Files
-        %a.nav-primary__text{:href => "#"} Snippets
-        %a.nav-primary__text{:href => "#"} Layouts
-        %a.nav-primary__text{:href => "#"} Categories
-        %a.nav-primary__text{:href => "#"} Reporting
-        %a.nav-primary__text{:href => "#"} Admin
+      %nav
+        %ul.nav-primary
+          %li.nav-primary__item.is-active
+            %a.nav-primary__text{:href => "#"} Pages
+          %li.nav-primary__item
+            %a.nav-primary__text{:href => "#"} Files
+          %li.nav-primary__item.has-dropdown
+            %a.nav-primary__text Admin
+            .nav-primary__menu
+              %ul.menu.menu--global
+                %li.menu__item
+                  %a.menu__action{:href => "#"} User management
+                %li.menu__item
+                  %a.menu__action{:href => "#"} Page types
+                %li.menu__item
+                  %a.menu__action{:href => "#"} Tags
+                %li.menu__item
+                  %a.menu__action{:href => "#"} Snippets / components
+                %li.menu__item
+                  %a.menu__action{:href => "#"} Categories
+          %li.nav-primary__item.nav-primary__item--right
+            %span.nav-primary__text.nav-primary__text--no-hover
+              Alan Wong
+              %span.nav-primary__icon.fa.fa-user
+          %li.nav-primary__item.nav-primary__item--right
+            %a.nav-primary__text{:href => "#"}
+              Sign out
+              %span.fa.fa-sign-out
 
     %h2 .nav-secondary
 

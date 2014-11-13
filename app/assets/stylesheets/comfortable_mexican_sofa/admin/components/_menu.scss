@@ -12,38 +12,58 @@
 }
 
 .menu__item {
-  border-bottom: 1px solid $color-menu-item-separator;
+  border-bottom: 1px solid $color-menu-default-item-separator;
 
   &:last-child {
     border-bottom: none;
   }
 }
 
+.menu--global .menu__item {
+  border-bottom-color: $color-menu-global-item-separator;
+}
+
 .menu__action {
   @extend .unstyled-button;
-  color: $color-menu-foreground;
+  color: $color-menu-default-foreground;
   display: block;
   padding: $baseline-unit*2 15px;
   text-align: left;
   width: 100%;
 
-  &.is-active,
   &:hover,
   &:focus {
-    background: lighten($color-menu-body-background, 40%);
-    border-left: 5px solid $color-menu-active-item-border;
+    background: lighten($color-menu-default-body-background, 40%);
+    border-left: 5px solid $color-menu-default-active-item-border;
     outline: none;
     padding-left: 10px;
   }
 }
 
 .menu__action[disabled] {
-  color: $color-menu-foreground-disabled;
+  color: $color-menu-default-foreground-disabled;
   font-style: italic;
-  text-shadow: 1px 1px 0 lighten($color-menu-foreground-disabled,20%);
+  text-shadow: 1px 1px 0 lighten($color-menu-default-foreground-disabled,20%);
 
   &:hover {
     background-color: transparent;
     border-left-color: transparent;
+  }
+}
+
+.menu--global .menu__item {
+  .menu__action {
+    @include body(14,18);
+    color: $color-menu-global-foreground;
+    text-transform: uppercase;
+  }
+
+  &.is-active .menu__action,
+  .menu__action:hover,
+  .menu__action:focus {
+    background: lighten($color-menu-global-body-background, 10%);
+    border-left: 5px solid $color-menu-global-active-item-border;
+    padding-left: 10px;
+    text-decoration: none;
   }
 }

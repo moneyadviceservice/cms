@@ -101,11 +101,15 @@ $color-panel-content-background: $color-white;
 $color-panel-content-form-background: $color-concrete;
 
 // Menu
-$color-menu-body-background: $color-concrete;
-$color-menu-foreground: $color-mariner;
-$color-menu-foreground-disabled: $color-silver-chalice;
-$color-menu-active-item-border: $color-mariner;
-$color-menu-item-separator: $color-alto;
+$color-menu-default-body-background: $color-concrete;
+$color-menu-default-foreground: $color-mariner;
+$color-menu-default-foreground-disabled: $color-silver-chalice;
+$color-menu-default-active-item-border: $color-mariner;
+$color-menu-default-item-separator: $color-alto;
+$color-menu-global-body-background: $color-dove-gray;
+$color-menu-global-foreground: $color-white;
+$color-menu-global-active-item-border: $color-white;
+$color-menu-global-item-separator: lighten($color-dove-gray, 20%);
 
 // Meta
 $color-meta-title-foreground: $color-dove-gray;
