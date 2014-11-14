@@ -24,9 +24,8 @@ module UI::Pages
     end
 
     section :files_listing, '.t-files-listing' do
-      sections :files, 'tr' do
-        element :icon,  '.icon'
-        element :label, '.item-title'
+      sections :files, 'li' do
+        element :label, '.t-file'
       end
     end
   end

@@ -27,7 +27,6 @@ Then(/^(?:I should see |also )?a file (.+) section$/) do |section|
 end
 
 Then(/^I choose to sort files by name$/) do
-
   @page.files_filters.form.sort_by.select(sort_by_options[:name])
   wait_for_ajax_complete
 end
@@ -38,15 +37,13 @@ Then(/^I choose to sort files by date$/) do
 end
 
 Then(/^(?:The files|They) get (?:sorted|ordered) by name$/) do
-
   expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:name])
-  expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(sample_filenames.sort)
+  expect(shown_filenames).to eq(sample_filenames.sort)
 end
 
 Then(/^(?:The files|They) get (?:sorted|ordered) by date \(latest first\)$/) do
-
   expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:date])
-  expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(sample_filenames.reverse)
+  expect(shown_filenames).to eq(sample_filenames.reverse)
 end
 
 Then(/^I choose to filter files by (.+) type$/) do |type|
@@ -56,27 +53,23 @@ Then(/^I choose to filter files by (.+) type$/) do |type|
 end
 
 Then(/^Only (.+) files are shown$/) do |type|
-
   expect(@page.files_filters.form).to have_select('type', :selected => type)
-  expect(@page.files_listing.files.map(&:label).map(&:text)).to contain_exactly(*filenames_of(type: type))
+  expect(shown_filenames).to contain_exactly(*filenames_of(type: type))
 end
 
 Then(/^Only (.+) files sorted by date are shown$/) do |type|
-
   expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:date])
   expect(@page.files_filters.form).to have_select('type',  :selected => type)
-  expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(filenames_of(type: type).reverse)
+  expect(shown_filenames).to eq(filenames_of(type: type).reverse)
 end
 
 Then(/^Only (.+) files sorted by name are shown$/) do |type|
-
   expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:name])
   expect(@page.files_filters.form).to have_select('type',  :selected => type)
-  expect(@page.files_listing.files.map(&:label).map(&:text)).to eq(filenames_of(type: type))
+  expect(shown_filenames).to eq(filenames_of(type: type))
 end
 
 When(/^I add a new "(.*?)" file$/) do |type|
-
   step('I visit the new file page')
   add_file(type: type)
 end
@@ -115,3 +108,6 @@ def filenames_of(type:)
   send("#{type}_filenames")
 end
 
+def shown_filenames
+  @page.files_listing.files.map(&:label).map { |el| el['class'].split('t-file t-').last }
+end
