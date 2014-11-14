@@ -65,7 +65,7 @@ class HippoImport
           p.slug = record.id
           p.created_at = record.created_at
           p.updated_at = record.updated_at
-          p.meta_description = record.meta_description
+          p.meta_description = record.meta_description.present? ? record.meta_description : record.preview
           p.meta_title = record.title_tag
           p.state = 'draft'
           p.translation_id = record.translation_id
