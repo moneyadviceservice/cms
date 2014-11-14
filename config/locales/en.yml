@@ -41,6 +41,7 @@ en:
               name: name (a to z)
               placeholder: "sort by:"
           files_list:
+            are_you_sure: Are you sure?
             delete: delete
   search:
     results: Search Results

@@ -10,7 +10,7 @@
         %span.content-grid__icon
           %span{class: icon_class_of(file)}
 
-      = link_to comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('comfy.admin.cms.files.index.are_you_sure')}, :class => 'content-grid__action' do
+      = link_to comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('.are_you_sure')}, :class => 'content-grid__action' do
         %span.fa.fa-trash
         %span.visually-hidden= t('.delete')
       %span.content-grid__outline
