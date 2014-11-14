@@ -40,6 +40,8 @@ en:
               date: date added (latest first)
               name: name (a to z)
               placeholder: "sort by:"
+          files_list:
+            delete: delete
   search:
     results: Search Results
   tags:
