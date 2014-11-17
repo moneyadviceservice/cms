@@ -34,6 +34,12 @@ class UsersController < Comfy::Admin::Cms::PagesController
     render action: :edit
   end
 
+  def destroy
+    @user = Comfy::Cms::User.find(params[:id])
+    @user.destroy
+    redirect_to action: :index
+  end
+
   private
 
   def user_params

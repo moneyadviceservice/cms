@@ -1,12 +1,14 @@
 .l-panel-content
-  .l-constrained
-    %h2 Users
+  %h2 Users
 
-    %table.table
-      %tr
-        %th name
-        %th email
-        %th edit
+  .table-wrapper
+    %table.datatable-default
+      %thead
+        %tr
+          %th name
+          %th email
+          %th edit
+          %th delete
       %tbody
         -@users.each do |user|
           %tr
@@ -16,5 +18,7 @@
               =user.email
             %td
               =link_to "edit", edit_user_path(user)
+            %td
+              =link_to "delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "t-delete"
 
-    =link_to "Create User", new_user_path, :class => "t-new-user"
+  =link_to "Create User", new_user_path, :class => "t-new-user"

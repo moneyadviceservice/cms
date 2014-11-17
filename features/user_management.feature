@@ -7,3 +7,9 @@ Feature: User Management
     When I visit the user management page
     And I add a new user
     Then the new user should be able to log in
+
+  Scenario: Delete new user
+    When I visit the user management page
+    And I add a new user
+    When I delete the new user
+    Then the new user should not be able to log in
