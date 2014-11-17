@@ -35,7 +35,7 @@ define([
   };
 
   ElementFilterProto._setupEventListeners = function() {
-    $('body').on('click touchend', this.config.selectors.trigger, this._handleClick);
+    $('body').on('click touchend', defaultConfig.selectors.trigger, this._handleClick);
   };
 
   ElementFilterProto._handleClick = function() {
