@@ -4,13 +4,16 @@ Rails.application.routes.draw do
   resources :word_documents
 
   scope '/admin' do
-    resources :users
+    resources :sites do
+      resources :pages
+    end
     resources :tags, only: [:index, :create] do
       collection do
         get    :starting_by
         delete :delete_from_value
       end
     end
+    resources :users
   end
 
   get '/version', to: 'versions#show'
