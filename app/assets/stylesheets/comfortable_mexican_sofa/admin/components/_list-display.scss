@@ -4,7 +4,9 @@
 //
 // Styleguide List Display
 
-.list-display {
+.list-display--activity-log {
+  height: 430px;
+  max-width: 300px;
 }
 
 .list-display__header,
@@ -53,7 +55,9 @@
   padding: 0 12px;
 }
 
-.list-display__body--activity-log {
+.list-display--activity-log .list-display__body {
+  background: $color-notes-list-body-background;
   overflow: scroll;
+  padding-top: $baseline-unit*2;
   height: 220px;
 }
