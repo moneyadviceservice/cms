@@ -1,19 +1,15 @@
-- pages.each do |page|
-  - cy = page.mirrors.first
-  %li{:class => 'listing__item', :id => dom_id(page)}
-    %h2.listing__heading
-      = link_to highlighted_terms(page.label, params[:search]), edit_comfy_admin_cms_site_page_path(@site, page)
-    %p.listing__text
-      = highlighted_terms(page.preview_cache, params[:search])
-    .listing__meta
-      %dl.meta
-        %dt.meta__title Status:
-        = @site.label.upcase + " " + current_status(page.current_state)
-        = cy.site.label.upcase + " " + current_status(cy.current_state) if cy
-        %dd.meta__description
-        %dt.meta__title Type:
-        = page.layout.label
-        %dd.meta__description
-        %dt.meta__title Last edit:
-        %dd.meta__description= page.updated_at.strftime("%d/%m/%Y, %H:%M")
-      = link_to "View Welsh version", edit_comfy_admin_cms_site_page_path(cy.site_id, cy) if cy
+.table-wrapper
+  = form_tag(comfy_admin_cms_site_pages_url, method: :get, id: 'filter_form', remote: true) do
+    %table.datatable-default
+      %thead
+        %tr
+          %th Page title
+          %th= select_tag(:layout, options_for_select(layout_list('Page type')), data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:category, options_for_select(category_list('Child category')), data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:last_edit, options_for_select(user_list('Last edited by')), data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:status, options_for_select(state_list('Status')), data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:language, options_for_select([['Language', nil], ['English', :en], ['Welsh', :cy]]), data: { dough_component: 'SelectSubmitter' })
+      %tbody.js-filter-pages
+        - @pages.each do |page|
+          = render page
+          = render page.mirrors.first if page.mirrors.present?

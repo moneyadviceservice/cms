@@ -142,7 +142,7 @@ GEM
       sass-rails (>= 4.0.3)
       tinymce-rails (>= 4.0.0)
       transitions (>= 0.1.12)
-    comfortable_mexican_sofa (1.12.1.44)
+    comfortable_mexican_sofa (1.12.1.45)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
