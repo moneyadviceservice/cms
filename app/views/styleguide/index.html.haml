@@ -84,10 +84,10 @@
     %h2 Activity Log
 
     = label_tag :filter do
-      = check_box_tag :filter, 'filter', true, :data => {dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_active: 'false'}
+      = check_box_tag :filter, 'filter', true, :data => {dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_config: '{"selectors":{"activeClass":"is-active"}}'}
       Show notes
 
-    %dl.notes-list{:data => {dough_element_filter_target: 'activity-log', dough_element_filter_config: "{'selectors':{'activeClass':'is-active'}}"}}
+    %dl.notes-list{:data => {dough_element_filter_target: 'activity-log'}}
       %dt.notes-list__heading.is-active TDoyle, 01/08/14, 14:45
       %dd.notes-list__description.is-active Status: Draft
       %dt.notes-list__heading.is-active{:data => {dough_element_filter_item: 'true'}} AlexL, 12/08/14, 12:45
