@@ -16,13 +16,13 @@
               %li.nav-primary__item{ class: menu_link.add_active_class(self) }
                 = link_to menu_link.name, menu_link.path, class: menu_link.link_class
 
-        %li.nav-primary__item
-        %li.nav-primary__item.nav-primary__item--right
-          %span.nav-primary__text.nav-primary__text--no-hover
-            = current_user.name
-            %span.nav-primary__icon.fa.fa-user
-        %li.nav-primary__item.nav-primary__item--right
-          = link_to "#{t('users.sign_out')} #{content_tag(:span, '', class: 'nav-primary__icon fa fa-sign-out')}".html_safe, destroy_user_session_path, method: :delete, class: 'nav-primary__text'
+          %li.nav-primary__item
+          %li.nav-primary__item.nav-primary__item--right
+            %span.nav-primary__text.nav-primary__text--no-hover
+              = current_user.name
+              %span.nav-primary__icon.fa.fa-user
+          %li.nav-primary__item.nav-primary__item--right
+            = link_to "#{t('users.sign_out')} #{content_tag(:span, '', class: 'nav-primary__icon fa fa-sign-out')}".html_safe, destroy_user_session_path, method: :delete, class: 'nav-primary__text'
 
 
         = cms_hook :navigation
