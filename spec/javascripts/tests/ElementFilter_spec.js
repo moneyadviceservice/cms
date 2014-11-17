@@ -6,17 +6,15 @@ describe('Element Filter', function () {
 
     requirejs([
       'jquery',
-      'ElementFilter',
-      'phantom-shims'
+      'ElementFilter'
     ],
     function (
       $,
       ElementFilter
     ) {
-      self.$html = $(window.__html__['spec/javascripts/fixtures/ElementFilter.html']);
+      self.$html = $(window.__html__['spec/javascripts/fixtures/ElementFilter.html']).appendTo('body');
+      self.$fixture = $('body').find('[data-dough-component="ElementFilter"]');
       self.ElementFilter = ElementFilter;
-      self.delay = 100;
-      $('body').append(self.$html);
       done();
     }, done);
   });
@@ -25,28 +23,23 @@ describe('Element Filter', function () {
     this.$html.remove();
   });
 
-  describe('Setup the filter trigger link', function () {
-    beforeEach(function (done) {
-      this.component = new this.ElementFilter(this.$html);
-      this.component.init();
-      done();
-    });
-    it('Should bind the trigger link', function() {
-      expect(true).to.be.false;
-    });
-  });
-
   describe('Filtering', function () {
     beforeEach(function (done) {
-      this.component = new this.ElementFilter(this.$html);
+      this.component = new this.ElementFilter(this.$fixture);
       this.component.init();
       done();
     });
-    it('Should hide filtered items (remove active class)', function() {
-      expect(true).to.be.false;
+    
+    it('Should toggle filtered items (add/remove active class)', function() {
+      this.component.$trigger.click();
+      expect(this.component.$filterableItems.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
+
     it('Should only affect items within its context', function() {
-      expect(true).to.be.false;
+      var $dummyList = $('[data-dough-element-filter-target="dummy"]');
+      expect($dummyList.children().hasClass(this.component.config.selectors.activeClass)).to.be.false;
+      this.component.$trigger.click();
+      expect($dummyList.children().hasClass(this.component.config.selectors.activeClass)).to.be.false;
     });
   });
 

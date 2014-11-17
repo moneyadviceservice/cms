@@ -1,0 +1,18 @@
+// Notes
+//
+// Used for Activity List
+//
+// Styleguide Notes List
+// TODO Review naming of notes-list
+
+.notes-list {
+
+}
+
+.notes-list__item {
+  @extend %is-hidden;
+
+  &.is-active {
+    @extend %is-active;
+  }
+}
