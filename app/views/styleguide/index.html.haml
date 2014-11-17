@@ -87,13 +87,13 @@
       = check_box_tag :filter, 'filter', true, :data => {dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_active: 'false'}
       Show notes
 
-    %dl.notes-list{:data => {dough_element_filter_target: 'activity-log', dough_element_filter_config: "{'selectors':{'active':'is-active'}}"}}
-      %dt.notes-list__item.notes-list__item--heading.is-active TDoyle, 01/08/14, 14:45
-      %dd.notes-list__item.notes-list__item--description.is-active Status: Draft
-      %dt.notes-list__item.notes-list__item--heading.is-active{:data => {dough_element_filter_item: 'true'}} AlexL, 12/08/14, 12:45
-      %dd.notes-list__item.notes-list__item--description.is-active{:data => {dough_element_filter_item: 'true'}} Eddie has been in touch today to say he has been sick so has not been able to do the translation yet. He will do it by the end of this week.
-      %dt.notes-list__item.notes-list__item--heading.is-active TDoyle, 01/08/14, 14:45
-      %dd.notes-list__item.notes-list__item--description.is-active Status: Draft
+    %dl.notes-list{:data => {dough_element_filter_target: 'activity-log', dough_element_filter_config: "{'selectors':{'activeClass':'is-active'}}"}}
+      %dt.notes-list__heading.is-active TDoyle, 01/08/14, 14:45
+      %dd.notes-list__description.is-active Status: Draft
+      %dt.notes-list__heading.is-active{:data => {dough_element_filter_item: 'true'}} AlexL, 12/08/14, 12:45
+      %dd.notes-list__description.is-active{:data => {dough_element_filter_item: 'true'}} Eddie has been in touch today to say he has been sick so has not been able to do the translation yet. He will do it by the end of this week.
+      %dt.notes-list__heading.is-active TDoyle, 01/08/14, 14:45
+      %dd.notes-list__description.is-active Status: Draft
 
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
