@@ -47,6 +47,7 @@ requirejs.config({
     'Slugifier': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Slugifier',
     'MirrorInputValue': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MirrorInputValue',
     'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
+    'ElementFilter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementFilter',
 
     // Snippets
     'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',

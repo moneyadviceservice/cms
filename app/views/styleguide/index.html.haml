@@ -3,6 +3,11 @@
 
     %h1 CMS Styleguide
 
+    %h1 Heading h1
+    %h2 Heading h2
+    %h3 Heading h3
+    %h4 Heading h4
+
     %h2 Content grid
 
     %ul.content-grid
@@ -76,12 +81,17 @@
 
     %hr
 
-    %h1 Heading h1
-    %h2 Heading h2
-    %h3 Heading h3
-    %h4 Heading h4
+    %h2 Activity Log
 
-    %h2 Paragraph
+    %a{:data => {dough_element_filter_trigger: true, dough_element_filter_context_id: 'activity-log'}}
+
+    %dl.notes-list{:data => {dough_component: :ElementFilter, dough_element_filter_context: 'activity-log', dough_element_filter_config: "{'selectors':{'active':'is-active'}}"}}
+      %dt.notes-list__item.notes-list__item--heading{:data => {dough_element_filter_active: 'true'}} TDoyle, 01/08/14, 14:45
+      %dd.notes-list__item.notes-list__item--description{:data => {dough_element_filter_active: 'true'}} Status: Draft
+      %dt.notes-list__item.notes-list__item--heading{:data => {dough_element_filter_active: 'false'}} AlexL, 12/08/14, 12:45
+      %dd.notes-list__item.notes-list__item--description{:data => {dough_element_filter_active: 'false'}} Eddie has been in touch today to say he has been sick so has not been able to do the translation yet. He will do it by the end of this week.
+      %dt.notes-list__item.notes-list__item--heading{:data => {dough_element_filter_active: 'true'}} TDoyle, 01/08/14, 14:45
+      %dd.notes-list__item.notes-list__item--description{:data => {dough_element_filter_active: 'true'}} Status: Draft
 
     %p
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro neque autem velit quam explicabo. Doloribus sit, quo ipsum commodi? Nisi praesentium minima quas veritatis, velit, voluptatem itaque nulla! Hic, itaque.
