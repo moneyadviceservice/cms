@@ -1,22 +1,9 @@
 .l-panel-content.l-panel-content--form
   .l-constrained
     .l-panel-content__row
-      .l-panel-content__col.page-header
-        - if params[:search].present?
-          %h1= t('search.results')
-        - else
-          %h1= t('.title')
-      .l-panel-content__col
-        = form_tag(comfy_admin_cms_site_files_path, method: 'get', id: 'search-form') do
-          .search.search--header
-            %span.search__item
-              - if params[:search].present?
-                = t('.found', n: @files.count, q: params[:search])
-            %span.search__item.search__item--input
-              = label_tag(:search, nil, class: 'visually-hidden')
-              = text_field_tag(:search, params[:search], placeholder: t('.search.placeholder'), class: 'form__input form__input--constrained search__input')
-              = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
-                %span.button__text.fa.fa-search
+      .l-panel-content__col.page-header= files_page_header(search_term: params[:search])
+      .l-panel-content__col.search-container
+        = render 'search_box', files: @files, search_term: params[:search]
 
 = render 'comfy/admin/cms/partials/files_before'
 

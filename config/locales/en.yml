@@ -30,9 +30,6 @@ en:
       cms:
         files:
           index:
-            found: "%{n} files found for '%{q}'"
-            search:
-              placeholder: Search term
             filter_by:
               placeholder: "file type:"
               type: "doc, jpg, pdf, xls"
@@ -43,6 +40,10 @@ en:
           files_list:
             are_you_sure: Are you sure?
             delete: delete
+          search_box:
+            found: "%{n} files found for '%{q}'"
+            placeholder: Search term
+
   search:
     results: Search Results
   tags:
