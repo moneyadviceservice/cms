@@ -19,7 +19,7 @@
               = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
                 %span.button__text.fa.fa-search
             %span.search__item
-              = link_to new_comfy_admin_cms_site_page_path(@site), :class => 'button--action button--search' do
+              = link_to new_site_page_path(@site), class: 'button--action button--search' do
                 %span.button__text
                   = t('.new_link')
 
