@@ -3,6 +3,16 @@ class PagesController < Comfy::Admin::Cms::PagesController
   before_action :set_categories, only: [:new, :edit]
   before_action :set_pages,      only: :index
 
+  def save_page
+    @page.update_state!(state_event) if @page.new_record? && state_event == 'save_unsaved'
+
+    if @page.persisted? && state_event
+      @page.update_state!(state_event)
+    else
+      @page.save!
+    end
+  end
+
   protected
 
   def set_pages
@@ -31,4 +41,3 @@ class PagesController < Comfy::Admin::Cms::PagesController
     @state_event ||= params[:state_event]
   end
 end
-
