@@ -65,3 +65,21 @@ Feature: Files administration
     Then  Only jpg files sorted by date are shown
     When  I choose to sort files by name
     Then  Only jpg files sorted by name are shown
+
+  @javascript
+  Scenario: Searching files
+    Given I am on the files admin page
+    When  I choose to search files by term
+    Then  Only files with that term are shown
+
+  @javascript
+  Scenario: Searching and Sorting/Filtering are independent
+    Given I am on the files admin page
+    When  I choose to sort files by date
+    Then  They get ordered by date (latest first)
+    When  I choose to filter files by jpg type
+    Then  Only jpg files sorted by date are shown
+    When  I choose to sort files by name
+    Then  Only jpg files sorted by name are shown
+    And   I choose to search files by term
+    Then  Only files with that term are shown

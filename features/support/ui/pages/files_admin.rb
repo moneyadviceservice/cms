@@ -8,6 +8,9 @@ module UI::Pages
 
     element :files_header, '.page-header'
 
+    element :search_box,    '.t-search-box'
+    element :search_button, '.t-search-btn'
+
     section :files_filters, '.t-files-filters' do
       section :form, 'form' do
         section  :sort_by,   'select#order' do

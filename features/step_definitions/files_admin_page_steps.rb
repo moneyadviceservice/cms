@@ -47,9 +47,17 @@ Then(/^(?:The files|They) get (?:sorted|ordered) by date \(latest first\)$/) do
 end
 
 Then(/^I choose to filter files by (.+) type$/) do |type|
-
   @page.files_filters.form.type.select(type)
   wait_for_ajax_complete
+end
+
+Then(/^I choose to search files by term$/) do
+  simulate_filling_search_term
+end
+
+Then(/^Only files with that term are shown$/) do
+  expect(@page).to have_field('search', :with => '9')
+  expect(shown_filenames).to contain_exactly(*filenames_of_term('9'))
 end
 
 Then(/^Only (.+) files are shown$/) do |type|
@@ -108,6 +116,17 @@ def filenames_of(type:)
   send("#{type}_filenames")
 end
 
+def filenames_of_term(term)
+  sample_filenames.find_all { |name| name =~ Regexp.new(term) }
+end
+
 def shown_filenames
   @page.files_listing.files.map(&:label).map { |el| el['class'].split('t-file t-').last }
+end
+
+def simulate_filling_search_term
+  @page.wait_for_search_box
+  @page.search_box.native.send_keys("9")
+  @page.search_button.click
+  wait_for_ajax_complete
 end
