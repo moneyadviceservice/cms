@@ -48,7 +48,7 @@ define([
 
       mastalkCommand.queryEnabled = function () {
         var selection = new scribe.api.Selection();
-        return !! selection.getContaining(function (node) {
+        return (selection.selection.anchorNode === scribe.el) || !!selection.getContaining(function (node) {
           var innerText;
           if(node.innerText){
             innerText = node.innerText;
