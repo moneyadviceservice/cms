@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     resources :sites do
-      resources :pages
+      resources :pages do
+        resources :notes, only: :create
+      end
     end
     resources :tags, only: [:index, :create] do
       collection do
