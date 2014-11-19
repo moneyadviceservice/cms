@@ -2,12 +2,17 @@ class PagesController < Comfy::Admin::Cms::PagesController
   before_action :build_file,     only: [:new, :edit]
   before_action :set_categories, only: [:new, :edit]
   before_action :set_pages,      only: :index
+  before_action :set_activity_log, only: [:new, :edit]
 
   def save_page
     PageRegister.new(@page, params: params, current_user: current_user).save
   end
 
   protected
+
+  def set_activity_log
+    @activity_logs = ActivityLogPresenter.collect(ActivityLog.fetch(from: @page))
+  end
 
   def set_pages
     @pages = @site.pages.includes(:layout, :site).page params[:page]

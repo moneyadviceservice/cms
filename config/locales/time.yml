@@ -1,0 +1,4 @@
+en:
+  time:
+    formats:
+      date_with_time: '%d/%m/%Y, %H:%M'
