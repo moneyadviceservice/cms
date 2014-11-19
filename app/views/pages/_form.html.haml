@@ -46,12 +46,9 @@
           =current_status(@page.current_state)
       %span.nav-article__item
         %span.fa.fa-list-ul
-        %a.button.button--article.button--h-capitalized{:href => '#'}
-          Activity Log
-      %span.nav-article__item
-        %span.fa.fa-file-o
-        %a.button.button--article.button--h-capitalized{:href => '#'}
-          Notes
+        %a.button.button--article.button--h-capitalized{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"hideOnBlur": true, "direction": "top", "centerAlign": true }' } }
+          Activity log
+        = render 'activity_log'
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
@@ -62,7 +59,7 @@
           - main_state_button(@page.current_state).each do |state_event|
             = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}", data: {dough_maseditor_form_submit: true} do
               %span.button__text
-                =state_event[:label]
+                = state_event[:label]
             - unless page_state_buttons(@page.current_state).empty?
               %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
                 %span.button__icon.fa.fa-caret-up
