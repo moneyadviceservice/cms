@@ -14,7 +14,7 @@ RSpec.describe ActivityLog do
             id: 1,
             data: {
               author: { name: 'user' },
-              event:  { to: 'draft' }
+              event:  'draft'
             },
             created_at: created_at
           )
@@ -41,7 +41,7 @@ RSpec.describe ActivityLog do
             id: 1,
             data: {
               author: { name: 'user' },
-              note:   { to: 'note text' }
+              note:   'note text'
             },
             created_at: created_at
           )

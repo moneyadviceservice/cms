@@ -14,7 +14,7 @@ class ActivityLog
         author:     revision.data[:author][:name],
         created_at: revision.created_at,
         type:       revision_type,
-        text:       revision.data[revision_type.to_sym][:to]
+        text:       revision.data[revision_type.to_sym]
       )
     end
   end

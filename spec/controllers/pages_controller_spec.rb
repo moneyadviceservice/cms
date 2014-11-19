@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe PagesController do
   let(:site) { page.site }
   let(:current_user) { create(:user) }
+  let(:last_revision) { assigns[:page].revisions.last }
 
   before do
     sign_in current_user
@@ -28,7 +29,7 @@ RSpec.describe PagesController do
     context 'when filtering pages' do
       let(:page) do
         create(:page,
-          label: 'test1',
+          label:  'test1',
           slug:   'test1',
           parent: create(:child_page)
         )
@@ -78,24 +79,20 @@ RSpec.describe PagesController do
         expect(assigns[:page].state).to eq 'draft'
       end
 
-      context 'creates revision' do
-        subject(:last_revision) { assigns[:page].revisions.last }
+      context 'creates a revision' do
         before do
           assigns[:page].revisions.reload
           expect(last_revision).to_not be nil
         end
 
-        it 'saves the previous event state in the last revision' do
-          expect(last_revision.data[:event]).to eq(
-            from: nil,
-            to:   'draft'
-          )
-        end
-
-        it 'saves the current user in the last revision' do
-          expect(last_revision.data[:author]).to eq(
-            id:   current_user.id,
-            name: current_user.name
+        it 'saving the event state revision data' do
+          expect(last_revision.data).to eq(
+            event: 'draft',
+            previous_event: nil,
+            author: {
+              id: current_user.id,
+              name: current_user.name
+            }
           )
         end
       end
@@ -140,15 +137,19 @@ RSpec.describe PagesController do
   end
 
   describe 'PUT /pages/:id' do
+    let(:page_attributes) do
+      {
+        label: 'Another label',
+        slug:  'another-slug'
+      }
+    end
+
     before do
       put :update,
         site_id:     site.id,
         id:          page.id,
         state_event: state_event,
-        page: {
-          label: 'Another label',
-          slug:  'another-slug'
-        }
+        page:        page_attributes
     end
 
     context 'when passes the "save_unsaved" event state from an "unsaved" page' do
@@ -178,16 +179,57 @@ RSpec.describe PagesController do
       end
 
       context 'creates revision' do
-        subject(:last_revision) { assigns[:page].revisions.last }
         before do
           assigns[:page].revisions.reload
           expect(last_revision).to_not be nil
         end
 
-        it 'saves the previous event state in the last revision' do
-          expect(last_revision.data[:event]).to eq(
-            from: 'draft',
-            to:   'published'
+        it 'saves the revision event and author' do
+          expect(last_revision.data.symbolize_keys).to eq(
+            event: 'published',
+            previous_event: 'draft',
+            author: {
+              id: current_user.id,
+              name: current_user.name
+            }
+          )
+        end
+      end
+    end
+
+    context 'when changing the block attributes' do
+      let!(:page) { create(:page, state: 'published') }
+      let(:state_event) { 'publish' }
+      let(:page_attributes) do
+        {
+          label: 'Another label',
+          slug:  'another-slug',
+          blocks_attributes: {
+            '0' => {
+              content:    'block-content',
+              identifier: 'content'
+            }
+          }
+        }
+      end
+
+      context 'creates revisions' do
+        before do
+          assigns[:page].revisions.reload
+          expect(last_revision).to_not be nil
+        end
+
+        it 'saves the block attributes content in data revision' do
+          expect(last_revision.data.symbolize_keys).to eq(
+            author: {
+              id: current_user.id,
+              name: current_user.name
+            },
+            blocks_attributes: [
+              {
+                identifier: 'content', content: nil
+              }
+            ]
           )
         end
 
