@@ -40,8 +40,10 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.setupUIEvents();
 
     $(window).on('resize', function() {
-      clearTimeout(resize);
-      resize = setTimeout(_this.handleResize, 100);
+      if(_this.isShown) {
+        clearTimeout(resize);
+        resize = setTimeout(_this.handleResize, 60);
+      }
     });
     this._initialisedSuccess(initialised);
   };
