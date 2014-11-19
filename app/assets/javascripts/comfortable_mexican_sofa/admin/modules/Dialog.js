@@ -23,6 +23,7 @@ define([
 
   function Dialog($el, config) {
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
+    console.log(this.config);
   }
 
   DoughBaseComponent.extend(Dialog);
@@ -30,8 +31,9 @@ define([
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {
-    console.log(this.isInitialised);
-    this.createElements();
+    if(!this.containerCreated) {
+      this.createElements();
+    }
     this._setupEvents();
     this._initialisedSuccess(initialised);
   };
@@ -49,7 +51,7 @@ define([
   };
 
   DialogProto.createElements = function() {
-    DialogProto.isInitialised = true;
+    DialogProto.containerCreated = true;
   };
 
   DialogProto._setupEvents = function() {
