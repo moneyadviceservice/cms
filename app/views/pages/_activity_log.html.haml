@@ -15,11 +15,11 @@
             %dd.notes-list__description.is-active{ data: activity_log.data_attribute }
               = activity_log.description
 
-
       %header.list-display__footer
         %div.list-display__section
           %textarea.list-display__textarea{ placeholder: 'Notes...'}
         %div.list-display__section.list-display__section--right
-          = link_to content_tag(:span, 'Add note', class: 'button__text'), site_page_notes_path(@site, @page), method: :post, remote: true, class: 'button--action'
+          - if @page.persisted?
+            = link_to content_tag(:span, 'Add note', class: 'button__text'), site_page_notes_path(@site, @page), method: :post, remote: true, class: 'button--action'
 
   .popover__pointer{ data: {dough_collapsable_pointer: true}}
