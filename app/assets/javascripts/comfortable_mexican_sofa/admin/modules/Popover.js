@@ -62,7 +62,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.setPositions();
   };
 
-  Popover.prototype.handleTargetClick = function(e) {
+  Popover.prototype.handleTargetClick = function() {
     this.toggle();
   };
 
