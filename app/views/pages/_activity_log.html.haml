@@ -1,4 +1,6 @@
-%dt.notes-list__heading.is-active{ data: activity_log.data_attribute }
+- active_class = 'is-active' unless local_assigns[:filter_notes]
+
+%dt.notes-list__heading{ data: activity_log.data_attribute, class: active_class }
   = activity_log.header
-%dd.notes-list__description.is-active{ data: activity_log.data_attribute }
+%dd.notes-list__description{ data: activity_log.data_attribute, class: active_class }
   = activity_log.description

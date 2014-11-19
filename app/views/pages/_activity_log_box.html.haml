@@ -1,11 +1,11 @@
-.popover.popover--activity-log.popover--top{ data: { dough_collapsable_target: 'activity-log' }}
+.popover.popover--activity-log.popover--top.activity-log-box{ data: { dough_collapsable_target: 'activity-log' }}
   .popover__inner
     %section.list-display.list-display--activity-log
       %header.list-display__header
         %h1.list-display__section.list-display__section--left.list-display__header-text Notes
         .list-display__section.list-display__section--right
           = label_tag :filter, class: 'list-display__filter' do
-            = check_box_tag :filter, 'filter', true, data: { dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_config: '{"selectors":{"activeClass":"is-active"}}' }
+            = check_box_tag :filter, 'filter', true, data: { dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_config: '{"selectors":{"activeClass":"is-active"}}' }, class: 'js-activity-log-filter'
             Show notes
       .list-display__body
         %dl.notes-list.notes-list--activity-log{ data: { dough_element_filter_target: 'activity-log', activity_log_list: true } }
