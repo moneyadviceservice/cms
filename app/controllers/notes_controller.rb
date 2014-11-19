@@ -1,13 +1,25 @@
 class NotesController < Comfy::Admin::Cms::BaseController
   def create
     @page  = @site.pages.find(params[:page_id])
-    @note  = @page.revisions.create!(data: {
-      note: { to: params[:description] },
+
+    if params[:description].present?
+      @note         = @page.revisions.create!(data: revision_data)
+      @activity_log = ActivityLogPresenter.new(ActivityLog.parse(@note))
+      render :create, status: :created
+    else
+      render nothing: true, status: :bad_request
+    end
+  end
+
+  private
+
+  def revision_data
+    {
+      note: params[:description],
       author: {
-        id: current_user.id,
+        id:   current_user.id,
         name: current_user.name
       }
-    })
-    render nothing: true
+    }
   end
 end
