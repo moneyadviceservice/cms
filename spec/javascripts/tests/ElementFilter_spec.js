@@ -29,13 +29,20 @@ describe('Element Filter', function () {
       this.component.init();
       done();
     });
-    
-    it('Should toggle filtered items (add/remove active class)', function() {
+
+    it('should toggle filtered items', function() {
       this.component.$trigger.click();
       expect(this.component.$filterableItems.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
 
-    it('Should only affect items within its context', function() {
+    it('should toggle new filterable items added to the list', function () {
+      var $clonedElement = this.component.$filterableItems.first().clone();
+      this.component.$target.append($clonedElement);
+      this.component.$trigger.click();
+      expect($clonedElement.hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
+
+    it('should only affect items within its context', function() {
       var $dummyList = $('[data-dough-element-filter-target="dummy"]');
       expect($dummyList.children().hasClass(this.component.config.selectors.activeClass)).to.be.false;
       this.component.$trigger.click();

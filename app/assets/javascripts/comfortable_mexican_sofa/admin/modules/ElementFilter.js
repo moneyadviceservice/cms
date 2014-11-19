@@ -21,7 +21,7 @@ define([
     ElementFilter.baseConstructor.call(this, $el, config, defaultConfig);
     this.$trigger = this.$el;
     this.$target = $('[data-dough-element-filter-target="' + this.$trigger.attr('data-dough-element-filter-trigger') + '"]');
-    this.$filterableItems = this.$target.children().filter('[data-dough-element-filter-item="true"]');
+    this._setFilterableItems();
     this._handleClick = $.proxy(this._handleClick, this);
   }
 
@@ -42,7 +42,12 @@ define([
     this.toggle();
   };
 
+  ElementFilterProto._setFilterableItems = function() {
+    this.$filterableItems = this.$target.children().filter('[data-dough-element-filter-item="true"]');
+  };
+
   ElementFilterProto.toggle = function() {
+    this._setFilterableItems();
     this.$filterableItems.toggleClass(this.config.selectors.activeClass);
   };
 
