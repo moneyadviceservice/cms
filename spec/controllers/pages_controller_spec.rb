@@ -2,9 +2,10 @@ require 'spec_helper'
 
 RSpec.describe PagesController do
   let(:site) { page.site }
+  let(:current_user) { create(:user) }
 
   before do
-    sign_in create(:user)
+    sign_in current_user
   end
 
   describe 'GET /pages' do
@@ -76,9 +77,31 @@ RSpec.describe PagesController do
       it 'creates a page with draft as state event' do
         expect(assigns[:page].state).to eq 'draft'
       end
+
+      context 'creates revision' do
+        subject(:last_revision) { assigns[:page].revisions.last }
+        before do
+          assigns[:page].revisions.reload
+          expect(last_revision).to_not be nil
+        end
+
+        it 'saves the previous event state in the last revision' do
+          expect(last_revision.data[:event]).to eq(
+            from: nil,
+            to:   'draft'
+          )
+        end
+
+        it 'saves the current user in the last revision' do
+          expect(last_revision.data[:author]).to eq(
+            id:   current_user.id,
+            name: current_user.name
+          )
+        end
+      end
     end
 
-    context 'when does pass the state event "draft"' do
+    context 'when passes the state event "publish"' do
       before do
         post :create,
           site_id:      site.id,
@@ -109,6 +132,10 @@ RSpec.describe PagesController do
       it 'persists page as "unsaved"' do
         expect(assigns[:page].state).to eq 'unsaved'
       end
+
+      it 'does not save any revision' do
+        expect(assigns[:page].revisions).to eq []
+      end
     end
   end
 
@@ -133,12 +160,43 @@ RSpec.describe PagesController do
       end
     end
 
+    context 'when passes the same event state from the page' do
+      let!(:page) { create(:page, state: 'published') }
+      let(:state_event) { 'publish' }
+
+      it 'does not save any revisions' do
+        expect(assigns[:page].revisions).to eq []
+      end
+    end
+
     context 'when passes the "publish" event state' do
       let!(:page) { create(:page, state: 'draft') }
       let(:state_event) { 'publish'}
 
       it 'persists page as "published"' do
         expect(assigns[:page].state).to eq 'published'
+      end
+
+      context 'creates revision' do
+        subject(:last_revision) { assigns[:page].revisions.last }
+        before do
+          assigns[:page].revisions.reload
+          expect(last_revision).to_not be nil
+        end
+
+        it 'saves the previous event state in the last revision' do
+          expect(last_revision.data[:event]).to eq(
+            from: 'draft',
+            to:   'published'
+          )
+        end
+
+        it 'saves the current user in the last revision' do
+          expect(last_revision.data[:author]).to eq(
+            id:   current_user.id,
+            name: current_user.name
+          )
+        end
       end
     end
 
@@ -151,6 +209,10 @@ RSpec.describe PagesController do
           label: 'Another label',
           slug:  'another-slug'
         })
+      end
+
+      it 'does not save any revisions' do
+        expect(assigns[:page].revisions).to eq []
       end
     end
   end

@@ -4,13 +4,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   before_action :set_pages,      only: :index
 
   def save_page
-    @page.update_state!(state_event) if @page.new_record? && state_event == 'save_unsaved'
-
-    if @page.persisted? && state_event
-      @page.update_state!(state_event)
-    else
-      @page.save!
-    end
+    PageRegister.new(@page, params: params, current_user: current_user).save
   end
 
   protected
@@ -35,9 +29,5 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def set_categories
     @categories = Comfy::Cms::CategoriesListPresenter.new(@site.categories.of_type('Comfy::Cms::Page'))
-  end
-
-  def state_event
-    @state_event ||= params[:state_event]
   end
 end
