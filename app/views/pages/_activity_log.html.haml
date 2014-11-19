@@ -1,4 +1,4 @@
-.popover.popover--options.popover--top{ data: { dough_collapsable_target: 'activity-log' }}
+.popover.popover--activity-log.popover--top{ data: { dough_collapsable_target: 'activity-log' }}
   .popover__inner
     %section.list-display.list-display--activity-log
       %header.list-display__header
@@ -23,4 +23,4 @@
             %div.list-display__section.list-display__section--right
               = button_tag content_tag(:span, 'Add note', class: 'button__text'), type: 'submit', class: 'button--action'
 
-    .popover__pointer{ data: {dough_collapsable_pointer: true}}
+  .popover__pointer{ data: {dough_collapsable_pointer: true}}

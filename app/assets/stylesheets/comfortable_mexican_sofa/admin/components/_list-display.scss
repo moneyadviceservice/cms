@@ -4,11 +4,6 @@
 //
 // Styleguide List Display
 
-.list-display--activity-log {
-  height: 430px;
-  max-width: 300px;
-}
-
 .list-display__header,
 .list-display__footer {
   @include body(12,14);
@@ -21,13 +16,13 @@
 }
 
 .list-display__header-text {
-  @include body(14,14);  
+  @include body(14,14);
   color: $color-list-display-header-foreground;
   margin: 0;
 }
 
 .list-display__section {
-  padding: $baseline-unit*3 18px;
+  padding: $baseline-unit*3 12px;
 }
 
 .list-display__section--left {

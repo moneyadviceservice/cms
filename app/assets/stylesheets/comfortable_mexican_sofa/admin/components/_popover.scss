@@ -23,6 +23,12 @@
   width: 100%;
 }
 
+.popover--activity-log {
+  height: 468px;
+  margin-bottom: $baseline-unit*2;
+  width: 300px;
+}
+
 .popover--options.popover--top {
   bottom: 100%;
 }
