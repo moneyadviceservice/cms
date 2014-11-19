@@ -1,26 +1,4 @@
-.popover.popover--activity-log.popover--top{ data: { dough_collapsable_target: 'activity-log' }}
-  .popover__inner
-    %section.list-display.list-display--activity-log
-      %header.list-display__header
-        %h1.list-display__section.list-display__section--left.list-display__header-text Notes
-        .list-display__section.list-display__section--right
-          = label_tag :filter, class: 'list-display__filter' do
-            = check_box_tag :filter, 'filter', true, data: { dough_component: :ElementFilter, dough_element_filter_trigger: 'activity-log', dough_element_filter_config: '{"selectors":{"activeClass":"is-active"}}' }
-            Show notes
-      .list-display__body
-        %dl.notes-list.notes-list--activity-log{ data: { dough_element_filter_target: 'activity-log' } }
-          - @activity_logs.each do |activity_log|
-            %dt.notes-list__heading.is-active{ data: activity_log.data_attribute }
-              = activity_log.header
-            %dd.notes-list__description.is-active{ data: activity_log.data_attribute }
-              = activity_log.description
-
-      - if @page.persisted?
-        = form_tag(site_page_notes_path(@site, @page), method: :post, remote: true) do
-          %header.list-display__footer
-            %div.list-display__section
-              %textarea.list-display__textarea{ placeholder: 'Notes...'}
-            %div.list-display__section.list-display__section--right
-              = button_tag content_tag(:span, 'Add note', class: 'button__text'), type: 'submit', class: 'button--action'
-
-  .popover__pointer{ data: {dough_collapsable_pointer: true}}
+%dt.notes-list__heading.is-active{ data: activity_log.data_attribute }
+  = activity_log.header
+%dd.notes-list__description.is-active{ data: activity_log.data_attribute }
+  = activity_log.description
