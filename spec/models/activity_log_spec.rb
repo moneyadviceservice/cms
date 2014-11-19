@@ -7,6 +7,10 @@ RSpec.describe ActivityLog do
     let(:created_at) { Time.now }
     let(:revision) { fetch.first }
 
+    before do
+      expect(revisions).to receive(:reorder).with(created_at: :asc).and_return(revisions)
+    end
+
     context 'when revisions have author and event information' do
       let(:revisions) do
         [

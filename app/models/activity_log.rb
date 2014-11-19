@@ -3,7 +3,7 @@ class ActivityLog
   attr_accessor :id, :author, :created_at, :type, :text
 
   def self.fetch(from: from)
-    revisions = from.revisions.reject do |revision|
+    revisions = from.revisions.reorder(created_at: :asc).reject do |revision|
       revision.data[:event].blank? && revision.data[:note].blank?
     end
 
