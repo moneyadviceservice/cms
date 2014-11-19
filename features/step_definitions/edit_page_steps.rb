@@ -12,10 +12,19 @@ When(/^I am working on a published article$/) do
   edit_page.load(site: cms_site.id, page: cms_published_page.id)
 end
 
+When(/^I publish the article$/) do
+  edit_page.publish.click
+end
+
 Then(/^I should be able to publish it$/) do
   edit_page.should have_publish
   edit_page.publish.click
   expect(cms_page.reload.current_state).to eq(:published)
+end
+
+Then(/^I should be able to see the last revision status$/) do
+  edit_page.activity_log_button.click
+  expect(edit_page.activity_log_box).to have_content('Status: published')
 end
 
 Given(/^there is an English and Welsh site$/) do

@@ -24,5 +24,7 @@ module UI::Pages
     element :site_toggle_en, "#site__mirrors input#edit-mode_en"
     element :status, '#t-status'
     element :regulated_checkbox, '#page_regulated_box'
+    element :activity_log_button, '.activity-log-button'
+    element :activity_log_box, '.activity-log-box'
   end
 end
