@@ -2,11 +2,11 @@ module FilesHelper
 
   private
 
-  FA_FILE_TYPES = { 'doc'  => "fa-file-word-o",
-                    'docx' => "fa-file-word-o",
-                    'xls'  => "fa-file-excel-o",
-                    'xlsx' => "fa-file-excel-o",
-                    'pdf'  => "fa-file-pdf-o" }
+  FA_FILE_TYPES = { 'doc'  => 'fa-file-word-o',
+                    'docx' => 'fa-file-word-o',
+                    'xls'  => 'fa-file-excel-o',
+                    'xlsx' => 'fa-file-excel-o',
+                    'pdf'  => 'fa-file-pdf-o' }
 
   # The url to a icon representing the file based in its extension.
   def url_of_file_icon(file)
