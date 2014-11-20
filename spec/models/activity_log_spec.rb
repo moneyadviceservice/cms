@@ -26,8 +26,15 @@ RSpec.describe ActivityLog do
       end
 
       it 'parses the revision' do
-        expect(described_class).to receive(:parse).with(revisions.first)
-        fetch
+        expect(fetch).to contain_exactly(
+          ActivityLog.new(
+            id: 1,
+            author: 'user',
+            type: 'event',
+            text: 'draft',
+            created_at: created_at
+          )
+        )
       end
     end
 
@@ -46,8 +53,15 @@ RSpec.describe ActivityLog do
       end
 
       it 'parses the revision' do
-        expect(described_class).to receive(:parse).with(revisions.first)
-        fetch
+        expect(fetch).to contain_exactly(
+          ActivityLog.new(
+            id: 1,
+            author: 'user',
+            type: 'note',
+            text: 'draft',
+            created_at: created_at
+          )
+        )
       end
     end
 
@@ -76,6 +90,26 @@ RSpec.describe ActivityLog do
     it 'loads the revision data' do
       allow(RevisionData).to receive(:load).with(revision).and_return(id: 1)
       expect(ActivityLog.parse(revision)).to eq(ActivityLog.new(id: 1))
+    end
+  end
+
+  describe '#blocks_attributes?' do
+    let(:activity_log) { ActivityLog.new(type: activity_log_type)}
+
+    context 'when blocks attributes' do
+      let(:activity_log_type) { 'blocks_attributes' }
+
+      it 'returns true' do
+        expect(activity_log).to be_blocks_attributes
+      end
+    end
+
+    context 'when note' do
+      let(:activity_log_type) { 'note' }
+
+      it 'returns false' do
+        expect(activity_log).to_not be_blocks_attributes
+      end
     end
   end
 end

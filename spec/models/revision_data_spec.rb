@@ -87,6 +87,20 @@ RSpec.describe RevisionData do
           expect(loader.type).to eq('note')
         end
       end
+
+      context 'when blocks attributes' do
+        let(:revision_data) do
+          {
+            blocks_attributes: [{
+              identifier: 'content'
+            }]
+          }
+        end
+
+        it 'returns array' do
+          expect(loader.type).to eq('blocks_attributes')
+        end
+      end
     end
 
     describe '#text' do
@@ -111,6 +125,20 @@ RSpec.describe RevisionData do
 
         it 'returns the content of the note' do
           expect(loader.text).to eq('Some note')
+        end
+      end
+
+      context 'when blocks attributes' do
+        let(:revision_data) do
+          {
+            blocks_attributes: [{
+              identifier: 'content'
+            }]
+          }
+        end
+
+        it 'returns array' do
+          expect(loader.text).to eq([{ identifier: 'content' }])
         end
       end
     end

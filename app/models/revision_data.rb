@@ -34,7 +34,11 @@ module RevisionData
     def type
       return 'event' if data[:event].present?
 
-      'note' if data[:note].present?
+      if data[:note].present?
+        'note'
+      else
+        'blocks_attributes'
+      end
     end
 
     def to_hash
