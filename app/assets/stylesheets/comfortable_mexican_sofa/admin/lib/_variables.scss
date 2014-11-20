@@ -120,6 +120,16 @@ $color-menu-global-item-separator: lighten($color-dove-gray, 20%);
 $color-meta-title-foreground: $color-dove-gray;
 $color-meta-title-separator: $color-dove-gray;
 
+// Notes List
+$color-notes-list-body-background: $color-white;
+$color-notes-list-heading-foreground: $color-black;
+$color-notes-list-item-separator: $color-concrete;
+$color-notes-list-description-foreground: $color-dove-gray;
+
+// List Display
+$color-list-display-header-background: $color-concrete;
+$color-list-display-header-foreground: $color-dove-gray;
+
 // Popover
 $color-popover-body-background: $color-concrete;
 

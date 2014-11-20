@@ -1,0 +1,58 @@
+// List Display
+//
+// Used for article list and search results
+//
+// Styleguide List Display
+
+.list-display__header,
+.list-display__footer {
+  @include body(12,14);
+  @include clearfix();
+  background: $color-list-display-header-background;
+}
+
+.list-display__header {
+  text-transform: uppercase;
+}
+
+.list-display__header-text {
+  @include body(14,14);
+  color: $color-list-display-header-foreground;
+  margin: 0;
+}
+
+.list-display__section {
+  padding: $baseline-unit*3 12px;
+}
+
+.list-display__section--left {
+  float: left;
+}
+
+.list-display__section--right {
+  float: right;
+
+  :not(.list-display__section--left) + & {
+    padding-top: 0;
+  }
+}
+
+.list-display__filter {
+  cursor: pointer;
+  user-select: none;
+}
+
+.list-display__textarea {
+  min-height: 90px;
+}
+
+.list-display__body {
+  padding: 0 12px;
+}
+
+.list-display--activity-log .list-display__body {
+  background: $color-notes-list-body-background;
+  overflow: scroll;
+  padding-top: $baseline-unit*2;
+  height: 220px;
+}

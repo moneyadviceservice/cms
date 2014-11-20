@@ -4,7 +4,7 @@ Feature: Preview
   so that I can see the content as a website visitor would see it
 
   Scenario: Preview draft article
-    When I am working on an draft article
+    When I am working on a Draft Article
     Then I should be able to preview it in a new window
 
   Scenario: Preview published article

@@ -8,5 +8,5 @@ Feature: Publish
     Then I should not be able to publish it
 
   Scenario: Publish draft article
-    When I am working on an draft article
+    When I am working on a Draft Article
     Then I should be able to publish it

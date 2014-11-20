@@ -1,0 +1,37 @@
+// Notes
+//
+// Used for Activity Log
+//
+// Styleguide Notes List
+// TODO Review naming of notes-list
+
+.notes-list--activity-log {
+  margin: 0;
+}
+
+.notes-list__heading {
+  color: $color-notes-list-heading-foreground;
+  margin-bottom: $baseline-unit;
+}
+
+.notes-list__description {
+  color: $color-notes-list-description-foreground;
+  border-bottom: 1px solid $color-notes-list-item-separator;
+  margin: 0 0 $baseline-unit*2;
+  padding-bottom: $baseline-unit*2;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.notes-list__heading,
+.notes-list__description {
+  @extend %is-hidden;
+  @include body(12,14);
+  padding-left: 6px;
+
+  &.is-active {
+    @extend %is-active;
+  }
+}

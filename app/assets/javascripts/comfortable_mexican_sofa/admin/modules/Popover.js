@@ -33,15 +33,17 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.handleResize = $.proxy(this.handleResize, this);
     this.handleTargetClick = $.proxy(this.handleTargetClick, this);
     this.$target.css({
-      position: 'absolute'
+      position: this.config.isFixed? 'fixed' : 'absolute'
     });
     this.direction = this.config.direction === 'left' || this.config.direction === 'right'? 'horizontal' : 'vertical';
     this.cacheComponentElements();
     this.setupUIEvents();
 
     $(window).on('resize', function() {
-      clearTimeout(resize);
-      resize = setTimeout(_this.handleResize, 100);
+      if(_this.isShown) {
+        clearTimeout(resize);
+        resize = setTimeout(_this.handleResize, 60);
+      }
     });
     this._initialisedSuccess(initialised);
   };
@@ -60,7 +62,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     this.setPositions();
   };
 
-  Popover.prototype.handleTargetClick = function(e) {
+  Popover.prototype.handleTargetClick = function() {
     this.toggle();
   };
 
@@ -117,27 +119,52 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       return top;
     }
 
-    directions = {
-      top:  {
-        left: calculateLeft.call(this),
-        top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
-      },
+    if(this.config.isFixed) {
+      directions = {
+        top:  {
+          left: calculateLeft.call(this),
+          bottom: this.$trigger.outerHeight() + this.getPointerHeight()
+        },
 
-      bottom: {
-        left: calculateLeft.call(this),
-        top: this.getElementBoundaries(this.$trigger).bottom
-      },
+        bottom: {
+          left: calculateLeft.call(this),
+          top: this.$trigger.outerHeight() + this.getPointerHeight()
+        },
 
-      left: {
-        right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
-        top: calculateTop.call(this)
-      },
+        left: {
+          right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
+          top: calculateTop.call(this)
+        },
 
-      right: {
-        left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
-        top: calculateTop.call(this)
-      }
-    };
+        right: {
+          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
+          top: calculateTop.call(this)
+        }
+      };
+    }
+    else {
+      directions = {
+        top:  {
+          left: calculateLeft.call(this),
+          top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
+        },
+
+        bottom: {
+          left: calculateLeft.call(this),
+          top: this.getElementBoundaries(this.$trigger).bottom
+        },
+
+        left: {
+          right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
+          top: calculateTop.call(this)
+        },
+
+        right: {
+          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
+          top: calculateTop.call(this)
+        }
+      };
+    }
     return directions[direction] || directions.right;
   };
 
@@ -174,6 +201,10 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       horizontal: Math.floor($el.outerWidth() / 2),
       vertical: Math.floor($el.outerHeight() / 2)
     };
+  };
+
+  Popover.prototype.getPointerHeight = function() {
+    return parseInt(window.getComputedStyle(this.$pointer[0], ':after').getPropertyValue('height'), 16);
   };
 
   return Popover;

@@ -1,6 +1,6 @@
 - content_for :nav_secondary do
   %li.nav-secondary__item.nav-secondary__item--right
-    = render 'comfy/admin/cms/sites/mirrors', :object => @page
+    = render 'comfy/admin/cms/sites/mirrors', object: @page
 
 - content_for :right_column do
   #form-save.box
@@ -10,16 +10,16 @@
     %button.btn.btn-sm.btn-primary.pull-right
   = render 'comfy/admin/cms/files/index'
 
-= render 'comfy/admin/cms/partials/page_form_before', :object => form
+= render 'comfy/admin/cms/partials/page_form_before', object: form
 
 .l-panel-content.l-panel-content--form
-  .l-constrained{:data => dough_component(@page.new_record?, ['MirrorInputValue','Slugifier'])}
-    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', :placeholder => 'Untitled page', :data => {'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', :slugify => @page.new_record?}
+  .l-constrained{ data: dough_component(@page.new_record?, ['MirrorInputValue','Slugifier']) }
+    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', placeholder: 'Untitled page', data: { 'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', slugify: @page.new_record?}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
-    = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}", class: 'form__input--has-meta', :data => {'dough-slugifier-slug' => '', :slug => true}
+    = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}", class: 'form__input--has-meta', data: {'dough-slugifier-slug' => '', slug: true}
 
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
@@ -46,12 +46,8 @@
           =current_status(@page.current_state)
       %span.nav-article__item
         %span.fa.fa-list-ul
-        %a.button.button--article.button--h-capitalized{:href => '#'}
-          Activity Log
-      %span.nav-article__item
-        %span.fa.fa-file-o
-        %a.button.button--article.button--h-capitalized{:href => '#'}
-          Notes
+        %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
+          Activity log
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
@@ -62,7 +58,7 @@
           - main_state_button(@page.current_state).each do |state_event|
             = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}", data: {dough_maseditor_form_submit: true} do
               %span.button__text
-                =state_event[:label]
+                = state_event[:label]
             - unless page_state_buttons(@page.current_state).empty?
               %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
                 %span.button__icon.fa.fa-caret-up

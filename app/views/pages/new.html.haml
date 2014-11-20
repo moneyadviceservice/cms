@@ -1,0 +1,4 @@
+= comfy_form_for @page, as: :page, label_col: 'form__label-heading', control_col: 'form__input-wrapper', url: site_pages_path(@site), method: :post, html: { multipart: true, autocomplete: 'off'}, data: { dough_component: :MASEditor } do |form|
+  = render form
+
+= render 'activity_log_box'
