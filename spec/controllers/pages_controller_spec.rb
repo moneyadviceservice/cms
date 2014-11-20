@@ -63,7 +63,7 @@ RSpec.describe PagesController do
     let(:site)   { create(:site) }
     let(:layout) { create(:layout) }
 
-    context 'when pass the state event "save_unsaved"' do
+    context 'when passing the state event "save_unsaved"' do
       before do
         post :create,
           site_id:      site.id,
@@ -79,13 +79,13 @@ RSpec.describe PagesController do
         expect(assigns[:page].state).to eq 'draft'
       end
 
-      context 'creates a revision' do
+      context 'creating a revision' do
         before do
           assigns[:page].revisions.reload
           expect(last_revision).to_not be nil
         end
 
-        it 'saving the event state revision data' do
+        it 'saves the event state revision data' do
           expect(last_revision.data).to eq(
             event: 'draft',
             previous_event: nil,
@@ -98,7 +98,7 @@ RSpec.describe PagesController do
       end
     end
 
-    context 'when passes the state event "publish"' do
+    context 'when passing the state event "publish"' do
       before do
         post :create,
           site_id:      site.id,
@@ -115,7 +115,7 @@ RSpec.describe PagesController do
       end
     end
 
-    context 'when does not pass the state event' do
+    context 'when not passing the state event' do
       before do
         post :create,
           site_id:      site.id,
@@ -178,7 +178,7 @@ RSpec.describe PagesController do
         expect(assigns[:page].state).to eq 'published'
       end
 
-      context 'creates revision' do
+      context 'creating revision' do
         before do
           assigns[:page].revisions.reload
           expect(last_revision).to_not be nil
@@ -213,7 +213,7 @@ RSpec.describe PagesController do
         }
       end
 
-      context 'creates revisions' do
+      context 'creating revision' do
         before do
           assigns[:page].revisions.reload
           expect(last_revision).to_not be nil

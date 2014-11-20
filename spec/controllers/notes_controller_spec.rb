@@ -10,7 +10,7 @@ RSpec.describe NotesController do
   describe 'POST /notes' do
     let(:page) { create(:page) }
 
-    context 'when is valid' do
+    context 'when valid' do
       before do
         post :create, format: :js, site_id: page.site_id, page_id: page.id, description: 'note-text'
       end
@@ -35,7 +35,7 @@ RSpec.describe NotesController do
       end
     end
 
-    context 'when is invalid' do
+    context 'when invalid' do
       before do
         post :create, format: :js, site_id: page.site_id, page_id: page.id
       end
