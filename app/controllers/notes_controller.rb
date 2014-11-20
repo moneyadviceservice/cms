@@ -1,9 +1,9 @@
 class NotesController < Comfy::Admin::Cms::BaseController
   def create
-    @page  = @site.pages.find(params[:page_id])
+    page  = @site.pages.find(params[:page_id])
+    @note = page.revisions.new(data: revision_data)
 
-    if params[:description].present?
-      @note         = @page.revisions.create!(data: revision_data)
+    if params[:description].present? && @note.save
       @activity_log = ActivityLogPresenter.new(ActivityLog.parse(@note))
       render :create, status: :created
     else

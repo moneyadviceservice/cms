@@ -41,7 +41,7 @@ RSpec.describe NotesController do
       end
 
       it 'does not create the note for the page' do
-        expect(assigns[:page].revisions).to eq([])
+        expect(assigns[:note]).to_not be_persisted
       end
 
       it 'returns bad request' do
