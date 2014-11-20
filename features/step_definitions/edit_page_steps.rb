@@ -4,7 +4,7 @@ Then(/^I should be able to preview it in a new window$/) do
   edit_page.preview['target'].should eq '_blank'
 end
 
-When(/^I am working on an draft article$/) do
+When(/^I am working on a Draft Article$/) do
   edit_page.load(site: cms_site.id, page: cms_draft_page.id)
 end
 
@@ -31,7 +31,7 @@ Given(/^there is an English and Welsh site$/) do
   cms_sites
 end
 
-When(/^I am working on an draft article on the "(.*?)" site$/) do |locale|
+When(/^I am working on a Draft Article on the "(.*?)" site$/) do |locale|
   cms_page(locale: locale).save_unsaved!
   step("I am logged in")
   edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
