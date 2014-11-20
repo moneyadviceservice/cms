@@ -13,20 +13,7 @@ class ActivityLog
   end
 
   def self.parse(revision)
-    revision_type = revision_data_type(revision)
-    new(
-      id:         revision.id,
-      author:     revision.data[:author][:name],
-      created_at: revision.created_at,
-      type:       revision_type,
-      text:       revision.data[revision_type.to_sym]
-    )
-  end
-
-  def self.revision_data_type(revision)
-    return 'event' if revision.data[:event].present?
-
-    'note' if revision.data[:note].present?
+    new(RevisionData.load(revision))
   end
 
   def ==(other)

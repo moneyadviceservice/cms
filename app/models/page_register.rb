@@ -29,17 +29,16 @@ class PageRegister
   end
 
   def revision_data
-    @revision_data = {
-      author: {
-        id:   current_user.id,
-        name: current_user.name
-      }
-    }
+    data = {}
 
-    @revision_data.merge!(event: page.state, previous_event: @state_was) if state_changed?
-    @revision_data.merge!(blocks_attributes: @blocks_attributes_was) if page.blocks_attributes_changed
+    if state_changed?
+      data[:previous_event] = @state_was
+      data[:event]          = page.state
+    end
 
-    @revision_data
+    data[:blocks_attributes] = @blocks_attributes_was if page.blocks_attributes_changed
+
+    RevisionData.dump(data.merge(current_user: current_user))
   end
 
   def content_changed?

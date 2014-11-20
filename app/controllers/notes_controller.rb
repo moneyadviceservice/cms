@@ -14,12 +14,6 @@ class NotesController < Comfy::Admin::Cms::BaseController
   private
 
   def revision_data
-    {
-      note: params[:description],
-      author: {
-        id:   current_user.id,
-        name: current_user.name
-      }
-    }
+    RevisionData.dump(current_user: current_user, note: params[:description])
   end
 end

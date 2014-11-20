@@ -25,16 +25,9 @@ RSpec.describe ActivityLog do
         ]
       end
 
-      it 'assigns the activity log attributes as event type' do
-        expect(fetch).to eq([
-          ActivityLog.new(
-            id: 1,
-            author: 'user',
-            type:   'event',
-            text:   'draft',
-            created_at: created_at
-          )
-        ])
+      it 'parses the revision' do
+        expect(described_class).to receive(:parse).with(revisions.first)
+        fetch
       end
     end
 
@@ -52,16 +45,9 @@ RSpec.describe ActivityLog do
         ]
       end
 
-      it 'assigns the activity log attributes as note type' do
-        expect(fetch).to eq([
-          ActivityLog.new(
-            id: 1,
-            author: 'user',
-            type:   'note',
-            text:   'note text',
-            created_at: created_at
-          )
-        ])
+      it 'parses the revision' do
+        expect(described_class).to receive(:parse).with(revisions.first)
+        fetch
       end
     end
 
@@ -81,6 +67,15 @@ RSpec.describe ActivityLog do
       it 'returns empty array' do
         expect(fetch).to eq([])
       end
+    end
+  end
+
+  describe '.parse' do
+    let(:revision) { double }
+
+    it 'loads the revision data' do
+      allow(RevisionData).to receive(:load).with(revision).and_return(id: 1)
+      expect(ActivityLog.parse(revision)).to eq(ActivityLog.new(id: 1))
     end
   end
 end
