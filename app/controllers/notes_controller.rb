@@ -7,7 +7,7 @@ class NotesController < Comfy::Admin::Cms::BaseController
       @activity_log = ActivityLogPresenter.new(ActivityLog.parse(@note))
       render :create, status: :created
     else
-      render nothing: true, status: :bad_request
+      head :bad_request
     end
   end
 
