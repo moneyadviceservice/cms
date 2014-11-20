@@ -24,7 +24,8 @@ class PagesController < Comfy::Admin::Cms::PagesController
     if params[:search].present?
       Comfy::Cms::Search.new(@pages, params[:search]).results
     else
-      @pages.filter(params.slice(:category, :layout, :last_edit, :status, :language)).order(updated_at: :desc).page(params[:page])
+      filter_params = params.slice(:category, :layout, :last_edit, :status, :language)
+      @pages.filter(filter_params).order(updated_at: :desc).page(params[:page])
     end
   end
 
