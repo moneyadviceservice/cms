@@ -7,6 +7,9 @@
         - else
           %h1.l-panel-content__heading= t('.title')
           = paginate @pages
+        - if @last_published_pages
+          .panel
+            = render 'last_published_pages'
       .l-panel-content__col
         = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
           .search.search--header
