@@ -3,14 +3,14 @@
     %li{ class: "content-grid__item content-grid__item--#{file.is_image? ? :media : :file}"}
       - if file.is_image?
         = link_to edit_comfy_admin_cms_site_file_path(site, file), class: "t-file t-#{file.label}" do
-          %img.content-grid__media{:style => 'background-image: url('+file.file.url+')' }
+          %img.content-grid__media{style: 'background-image: url('+file.file.url+')' }
       - else
         %span.content-grid__heading
           = link_to file.label, edit_comfy_admin_cms_site_file_path(site, file), class: "t-file t-#{file.label}"
         %span.content-grid__icon
           %span{class: icon_class_of(file)}
 
-      = link_to comfy_admin_cms_site_file_path(site, file), :method => :delete, :data => {:confirm => t('.are_you_sure')}, :class => 'content-grid__action' do
+      = link_to comfy_admin_cms_site_file_path(site, file), method: :delete, data: {confirm: t('.are_you_sure')}, class: 'content-grid__action' do
         %span.fa.fa-trash
         %span.visually-hidden= t('.delete')
       %span.content-grid__outline

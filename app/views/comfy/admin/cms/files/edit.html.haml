@@ -4,5 +4,5 @@
 
 .l-panel-content
   .l-constrained
-    = comfy_form_for @file, :as => :file, :url => {:action => :update}, :html => {:class => 'form form--vertical'}, label_col: "form__label-heading", control_col: "form__input-wrapper" do |form|
+    = comfy_form_for @file, as: :file, url: {action: :update}, html: {class: 'form form--vertical'}, label_col: "form__label-heading", control_col: "form__input-wrapper" do |form|
       = render form

@@ -37,12 +37,12 @@ Then(/^I choose to sort files by date$/) do
 end
 
 Then(/^(?:The files|They) get (?:sorted|ordered) by name$/) do
-  expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:name])
+  expect(@page.files_filters.form).to have_select('order', selected: sort_by_options[:name])
   expect(shown_filenames).to eq(sample_filenames.sort)
 end
 
 Then(/^(?:The files|They) get (?:sorted|ordered) by date \(latest first\)$/) do
-  expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:date])
+  expect(@page.files_filters.form).to have_select('order', selected: sort_by_options[:date])
   expect(shown_filenames).to eq(sample_filenames.reverse)
 end
 
@@ -56,24 +56,24 @@ Then(/^I choose to search files by term$/) do
 end
 
 Then(/^Only files with that term are shown$/) do
-  expect(@page).to have_field('search', :with => '9')
+  expect(@page).to have_field('search', with: '9')
   expect(shown_filenames).to contain_exactly(*filenames_of_term('9'))
 end
 
 Then(/^Only (.+) files are shown$/) do |type|
-  expect(@page.files_filters.form).to have_select('type', :selected => type)
+  expect(@page.files_filters.form).to have_select('type', selected: type)
   expect(shown_filenames).to contain_exactly(*filenames_of(type: type))
 end
 
 Then(/^Only (.+) files sorted by date are shown$/) do |type|
-  expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:date])
-  expect(@page.files_filters.form).to have_select('type',  :selected => type)
+  expect(@page.files_filters.form).to have_select('order', selected: sort_by_options[:date])
+  expect(@page.files_filters.form).to have_select('type',  selected: type)
   expect(shown_filenames).to eq(filenames_of(type: type).reverse)
 end
 
 Then(/^Only (.+) files sorted by name are shown$/) do |type|
-  expect(@page.files_filters.form).to have_select('order', :selected => sort_by_options[:name])
-  expect(@page.files_filters.form).to have_select('type',  :selected => type)
+  expect(@page.files_filters.form).to have_select('order', selected: sort_by_options[:name])
+  expect(@page.files_filters.form).to have_select('type',  selected: type)
   expect(shown_filenames).to eq(filenames_of(type: type))
 end
 
