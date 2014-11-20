@@ -2,8 +2,7 @@
   .l-constrained
 
     -# header
-    .page-header
-      %h1= t('.title')
+    %h1.t-page-header= t('.title')
 
     -# create new tags
     .js-tags-creation
@@ -23,6 +22,6 @@
   .l-constrained.js-tags-listing
     -# existing tags
     %h2= t('.existing.info')
-    %p.nav-pagination.nav-pagination--tags-index!= index_of_existing_tags
+    %p.pagination.pagination--tags!= index_of_existing_tags
     %p.js-tags-existing-header
     %ul.taggle_list.js-tags-existing

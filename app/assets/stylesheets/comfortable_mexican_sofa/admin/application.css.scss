@@ -57,7 +57,7 @@ $responsive: true;
 @import "components/_nav_primary";
 @import "components/_nav_secondary";
 @import "components/_nav_article";
-@import "components/_nav_pagination";
+@import "components/_pagination";
 @import "components/_listing";
 @import "components/_menu";
 @import "components/_meta";
@@ -65,6 +65,7 @@ $responsive: true;
 @import "components/_tags";
 @import "components/_search";
 @import "components/_popover";
+@import "components/_content_grid";
 
 // Layouts
 @import "layout/_editor";

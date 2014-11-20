@@ -1,0 +1,10 @@
+= form_tag(comfy_admin_cms_site_files_path, method: 'get', id: 'search-form') do
+  .search.search--header
+    %span.search__item
+      - if search_term.present?
+        = t('.found', n: files.count, q: search_term)
+    %span.search__item.search__item--input
+      = label_tag(:search, nil, class: 'visually-hidden')
+      = text_field_tag(:search, search_term, placeholder: t('.placeholder'), class: 'form__input form__input--constrained search__input t-search-box')
+      = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
+        %span.button__text.fa.fa-search

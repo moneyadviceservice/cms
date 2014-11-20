@@ -7,7 +7,7 @@ module UI::Pages
     set_url         '/admin/tags'
     set_url_matcher /\/admin\/tags/
 
-    section :tags_header, UI::Sections::Header, '.page-header'
+    section :tags_header, UI::Sections::Header, '.t-page-header'
 
     section :tags_creation, '.js-tags-creation' do
       element  :label, 'label'

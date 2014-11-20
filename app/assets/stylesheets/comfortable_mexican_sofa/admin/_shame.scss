@@ -2,7 +2,6 @@
   display: none;
 }
 
-.c-comfy-admin-cms-files,
 .c-comfy-admin-cms-layouts,
 .c-comfy-admin-cms-snippets {
   main {
@@ -27,4 +26,8 @@ a.signin{
 
 .sg-block {
   margin-bottom: $baseline-unit*6;
+}
+
+.file-image img {
+  width: 100%;
 }

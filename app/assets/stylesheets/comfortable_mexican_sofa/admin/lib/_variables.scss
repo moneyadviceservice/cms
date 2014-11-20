@@ -65,6 +65,12 @@ $color-alert-success-foreground: $color-white;
 $color-alert-danger-background: $color-persian-red;
 $color-alert-danger-foreground: $color-white;
 
+// Content Grid
+$color-content-grid-outline: $color-alto;
+$color-content-grid-outline-active: $color-mariner;
+$color-content-grid-icon: $color-mariner;
+$color-content-grid-icon-alt: $color-white;
+
 // Tags
 $color-tags-container-background: $color-white;
 $color-tags-container-foreground: $color-white;
@@ -84,7 +90,6 @@ $button-border-radius: 4px;
 $color-toolbar-button-foreground: $color-white;
 $color-toolbar-button-background: $color-mariner;
 $color-toolbar-button-disabled-background: $color-alto;
-
 
 // Toggle buttons
 $color-toggle-foreground: $color-mariner;
