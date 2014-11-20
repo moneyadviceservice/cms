@@ -18,7 +18,7 @@ module ReverseMarkdown
 
       def link_from(node, href, name, title)
         if href.to_s.start_with?('#') || href.to_s.empty? || name.empty?
-          external_link(node, name, href, title)
+          external_link(node, href, name, title)
         else
           internal_link(name, href, title)
         end
@@ -27,7 +27,7 @@ module ReverseMarkdown
       def external_link(node, href, name, title)
         data_action = node.attributes['data-action-id'].try(:value)
         if data_action
-          href, name = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
+          href, _ = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
           " ^[#{name}](#{href}#{title}){:target='_blank'}^"
         else
           name

@@ -3,10 +3,10 @@ require_relative '../../lib/cms/hippo_import'
 
 describe HippoImport do
   let(:xml) { File.read(Rails.root.join('spec', 'fixtures', 'example.xml')) }
-
+  let(:docs) { ['do-you-need-to-borrow-money'] }
   let(:body) { " ****\n\n## Before you sign up for a credit card\n bank loan or store card, or add to an existing card or loan it makes sense to think about whether you really need to borrow money. [Google](http://www.google.com){:target='_blank'}" }
 
-  let(:parsed) { HippoImport.new(xml).import! }
+  let(:parsed) { HippoImport.new(xml, docs).import! }
 
   subject { parsed.first }
 
