@@ -22,7 +22,7 @@ RSpec.describe PagesController do
       end
 
       it 'assigns pages using the comfy search' do
-        expect(assigns[:pages]).to match_array([page])
+        expect(assigns[:pages]).to contain_exactly(page)
       end
     end
 
@@ -50,11 +50,11 @@ RSpec.describe PagesController do
       end
 
       it 'does not assign filters variable' do
-        expect(assigns[:filters_present]).to be_falsy
+        expect(assigns[:filters_present]).to be_falsey
       end
 
       it 'assigns pages filtering the results' do
-        expect(assigns[:pages]).to match_array([another_page])
+        expect(assigns[:pages]).to contain_exactly(another_page)
       end
     end
   end
@@ -230,13 +230,6 @@ RSpec.describe PagesController do
                 identifier: 'content', content: nil
               }
             ]
-          )
-        end
-
-        it 'saves the current user in the last revision' do
-          expect(last_revision.data[:author]).to eq(
-            id:   current_user.id,
-            name: current_user.name
           )
         end
       end
