@@ -1,8 +1,10 @@
 define([
+  'dialog-polyfill',
   'jquery',
   'DoughBaseComponent',
   'eventsWithPromises'
 ], function (
+  dialogPolyfill,
   $,
   DoughBaseComponent,
   eventsWithPromises
@@ -11,19 +13,23 @@ define([
 
   var DialogProto,
       defaultConfig = {
-        // uiEvents: {}
+        uiEvents: {
+          'click': 'show'
+        },
         selectors: {
-          target: '[data-dialog-target]',
-          trigger: '[data-dialog-trigger]',
-          container: '[data-dialog-container]',
-          content: '[data-dialog-content]',
-          close: '[data-dialog-close]'
+          dialog: '[data-dough-dialog]',
+          target: '[data-dough-dialog-target]',
+          trigger: '[data-dough-dialog-trigger]',
+          container: '[data-dough-dialog-container]',
+          content: '[data-dough-dialog-content]',
+          close: '[data-dough-dialog-close]',
+          activeClass: 'is-active'
         }
       };
 
   function Dialog($el, config) {
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
-    console.log(this.config);
+    this.isShown = false;
   }
 
   DoughBaseComponent.extend(Dialog);
@@ -31,30 +37,90 @@ define([
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {
-    if(!this.containerCreated) {
-      this.createElements();
-    }
-    this._setupEvents();
+    this._cacheComponentElements();
+    this._setupDialog();
+    this._setupUIEvents();
     this._initialisedSuccess(initialised);
   };
 
+  DialogProto._cacheComponentElements = function() {
+    this.$trigger = this.$el;
+    this.$target = $('body').find('[data-dough-dialog-target="' + this.$trigger.attr('data-dough-dialog-trigger') + '"]');
+  };
+
+  DialogProto._setupDialog = function() {
+    this.$dialog = $('<dialog data-dough-dialog />');
+    this.$dialogContainer = $('<div data-dough-dialog-container />');
+    this.$dialogContent = $('<div data-dough-dialog-content />');
+    this.$dialogClose = $('<button data-dough-dialog-close /><span class="visually-hidden">Close</span></button>');
+    this.$dialog.appendTo('body');
+    this.$dialog.append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
+    this.dialog = this.$dialog[0];
+
+    if(!window.HTMLDialogElement) {
+      dialogPolyfill.registerDialog(this.dialog);
+    }
+  };
+
+  DialogProto._setupUIEvents = function() {
+    this.$target.find(this.config.selectors.close).on('click', $.proxy(this.close, this));
+    this.$dialog.on('cancel', $.proxy(this._handleCancel, this));
+  };
+
+  DialogProto._handleCancel = function() {
+    this.cancel();
+  };
+
+  DialogProto._detachTarget = function() {
+    this.$locationMarker = $('<span />').insertBefore(this.$target);
+    this.$target.detach();
+  };
+
+  DialogProto._attachTarget = function() {
+    this.$target.insertBefore(this.$locationMarker);
+    this.$locationMarker.remove();
+  };
+
   DialogProto.show = function() {
+    if(!this.$target.length) return;
+
+    this._detachTarget();
+    this.setContent(this.$target);
+    this.dialog.showModal();
+    this.$dialog.addClass(this.config.selectors.activeClass);
+    this.isShown = true;
+
+    eventsWithPromises.publish('dialog:shown', {
+      emitter: this.$target
+    });
   };
 
-  DialogProto.hide = function() {
+  DialogProto.close = function() {
+    this.dialog.close();
+    this._attachTarget();
+    this.$dialog.removeClass(this.config.selectors.activeClass);
+    this.isShown = false;
+
+    eventsWithPromises.publish('dialog:closed', {
+      emitter: this.$target
+    });
   };
 
-  DialogProto.setContent = function() {
+  DialogProto.cancel = function() {
+    this._attachTarget();
+    this.isShown = false;
+
+    eventsWithPromises.publish('dialog:cancelled', {
+      emitter: this.$target
+    });
   };
 
-  DialogProto.onReady = function() {
-  };
+  DialogProto.setContent = function($el) {
+    this.$dialogContent.append($el);
 
-  DialogProto.createElements = function() {
-    DialogProto.containerCreated = true;
-  };
-
-  DialogProto._setupEvents = function() {
+    eventsWithPromises.publish('dialog:ready', {
+      emitter: this.$target
+    });
   };
 
   return Dialog;

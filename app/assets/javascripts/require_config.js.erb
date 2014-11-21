@@ -35,6 +35,7 @@ requirejs.config({
     'Tags': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Tags") %>',
     'Popover': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Popover") %>',
     'SelectSubmitter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/SelectSubmitter") %>',
+    'Dialog': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Dialog") %>',
     'ElementFilter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/ElementFilter") %>',
 
     // Snippets
@@ -69,6 +70,7 @@ requirejs.config({
     'scribe-plugin-sanitizer': '<%= requirejs_path("scribe-plugin-sanitizer/scribe-plugin-sanitizer") %>',
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'text': '<%= requirejs_path("text/text") %>',
+    'dialog-polyfill': '<%= requirejs_path("dialog-polyfill/dialog-polyfill") %>',
 
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
@@ -85,6 +87,9 @@ requirejs.config({
     },
     'taggle': {
       exports: 'Taggle'
+    },
+    'dialog-polyfill': {
+      exports: 'dialogPolyfill'
     }
   }
 });

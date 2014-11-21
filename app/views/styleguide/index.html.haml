@@ -8,6 +8,27 @@
     %h3 Heading h3
     %h4 Heading h4
 
+		%h2 .dialog
+
+		%button{"data-dough-dialog-trigger" => "example1", "data-dough-component" => "Dialog"} Open example 1
+    %div{"data-dough-dialog-target" => "example1"}
+      Example 1 content
+      %button{"data-dough-dialog-close" => ""} Close
+    %button{"data-dough-dialog-trigger" => "example2", "data-dough-component" => "Dialog"} Open example 2
+    %div{"data-dough-dialog-target" => "example2"}
+      Example 2 content
+      %button{"data-dough-dialog-close" => ""} Close
+
+    / %div{"data-dough-component" => "LinkInserter", "data-dough-linkinserter-target" => "example3"}
+    /   Example 3 content
+    /   %button{"data-dough-dialog-close" => ""} Cancel
+    /   %button{"data-dough-linkinserter-create" => ""} Insert Link
+
+    %dialog{"data-dough-dialog" => true}
+      %div{"data-dough-dialog-container" => true}
+        %div{"data-dough-dialog-content" => true}
+        %button{"data-dough-dialog-close" => true} Close
+
     %h2 Content grid
 
     %ul.content-grid

@@ -84,7 +84,8 @@ requirejs.config({
     'marked': bowerPath + 'marked/lib/marked',
     'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
     'chosen': bowerPath + 'chosen-build/chosen.jquery',
-    'text': bowerPath + 'text/text'
+    'text': bowerPath + 'text/text',
+    'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill'
   },
   shim : {
     'to-markdown' : {
@@ -93,6 +94,9 @@ requirejs.config({
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']
+    },
+    'dialog-polyfill': {
+      exports: 'dialogPolyfill'
     }
   },
   callback: window.__karma__.start
