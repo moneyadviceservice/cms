@@ -1,5 +1,5 @@
 %tr
-  %td= link_to highlighted_terms(page.label, params[:search]), edit_comfy_admin_cms_site_page_path(page.site, page)
+  %td= link_to(highlighted_terms(page.label, params[:search]), edit_comfy_admin_cms_site_page_path(page.site, page))
   %td= page.layout.label
   %td= page_category_list(page)
   %td= page.last_update
