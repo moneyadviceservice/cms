@@ -23,7 +23,7 @@ class PageRegister
   end
 
   def create_revision
-    return unless content_changed?
+    return unless content_changed? && page.persisted?
 
     page.revisions.create!(data: revision_data)
   end

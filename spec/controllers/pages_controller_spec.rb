@@ -235,6 +235,15 @@ RSpec.describe PagesController do
       end
     end
 
+    context 'when passes the "delete_page" event state' do
+      let!(:page) { create(:page, state: 'draft') }
+      let(:state_event) { 'delete_page' }
+
+      it 'deletes the page' do
+        expect(assigns[:page]).to_not be_persisted
+      end
+    end
+
     context 'when does not pass any event state' do
       let!(:page) { create(:page, state: 'draft') }
       let(:state_event) { nil }
