@@ -1,5 +1,4 @@
 module FilesHelper
-
   private
 
   FA_FILE_TYPES = { 'doc'  => 'fa-file-word-o',
