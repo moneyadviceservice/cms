@@ -63,7 +63,7 @@ define([
   };
 
   DialogProto._setupUIEvents = function() {
-    this.$dialog.on('click', this.config.selectors.close, $.proxy(this.close, this));
+    this.$dialog.on('click', this.config.selectors.close, $.proxy(this.close, this, false));
     this.$dialog.on('cancel', $.proxy(this._handleCancel, this));
   };
 
@@ -111,9 +111,12 @@ define([
     eventsWithPromises.publish('dialog:closed', {
       emitter: this.$target
     });
-    eventsWithPromises.publish('dialog:cancelled', {
-      emitter: this.$target
-    });
+
+    if(cancelled) {
+      eventsWithPromises.publish('dialog:cancelled', {
+        emitter: this.$target
+      });
+    }
   };
 
   DialogProto.appendTargetToDialog = function($el) {
