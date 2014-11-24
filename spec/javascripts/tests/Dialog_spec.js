@@ -103,6 +103,15 @@ describe('Dialog', function () {
       this.component.show();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
+
+    it('should show the dialog using the Dialog showModal() method', function() {
+      var spy;
+      this.component.dialog.showModal = function() {};
+      spy = sinon.spy(this.component.dialog, 'showModal');
+      this.component.show(true);
+      expect(this.showSpy.calledWith(true)).to.be.true;
+      expect(spy.called).to.be.true;
+    });
   });
 
   describe('Hide dialog', function () {

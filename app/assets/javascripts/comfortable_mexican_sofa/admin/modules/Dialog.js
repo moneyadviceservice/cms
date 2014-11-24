@@ -81,18 +81,26 @@ define([
     this.$locationMarker.remove();
   };
 
-  DialogProto.show = function() {
+  DialogProto.show = function(showModal) {
     if(this.isShown) return;
 
     this._detachTarget();
     this.setContent(this.$target);
-    this.dialog.showModal();
+    showModal? this.dialog.showModal() : this.dialog.show();
+
     this.$dialog.addClass(this.config.selectors.activeClass);
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
-      emitter: this.$target
+      emitter: this.$target,
+      modal: showModal
     });
+  };
+
+  DialogProto.showModal = function() {
+    if(this.isShown) return;
+
+    this.showModal(true);
   };
 
   DialogProto.close = function() {
