@@ -1,6 +1,6 @@
 .table-wrapper
   = form_tag(comfy_admin_cms_site_pages_url, method: :get, id: 'filter_form', remote: true) do
-    %table.datatable-default
+    %table.datatable-default.table.table--full-width
       %thead
         %tr
           %th Page title
@@ -10,6 +10,5 @@
           %th= select_tag(:status, options_for_select(state_list('Status')), data: { dough_component: 'SelectSubmitter' })
           %th= select_tag(:language, options_for_select([['Language', nil], ['English', :en], ['Welsh', :cy]]), data: { dough_component: 'SelectSubmitter' })
       %tbody.js-filter-pages
-        - @pages.each do |page|
+        - PagePresenter.collect(@pages).each do |page|
           = render page
-          = render page.mirrors.first if page.mirrors.present?

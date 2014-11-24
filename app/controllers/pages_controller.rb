@@ -15,17 +15,20 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def set_pages
-    @pages = @site.pages.unscoped.includes(:layout, :site)
+    @all_pages = Comfy::Cms::Page.includes(:layout, :site)
   end
 
   def apply_filters
     @filters_present = params[:category].present? || params[:search].present?
 
+    filter_params = params.slice(:category, :layout, :last_edit, :status, :language)
+    @pages = @all_pages.filter(filter_params)
+
     if params[:search].present?
       Comfy::Cms::Search.new(@pages, params[:search]).results
     else
-      filter_params = params.slice(:category, :layout, :last_edit, :status, :language)
-      @pages.filter(filter_params).order(updated_at: :desc).page(params[:page])
+      @last_published_pages = @all_pages.status(:published).reorder(updated_at: :desc).limit(4)
+      @pages.reorder(updated_at: :desc).page(params[:page])
     end
   end
 

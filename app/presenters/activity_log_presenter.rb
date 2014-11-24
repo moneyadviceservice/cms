@@ -1,4 +1,6 @@
 class ActivityLogPresenter < Presenter
+  include ActionView::Helpers
+
   def header
     "#{author}, #{l(created_at, format: :date_with_time)}"
   end

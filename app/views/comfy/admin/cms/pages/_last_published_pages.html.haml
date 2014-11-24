@@ -1,0 +1,8 @@
+%h2.panel__heading
+  %span.fa.fa-file-o
+  Last published pages
+- PagePresenter.collect(@last_published_pages).each do |page|
+  %p
+    = link_to page.label, edit_comfy_admin_cms_site_page_path(page.site, page)
+    | Last edit:
+    = page.last_update
