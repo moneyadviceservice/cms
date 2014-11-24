@@ -70,6 +70,9 @@ $responsive: true;
 @import "components/_notes-list";
 @import "components/_list-display";
 
+// Common components
+@import "components/common/_tables";
+
 // Layouts
 @import "layout/_editor";
 @import "layout/_panel_content";

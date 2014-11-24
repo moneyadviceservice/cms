@@ -3,7 +3,7 @@
     %table.datatable-default.table.table--full-width
       %thead
         %tr
-          %th Page title
+          %th.table__header.table__header--page-title Page title
           %th= select_tag(:layout, options_for_select(layout_list('Page type')), data: { dough_component: 'SelectSubmitter' })
           %th= select_tag(:category, options_for_select(category_list('Child category')), data: { dough_component: 'SelectSubmitter' })
           %th= select_tag(:last_edit, options_for_select(user_list('Last edited by')), data: { dough_component: 'SelectSubmitter' })
