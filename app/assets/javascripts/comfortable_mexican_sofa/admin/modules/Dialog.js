@@ -68,7 +68,7 @@ define([
   };
 
   DialogProto._handleCancel = function() {
-    this.cancel();
+    this.close(true);
   };
 
   DialogProto._detachTarget = function() {
@@ -97,10 +97,13 @@ define([
     });
   };
 
-  DialogProto.close = function() {
+  DialogProto.close = function(cancelled) {
     if(!this.isShown) return;
 
-    this.dialog.close();
+    if(!cancelled) {
+      this.dialog.close();
+    }
+
     this._attachTarget();
     this.$dialog.removeClass(this.config.selectors.activeClass);
     this.isShown = false;
@@ -108,14 +111,6 @@ define([
     eventsWithPromises.publish('dialog:closed', {
       emitter: this.$target
     });
-  };
-
-  DialogProto.cancel = function() {
-    if(!this.isShown) return;
-
-    this._attachTarget();
-    this.isShown = false;
-
     eventsWithPromises.publish('dialog:cancelled', {
       emitter: this.$target
     });
