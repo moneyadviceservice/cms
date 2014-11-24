@@ -63,7 +63,7 @@ define([
   };
 
   DialogProto._setupUIEvents = function() {
-    this.$target.find(this.config.selectors.close).on('click', $.proxy(this.close, this));
+    this.$dialog.on('click', this.config.selectors.close, $.proxy(this.close, this));
     this.$dialog.on('cancel', $.proxy(this._handleCancel, this));
   };
 
