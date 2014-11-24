@@ -82,7 +82,7 @@ define([
   };
 
   DialogProto.show = function() {
-    if(!this.$target.length) return;
+    if(this.isShown) return;
 
     this._detachTarget();
     this.setContent(this.$target);
@@ -96,6 +96,8 @@ define([
   };
 
   DialogProto.close = function() {
+    if(!this.isShown) return;
+
     this.dialog.close();
     this._attachTarget();
     this.$dialog.removeClass(this.config.selectors.activeClass);
@@ -107,6 +109,8 @@ define([
   };
 
   DialogProto.cancel = function() {
+    if(!this.isShown) return;
+
     this._attachTarget();
     this.isShown = false;
 
