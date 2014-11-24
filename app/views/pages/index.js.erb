@@ -1,1 +1,1 @@
-$(".js-filter-pages").html("<%= escape_javascript(render(@pages)) %>");
+$(".js-filter-pages").html("<%= escape_javascript(render(PagePresenter.collect(@pages))) %>");
