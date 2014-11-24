@@ -28,6 +28,7 @@ define([
       };
 
   function Dialog($el, config) {
+
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
     this.isShown = false;
   }
@@ -39,6 +40,7 @@ define([
   DialogProto.init = function(initialised) {
     this._cacheComponentElements();
     this._setupDialog();
+
     this._setupUIEvents();
     this._initialisedSuccess(initialised);
   };
@@ -57,7 +59,7 @@ define([
     this.$dialog.append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
     this.dialog = this.$dialog[0];
 
-    if(!window.HTMLDialogElement) {
+    if(typeof window.HTMLDialogElement === 'undefined') {
       dialogPolyfill.registerDialog(this.dialog);
     }
   };
