@@ -56,10 +56,10 @@ describe('Dialog', function () {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
-      // this.component.dialog.show();
       done();
     });
 
+    // Dialog 'cancel' event not being triggered from within Karma env
     // it('should trigger the cancel handler when ESC is hit', function () {
     //   var e = $.Event('keyup');
     //   e.keyCode = 27;
@@ -73,8 +73,9 @@ describe('Dialog', function () {
     });
 
     it('should hide the dialog when clicking the close button ', function() {
+      this.component.$trigger.click();
       this.component.$dialog.find(this.component.config.selectors.close).click();
-      expect(this.hideSpy.called).to.be.true;
+      expect(this.closeSpy.called).to.be.true;
     });
   });
 
@@ -101,10 +102,6 @@ describe('Dialog', function () {
     it('should add the active class to the dialog element', function() {
       this.component.show();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.true;
-    });
-
-    it('should show the dialog', function() {
-
     });
   });
 
@@ -134,10 +131,6 @@ describe('Dialog', function () {
       this.component.close();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.false;
     });
-
-    it('should hide the dialog', function() {
-
-    });
   });
 
   describe('Set Content', function () {
@@ -147,13 +140,18 @@ describe('Dialog', function () {
       done();
     });
 
+    it('should set the content of the dialog with that of the target\'s', function () {
+      this.component.$dialogContent.empty();
+      this.component.show();
+      expect(this.component.$dialogContent.get(0).innerHTML).to.be.equal(this.component.$target[0].outerHTML);
+    });
+
     it('should trigger a ready event', function () {
       var spy = sinon.spy();
       this.eventsWithPromises.subscribe('dialog:ready', spy);
       this.component.show();
       expect(spy.called).to.be.true;
     });
-
 
   });
 });
