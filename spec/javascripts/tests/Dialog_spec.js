@@ -118,7 +118,7 @@ describe('Dialog', function () {
       expect($.contains(this.component.dialog, this.component.$target[0])).to.be.true;
     });
 
-    it('should trigger a hidden event', function () {
+    it('should trigger a closed event', function () {
       var spy = sinon.spy();
       this.eventsWithPromises.subscribe('dialog:closed', spy);
       this.component.show();
