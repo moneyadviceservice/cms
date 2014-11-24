@@ -1,4 +1,4 @@
 $yes-no
-[y] yes
-[n] no
+[y] yes [/y]
+[n] no [/n]
 $end

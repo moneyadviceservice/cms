@@ -5,7 +5,18 @@ module ReverseMarkdown
         content     = treat_children(node)
         indentation = indentation_for(node)
         prefix      = prefix_for(node)
-        "#{indentation}#{prefix}#{content}\n"
+        postfix     = postfix_for(node)
+        "#{indentation}#{prefix}#{content}#{postfix}\n"
+      end
+
+      def postfix_for(node)
+        if node.attributes['class'].try(:value) == 'yes'
+          ' [/y]'
+        elsif node.attributes['class'].try(:value) == 'no'
+          ' [/n]'
+        else
+          ''
+        end
       end
 
       def prefix_for(node)
