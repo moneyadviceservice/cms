@@ -54,8 +54,9 @@ define([
     this.$dialogContainer = $('<div data-dough-dialog-container class="dialog__container" />');
     this.$dialogContent = $('<div data-dough-dialog-content class="dialog__content" />');
     this.$dialogClose = $('<button data-dough-dialog-close class="dialog__close"><span class="dialog__close-text visually-hidden">Close</span></button>');
-    this.$dialog.appendTo('body');
-    this.$dialog.append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
+    this.$dialog
+      .appendTo('body')
+      .append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
     this.dialog = this.$dialog[0];
 
     if(typeof window.HTMLDialogElement === 'undefined') {
@@ -64,8 +65,9 @@ define([
   };
 
   DialogProto._setupUIEvents = function() {
-    this.$dialog.on('click', this.config.selectors.close, $.proxy(this.close, this, false));
-    this.$dialog.on('cancel', $.proxy(this._handleCancel, this));
+    this.$dialog
+      .on('click', this.config.selectors.close, $.proxy(this.close, this, false))
+      .on('cancel', $.proxy(this._handleCancel, this));
   };
 
   DialogProto._handleCancel = function() {
