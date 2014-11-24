@@ -45,7 +45,7 @@ define([
 
   DialogProto._cacheComponentElements = function() {
     this.$trigger = this.$el;
-    this.$target = $('body').find('[data-dough-dialog-target="' + this.$trigger.attr('data-dough-dialog-trigger') + '"]');
+    this.$target = $('[data-dough-dialog-target="' + this.$trigger.attr('data-dough-dialog-trigger') + '"]');
   };
 
   DialogProto._setupDialog = function() {
@@ -95,12 +95,6 @@ define([
       emitter: this.$target,
       modal: showModal
     });
-  };
-
-  DialogProto.showModal = function() {
-    if(this.isShown) return;
-
-    this.showModal(true);
   };
 
   DialogProto.close = function() {
