@@ -21,13 +21,15 @@ module FilesHelper
   end
 
   def options_to_sort_files(selected_option:)
-    options = { t('comfy.admin.cms.files.index.sort_by.name') => :label,
-                t('comfy.admin.cms.files.index.sort_by.date') => 'position DESC' }
+    options = {
+      t('files.index.sort_by.name') => :label,
+      t('files.index.sort_by.date') => 'position DESC'
+    }
     options_for_select(options, selected_option)
   end
 
   def options_to_filter_files(selected_option:)
-    options = t('comfy.admin.cms.files.index.filter_by.type').split(',').map { |type| [type.strip, type.strip] }
+    options = t('files.index.filter_by.type').split(',').map { |type| [type.strip, type.strip] }
     options_for_select(options, selected_option)
   end
 
