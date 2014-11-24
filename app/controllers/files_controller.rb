@@ -25,13 +25,4 @@ class FilesController < Comfy::Admin::Cms::FilesController
     categories  = @site.categories.of_type(@file.class.to_s)
     @categories = Comfy::Cms::CategoriesListPresenter.new(categories)
   end
-
-  def file_params
-    # single file upload
-    unless (file = params[:file]).is_a?(Hash)
-      params[:file] = {}
-      params[:file][:file] = [file]
-    end
-    params.fetch(:file, {}).permit!
-  end
 end
