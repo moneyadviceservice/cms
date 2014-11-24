@@ -85,7 +85,7 @@ define([
     if(this.isShown) return;
 
     this._detachTarget();
-    this.setContent(this.$target);
+    this.appendTargetToDialog(this.$target);
     showModal? this.dialog.showModal() : this.dialog.show();
 
     this.$dialog.addClass(this.config.selectors.activeClass);
@@ -116,7 +116,7 @@ define([
     });
   };
 
-  DialogProto.setContent = function($el) {
+  DialogProto.appendTargetToDialog = function($el) {
     this.$dialogContent.append($el);
 
     eventsWithPromises.publish('dialog:ready', {
