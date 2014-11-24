@@ -28,7 +28,6 @@ define([
       };
 
   function Dialog($el, config) {
-
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
     this.isShown = false;
   }
@@ -51,10 +50,10 @@ define([
   };
 
   DialogProto._setupDialog = function() {
-    this.$dialog = $('<dialog data-dough-dialog />');
-    this.$dialogContainer = $('<div data-dough-dialog-container />');
-    this.$dialogContent = $('<div data-dough-dialog-content />');
-    this.$dialogClose = $('<button data-dough-dialog-close /><span class="visually-hidden">Close</span></button>');
+    this.$dialog = $('<dialog data-dough-dialog class="dialog" />');
+    this.$dialogContainer = $('<div data-dough-dialog-container class="dialog__container" />');
+    this.$dialogContent = $('<div data-dough-dialog-content class="dialog__content" />');
+    this.$dialogClose = $('<button data-dough-dialog-close class="dialog__close"><span class="dialog__close-text visually-hidden">Close</span></button>');
     this.$dialog.appendTo('body');
     this.$dialog.append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
     this.dialog = this.$dialog[0];
