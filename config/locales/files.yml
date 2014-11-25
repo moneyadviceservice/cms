@@ -8,6 +8,9 @@ en:
         date: date added (latest first)
         name: name (a to z)
         placeholder: "sort by:"
+    form:
+      create: Upload File
+      update: Update File
     files_list:
       are_you_sure: Are you sure?
       delete: delete
