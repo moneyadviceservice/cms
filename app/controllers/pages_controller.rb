@@ -19,10 +19,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def apply_filters
-    @filters_present = params[:category].present? || params[:search].present?
-
-    filter_params = params.slice(:category, :layout, :last_edit, :status, :language)
-    @pages = @all_pages.filter(filter_params)
+    @pages = @all_pages.filter(params.slice(:category, :layout, :last_edit, :status, :language))
 
     if params[:search].present?
       Comfy::Cms::Search.new(@pages, params[:search]).results
