@@ -48,6 +48,8 @@ requirejs.config({
     'MirrorInputValue': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MirrorInputValue',
     'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
     'ElementFilter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementFilter',
+    'Dialog': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Dialog',
+    'LinkInserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkInserter',
 
     // Snippets
     'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',
@@ -83,7 +85,8 @@ requirejs.config({
     'marked': bowerPath + 'marked/lib/marked',
     'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
     'chosen': bowerPath + 'chosen-build/chosen.jquery',
-    'text': bowerPath + 'text/text'
+    'text': bowerPath + 'text/text',
+    'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill'
   },
   shim : {
     'to-markdown' : {
@@ -92,6 +95,9 @@ requirejs.config({
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']
+    },
+    'dialog-polyfill': {
+      exports: 'dialogPolyfill'
     }
   },
   callback: window.__karma__.start

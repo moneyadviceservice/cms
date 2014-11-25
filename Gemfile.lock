@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/dough.git
-  revision: 8c96e19d71e7ebbae021269c6c746fa6285e8fda
+  revision: bc5f79550769ec436a1398bd378a8af78185651a
   specs:
     dough-ruby (4.0.0)
       activesupport

@@ -47,6 +47,7 @@ Rails.application.configure do
                                   dough/assets/js/components/DoughBaseComponent.js
                                   dough/assets/js/components/Collapsable.js
                                   taggle.js/dist/taggle.min.js
-                                  chosen-build/chosen.jquery.js)
+                                  chosen-build/chosen.jquery.js
+                                  dialog-polyfill/dialog-polyfill.js)
 
 end
