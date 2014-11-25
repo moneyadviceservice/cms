@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe RevisionData do
   describe '.load' do
     let(:revision) { double }

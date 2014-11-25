@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe FilesController do
   before do
     sign_in create(:user)

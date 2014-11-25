@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe WordDocumentsController, type: :controller do
   include_context 'cms'
 
@@ -14,5 +12,4 @@ RSpec.describe WordDocumentsController, type: :controller do
       # expect(assigns(:page).blocks.first.content).to_not be_nil
     end
   end
-
 end

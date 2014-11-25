@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe PagesHelper do
   class Tester
     include PagesHelper
