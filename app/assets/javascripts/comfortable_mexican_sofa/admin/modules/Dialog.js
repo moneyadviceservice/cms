@@ -39,7 +39,6 @@ define([
   DialogProto.init = function(initialised) {
     this._cacheComponentElements();
     this._setupDialog();
-
     this._setupUIEvents();
     this._initialisedSuccess(initialised);
   };

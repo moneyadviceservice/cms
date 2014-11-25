@@ -103,6 +103,14 @@ describe('Dialog', function () {
       this.component.show();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
+  });
+
+  describe('Show dialog (showModal)', function () {
+    beforeEach(function (done) {
+      this.component = new this.Dialog(this.$fixture);
+      this.component.init();
+      done();
+    });
 
     it('should show the dialog using the Dialog showModal() method', function() {
       var spy;
@@ -112,9 +120,16 @@ describe('Dialog', function () {
       expect(this.showSpy.calledWith(true)).to.be.true;
       expect(spy.called).to.be.true;
     });
+
+    it('should trigger a shown event and return modal=true in callback arguments', function () {
+      var spy = sinon.spy();
+      this.eventsWithPromises.subscribe('dialog:shown', spy);
+      this.component.show(true);
+      expect(spy.args[0][0].modal).to.be.true;
+    });
   });
 
-  describe('Hide dialog', function () {
+  describe('Close dialog', function () {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
@@ -139,6 +154,22 @@ describe('Dialog', function () {
       this.component.show();
       this.component.close();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+  });
+
+  describe('Close dialog (cancelled)', function () {
+    beforeEach(function (done) {
+      this.component = new this.Dialog(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should trigger a cancelled event', function () {
+      var spy = sinon.spy();
+      this.eventsWithPromises.subscribe('dialog:cancelled', spy);
+      this.component.show();
+      this.component.close(true);
+      expect(spy.called).to.be.true;
     });
   });
 
