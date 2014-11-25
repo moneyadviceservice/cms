@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe NotesController do
   let(:current_user) { create(:user) }
 

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe ActivityLogPresenter do
   subject(:presenter) do
     described_class.new(object)

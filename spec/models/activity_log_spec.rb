@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe ActivityLog do
   describe '.fetch' do
     subject(:fetch) { ActivityLog.fetch(from: page) }

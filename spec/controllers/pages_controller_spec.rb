@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe PagesController do
   let(:site) { page.site }
   let(:current_user) { create(:user) }
