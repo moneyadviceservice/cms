@@ -15,10 +15,6 @@ RSpec.describe PagesController do
         get :index, site_id: site.id, search: page.label
       end
 
-      it 'assigns filters variable' do
-        expect(assigns[:filters_present]).to be_truthy
-      end
-
       it 'assigns pages using the comfy search' do
         expect(assigns[:pages]).to contain_exactly(page)
       end
