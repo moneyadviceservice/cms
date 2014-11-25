@@ -6,12 +6,12 @@ class FilesController < Comfy::Admin::Cms::FilesController
 
     @order = params[:order].presence
     @type  = params[:type].presence
-    @files = @site.files.not_page_file \
-      .includes(:categories) \
-      .for_category(params[:category]) \
-      .of_type(@type) \
-      .search_by(params[:search]) \
-      .ordered_by(@order) \
+    @files = @site.files.not_page_file
+      .includes(:categories)
+      .for_category(params[:category])
+      .of_type(@type)
+      .search_by(params[:search])
+      .ordered_by(@order)
       .page(params[:page])
   end
 
