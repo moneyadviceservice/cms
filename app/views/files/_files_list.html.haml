@@ -3,7 +3,7 @@
     %li{ class: "content-grid__item content-grid__item--#{file.is_image? ? :media : :file}"}
       - if file.is_image?
         = link_to edit_comfy_admin_cms_site_file_path(site, file), class: "t-file t-#{file.label}" do
-          %img.content-grid__media{style: 'background-image: url('+file.file.url+')' }
+          %span.content-grid__media{ title: file.label, style: 'background-image: url('+file.file.url+')' }
       - else
         %span.content-grid__heading
           = link_to file.label, edit_comfy_admin_cms_site_file_path(site, file), class: "t-file t-#{file.label}"
