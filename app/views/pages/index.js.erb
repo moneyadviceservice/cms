@@ -1,1 +1,2 @@
 $(".js-filter-pages").html("<%= escape_javascript(render(PagePresenter.collect(@pages))) %>");
+$(".pagination").html("<%= escape_javascript(paginate(@pages, remote: true).to_s) %>")

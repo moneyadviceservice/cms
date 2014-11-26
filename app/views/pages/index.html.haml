@@ -6,7 +6,7 @@
           %h1.l-panel-content__heading Search Results
         - else
           %h1.l-panel-content__heading= t('.title')
-          = paginate @pages
+          = paginate @pages, remote: true
         - if @last_published_pages
           .panel
             = render 'last_published_pages'
