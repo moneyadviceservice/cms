@@ -9,11 +9,13 @@ module UI::Pages
     section :header, UI::Sections::Header, '.page-header'
 
     element :preview, '#preview'
-
+    element :content, '.editor--markdown textarea'
     element :page_name, '#page_label'
     element :categories, '.t-categories-select'
     element :save_button, '.t-save_unsaved'
     element :publish, 'button[type="submit"][value="publish"]'
+    element :publish_changes, 'button[type="submit"][value="publish_changes"]'
+    element :save_changes, 'button[type="submit"][value="save_changes_as_draft"]'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '#categories_chosen .chosen-choices'
     elements :categories_selected, '.t-categories-select > option[selected]'

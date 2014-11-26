@@ -4,6 +4,34 @@ Then(/^I should be able to preview it in a new window$/) do
   edit_page.preview['target'].should eq '_blank'
 end
 
+When(/^I preview the article$/) do
+  preview_page.load(locale: cms_site.label, slug: cms_page.slug)
+end
+
+Then(/^I should see the Draft Article$/) do
+  expect(JSON.parse(preview_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to eq('test')
+end
+
+When(/^I should not be able to see live draft article$/) do
+  expect{live_page.load(locale: cms_site.label, slug: cms_page.slug)}.to raise_error
+end
+
+Given(/^I have an articles with unpublished changes$/) do
+  edit_page.load(site: cms_site.id, page: cms_draft_page.id)
+  edit_page.content.set("New Published Content")
+  edit_page.publish.click
+  edit_page.content.set("New unpublished Content")
+  edit_page.save_changes.click
+end
+
+When(/^I view the live published article$/) do
+  live_page.load(locale: cms_site.label, slug: cms_page.slug)
+end
+
+Then(/^I should see the published Article content$/) do
+  expect(JSON.parse(live_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to eq('New Published Content')
+end
+
 When(/^I am working on a Draft Article$/) do
   edit_page.load(site: cms_site.id, page: cms_draft_page.id)
 end

@@ -4,7 +4,7 @@ module World
 
     def cms_site(locale="en")
       self.site ||= {}
-      self.site[locale] ||= Comfy::Cms::Site.create!(identifier: locale, label: locale, is_mirrored: true)
+      self.site[locale] ||= Comfy::Cms::Site.create!(identifier: locale, label: locale, is_mirrored: true, path: locale)
     end
 
     def cms_sites
