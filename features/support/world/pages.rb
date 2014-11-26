@@ -1,6 +1,7 @@
 module World
   module Pages
-    %w(edit home new files_admin files_new sign_in tags_admin user_management).each do |page|
+    Dir["features/support/ui/pages/*.rb"].each do |page|
+      page = page.split("/").last.gsub('.rb', '')
       define_method("#{page}_page") do
         "UI::Pages::#{page.camelize}".constantize.new
       end

@@ -32,6 +32,7 @@ gem 'remotipart', '~> 1.2'
 gem 'devise'
 
 gem 'reverse_markdown'
+gem 'active_model_serializers'
 
 group :development do
   gem 'spring'
