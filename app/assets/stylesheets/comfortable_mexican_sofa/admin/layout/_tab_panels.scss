@@ -1,0 +1,35 @@
+// Content Tab Panels
+//
+// Styleguide Tab Panels
+
+.l-tab-panels {
+  display: table;
+  height: 100%;
+}
+
+.l-tab-panels--add-link {
+  height: 610px;
+  width: 760px;
+}
+
+.l-tab-panels__item {
+  display: table-cell;
+  padding: $baseline-unit*6 30px;
+}
+
+.l-tab-panels__item--aside {
+  background: $color-l-tab-panels-aside-background;
+  width: 35%;
+}
+
+.l-tab-panels__item--content {
+  width: 65%;
+}
+
+.l-tab-panels__heading {
+  @include body(24, 28);
+  color: $color-l-tab-panels-heading-foreground;
+  font-weight: 300;
+}
+
+

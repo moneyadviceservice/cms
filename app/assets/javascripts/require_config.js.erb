@@ -57,11 +57,15 @@ requirejs.config({
 
     // Dough components
     'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
+    'TabSelector': "<%= requirejs_path('dough/assets/js/components/TabSelector') %>",
+    'mediaQueries': "<%= requirejs_path('dough/assets/js/lib/mediaQueries') %>",
 
     // Third-party dependencies
     'jquery': '<%= requirejs_path("jquery/dist/jquery.min") %>',
     'he': '<%= requirejs_path("he/he") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
+    'jqueryThrottleDebounce': "<%= requirejs_path('jqueryThrottleDebounce/jquery.ba-throttle-debounce') %>",
+    'modernizr': "<%= requirejs_path('modernizr/modernizr') %>",
     'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",
     'scribe': '<%= requirejs_path("scribe/scribe") %>',
     'scribe-plugin-blockquote-command': '<%= requirejs_path("scribe-plugin-blockquote-command/scribe-plugin-blockquote-command") %>',
@@ -73,7 +77,6 @@ requirejs.config({
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'text': '<%= requirejs_path("text/text") %>',
     'dialog-polyfill': '<%= requirejs_path("dialog-polyfill/dialog-polyfill") %>',
-
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',

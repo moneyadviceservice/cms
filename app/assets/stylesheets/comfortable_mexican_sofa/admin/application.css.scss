@@ -72,6 +72,7 @@ $responsive: true;
 @import "components/_list-display";
 @import "components/_images";
 @import "components/_dialog";
+@import "components/optional/_tab_selector";
 @import "components/_login";
 
 // Common components
@@ -83,6 +84,7 @@ $responsive: true;
 @import "layout/components/_nav_primary";
 @import "layout/components/_nav_secondary";
 @import "layout/_panel_content";
+@import "layout/_tab_panels";
 
 // State
 @import "state/_editor";

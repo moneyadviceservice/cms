@@ -46,6 +46,10 @@ Rails.application.configure do
                                   dough/assets/js/lib/featureDetect.js
                                   dough/assets/js/components/DoughBaseComponent.js
                                   dough/assets/js/components/Collapsable.js
+                                  dough/assets/js/components/TabSelector.js
+                                  dough/assets/js/lib/mediaQueries.js
+                                  jqueryThrottleDebounce/jquery.ba-throttle-debounce.js
+                                  modernizr/modernizr.js
                                   taggle.js/dist/taggle.min.js
                                   chosen-build/chosen.jquery.js
                                   dialog-polyfill/dialog-polyfill.js)
