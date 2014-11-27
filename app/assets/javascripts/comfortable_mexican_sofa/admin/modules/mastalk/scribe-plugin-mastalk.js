@@ -47,19 +47,7 @@ define([
       };
 
       mastalkCommand.queryEnabled = function () {
-        var selection = new scribe.api.Selection();
-        return (selection.selection.anchorNode === scribe.el) || !!selection.getContaining(function (node) {
-          var innerText;
-          if(node.innerText){
-            innerText = node.innerText;
-          }
-          else {
-            if(node !== document) {
-              innerText = node.parentElement.innerText;
-            }
-          }
-          return node.nodeName === this.nodeName && !innerText.replace('\n','').length;
-        }.bind(this));
+        return true;
       };
 
       scribe.commands[commandName] = mastalkCommand;
