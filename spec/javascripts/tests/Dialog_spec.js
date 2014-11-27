@@ -144,6 +144,10 @@ describe('Dialog', function () {
       expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
       expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
+
+    it('should add the dialog open class to the body', function() {
+      expect($('body').hasClass(this.component.config.selectors.dialogOpenBodyClass)).to.be.true;
+    });
   });
 
   describe('Close dialog', function () {
@@ -179,6 +183,10 @@ describe('Dialog', function () {
       this.component.close();
       expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
       expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+
+    it('should remove the dialog open class from the body', function() {
+      expect($('body').hasClass(this.component.config.selectors.dialogOpenBodyClass)).to.be.false;
     });
   });
 

@@ -8,18 +8,31 @@
   padding: 0;
 }
 
+.js-dialog-active {
+  overflow: hidden;
+}
+
+.dialog__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
 .dialog__close {
   position: absolute;
   right: $baseline-unit;
   top: $baseline-unit;
 }
 
-.js-dialog-target-content.is-active {
+.js-dialog-target.is-active {
   &, .no-js {
     @extend %is-active;
   }
 }
 
-.js-dialog-target-content.is-inactive {
+.js-dialog-target.is-inactive {
   @extend %is-hidden;
 }

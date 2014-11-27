@@ -24,7 +24,8 @@ define([
           content: '[data-dough-dialog-content]',
           close: '[data-dough-dialog-close]',
           activeClass: 'is-active',
-          inactiveClass: 'is-inactive'
+          inactiveClass: 'is-inactive',
+          dialogOpenBodyClass: 'js-dialog-active'
         }
       };
 
@@ -100,6 +101,8 @@ define([
       .removeClass(this.config.selectors.inactiveClass)
       .addClass(this.config.selectors.activeClass);
 
+    $('body').addClass(this.config.selectors.dialogOpenBodyClass);
+
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
@@ -124,6 +127,8 @@ define([
     this.$target
       .removeClass(this.config.selectors.activeClass)
       .addClass(this.config.selectors.inactiveClass);
+
+    $('body').removeClass(this.config.selectors.dialogOpenBodyClass);
 
     this.isShown = false;
 
