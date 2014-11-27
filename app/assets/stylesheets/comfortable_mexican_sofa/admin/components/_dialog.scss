@@ -6,6 +6,10 @@
   border: none;
   height: auto;
   padding: 0;
+
+  &::backdrop {
+    background: $color-dialog-backdrop;
+  }
 }
 
 .js-dialog-active {
@@ -19,6 +23,24 @@
   right: 0;
   bottom: 0;
   overflow: auto;
+}
+
+.dialog__container-inner {
+  display: table;
+  margin: auto;
+  height: 100%;
+
+}
+
+.dialog__content {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.dialog__content-inner {
+  background: $color-dialog-content-inner-background;
+  position: relative;
 }
 
 .dialog__close {
