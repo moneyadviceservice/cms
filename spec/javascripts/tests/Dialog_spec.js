@@ -46,9 +46,10 @@ describe('Dialog', function () {
       var $body = $('body');
       expect($body.find(this.component.config.selectors.dialog).length).to.equal(1);
       expect(this.component.$dialog.find(this.component.config.selectors.container).length).to.equal(1);
-      expect(this.component.$dialog.find(this.component.config.selectors.contentWrapper).length).to.equal(1);
-      expect(this.component.$dialogContentWrapper.find(this.component.config.selectors.content).length).to.equal(1);
-      expect(this.component.$dialog.find(this.component.config.selectors.close).length).to.equal(1);
+      expect(this.component.$dialogContainer.find(this.component.config.selectors.containerInner).length).to.equal(1);
+      expect(this.component.$dialogContainerInner.find(this.component.config.selectors.content).length).to.equal(1);
+      expect(this.component.$dialogContent.find(this.component.config.selectors.contentInner).length).to.equal(1);
+      expect(this.component.$dialogContentInner.find(this.component.config.selectors.close).length).to.equal(1);
     });
   });
 
