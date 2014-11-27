@@ -14,16 +14,12 @@
   top: $baseline-unit;
 }
 
-// Hides the target content that will be displayed in the dialog
-// .dialog-target-content {
-//   left:
-//   text-indent: -99999em;
-//   .dialog.is-active &,
-//   .no-js & {
-//     text-indent: 0;
-//   }
-// }
+.js-dialog-target-content.is-active {
+  &, .no-js {
+    @extend %is-active;
+  }
+}
 
 .js-dialog-target-content.is-inactive {
-  @extend %visually-hidden;
+  @extend %is-hidden;
 }

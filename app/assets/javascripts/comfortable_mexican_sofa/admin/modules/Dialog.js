@@ -57,6 +57,7 @@ define([
     this.$dialog
       .appendTo('body')
       .append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
+    this.$dialogContainer.append(this.$dialogContent);
     this.dialog = this.$dialog[0];
 
     if(typeof window.HTMLDialogElement === 'undefined') {
