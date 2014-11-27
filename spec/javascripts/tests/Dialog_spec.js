@@ -127,6 +127,12 @@ describe('Dialog', function () {
       this.component.show(true);
       expect(spy.args[0][0].modal).to.be.true;
     });
+
+    it('should toggle between inactive/active class on the dialog target', function() {
+      this.component.show();
+      expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
   });
 
   describe('Close dialog', function () {
@@ -154,6 +160,13 @@ describe('Dialog', function () {
       this.component.show();
       this.component.close();
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+
+    it('should toggle between active/inactive class on the dialog target', function() {
+      this.component.show();
+      this.component.close();
+      expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.false;
     });
   });
 

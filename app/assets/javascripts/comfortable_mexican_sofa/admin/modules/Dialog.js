@@ -23,7 +23,8 @@ define([
           container: '[data-dough-dialog-container]',
           content: '[data-dough-dialog-content]',
           close: '[data-dough-dialog-close]',
-          activeClass: 'is-active'
+          activeClass: 'is-active',
+          inactiveClass: 'is-inactive'
         }
       };
 
@@ -49,7 +50,7 @@ define([
   };
 
   DialogProto._setupDialog = function() {
-    this.$dialog = $('<dialog data-dough-dialog class="dialog" />');
+    this.$dialog = $('<dialog data-dough-dialog class="dialog is-inactive" />');
     this.$dialogContainer = $('<div data-dough-dialog-container class="dialog__container" />');
     this.$dialogContent = $('<div data-dough-dialog-content class="dialog__content" />');
     this.$dialogClose = $('<button data-dough-dialog-close class="dialog__close"><span class="dialog__close-text visually-hidden">Close</span></button>');
@@ -91,6 +92,9 @@ define([
     showModal? this.dialog.showModal() : this.dialog.show();
 
     this.$dialog.addClass(this.config.selectors.activeClass);
+    this.$target
+      .removeClass(this.config.selectors.inactiveClass)
+      .addClass(this.config.selectors.activeClass);
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
@@ -108,6 +112,9 @@ define([
 
     this._attachTarget();
     this.$dialog.removeClass(this.config.selectors.activeClass);
+    this.$target
+      .removeClass(this.config.selectors.activeClass)
+      .addClass(this.config.selectors.inactiveClass);
     this.isShown = false;
 
     eventsWithPromises.publish('dialog:closed', {

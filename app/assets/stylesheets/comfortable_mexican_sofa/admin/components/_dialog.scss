@@ -1,0 +1,29 @@
+// Dialog
+//
+// Styleguide Dialog
+
+.dialog {
+  border: none;
+  height: auto;
+  padding: 0;
+}
+
+.dialog__close {
+  position: absolute;
+  right: $baseline-unit;
+  top: $baseline-unit;
+}
+
+// Hides the target content that will be displayed in the dialog
+// .dialog-target-content {
+//   left:
+//   text-indent: -99999em;
+//   .dialog.is-active &,
+//   .no-js & {
+//     text-indent: 0;
+//   }
+// }
+
+.js-dialog-target-content.is-inactive {
+  @extend %visually-hidden;
+}
