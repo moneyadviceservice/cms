@@ -152,7 +152,7 @@ define([
   };
 
   DialogProto.appendTargetToDialog = function($el) {
-    this.$dialogContent.append($el);
+    this.$dialogContentInner.append($el);
 
     eventsWithPromises.publish('dialog:ready', {
       emitter: this.$target

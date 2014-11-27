@@ -209,10 +209,9 @@ describe('Dialog', function () {
       done();
     });
 
-    it('should set the content of the dialog with that of the target\'s', function () {
-      this.component.$dialogContent.empty();
+    it('should append the dialog target to the dialog content', function () {
       this.component.show();
-      expect(this.component.$dialogContent.get(0).innerHTML).to.be.equal(this.component.$target[0].outerHTML);
+      expect(this.component.$dialogContent.find(this.component.config.selectors.target).is(this.component.$target)).to.be.true;
     });
 
     it('should trigger a ready event', function () {
