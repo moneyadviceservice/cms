@@ -46,14 +46,9 @@ describe('Dialog', function () {
       var $body = $('body');
       expect($body.find(this.component.config.selectors.dialog).length).to.equal(1);
       expect(this.component.$dialog.find(this.component.config.selectors.container).length).to.equal(1);
-      expect(this.component.$dialog.find(this.component.config.selectors.content).length).to.equal(1);
+      expect(this.component.$dialog.find(this.component.config.selectors.contentWrapper).length).to.equal(1);
+      expect(this.component.$dialogContentWrapper.find(this.component.config.selectors.content).length).to.equal(1);
       expect(this.component.$dialog.find(this.component.config.selectors.close).length).to.equal(1);
-    });
-
-    it('should append the dialog content element to the dialog container element', function() {
-      var $dialog = $('body').find(this.component.config.selectors.dialog);
-      console.log($dialog.find(this.component.config.selectors.container));
-      expect(this.component.$dialogContainer.find(this.component.config.selectors.content).length).to.equal(1);
     });
   });
 
