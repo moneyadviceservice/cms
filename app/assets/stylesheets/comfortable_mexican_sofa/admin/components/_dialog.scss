@@ -14,6 +14,10 @@
 
 .js-dialog-active {
   overflow: hidden;
+
+  &:not(.dialog) {
+    filter: blur(5px);
+  }
 }
 
 .dialog__container {
