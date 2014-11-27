@@ -91,10 +91,14 @@ define([
     this.appendTargetToDialog(this.$target);
     showModal? this.dialog.showModal() : this.dialog.show();
 
-    this.$dialog.addClass(this.config.selectors.activeClass);
+    this.$dialog
+      .removeClass(this.config.selectors.inactiveClass)
+      .addClass(this.config.selectors.activeClass);
+
     this.$target
       .removeClass(this.config.selectors.inactiveClass)
       .addClass(this.config.selectors.activeClass);
+
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
@@ -111,10 +115,15 @@ define([
     }
 
     this._attachTarget();
-    this.$dialog.removeClass(this.config.selectors.activeClass);
+
+    this.$dialog
+      .addClass(this.config.selectors.inactiveClass)
+      .removeClass(this.config.selectors.activeClass);
+
     this.$target
       .removeClass(this.config.selectors.activeClass)
       .addClass(this.config.selectors.inactiveClass);
+
     this.isShown = false;
 
     eventsWithPromises.publish('dialog:closed', {
