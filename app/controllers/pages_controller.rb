@@ -4,11 +4,11 @@ class PagesController < Comfy::Admin::Cms::PagesController
   before_action :set_pages,      only: :index
   before_action :set_activity_log, only: [:new, :edit]
 
+  protected
+
   def save_page
     PageRegister.new(@page, params: params, current_user: current_user).save
   end
-
-  protected
 
   def set_activity_log
     @activity_logs = ActivityLogPresenter.collect(ActivityLog.fetch(from: @page))
