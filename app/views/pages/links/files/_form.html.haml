@@ -1,4 +1,4 @@
-.tab-selector__target#panel-2{'data-dough-tab-selector-target' => 2 }
+.tab-selector__target#panel-2.is-inactive{'data-dough-tab-selector-target' => 2 }
   %h3.l-tab-panels__heading Select File
   = form_tag(comfy_admin_cms_site_files_path, method: 'get', id: 'search-form') do
     = label_tag(:search, nil, class: 'visually-hidden')
