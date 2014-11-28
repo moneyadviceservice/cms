@@ -1,8 +1,6 @@
-= form_for @user, url: url do |f|
-  =f.label :name
+= comfy_form_for @user, url: url, html: {class: 'form form--vertical'}, label_col: "form__label-heading", control_col: "form__input-wrapper" do |f|
   =f.text_field :name
-  =f.label :email
   =f.text_field :email
-  =f.label :password
-  =f.password_field :password
+  =f.text_field :password
+  =f.check_box :admin
   =f.submit :class => "t-create-user"

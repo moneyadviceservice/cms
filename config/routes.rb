@@ -10,6 +10,9 @@ Rails.application.routes.draw do
       resources :pages do
         resources :notes, only: :create
       end
+
+      resources :layouts
+      resources :snippets
     end
 
     resources :tags, only: [:index, :create] do

@@ -1,4 +1,5 @@
 class UsersController < Comfy::Admin::Cms::PagesController
+  before_action :check_admin
   skip_before_action :load_cms_page
   skip_before_action :build_file
 
@@ -43,6 +44,6 @@ class UsersController < Comfy::Admin::Cms::PagesController
   private
 
   def user_params
-    params.require(:comfy_cms_user).permit(:email, :password, :name)
+    params.require(:comfy_cms_user).permit(:email, :password, :name, :admin)
   end
 end

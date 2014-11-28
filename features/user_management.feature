@@ -13,3 +13,7 @@ Feature: User Management
     And I add a new user
     When I delete the new user
     Then the new user should not be able to log in
+
+  Scenario: Non admin user
+    Given I am not an admin user
+    Then I should not be able to visit the user management page

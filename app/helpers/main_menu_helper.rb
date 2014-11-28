@@ -5,9 +5,15 @@ module MainMenuHelper
   include Cms::Components
 
   def menu_links
-    [
+    ([
       MenuLink.new(name: t('comfy.admin.cms.base.pages'), path: comfy_admin_cms_site_pages_path(@site)),
-      MenuLink.new(name: t('comfy.admin.cms.base.files'), path: comfy_admin_cms_site_files_path(@site)),
+      MenuLink.new(name: t('comfy.admin.cms.base.files'), path: comfy_admin_cms_site_files_path(@site))
+    ] << admin_links).flatten
+  end
+
+  def admin_links
+    return [] unless current_user.admin?
+    [
       MenuLink.new(
         name:     t('comfy.admin.cms.base.admin'),
         path:     '#',
