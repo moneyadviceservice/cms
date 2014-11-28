@@ -1,5 +1,6 @@
 describe('LinkInserter', function () {
   'use strict';
+  var sandbox;
 
   beforeEach(function(done) {
     var self = this;
@@ -20,12 +21,14 @@ describe('LinkInserter', function () {
       self.$fixture = self.$html.find('[data-dough-component="LinkInserter"]');
       self.LinkInserter = LinkInserter;
       self.eventsWithPromises = eventsWithPromises;
+      sandbox = sinon.sandbox.create();
       done();
     }, done);
   });
 
   afterEach(function() {
     this.$html.remove();
+    sandbox.restore();
   });
 
   describe('Initialisation', function () {
