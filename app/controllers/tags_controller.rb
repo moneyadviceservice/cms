@@ -2,6 +2,7 @@ class TagsController < Comfy::Admin::Cms::BaseController
   respond_to :js, only: [:create, :starting_by, :delete_from_value]
 
   # Filters
+  before_action :check_admin
   before_action :build_tag_from_params, only: [:create]
   before_action :find_tag_from_params,  only: [:delete_from_value]
 

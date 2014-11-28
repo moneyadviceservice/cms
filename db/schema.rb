@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141111164000) do
+ActiveRecord::Schema.define(version: 20141127120457) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20141111164000) do
     t.string   "name",                   default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "comfy_cms_users", ["email"], name: "index_comfy_cms_users_on_email", unique: true, using: :btree
