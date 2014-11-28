@@ -2,6 +2,8 @@ RSpec.describe MainMenuHelper do
   let(:site) { Comfy::Cms::Site.new(id: 1) }
   let(:current_user) { double('User', admin?: admin) }
 
+  subject { helper.menu_links(site).count }
+
   before do
     allow(helper).to receive(:current_user) { current_user }
   end
@@ -10,7 +12,7 @@ RSpec.describe MainMenuHelper do
     let(:admin) { true }
 
     it 'returns with admin links' do
-      expect(helper.menu_links(site).count).to eq(3)
+      expect(subject).to eq(3)
     end
   end
 
@@ -18,7 +20,7 @@ RSpec.describe MainMenuHelper do
     let(:admin) { false }
 
     it 'returns only non admin links' do
-      expect(helper.menu_links(site).count).to eq(2)
+      expect(subject).to eq(2)
     end
   end
 end
