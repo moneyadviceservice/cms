@@ -13,6 +13,10 @@ Rails.application.routes.draw do
 
       resources :layouts
       resources :snippets
+
+      namespace 'links' do
+        resources :files, only: :index
+      end
     end
 
     resources :tags, only: [:index, :create] do

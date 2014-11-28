@@ -1,0 +1,8 @@
+.l-panel-content
+  .l-constrained
+    %ol.listing
+      - files.each do |file|
+        %li
+          = radio_button_tag(:file_url, file.file.url)
+          = file.label
+
