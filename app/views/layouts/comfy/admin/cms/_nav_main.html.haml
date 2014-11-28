@@ -3,7 +3,7 @@
     %nav
       - if @site && @site.persisted?
         %ul.nav-primary
-          - menu_links.each do |menu_link|
+          - menu_links(@site).each do |menu_link|
             - if menu_link.sublinks?
               %li.nav-primary__item.has-dropdown
                 = link_to menu_link.name, menu_link.path, class: menu_link.link_class
