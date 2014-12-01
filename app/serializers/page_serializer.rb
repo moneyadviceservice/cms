@@ -5,5 +5,5 @@ class PageSerializer < ActiveModel::Serializer
              :meta_description, :meta_title, :category_names,
              :layout_identifier
 
-  has_many :blocks, serliazer: BlockSerializer
+  has_many :blocks, serializer: BlockSerializer
 end
