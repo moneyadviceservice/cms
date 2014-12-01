@@ -41,18 +41,24 @@ describe('Dialog', function () {
   describe('Initialisation', function () {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
-      this.component.init();
       done();
     });
 
     it('should create the dialog element, child elements and append it to the body', function() {
       var $body = $('body');
+      this.component.init();
       expect($body.find(this.component.config.selectors.dialog).length).to.equal(1);
       expect(this.component.$dialog.find(this.component.config.selectors.container).length).to.equal(1);
       expect(this.component.$dialogContainer.find(this.component.config.selectors.containerInner).length).to.equal(1);
       expect(this.component.$dialogContainerInner.find(this.component.config.selectors.content).length).to.equal(1);
       expect(this.component.$dialogContent.find(this.component.config.selectors.contentInner).length).to.equal(1);
       expect(this.component.$dialogContentInner.find(this.component.config.selectors.close).length).to.equal(1);
+    });
+
+    it('should save the dialog component context to a variable', function() {
+      this.$fixture.attr('data-dough-dialog-context', 'foo');
+      this.component.init();
+      expect(this.component.context).to.equal('foo');
     });
   });
 
@@ -81,6 +87,13 @@ describe('Dialog', function () {
       this.component.$dialog.find(this.component.config.selectors.close).click();
       expect(this.closeSpy.called).to.be.true;
     });
+
+    it('should broadcast the dialog context event when shown', function() {
+      var spy = sandbox.spy();
+      this.eventsWithPromises.subscribe('dialog:shown', spy);
+      this.component.show();
+      expect(spy.args[0][0].emitter).to.equal('foo');
+    });
   });
 
   describe('Show dialog', function () {
@@ -100,7 +113,7 @@ describe('Dialog', function () {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show();
-      expect(spy.called).to.be.true;
+      expect(spy.args[0][0].emitter).to.equal('foo');
     });
 
     it('should add the active class to the dialog element', function() {

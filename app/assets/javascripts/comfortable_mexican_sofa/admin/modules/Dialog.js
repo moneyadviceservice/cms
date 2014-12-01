@@ -34,6 +34,7 @@ define([
   function Dialog($el, config) {
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
     this.isShown = false;
+    this.context = this.$el.attr('data-dough-dialog-context');
   }
 
   DoughBaseComponent.extend(Dialog);
@@ -114,7 +115,7 @@ define([
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
-      emitter: this.$target,
+      emitter: this.context,
       modal: showModal
     });
   };
@@ -141,12 +142,12 @@ define([
     this.isShown = false;
 
     eventsWithPromises.publish('dialog:closed', {
-      emitter: this.$target
+      emitter: this.context
     });
 
     if(cancelled) {
       eventsWithPromises.publish('dialog:cancelled', {
-        emitter: this.$target
+        emitter: this.context
       });
     }
   };
@@ -155,7 +156,7 @@ define([
     this.$dialogContentInner.append($el);
 
     eventsWithPromises.publish('dialog:ready', {
-      emitter: this.$target
+      emitter: this.context
     });
   };
 
