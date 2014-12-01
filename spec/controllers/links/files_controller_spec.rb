@@ -16,7 +16,7 @@ RSpec.describe Links::FilesController do
       end
     end
 
-    context 'when site has links' do
+    context 'when site has files' do
       let!(:site) { create(:site, :with_files) }
 
       it 'assigns site files' do
