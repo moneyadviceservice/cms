@@ -1,5 +1,6 @@
 describe('LinkInserter', function () {
   'use strict';
+
   var sandbox;
 
   beforeEach(function(done) {
@@ -34,44 +35,168 @@ describe('LinkInserter', function () {
   describe('Initialisation', function () {
     beforeEach(function (done) {
       this.component = new this.LinkInserter(this.$fixture);
-      this.component.init();
       done();
     });
 
-    it('should set the target ', function () {
-      expect(false).to.be.true;
+    it('should cache the insert link, value triggers and tab trigger element references', function() {
+      this.component.init();
+      expect(this.component.$insertLinks.length).to.be.at.least(1);
+      expect(this.component.$valueTriggers.length).to.be.at.least(1);
+      expect(this.component.$tabTriggers.length).to.be.at.least(1);
     });
-
   });
 
-  describe('Update Link to Insert', function () {
+  describe('App Events', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkInserter(this.$fixture);
+      done();
+    });
+
+    it('should call the shown handler method when the dialog:shown event is published', function() {
+      var spy = sandbox.spy(this.LinkInserter.prototype, '_handleShown');
+
+      this.component.init();
+
+      this.eventsWithPromises.publish('dialog:shown', {
+        emitter: 'add-link'
+      });
+      expect(spy.called).to.be.true;
+    });
+  });
+
+  describe('When dialog is opened', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkInserter(this.$fixture);
+      done();
+    });
+
+    it('dialog:shown event\'s emitter ID should be the same as the LinkInserter\'s', function() {
+      var spy = sandbox.spy(this.LinkInserter.prototype, '_handleShown');
+
+      this.component.init();
+      this.eventsWithPromises.publish('dialog:shown', {
+        emitter: 'add-link'
+      });
+      expect(spy.args[0][0].emitter).to.equal('add-link');
+    });
+
+    describe('Editing existing link', function () {
+      it('should call the setup function with "existing" param and link', function() {
+        var spy = sandbox.spy(this.LinkInserter.prototype, '_setup');
+
+        this.component.init();
+        this.eventsWithPromises.publish('dialog:shown', {
+          emitter: 'add-link',
+          link: 'foo'
+        });
+
+        expect(spy.calledWith('existing', 'foo')).to.be.true;
+      });
+    });
+
+    describe('Creating a new link', function () {
+      it('should call the setup function with "new" param', function() {
+        var spy = sandbox.spy(this.LinkInserter.prototype, '_setup');
+
+        this.component.init();
+        this.eventsWithPromises.publish('dialog:shown', {
+          emitter: 'add-link'
+        });
+
+        expect(spy.calledWith('new')).to.be.true;
+      });
+    });
+  });
+
+  describe('Show tab', function () {
+    it('should find the correct tab and click its trigger', function() {
+
+    });
+  });
+
+  describe('UI Events', function () {
     beforeEach(function (done) {
       this.component = new this.LinkInserter(this.$fixture);
       this.component.init();
       done();
     });
 
-    it('should set the updated link', function() {
+    it('should call the update link function when a text input trigger element\'s value is updated', function () {
+      var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
+
+      this.component.$valueTriggers.is(':text').first().val('bar');
+      expect(spy.calledWith('bar')).to.be.true;
+    });
+
+    it('should call the update link function when a radio trigger element\'s option is selected', function () {
+      var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
+
+      this.component.$valueTriggers.is(':radio').first().val('foo').click();
+      expect(spy.calledWith('foo')).to.be.true;
+    });
+  });
+
+  describe('Checks link type (link to internal page, external page or a file)', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkInserter(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should return an internal link type' , function() {
+      expect(this.component.getLinkType('/en/articles/foo')).to.equal('internal');
+    });
+
+    it('should return an external link type', function() {
+      expect(this.component.getLinkType('http://www.foo.com')).to.equal('external');
+    });
+
+    it('should return false if a file is externally hosted', function() {
+      expect(this.component.getLinkType('http://www.foo.com/file.pdf')).to.be.false;
+    });
+
+    it('should return a file link type if it\'s a relative file' , function() {
+      expect(this.component.getLinkType('/file.pdf')).to.equal('file');
+    });
+
+    it('should return false if no link type is found' , function() {
+      expect(this.component.getLinkType('foo')).to.be.false;
+    });
+  });
+
+  describe('Publish link', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkInserter(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should publish the link variable and emitter ID via the events bus', function() {
+      var $target = $('<div />'),
+          spy = sandbox.spy(),
+          link = 'http://www.foo.com';
+
+      this.eventsWithPromises.subscribe('linkinserter:linkselected', spy);
+
+      this.publishLink(link);
+
+      expect(spy.args[0][0]).to.equal(link);
+      expect(spy.args[0][1].emitter.is($target)).to.be.true;
+    });
+  });
+
+  describe('Track the currently selected link', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkInserter(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should set the link variable', function() {
       var link = 'http://foo.com';
-      this.component.updateLink(link);
+
+      this.component.setLink(link);
       expect(this.component.link).to.eq(link);
-    });
-  });
-
-  describe('Insert Link', function () {
-    beforeEach(function (done) {
-      this.component = new this.LinkInserter(this.$fixture);
-      this.component.init();
-      done();
-    });
-
-    it('should post the link via an event', function() {
-      var spy = sinon.spy(),
-          link = 'http://foo.com';
-      this.component.updateLink(link);
-      this.component.broadcastLink(link);
-      this.eventsWithPromises.subscribe('link-inserter:link-updated', spy);
-      expect(spy.calledWith(link)).to.be.true;
     });
   });
 
