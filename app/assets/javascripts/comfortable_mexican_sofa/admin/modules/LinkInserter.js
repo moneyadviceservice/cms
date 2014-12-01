@@ -60,7 +60,7 @@ define([
   };
 
   LinkInserterProto._handleShown = function(eventData) {
-    if(!eventData || eventData.emitterId !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
+    if(!eventData || eventData.emitter !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
     if(eventData.link) {
       this._setup('existing', eventData.link);
     } else {
@@ -73,6 +73,7 @@ define([
   };
 
   LinkInserterProto._setup = function(type, link) {
+
     if(type === 'new') {
       this.changeTab(this.$tabTriggers, this.config.tabIds['internal']);
     }
