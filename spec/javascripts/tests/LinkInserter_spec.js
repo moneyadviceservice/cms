@@ -116,14 +116,24 @@ describe('LinkInserter', function () {
     });
 
     it('should call the update link function when a text input trigger element\'s value is updated', function () {
-      var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
-      this.component.$valueTriggers.filter(':text').first().val('bar');
+      var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink'),
+          fakeEvent = $.Event('keyup'),
+          $textInput = this.component.$valueTriggers.filter(':text').first();
+
+      $textInput.val('bar').trigger(fakeEvent);
+
       expect(spy.calledWith('bar')).to.be.true;
     });
 
     it('should call the update link function when a radio trigger element\'s option is selected', function () {
       var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
-      this.component.$valueTriggers.filter(':radio').first().val('foo').click();
+
+      this.component.$valueTriggers
+        .filter(':radio')
+        .first()
+        .val('foo')
+        .click();
+
       expect(spy.calledWith('foo')).to.be.true;
     });
   });

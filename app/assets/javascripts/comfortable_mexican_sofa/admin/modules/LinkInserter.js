@@ -25,6 +25,7 @@ define([
         },
         uiEvents: {
           'input [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
+          'keyup [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
           'change [data-dough-linkinserter-value-trigger][type="radio"]': '_handleFormControlUpdate'
         }
       };
@@ -69,7 +70,6 @@ define([
   };
 
   LinkInserterProto._setup = function(type, link) {
-
     if(type === 'new') {
       this.changeTab(this.$tabTriggers, this.config.tabIds['internal']);
     }
