@@ -82,6 +82,7 @@ define([
 
   LinkInserterProto._stripSquareBrackets = function(str) {
     return str.replace(/\[\]/i,'');
+    return str.replace(/([\[\]])+/gi,'');
   };
 
   LinkInserterProto.changeTab = function($tabTriggers, id) {
