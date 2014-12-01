@@ -1,6 +1,8 @@
 describe('Dialog', function () {
   'use strict';
 
+  var sandbox;
+
   beforeEach(function(done) {
     var self = this;
 
@@ -16,22 +18,23 @@ describe('Dialog', function () {
       Dialog,
       eventsWithPromises
     ) {
+      sandbox = sinon.sandbox.create();
+
       self.$html = $(window.__html__['spec/javascripts/fixtures/Dialog.html']).appendTo('body');
       self.$fixture = self.$html.find('[data-dough-component="Dialog"]');
       self.Dialog = Dialog;
-      self.showSpy = sinon.spy(self.Dialog.prototype, 'show');
-      self.closeSpy = sinon.spy(self.Dialog.prototype, 'close');
-      self.handleCancelSpy = sinon.spy(self.Dialog.prototype, '_handleCancel');
+      self.showSpy = sandbox.spy(self.Dialog.prototype, 'show');
+      self.closeSpy = sandbox.spy(self.Dialog.prototype, 'close');
+      self.handleCancelSpy = sandbox.spy(self.Dialog.prototype, '_handleCancel');
       self.eventsWithPromises = eventsWithPromises;
+
       done();
     }, done);
   });
 
   afterEach(function() {
     this.$html.remove();
-    this.showSpy.restore();
-    this.closeSpy.restore();
-    this.handleCancelSpy.restore();
+    sandbox.restore();
     $('[data-dough-dialog]').remove();
   });
 
@@ -94,7 +97,7 @@ describe('Dialog', function () {
     });
 
     it('should trigger a shown event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show();
       expect(spy.called).to.be.true;
@@ -116,14 +119,14 @@ describe('Dialog', function () {
     it('should show the dialog using the Dialog showModal() method', function() {
       var spy;
       this.component.dialog.showModal = function() {};
-      spy = sinon.spy(this.component.dialog, 'showModal');
+      spy = sandbox.spy(this.component.dialog, 'showModal');
       this.component.show(true);
       expect(this.showSpy.calledWith(true)).to.be.true;
       expect(spy.called).to.be.true;
     });
 
     it('should trigger a shown event and return modal=true in callback arguments', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show(true);
       expect(spy.args[0][0].modal).to.be.true;
@@ -160,7 +163,7 @@ describe('Dialog', function () {
     });
 
     it('should trigger a closed event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:closed', spy);
       this.component.show();
       this.component.close();
@@ -194,7 +197,7 @@ describe('Dialog', function () {
     });
 
     it('should trigger a cancelled event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:cancelled', spy);
       this.component.show();
       this.component.close(true);
@@ -215,7 +218,7 @@ describe('Dialog', function () {
     });
 
     it('should trigger a ready event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:ready', spy);
       this.component.show();
       expect(spy.called).to.be.true;
