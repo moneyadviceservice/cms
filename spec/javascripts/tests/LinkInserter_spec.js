@@ -45,6 +45,7 @@ describe('LinkInserter', function () {
     });
   });
 
+
   describe('UI Events', function () {
     beforeEach(function (done) {
       this.component = new this.LinkInserter(this.$fixture);
@@ -72,6 +73,20 @@ describe('LinkInserter', function () {
         .click();
 
       expect(spy.calledWith('foo')).to.be.true;
+    });
+
+    it('should execute the publish the link when an insertlink button is created', function() {
+      var spy = sandbox.spy();
+
+      this.component.$valueTriggers
+        .filter(':radio')
+        .first()
+        .val('foo')
+        .click();
+
+      this.eventsWithPromises.subscribe('linkinserter:link-published', spy);
+      this.component.$insertLinks.first().click();
+      expect(spy.called).to.be.true;
     });
   });
 

@@ -19,7 +19,8 @@ define([
         uiEvents: {
           'input [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
           'keyup [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
-          'change [data-dough-linkinserter-value-trigger][type="radio"]': '_handleFormControlUpdate'
+          'change [data-dough-linkinserter-value-trigger][type="radio"]': '_handleFormControlUpdate',
+          'click [data-dough-linkinserter-insertlink]': 'publishLink'
         }
       };
 
