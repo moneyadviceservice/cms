@@ -113,6 +113,14 @@ describe('LinkEditor', function () {
       done();
     });
 
+    it('should activate the tab trigger when the changeTab function is called', function() {
+      var spy = sandbox.spy();
+
+      $('[data-dough-linkeditor-tabtrigger]').on('click', spy);
+      this.component.changeTab(this.component.$tabTriggers, 'internal-link');
+      expect(spy.called).to.be.true;
+    });
+
   });
 
   describe('Checks link type (link to internal page, external page or a file)', function () {

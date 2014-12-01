@@ -12,7 +12,8 @@ define([
   var LinkEditorProto,
       defaultConfig = {
         selectors: {
-          context: '[data-dough-linkinserter-context]'
+          context: '[data-dough-linkeditor-context]',
+          tabTrigger: '[data-dough-linkeditor-tabtrigger]'
         },
         tabIds: {
           'external-page': 'external',
@@ -31,15 +32,22 @@ define([
   LinkEditorProto = LinkEditor.prototype;
 
   LinkEditorProto.init = function(initialised) {
+    this._cacheComponentElements();
+    this._setupAppEvents();
     this._initialisedSuccess(initialised);
   };
 
   LinkEditorProto._cacheComponentElements = function() {
+    this.$tabTriggers = this.$el.find(this.config.selectors.tabTrigger);
+  };
 
+  LinkEditorProto._setupAppEvents = function() {
+    eventsWithPromises.subscribe('dialog:shown', $.proxy(this._handleShown, this));
   };
 
   LinkEditorProto._handleShown = function(eventData) {
     if(!eventData || eventData.emitter !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
+
     if(eventData.link) {
       this._setup('existing', eventData.link);
     } else {
@@ -68,8 +76,12 @@ define([
 
   LinkEditorProto.changeTab = function($tabTriggers, id) {
     // Note: Ideally we would be calling the TabSelector methods directly
-    // but currently Dough doesn't allow deferred components
-    $tabTriggers.filter(id).click();
+    // but currently Dough doesn't allow deferred components so we have
+    // to click on the tab
+    debugger;
+    $tabTriggers.filter('[data-dough-linkeditor-tabtrigger="' + id + '"]').click();
+
+    // Call function to update the content
   };
 
   return LinkEditor;
