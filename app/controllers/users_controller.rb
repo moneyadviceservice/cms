@@ -1,11 +1,9 @@
-class UsersController < Comfy::Admin::Cms::PagesController
-  before_action :check_admin
-  skip_before_action :load_cms_page
-  skip_before_action :build_file
+class UsersController < Comfy::Admin::Cms::BaseController
+  before_action :check_admin, except: [:edit, :update]
+  before_action :check_user, only: [:edit, :update]
 
   def index
     @users = Comfy::Cms::User.all
-    render cms_site: Comfy::Cms::Site.first.identifier
   end
 
   def new
@@ -23,7 +21,6 @@ class UsersController < Comfy::Admin::Cms::PagesController
 
   def edit
     @user = Comfy::Cms::User.find(params[:id])
-    render cms_site: Comfy::Cms::Site.first.identifier
   end
 
   def update
@@ -44,6 +41,13 @@ class UsersController < Comfy::Admin::Cms::PagesController
   private
 
   def user_params
-    params.require(:comfy_cms_user).permit(:email, :password, :name, :admin)
+    allowed = [:email, :password, :name]
+    allowed << :admin if current_user.admin?
+    params.require(:comfy_cms_user).permit(allowed)
+  end
+
+  def check_user
+    return if current_user.admin?
+    redirect_to :root unless current_user.to_param == params[:id]
   end
 end

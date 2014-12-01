@@ -17,3 +17,9 @@ Feature: User Management
   Scenario: Non admin user
     Given I am not an admin user
     Then I should not be able to visit the user management page
+
+  Scenario: Non admin user goes to profile page
+    Given I am not an admin user
+    When I visit the user management page
+    And I go to my profile page
+    Then I should be able to see my profile
