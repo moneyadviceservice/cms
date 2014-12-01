@@ -18,18 +18,21 @@ define([
           tabTrigger: '[data-dough-tab-selector-trigger]'
         },
         tabIds: {
-          external: 'external',
-          internal: 'internal',
-          file: 'file'
+          'external-page': 'external',
+          'internal-page': 'internal',
+          'external-file': 'file',
+          'internal-file': 'file'
         },
         uiEvents: {
-          'click [data-dough-linkinserter-create]': 'insertLink'
+          'input [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
+          'change [data-dough-linkinserter-value-trigger][type="radio"]': '_handleFormControlUpdate'
         }
       };
 
   function LinkInserter($el, config) {
     LinkInserter.baseConstructor.call(this, $el, config, defaultConfig);
     this.link = null;
+    this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
   }
 
   DoughBaseComponent.extend(LinkInserter);
@@ -54,7 +57,6 @@ define([
   };
 
   LinkInserterProto._setupUIEvents = function() {
-
   };
 
   LinkInserterProto._handleShown = function(eventData) {
@@ -66,22 +68,25 @@ define([
     }
   };
 
+  LinkInserterProto._handleFormControlUpdate = function(e) {
+    this.setLink($(e.target).val());
+  };
+
   LinkInserterProto._setup = function(type, link) {
     if(type === 'new') {
       this.changeTab(this.$tabTriggers, this.config.tabIds['internal']);
     }
     else if(type === 'existing') {
       this.link = link;
-      this.changeTab(this.$tabTriggers, this.config.tabIds[this._checkLinkType(link)]);
+      this.changeTab(this.$tabTriggers, this.config.tabIds[this._getLinkType(link)]);
     }
   };
 
-  LinkInserterProto._checkLinkType = function(link) {
+  LinkInserterProto._getLinkType = function(link) {
     return 'external';
   };
 
   LinkInserterProto._stripSquareBrackets = function(str) {
-    return str.replace(/\[\]/i,'');
     return str.replace(/([\[\]])+/gi,'');
   };
 
@@ -89,6 +94,18 @@ define([
     // Note: Ideally we would be calling the TabSelector methods directly
     // but currently Dough doesn't allow deferred components
     $tabTriggers.filter(id).click();
+  };
+
+  LinkInserterProto.setLink = function(link) {
+    if(!link) return;
+    this.link = link;
+  };
+
+  LinkInserterProto.publishLink = function() {
+    eventsWithPromises.publish('linkinserter:link-published', {
+      emitter: this.context,
+      link: this.link
+    });
   };
 
   return LinkInserter;

@@ -108,12 +108,6 @@ describe('LinkInserter', function () {
     });
   });
 
-  describe('Show tab', function () {
-    it('should find the correct tab and click its trigger', function() {
-
-    });
-  });
-
   describe('UI Events', function () {
     beforeEach(function (done) {
       this.component = new this.LinkInserter(this.$fixture);
@@ -123,15 +117,13 @@ describe('LinkInserter', function () {
 
     it('should call the update link function when a text input trigger element\'s value is updated', function () {
       var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
-
-      this.component.$valueTriggers.is(':text').first().val('bar');
+      this.component.$valueTriggers.filter(':text').first().val('bar');
       expect(spy.calledWith('bar')).to.be.true;
     });
 
     it('should call the update link function when a radio trigger element\'s option is selected', function () {
       var spy = sandbox.spy(this.LinkInserter.prototype, 'setLink');
-
-      this.component.$valueTriggers.is(':radio').first().val('foo').click();
+      this.component.$valueTriggers.filter(':radio').first().val('foo').click();
       expect(spy.calledWith('foo')).to.be.true;
     });
   });
@@ -144,23 +136,23 @@ describe('LinkInserter', function () {
     });
 
     it('should return an internal link type' , function() {
-      expect(this.component.getLinkType('/en/articles/foo')).to.equal('internal');
+      expect(this.component._getLinkType('/en/articles/foo')).to.equal('internal');
     });
 
     it('should return an external link type', function() {
-      expect(this.component.getLinkType('http://www.foo.com')).to.equal('external');
+      expect(this.component._getLinkType('http://www.foo.com')).to.equal('external');
     });
 
-    it('should return false if a file is externally hosted', function() {
-      expect(this.component.getLinkType('http://www.foo.com/file.pdf')).to.be.false;
+    it('should return an external file type', function() {
+      expect(this.component._getLinkType('http://www.foo.com/file.pdf')).to.equal('external');
     });
 
-    it('should return a file link type if it\'s a relative file' , function() {
-      expect(this.component.getLinkType('/file.pdf')).to.equal('file');
+    it('should return an internal file type' , function() {
+      expect(this.component._getLinkType('/file.pdf')).to.equal('internal');
     });
 
     it('should return false if no link type is found' , function() {
-      expect(this.component.getLinkType('foo')).to.be.false;
+      expect(this.component._getLinkType('foo')).to.be.false;
     });
   });
 
@@ -172,16 +164,16 @@ describe('LinkInserter', function () {
     });
 
     it('should publish the link variable and emitter ID via the events bus', function() {
-      var $target = $('<div />'),
-          spy = sandbox.spy(),
+      var spy = sandbox.spy(),
           link = 'http://www.foo.com';
 
-      this.eventsWithPromises.subscribe('linkinserter:linkselected', spy);
+      this.eventsWithPromises.subscribe('linkinserter:link-published', spy);
 
-      this.publishLink(link);
+      this.component.setLink(link);
+      this.component.publishLink(link);
 
-      expect(spy.args[0][0]).to.equal(link);
-      expect(spy.args[0][1].emitter.is($target)).to.be.true;
+      expect(spy.args[0][0].link).to.equal(link);
+      expect(spy.args[0][0].emitter).to.equal('add-link');
     });
   });
 
