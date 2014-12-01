@@ -83,6 +83,7 @@ RSpec.describe PagesController do
           expect(last_revision.data).to eq(
             event: 'draft',
             previous_event: nil,
+            blocks_attributes: [],
             author: {
               id: current_user.id,
               name: current_user.name
@@ -182,6 +183,7 @@ RSpec.describe PagesController do
           expect(last_revision.data.symbolize_keys).to eq(
             event: 'published',
             previous_event: 'draft',
+            blocks_attributes: [],
             author: {
               id: current_user.id,
               name: current_user.name

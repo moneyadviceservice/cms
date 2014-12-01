@@ -36,7 +36,7 @@ class PageRegister
       data[:event]          = page.state
     end
 
-    data[:blocks_attributes] = @blocks_attributes_was if page.blocks_attributes_changed
+    data[:blocks_attributes] = @blocks_attributes_was
 
     RevisionData.dump(data.merge(current_user: current_user))
   end
