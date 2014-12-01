@@ -1,0 +1,8 @@
+.l-panel-content
+  .l-constrained
+    %ol.listing
+      - pages.each do |page|
+        %li
+          = radio_button_tag(:page_radio_button_name, page.url(:en))
+          = radio_button_tag(:page_radio_button_name, page.url(:cy))
+          %span.listing__heading= page.label(:en)
