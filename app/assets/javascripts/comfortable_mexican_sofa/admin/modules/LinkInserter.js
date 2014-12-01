@@ -42,7 +42,6 @@ define([
   LinkInserterProto.init = function(initialised) {
     this._cacheComponentElements();
     this._setupAppEvents();
-    this._setupUIEvents();
     this._initialisedSuccess(initialised);
   };
 
@@ -54,9 +53,6 @@ define([
     this.$insertLinks = this.$el.find(this.config.selectors.insertLink);
     this.$valueTriggers = this.$el.find(this.config.selectors.valueTrigger);
     this.$tabTriggers = this.$el.find(this.config.selectors.tabTrigger);
-  };
-
-  LinkInserterProto._setupUIEvents = function() {
   };
 
   LinkInserterProto._handleShown = function(eventData) {
