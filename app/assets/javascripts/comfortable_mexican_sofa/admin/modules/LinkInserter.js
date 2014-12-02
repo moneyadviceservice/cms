@@ -17,10 +17,7 @@ define([
           valueTrigger: '[data-dough-linkinserter-value-trigger]'
         },
         uiEvents: {
-          'input [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
-          'keyup [data-dough-linkinserter-value-trigger][type="text"]': '_handleFormControlUpdate',
-          'change [data-dough-linkinserter-value-trigger][type="radio"]': '_handleFormControlUpdate',
-          'click [data-dough-linkinserter-insertlink]': 'publishLink'
+
         }
       };
 
@@ -36,6 +33,7 @@ define([
 
   LinkInserterProto.init = function(initialised) {
     this._cacheComponentElements();
+    this._setupUIEvents();
     this._initialisedSuccess(initialised);
   };
 
@@ -46,6 +44,14 @@ define([
 
   LinkInserterProto._handleFormControlUpdate = function(e) {
     this.setLink($(e.target).val());
+  };
+
+  LinkInserterProto._setupUIEvents = function() {
+    this.$el
+      .on('input', '[data-dough-linkinserter-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('keyup', '[data-dough-linkinserter-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('change', '[data-dough-linkinserter-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('click', '[data-dough-linkinserter-insertlink]', $.proxy(this.publishLink, this));
   };
 
   LinkInserterProto._stripSquareBrackets = function(str) {
