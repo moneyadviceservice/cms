@@ -10,5 +10,11 @@ FactoryGirl.define do
         create_list(:file, 2, site: instance)
       end
     end
+
+    trait :with_document_files do
+      after(:create) do |instance|
+        create_list(:file, 2, :pdf, site: instance)
+      end
+    end
   end
 end
