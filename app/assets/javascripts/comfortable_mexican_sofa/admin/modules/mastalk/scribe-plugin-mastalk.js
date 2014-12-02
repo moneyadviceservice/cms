@@ -5,7 +5,8 @@ define([
   'text!snippet-add-action',
   'text!snippet-video',
   'text!snippet-action-item',
-  'text!snippet-table'
+  'text!snippet-table',
+  'text!snippet-bullets'
 ], function (
     collapsibleSnippet,
     ticksSnippet,
@@ -13,7 +14,8 @@ define([
     addActionSnippet,
     videoSnippet,
     actionItemSnippet,
-    tableSnippet
+    tableSnippet,
+    bulletsSnippet
   ) {
   'use strict';
   /**
@@ -38,7 +40,8 @@ define([
           callout: calloutSnippet,
           table: tableSnippet,
           ticks: ticksSnippet,
-          video: videoSnippet
+          video: videoSnippet,
+          bullets: bulletsSnippet
         };
       };
 
