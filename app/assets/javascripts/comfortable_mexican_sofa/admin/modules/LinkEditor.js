@@ -67,7 +67,7 @@ define([
 
   LinkEditorProto._getLinkType = function(link) {
     // Note: Awaiting decision on full link formatting
-    return 'external';
+    return 'external-file';
   };
 
   LinkEditorProto._stripSquareBrackets = function(str) {

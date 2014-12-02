@@ -113,14 +113,25 @@ describe('LinkEditor', function () {
       done();
     });
 
-    it('should activate the tab trigger when the changeTab function is called', function() {
-      var spy = sandbox.spy();
+    describe('When link is edited', function() {
+      it('should activate a tab trigger', function() {
+        var spy = sandbox.spy();
 
-      $('[data-dough-linkeditor-tabtrigger]').on('click', spy);
-      this.component.changeTab(this.component.$tabTriggers, 'internal-link');
-      expect(spy.called).to.be.true;
+        $('[data-dough-linkeditor-tabtrigger]').on('click', spy);
+        this.component.changeTab(this.component.$tabTriggers, 'external');
+        expect(spy.called).to.be.true;
+      });
     });
 
+    describe('When a new link is called', function () {
+      it('should activate the "internal" tab trigger', function() {
+        var spy = sandbox.spy();
+
+        $('[data-dough-linkeditor-tabtrigger="internal"]').on('click', spy);
+        this.component.changeTab(this.component.$tabTriggers, 'internal');
+        expect(spy.called).to.be.true;
+      });
+    });
   });
 
   describe('Checks link type (link to internal page, external page or a file)', function () {
