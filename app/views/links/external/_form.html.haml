@@ -1,4 +1,4 @@
 .tab-selector__target#panel-3.is-inactive{'data-dough-tab-selector-target' => 3 }
   %h3.l-tab-panels__heading Add external link
-  %input{type: 'text', placeholder: 'enter url' }
-  %button{'data-dough-linkinserter-create' => true } Add Link
+  %input{type: 'text', data: {'dough-linkinserter-value-trigger' => true}, placeholder: 'enter url' }
+  %button{'data-dough-linkinserter-insertlink' => true } Add Link

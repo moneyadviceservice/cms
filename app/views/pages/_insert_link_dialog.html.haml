@@ -1,21 +1,23 @@
 .js-dialog-target.is-inactive{'data-dough-dialog-target' => 'insert-link', 'data-dough-component' => 'TabSelector'}
-  .l-tab-panels.l-tab-panels--add-link
-    .l-tab-panels__item.l-tab-panels__item--aside{'data-dough-component' => 'LinkInserter', 'data-dough-linkinserter-target' => 'insert-link'}
-      %h2.l-tab-panels__heading Add a link to&hellip;
-      .tab-selector__triggers-outer{'data-dough-tab-selector-triggers-outer' => true }
-        .tab-selector__triggers-inner{'data-dough-tab-selector-triggers-inner' => true }
-          .tab-selector__trigger-container.is-active{'data-dough-tab-selector-trigger-container' => true }
-            %a.tab-selector__trigger{ href: '#panel-1', 'data-dough-tab-selector-trigger' => 1 } Money Advice webpage
-          .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
-            %a.tab-selector__trigger{ href: '#panel-2', 'data-dough-tab-selector-trigger' => 2 } A file
-          .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
-            %a.tab-selector__trigger{ href: '#panel-3', 'data-dough-tab-selector-trigger' => 3 } External site
+  %div{'data-dough-component' => 'LinkEditor', 'data-dough-linkeditor-context' => 'add-link'}
+    %div{'data-dough-component' => 'LinkInserter', 'data-dough-linkinserter-target' => 'insert-link', 'data-dough-linkinserter-context' => 'add-link'}
+      .l-tab-panels.l-tab-panels--add-link
+        .l-tab-panels__item.l-tab-panels__item--aside
+          %h2.l-tab-panels__heading Add a link to&hellip;
+          .tab-selector__triggers-outer{'data-dough-tab-selector-triggers-outer' => true }
+            .tab-selector__triggers-inner{'data-dough-tab-selector-triggers-inner' => true }
+              .tab-selector__trigger-container.is-active{'data-dough-tab-selector-trigger-container' => true }
+                %a.tab-selector__trigger{ href: '#panel-1', 'data-dough-tab-selector-trigger' => 1 } Money Advice webpage
+              .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
+                %a.tab-selector__trigger{ href: '#panel-2', 'data-dough-tab-selector-trigger' => 2 } A file
+              .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
+                %a.tab-selector__trigger{ href: '#panel-3', 'data-dough-tab-selector-trigger' => 3 } External site
 
-    %div.l-tab-panels__item.l-tab-panels__item--content
-      = render 'links/pages/form'
+        .l-tab-panels__item.l-tab-panels__item--content
+          = render 'links/pages/form'
 
-      = render 'links/files/form'
+          = render 'links/files/form'
 
-      = render 'links/external/form'
+          = render 'links/external/form'
 
 
