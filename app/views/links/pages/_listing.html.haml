@@ -1,8 +1,9 @@
 .l-panel-content
   .l-constrained
     %ol.listing
+      %p EN | CY
       - pages.each do |page|
         %li
-          = radio_button_tag(:page_radio_button_name, page.url(:en), false, data: {'dough-linkinserter-value-trigger' => true})
-          = radio_button_tag(:page_radio_button_name, page.url(:cy), false, data: {'dough-linkinserter-value-trigger' => true})
+          = render 'page_button', page: page.mirror(:en), page_url: page.url(:en)
+          = render 'page_button', page: page.mirror(:cy), page_url: page.url(:cy)
           %span.listing__heading= page.label(:en)

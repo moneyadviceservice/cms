@@ -10,11 +10,15 @@ class PageMirror
   end
 
   def label(language)
-    find_mirror(language).try(:label)
+    mirror(language).try(:label)
   end
 
   def url(language)
-    find_mirror(language).try(:url)
+    mirror(language).try(:url)
+  end
+
+  def mirror(language)
+    find_mirror(language)
   end
 
   def inspect

@@ -18,6 +18,35 @@ RSpec.describe PageMirror do
     allow(page).to receive(:mirrors).and_return(mirrors)
   end
 
+  describe '#mirror' do
+    let(:mirror) { page_mirror.mirror(language) }
+
+    context 'when english' do
+      let(:language) { :en }
+
+      it 'returns english label' do
+        expect(mirror).to be(page)
+      end
+    end
+
+    context 'when welsh' do
+      let(:language) { :cy }
+
+      it 'returns welsh label' do
+        expect(mirror).to be(welsh_page)
+      end
+    end
+
+    context 'when page not have mirrors' do
+      let(:language) { :cy }
+      let(:mirrors) { [] }
+
+      it 'returns nil' do
+        expect(mirror).to be_nil
+      end
+    end
+  end
+
   describe '#label' do
     subject(:label) { page_mirror.label(language) }
 
