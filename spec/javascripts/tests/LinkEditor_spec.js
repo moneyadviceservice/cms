@@ -162,4 +162,33 @@ describe('LinkEditor', function () {
     });
   });
 
+  describe('Updating the link value inputs', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkEditor(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    afterEach(function () {
+      this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="internal"]').val('/foo');
+      this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="external"]').val('http://foo.com');
+      this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="file"]').val('foo.pdf');
+    });
+
+    it('should set the internal link value inputs with the passed link', function () {
+      this.component.setInputs('internal', '/bar');
+      expect(this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="internal"]').first().val()).to.equal('/bar');
+    });
+
+    it('should set the external link value inputs with the passed link', function () {
+      this.component.setInputs('external', 'http://bar.com');
+      expect(this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="external"]').first().val()).to.equal('http://bar.com');
+    });
+
+    it('should set the file link value inputs with the passed link', function () {
+      this.component.setInputs('file', 'bar.pdf');
+      expect(this.component.$linkInputs.filter('[data-dough-linkeditor-link-type="file"]').first().val()).to.equal('bar.pdf');
+    });
+  });
+
 });
