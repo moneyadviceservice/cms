@@ -3,6 +3,6 @@
     %ol.listing
       - pages.each do |page|
         %li
-          = radio_button_tag(:page_radio_button_name, page.url(:en))
-          = radio_button_tag(:page_radio_button_name, page.url(:cy))
+          = radio_button_tag(:page_radio_button_name, page.url(:en), false, data: {'dough-linkinserter-value-trigger' => true})
+          = radio_button_tag(:page_radio_button_name, page.url(:cy), false, data: {'dough-linkinserter-value-trigger' => true})
           %span.listing__heading= page.label(:en)
