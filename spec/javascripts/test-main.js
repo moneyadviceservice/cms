@@ -60,6 +60,7 @@ requirejs.config({
     'snippet-video': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/video.md',
     'snippet-action-item': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/action-item.md',
     'snippet-table': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/table.md',
+    'snippet-bullets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/bullets.md',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
