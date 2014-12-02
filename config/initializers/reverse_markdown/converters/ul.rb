@@ -3,7 +3,9 @@ module ReverseMarkdown
     class Ul < Base
       def convert(node)
         ul = "\n" << treat_children(node)
-        if node.attributes["class"].try(:value) == 'yes-no'
+        if node.parent.name == 'td'
+          "$bullet #{ul.strip} $point "
+        elsif node.attributes["class"].try(:value) == 'yes-no'
           "\n$yes-no\n#{ul}\n$end\n"
         else
           ul

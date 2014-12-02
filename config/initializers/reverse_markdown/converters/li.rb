@@ -10,6 +10,7 @@ module ReverseMarkdown
       end
 
       def postfix_for(node)
+        return ' [/%]' if node.parent.parent.name == 'td'
         if node.attributes['class'].try(:value) == 'yes'
           ' [/y]'
         elsif node.attributes['class'].try(:value) == 'no'
@@ -24,12 +25,16 @@ module ReverseMarkdown
           index = node.parent.xpath('li').index(node)
           "#{index.to_i + 1}. "
         else
-          if node.attributes['class'].try(:value) == 'yes'
-            '[y] '
-          elsif node.attributes['class'].try(:value) == 'no'
-            '[n] '
+          if node.parent.parent.name == 'td'
+            '[%] '
           else
-            '- '
+            if node.attributes['class'].try(:value) == 'yes'
+              '[y] '
+            elsif node.attributes['class'].try(:value) == 'no'
+              '[n] '
+            else
+              '- '
+            end
           end
         end
       end
