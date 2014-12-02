@@ -3,13 +3,15 @@ define([
   'DoughBaseComponent',
   'editor-plugin-auto-resize-textarea',
   'editor',
-  'scribe-plugin-mastalk'
+  'scribe-plugin-mastalk',
+  'scribe-plugin-linkeditor'
 ], function (
   $,
   DoughBaseComponent,
   editorPluginAutoResizeTextarea,
   Editor,
-  scribePluginMastalk
+  scribePluginMastalk,
+  scribePluginLinkEditor
 ) {
   'use strict';
 
@@ -82,6 +84,7 @@ define([
       this.editorOptions
     );
     this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
+    this.editorLib.editor.use(scribePluginLinkEditor());
     this.editorLib.editor.use(scribePluginMastalk('collapsible'));
     this.editorLib.editor.use(scribePluginMastalk('ticks'));
     this.editorLib.editor.use(scribePluginMastalk('addAction'));
