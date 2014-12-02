@@ -1,20 +1,21 @@
 RSpec.describe PageMirror do
   let(:page_mirror) { described_class.new(page) }
 
-  let!(:welsh_site) do
-   create(:site, is_mirrored: true, path: 'cy', label: 'cy')
-  end
+  let(:english_site) { create(:site, label: 'en', path: 'en') }
+  let(:welsh_site) { create(:site, label: 'cy', path: 'cy') }
 
-  let!(:site) do
-    create(:site, is_mirrored: true, path: 'en', label: 'en')
-  end
-
-  let(:page) do
-    create(:page, label: 'Before borrow money', site: site)
+  let!(:page) do
+    create(:page, label: 'Before borrow money', site: english_site)
   end
 
   let!(:welsh_page) do
-    create(:page, site: welsh_site, label: 'Cyn i chi fenthyca arian')
+    create(:page, label: 'Cyn i chi fenthyca arian', site: welsh_site)
+  end
+
+  let(:mirrors) { [welsh_page] }
+
+  before do
+    allow(page).to receive(:mirrors).and_return(mirrors)
   end
 
   describe '#label' do
@@ -35,6 +36,15 @@ RSpec.describe PageMirror do
         expect(label).to eq('Cyn i chi fenthyca arian')
       end
     end
+
+    context 'when page not have mirrors' do
+      let(:language) { :cy }
+      let(:mirrors) { [] }
+
+      it 'returns nil' do
+        expect(label).to be_nil
+      end
+    end
   end
 
   describe '#url' do
@@ -53,6 +63,15 @@ RSpec.describe PageMirror do
 
       it 'returns welsh url' do
         expect(url).to eq('//test.host/cy/')
+      end
+    end
+
+    context 'when page not have mirrors' do
+      let(:language) { :cy }
+      let(:mirrors) { [] }
+
+      it 'returns nil' do
+        expect(url).to be_nil
       end
     end
   end

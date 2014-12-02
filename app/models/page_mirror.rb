@@ -10,11 +10,11 @@ class PageMirror
   end
 
   def label(language)
-    find_mirror(language).label
+    find_mirror(language).try(:label)
   end
 
   def url(language)
-    find_mirror(language).url
+    find_mirror(language).try(:url)
   end
 
   def inspect
@@ -27,7 +27,9 @@ class PageMirror
   private
 
   def find_mirror(language)
-    mirrors.find { |mirror| mirror.site.label == language.to_s } || page
+    return page if page.site.label == language.to_s
+
+    mirrors.find { |mirror| mirror.site.label == language.to_s }
   end
 
   def mirrors
