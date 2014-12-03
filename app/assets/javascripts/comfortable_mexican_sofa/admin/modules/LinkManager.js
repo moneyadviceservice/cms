@@ -69,12 +69,14 @@ define([
   };
 
   LinkManagerProto._setup = function(type, link) {
+    var linkType = this._getLinkType(link);
     if(type === 'new') {
-      this.changeTab(this.$tabTriggers, this.config.tabIds['internal']);
+      this.changeTab(this.$tabTriggers, 'internal');
     }
     else if(type === 'existing') {
       this.link = link;
-      this.changeTab(this.$tabTriggers, this.config.tabIds[this._getLinkType(link)]);
+      this.changeTab(this.$tabTriggers, this.config.tabIds[linkType]);
+      this.setInputs(this.config.tabIds[linkType], this.link);
     }
   };
 
