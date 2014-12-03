@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= @html_class %>">
 <head>
   <title>Cms</title>
   <%= stylesheet_link_tag 'comfortable_mexican_sofa/admin/basic' %>
@@ -9,7 +9,7 @@
   <%= javascript_include_tag 'comfortable_mexican_sofa/admin/application' %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="<%= @body_class %>">
 
 <%= yield %>
 <%= javascript_include_tag 'requirejs/require', data: { main: javascript_path('application') } %>

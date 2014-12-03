@@ -1,8 +1,14 @@
+<% @html_class = 'full-height-outer' %>
+<% @body_class = 'full-height-inner' %>
+
 <div class='login'>
   <div class='l-constrained'>
-    <h2>Login to the CMS</h2>
+    <div class='login__brand'>
+      <%= image_tag('cms-mas-logo-icon.png') %>
+      <span class='login__brand-heading'> Contento </span>
+    </div>
 
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'login__form'}) do |f| %>
       <div><%= f.label :email, "Email address" %><br />
       <%= f.email_field :email, autofocus: true %></div>
 
@@ -18,7 +24,7 @@
         <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
       <% end -%>
 
-      <div><%= f.submit "Log in", class: 'pull-right' %></div>
+      <div><%= f.submit "Log in", class: 'pull-right button--action login__button' %></div>
     <% end %>
   </div>
 </div>
