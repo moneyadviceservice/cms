@@ -2,10 +2,10 @@
   %h3.l-tab-panels__heading Select page
   = form_tag(site_links_pages_path, method: 'get', remote: true) do
     = label_tag(:search, nil, class: 'visually-hidden')
-    = text_field_tag(:search, '', placeholder: 'Search pages', class: 'form__input form__input--constrained search__input t-search-box')
+    = text_field_tag(:search, '', placeholder: 'Search pages', 'data-dough-linkmanager-link-type' => 'internal', class: 'form__input form__input--constrained search__input t-search-box')
     = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
       %span.button__text.fa.fa-search
 
   .js-linkable-pages
 
-  %button{'data-dough-linkinserter-insertlink' => true } Insert Link
+  %button{'data-dough-linkmanager-insertlink' => true } Insert Link
