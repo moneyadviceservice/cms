@@ -29,7 +29,6 @@ define([
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.link = null;
-    this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
   }
 
   DoughBaseComponent.extend(LinkManager);
@@ -37,6 +36,7 @@ define([
   LinkManagerProto = LinkManager.prototype;
 
   LinkManagerProto.init = function(initialised) {
+    this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
     this._cacheComponentElements();
     this._setupUIEvents();
     this._setupAppEvents();
