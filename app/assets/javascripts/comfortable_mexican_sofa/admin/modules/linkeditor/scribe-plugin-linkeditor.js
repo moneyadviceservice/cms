@@ -1,19 +1,27 @@
 define('scribe-plugin-linkeditor', [
-  'eventsWithPromises'
+  'eventsWithPromises',
+  'rangy-core',
+  'rangy-selectionsaverestore'
 ],
-function (eventsWithPromises) {
+function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
+
   /**
    * This plugin adds a command for editing/creating links via LinkEditor/LinkInserter
    */
   return function () {
     return function (scribe) {
-      var handleLinkPublished,
+      var savedSelection,
+          linkManagerContext = 'add-link',
           linkEditorCommand = new scribe.api.Command('createLink');
 
       linkEditorCommand.nodeName = 'A';
 
-      linkEditorCommand.execute = function (link) {
-        var selection = this.selection || new scribe.api.Selection();
+      linkEditorCommand.execute = function () {
+        this.saveSelection();
+      };
+
+      linkEditorCommand.inject = function(link) {
+        var selection = new scribe.api.Selection();
         var range = selection.range;
         var anchorNode = selection.getContaining(function (node) {
           return node.nodeName === this.nodeName;
@@ -29,8 +37,8 @@ function (eventsWithPromises) {
       };
 
       linkEditorCommand.queryState = function () {
-        this.selection = new scribe.api.Selection();
-        return !! this.selection.getContaining(function (node) {
+        var selection = new scribe.api.Selection();
+        return !! selection.getContaining(function (node) {
           return node.nodeName === this.nodeName;
         }.bind(this));
       };
@@ -39,16 +47,41 @@ function (eventsWithPromises) {
         return true;
       };
 
-      handleLinkPublished = function(eventData, promise) {
-        if(eventData.emitter === 'add-link') {
-          linkEditorCommand.execute.call(linkEditorCommand, eventData.link);
+      linkEditorCommand.handleLinkPublished = function(eventData, promise) {
+        if(eventData.emitter === linkManagerContext) {
+          linkEditorCommand.inject.call(linkEditorCommand, eventData.link);
           promise.resolve();
         }
       };
 
-      eventsWithPromises.subscribe('linkmanager:link-published', handleLinkPublished);
+      linkEditorCommand.saveSelection = function() {
+        savedSelection = rangy.saveSelection(document);
+      };
 
-      scribe.commands.linkEditor = linkEditorCommand;
+      linkEditorCommand.removeSelection = function() {
+        rangy.restoreSelection(savedSelection, false);
+        rangy.removeMarkers(savedSelection);
+      };
+
+      linkEditorCommand.setupEvents = function() {
+        eventsWithPromises.subscribe('dialog:closed', function() {
+          this.removeSelection();
+        }.bind(this));
+
+        eventsWithPromises.subscribe('dialog:cancelled', function() {
+          this.removeSelection();
+        }.bind(this));
+      };
+
+      linkEditorCommand.init = function() {
+        this.setupEvents();
+      };
+
+      linkEditorCommand.init();
+
+      eventsWithPromises.subscribe('linkmanager:link-published', linkEditorCommand.handleLinkPublished.bind(this));
+
+      scribe.commands.editLink = linkEditorCommand;
     };
   };
 
