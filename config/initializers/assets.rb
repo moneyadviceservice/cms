@@ -52,6 +52,8 @@ Rails.application.configure do
                                   modernizr/modernizr.js
                                   taggle.js/dist/taggle.min.js
                                   chosen-build/chosen.jquery.js
-                                  dialog-polyfill/dialog-polyfill.js)
+                                  dialog-polyfill/dialog-polyfill.js
+                                  rangy-official/rangy-core.js
+                                  rangy-official/rangy-selectionsaverestore.js)
 
 end

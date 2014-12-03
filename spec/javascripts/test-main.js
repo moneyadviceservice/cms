@@ -88,7 +88,9 @@ requirejs.config({
     'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
     'chosen': bowerPath + 'chosen-build/chosen.jquery',
     'text': bowerPath + 'text/text',
-    'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill'
+    'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill',
+    'rangy-core': bowerPath + 'rangy-official/rangy-core',
+    'rangy-selectionsaverestore': bowerPath + 'rangy-official/rangy-selectionsaverestore'
   },
   shim : {
     'to-markdown' : {
