@@ -57,9 +57,11 @@ describe('Dialog', function () {
     });
 
     it('should save the dialog component context to a variable', function() {
-      this.$fixture.attr('data-dough-dialog-context', 'foo');
+      var context = this.$fixture.attr('data-dough-dialog-context');
+      this.$fixture.attr('data-dough-dialog-context', 'bar');
       this.component.init();
-      expect(this.component.context).to.equal('foo');
+      expect(this.component.context).to.equal('bar');
+      this.$fixture.attr('data-dough-dialog-context', context);
     });
   });
 

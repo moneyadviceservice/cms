@@ -34,7 +34,6 @@ define([
   function Dialog($el, config) {
     Dialog.baseConstructor.call(this, $el, config, defaultConfig);
     this.isShown = false;
-    this.context = this.$el.attr('data-dough-dialog-context');
   }
 
   DoughBaseComponent.extend(Dialog);
@@ -42,6 +41,7 @@ define([
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {
+    this.context = this.$el.attr('data-dough-dialog-context');
     this._cacheComponentElements();
     this._setupDialog();
     this._setupUIEvents();

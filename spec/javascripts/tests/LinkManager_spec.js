@@ -30,6 +30,7 @@ describe('LinkManager', function () {
   afterEach(function() {
     this.$html.remove();
     sandbox.restore();
+    this.eventsWithPromises.unsubscribeAll();
   });
 
   describe('Initialisation', function () {
@@ -86,8 +87,7 @@ describe('LinkManager', function () {
 
         this.component.init();
         this.eventsWithPromises.publish('dialog:shown', {
-          emitter: 'add-link',
-          link: 'foo'
+          emitter: 'add-link'
         });
 
         expect(spy.calledWith('existing', 'foo')).to.be.true;
