@@ -51,7 +51,7 @@ define([
   };
 
   LinkManagerProto._setupAppEvents = function() {
-    eventsWithPromises.subscribe('dialog:shown', $.proxy(this._handleShown, this));
+    eventsWithPromises.subscribe('cmseditor:link-published', $.proxy(this._handleShown, this));
   };
 
   LinkManagerProto._handleFormControlUpdate = function(e) {

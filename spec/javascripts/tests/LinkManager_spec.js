@@ -86,8 +86,9 @@ describe('LinkManager', function () {
         var spy = sandbox.spy(this.LinkManager.prototype, '_setup');
 
         this.component.init();
-        this.eventsWithPromises.publish('dialog:shown', {
-          emitter: 'add-link'
+        this.eventsWithPromises.publish('cmseditor:link-published', {
+          emitter: 'add-link',
+          link: 'foo'
         });
 
         expect(spy.calledWith('existing', 'foo')).to.be.true;
@@ -99,7 +100,7 @@ describe('LinkManager', function () {
         var spy = sandbox.spy(this.LinkManager.prototype, '_setup');
 
         this.component.init();
-        this.eventsWithPromises.publish('dialog:shown', {
+        this.eventsWithPromises.publish('cmseditor:link-published', {
           emitter: 'add-link'
         });
 
