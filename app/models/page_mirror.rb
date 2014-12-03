@@ -41,4 +41,3 @@ class PageMirror
     @mirrors ||= page.mirrors
   end
 end
-

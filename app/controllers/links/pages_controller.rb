@@ -6,4 +6,3 @@ class Links::PagesController < ApplicationController
     @pages = PageMirror.collect(pages)
   end
 end
-
