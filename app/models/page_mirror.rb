@@ -4,6 +4,7 @@ class PageMirror
   end
 
   attr_reader :page
+  delegate :label, to: :page, prefix: true
 
   def initialize(page)
     @page = page

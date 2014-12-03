@@ -47,6 +47,14 @@ RSpec.describe PageMirror do
     end
   end
 
+  describe '#page_label' do
+    subject(:page_label) { page_mirror.page_label }
+
+    it 'calls page original label' do
+      expect(page_label).to eq('Before borrow money')
+    end
+  end
+
   describe '#label' do
     subject(:label) { page_mirror.label(language) }
 
