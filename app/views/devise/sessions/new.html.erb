@@ -1,6 +1,6 @@
 <div class='login'>
   <div class='l-constrained'>
-    <h2>Login to the CMS</h2>
+    <div class='logo'> <%= image_tag('cms-mas-logo-icon.png') %> <span class='contento'> Contento </span>  </div>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div><%= f.label :email, "Email address" %><br />
@@ -18,7 +18,7 @@
         <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
       <% end -%>
 
-      <div><%= f.submit "Log in", class: 'pull-right' %></div>
+      <div><%= f.submit "Log in", class: 'pull-right button--action button-login' %></div>
     <% end %>
   </div>
 </div>
