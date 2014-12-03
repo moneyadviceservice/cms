@@ -46,7 +46,7 @@ function (eventsWithPromises) {
         }
       };
 
-      eventsWithPromises.subscribe('linkinserter:link-published', handleLinkPublished);
+      eventsWithPromises.subscribe('linkmanager:link-published', handleLinkPublished);
 
       scribe.commands.linkEditor = linkEditorCommand;
     };
