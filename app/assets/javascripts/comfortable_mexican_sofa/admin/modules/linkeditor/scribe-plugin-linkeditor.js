@@ -18,7 +18,14 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       linkEditorCommand.nodeName = 'A';
 
       linkEditorCommand.execute = function () {
+        var node = this.getMatchingNode();
+
         this.saveSelection();
+
+        eventsWithPromises.publish('cmseditor:link-published', {
+          emitter: linkManagerContext,
+          link: !!node? node.href : null
+        });
       };
 
       linkEditorCommand.inject = function(link) {
@@ -38,8 +45,12 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.queryState = function () {
+        return !! this.getMatchingNode();
+      };
+
+      linkEditorCommand.getMatchingNode = function() {
         var selection = new scribe.api.Selection();
-        return !! selection.getContaining(function (node) {
+        return selection.getContaining(function (node) {
           return node.nodeName === this.nodeName;
         }.bind(this));
       };
