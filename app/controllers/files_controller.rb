@@ -5,7 +5,7 @@ class FilesController < Comfy::Admin::Cms::FilesController
   def index
     @order = params[:order].presence
     @type  = params[:type].presence
-    @files = @site.files.not_page_file
+    @files = Comfy::Cms::File.not_page_file
       .includes(:categories)
       .for_category(params[:category])
       .of_type(@type)
@@ -17,7 +17,7 @@ class FilesController < Comfy::Admin::Cms::FilesController
   private
 
   def check_files_existence
-    redirect_to(action: :new) if @site.files.count == 0
+    redirect_to(action: :new) if Comfy::Cms::File.count.zero?
   end
 
   def build_file

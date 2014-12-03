@@ -5,6 +5,10 @@ FactoryGirl.define do
     hostname    'test.host'
     is_mirrored false
 
+    trait :welsh do
+      label 'cy'
+    end
+
     trait :with_files do
       after(:create) do |instance|
         create_list(:file, 2, site: instance)
