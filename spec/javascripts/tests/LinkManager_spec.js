@@ -52,12 +52,12 @@ describe('LinkManager', function () {
       done();
     });
 
-    it('should call the shown handler method when the dialog:shown event is published', function() {
+    it('should call handleShown when the cmseditor:link-published event is published', function() {
       var spy = sandbox.spy(this.LinkManager.prototype, '_handleShown');
 
       this.component.init();
 
-      this.eventsWithPromises.publish('dialog:shown', {
+      this.eventsWithPromises.publish('cmseditor:link-published', {
         emitter: 'add-link'
       });
       expect(spy.called).to.be.true;
@@ -70,11 +70,11 @@ describe('LinkManager', function () {
       done();
     });
 
-    it('dialog:shown event\'s emitter ID should be the same as the LinkManager\'s', function() {
+    it('cmseditor:link-published event\'s emitter ID should be the same as the LinkManager\'s', function() {
       var spy = sandbox.spy(this.LinkManager.prototype, '_handleShown');
 
       this.component.init();
-      this.eventsWithPromises.publish('dialog:shown', {
+      this.eventsWithPromises.publish('cmseditor:link-published', {
         emitter: 'add-link'
       });
       expect(spy.args[0][0].emitter).to.equal('add-link');

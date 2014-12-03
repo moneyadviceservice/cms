@@ -76,13 +76,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.setupEvents = function() {
-        eventsWithPromises.subscribe('dialog:closed', function() {
-          this.removeSelection();
-        }.bind(this));
-
-        eventsWithPromises.subscribe('dialog:cancelled', function() {
-          this.removeSelection();
-        }.bind(this));
+        eventsWithPromises.subscribe('dialog:closed', this.removeSelection.bind(this));
+        eventsWithPromises.subscribe('dialog:cancelled', this.removeSelection.bind(this));
+        eventsWithPromises.subscribe('linkmanager:link-published', linkEditorCommand.handleLinkPublished.bind(this));
       };
 
       linkEditorCommand.init = function() {
@@ -91,7 +87,6 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
 
       linkEditorCommand.init();
 
-      eventsWithPromises.subscribe('linkmanager:link-published', linkEditorCommand.handleLinkPublished.bind(this));
 
       scribe.commands.editLink = linkEditorCommand;
     };
