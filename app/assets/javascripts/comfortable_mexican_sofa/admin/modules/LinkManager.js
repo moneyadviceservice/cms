@@ -98,10 +98,12 @@ define([
   };
 
   LinkManagerProto.publishLink = function() {
-    // Note: Let's move this out of here at some point.
     eventsWithPromises.publish('dialog:close', {
       emitter: this.context
     });
+
+    this.changeTab(this.$tabTriggers, 'internal');
+    this.clearInputs();
 
     eventsWithPromises.publish('linkmanager:link-published', {
       emitter: this.context,
@@ -127,6 +129,10 @@ define([
 
   LinkManagerProto.setInputs = function(type, link) {
     this.$linkInputs.filter('[data-dough-linkmanager-link-type="' + type + '"]').val(link);
+  };
+
+  LinkManagerProto.clearInputs = function() {
+    this.$linkInputs.val('');
   };
 
   return LinkManager;
