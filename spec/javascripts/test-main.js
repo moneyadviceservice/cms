@@ -49,11 +49,11 @@ requirejs.config({
     'Popover': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Popover',
     'ElementFilter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementFilter',
     'Dialog': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Dialog',
-    'LinkInserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkInserter',
-    'LinkEditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkEditor',
+    'LinkManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkManager',
 
     // Snippets
     'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',
+    'scribe-plugin-linkeditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/linkeditor/scribe-plugin-linkeditor',
     'snippet-collapsible': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md',
     'snippet-ticks': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/ticks.md',
     'snippet-callout': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/callout.md',
