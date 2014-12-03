@@ -6,11 +6,11 @@
         .tab-selector__triggers-outer{'data-dough-tab-selector-triggers-outer' => true }
           .tab-selector__triggers-inner{'data-dough-tab-selector-triggers-inner' => true }
             .tab-selector__trigger-container.is-active{'data-dough-tab-selector-trigger-container' => true }
-              %a.tab-selector__trigger{ href: '#panel-1', 'data-dough-tab-selector-trigger' => 1 } Money Advice webpage
+              %a.tab-selector__trigger{ href: '#internal', 'data-dough-tab-selector-trigger' => 'internal' } Money Advice webpage
             .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
-              %a.tab-selector__trigger{ href: '#panel-2', 'data-dough-tab-selector-trigger' => 2 } A file
+              %a.tab-selector__trigger{ href: '#file', 'data-dough-tab-selector-trigger' => 'file' } A file
             .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
-              %a.tab-selector__trigger{ href: '#panel-3', 'data-dough-tab-selector-trigger' => 3 } External site
+              %a.tab-selector__trigger{ href: '#external', 'data-dough-tab-selector-trigger' => 'external' } External site
 
       .l-tab-panels__item.l-tab-panels__item--content
         = render 'links/pages/form'

@@ -1,8 +1,10 @@
-.tab-selector__target#panel-2.is-inactive{'data-dough-tab-selector-target' => 2 }
+.tab-selector__target#file.is-inactive{'data-dough-tab-selector-target' => 'file' }
   %h3.l-tab-panels__heading Select File
   = form_tag(site_links_files_path, method: 'get', remote: true) do
+    = label_tag(:link, 'Current link')
+    = text_field_tag(:link, nil, data: {'dough-linkmanager-link-type' => 'file'}, readonly: true)
     = label_tag(:search, nil, class: 'visually-hidden')
-    = text_field_tag(:search, '', placeholder: 'Search file', 'data-dough-linkmanager-link-type' => 'file', class: 'form__input form__input--constrained search__input t-search-box')
+    = text_field_tag(:search, '', placeholder: 'Search file', class: 'form__input form__input--constrained search__input t-search-box')
     = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
       %span.button__text.fa.fa-search
 
