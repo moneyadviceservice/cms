@@ -36,6 +36,7 @@ describe('Dialog', function () {
     this.$html.remove();
     sandbox.restore();
     $('[data-dough-dialog]').remove();
+    this.eventsWithPromises.unsubscribeAll();
   });
 
   describe('Initialisation', function () {
