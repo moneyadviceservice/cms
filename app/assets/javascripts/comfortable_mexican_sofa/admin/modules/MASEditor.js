@@ -61,7 +61,8 @@ define([
             h4: {},
             h5: {},
             sub: {},
-            sup: {}
+            sup: {},
+            span: { 'class': true, id: true}
           }
         }
       }
