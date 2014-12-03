@@ -45,6 +45,7 @@ define([
     this._cacheComponentElements();
     this._setupDialog();
     this._setupUIEvents();
+    this._setupAppEvents();
     this._initialisedSuccess(initialised);
   };
 
@@ -81,8 +82,18 @@ define([
       .on('cancel', $.proxy(this._handleCancel, this));
   };
 
+  DialogProto._setupAppEvents = function() {
+    eventsWithPromises.subscribe('dialog:close', $.proxy(this._handleClose, this));
+  };
+
   DialogProto._handleCancel = function() {
     this.close(true);
+  };
+
+  DialogProto._handleClose = function(eventData) {
+    if(eventData && eventData.emitter === this.context) {
+      this.close();
+    }
   };
 
   DialogProto._detachTarget = function() {

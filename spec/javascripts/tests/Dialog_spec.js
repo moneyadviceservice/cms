@@ -97,6 +97,14 @@ describe('Dialog', function () {
       this.component.show();
       expect(spy.args[0][0].emitter).to.equal('foo');
     });
+
+    it('should close the dialog if a dialog:close event with matching emitter parameter is received', function() {
+      this.component._handleClose();
+      this.eventsWithPromises.publish('dialog:close', {
+        emitter: 'foo'
+      });
+      expect(this.closeSpy.called).to.be.true;
+    });
   });
 
   describe('Show dialog', function () {
