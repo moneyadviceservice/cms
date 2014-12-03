@@ -8,11 +8,11 @@ end
 When(/^I add a new user$/) do
   user_management_page.new_user.click
   user_management_page.user_name.set('Test Tester')
-  user_management_page.user_email.set('test@teter.com')
+  user_management_page.user_email.set('test@tester.com')
   user_management_page.user_password.set('password')
   user_management_page.create_user.click
   expect(page.has_content?('Test Tester')).to be(true)
-  expect(page.has_content?('test@teter.com')).to be(true)
+  expect(page.has_content?('test@tester.com')).to be(true)
 end
 
 When(/^I delete the new user$/) do
@@ -30,7 +30,7 @@ end
 
 When(/^I sign in$/) do
   sign_in_page.load
-  sign_in_page.email.set('test@teter.com')
+  sign_in_page.email.set('test@tester.com')
   sign_in_page.password.set('password')
   sign_in_page.log_in.click
 end
@@ -52,4 +52,15 @@ end
 Then(/^I should not be able to visit the user management page$/) do
   step('I visit the user management page')
   expect(page).to_not have_content('Users')
+end
+
+When(/^I go to my profile page$/) do
+  edit_user_page.load(user_id: @current_user.id)
+end
+
+When(/^I should be able to see my profile$/) do
+  expect(page).to have_content('Name')
+  expect(page).to have_content('Email')
+  expect(page).to have_content('Password')
+  expect(page).to_not have_content('Admin')
 end
