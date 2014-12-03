@@ -4,6 +4,7 @@ define('scribe-plugin-linkeditor', [
   'rangy-selectionsaverestore'
 ],
 function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
+  'use strict';
 
   /**
    * This plugin adds a command for editing/creating links via LinkEditor/LinkInserter
