@@ -15,7 +15,7 @@ define([
           context: '[data-dough-linkmanager-context]',
           insertLink: '[data-dough-linkmanager-insertlink]',
           valueTrigger: '[data-dough-linkmanager-value-trigger]',
-          tabTrigger: '[data-dough-linkmanager-tabtrigger]',
+          tabTrigger: '[data-dough-tab-selector-trigger]',
           linkInputs: '[data-dough-linkmanager-link-type]'
         },
         tabIds: {
@@ -120,9 +120,7 @@ define([
     // Note: Ideally we would be calling the TabSelector methods directly
     // but currently Dough doesn't allow deferred components so we have
     // to click on the tab
-    $tabTriggers.filter('[data-dough-linkmanager-tabtrigger="' + id + '"]').click();
-
-    // Call function to update the content
+    $tabTriggers.filter('[data-dough-tab-selector-trigger="' + id + '"]').click();
   };
 
   LinkManagerProto.setInputs = function(type, link) {

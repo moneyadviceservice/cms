@@ -120,7 +120,7 @@ describe('LinkManager', function () {
       it('should activate a tab trigger', function() {
         var spy = sandbox.spy();
 
-        $('[data-dough-linkmanager-tabtrigger]').on('click', spy);
+        $('[data-dough-tab-selector-trigger]').on('click', spy);
         this.component.changeTab(this.component.$tabTriggers, 'external');
         expect(spy.called).to.be.true;
       });
@@ -130,7 +130,7 @@ describe('LinkManager', function () {
       it('should activate the "internal" tab trigger', function() {
         var spy = sandbox.spy();
 
-        $('[data-dough-linkmanager-tabtrigger="internal"]').on('click', spy);
+        $('[data-dough-tab-selector-trigger="internal"]').on('click', spy);
         this.component.changeTab(this.component.$tabTriggers, 'internal');
         expect(spy.called).to.be.true;
       });
