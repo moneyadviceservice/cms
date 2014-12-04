@@ -9,6 +9,16 @@
     = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
       %span.button__text.fa.fa-search
 
+    .choose-category
+      = label_tag :category, t('links.page.category.label')
+      = select_tag(:category, options_from_collection_for_select(@categories, :label, :label, params[:category]),
+          include_blank: false,
+          multiple:      false,
+          id:            'categories',
+          class:         't-categories-select',
+          prompt:        t('links.pages.category.placeholder'),
+          data:          { dough_component: 'SelectSubmitter' })
+
   .js-linkable-pages
 
   %span.button-menu

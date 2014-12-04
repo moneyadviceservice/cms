@@ -7,7 +7,7 @@ RSpec.describe Links::PagesController do
     let(:site) { create(:site) }
 
     before do
-      get :index, format: :js, site_id: site.id, search: 'page label'
+      get :index, site_id: site.id, search: 'page label'
     end
 
     it 'assigns pages' do
