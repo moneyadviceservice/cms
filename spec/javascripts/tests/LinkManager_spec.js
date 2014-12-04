@@ -239,21 +239,6 @@ describe('LinkManager', function () {
       this.component.$insertLinks.first().click();
       expect(spy.called).to.be.true;
     });
-
-
-      // it('should execute the publish the link when an insertlink button is selected', function() {
-      //   var spy = sandbox.spy(this.LinkManager.prototype, '_handleLink');
-
-      //   this.component.$valueTriggers
-      //     .filter(':radio')
-      //     .first()
-      //     .val('foo')
-      //     .click();
-
-      //   this.eventsWithPromises.subscribe('linkmanager:link-published', spy);
-      //   this.component.$insertLinks.first().click();
-      //   expect(spy.called).to.be.true;
-      // });
   });
 
   describe('Updating the link value inputs', function () {
