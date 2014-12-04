@@ -100,6 +100,7 @@ define([
 
   LinkManagerProto._handleAjaxLabelFail = function(data) {
     this.hideLoader();
+    this.changeTab(this.config.tabIds['page']);
   };
 
   LinkManagerProto._setup = function(type, link) {
