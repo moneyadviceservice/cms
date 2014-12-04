@@ -90,9 +90,9 @@ define([
   };
 
   LinkManagerProto._handleAjaxLabelDone = function(data) {
-    this.linkValues[linkType] = data.type;
-    this.setInputs(linkType, data.link);
-    this.setLabels(linkType, data.label);
+    this.linkValues[data.type] = data.url;
+    this.setInputs(data.type, data.url);
+    this.setLabels(data.type, data.label);
     this.showLabels();
     this.changeTab(this.config.tabIds[data.type]);
     this.hideLoader();
@@ -188,7 +188,7 @@ define([
   };
 
   LinkManagerProto.setLabels = function(type, link) {
-    this.$linkLabels.filter('[data-dough-linkmanager-label="' + type + '"]').val(link);
+    this.$linkLabels.filter('[data-dough-linkmanager-label="' + type + '"]').text(link);
   };
 
   LinkManagerProto.showLabels = function() {
