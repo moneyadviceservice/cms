@@ -1,0 +1,18 @@
+en:
+  links:
+    current: 'Current link'
+    external:
+      header: 'Add external link'
+      insert_button: 'Add Link'
+      placeholder: 'Enter url'
+    file:
+      header: 'Select File'
+      insert_button: 'Insert file'
+      placeholder: 'Search files'
+    page:
+      header: 'Select page'
+      insert_button: 'Insert page'
+      placeholder: 'Search pages'
+      category:
+        label: 'Filter by child category'
+        placeholder: 'Choose category'

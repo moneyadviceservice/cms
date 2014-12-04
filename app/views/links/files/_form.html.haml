@@ -1,13 +1,16 @@
-.tab-selector__target#file.is-inactive{'data-dough-tab-selector-target' => 'file' }
-  %h3.l-tab-panels__heading Select File
+.tab-selector__target#file.is-inactive{ 'data-dough-tab-selector-target' => 'file' }
+  %h3.l-tab-panels__heading
+    = t('links.file.header')
   = form_tag(site_links_files_path, method: 'get', remote: true) do
-    = label_tag(:link, 'Current link')
+    = label_tag(:link, t('links.current'))
     = text_field_tag(:link, nil, data: {'dough-linkmanager-link-type' => 'file'}, disabled: 'disabled')
     = label_tag(:search, nil, class: 'visually-hidden')
-    = text_field_tag(:search, '', placeholder: 'Search file', class: 'form__input form__input--constrained search__input t-search-box')
-    = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
+    = text_field_tag(:search, '', placeholder: t('links.file.placeholder'), class: 'form__input form__input--constrained search__input t-search-box')
+    = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
       %span.button__text.fa.fa-search
 
   .js-linkable-files
 
-  %button{'data-dough-linkmanager-insertlink' => 'file' } Insert Link
+  %span.button-menu
+    %button.button--action{ 'data-dough-linkmanager-insertlink' => true }
+      = t('links.file.insert_button')
