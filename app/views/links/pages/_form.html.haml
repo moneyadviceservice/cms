@@ -2,7 +2,7 @@
   %h3.l-tab-panels__heading Select page
   = form_tag(site_links_pages_path, method: 'get', remote: true) do
     = label_tag(:link, 'Current link')
-    = text_field_tag(:link, nil, data: {'dough-linkmanager-link-type' => 'internal'}, readonly: true)
+    = text_field_tag(:link, nil, data: {'dough-linkmanager-link-type' => 'internal'}, disabled: 'disabled')
     = label_tag(:search, nil, class: 'visually-hidden')
     = text_field_tag(:search, '', placeholder: 'Search pages', class: 'form__input form__input--constrained search__input t-search-box')
     = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
