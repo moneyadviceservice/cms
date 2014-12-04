@@ -16,7 +16,8 @@ define([
           insertLink: '[data-dough-linkmanager-insertlink]',
           valueTrigger: '[data-dough-linkmanager-value-trigger]',
           tabTrigger: '[data-dough-tab-selector-trigger]',
-          linkInputs: '[data-dough-linkmanager-link-type]'
+          linkInputs: '[data-dough-linkmanager-link-type]',
+          currentLinkValue: '[data-dough-linkmanager-current-link-value]'
         },
         tabIds: {
           'external-page': 'external',
@@ -29,6 +30,11 @@ define([
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.link = null;
+    this.linkValues = {
+      'internal': null,
+      'file': null,
+      'external': null
+    };
   }
 
   DoughBaseComponent.extend(LinkManager);
@@ -52,10 +58,15 @@ define([
 
   LinkManagerProto._setupAppEvents = function() {
     eventsWithPromises.subscribe('cmseditor:link-published', $.proxy(this._handleShown, this));
+    eventsWithPromises.subscribe('dialog:cancelled', $.proxy(this.close, this));
+    eventsWithPromises.subscribe('dialog:closed', $.proxy(this.close, this));
   };
 
   LinkManagerProto._handleFormControlUpdate = function(e) {
-    this.setLink($(e.target).val());
+    var $trigger = $(e.target),
+        type = $trigger.attr(this._stripSquareBrackets(this.config.selectors.linkInputs));
+
+    this.setLink(type, $trigger.val());
   };
 
   LinkManagerProto._handleShown = function(eventData) {
@@ -68,15 +79,22 @@ define([
     }
   };
 
+  LinkManagerProto._handleInsertLink = function(e) {
+    var link = this.getLink($(e.target).attr(this._stripSquareBrackets(this.config.selectors.insertLink)));
+    this.publishLink(link);
+    this.close();
+  };
+
   LinkManagerProto._setup = function(type, link) {
-    var linkType = this._getLinkType(link);
+    var linkType = this.config.tabIds[this._getLinkType(link)];
+
     if(type === 'new') {
-      this.changeTab(this.$tabTriggers, 'internal');
+      this.changeTab('internal');
     }
     else if(type === 'existing') {
-      this.link = link;
-      this.changeTab(this.$tabTriggers, this.config.tabIds[linkType]);
-      this.setInputs(this.config.tabIds[linkType], this.link);
+      this.linkValues[linkType] = link;
+      this.changeTab(linkType);
+      this.setInputs(linkType, link);
     }
   };
 
@@ -85,30 +103,7 @@ define([
       .on('input', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('keyup', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('change', '[data-dough-linkmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this.publishLink, this));
-  };
-
-  LinkManagerProto.setLink = function(link) {
-    if(!link) return;
-    this.link = link;
-  };
-
-  LinkManagerProto.getLink = function() {
-    return this.link;
-  };
-
-  LinkManagerProto.publishLink = function() {
-    eventsWithPromises.publish('dialog:close', {
-      emitter: this.context
-    });
-
-    this.changeTab(this.$tabTriggers, 'internal');
-    this.clearInputs();
-
-    eventsWithPromises.publish('linkmanager:link-published', {
-      emitter: this.context,
-      link: this.link
-    });
+      .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
   };
 
   LinkManagerProto._getLinkType = function(link) {
@@ -120,11 +115,36 @@ define([
     return str.replace(/([\[\]])+/gi,'');
   };
 
-  LinkManagerProto.changeTab = function($tabTriggers, id) {
+  LinkManagerProto.setLink = function(type, link) {
+    if(!link || !type) return;
+    this.linkValues[type] = link;
+  };
+
+  LinkManagerProto.getLink = function(type) {
+    return this.linkValues[type];
+  };
+
+  LinkManagerProto.publishLink = function(link) {
+    eventsWithPromises.publish('dialog:close', {
+      emitter: this.context
+    });
+
+    eventsWithPromises.publish('linkmanager:link-published', {
+      emitter: this.context,
+      link: link
+    });
+  };
+
+  LinkManagerProto.changeTab = function(id) {
     // Note: Ideally we would be calling the TabSelector methods directly
     // but currently Dough doesn't allow deferred components so we have
     // to click on the tab
-    $tabTriggers.filter('[data-dough-tab-selector-trigger="' + id + '"]').click();
+    this.$tabTriggers.filter('[data-dough-tab-selector-trigger="' + id + '"]').click();
+  };
+
+  LinkManagerProto.close = function() {
+    this.changeTab('internal');
+    this.clearInputs();
   };
 
   LinkManagerProto.setInputs = function(type, link) {
