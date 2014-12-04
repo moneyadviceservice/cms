@@ -10,10 +10,9 @@
 
     .choose-sort-by
       = label_tag :sort_by
-      = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: I18n.t('files.index.sort_by.placeholder'),   data: { dough_component: 'SelectSubmitter' })
+      = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: I18n.t('files.index.sort_by.placeholder'), data: { dough_component: 'SelectSubmitter' })
 
   .js-linkable-files
 
-  %span.button-menu
-    %button.button--action{ 'data-dough-linkmanager-insertlink' => 'file' }
-      = t('links.file.insert_button')
+  %button.button--action{ 'data-dough-linkmanager-insertlink' => 'file' }
+    %span.button__text = t('links.file.insert_button')
