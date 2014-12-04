@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :word_documents
 
   scope '/admin' do
+    resources :links, only: :show
+
     resources :sites do
       resources :files
 
