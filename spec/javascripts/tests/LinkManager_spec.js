@@ -347,6 +347,7 @@ describe('LinkManager', function () {
   });
 
   describe('Get a link from the linkValues hash', function () {
+  describe('getLink() Get a link from the linkValues hash', function () {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture);
       this.component.init();
@@ -360,7 +361,7 @@ describe('LinkManager', function () {
     });
   });
 
-  describe('Close', function () {
+  describe('Closing the dialog', function () {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture);
       this.component.init();
