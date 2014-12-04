@@ -1,4 +1,4 @@
-.tab-selector__target.is-active#page{'data-dough-tab-selector-target' => 'internal' }
+.tab-selector__target.is-active#page{'data-dough-tab-selector-target' => 'page' }
   %h3.l-tab-panels__heading Select page
   = form_tag(site_links_pages_path, method: 'get', remote: true) do
     %h4.is-inactive{'data-dough-linkmanager-label' => 'page'} No link
