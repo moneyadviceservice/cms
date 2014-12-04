@@ -24,7 +24,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
 
         eventsWithPromises.publish('cmseditor:link-published', {
           emitter: linkManagerContext,
-          link: !!node? node.href : null
+          link: !!node? node.attributes['href'].value : null
         });
       };
 
