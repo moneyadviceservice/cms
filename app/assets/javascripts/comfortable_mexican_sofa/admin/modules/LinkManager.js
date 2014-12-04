@@ -23,7 +23,7 @@ define([
           inactiveClass: 'is-inactive'
         },
         tabIds: {
-          'page': 'internal',
+          'page': 'page',
           'file': 'file',
           'external': 'external'
         }
@@ -32,7 +32,7 @@ define([
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.linkValues = {
-      'internal': null,
+      'page': null,
       'file': null,
       'external': null
     };
@@ -106,7 +106,7 @@ define([
     var _this = this;
 
     if(type === 'new') {
-      this.changeTab('internal');
+      this.changeTab('page');
     }
     else if(type === 'existing') {
       this.showLoader();
@@ -179,7 +179,7 @@ define([
   };
 
   LinkManagerProto.close = function() {
-    this.changeTab('internal');
+    this.changeTab('page');
     this.clearInputs();
   };
 

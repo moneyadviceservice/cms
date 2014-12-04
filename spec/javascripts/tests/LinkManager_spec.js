@@ -143,12 +143,12 @@ describe('LinkManager', function () {
     });
 
     describe('When a new link is called', function () {
-      it('should activate the "internal" tab trigger', function() {
+      it('should activate the "page" tab trigger', function() {
         var spy = sandbox.spy();
         this.component.init();
 
-        $('[data-dough-tab-selector-trigger="internal"]').on('click', spy);
-        this.component.changeTab('internal');
+        $('[data-dough-tab-selector-trigger="page"]').on('click', spy);
+        this.component.changeTab('page');
         expect(spy.called).to.be.true;
       });
     });
@@ -218,7 +218,7 @@ describe('LinkManager', function () {
       var spy = sandbox.spy(this.LinkManager.prototype, 'changeTab');
       this.component.init();
       this.component.$insertLinks.first().click();
-      expect(spy.calledWith('internal')).to.be.true;
+      expect(spy.calledWith('page')).to.be.true;
     });
 
     it('should call the publishLink method', function() {
@@ -226,7 +226,7 @@ describe('LinkManager', function () {
           $insertLink;
 
       this.component.init();
-      this.component.setLink('internal', 'foo');      
+      this.component.setLink('page', 'foo');      
       this.component.$insertLinks.first().click();
 
       expect(spy.calledWith('foo')).to.be.true;
@@ -264,14 +264,14 @@ describe('LinkManager', function () {
     });
 
     afterEach(function () {
-      this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="internal"]').val('/foo');
+      this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="page"]').val('/foo');
       this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="external"]').val('http://foo.com');
       this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="file"]').val('foo.pdf');
     });
 
-    it('should set the internal link value inputs with the passed link', function () {
-      this.component.setInputs('internal', '/bar');
-      expect(this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="internal"]').first().val()).to.equal('/bar');
+    it('should set the page link value inputs with the passed link', function () {
+      this.component.setInputs('page', '/bar');
+      expect(this.component.$linkInputs.filter('[data-dough-linkmanager-link-type="page"]').first().val()).to.equal('/bar');
     });
 
     it('should set the external link value inputs with the passed link', function () {
@@ -298,7 +298,7 @@ describe('LinkManager', function () {
 
       this.eventsWithPromises.subscribe('linkmanager:link-published', spy);
 
-      this.component.setLink('internal', link);
+      this.component.setLink('page', link);
       this.component.publishLink(link);
 
       expect(spy.args[0][0].link).to.equal(link);
@@ -316,8 +316,8 @@ describe('LinkManager', function () {
     it('should set the link variable', function() {
       var link = 'http://foo.com';
 
-      this.component.setLink('internal', link);
-      expect(this.component.linkValues['internal']).to.eq(link);
+      this.component.setLink('page', link);
+      expect(this.component.linkValues['page']).to.eq(link);
     });
   });
 
@@ -369,8 +369,8 @@ describe('LinkManager', function () {
     it('should return the correct link based type', function() {
       var link = 'http://foo.com';
 
-      this.component.setLink('internal', link);
-      expect(this.component.getLink('internal')).to.equal(link);
+      this.component.setLink('page', link);
+      expect(this.component.getLink('page')).to.equal(link);
     });
   });
 
@@ -474,7 +474,7 @@ describe('LinkManager', function () {
 
       this.component.close();
 
-      expect(changeTabSpy.calledWith('internal')).to.be.true;
+      expect(changeTabSpy.calledWith('page')).to.be.true;
       expect(clearInputsSpy.called).to.be.true;
     });
   });

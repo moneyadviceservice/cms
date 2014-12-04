@@ -2,7 +2,7 @@
   %h3.l-tab-panels__heading
     = t('links.file.header')
   = form_tag(site_links_files_path, method: 'get', remote: true) do
-    %h4.is-inactive{'dough-linkmanager-label' => 'file'} No link
+    %h4.is-inactive{'data-dough-linkmanager-label' => 'file'} No link
     = label_tag(:search, nil, class: 'visually-hidden')
     = text_field_tag(:search, '', placeholder: t('links.file.placeholder'), class: 'form__input form__input--constrained search__input t-search-box')
     = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
