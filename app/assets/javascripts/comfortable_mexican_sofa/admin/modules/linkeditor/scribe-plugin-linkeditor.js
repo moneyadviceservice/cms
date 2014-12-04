@@ -60,9 +60,12 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.handleLinkPublished = function(eventData, promise) {
-        if(eventData.emitter === linkManagerContext) {
+        if(eventData && eventData.link && eventData.emitter === linkManagerContext) {
           linkEditorCommand.inject.call(linkEditorCommand, eventData.link);
           promise.resolve();
+        }
+        else {
+          promise.reject();
         }
       };
 
@@ -86,7 +89,6 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.init();
-
 
       scribe.commands.editLink = linkEditorCommand;
     };
