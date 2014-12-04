@@ -18,5 +18,8 @@
         = render 'links/files/form'
 
         = render 'links/external/form'
-
-
+  
+      .loader.is-inactive{'data-dough-linkmanager-loader' => true}
+        .loader__inner
+          %span.loader__icon
+            .fa.fa-spinner.fa-spin

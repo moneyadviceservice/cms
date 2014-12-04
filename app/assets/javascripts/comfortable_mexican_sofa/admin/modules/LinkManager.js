@@ -17,24 +17,26 @@ define([
           valueTrigger: '[data-dough-linkmanager-value-trigger]',
           tabTrigger: '[data-dough-tab-selector-trigger]',
           linkInputs: '[data-dough-linkmanager-link-type]',
-          currentLinkValue: '[data-dough-linkmanager-current-link-value]'
+          linkLabels: '[data-dough-linkmanager-label]',
+          loader: '[data-dough-linkmanager-loader]',
+          activeClass: 'is-active',
+          inactiveClass: 'is-inactive'
         },
         tabIds: {
-          'external-page': 'external',
-          'internal-page': 'internal',
-          'external-file': 'external',
-          'internal-file': 'file'
+          'page': 'internal',
+          'file': 'file',
+          'external': 'external'
         }
       };
 
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
-    this.link = null;
     this.linkValues = {
       'internal': null,
       'file': null,
       'external': null
     };
+    this.linksUrl = '/admin/links/';
   }
 
   DoughBaseComponent.extend(LinkManager);
@@ -52,8 +54,10 @@ define([
   LinkManagerProto._cacheComponentElements = function() {
     this.$tabTriggers = this.$el.find(this.config.selectors.tabTrigger);
     this.$linkInputs = this.$el.find(this.config.selectors.linkInputs);
+    this.$linkLabels = this.$el.find(this.config.selectors.linkLabels);
     this.$insertLinks = this.$el.find(this.config.selectors.insertLink);
     this.$valueTriggers = this.$el.find(this.config.selectors.valueTrigger);
+    this.$loader = this.$el.find(this.config.selectors.loader);
   };
 
   LinkManagerProto._setupAppEvents = function() {
@@ -85,16 +89,30 @@ define([
     this.close();
   };
 
+  LinkManagerProto._handleAjaxLabelDone = function(data) {
+    this.linkValues[linkType] = data.type;
+    this.setInputs(linkType, data.link);
+    this.setLabels(linkType, data.label);
+    this.showLabels();
+    this.changeTab(this.config.tabIds[data.type]);
+    this.hideLoader();
+  };
+
+  LinkManagerProto._handleAjaxLabelFail = function(data) {
+    this.hideLoader();
+  };
+
   LinkManagerProto._setup = function(type, link) {
-    var linkType = this.config.tabIds[this._getLinkType(link)];
+    var _this = this;
 
     if(type === 'new') {
       this.changeTab('internal');
     }
     else if(type === 'existing') {
-      this.linkValues[linkType] = link;
-      this.changeTab(linkType);
-      this.setInputs(linkType, link);
+      this.showLoader();
+      this._getPageLabel(link)
+        .done($.proxy(this._handleAjaxLabelDone,this))
+        .fail($.proxy(this._handleAjaxLabelFail,this));
     }
   };
 
@@ -106,10 +124,16 @@ define([
       .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
   };
 
-  LinkManagerProto._getLinkType = function(link) {
-    // Note: Awaiting decision on full link formatting
-    return 'external-file';
-  };
+  LinkManagerProto._getPageLabel = function(link) {
+    var deferred = $.Deferred();
+    $.ajax(this.linksUrl + link).done(function(data) {
+      deferred.resolve(data);
+    })
+    .fail(function(data) {
+      deferred.reject(data);
+    })
+    return deferred;
+  }
 
   LinkManagerProto._stripSquareBrackets = function(str) {
     return str.replace(/([\[\]])+/gi,'');
@@ -142,6 +166,18 @@ define([
     this.$tabTriggers.filter('[data-dough-tab-selector-trigger="' + id + '"]').click();
   };
 
+  LinkManagerProto.showLoader = function() {
+    this.$loader
+      .addClass(this.config.selectors.activeClass)
+      .removeClass(this.config.selectors.inactiveClass);
+  };
+
+  LinkManagerProto.hideLoader = function() {
+    this.$loader
+      .removeClass(this.config.selectors.activeClass)
+      .addClass(this.config.selectors.inactiveClass);
+  };
+
   LinkManagerProto.close = function() {
     this.changeTab('internal');
     this.clearInputs();
@@ -150,6 +186,22 @@ define([
   LinkManagerProto.setInputs = function(type, link) {
     this.$linkInputs.filter('[data-dough-linkmanager-link-type="' + type + '"]').val(link);
   };
+
+  LinkManagerProto.setLabels = function(type, link) {
+    this.$linkLabels.filter('[data-dough-linkmanager-label="' + type + '"]').val(link);
+  };
+
+  LinkManagerProto.showLabels = function() {
+    this.$linkLabels
+      .addClass(this.config.selectors.activeClass)
+      .removeClass(this.config.selectors.inactiveClass);
+  }
+
+  LinkManagerProto.hideLabels = function() {
+    this.$linkLabels
+      .removeClass(this.config.selectors.activeClass)
+      .addClass(this.config.selectors.inactiveClass);
+  }
 
   LinkManagerProto.clearInputs = function() {
     this.$linkInputs.val('');

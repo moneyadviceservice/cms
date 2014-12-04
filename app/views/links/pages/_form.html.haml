@@ -2,8 +2,7 @@
   %h3.l-tab-panels__heading
     = t('links.page.header')
   = form_tag(site_links_pages_path, method: 'get', remote: true) do
-    = label_tag(:link, t('links.current'))
-    = text_field_tag(:link, nil, data: {'dough-linkmanager-link-type' => 'internal'}, disabled: 'disabled')
+    %h4.is-inactive{'dough-linkmanager-label' => 'internal'} No link
     = label_tag(:search, nil, class: 'visually-hidden')
     = text_field_tag(:search, '', placeholder: t('links.page.placeholder'), class: 'form__input form__input--constrained search__input t-search-box')
     = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
@@ -22,5 +21,5 @@
   .js-linkable-pages
 
   %span.button-menu
-    %button.button--action{'data-dough-linkmanager-insertlink' => true }
+    %button.button--action{'data-dough-linkmanager-insertlink' => 'internal' }
       = t('links.page.insert_button')

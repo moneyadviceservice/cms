@@ -25,7 +25,8 @@ $z-index1: 100;
 %z-index--toolbar.is-sticky,
 %z-index--nav-article.is-fixed,
 %z-index--popover.is-active,
-%z-index--nav-primary__text {
+%z-index--nav-primary__text,
+%z-index--loader {
   z-index: $z-index10;
 }
 

@@ -44,6 +44,9 @@ describe('LinkManager', function () {
       expect(this.component.$tabTriggers.length).to.be.at.least(1);
       expect(this.component.$insertLinks.length).to.be.at.least(1);
       expect(this.component.$valueTriggers.length).to.be.at.least(1);
+      expect(this.component.$linkInputs.length).to.be.at.least(1);
+      expect(this.component.$linkLabels.length).to.be.at.least(1);
+      expect(this.component.$loader.length).to.equal(1);
     });
   });
 
@@ -253,34 +256,6 @@ describe('LinkManager', function () {
       // });
   });
 
-  describe('Checks link type (link to internal page, external page or a file)', function () {
-    beforeEach(function (done) {
-      this.component = new this.LinkManager(this.$fixture);
-      this.component.init();
-      done();
-    });
-
-    it('should return an internal link type' , function() {
-      expect(this.component._getLinkType('/en/articles/foo')).to.equal('internal');
-    });
-
-    it('should return an external link type', function() {
-      expect(this.component._getLinkType('http://www.foo.com')).to.equal('external');
-    });
-
-    it('should return an external file type', function() {
-      expect(this.component._getLinkType('http://www.foo.com/file.pdf')).to.equal('external');
-    });
-
-    it('should return an internal file type' , function() {
-      expect(this.component._getLinkType('/file.pdf')).to.equal('internal');
-    });
-
-    it('should return false if no link type is found' , function() {
-      expect(this.component._getLinkType('foo')).to.be.false;
-    });
-  });
-
   describe('Updating the link value inputs', function () {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture);
@@ -346,7 +321,45 @@ describe('LinkManager', function () {
     });
   });
 
-  describe('Get a link from the linkValues hash', function () {
+  // describe('getPageLabel', function () {
+  //   var server;
+
+  //   beforeEach(function () {
+  //     server = sandbox.useFakeServer();
+  //     server.autoRespond = true;
+  //     this.component = new this.LinkManager(this.$fixture);
+  //   });
+
+  //   afterEach(function () {
+  //     server.restore();
+  //   });
+
+  //   describe('When a link is being edited', function () {
+  //     describe('And the server returns a link type of page or file', function () {
+  //       it('should call the server with the link', function (done) {});
+  //       it('should call the _handleAjaxLabelDone method', function (done) {
+  //         var link = 'test',
+  //             spy = sinon.spy(this.LinkManager.prototype, '_handleAjaxLabelDone'),
+  //             getLinkLabel;
+
+  //         this.component.init();
+
+  //         getLinkLabel = this.component._getPageLabel('twat');
+
+  //         server.respondWith("GET", "/admin/links/" + link,
+  //                          [200, { "Content-Type": "application/json" },
+  //                           '{ "label": "Foo", "url": "/en/foo"}']);
+
+  //         getLinkLabel.done(function(data) {
+  //           console.dir(spy);
+  //           expect(spy.called).to.be.true;
+  //           done();
+  //         });
+  //       });  
+  //     });
+  //   });
+  // });
+
   describe('getLink() Get a link from the linkValues hash', function () {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture);
@@ -358,6 +371,93 @@ describe('LinkManager', function () {
 
       this.component.setLink('internal', link);
       expect(this.component.getLink('internal')).to.equal(link);
+    });
+  });
+
+  describe('setLabels', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkManager(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should set the label text based on the type', function() {
+      var type = 'file',
+          link = 'http://.foo.com',
+          $fileLabel = this.component.$linkLabels.filter('[data-dough-linkmanager-label="file"]').first(),
+          fileLabelText = $fileLabel.text(link);
+
+      this.component.setLabels('file', link);
+      
+      expect($fileLabel.text()).to.equal(link);
+
+      $fileLabel.text(fileLabelText);
+    });
+  });
+
+  describe('showLoader', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkManager(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should add the activeClass and remove the inactiveClass from the loader', function() {
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.activeClass)).to.be.false;
+      this.component.showLoader();
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
+  });
+
+  describe('hideLabels', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkManager(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should add the inactiveClass and remove the activeClass from the loader', function() {
+      this.component.showLoader();
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.activeClass)).to.be.true;
+      this.component.hideLoader();
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$loader.first().hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+  });
+
+  describe('showLabels', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkManager(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should add the activeClass and remove the inactiveClass from the link label elements', function() {
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.activeClass)).to.be.false;
+      this.component.showLabels();
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
+  });
+
+  describe('hideLabels', function () {
+    beforeEach(function (done) {
+      this.component = new this.LinkManager(this.$fixture);
+      this.component.init();
+      done();
+    });
+
+    it('should add the inactiveClass and remove the activeClass from the link label elements', function() {
+      this.component.showLabels();
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.activeClass)).to.be.true;
+      this.component.hideLabels();
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$linkLabels.first().hasClass(this.component.config.selectors.activeClass)).to.be.false;
     });
   });
 

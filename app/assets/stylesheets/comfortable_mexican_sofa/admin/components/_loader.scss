@@ -1,0 +1,35 @@
+// Loader
+
+.loader {
+  @extend %z-index--loader;
+  @extend %is-hidden;
+  background: $color-loader-background;  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.loader.is-inactive {
+  @extend %is-hidden;
+}
+
+.loader.is-active {
+  @extend %is-active;
+}
+
+.loader__inner {
+  display: table;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+
+.loader__icon {
+  @include body(50,50);
+  color: $color-loader-icon-foreground;
+  display: table-cell;
+  vertical-align: middle;
+}
