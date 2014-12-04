@@ -9,6 +9,10 @@
         =button_tag("H2", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h2"})
         =button_tag("H3", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h3"})
         =button_tag("H4", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h4"})
+        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "subscript"}) do
+          %span.fa.fa-subscript
+        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "superscript"}) do
+          %span.fa.fa-superscript
 
       .toolbar__item-group
         =button_tag("OL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertOrderedList"}) do
