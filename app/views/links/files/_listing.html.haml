@@ -3,6 +3,6 @@
     %ol.listing
       - files.each do |file|
         %li
-          = radio_button_tag(:file_url, file.file.url, false, data: {'dough-linkmanager-value-trigger' => true})
+          = radio_button_tag(:file_url, file.file.url, false, data: {'dough-linkmanager-value-trigger' => true, 'dough-linkmanager-link-type' => 'file'})
           = file.label
 
