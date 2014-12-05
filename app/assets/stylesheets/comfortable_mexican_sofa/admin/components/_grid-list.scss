@@ -1,0 +1,24 @@
+// Grid list
+//
+// Styleguide Grid list
+
+.grid-list {
+  display: table;
+}
+
+.grid-list__row {
+  display: table-row;
+}
+
+.grid-list__item {
+  display: table-cell;
+  padding: 5px;
+}
+
+.grid-list__item.grid-list__item--center-aligned {
+  text-align: center;
+}
+
+.grid-list--page-listing .grid-list__item:first-child {
+  border-right: 1px solid $color-grid-list-page-listing;
+}
