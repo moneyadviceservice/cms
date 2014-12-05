@@ -5,11 +5,17 @@ RSpec.describe PageMirror do
   let(:welsh_site) { create(:site, label: 'cy', path: 'cy') }
 
   let!(:page) do
-    create(:page, label: 'Before borrow money', site: english_site)
+    create(:page,
+           label: 'Before borrow money',
+           slug: 'before-borrow-money',
+           site: english_site)
   end
 
   let!(:welsh_page) do
-    create(:page, label: 'Cyn i chi fenthyca arian', site: welsh_site)
+    create(:page,
+           label: 'Cyn i chi fenthyca arian',
+           slug: 'cyn-i-chi-fenthyca-arian',
+           site: welsh_site)
   end
 
   let(:mirrors) { [welsh_page] }
@@ -100,7 +106,7 @@ RSpec.describe PageMirror do
       let(:language) { :en }
 
       it 'returns english url' do
-        expect(url).to eq('//test.host/en/')
+        expect(url).to eq('/en/before-borrow-money')
       end
     end
 
@@ -108,7 +114,7 @@ RSpec.describe PageMirror do
       let(:language) { :cy }
 
       it 'returns welsh url' do
-        expect(url).to eq('//test.host/cy/')
+        expect(url).to eq('/cy/cyn-i-chi-fenthyca-arian')
       end
     end
 

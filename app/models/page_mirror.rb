@@ -23,7 +23,10 @@ class PageMirror
   end
 
   def url(language)
-    mirror(language).try(:url)
+    language_mirror = mirror(language)
+    return if language_mirror.blank?
+
+    "/#{language_mirror.site.path}/#{language_mirror.slug}".squeeze('/')
   end
 
   def mirror(language)
