@@ -3,6 +3,6 @@
     = t('links.external.header')
   %input{ type: 'text', data: { 'dough-linkmanager-link-type' => 'external', 'dough-linkmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
 
-  %button.button--action{'data-dough-linkmanager-insertlink' => true }
-    %span.button__text
+  %button.button--action
+    %span.button__text{'data-dough-linkmanager-insertlink' => 'external' }
       = t('links.external.insert_button')
