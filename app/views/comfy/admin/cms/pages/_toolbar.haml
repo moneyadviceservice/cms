@@ -13,6 +13,8 @@
           %span.fa.fa-subscript
         =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "superscript"}) do
           %span.fa.fa-superscript
+        =button_tag("Remove Formatting", title: "Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
+          %span.fa.fa-times
 
       .toolbar__item-group
         =button_tag("OL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertOrderedList"}) do
@@ -47,10 +49,6 @@
                 =button_tag("Video", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_video"})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
-
-      .toolbar__item-group
-        =button_tag("Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
-          %span.fa.fa-square-o
 
     .toolbar__item-group{data: {dough_maseditor_mode_switch: true}}
       .toggle
