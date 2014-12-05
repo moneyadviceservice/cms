@@ -98,14 +98,12 @@ define([
     this.hideLoader();
   };
 
-  LinkManagerProto._handleAjaxLabelFail = function(data) {
+  LinkManagerProto._handleAjaxLabelFail = function() {
     this.hideLoader();
     this.changeTab(this.config.tabIds['page']);
   };
 
   LinkManagerProto._setup = function(type, link) {
-    var _this = this;
-
     if(type === 'new') {
       this.changeTab('page');
     }
@@ -132,9 +130,9 @@ define([
     })
     .fail(function(data) {
       deferred.reject(data);
-    })
+    });
     return deferred;
-  }
+  };
 
   LinkManagerProto._stripSquareBrackets = function(str) {
     return str.replace(/([\[\]])+/gi,'');
@@ -196,13 +194,13 @@ define([
     this.$linkLabels
       .addClass(this.config.selectors.activeClass)
       .removeClass(this.config.selectors.inactiveClass);
-  }
+  };
 
   LinkManagerProto.hideLabels = function() {
     this.$linkLabels
       .removeClass(this.config.selectors.activeClass)
       .addClass(this.config.selectors.inactiveClass);
-  }
+  };
 
   LinkManagerProto.clearInputs = function() {
     this.$linkInputs.val('');
