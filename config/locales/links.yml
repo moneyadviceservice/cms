@@ -3,7 +3,7 @@ en:
     current: 'Current link'
     external:
       header: 'Add external link'
-      insert_button: 'Add Link'
+      insert_button: 'Insert Link'
       placeholder: 'Enter url'
     file:
       header: 'Select File'
