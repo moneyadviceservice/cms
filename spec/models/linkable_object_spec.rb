@@ -36,6 +36,74 @@ RSpec.describe LinkableObject do
     end
   end
 
+  describe '.find_page' do
+    before do
+      expect(Comfy::Cms::Page).to receive(:where).with(slug: url).and_return(double(take: object))
+    end
+
+    context 'when page' do
+      let(:site) { create(:site, path: 'en') }
+      let!(:page) { create(:page, site: site) }
+      let(:url) { 'investing-money' }
+      let(:object) { page }
+
+      it 'returns page' do
+        expect(described_class.find_page('en/investing-money')).to eq(object)
+      end
+    end
+
+    context 'when file' do
+      let(:url) { 'system/file.pdf' }
+      let(:object) { nil }
+
+      it 'returns nil' do
+        expect(described_class.find_page(url)).to be_nil
+      end
+    end
+
+    context 'when external url' do
+      let(:url) { 'http://moneysite.com/' }
+      let(:object) { nil }
+
+      it 'returns nil' do
+        expect(described_class.find_page(url)).to be_nil
+      end
+    end
+  end
+
+  describe '#find_file' do
+    before do
+      expect(Comfy::Cms::File).to receive(:find_by).with(file_file_name: file_name).and_return(object)
+    end
+
+    context 'when file' do
+      let(:object) { build(:file) }
+      let(:file_name) { 'investing.pdf' }
+
+      it 'returns file' do
+        expect(described_class.find_file('/system/1/002/investing.pdf')).to eq(object)
+      end
+    end
+
+    context 'when page' do
+      let(:object) { nil }
+      let(:file_name) { 'borrow-money' }
+
+      it 'returns nil' do
+        expect(described_class.find_file('en/borrow-money')).to be_nil
+      end
+    end
+
+    context 'when external link' do
+      let(:object) { nil }
+      let(:file_name) { 'moneysite.com' }
+
+      it 'returns nil' do
+        expect(described_class.find_file(file_name)).to be_nil
+      end
+    end
+  end
+
   describe '#label' do
     let(:object) { double(label: 'loan') }
     subject(:label) { linkable_object.label }

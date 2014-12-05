@@ -10,11 +10,15 @@ class LinkableObject
   end
 
   def self.find_page(url)
-    Comfy::Cms::Page.where('slug = :slug OR full_path = :full_path', slug: url, full_path: url).take
+    paths = Comfy::Cms::Site.pluck(:path)
+    slug  = url.gsub(/#{paths.join('|')}/, '').gsub(/\A\//, '')
+
+    Comfy::Cms::Page.where(slug: slug).take
   end
 
   def self.find_file(url)
-    Comfy::Cms::File.find_by(file_file_name: url)
+    file_name = File.basename(url)
+    Comfy::Cms::File.find_by(file_file_name: file_name)
   end
 
   def initialize(object, url)
