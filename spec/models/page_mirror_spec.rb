@@ -16,6 +16,15 @@ RSpec.describe PageMirror do
 
   before do
     allow(page).to receive(:mirrors).and_return(mirrors)
+    allow(welsh_page).to receive(:mirrors).and_return([page])
+  end
+
+  describe '.collect' do
+    subject(:collect) { described_class.collect([page, welsh_page]) }
+
+    it 'returns one page mirror removing mirror duplications' do
+      expect(collect).to contain_exactly(page_mirror)
+    end
   end
 
   describe '#mirror' do

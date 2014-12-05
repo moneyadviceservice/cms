@@ -1,6 +1,14 @@
 class PageMirror
   def self.collect(pages)
-    pages.collect { |page| new(page) }
+    remove_mirror_duplication(pages).collect { |page| new(page) }
+  end
+
+  def self.remove_mirror_duplication(pages)
+    pages.inject([]) do |mirror, page|
+      mirror.tap do |list|
+        list.push(page) if (mirror & [page, page.mirrors].flatten).blank?
+      end
+    end
   end
 
   attr_reader :page
@@ -22,6 +30,10 @@ class PageMirror
     find_mirror(language)
   end
 
+  def ==(other)
+    page_equal?(:en, other) && page_equal?(:cy, other)
+  end
+
   def inspect
     english = "english_label: '#{label(:en)}', english_url: '#{url(:en)}'"
     welsh   = "welsh_label: '#{label(:cy)}', welsh_url: '#{url(:cy)}'"
@@ -35,6 +47,10 @@ class PageMirror
     return page if page.site.label == language.to_s
 
     mirrors.find { |mirror| mirror.site.label == language.to_s }
+  end
+
+  def page_equal?(language, other)
+    label(language) == other.label(language) && url(language) == other.url(language)
   end
 
   def mirrors
