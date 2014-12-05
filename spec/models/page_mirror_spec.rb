@@ -122,4 +122,3 @@ RSpec.describe PageMirror do
     end
   end
 end
-

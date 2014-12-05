@@ -23,20 +23,18 @@ RSpec.describe PagesController do
     context 'when filtering pages' do
       let(:page) do
         create(:page,
-          label:  'test1',
-          slug:   'test1',
-          parent: create(:child_page)
-        )
+               label:  'test1',
+               slug:   'test1',
+               parent: create(:child_page))
       end
 
       let!(:another_page) do
         create(:page,
-          site:   page.site,
-          label:  'test2',
-          slug:   'test2',
-          parent: create(:child_page),
-          layout: create(:layout, :nested)
-        )
+               site:   page.site,
+               label:  'test2',
+               slug:   'test2',
+               parent: create(:child_page),
+               layout: create(:layout, :nested))
       end
 
       before do
@@ -60,13 +58,13 @@ RSpec.describe PagesController do
     context 'when passing the state event "save_unsaved"' do
       before do
         post :create,
-          site_id:      site.id,
-          state_event:  'save_unsaved',
-          page: {
-            label:     'Test Page',
-            slug:      'test-page',
-            layout_id: layout.id
-          }
+             site_id: site.id,
+             state_event:  'save_unsaved',
+             page: {
+               label: 'Test Page',
+               slug: 'test-page',
+               layout_id: layout.id
+             }
       end
 
       it 'creates a page with draft as state event' do
@@ -96,13 +94,13 @@ RSpec.describe PagesController do
     context 'when passing the state event "publish"' do
       before do
         post :create,
-          site_id:      site.id,
-          state_event:  'publish',
-          page: {
-            label:     'Test Page',
-            slug:      'test-page',
-            layout_id: layout.id
-          }
+             site_id: site.id,
+             state_event:  'publish',
+             page: {
+               label: 'Test Page',
+               slug: 'test-page',
+               layout_id: layout.id
+             }
       end
 
       it 'ignores the state event and persists as "unsaved"' do
@@ -113,12 +111,12 @@ RSpec.describe PagesController do
     context 'when not passing the state event' do
       before do
         post :create,
-          site_id:      site.id,
-          page: {
-            label:     'Test Page',
-            slug:      'test-page',
-            layout_id: layout.id
-          }
+             site_id: site.id,
+             page: {
+               label: 'Test Page',
+               slug: 'test-page',
+               layout_id: layout.id
+             }
       end
 
       it 'persists page as "unsaved"' do
@@ -141,10 +139,10 @@ RSpec.describe PagesController do
 
     before do
       put :update,
-        site_id:     site.id,
-        id:          page.id,
-        state_event: state_event,
-        page:        page_attributes
+          site_id:     site.id,
+          id:          page.id,
+          state_event: state_event,
+          page:        page_attributes
     end
 
     context 'when passes the "save_unsaved" event state from an "unsaved" page' do
@@ -167,7 +165,7 @@ RSpec.describe PagesController do
 
     context 'when passes the "publish" event state' do
       let!(:page) { create(:page, state: 'draft') }
-      let(:state_event) { 'publish'}
+      let(:state_event) { 'publish' }
 
       it 'persists page as "published"' do
         expect(assigns[:page].state).to eq 'published'
@@ -245,10 +243,10 @@ RSpec.describe PagesController do
       let(:state_event) { nil }
 
       it 'persists page attributes' do
-        expect(assigns[:page].attributes.symbolize_keys).to include({
+        expect(assigns[:page].attributes.symbolize_keys).to include(
           label: 'Another label',
           slug:  'another-slug'
-        })
+        )
       end
 
       it 'does not save any revisions' do

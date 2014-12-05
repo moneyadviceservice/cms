@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :site, class: Comfy::Cms::Site do
-    label      'en'
+    label 'en'
     sequence(:identifier) { |i| "identifier-#{i}" }
-    hostname    'test.host'
+    hostname 'test.host'
     is_mirrored false
 
     trait :welsh do

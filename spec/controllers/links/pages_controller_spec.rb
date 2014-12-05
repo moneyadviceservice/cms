@@ -19,4 +19,3 @@ RSpec.describe Links::PagesController do
     end
   end
 end
-

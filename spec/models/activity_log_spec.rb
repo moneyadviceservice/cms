@@ -92,7 +92,7 @@ RSpec.describe ActivityLog do
   end
 
   describe '#blocks_attributes?' do
-    let(:activity_log) { ActivityLog.new(type: activity_log_type)}
+    let(:activity_log) { ActivityLog.new(type: activity_log_type) }
 
     context 'when blocks attributes' do
       let(:activity_log_type) { 'blocks_attributes' }

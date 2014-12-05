@@ -49,4 +49,3 @@ RSpec.describe PageMirrorPresenter do
     end
   end
 end
-
