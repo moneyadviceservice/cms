@@ -8,6 +8,15 @@
     %h3 Heading h3
     %h4 Heading h4
 
+    %h2 .search .search--fill-width
+    .search.search--fill-width
+      %span.search__item
+        = label_tag(:search, nil, class: 'visually-hidden')
+        = text_field_tag(:search, nil, placeholder: 'Enter term', class: 'form__input search__input')
+      %span.search__item
+        = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
+          %span.button__text.fa.fa-search
+
     %h2 .dialog
 
     %button{"data-dough-dialog-trigger" => "example1", "data-dough-component" => "Dialog"} Open example 1
