@@ -1,27 +1,18 @@
 RSpec.describe LinksController do
+  let(:response_body) { JSON.load(response.body).symbolize_keys }
+
   describe 'GET /links/:url' do
+    let(:linkable_object) { LinkableObject.new(object, url) }
     let(:url) { 'some/url' }
-    let(:link_type) { 'page' }
+    let(:object) { build(:page) }
 
     before do
-      allow(LinkableObject).to receive(:find).with(url, link_type: link_type).and_return(object)
-      get :show, id: url, type: link_type
+      allow(LinkableObject).to receive(:find).with(url).and_return(linkable_object)
+      get :show, id: url
     end
 
-    context 'when finds the linkable object' do
-      let(:object) { build(:page, label: 'Before borrow money') }
-
-      it 'returns the label of the page' do
-        expect(response.body).to eq(JSON.dump(label: object.label))
-      end
-    end
-
-    context 'when not find the linkable object' do
-      let(:object) { nil }
-
-      it 'returns not found' do
-        expect(response.status).to be 404
-      end
+    it 'returns the linkable object representation' do
+      expect(response_body).to eq(label: object.label, url: url, type: 'page')
     end
   end
 end

@@ -1,11 +1,7 @@
 class LinksController < ApplicationController
   def show
-    @link = LinkableObject.find(params[:id], link_type: params[:type])
+    link = LinkableObject.find(params[:id])
 
-    if @link
-      render json: { label: @link.label }
-    else
-      head :not_found
-    end
+    render json: link, serializer: LinkSerializer
   end
 end

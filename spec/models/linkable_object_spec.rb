@@ -1,62 +1,99 @@
 RSpec.describe LinkableObject do
-  subject(:linkable_object) { LinkableObject.new(url, link_type: link_type) }
   let(:url) { 'some/url' }
+  subject(:linkable_object) { LinkableObject.new(object, url) }
 
-  describe '#valid?' do
-    context 'when link type page' do
-      let(:link_type) { 'page' }
+  describe '.find' do
+    subject { described_class.find(url) }
 
-      it 'returns true' do
-        expect(linkable_object).to be_valid
+    context 'when finds a page' do
+      let(:page) { build(:page) }
+
+      before do
+        allow(described_class).to receive(:find_page).and_return(page)
+      end
+
+      it 'returns a page linkable object' do
+        expect(subject.object).to be(page)
       end
     end
 
-    context 'when link type file' do
-      let(:link_type) { 'file' }
+    context 'when finds a file' do
+      let(:file) { build(:file) }
 
-      it 'returns true' do
-        expect(linkable_object).to be_valid
+      before do
+        allow(described_class).to receive(:find_file).and_return(file)
+      end
+
+      it 'returns a page linkable object' do
+        expect(subject.object).to be(file)
       end
     end
 
-    context 'when link type snippet' do
-      let(:link_type) { 'snippet' }
-
-      it 'returns false' do
-        expect(linkable_object).to_not be_valid
+    context 'when finds nothing' do
+      it 'returns a nil linkable object' do
+        expect(subject.object).to be_nil
       end
     end
   end
 
-  describe '.find' do
-    subject { described_class.find(url, link_type: link_type) }
+  describe '#label' do
+    let(:object) { double(label: 'loan') }
+    subject(:label) { linkable_object.label }
 
-    context 'when link type page' do
-      let(:page) { build(:page) }
-      let(:link_type) { 'page' }
-
-      it 'find the page by the slug' do
-        expect(Comfy::Cms::Page).to receive(:find_by).with(slug: url).and_return(page)
-        expect(subject).to eq(page)
+    context 'when is a page' do
+      it 'returns the page label' do
+        expect(label).to eq('loan')
       end
     end
 
-    context 'when link type file' do
-      let(:file) { build(:file) }
-      let(:link_type) { 'file' }
-
-      it 'find the file by the file name' do
-        expect(Comfy::Cms::File).to receive(:find_by).with(file_file_name: url).and_return(file)
-        expect(subject).to eq(file)
+    context 'when is a file' do
+      it 'returns the file label' do
+        expect(label).to eq('loan')
       end
     end
 
-    context 'when another link type' do
-      let(:link_type) { 'inexistent-link-type' }
+    context 'when is an external url' do
+      let(:object) { nil }
 
-      it 'returns false' do
-        expect(subject).to be_nil
+      it 'returns the url' do
+        expect(label).to eq('some/url')
       end
+    end
+  end
+
+  describe '#type' do
+    subject(:type) { linkable_object.type }
+
+    context 'when is an external url' do
+      let(:object) { nil }
+
+      it 'returns "external"' do
+        expect(type).to eq('external')
+      end
+    end
+
+    context 'when is a page' do
+      let(:object) { build(:page) }
+
+      it 'returns "page"' do
+        expect(type).to eq('page')
+      end
+    end
+
+    context 'when is a file' do
+      let(:object) { build(:file) }
+
+      it 'returns "file"' do
+        expect(type).to eq('file')
+      end
+    end
+  end
+
+  describe '#read_attribute_for_serialization' do
+    subject(:object) { double(label: 'Loan') }
+
+    it 'sends the value ' do
+      expect(linkable_object.read_attribute_for_serialization('label')).to eq('Loan')
     end
   end
 end
