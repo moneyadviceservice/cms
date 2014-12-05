@@ -4,4 +4,5 @@
   %input{ type: 'text', data: { 'dough-linkmanager-link-type' => 'external', 'dough-linkmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
 
   %button.button--action{'data-dough-linkmanager-insertlink' => true }
-    %span.button__text = t('links.external.insert_button')
+    %span.button__text
+      = t('links.external.insert_button')
