@@ -66,6 +66,13 @@ define([
     eventsWithPromises.subscribe('dialog:closed', $.proxy(this.close, this));
   };
 
+  LinkManagerProto._setupUIEvents = function() {
+    this.$el
+      .on('input', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('keyup', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('change', '[data-dough-linkmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
+  };
   LinkManagerProto._handleFormControlUpdate = function(e) {
     var $trigger = $(e.target),
         type = $trigger.attr(this._stripSquareBrackets(this.config.selectors.linkInputs));
@@ -113,14 +120,6 @@ define([
         .done($.proxy(this._handleAjaxLabelDone,this))
         .fail($.proxy(this._handleAjaxLabelFail,this));
     }
-  };
-
-  LinkManagerProto._setupUIEvents = function() {
-    this.$el
-      .on('input', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('keyup', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('change', '[data-dough-linkmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
   };
 
   LinkManagerProto._getPageLabel = function(link) {
