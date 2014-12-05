@@ -160,7 +160,7 @@ describe('LinkManager', function () {
             $textInput,
             textInputType,
             textInputVal;
-        
+
         this.component.init();
 
         $textInput = this.component.$valueTriggers.filter(':text').first();
@@ -188,7 +188,7 @@ describe('LinkManager', function () {
         radioInputVal = $radioInput.val();
 
         $radioInput.attr('data-dough-linkmanager-link-type', 'external');
-        $radioInput  
+        $radioInput
           .val('bar')
           .click();
 
@@ -222,8 +222,7 @@ describe('LinkManager', function () {
     });
 
     it('should call the publishLink method', function() {
-      var spy = sandbox.spy(this.LinkManager.prototype, 'publishLink'),
-          $insertLink;
+      var spy = sandbox.spy(this.LinkManager.prototype, 'publishLink');
 
       this.component.init();
       this.component.setLink('page', 'foo');      
@@ -367,13 +366,12 @@ describe('LinkManager', function () {
     });
 
     it('should set the label text based on the type', function() {
-      var type = 'file',
-          link = 'http://.foo.com',
+      var link = 'http://.foo.com',
           $fileLabel = this.component.$linkLabels.filter('[data-dough-linkmanager-label="file"]').first(),
           fileLabelText = $fileLabel.text(link);
 
       this.component.setLabels('file', link);
-      
+
       expect($fileLabel.text()).to.equal(link);
 
       $fileLabel.text(fileLabelText);
