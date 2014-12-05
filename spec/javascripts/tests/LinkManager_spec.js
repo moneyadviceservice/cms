@@ -216,8 +216,13 @@ describe('LinkManager', function () {
 
     it('should call the changeTab method', function() {
       var spy = sandbox.spy(this.LinkManager.prototype, 'changeTab');
+
       this.component.init();
+      this.component._handleShown({
+        emitter: 'add-link'
+      });
       this.component.$insertLinks.first().click();
+
       expect(spy.calledWith('page')).to.be.true;
     });
 
@@ -225,7 +230,8 @@ describe('LinkManager', function () {
       var spy = sandbox.spy(this.LinkManager.prototype, 'publishLink');
 
       this.component.init();
-      this.component.setLink('page', 'foo');      
+
+      this.component.setLink('page', 'foo');
       this.component.$insertLinks.first().click();
 
       expect(spy.calledWith('foo')).to.be.true;
@@ -235,6 +241,11 @@ describe('LinkManager', function () {
     it('should call the clearInputs method', function() {
       var spy = sandbox.spy(this.LinkManager.prototype, 'clearInputs');
       this.component.init();
+
+      this.component._handleShown({
+        emitter: 'add-link'
+      });
+
       this.component.$insertLinks.first().click();
       expect(spy.called).to.be.true;
     });
@@ -339,7 +350,7 @@ describe('LinkManager', function () {
   //           expect(spy.called).to.be.true;
   //           done();
   //         });
-  //       });  
+  //       });
   //     });
   //   });
   // });
@@ -447,7 +458,6 @@ describe('LinkManager', function () {
   describe('Closing the dialog', function () {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture);
-      this.component.init();
       done();
     });
 
@@ -455,10 +465,31 @@ describe('LinkManager', function () {
       var changeTabSpy = sandbox.spy(this.LinkManager.prototype, 'changeTab'),
           clearInputsSpy = sandbox.spy(this.LinkManager.prototype, 'clearInputs');
 
+      this.component.init();
+      this.component._handleShown({
+        emitter: 'add-link'
+      });
       this.component.close();
 
       expect(changeTabSpy.calledWith('page')).to.be.true;
       expect(clearInputsSpy.called).to.be.true;
+    });
+
+    it('should return the close function early if the LinkManager has already been closed', function() {
+      var spy = sandbox.spy(this.LinkManager.prototype, 'close');
+
+      this.component.init();
+      this.component._handleShown({
+        emitter: 'add-link'
+      });
+
+      expect(this.component.open).to.be.true;
+
+      this.component.close();
+      this.component.close();
+
+      expect(spy.returnValues[1]).to.be.false;
+      expect(this.component.open).to.be.false;
     });
   });
 

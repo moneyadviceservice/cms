@@ -31,6 +31,7 @@ define([
 
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
+    this.open = false;
     this.linkValues = {
       'page': null,
       'file': null,
@@ -73,6 +74,7 @@ define([
       .on('change', '[data-dough-linkmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
       .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
   };
+
   LinkManagerProto._handleFormControlUpdate = function(e) {
     var $trigger = $(e.target),
         type = $trigger.attr(this._stripSquareBrackets(this.config.selectors.linkInputs));
@@ -88,6 +90,7 @@ define([
     } else {
       this._setup('new');
     }
+    this.open = true;
   };
 
   LinkManagerProto._handleInsertLink = function(e) {
@@ -116,7 +119,8 @@ define([
     }
     else if(type === 'existing') {
       this.showLoader();
-      this._getPageLabel(link)
+      this.getPageLabelPromise = this._getPageLabel(link);
+      this.getPageLabelPromise
         .done($.proxy(this._handleAjaxLabelDone,this))
         .fail($.proxy(this._handleAjaxLabelFail,this));
     }
@@ -177,8 +181,11 @@ define([
   };
 
   LinkManagerProto.close = function() {
+    if(!this.open) return false;
     this.changeTab('page');
+    this.getPageLabelPromise && this.getPageLabelPromise.reject();
     this.clearInputs();
+    this.open = false;
   };
 
   LinkManagerProto.setInputs = function(type, link) {
