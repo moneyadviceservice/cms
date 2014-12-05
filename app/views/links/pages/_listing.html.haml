@@ -1,7 +1,16 @@
-%ol.listing
-  %p EN | CY
-  - PageMirrorPresenter.collect(pages).each do |page|
-    %li
-      = render 'page_button', page_mirror: page.mirror(:en), page_url: page.url(:en)
-      = render 'page_button', page_mirror: page.mirror(:cy), page_url: page.url(:cy)
-      %span.listing__heading= page.label
+.form__input-wrapper
+  .scrollable-container.scrollable-container--bordered.scrollable-container--page-listing
+    .grid-list.grid-list--page-listing
+      .grid-list__row
+        .grid-list__item.grid-list__item--center-aligned
+          EN
+        .grid-list__item.grid-list__item--center-aligned
+          CY
+      - PageMirrorPresenter.collect(pages).each do |page|
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            = render 'page_button', page_mirror: page.mirror(:en), page_url: page.url(:en)
+          .grid-list__item.grid-list__item--center-aligned
+            = render 'page_button', page_mirror: page.mirror(:cy), page_url: page.url(:cy)
+          .grid-list__item
+            = page.label

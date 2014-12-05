@@ -12,7 +12,11 @@
 
 .grid-list__item {
   display: table-cell;
-  padding: 5px;
+  padding: 8px;
+}
+
+.grid-list__item--push {
+  width: 100%;
 }
 
 .grid-list__item.grid-list__item--center-aligned {

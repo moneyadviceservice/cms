@@ -1,8 +1,11 @@
 .form__input-wrapper
-  %ol.listing
-    - files.each do |file|
-      %li
-        = label_tag(:file_url) do
-          = radio_button_tag(:file_url, file.file.url, false, data: {'dough-linkmanager-value-trigger' => true, 'dough-linkmanager-link-type' => 'file'})
-          = file.label
+  .scrollable-container.scrollable-container--bordered.scrollable-container--file-listing
+    .grid-list
+      - files.each do |file|
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            = radio_button_tag(:file_url, file.file.url, false, data: {'dough-linkmanager-value-trigger' => true, 'dough-linkmanager-link-type' => 'file'})
+          .grid-list__item.grid-list__item--push
+            = label_tag(:file_url) do
+              = file.label
 
