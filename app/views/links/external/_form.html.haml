@@ -1,8 +1,13 @@
 .tab-selector__target#external.is-inactive{'data-dough-tab-selector-target' => 'external' }
   %h3.l-tab-panels__heading
     = t('links.external.header')
-  %input{ type: 'text', data: { 'dough-linkmanager-link-type' => 'external', 'dough-linkmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
+  .form.form--vertical
+    .form-group
+      .form__input-wrapper
+        %input{ type: 'text', data: { 'dough-linkmanager-link-type' => 'external', 'dough-linkmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
 
-  %button.button--action
-    %span.button__text{'data-dough-linkmanager-insertlink' => 'external' }
-      = t('links.external.insert_button')
+    .form-group
+      .form__input-wrapper
+        %button.button--action
+          %span.button__text{'data-dough-linkmanager-insertlink' => 'external' }
+            = t('links.external.insert_button')

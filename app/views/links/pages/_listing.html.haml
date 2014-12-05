@@ -1,9 +1,7 @@
-.l-panel-content
-  .l-constrained
-    %ol.listing
-      %p EN | CY
-      - PageMirrorPresenter.collect(pages).each do |page|
-        %li
-          = render 'page_button', page_mirror: page.mirror(:en), page_url: page.url(:en)
-          = render 'page_button', page_mirror: page.mirror(:cy), page_url: page.url(:cy)
-          %span.listing__heading= page.label
+%ol.listing
+  %p EN | CY
+  - PageMirrorPresenter.collect(pages).each do |page|
+    %li
+      = render 'page_button', page_mirror: page.mirror(:en), page_url: page.url(:en)
+      = render 'page_button', page_mirror: page.mirror(:cy), page_url: page.url(:cy)
+      %span.listing__heading= page.label
