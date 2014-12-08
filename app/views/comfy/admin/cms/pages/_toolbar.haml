@@ -21,7 +21,7 @@
           %span.fa.fa-list-ol
         =button_tag("Bulleted list", title: "Bulleted list", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertUnorderedList"}) do
           %span.fa.fa-list-ul
-        = button_tag('Link', title: "Insert link", type: 'button', class: 'toolbar__item toolbar-button', data: { 'dough-component' => 'Dialog', 'dough-dialog-trigger' => 'insert-link' }) do
+        = button_tag('Link', title: "Insert link", type: 'button', class: 'toolbar__item toolbar-button', data: { 'dough-component' => 'Dialog', 'dough-dialog-trigger' => 'insert-link', 'dough-dialog-context' => 'add-link', 'command-name' => 'editLink' }) do
           %span.fa.fa-link
         =button_tag("Unlink", title: "Remove link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
