@@ -37,24 +37,17 @@ RSpec.describe LinkableObject do
   end
 
   describe '.find_page' do
-    before do
-      expect(Comfy::Cms::Page).to receive(:where).with(slug: url).and_return(double(take: object))
-    end
-
     context 'when page' do
       let(:site) { create(:site, path: 'en') }
-      let!(:page) { create(:page, site: site) }
-      let(:url) { 'investing-money' }
-      let(:object) { page }
+      let!(:page) { create(:page, site: site, slug: 'investing-money') }
 
       it 'returns page' do
-        expect(described_class.find_page('en/investing-money')).to eq(object)
+        expect(described_class.find_page('/en/investing-money')).to eq(page)
       end
     end
 
     context 'when file' do
       let(:url) { 'system/file.pdf' }
-      let(:object) { nil }
 
       it 'returns nil' do
         expect(described_class.find_page(url)).to be_nil
@@ -63,7 +56,6 @@ RSpec.describe LinkableObject do
 
     context 'when external url' do
       let(:url) { 'http://moneysite.com/' }
-      let(:object) { nil }
 
       it 'returns nil' do
         expect(described_class.find_page(url)).to be_nil
