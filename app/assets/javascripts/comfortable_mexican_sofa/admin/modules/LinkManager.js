@@ -19,6 +19,7 @@ define([
           linkInputs: '[data-dough-linkmanager-link-type]',
           linkLabels: '[data-dough-linkmanager-label]',
           loader: '[data-dough-linkmanager-loader]',
+          linksUrl: '[data-dough-linkmanager-links-url]',
           activeClass: 'is-active',
           inactiveClass: 'is-inactive'
         },
@@ -37,7 +38,6 @@ define([
       'file': null,
       'external': null
     };
-    this.linksUrl = '/admin/links/';
   }
 
   DoughBaseComponent.extend(LinkManager);
@@ -46,6 +46,7 @@ define([
 
   LinkManagerProto.init = function(initialised) {
     this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
+    this.linksUrl = this.$el.attr(this._stripSquareBrackets(this.config.selectors.linksUrl));
     this._cacheComponentElements();
     this._setupUIEvents();
     this._setupAppEvents();
@@ -128,7 +129,7 @@ define([
 
   LinkManagerProto._getPageLabel = function(link) {
     var deferred = $.Deferred();
-    $.ajax(this.linksUrl + link).done(function(data) {
+    $.ajax(this.linksUrl + '?id=' + link).done(function(data) {
       deferred.resolve(data);
     })
     .fail(function(data) {

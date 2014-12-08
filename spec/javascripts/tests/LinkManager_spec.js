@@ -341,7 +341,7 @@ describe('LinkManager', function () {
 
           getLinkLabel = this.component._getPageLabel('twat');
 
-          server.respondWith("GET", "/admin/links/" + link,
+          server.respondWith("GET", "/admin/links/?id=" + link,
                            [200, { "Content-Type": "application/json" },
                             '{ "label": "Foo", "url": "/en/foo"}']);
 

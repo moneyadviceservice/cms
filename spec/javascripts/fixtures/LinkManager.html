@@ -1,5 +1,7 @@
 <div>
-  <div data-dough-component="LinkManager" data-dough-linkmanager-context="add-link">
+  <div data-dough-component="LinkManager"
+    data-dough-linkmanager-context="add-link"
+    data-dough-linkmanager-links-url='/admin/links'>
     <button data-dough-tab-selector-trigger="page">Internal Link</button>
     <button data-dough-tab-selector-trigger="external">External Link</button>
     <button data-dough-tab-selector-trigger="file">File</button>
@@ -7,7 +9,7 @@
     <input data-dough-linkmanager-link-type="page" type="text" value="/foo">
     <input data-dough-linkmanager-link-type="external" type="text" value="http://foo.com">
     <input data-dough-linkmanager-link-type="file" type="text" value="foo.pdf">
-    
+
     <span class="is-inactive" data-dough-linkmanager-label="file"></span>
 
     <input data-dough-linkmanager-value-trigger type="radio" value="http://foo.com">
