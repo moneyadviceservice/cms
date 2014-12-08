@@ -316,44 +316,43 @@ describe('LinkManager', function () {
     });
   });
 
-  // describe('getPageLabel', function () {
-  //   var server;
+  describe.skip('getPageLabel', function () {
+    var server;
 
-  //   beforeEach(function () {
-  //     server = sandbox.useFakeServer();
-  //     server.autoRespond = true;
-  //     this.component = new this.LinkManager(this.$fixture);
-  //   });
+    beforeEach(function () {
+      server = sandbox.useFakeServer();
+      server.autoRespond = true;
+      this.component = new this.LinkManager(this.$fixture);
+    });
 
-  //   afterEach(function () {
-  //     server.restore();
-  //   });
+    afterEach(function () {
+      server.restore();
+    });
 
-  //   describe('When a link is being edited', function () {
-  //     describe('And the server returns a link type of page or file', function () {
-  //       it('should call the server with the link', function (done) {});
-  //       it('should call the _handleAjaxLabelDone method', function (done) {
-  //         var link = 'test',
-  //             spy = sinon.spy(this.LinkManager.prototype, '_handleAjaxLabelDone'),
-  //             getLinkLabel;
+    describe('When a link is being edited', function () {
+      describe('And the server returns a link type of page or file', function () {
+        it('should call the server with the link', function (done) {});
+        it('should call the _handleAjaxLabelDone method', function (done) {
+          var link = 'test',
+              spy = sinon.spy(this.LinkManager.prototype, '_handleAjaxLabelDone'),
+              getLinkLabel;
 
-  //         this.component.init();
+          this.component.init();
 
-  //         getLinkLabel = this.component._getPageLabel('twat');
+          getLinkLabel = this.component._getPageLabel('twat');
 
-  //         server.respondWith("GET", "/admin/links/" + link,
-  //                          [200, { "Content-Type": "application/json" },
-  //                           '{ "label": "Foo", "url": "/en/foo"}']);
+          server.respondWith("GET", "/admin/links/" + link,
+                           [200, { "Content-Type": "application/json" },
+                            '{ "label": "Foo", "url": "/en/foo"}']);
 
-  //         getLinkLabel.done(function(data) {
-  //           console.dir(spy);
-  //           expect(spy.called).to.be.true;
-  //           done();
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
+          getLinkLabel.then(function(data) {
+            expect(spy.called).to.be.true;
+            done();
+          });
+        });
+      });
+    });
+  });
 
   describe('getLink() Get a link from the linkValues hash', function () {
     beforeEach(function (done) {
