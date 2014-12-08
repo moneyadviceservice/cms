@@ -12,7 +12,7 @@
 
 .grid-list__item {
   display: table-cell;
-  padding: 8px;
+  padding: $baseline-unit/3 6px;
 }
 
 .grid-list__item--push {
