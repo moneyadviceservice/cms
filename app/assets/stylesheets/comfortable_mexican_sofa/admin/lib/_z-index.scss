@@ -26,7 +26,8 @@ $z-index1: 100;
 %z-index--nav-article.is-fixed,
 %z-index--popover.is-active,
 %z-index--nav-primary__text,
-%z-index--loader {
+%z-index--loader,
+%z-index--dialog__close {
   z-index: $z-index10;
 }
 

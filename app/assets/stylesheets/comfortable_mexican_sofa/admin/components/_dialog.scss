@@ -48,6 +48,7 @@
 }
 
 .dialog__close {
+  @extend %z-index--dialog__close;
   position: absolute;
   right: $baseline-unit;
   top: $baseline-unit;
