@@ -1,0 +1,37 @@
+.login {
+  background: radial-gradient(circle, rgba(45,45,45, 0.7), #2e3030);
+  background-color: #2e3030;
+  color: white;
+  display: table-cell;
+  min-height: 100%;
+  vertical-align: middle;
+  width: 30%;
+}
+
+.login__brand-heading {
+  color: #acadad;
+  display: block;
+  font-size: 42px;
+  font-weight: bold;
+  margin: 10px 0 20px;
+}
+
+.login__form {
+  margin: auto;
+  width: 360px;
+}
+
+.login__button {
+  height: 25px;
+  width: 60px;
+}
+
+.login__brand {
+  margin: auto;
+  width: 360px;
+}
+
+.login__brand img {
+  height: 130px;
+  width: 360px;
+}
