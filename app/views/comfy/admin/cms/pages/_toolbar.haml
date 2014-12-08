@@ -4,29 +4,29 @@
 
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
       .toolbar__item-group
-        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
+        =button_tag(type: 'button', title: "Bold", class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
           %span.fa.fa-bold
-        =button_tag("H2", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h2"})
-        =button_tag("H3", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h3"})
-        =button_tag("H4", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h4"})
-        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "subscript"}) do
+        =button_tag("H2", title: "H2",  type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h2"})
+        =button_tag("H3", title: "H3",  type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h3"})
+        =button_tag("H4", title: "H4",  type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "h4"})
+        =button_tag(type: 'button', title: "Subscript", class: 'toolbar__item toolbar-button', data: { "command-name" => "subscript"}) do
           %span.fa.fa-subscript
-        =button_tag(type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "superscript"}) do
+        =button_tag(type: 'button', title: "Superscript", class: 'toolbar__item toolbar-button', data: { "command-name" => "superscript"}) do
           %span.fa.fa-superscript
-        =button_tag("Remove Formatting", title: "Remove Formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
+        =button_tag("Remove Formatting", title: "Remove formatting", class: 'toolbar__item toolbar-button', type: "button", data: { "command-name" => "removeFormat"}) do
           %span.fa.fa-times
 
       .toolbar__item-group
-        =button_tag("OL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertOrderedList"}) do
+        =button_tag("Numbered list", title: "Numbered list", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertOrderedList"}) do
           %span.fa.fa-list-ol
-        =button_tag("UL", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertUnorderedList"}) do
+        =button_tag("Bulleted list", title: "Bulleted list", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "insertUnorderedList"}) do
           %span.fa.fa-list-ul
-        =button_tag("Link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "linkPrompt"}) do
+        =button_tag("Link", title: "Insert link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "linkPrompt"}) do
           %span.fa.fa-link
-        =button_tag("Unlink", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
+        =button_tag("Unlink", title: "Remove link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
 
-        =content_tag(:div, "Insert Collapsible", title: 'Collapsible', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
+        =content_tag(:div, "Insert snippet", title: 'Insert snippet', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
           %span.toolbar-button__icon.fa.fa-scissors
         %div.popover.popover--bottom{:data => {dough_collapsable_target: 2}}
           .popover__inner
