@@ -38,6 +38,7 @@ requirejs.config({
     'Dialog': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Dialog") %>',
     'ElementFilter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/ElementFilter") %>',
     'LinkManager': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/LinkManager") %>',
+    'StickyElements': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/StickyElements") %>',
 
     // Scribe plugins
     'scribe-plugin-linkeditor': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/linkeditor/scribe-plugin-linkeditor") %>',
@@ -85,7 +86,9 @@ requirejs.config({
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
     'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>',
     'rangy-core': '<%= requirejs_path("rangy-official/rangy-core") %>',
-	'rangy-selectionsaverestore': '<%= requirejs_path("rangy-official/rangy-selectionsaverestore") %>'
+		'rangy-selectionsaverestore': '<%= requirejs_path("rangy-official/rangy-selectionsaverestore") %>',
+    'filament-sticky': '<%= requirejs_path("filament-sticky/fixedsticky") %>',
+		'filament-fixed': '<%= requirejs_path("filament-fixed/fixedfixed") %>'
   },
   shim: {
     'to-markdown' : {
@@ -100,6 +103,9 @@ requirejs.config({
     },
     'dialog-polyfill': {
       exports: 'dialogPolyfill'
+    },
+    'filament-sticky': {
+      deps: ['jquery','filament-fixed']
     }
   }
 });

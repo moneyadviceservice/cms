@@ -54,6 +54,8 @@ Rails.application.configure do
                                   chosen-build/chosen.jquery.js
                                   dialog-polyfill/dialog-polyfill.js
                                   rangy-official/rangy-core.js
-                                  rangy-official/rangy-selectionsaverestore.js)
+                                  rangy-official/rangy-selectionsaverestore.js
+																	filament-sticky/fixedsticky.js
+                                  filament-fixed/fixedfixed.js)
 
 end
