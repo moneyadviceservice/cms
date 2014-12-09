@@ -63,9 +63,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         return true;
       };
 
-      linkEditorCommand.getLinkSuffix = function(referenceNode, suffix) {
+      linkEditorCommand.getLinkSuffix = function(referenceNode, suffix, suffixRegEx) {
         if(referenceNode && referenceNode.nodeType === 3) {
-          return externalLinkSuffixRegEx.test(referenceNode.substringData(0, suffix.length));
+          return suffixRegEx.test(referenceNode.substringData(0, suffix.length));
         }
       };
 
@@ -73,9 +73,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         referenceNode.parentNode.insertBefore(document.createTextNode(suffix), referenceNode);
       };
 
-      linkEditorCommand.removeLinkSuffix = function(referenceNode, suffix) {
+      linkEditorCommand.removeLinkSuffix = function(referenceNode, suffixRegEx) {
         if(referenceNode.nodeType === 3) {
-          var match = externalLinkSuffixRegEx.exec(referenceNode.textContent);
+          var match = suffixRegEx.exec(referenceNode.textContent);
           referenceNode.textContent = referenceNode.textContent.replace(match, '');
         }
       };
@@ -83,15 +83,15 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       linkEditorCommand.formatLink = function(type) {
         var range = rangy.getSelection(),
             node = range.getRangeAt(0).commonAncestorContainer,
-            linkSuffix = this.getLinkSuffix(node.nextSibling, externalLinkSuffix);
+            haslinkSuffix = this.getLinkSuffix(node.nextSibling, externalLinkSuffix, externalLinkSuffixRegEx);
 
         type = type || 'page';
 
-        if(type === 'external' && !linkSuffix) {
+        if(type === 'external' && !haslinkSuffix) {
           this.insertLinkSuffix(node.nextSibling, externalLinkSuffix);
         }
         else if(type !== 'external'){
-          this.removeLinkSuffix(node.nextSibling, externalLinkSuffix);
+          this.removeLinkSuffix(node.nextSibling, externalLinkSuffixRegEx);
         }
       };
 
