@@ -234,7 +234,7 @@ describe('LinkManager', function () {
       this.component.setLink('page', 'foo');
       this.component.$insertLinks.first().click();
 
-      expect(spy.calledWith('foo')).to.be.true;
+      expect(spy.calledWith('page','foo')).to.be.true;
 
     });
 
@@ -294,10 +294,11 @@ describe('LinkManager', function () {
       this.eventsWithPromises.subscribe('linkmanager:link-published', spy);
 
       this.component.setLink('page', link);
-      this.component.publishLink(link);
+      this.component.publishLink('page', link);
 
       expect(spy.args[0][0].link).to.equal(link);
       expect(spy.args[0][0].emitter).to.equal('add-link');
+      expect(spy.args[0][0].type).to.equal('page');
     });
   });
 

@@ -95,8 +95,10 @@ define([
   };
 
   LinkManagerProto._handleInsertLink = function(e) {
-    var link = this.getLink($(e.target).attr(this._stripSquareBrackets(this.config.selectors.insertLink)));
-    this.publishLink(link);
+    var type = $(e.target).attr(this._stripSquareBrackets(this.config.selectors.insertLink)),
+        link = this.getLink(type);
+
+    this.publishLink(type, link);
     this.close();
   };
 
@@ -151,14 +153,15 @@ define([
     return this.linkValues[type];
   };
 
-  LinkManagerProto.publishLink = function(link) {
+  LinkManagerProto.publishLink = function(type, link) {
     eventsWithPromises.publish('dialog:close', {
       emitter: this.context
     });
 
     eventsWithPromises.publish('linkmanager:link-published', {
       emitter: this.context,
-      link: link
+      link: link,
+      type: type
     });
   };
 
