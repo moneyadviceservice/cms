@@ -37,9 +37,13 @@ requirejs.config({
     'SelectSubmitter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/SelectSubmitter") %>',
     'Dialog': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/Dialog") %>',
     'ElementFilter': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/ElementFilter") %>',
+    'LinkManager': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/LinkManager") %>',
+
+    // Scribe plugins
+    'scribe-plugin-linkeditor': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/linkeditor/scribe-plugin-linkeditor") %>',
+    'scribe-plugin-mastalk': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk") %>',
 
     // Snippets
-    'scribe-plugin-mastalk': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk") %>',
     'snippet-collapsible': '/assets/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md',
     'snippet-ticks': '/assets/comfortable_mexican_sofa/admin/modules/mastalk/snippets/ticks.md',
     'snippet-callout': '/assets/comfortable_mexican_sofa/admin/modules/mastalk/snippets/callout.md',
@@ -56,11 +60,15 @@ requirejs.config({
 
     // Dough components
     'Collapsable': "<%= requirejs_path('dough/assets/js/components/Collapsable') %>",
+    'TabSelector': "<%= requirejs_path('dough/assets/js/components/TabSelector') %>",
+    'mediaQueries': "<%= requirejs_path('dough/assets/js/lib/mediaQueries') %>",
 
     // Third-party dependencies
     'jquery': '<%= requirejs_path("jquery/dist/jquery.min") %>',
     'he': '<%= requirejs_path("he/he") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp.amd') %>",
+    'jqueryThrottleDebounce': "<%= requirejs_path('jqueryThrottleDebounce/jquery.ba-throttle-debounce') %>",
+    'modernizr': "<%= requirejs_path('modernizr/modernizr') %>",
     'eventsWithPromises': "<%= requirejs_path('eventsWithPromises/src/eventsWithPromises') %>",
     'scribe': '<%= requirejs_path("scribe/scribe") %>',
     'scribe-plugin-blockquote-command': '<%= requirejs_path("scribe-plugin-blockquote-command/scribe-plugin-blockquote-command") %>',
@@ -72,11 +80,12 @@ requirejs.config({
     'scribe-plugin-toolbar': '<%= requirejs_path("scribe-plugin-toolbar/scribe-plugin-toolbar") %>',
     'text': '<%= requirejs_path("text/text") %>',
     'dialog-polyfill': '<%= requirejs_path("dialog-polyfill/dialog-polyfill") %>',
-
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
     'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
-	'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>'
+    'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>',
+    'rangy-core': '<%= requirejs_path("rangy-official/rangy-core") %>',
+	'rangy-selectionsaverestore': '<%= requirejs_path("rangy-official/rangy-selectionsaverestore") %>'
   },
   shim: {
     'to-markdown' : {

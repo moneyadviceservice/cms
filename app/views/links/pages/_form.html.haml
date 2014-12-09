@@ -1,0 +1,34 @@
+.tab-selector__target.is-active#page{'data-dough-tab-selector-target' => 'page' }
+  %h3.l-tab-panels__heading Select page
+  = form_tag(site_links_pages_path, method: 'get', remote: true, class: 'form form--vertical') do
+
+    .form-group
+      .form__row
+        %h4.is-inactive{'data-dough-linkmanager-label' => 'page'} No page selected
+        = label_tag(:search, t('links.page.label'))
+
+        .search.search--fill-width
+          %span.search__item
+            = text_field_tag(:search, '', class: 'form__input search__input t-search-box')
+          %span.search__item
+            = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
+              %span.button__text.fa.fa-search
+
+    .form-group
+      .form__row.choose-category
+        = label_tag :category, t('links.page.category.label')
+        = select_tag(:category, options_from_collection_for_select(@categories, :label, :label, params[:category]),
+            include_blank: false,
+            multiple:      false,
+            id:            'categories',
+            class:         'pages-categories-select',
+            prompt:        t('links.page.category.placeholder'),
+            data:          { dough_component: 'SelectSubmitter' })
+
+    .form-group.js-linkable-pages
+
+    .form-group
+      .form__row
+        %button.button--action
+          %span.button__text{'data-dough-linkmanager-insertlink' => 'page' }
+            = t('links.page.insert_button')

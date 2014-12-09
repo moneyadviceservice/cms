@@ -1,0 +1,65 @@
+// Dialog
+//
+// Styleguide Dialog
+
+.dialog {
+  border: none;
+  height: auto;
+  padding: 0;
+
+  &::backdrop {
+    background: $color-dialog-backdrop;
+  }
+}
+
+.js-dialog-active {
+  overflow: hidden;
+
+  &:not(.dialog) {
+    filter: blur(5px);
+  }
+}
+
+.dialog__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
+
+.dialog__container-inner {
+  display: table;
+  margin: auto;
+  height: 100%;
+
+}
+
+.dialog__content {
+  display: table-cell;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.dialog__content-inner {
+  background: $color-dialog-content-inner-background;
+  position: relative;
+}
+
+.dialog__close {
+  @extend %z-index--dialog__close;
+  position: absolute;
+  right: $baseline-unit;
+  top: $baseline-unit;
+}
+
+.js-dialog-target.is-active {
+  &, .no-js {
+    @extend %is-active;
+  }
+}
+
+.js-dialog-target.is-inactive {
+  @extend %is-hidden;
+}

@@ -21,9 +21,13 @@ define([
           target: '[data-dough-dialog-target]',
           trigger: '[data-dough-dialog-trigger]',
           container: '[data-dough-dialog-container]',
+          containerInner: '[data-dough-dialog-container-inner]',
           content: '[data-dough-dialog-content]',
+          contentInner: '[data-dough-dialog-content-inner]',
           close: '[data-dough-dialog-close]',
-          activeClass: 'is-active'
+          activeClass: 'is-active',
+          inactiveClass: 'is-inactive',
+          dialogOpenBodyClass: 'js-dialog-active'
         }
       };
 
@@ -37,9 +41,11 @@ define([
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {
+    this.context = this.$el.attr('data-dough-dialog-context');
     this._cacheComponentElements();
     this._setupDialog();
     this._setupUIEvents();
+    this._setupAppEvents();
     this._initialisedSuccess(initialised);
   };
 
@@ -49,13 +55,20 @@ define([
   };
 
   DialogProto._setupDialog = function() {
-    this.$dialog = $('<dialog data-dough-dialog class="dialog" />');
+    this.$dialog = $('<dialog data-dough-dialog class="dialog is-inactive" />');
     this.$dialogContainer = $('<div data-dough-dialog-container class="dialog__container" />');
+    this.$dialogContainerInner = $('<div data-dough-dialog-container-inner class="dialog__container-inner" />');
     this.$dialogContent = $('<div data-dough-dialog-content class="dialog__content" />');
+    this.$dialogContentInner = $('<div data-dough-dialog-content-inner class="dialog__content-inner" />');
     this.$dialogClose = $('<button data-dough-dialog-close class="dialog__close"><span class="dialog__close-text visually-hidden">Close</span></button>');
     this.$dialog
       .appendTo('body')
-      .append(this.$dialogContainer.add(this.$dialogContent).add(this.$dialogClose));
+      .append(this.$dialogContainer);
+
+    this.$dialogContainer.append(this.$dialogContainerInner);
+    this.$dialogContainerInner.append(this.$dialogContent);
+    this.$dialogContent.append(this.$dialogContentInner);
+    this.$dialogContentInner.append(this.$dialogClose);
     this.dialog = this.$dialog[0];
 
     if(typeof window.HTMLDialogElement === 'undefined') {
@@ -69,8 +82,18 @@ define([
       .on('cancel', $.proxy(this._handleCancel, this));
   };
 
+  DialogProto._setupAppEvents = function() {
+    eventsWithPromises.subscribe('dialog:close', $.proxy(this._handleClose, this));
+  };
+
   DialogProto._handleCancel = function() {
     this.close(true);
+  };
+
+  DialogProto._handleClose = function(eventData) {
+    if(eventData && eventData.emitter === this.context) {
+      this.close();
+    }
   };
 
   DialogProto._detachTarget = function() {
@@ -90,11 +113,20 @@ define([
     this.appendTargetToDialog(this.$target);
     showModal? this.dialog.showModal() : this.dialog.show();
 
-    this.$dialog.addClass(this.config.selectors.activeClass);
+    this.$dialog
+      .removeClass(this.config.selectors.inactiveClass)
+      .addClass(this.config.selectors.activeClass);
+
+    this.$target
+      .removeClass(this.config.selectors.inactiveClass)
+      .addClass(this.config.selectors.activeClass);
+
+    $('body').addClass(this.config.selectors.dialogOpenBodyClass);
+
     this.isShown = true;
 
     eventsWithPromises.publish('dialog:shown', {
-      emitter: this.$target,
+      emitter: this.context,
       modal: showModal
     });
   };
@@ -107,25 +139,35 @@ define([
     }
 
     this._attachTarget();
-    this.$dialog.removeClass(this.config.selectors.activeClass);
+
+    this.$dialog
+      .addClass(this.config.selectors.inactiveClass)
+      .removeClass(this.config.selectors.activeClass);
+
+    this.$target
+      .removeClass(this.config.selectors.activeClass)
+      .addClass(this.config.selectors.inactiveClass);
+
+    $('body').removeClass(this.config.selectors.dialogOpenBodyClass);
+
     this.isShown = false;
 
     eventsWithPromises.publish('dialog:closed', {
-      emitter: this.$target
+      emitter: this.context
     });
 
     if(cancelled) {
       eventsWithPromises.publish('dialog:cancelled', {
-        emitter: this.$target
+        emitter: this.context
       });
     }
   };
 
   DialogProto.appendTargetToDialog = function($el) {
-    this.$dialogContent.append($el);
+    this.$dialogContentInner.append($el);
 
     eventsWithPromises.publish('dialog:ready', {
-      emitter: this.$target
+      emitter: this.context
     });
   };
 

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, class_name: "Comfy::Cms::User"
+  devise_for :users, class_name: 'Comfy::Cms::User'
 
   resources :word_documents
 
   scope '/admin' do
+    get 'links/(*id)(.:format)' => 'links#show', as: 'admin_link'
+
     resources :sites do
       resources :files
 
@@ -13,6 +15,11 @@ Rails.application.routes.draw do
 
       resources :layouts
       resources :snippets
+
+      namespace 'links' do
+        resources :files, only: :index
+        resources :pages, only: :index
+      end
     end
 
     resources :tags, only: [:index, :create] do
@@ -33,7 +40,7 @@ Rails.application.routes.draw do
 
   # Make sure this routeset is defined last
 
-  get '/preview(/*cms_path)(.:format)' => 'content#preview', as: "preview_content"
-  get '/(*cms_path)(.:format)' => 'content#show', as: "content"
+  get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
+  get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
   comfy_route :cms, :sitemap => false
 end

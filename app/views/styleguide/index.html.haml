@@ -8,16 +8,79 @@
     %h3 Heading h3
     %h4 Heading h4
 
+    .scrollable-container.scrollable-container--page-listing
+      .grid-list.grid-list--page-listing
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            EN
+          .grid-list__item.grid-list__item--center-aligned
+            CY
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item
+            Porro aspernatur accusantium dignissimos amet, quibusdam, velit odio esse ut dolorum repudiandae ipsa pariatur repellat delectus facilis quia. Vitae sunt magni facere.
+
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item
+            Lorem ipsum dolor sit amet, consectetur adipisicing
+
+        .grid-list__row
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item.grid-list__item--center-aligned
+            %input{:type => "radio"}
+          .grid-list__item
+            Vitae sunt magni facere.
+
+    %h2 .search .search--fill-width
+    .search.search--fill-width
+      %span.search__item
+        = label_tag(:search, nil, class: 'visually-hidden')
+        = text_field_tag(:search, nil, placeholder: 'Enter term', class: 'form__input search__input')
+      %span.search__item
+        = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
+          %span.button__text.fa.fa-search
+
     %h2 .dialog
 
     %button{"data-dough-dialog-trigger" => "example1", "data-dough-component" => "Dialog"} Open example 1
     %div{"data-dough-dialog-target" => "example1"}
       Example 1 content
       %button{"data-dough-dialog-close" => ""} Close
+
     %button{"data-dough-dialog-trigger" => "example2", "data-dough-component" => "Dialog"} Open example 2
     %div{"data-dough-dialog-target" => "example2"}
       Example 2 content
       %button{"data-dough-dialog-close" => ""} Close
+
+    %p
+      %button{"data-dough-dialog-trigger" => "add-link", "data-dough-component" => "Dialog"} Open Add Link
+
+    .js-dialog-target.is-inactive{"data-dough-dialog-target" => "add-link", "data-dough-component" => "TabSelector"}
+      .l-tab-panels.l-tab-panels--add-link
+        .l-tab-panels__item.l-tab-panels__item--aside{"data-dough-component" => "LinkInserter", "data-dough-linkinserter-target" => "add-link"}
+          %h2.l-tab-panels__heading Add a link to&hellip;
+          .tab-selector__triggers-outer{"data-dough-tab-selector-triggers-outer" => true}
+            .tab-selector__triggers-inner{"data-dough-tab-selector-triggers-inner" => true}
+              .tab-selector__trigger-container.is-active{"data-dough-tab-selector-trigger-container" => true}
+                %a.tab-selector__trigger{href: "#panel-1", "data-dough-tab-selector-trigger" => "1"} Money Advice webpage
+              .tab-selector__trigger-container.is-inactive{"data-dough-tab-selector-trigger-container" => true}
+                %a.tab-selector__trigger{href: "#panel-2", "data-dough-tab-selector-trigger" => "2"} A file
+              .tab-selector__trigger-container.is-inactive{"data-dough-tab-selector-trigger-container" => true}
+                %a.tab-selector__trigger{href: "#panel-3", "data-dough-tab-selector-trigger" => "3"} External site
+
+        %div.l-tab-panels__item.l-tab-panels__item--content
+          .tab-selector__target.is-active#panel-1{"data-dough-tab-selector-target" => "1"}
+            %h3.l-tab-panels__heading Select page
+            %button{"data-dough-dialog-close" => ""} Cancel
+            %button{"data-dough-linkinserter-create" => ""} Insert Link
 
     %h2 Content grid
 

@@ -3,6 +3,8 @@
 // Styleguide Toolbar
 
 .toolbar {
+  user-select: none;
+
   &.is-sticky {
     left: 0;
     position: fixed;

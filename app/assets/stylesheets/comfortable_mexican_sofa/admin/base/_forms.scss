@@ -15,12 +15,18 @@
   @include column(1.5);
 }
 
-.form--vertical .form__label-heading {
-  @include column(12);
-}
-
 .form__input-wrapper {
   @include column(8.5);
+}
+
+.form--vertical .form-group {
+  @include row(12);
+}
+
+.form--vertical .form__input-wrapper,
+.form--vertical .form__label-heading,
+.form--vertical .form__row {
+  @include column(12);
 }
 
 .form__input--has-meta + .help-block {

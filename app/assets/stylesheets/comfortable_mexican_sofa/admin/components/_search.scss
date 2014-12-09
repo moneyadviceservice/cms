@@ -24,3 +24,12 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+.search--fill-width {
+  display: table;
+}
+
+.search--fill-width .search__item {
+  display: table-cell;
+  width: 100%;
+}

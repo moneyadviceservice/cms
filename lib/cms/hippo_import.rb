@@ -58,7 +58,7 @@ class HippoImport
   end
 
   def next_docs
-    @next_docs ||= @_site == 'en' ? docs : docs.map {|a| Comfy::Cms::Page.find_by(slug: a)}.map(&:translation_id)
+    @next_docs ||= @_site == 'en' ? docs : docs.map { |a| Comfy::Cms::Page.find_by(slug: a) }.map(&:translation_id)
   end
 
   def article_id
@@ -66,13 +66,13 @@ class HippoImport
   end
 
   def import!
-    records.select {|r| next_docs.include?(r.send(article_id)) }.map do |record|
+    records.select { |r| next_docs.include?(r.send(article_id)) }.map do |record|
       puts "Importing: #{record.id}"
       page = if @_site == 'en'
-        Comfy::Cms::Page.where(slug: record.id, site: site).first
-      else
-        Comfy::Cms::Page.where(translation_id: record.translation_id, site: site).first
-      end
+               Comfy::Cms::Page.where(slug: record.id, site: site).first
+             else
+               Comfy::Cms::Page.where(translation_id: record.translation_id, site: site).first
+             end
 
       (page || Comfy::Cms::Page.new).tap do |p|
         p.site = site

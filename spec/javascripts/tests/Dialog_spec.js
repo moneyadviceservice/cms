@@ -1,6 +1,8 @@
 describe('Dialog', function () {
   'use strict';
 
+  var sandbox;
+
   beforeEach(function(done) {
     var self = this;
 
@@ -16,40 +18,51 @@ describe('Dialog', function () {
       Dialog,
       eventsWithPromises
     ) {
+      sandbox = sinon.sandbox.create();
+
       self.$html = $(window.__html__['spec/javascripts/fixtures/Dialog.html']).appendTo('body');
       self.$fixture = self.$html.find('[data-dough-component="Dialog"]');
       self.Dialog = Dialog;
-      self.showSpy = sinon.spy(self.Dialog.prototype, 'show');
-      self.closeSpy = sinon.spy(self.Dialog.prototype, 'close');
-      self.handleCancelSpy = sinon.spy(self.Dialog.prototype, '_handleCancel');
+      self.showSpy = sandbox.spy(self.Dialog.prototype, 'show');
+      self.closeSpy = sandbox.spy(self.Dialog.prototype, 'close');
+      self.handleCancelSpy = sandbox.spy(self.Dialog.prototype, '_handleCancel');
       self.eventsWithPromises = eventsWithPromises;
+
       done();
     }, done);
   });
 
   afterEach(function() {
     this.$html.remove();
-    this.showSpy.restore();
-    this.closeSpy.restore();
-    this.handleCancelSpy.restore();
+    sandbox.restore();
     $('[data-dough-dialog]').remove();
+    this.eventsWithPromises.unsubscribeAll();
   });
 
   describe('Initialisation', function () {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
-      this.component.init();
       done();
     });
 
     it('should create the dialog element, child elements and append it to the body', function() {
       var $body = $('body');
+      this.component.init();
       expect($body.find(this.component.config.selectors.dialog).length).to.equal(1);
       expect(this.component.$dialog.find(this.component.config.selectors.container).length).to.equal(1);
-      expect(this.component.$dialog.find(this.component.config.selectors.content).length).to.equal(1);
-      expect(this.component.$dialog.find(this.component.config.selectors.close).length).to.equal(1);
+      expect(this.component.$dialogContainer.find(this.component.config.selectors.containerInner).length).to.equal(1);
+      expect(this.component.$dialogContainerInner.find(this.component.config.selectors.content).length).to.equal(1);
+      expect(this.component.$dialogContent.find(this.component.config.selectors.contentInner).length).to.equal(1);
+      expect(this.component.$dialogContentInner.find(this.component.config.selectors.close).length).to.equal(1);
     });
 
+    it('should save the dialog component context to a variable', function() {
+      var context = this.$fixture.attr('data-dough-dialog-context');
+      this.$fixture.attr('data-dough-dialog-context', 'bar');
+      this.component.init();
+      expect(this.component.context).to.equal('bar');
+      this.$fixture.attr('data-dough-dialog-context', context);
+    });
   });
 
   describe('Events', function () {
@@ -77,6 +90,21 @@ describe('Dialog', function () {
       this.component.$dialog.find(this.component.config.selectors.close).click();
       expect(this.closeSpy.called).to.be.true;
     });
+
+    it('should broadcast the dialog context event when shown', function() {
+      var spy = sandbox.spy();
+      this.eventsWithPromises.subscribe('dialog:shown', spy);
+      this.component.show();
+      expect(spy.args[0][0].emitter).to.equal('foo');
+    });
+
+    it('should close the dialog if a dialog:close event with matching emitter parameter is received', function() {
+      this.component._handleClose();
+      this.eventsWithPromises.publish('dialog:close', {
+        emitter: 'foo'
+      });
+      expect(this.closeSpy.called).to.be.true;
+    });
   });
 
   describe('Show dialog', function () {
@@ -93,10 +121,10 @@ describe('Dialog', function () {
     });
 
     it('should trigger a shown event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show();
-      expect(spy.called).to.be.true;
+      expect(spy.args[0][0].emitter).to.equal('foo');
     });
 
     it('should add the active class to the dialog element', function() {
@@ -115,17 +143,33 @@ describe('Dialog', function () {
     it('should show the dialog using the Dialog showModal() method', function() {
       var spy;
       this.component.dialog.showModal = function() {};
-      spy = sinon.spy(this.component.dialog, 'showModal');
+      spy = sandbox.spy(this.component.dialog, 'showModal');
       this.component.show(true);
       expect(this.showSpy.calledWith(true)).to.be.true;
       expect(spy.called).to.be.true;
     });
 
     it('should trigger a shown event and return modal=true in callback arguments', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show(true);
       expect(spy.args[0][0].modal).to.be.true;
+    });
+
+    it('should toggle between inactive/active class on the dialog element', function() {
+      this.component.show();
+      expect(this.component.$dialog.hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
+
+    it('should toggle between inactive/active class on the dialog target', function() {
+      this.component.show();
+      expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.false;
+      expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.true;
+    });
+
+    it('should add the dialog open class to the body', function() {
+      expect($('body').hasClass(this.component.config.selectors.dialogOpenBodyClass)).to.be.true;
     });
   });
 
@@ -143,17 +187,29 @@ describe('Dialog', function () {
     });
 
     it('should trigger a closed event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:closed', spy);
       this.component.show();
       this.component.close();
       expect(spy.called).to.be.true;
     });
 
-    it('should remove the active class from the dialog element', function() {
+    it('should toggle between active/inactive class on the dialog element', function() {
       this.component.show();
       this.component.close();
+      expect(this.component.$dialog.hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
       expect(this.component.$dialog.hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+
+    it('should toggle between active/inactive class on the dialog target', function() {
+      this.component.show();
+      this.component.close();
+      expect(this.component.$target.hasClass(this.component.config.selectors.inactiveClass)).to.be.true;
+      expect(this.component.$target.hasClass(this.component.config.selectors.activeClass)).to.be.false;
+    });
+
+    it('should remove the dialog open class from the body', function() {
+      expect($('body').hasClass(this.component.config.selectors.dialogOpenBodyClass)).to.be.false;
     });
   });
 
@@ -165,7 +221,7 @@ describe('Dialog', function () {
     });
 
     it('should trigger a cancelled event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:cancelled', spy);
       this.component.show();
       this.component.close(true);
@@ -180,14 +236,13 @@ describe('Dialog', function () {
       done();
     });
 
-    it('should set the content of the dialog with that of the target\'s', function () {
-      this.component.$dialogContent.empty();
+    it('should append the dialog target to the dialog content', function () {
       this.component.show();
-      expect(this.component.$dialogContent.get(0).innerHTML).to.be.equal(this.component.$target[0].outerHTML);
+      expect(this.component.$dialogContent.find(this.component.config.selectors.target).is(this.component.$target)).to.be.true;
     });
 
     it('should trigger a ready event', function () {
-      var spy = sinon.spy();
+      var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:ready', spy);
       this.component.show();
       expect(spy.called).to.be.true;

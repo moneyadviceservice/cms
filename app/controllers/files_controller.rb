@@ -1,12 +1,11 @@
 class FilesController < Comfy::Admin::Cms::FilesController
+  before_action :check_files_existence, only: :index
   before_action :set_categories, only: [:new, :edit]
 
   def index
-    redirect_to(action: :new) if @site.files.count == 0
-
     @order = params[:order].presence
     @type  = params[:type].presence
-    @files = @site.files.not_page_file
+    @files = Comfy::Cms::File.not_page_file
       .includes(:categories)
       .for_category(params[:category])
       .of_type(@type)
@@ -16,6 +15,10 @@ class FilesController < Comfy::Admin::Cms::FilesController
   end
 
   private
+
+  def check_files_existence
+    redirect_to(action: :new) if Comfy::Cms::File.count.zero?
+  end
 
   def build_file
     @file = @site.files.new
