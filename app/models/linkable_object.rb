@@ -1,6 +1,4 @@
 class LinkableObject
-  include ActiveModel::Model
-
   attr_reader :object, :url
 
   def self.find(url)
