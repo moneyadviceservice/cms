@@ -10,26 +10,4 @@ RSpec.describe FilePresenter do
       expect(presenter.full_path).to eq('http://localhost:3000/foo-bar')
     end
   end
-
-  describe '#url_scheme' do
-    context 'development environment' do
-      before do
-        allow(Rails.env).to receive(:production?).and_return(false)
-      end
-
-      it 'returns "http"' do
-        expect(presenter.url_scheme).to eq('http')
-      end
-    end
-
-    context 'production environment' do
-      before do
-        allow(Rails.env).to receive(:production?).and_return(true)
-      end
-
-      it 'returns "https"' do
-        expect(presenter.url_scheme).to eq('https')
-      end
-    end
-  end
 end
