@@ -18,7 +18,7 @@ RSpec.describe FilesController do
       context 'when another site has files' do
         let!(:welsh) { create(:site, :welsh, :with_files) }
 
-        it 'not redirect to new action' do
+        it 'does not redirect to the new action' do
           get :index, site_id: site.id
           expect(response).to_not redirect_to(action: :new)
         end
