@@ -41,6 +41,10 @@ Use `--single-run` if you only want it to run once.
 
 ## Component Styleguide
 
-[The styleguide](http://0.0.0.0:3000/styleguide) lists all HTML/CSS components used within the CMS. 
+[The styleguide](http://0.0.0.0:3000/styleguide) lists all HTML/CSS components used within the CMS.
 
 Any new components should be built here first, then integrated into the views.
+
+## Environment variables
+
+    cp .env.dev .env
