@@ -13,7 +13,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
     return function (scribe) {
       var savedSelection,
           linkManagerContext = 'add-link',
-          linkEditorCommand = new scribe.api.Command('createLink');
+          linkEditorCommand = new scribe.api.Command('createLink'),
+          externalLinkSuffix = '{:target="_blank"}',
+          externalLinkSuffixRegEx = /\{\:target\=\"\_blank\"\}/i;
 
       linkEditorCommand.nodeName = 'A';
 
@@ -29,9 +31,11 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.inject = function(link) {
-        var selection = new scribe.api.Selection();
-        var range = selection.range;
-        var anchorNode = selection.getContaining(function (node) {
+        var selection = new scribe.api.Selection(),
+            range = selection.range,
+            anchorNode;
+
+        anchorNode = selection.getContaining(function (node) {
           return node.nodeName === this.nodeName;
         }.bind(this));
 
@@ -59,9 +63,44 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         return true;
       };
 
+      linkEditorCommand.getLinkSuffix = function(referenceNode, suffix) {
+        if(referenceNode && referenceNode.nodeType === 3) {
+          return externalLinkSuffixRegEx.test(referenceNode.substringData(0, suffix.length));
+        }
+      };
+
+      linkEditorCommand.insertLinkSuffix = function(referenceNode, suffix) {
+        referenceNode.parentNode.insertBefore(document.createTextNode(suffix), referenceNode);
+      };
+
+      linkEditorCommand.removeLinkSuffix = function(referenceNode, suffix) {
+        if(referenceNode.nodeType === 3) {
+          var match = externalLinkSuffixRegEx.exec(referenceNode.textContent);
+          referenceNode.textContent = referenceNode.textContent.replace(match, '');
+        }
+      };
+
+      linkEditorCommand.formatLink = function(type) {
+        var range = rangy.getSelection(),
+            node = range.getRangeAt(0).commonAncestorContainer,
+            linkSuffix = this.getLinkSuffix(node.nextSibling, externalLinkSuffix);
+
+        type = type || 'page';
+
+        if(type === 'external' && !linkSuffix) {
+          this.insertLinkSuffix(node.nextSibling, externalLinkSuffix);
+        }
+        else {
+          if(type !== 'external') {
+            this.removeLinkSuffix(node.nextSibling, externalLinkSuffix);
+          }
+        }
+      };
+
       linkEditorCommand.handleLinkPublished = function(eventData, promise) {
         if(eventData && eventData.link && eventData.emitter === linkManagerContext) {
           linkEditorCommand.inject.call(linkEditorCommand, eventData.link);
+          linkEditorCommand.formatLink(eventData.type);
           promise.resolve();
         }
         else {
