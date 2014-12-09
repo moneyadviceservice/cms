@@ -38,11 +38,22 @@ RSpec.describe LinkableObject do
 
   describe '.find_page' do
     context 'when page' do
-      let(:site) { create(:site, path: 'en') }
-      let!(:page) { create(:page, site: site, slug: 'investing-money') }
+      context 'when site has path' do
+        let(:site) { create(:site, path: 'en') }
+        let!(:page) { create(:page, site: site, slug: 'investing-money') }
 
-      it 'returns page' do
-        expect(described_class.find_page('/en/investing-money')).to eq(page)
+        it 'returns page' do
+          expect(described_class.find_page('/en/investing-money')).to eq(page)
+        end
+      end
+
+      context 'when site does not have path' do
+        let(:site) { create(:site, path: nil) }
+        let!(:page) { create(:page, site: site, slug: 'investing-money') }
+
+        it 'returns page' do
+          expect(described_class.find_page('/investing-money')).to eq(page)
+        end
       end
     end
 
