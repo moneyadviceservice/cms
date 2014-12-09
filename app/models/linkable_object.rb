@@ -8,8 +8,8 @@ class LinkableObject
   end
 
   def self.find_page(url)
-    paths = Comfy::Cms::Site.pluck(:path)
-    slug  = url.gsub(/#{paths.join('|')}/, '').gsub(/\A\/|\//, '')
+    paths = Comfy::Cms::Site.pluck(:path).reject(&:blank?)
+    slug = url.sub(/#{paths.join('|')}/, '').sub('articles', '').squeeze('/').gsub(/\A\//, '')
 
     Comfy::Cms::Page.where(slug: slug).take
   end
