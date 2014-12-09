@@ -1,4 +1,8 @@
 class FilePresenter < Presenter
+  def id
+    "file_#{object.id}"
+  end
+
   def full_path
     "#{url_scheme}://#{object.site.hostname}/#{object.file.url}"
   end
