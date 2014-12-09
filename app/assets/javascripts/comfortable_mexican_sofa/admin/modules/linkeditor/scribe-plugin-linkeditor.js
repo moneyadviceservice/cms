@@ -90,10 +90,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         if(type === 'external' && !linkSuffix) {
           this.insertLinkSuffix(node.nextSibling, externalLinkSuffix);
         }
-        else {
-          if(type !== 'external') {
-            this.removeLinkSuffix(node.nextSibling, externalLinkSuffix);
-          }
+        else if(type !== 'external'){
+          this.removeLinkSuffix(node.nextSibling, externalLinkSuffix);
         }
       };
 
