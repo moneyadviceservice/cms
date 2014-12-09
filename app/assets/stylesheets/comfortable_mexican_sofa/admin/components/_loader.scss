@@ -3,10 +3,10 @@
 .loader {
   @extend %z-index--loader;
   @extend %is-hidden;
-  background: $color-loader-background;  
-  position: absolute;
+  background: $color-loader-background;
   bottom: 0;
   left: 0;
+  position: absolute;
   right: 0;
   top: 0;
 }
