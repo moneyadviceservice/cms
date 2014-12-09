@@ -12,7 +12,7 @@ RSpec.describe FilePresenter do
   end
 
   describe '#url_scheme' do
-    context 'when is development environment' do
+    context 'development environment' do
       before do
         allow(Rails.env).to receive(:production?).and_return(false)
       end
@@ -22,7 +22,7 @@ RSpec.describe FilePresenter do
       end
     end
 
-    context 'when is production environment' do
+    context 'production environment' do
       before do
         allow(Rails.env).to receive(:production?).and_return(true)
       end
