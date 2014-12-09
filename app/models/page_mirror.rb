@@ -26,7 +26,7 @@ class PageMirror
     language_mirror = mirror(language)
     return if language_mirror.blank?
 
-    "/#{language_mirror.site.path}/#{language_mirror.slug}".squeeze('/')
+    "/#{language_mirror.site.path}/articles/#{language_mirror.slug}".squeeze('/')
   end
 
   def mirror(language)
