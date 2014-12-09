@@ -52,7 +52,7 @@ RSpec.describe PageMirror do
       end
     end
 
-    context 'when page not have mirrors' do
+    context 'when there are no page mirrors' do
       let(:language) { :cy }
       let(:mirrors) { [] }
 
@@ -89,7 +89,7 @@ RSpec.describe PageMirror do
       end
     end
 
-    context 'when page not have mirrors' do
+    context 'when there are no page mirrors' do
       let(:language) { :cy }
       let(:mirrors) { [] }
 
@@ -118,7 +118,7 @@ RSpec.describe PageMirror do
       end
     end
 
-    context 'when page not have mirrors' do
+    context 'when there are no page mirrors' do
       let(:language) { :cy }
       let(:mirrors) { [] }
 
