@@ -1,5 +1,5 @@
 class FilePresenter < Presenter
-  def id
+  def label_id
     "file_#{object.id}"
   end
 
