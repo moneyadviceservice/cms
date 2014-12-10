@@ -41,8 +41,13 @@ RSpec.describe FilesController do
       let!(:site)       { create(:site, :with_files) }
       let!(:welsh_site) { create(:site, :welsh, :with_files) }
 
+      before do
+        get :index, site_id: site.id
+      end
+
       it 'assigns files from different sites' do
-        expect(assigns[:files]).to match_array(Comfy::Cms::File.all)
+        files = [site.files, welsh_site.files].flatten
+        expect(assigns[:files]).to match_array(files)
       end
 
       it 'responds success' do
