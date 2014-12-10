@@ -81,50 +81,6 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('When dialog is opened', function () {
-    beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
-      done();
-    });
-
-    it('cmseditor:insert-published event\'s emitter ID should be the same as the InsertManager\'s', function() {
-      var spy = sandbox.spy(this.InsertManager.prototype, '_handleShown');
-
-      this.component.init();
-      this.eventsWithPromises.publish('cmseditor:insert-published', {
-        emitter: 'add-link'
-      });
-      expect(spy.args[0][0].emitter).to.equal('add-link');
-    });
-
-    describe('Editing existing value', function () {
-      it('should call the setup function with "existing" param and value', function() {
-        var spy = sandbox.spy(this.InsertManager.prototype, '_setup');
-
-        this.component.init();
-        this.eventsWithPromises.publish('cmseditor:insert-published', {
-          emitter: 'add-link',
-          val: 'foo'
-        });
-
-        expect(spy.calledWith('existing', 'foo')).to.be.true;
-      });
-    });
-
-    describe('Creating a new link', function () {
-      it('should call the setup function with "new" param', function() {
-        var spy = sandbox.spy(this.InsertManager.prototype, '_setup');
-
-        this.component.init();
-        this.eventsWithPromises.publish('cmseditor:insert-published', {
-          emitter: 'add-link'
-        });
-
-        expect(spy.calledWith('new')).to.be.true;
-      });
-    });
-  });
-
   describe('UI Events', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture);
