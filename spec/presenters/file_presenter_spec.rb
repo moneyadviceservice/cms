@@ -10,4 +10,13 @@ RSpec.describe FilePresenter do
       expect(presenter.full_path).to eq('http://localhost:3000/foo-bar')
     end
   end
+
+  describe '#edit_url' do
+    let(:site) { build(:site, id: 1) }
+    let(:file) { build(:file, id: 2, site: site) }
+
+    it 'returns file edit path' do
+      expect(presenter.edit_url).to eq('/admin/sites/1/files/2/edit')
+    end
+  end
 end
