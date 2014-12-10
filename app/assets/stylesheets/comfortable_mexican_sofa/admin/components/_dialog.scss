@@ -49,9 +49,18 @@
 
 .dialog__close {
   @extend %z-index--dialog__close;
+  @extend .unstyled-button;
+  @include body(25,25);
+  color: $color-dialog-close-foreground;
+  font-family: FontAwesome;
   position: absolute;
   right: $baseline-unit;
+  text-align: center;
   top: $baseline-unit;
+
+  &:after {
+    content: "\f00d";
+  }
 }
 
 .js-dialog-target.is-active {
