@@ -9,6 +9,7 @@ $responsive: true;
 @import "helpers/_unstyled_input";
 @import "helpers/_tags";
 @import "helpers/_full_height";
+@import "helpers/_fixedsticky";
 
 // Dough imports -------------------------------------------------------------- //
 
@@ -94,3 +95,6 @@ $responsive: true;
 
 // Shame
 @import "shame";
+
+// 3rd-party libraries
+@import "filament-sticky/fixedsticky";

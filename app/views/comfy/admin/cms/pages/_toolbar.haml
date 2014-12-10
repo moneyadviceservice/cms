@@ -1,8 +1,9 @@
-%nav.toolbar{ data: { dough_maseditor_toolbar: true }}
+.fixedsticky-background.fixedsticky-background--toolbar.fixedsticky.top{"data-dough-sticky-element-target" => true}
 
+%nav.toolbar.fixedsticky.top.fixedsticky-toolbar{data: {dough_maseditor_toolbar: true, dough_sticky_element_target: true}}
   .toolbar__inner
 
-    .toolbar__item-group.toolbar__item-group--html{ data: { dough_maseditor_html_toolbar: true }}
+    .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
       .toolbar__item-group
         =button_tag(type: 'button', title: "Bold", class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
           %span.fa.fa-bold

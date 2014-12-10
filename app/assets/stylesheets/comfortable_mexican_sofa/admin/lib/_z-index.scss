@@ -27,7 +27,8 @@ $z-index1: 100;
 %z-index--popover.is-active,
 %z-index--nav-primary__text,
 %z-index--loader,
-%z-index--dialog__close {
+%z-index--dialog__close,
+%z-index--fixedsticky {
   z-index: $z-index10;
 }
 
@@ -35,7 +36,8 @@ $z-index1: 100;
  //   900    //
 //----------//
 
-%z-index--nav-primary__menu {
+%z-index--nav-primary__menu,
+%z-index--fixedsticky-background {
   z-index: $z-index9;
 }
 
