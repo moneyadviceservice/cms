@@ -1,5 +1,5 @@
 %ul.content-grid
-  - files.each do |file|
+  - FilePresenter.collect(files).each do |file|
     %li{ class: "content-grid__item content-grid__item--#{file.is_image? ? :media : :file}"}
       - if file.is_image?
         = link_to file.edit_url, class: "t-file t-#{file.label}" do

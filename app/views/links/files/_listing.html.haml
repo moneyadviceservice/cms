@@ -1,7 +1,7 @@
 .form__input-wrapper
   .scrollable-container.scrollable-container--bordered.scrollable-container--file-listing
     .grid-list
-      - FilePresenter.collect(files).each do |file|
+      - files.each do |file|
         .grid-list__row
           .grid-list__item.grid-list__item--center-aligned
             = radio_button_tag(:file_url, file.full_path, false, id: file.label_id, data: {'dough-linkmanager-value-trigger' => true, 'dough-linkmanager-link-type' => 'file'})

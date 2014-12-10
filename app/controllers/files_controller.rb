@@ -1,6 +1,7 @@
 class FilesController < Comfy::Admin::Cms::FilesController
   before_action :check_files_existence, only: :index
   before_action :set_categories, only: [:new, :edit]
+  after_action :set_files_presenter, only: :index
 
   def index
     @order = params[:order].presence
@@ -18,6 +19,10 @@ class FilesController < Comfy::Admin::Cms::FilesController
 
   def check_files_existence
     redirect_to(action: :new) if Comfy::Cms::File.count.zero?
+  end
+
+  def set_files_presenter
+    @files = FilePresenter.collect(@files)
   end
 
   def build_file
