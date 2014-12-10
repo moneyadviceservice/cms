@@ -4,7 +4,7 @@
 
     .form-group
       .form__row
-        %h4.is-inactive{'data-dough-linkmanager-label' => 'page'} No page selected
+        %h4.is-inactive{'data-dough-insertmanager-label' => 'page'} No page selected
         = label_tag(:search, t('links.page.label'))
 
         .search.search--fill-width
@@ -30,5 +30,5 @@
     .form-group
       .form__row
         %button.button--action
-          %span.button__text{'data-dough-linkmanager-insertlink' => 'page' }
+          %span.button__text{'data-dough-insertmanager-insert' => 'page' }
             = t('links.page.insert_button')

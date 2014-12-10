@@ -4,7 +4,7 @@
   = form_tag(site_links_files_path, method: 'get', remote: true, class: 'form form--vertical') do
     .form-group
       .form__row
-        %h4.is-inactive{'data-dough-linkmanager-label' => 'file'} No file selected
+        %h4.is-inactive{'data-dough-insertmanager-label' => 'file'} No file selected
 
         = label_tag(:search, 'Search file', class: 'visually-hidden')
         .search.search--fill-width
@@ -25,5 +25,5 @@
     .form-group
       .form__row
         %button.button--action
-          %span.button__text{ 'data-dough-linkmanager-insertlink' => 'file' }
+          %span.button__text{ 'data-dough-insertmanager-insert' => 'file' }
             = t('links.file.insert_button')
