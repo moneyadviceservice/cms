@@ -1,0 +1,23 @@
+<div>
+  <div data-dough-component="InsertManager"
+    data-dough-insertmanager-context="add-link"
+    data-dough-insertmanager-url="/admin/links"
+    >
+    <button data-dough-tab-selector-trigger="page">Internal Link</button>
+    <button data-dough-tab-selector-trigger="external">External Link</button>
+    <button data-dough-tab-selector-trigger="file">File</button>
+
+    <input data-dough-insertmanager-insert-type="page" type="text" value="/foo">
+    <input data-dough-insertmanager-insert-type="external" type="text" value="http://foo.com">
+    <input data-dough-insertmanager-insert-type="file" type="text" value="foo.pdf">
+
+    <span class="is-inactive" data-dough-insertmanager-label="file"></span>
+
+    <input data-dough-insertmanager-value-trigger type="radio" value="http://foo.com">
+    <input data-dough-insertmanager-value-trigger type="text" value="http://bar.com">
+
+    <button data-dough-insertmanager-insert="page">Insert Link</button>
+
+    <div class="loader is-inactive" data-dough-insertmanager-loader></div>
+  </div>
+</div>

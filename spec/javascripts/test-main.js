@@ -50,6 +50,7 @@ requirejs.config({
     'ElementFilter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementFilter',
     'Dialog': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Dialog',
     'LinkManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkManager',
+    'InsertManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/InsertManager',
     'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
 
     // Snippets
