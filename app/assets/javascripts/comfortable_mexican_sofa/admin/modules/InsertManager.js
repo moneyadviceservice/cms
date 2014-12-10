@@ -33,7 +33,7 @@ define([
   function InsertManager($el, config) {
     InsertManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.open = false;
-    this.linkValues = {
+    this.itemValues = {
       'page': null,
       'file': null,
       'external': null
@@ -63,7 +63,7 @@ define([
   };
 
   InsertManagerProto._setupAppEvents = function() {
-    eventsWithPromises.subscribe('cmseditor:link-published', $.proxy(this._handleShown, this));
+    eventsWithPromises.subscribe('cmseditor:insert-published', $.proxy(this._handleShown, this));
     eventsWithPromises.subscribe('dialog:cancelled', $.proxy(this.close, this));
     eventsWithPromises.subscribe('dialog:closed', $.proxy(this.close, this));
   };
@@ -73,40 +73,40 @@ define([
       .on('input', '[data-dough-insertmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('keyup', '[data-dough-insertmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('change', '[data-dough-insertmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('click', '[data-dough-insertmanager-insert]', $.proxy(this._handleInsertLink, this));
+      .on('click', '[data-dough-insertmanager-insert]', $.proxy(this._handleInsertValue, this));
   };
 
   InsertManagerProto._handleFormControlUpdate = function(e) {
     var $trigger = $(e.target),
         type = $trigger.attr(this._stripSquareBrackets(this.config.selectors.insertInputs));
 
-    this.setLink(type, $trigger.val());
+    this.setValue(type, $trigger.val());
   };
 
   InsertManagerProto._handleShown = function(eventData) {
     if(!eventData || eventData.emitter !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
 
-    if(eventData.link) {
-      this._setup('existing', eventData.link);
+    if(eventData.val) {
+      this._setup('existing', eventData.val);
     } else {
       this._setup('new');
     }
     this.open = true;
   };
 
-  InsertManagerProto._handleInsertLink = function(e) {
+  InsertManagerProto._handleInsertValue = function(e) {
     var type = $(e.target).attr(this._stripSquareBrackets(this.config.selectors.insertButton)),
-        link = this.getLink(type);
+        val = this.getValue(type);
 
-    this.publishLink({
-      link: link,
+    this.publishValue({
+      val: val,
       type: type
     });
     this.close();
   };
 
   InsertManagerProto._handleAjaxLabelDone = function(data) {
-    this.linkValues[data.type] = data.url;
+    this.itemValues[data.type] = data.url;
     this.setInputs(data.type, data.url);
     this.setLabels(data.type, data.label);
     this.showLabels();
@@ -119,22 +119,22 @@ define([
     this.changeTab(this.config.tabIds['page']);
   };
 
-  InsertManagerProto._setup = function(type, link) {
+  InsertManagerProto._setup = function(type, val) {
     if(type === 'new') {
       this.changeTab('page');
     }
     else if(type === 'existing') {
       this.showLoader();
-      this.getPageLabelPromise = this._getPageLabel(link);
+      this.getPageLabelPromise = this._getPageLabel(val);
       this.getPageLabelPromise
         .done($.proxy(this._handleAjaxLabelDone,this))
         .fail($.proxy(this._handleAjaxLabelFail,this));
     }
   };
 
-  InsertManagerProto._getPageLabel = function(link) {
+  InsertManagerProto._getPageLabel = function(val) {
     var deferred = $.Deferred();
-    $.ajax(this.url + '?id=' + link).done(function(data) {
+    $.ajax(this.url + '?id=' + val).done(function(data) {
       deferred.resolve(data);
     })
     .fail(function(data) {
@@ -147,16 +147,16 @@ define([
     return str.replace(/([\[\]])+/gi,'');
   };
 
-  InsertManagerProto.setLink = function(type, link) {
-    if(!link || !type) return;
-    this.linkValues[type] = link;
+  InsertManagerProto.setValue = function(type, val) {
+    if(!val || !type) return;
+    this.itemValues[type] = val;
   };
 
-  InsertManagerProto.getLink = function(type) {
-    return this.linkValues[type];
+  InsertManagerProto.getValue = function(type) {
+    return this.itemValues[type];
   };
 
-  InsertManagerProto.publishLink = function(eventData) {
+  InsertManagerProto.publishValue = function(eventData) {
     eventsWithPromises.publish('dialog:close', {
       emitter: this.context
     });
@@ -166,11 +166,6 @@ define([
     });
 
     eventsWithPromises.publish('insertmanager:insert-published', eventData);
-    // {
-    //   emitter: this.context,
-    //   link: link,
-    //   type: type
-    // }
   };
 
   InsertManagerProto.changeTab = function(id) {
@@ -200,16 +195,16 @@ define([
     this.open = false;
   };
 
-  InsertManagerProto.setInputs = function(type, link) {
-    this.$insertInputs.filter('[data-dough-insertmanager-insert-type="' + type + '"]').val(link);
+  InsertManagerProto.setInputs = function(type, val) {
+    this.$insertInputs.filter('[data-dough-insertmanager-insert-type="' + type + '"]').val(val);
   };
 
   InsertManagerProto.clearInputs = function() {
     this.$insertInputs.val('');
   };
 
-  InsertManagerProto.setLabels = function(type, link) {
-    this.$currentItemLabels.filter('[data-dough-insertmanager-label="' + type + '"]').text(link);
+  InsertManagerProto.setLabels = function(type, val) {
+    this.$currentItemLabels.filter('[data-dough-insertmanager-label="' + type + '"]').text(val);
   };
 
   InsertManagerProto.showLabels = function() {
