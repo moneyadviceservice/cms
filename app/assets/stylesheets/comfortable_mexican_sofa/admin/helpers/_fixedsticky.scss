@@ -8,6 +8,10 @@
 .fixedsticky-toolbar {
   @extend %z-index--fixedsticky;
   top: 35px;
+
+  &.fixedsticky-on {
+    width: 1%;
+  }
 }
 
 .fixedsticky-background {
@@ -39,6 +43,5 @@
     height: 50px;
     left: 0;
     top: 65px;
-    width: 1%;
   }
 }
