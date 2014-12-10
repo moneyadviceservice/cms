@@ -33,11 +33,7 @@ define([
   function InsertManager($el, config) {
     InsertManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.open = false;
-    this.itemValues = {
-      'page': null,
-      'file': null,
-      'external': null
-    };
+    this.itemValues = {};
   }
 
   DoughBaseComponent.extend(InsertManager);
