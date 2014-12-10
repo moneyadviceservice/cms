@@ -14,7 +14,9 @@
 
 .l-panel-content.l-panel-content--form
   .l-constrained{ data: dough_component(@page.new_record?, ['MirrorInputValue','Slugifier']) }
-    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title', placeholder: 'Untitled page', data: { 'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', slugify: @page.new_record?}
+    .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
+
+    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: { 'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', slugify: @page.new_record?, "dough-sticky-element-target" => true}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
@@ -24,6 +26,7 @@
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
     = render 'tags/shared/form',                         form: form
+
 
     = form.text_field :meta_description
     = form.text_field :meta_title, :data => {'dough-mirrorinputvalue-target' => ''}

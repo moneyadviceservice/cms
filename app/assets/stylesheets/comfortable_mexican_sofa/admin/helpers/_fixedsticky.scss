@@ -1,0 +1,43 @@
+// Helper for the filament-sticky plugin
+
+.fixedsticky-page-title {
+  @extend %z-index--fixedsticky;
+  top: 15px;
+}
+
+.fixedsticky-toolbar {
+  @extend %z-index--fixedsticky;
+  top: 35px;
+}
+
+.fixedsticky-background {
+  @extend %z-index--fixedsticky-background;
+  height: 0;
+  left: -9999em;
+  top: 0;
+  width: 100%;
+
+  &.fixedsticky-on {
+    background: $color-fixedsticky-background;
+  }
+}
+
+.fixedsticky-background--page-title {
+  @extend %z-index--fixedsticky;
+
+  &.fixedsticky-on {
+    height: 70px;
+    left: 0;
+    top: 0;
+  }
+}
+
+.fixedsticky-background--toolbar {
+  @extend %z-index--fixedsticky;
+
+  &.fixedsticky-on {
+    height: 50px;
+    left: 0;
+    top: 65px;
+  }
+}
