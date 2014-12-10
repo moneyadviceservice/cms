@@ -57,5 +57,4 @@ Rails.application.configure do
                                   rangy-official/rangy-selectionsaverestore.js
 																	filament-sticky/fixedsticky.js
                                   filament-fixed/fixedfixed.js)
-
 end
