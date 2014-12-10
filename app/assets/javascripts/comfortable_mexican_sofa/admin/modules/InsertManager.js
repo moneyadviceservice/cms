@@ -80,8 +80,7 @@ define([
   };
 
   InsertManagerProto._handleShown = function(eventData) {
-    if(!eventData || eventData.emitter !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
-
+    if(!eventData || eventData.emitter !== this.context) return false;
     if(eventData.val) {
       this._setup('existing', eventData.val);
     } else {
