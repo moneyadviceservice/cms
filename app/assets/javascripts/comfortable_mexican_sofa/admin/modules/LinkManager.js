@@ -25,7 +25,7 @@ define([
   function LinkManager($el, config) {
     LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
     this.open = false;
-    this.linkValues = {
+    this.itemValues = {
       'page': null,
       'file': null,
       'external': null
