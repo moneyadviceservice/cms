@@ -12,5 +12,7 @@ class PagePresenter < Presenter
 
   def url_scheme
     return 'https://' if Rails.env.production?
+
+    'http://'
   end
 end
