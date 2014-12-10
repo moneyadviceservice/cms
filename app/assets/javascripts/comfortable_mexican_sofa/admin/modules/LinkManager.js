@@ -41,5 +41,10 @@ define([
     this._initialisedSuccess(initialised);
   };
 
+  LinkManagerProto._setupAppEvents = function() {
+    eventsWithPromises.subscribe('cmseditor:insert-published', $.proxy(this._handleShown, this));
+    LinkManager.superclass._setupAppEvents.call(this);
+  }
+
   return LinkManager;
 });

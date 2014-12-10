@@ -59,7 +59,6 @@ define([
   };
 
   InsertManagerProto._setupAppEvents = function() {
-    eventsWithPromises.subscribe('cmseditor:insert-published', $.proxy(this._handleShown, this));
     eventsWithPromises.subscribe('dialog:cancelled', $.proxy(this.close, this));
     eventsWithPromises.subscribe('dialog:closed', $.proxy(this.close, this));
   };
