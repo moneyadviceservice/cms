@@ -24,9 +24,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
 
         this.saveSelection();
 
-        eventsWithPromises.publish('cmseditor:link-published', {
+        eventsWithPromises.publish('cmseditor:insert-published', {
           emitter: linkManagerContext,
-          link: !!node? node.attributes['href'].value : null
+          val: !!node? node.attributes['href'].value : null
         });
       };
 
@@ -96,8 +96,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.handleLinkPublished = function(eventData, promise) {
-        if(eventData && eventData.link && eventData.emitter === linkManagerContext) {
-          linkEditorCommand.inject.call(linkEditorCommand, eventData.link);
+        if(eventData && eventData.val && eventData.emitter === linkManagerContext) {
+          linkEditorCommand.inject.call(linkEditorCommand, eventData.val);
           linkEditorCommand.formatLink(eventData.type);
           promise.resolve();
         }
@@ -118,7 +118,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       linkEditorCommand.setupEvents = function() {
         eventsWithPromises.subscribe('dialog:closed', this.removeSelection.bind(this));
         eventsWithPromises.subscribe('dialog:cancelled', this.removeSelection.bind(this));
-        eventsWithPromises.subscribe('linkmanager:link-published', linkEditorCommand.handleLinkPublished.bind(this));
+        eventsWithPromises.subscribe('insertmanager:insert-published', linkEditorCommand.handleLinkPublished.bind(this));
       };
 
       linkEditorCommand.init = function() {
