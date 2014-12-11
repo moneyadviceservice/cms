@@ -10,10 +10,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
   /**
    * This plugin adds a command for editing/creating links via LinkEditor/LinkInserter
    */
-  return function () {
+  return function (context) {
     return function (scribe) {
       var savedSelection,
-          linkManagerContext = 'add-link',
           linkEditorCommand = new scribe.api.Command('createLink'),
           externalLinkSuffix = '{:target="_blank"}',
           externalLinkSuffixRegEx = /\{\:target\=\"\_blank\"\}/i;
@@ -26,7 +25,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         this.saveSelection();
 
         eventsWithPromises.publish('cmseditor:insert-published', {
-          emitter: linkManagerContext,
+          emitter: context,
           val: !!node? node.attributes['href'].value : null
         });
       };
@@ -111,9 +110,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       };
 
       linkEditorCommand.setupEvents = function() {
-        eventsWithPromises.subscribe('dialog:closed', filterEvent(this.removeSelection.bind(this), linkManagerContext));
-        eventsWithPromises.subscribe('dialog:cancelled', filterEvent(this.removeSelection.bind(this), linkManagerContext));
-        eventsWithPromises.subscribe('insertmanager:insert-published', filterEvent(linkEditorCommand.handleLinkPublished.bind(this), linkManagerContext));
+        eventsWithPromises.subscribe('dialog:closed', filterEvent(this.removeSelection.bind(this), context));
+        eventsWithPromises.subscribe('dialog:cancelled', filterEvent(this.removeSelection.bind(this), context));
+        eventsWithPromises.subscribe('insertmanager:insert-published', filterEvent(linkEditorCommand.handleLinkPublished.bind(this), context));
       };
 
       linkEditorCommand.init = function() {

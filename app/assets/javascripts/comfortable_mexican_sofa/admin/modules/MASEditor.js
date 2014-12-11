@@ -88,7 +88,7 @@ define([
       this.editorOptions
     );
     this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
-    this.editorLib.editor.use(scribePluginLinkEditor());
+    this.editorLib.editor.use(scribePluginLinkEditor('add-link'));
     this.editorLib.editor.use(scribePluginImageInserter('insert-image'));
     this.editorLib.editor.use(scribePluginMastalk('collapsible'));
     this.editorLib.editor.use(scribePluginMastalk('ticks'));
