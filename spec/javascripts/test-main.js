@@ -53,6 +53,9 @@ requirejs.config({
     'InsertManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/InsertManager',
     'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
 
+    // Utils
+    'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
+
     // Snippets
     'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',
     'scribe-plugin-linkeditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/linkeditor/scribe-plugin-linkeditor',

@@ -1,9 +1,10 @@
 define('scribe-plugin-linkeditor', [
   'eventsWithPromises',
   'rangy-core',
-  'rangy-selectionsaverestore'
+  'rangy-selectionsaverestore',
+  'filter-event'
 ],
-function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
+function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
   'use strict';
 
   /**
@@ -95,15 +96,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         }
       };
 
-      linkEditorCommand.handleLinkPublished = function(eventData, promise) {
-        if(eventData && eventData.val && eventData.emitter === linkManagerContext) {
-          linkEditorCommand.inject.call(linkEditorCommand, eventData.val);
-          linkEditorCommand.formatLink(eventData.type);
-          promise.resolve();
-        }
-        else {
-          promise.reject();
-        }
+      linkEditorCommand.handleLinkPublished = function(eventData) {
+        linkEditorCommand.inject.call(linkEditorCommand, eventData.val);
+        linkEditorCommand.formatLink(eventData.type);
       };
 
       linkEditorCommand.saveSelection = function() {
@@ -116,9 +111,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.setupEvents = function() {
-        eventsWithPromises.subscribe('dialog:closed', this.removeSelection.bind(this));
-        eventsWithPromises.subscribe('dialog:cancelled', this.removeSelection.bind(this));
-        eventsWithPromises.subscribe('insertmanager:insert-published', linkEditorCommand.handleLinkPublished.bind(this));
+        eventsWithPromises.subscribe('dialog:closed', filterEvent(this.removeSelection.bind(this), linkManagerContext));
+        eventsWithPromises.subscribe('dialog:cancelled', filterEvent(this.removeSelection.bind(this), linkManagerContext));
+        eventsWithPromises.subscribe('insertmanager:insert-published', filterEvent(linkEditorCommand.handleLinkPublished.bind(this), linkManagerContext));
       };
 
       linkEditorCommand.init = function() {

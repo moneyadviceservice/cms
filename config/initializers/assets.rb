@@ -23,7 +23,8 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar.js
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
                                   mas-cms-editor/src/app/shims/mutationobserver.min.js
-                                  comfortable_mexican_sofa/admin/modules/*.js)
+                                  comfortable_mexican_sofa/admin/modules/*.js
+                                  comfortable_mexican_sofa/admin/modules/utils/filterEvent.js)
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js
