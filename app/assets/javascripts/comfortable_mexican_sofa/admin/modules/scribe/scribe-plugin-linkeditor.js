@@ -63,7 +63,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         return true;
       };
 
-      linkEditorCommand.getLinkSuffix = function(referenceNode, suffix, suffixRegEx) {
+      linkEditorCommand.haslinkSuffix = function(referenceNode, suffix, suffixRegEx) {
         if(referenceNode && referenceNode.nodeType === 3) {
           return suffixRegEx.test(referenceNode.substringData(0, suffix.length));
         }
@@ -83,7 +83,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       linkEditorCommand.formatLink = function(type) {
         var range = rangy.getSelection(),
             node = range.getRangeAt(0).commonAncestorContainer,
-            haslinkSuffix = this.getLinkSuffix(node.nextSibling, externalLinkSuffix, externalLinkSuffixRegEx);
+            haslinkSuffix = this.haslinkSuffix(node.nextSibling, externalLinkSuffix, externalLinkSuffixRegEx);
 
         type = type || 'page';
 
