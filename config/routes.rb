@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
       namespace 'links' do
         resources :files, only: :index
+        resources :images, only: :index
         resources :pages, only: :index
       end
     end

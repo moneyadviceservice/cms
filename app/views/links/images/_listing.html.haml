@@ -1,0 +1,3 @@
+- files.each do |file|
+  = hidden_field_tag 'image_link', file.full_path
+  = image_tag file.file.url, height: 150, width: 150
