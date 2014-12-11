@@ -1,3 +1,7 @@
 - files.each do |file|
-  = hidden_field_tag 'image_link', file.full_path
-  = image_tag file.file.url, height: 150, width: 150
+  %li.content-grid__item.content-grid__item--media
+    = label_tag "image_link_#{file.id}" do
+      = radio_button_tag "image_link", file.full_path, false, id: "image_link_#{file.id}", class: '', data: { 'dough-insertmanager-value-trigger' => true, 'dough-insertmanager-insert-type' => 'image' }
+      %span.content-grid__media-wrapper
+        = image_tag file.file.url, class: 'content-grid__media'
+      %span.content-grid__outline
