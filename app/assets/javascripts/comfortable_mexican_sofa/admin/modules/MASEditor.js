@@ -4,14 +4,16 @@ define([
   'editor-plugin-auto-resize-textarea',
   'editor',
   'scribe-plugin-mastalk',
-  'scribe-plugin-linkeditor'
+  'scribe-plugin-linkeditor',
+  'scribe-plugin-image-inserter'
 ], function (
   $,
   DoughBaseComponent,
   editorPluginAutoResizeTextarea,
   Editor,
   scribePluginMastalk,
-  scribePluginLinkEditor
+  scribePluginLinkEditor,
+  scribePluginImageInserter
 ) {
   'use strict';
 
@@ -87,6 +89,7 @@ define([
     );
     this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
     this.editorLib.editor.use(scribePluginLinkEditor());
+    this.editorLib.editor.use(scribePluginImageInserter('insert-image'));
     this.editorLib.editor.use(scribePluginMastalk('collapsible'));
     this.editorLib.editor.use(scribePluginMastalk('ticks'));
     this.editorLib.editor.use(scribePluginMastalk('addAction'));
