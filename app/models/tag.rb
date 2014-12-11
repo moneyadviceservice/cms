@@ -1,6 +1,7 @@
 class Tag < ActiveRecord::Base
   # -- Relationships --------------------------------------------------------
   has_many :taggings, dependent: :destroy
+  delegate :size, to: :taggings, prefix: true
 
   # -- Callbacks ------------------------------------------------------------
 
