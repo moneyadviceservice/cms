@@ -51,6 +51,7 @@ requirejs.config({
     'Dialog': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Dialog',
     'LinkManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkManager',
     'InsertManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/InsertManager',
+    'ImageManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ImageManager',
     'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
 
     // Utils
