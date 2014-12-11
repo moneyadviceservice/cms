@@ -1,0 +1,26 @@
+= form_tag(site_links_files_path, method: 'get', remote: true, class: 'form form--vertical') do
+  .form-group
+    .form__row
+      %h4.is-inactive{'data-dough-insertmanager-label' => 'file'} No file selected
+
+      = label_tag(:search, 'Search file', class: 'visually-hidden')
+      .search.search--fill-width
+        %span.search__item
+          = text_field_tag(:search, '', placeholder: t('links.file.placeholder'), class: 'form__input search__input t-search-box')
+        %span.search__item
+          = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
+            %span.button__text.fa.fa-search
+
+  .form-group
+    .choose-sort-by
+      = label_tag(:sort_by, nil, class: 'form__label-heading visually-hidden')
+      .form__input-wrapper
+        = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: I18n.t('files.index.sort_by.placeholder'), data: { dough_component: 'SelectSubmitter' })
+
+  .form-group.js-linkable-files
+
+  .form-group
+    .form__row
+      %button.button--action
+        %span.button__text{ 'data-dough-insertmanager-insert' => 'file' }
+          = t('links.file.insert_button')
