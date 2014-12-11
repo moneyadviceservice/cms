@@ -1,24 +1,40 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col.page-header
+        %h1 User management
+      .l-panel-content__col
+
+
 .l-panel-content
-  %h2 Users
+  .l-constrained
+    .l-panel-content__row.l-panel-content__row--page-content-header
+      .l-panel-content__col
+        =link_to new_user_path, :class => "button--action t-new-user" do
+          %span.button__text
+            %span.fa.fa-user
+            Create User
+      .l-panel-content__col
 
-  .table-wrapper
-    %table.datatable-default
-      %thead
-        %tr
-          %th name
-          %th email
-          %th edit
-          %th delete
-      %tbody
-        -@users.each do |user|
+    .table-wrapper
+      %table.table.table--full-width.datatable-default
+        %thead
           %tr
-            %td
-              =user.name
-            %td
-              =user.email
-            %td
-              =link_to "edit", edit_user_path(user)
-            %td
-              =link_to "delete", user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "t-delete"
+            %th Name
+            %th Email
+            %th
+            %th
+        %tbody
+          -@users.each do |user|
+            %tr
+              %td
+                =user.name
+              %td
+                =user.email
+              %td
+                =link_to "Edit", edit_user_path(user)
+              %td
+                =link_to user_path(user), method: :delete, data: { confirm: "Are you sure?" }, class: "t-delete" do
+                  %span.fa.fa-trash
+                  Delete
 
-  =link_to "Create User", new_user_path, :class => "t-new-user"

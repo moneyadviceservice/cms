@@ -31,6 +31,17 @@
 .editor--html .editor__content {
   h2 {
     @include body(30, 36);
+  }
+
+  h3 {
+    @include body(24, 29);
+  }
+
+  h4 {
+    @include body(20, 24);
+  }
+
+  h2, h3, h4 {
     font-weight: 700;
   }
 }

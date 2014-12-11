@@ -5,3 +5,12 @@
 .table__header.table__header--page-title {
   width: 30%;
 }
+
+.table {
+  margin-top: 0;
+}
+
+.table th {
+  @include body(16,16);
+  color: $color-table-th-foreground;
+}
