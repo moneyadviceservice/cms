@@ -37,6 +37,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -59,6 +60,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -85,6 +87,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -104,12 +107,12 @@ describe('InsertManager', function () {
     });
 
     describe('When new value is called', function () {
-      it('should activate the "page" tab trigger', function() {
+      it('should activate the "default" tab trigger', function() {
         var spy = sandbox.spy();
         this.component.init();
 
-        $('[data-dough-tab-selector-trigger="page"]').on('click', spy);
-        this.component.changeTab('page');
+        $('[data-dough-tab-selector-trigger="default"]').on('click', spy);
+        this.component.changeTab('default');
         expect(spy.called).to.be.true;
       });
     });
@@ -173,6 +176,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -189,7 +193,7 @@ describe('InsertManager', function () {
       });
       this.component.$insertButtons.first().click();
 
-      expect(spy.calledWith('page')).to.be.true;
+      expect(spy.calledWith('default')).to.be.true;
     });
 
     it('should call the publishValue method', function() {
@@ -221,6 +225,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -255,6 +260,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -280,6 +286,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -304,6 +311,7 @@ describe('InsertManager', function () {
       server.autoRespond = true;
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -343,6 +351,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -362,6 +371,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -387,6 +397,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -408,6 +419,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -430,6 +442,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -451,6 +464,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -473,6 +487,7 @@ describe('InsertManager', function () {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
+          'default': 'default',
           'page': 'page',
           'external': 'external'
         }
@@ -490,7 +505,7 @@ describe('InsertManager', function () {
       });
       this.component.close();
 
-      expect(changeTabSpy.calledWith('page')).to.be.true;
+      expect(changeTabSpy.calledWith('default')).to.be.true;
       expect(clearInputsSpy.called).to.be.true;
     });
 

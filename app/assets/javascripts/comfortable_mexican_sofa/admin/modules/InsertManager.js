@@ -105,12 +105,12 @@ define([
 
   InsertManagerProto._handleAjaxLabelFail = function() {
     this.hideLoader();
-    this.changeTab(this.config.tabIds['page']);
+    this.changeTab(this.config.tabIds['default']);
   };
 
   InsertManagerProto._setup = function(type, val) {
     if(type === 'new') {
-      this.changeTab('page');
+      this.changeTab('default');
     }
     else if(type === 'existing') {
       this.showLoader();
@@ -178,7 +178,7 @@ define([
 
   InsertManagerProto.close = function() {
     if(!this.open) return false;
-    this.changeTab('page');
+    this.changeTab('default');
     this.getPageLabelPromise && this.getPageLabelPromise.reject();
     this.clearInputs();
     this.open = false;
