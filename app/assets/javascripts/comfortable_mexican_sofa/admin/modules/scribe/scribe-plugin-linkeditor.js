@@ -97,8 +97,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       };
 
       linkEditorCommand.handleLinkPublished = function(eventData) {
-        linkEditorCommand.inject.call(linkEditorCommand, eventData.val);
-        linkEditorCommand.formatLink(eventData.type);
+        this.inject(eventData.val);
+        this.formatLink(eventData.type);
       };
 
       linkEditorCommand.saveSelection = function() {

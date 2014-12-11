@@ -30,12 +30,12 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
 
       insertImageCommand.handleInsertPublished = function(eventData) {
         if(!eventData.url) return;
-        insertImageCommand.execute.call(this, eventData.url);
+        this.insert(eventData.url);
       };
 
       insertImageCommand.setupEvents = function() {
         eventsWithPromises.subscribe('insertmanager:insert-published',
-          filterEvent(insertImageCommand.handleInsertPublished.bind(this), context)
+          filterEvent(this.handleInsertPublished.bind(this), context)
         );
       };
 
