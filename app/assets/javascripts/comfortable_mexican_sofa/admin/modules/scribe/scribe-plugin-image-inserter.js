@@ -33,8 +33,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       };
 
       insertImageCommand.handleInsertPublished = function(eventData) {
-        if(!eventData.url) return;
-        this.insert(eventData.url);
+        if(!eventData.val) return;
+        this.insert(eventData.val);
       };
 
       insertImageCommand.setupEvents = function() {
