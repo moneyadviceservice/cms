@@ -35,7 +35,13 @@ describe('LinkManager', function () {
 
   describe('App Events', function () {
     beforeEach(function (done) {
-      this.component = new this.LinkManager(this.$fixture);
+      this.component = new this.LinkManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'file': 'file',
+          'external': 'external'
+        }
+      });
       done();
     });
 
@@ -52,7 +58,13 @@ describe('LinkManager', function () {
 
   describe('When dialog is opened', function () {
     beforeEach(function (done) {
-      this.component = new this.LinkManager(this.$fixture);
+      this.component = new this.LinkManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'file': 'file',
+          'external': 'external'
+        }
+      });
       done();
     });
 

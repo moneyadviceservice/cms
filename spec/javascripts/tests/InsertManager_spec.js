@@ -35,7 +35,12 @@ describe('InsertManager', function () {
 
   describe('Initialisation', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       done();
     });
 
@@ -52,7 +57,12 @@ describe('InsertManager', function () {
 
   describe('App Events', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       done();
     });
 
@@ -73,7 +83,12 @@ describe('InsertManager', function () {
 
   describe('UI Events', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       done();
     });
 
@@ -156,7 +171,12 @@ describe('InsertManager', function () {
 
   describe('Insert Value handler', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       done();
     });
 
@@ -199,7 +219,12 @@ describe('InsertManager', function () {
 
   describe('Updating the insert type value inputs', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -228,7 +253,12 @@ describe('InsertManager', function () {
 
   describe('Publish value', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -248,7 +278,12 @@ describe('InsertManager', function () {
 
   describe('Save the value to itemValues', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -267,7 +302,12 @@ describe('InsertManager', function () {
     beforeEach(function () {
       server = sandbox.useFakeServer();
       server.autoRespond = true;
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
     });
 
     afterEach(function () {
@@ -301,7 +341,12 @@ describe('InsertManager', function () {
 
   describe('getValue() Get a link from the itemValues hash', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -315,7 +360,12 @@ describe('InsertManager', function () {
 
   describe('setLabels()', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -335,7 +385,12 @@ describe('InsertManager', function () {
 
   describe('showLoader', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -351,7 +406,12 @@ describe('InsertManager', function () {
 
   describe('hideLabels', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -368,7 +428,12 @@ describe('InsertManager', function () {
 
   describe('showLabels', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -384,7 +449,12 @@ describe('InsertManager', function () {
 
   describe('hideLabels', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       this.component.init();
       done();
     });
@@ -401,7 +471,12 @@ describe('InsertManager', function () {
 
   describe('Closing the dialog', function () {
     beforeEach(function (done) {
-      this.component = new this.InsertManager(this.$fixture);
+      this.component = new this.InsertManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'external': 'external'
+        }
+      });
       done();
     });
 

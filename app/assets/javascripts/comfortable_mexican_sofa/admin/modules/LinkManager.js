@@ -14,16 +14,11 @@ define([
   var LinkManagerProto,
       defaultConfig = {
         selectors: {
-        },
-        tabIds: {
-          'page': 'page',
-          'file': 'file',
-          'external': 'external'
         }
       };
 
-  function LinkManager($el, config) {
-    LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
+  function LinkManager($el, config, customConfig) {
+    LinkManager.baseConstructor.call(this, $el, config, customConfig || defaultConfig);
     this.open = false;
     this.itemValues = {
       'page': null,

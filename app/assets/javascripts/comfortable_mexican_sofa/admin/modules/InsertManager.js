@@ -22,11 +22,6 @@ define([
           url: '[data-dough-insertmanager-url]',
           activeClass: 'is-active',
           inactiveClass: 'is-inactive'
-        },
-        tabIds: {
-          'page': 'page',
-          'file': 'file',
-          'external': 'external'
         }
       };
 
