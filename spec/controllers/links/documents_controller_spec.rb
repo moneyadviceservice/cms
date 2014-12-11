@@ -1,9 +1,9 @@
-RSpec.describe Links::FilesController do
+RSpec.describe Links::DocumentsController do
   before do
     sign_in create(:user)
   end
 
-  describe 'GET /links/files' do
+  describe 'GET /links/documents' do
     before do
       get :index, site_id: site.id
     end
