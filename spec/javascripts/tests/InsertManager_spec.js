@@ -56,16 +56,6 @@ describe('InsertManager', function () {
       done();
     });
 
-    it('should call handleShown when the cmseditor:insert-published event is published', function() {
-      var spy = sandbox.spy(this.InsertManager.prototype, '_handleShown');
-
-      this.component.init();
-      this.eventsWithPromises.publish('cmseditor:insert-published', {
-        emitter: 'add-link'
-      });
-      expect(spy.called).to.be.true;
-    });
-
     it('should call the close method when the dialog:close or dialog:cancelled event with matching emitter context is published', function() {
       var spy = sandbox.spy(this.InsertManager.prototype, 'close'),
           eventData = {
