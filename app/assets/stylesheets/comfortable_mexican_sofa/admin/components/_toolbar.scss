@@ -20,6 +20,10 @@
   text-align: left;
   padding: $baseline-unit*4 0 $baseline-unit*6;
   width: 100%;
+
+  .fixedsticky-on & {
+    padding: 0;
+  }
 }
 
 
