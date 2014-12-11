@@ -62,7 +62,8 @@ define([
             h5: {},
             sub: {},
             sup: {},
-            span: { 'class': true, id: true}
+            span: { 'class': true, id: true},
+            img: { 'class': true, src: true}
           }
         }
       }
