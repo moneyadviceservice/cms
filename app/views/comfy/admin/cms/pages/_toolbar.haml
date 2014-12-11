@@ -26,7 +26,7 @@
           %span.fa.fa-link
         = button_tag("Unlink", title: "Remove link", type: 'button', class: 'toolbar__item toolbar-button', data: { "command-name" => "unlink"}) do
           %span.fa.fa-unlink
-        = button_tag('Image', title: "Insert image", type: 'button', class: 'toolbar__item toolbar-buttona', data: { 'dough-component' => 'Dialog', 'dough-dialog-trigger' => 'insert-image', 'dough-dialog-context' => 'add-image'}) do
+        = button_tag('Image', title: "Insert image", type: 'button', class: 'toolbar__item toolbar-button', data: { 'command-name' => 'insertImage', 'dough-component' => 'Dialog', 'dough-dialog-trigger' => 'insert-image', 'dough-dialog-context' => 'insert-image'}) do
           %span.fa.fa-image
 
         =content_tag(:div, "Insert snippet", title: 'Insert snippet', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
