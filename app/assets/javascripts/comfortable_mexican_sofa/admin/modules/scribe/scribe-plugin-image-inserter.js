@@ -17,7 +17,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       insertImageCommand.nodeName = 'IMG';
 
       insertImageCommand.execute = function (url) {
-        scribe.api.SimpleCommand.prototype.execute.call(this, '<img src="'+ url +'">');
+        return true;
       };
 
       insertImageCommand.queryState = function () {
@@ -26,6 +26,10 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
 
       insertImageCommand.queryEnabled = function() {
         return true;
+      };
+
+      insertImageCommand.insert = function (url) {
+        scribe.api.SimpleCommand.prototype.execute.call(this, '<img src="'+ url +'">');
       };
 
       insertImageCommand.handleInsertPublished = function(eventData) {
