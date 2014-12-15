@@ -2,12 +2,14 @@ define([
   'jquery',
   'DoughBaseComponent',
   'InsertManager',
-  'eventsWithPromises'
+  'eventsWithPromises',
+  'filter-event'
 ], function (
   $,
   DoughBaseComponent,
   InsertManager,
-  eventsWithPromises
+  eventsWithPromises,
+  filterEvent
 ) {
   'use strict';
 
@@ -37,9 +39,9 @@ define([
   };
 
   LinkManagerProto._setupAppEvents = function() {
-    eventsWithPromises.subscribe('cmseditor:insert-published', $.proxy(this._handleShown, this));
+    eventsWithPromises.subscribe('cmseditor:insert-published', filterEvent($.proxy(this._handleShown, this), this.context));
     LinkManager.superclass._setupAppEvents.call(this);
-  }
+  };
 
   return LinkManager;
 });
