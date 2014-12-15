@@ -25,3 +25,9 @@
     %p.pagination.pagination--tags!= index_of_existing_tags
     %p.js-tags-existing-header
     %ul.taggle_list.js-tags-existing
+
+.js-dialog-target.is-inactive{'data-dough-dialog-target' => 'delete-tag'}
+  %div{'data-dough-component' => 'TagManager', 'data-dough-tagmanager-target' => 'delete-tag', 'data-dough-tagmanager-context' => 'add-link'}
+    .l-tab-panels.l-tab-panels--add-link
+      .l-tab-panels__item.l-tab-panels__item--aside
+        %h2.l-tab-panels__heading Add a link to&hellip;

@@ -91,6 +91,7 @@ define([
   };
 
   DialogProto._handleClose = function(eventData) {
+    console.log(eventData);
     if(eventData && eventData.emitter === this.context) {
       this.close();
     }

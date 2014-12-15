@@ -1,3 +1,5 @@
+- data = !tag.in_use? ? { dough_component: 'Dialog', dough_dialog_context: 'delete-tag_#{tag.value}', dough_dialog_trigger: 'delete-tag', dough_tagmanager_usage: 20, dough_tagmanager_delete_target: true } : {}
+
 %li.tag
   %span.taggle_text= tag.value
-  %a{id: "js_tags_delete_#{tag.value}", class: 'close', tabindex: '-1'} x
+  %a{id: "js_tags_delete_#{tag.value}", class: 'close', tabindex: '-1', data: data } x

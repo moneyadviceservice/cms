@@ -1,4 +1,14 @@
-define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent, Taggle) {
+define([
+  'jquery',
+  'DoughBaseComponent',
+  'taggle',
+  'componentLoader'
+], function (
+  $,
+  DoughBaseComponent,
+  Taggle,
+  componentLoader
+) {
   'use strict';
 
   var TagsProto,
@@ -36,13 +46,22 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
       $(".js-tags-starting-by-link[data-prefix='" + prefix.toLowerCase() + "']").click();
     }
 
-    // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
-    $('.js-tags-existing').on('click', 'a.close', function() {
-      var tag_value = $(this).parent().find('.taggle_text').text();
+    function handleDeleteTag($el) {
+      var tag_value = $el.parent().find('.taggle_text').text();
       if (taggle.getTagValues().indexOf(tag_value) > -1) {
         taggle.remove(tag_value);
       }
       delete_tag_from_server(tag_value);
+    }
+
+    // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
+    $('.js-tags-existing[data-dough-tagmanager-usage]').on('click', 'a.close', function(e) {
+      e.preventDefault();
+    });
+
+    // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
+    $('.js-tags-existing').on('click', 'a.close', function() {
+      handleDeleteTag($(this));
     });
 
     $('.js-tags-add-form').on("ajax:success", function (e, data, status, xhr) {
@@ -58,6 +77,7 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
     // set 'active' class to selected letter tags link when clicking.
     $('.js-tags-starting-by-link').on("ajax:success", function (e, data, status, xhr) {
       $('.js-tags-starting-by-link').removeClass('active');
+      componentLoader.init($('.js-tags-existing'));
       $(this).addClass("active");
     });
 
@@ -73,7 +93,6 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
       $('.js-tags-delete-submit').click();
     }
 
-
     // inits the tag box
     taggle = new Taggle(document.querySelector('.js-tags-display'), {
       placeholder: '',
@@ -84,6 +103,11 @@ define(['jquery','DoughBaseComponent','taggle'], function ($, DoughBaseComponent
         create_tag_in_server(tag);
         tagListNodes[tagListNodes.length - 1].querySelector('.close').setAttribute('tabIndex', -1);
       }
+    });
+
+    eventsWithPromises.subscribe('tagmanager:delete', function(data) {
+      console.log('trigger:', data.$trigger);
+      handleDeleteTag(data.$trigger);
     });
 
     this._initialisedSuccess(initialised);
