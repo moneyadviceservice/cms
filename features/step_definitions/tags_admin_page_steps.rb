@@ -125,7 +125,8 @@ end
 def click_first_tag_in_listing
   @page.tags_listing.list.wait_for_tags
   @page.tags_listing.list.tags.first.close.click
-  @page.delete_btn.trigger('click')
+  @page.dialog.wait_for_delete_btn
+  @page.dialog.delete_btn.trigger('click')
   wait_for_ajax_complete
 end
 

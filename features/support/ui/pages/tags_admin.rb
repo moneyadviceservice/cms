@@ -16,7 +16,9 @@ module UI::Pages
 
     end
 
-    element :delete_btn, '[data-dough-tagmanager-delete]'
+    section :dialog, '.js-dialog-target' do
+      element :delete_btn, '[data-dough-tagmanager-delete]'
+    end
 
     section :tags_listing, '.js-tags-listing' do
       element  :info,            'h2'
