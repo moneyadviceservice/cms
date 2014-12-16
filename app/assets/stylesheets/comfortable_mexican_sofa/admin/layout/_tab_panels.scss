@@ -13,6 +13,10 @@
   width: 760px;
 }
 
+.l-tab-panels--tag-delete {
+  min-width: 400px;
+}
+
 .l-tab-panels__item {
   display: table-cell;
   padding: $baseline-unit*6 30px;

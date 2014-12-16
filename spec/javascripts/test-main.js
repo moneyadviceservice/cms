@@ -50,6 +50,7 @@ requirejs.config({
     'ElementFilter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementFilter',
     'Dialog': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/Dialog',
     'LinkManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/LinkManager',
+    'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
 
     // Snippets
     'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/scribe-plugin-mastalk',

@@ -13,9 +13,6 @@ define([
 
   var DialogProto,
       defaultConfig = {
-        uiEvents: {
-          'click': 'show'
-        },
         selectors: {
           dialog: '[data-dough-dialog]',
           target: '[data-dough-dialog-target]',
@@ -50,8 +47,10 @@ define([
   };
 
   DialogProto._cacheComponentElements = function() {
+    var targetSrc;
     this.$trigger = this.$el;
-    this.$target = $('[data-dough-dialog-target="' + this.$trigger.attr('data-dough-dialog-trigger') + '"]');
+    targetSrc = this.$el.attr('data-dough-dialog-trigger') || this.$el.attr('data-dough-dialog-context');
+    this.$target = $('[data-dough-dialog-target="' + targetSrc + '"]');
   };
 
   DialogProto._setupDialog = function() {
@@ -77,6 +76,7 @@ define([
   };
 
   DialogProto._setupUIEvents = function() {
+    this.$trigger.on('click', $.proxy(this.show, this));
     this.$dialog
       .on('click', this.config.selectors.close, $.proxy(this.close, this, false))
       .on('cancel', $.proxy(this._handleCancel, this));
@@ -84,6 +84,11 @@ define([
 
   DialogProto._setupAppEvents = function() {
     eventsWithPromises.subscribe('dialog:close', $.proxy(this._handleClose, this));
+    eventsWithPromises.subscribe('dialog:show', $.proxy(function(eventData) {
+      if(eventData && eventData.emitter === this.context) {
+        this.show(eventData.modal || true, eventData.id || null);
+      }
+    }, this));
   };
 
   DialogProto._handleCancel = function() {
@@ -106,7 +111,7 @@ define([
     this.$locationMarker.remove();
   };
 
-  DialogProto.show = function(showModal) {
+  DialogProto.show = function(showModal, id) {
     if(this.isShown) return;
 
     this._detachTarget();
@@ -127,7 +132,8 @@ define([
 
     eventsWithPromises.publish('dialog:shown', {
       emitter: this.context,
-      modal: showModal
+      modal: showModal,
+      id: id || null
     });
   };
 

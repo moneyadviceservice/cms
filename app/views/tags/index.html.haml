@@ -25,3 +25,25 @@
     %p.pagination.pagination--tags!= index_of_existing_tags
     %p.js-tags-existing-header
     %ul.taggle_list.js-tags-existing
+
+%span{data: {dough_component: 'Dialog', dough_dialog_context: 'delete-tag', }}
+.js-dialog-target.is-inactive{data: {dough_dialog_target: 'delete-tag', dough_tagmanager_target: 'delete-tag'}}
+  .l-tab-panels.l-tab-panels--tag-delete
+    .l-tab-panels__item.l-tab-panels__item--content
+      %h2.l-tab-panels__heading Delete a tag
+      %p
+        The tag has been used
+        %strong
+          %span{'data-dough-tagmanager-usage-placeholder' => true}
+            x
+        times
+
+      %button.button--action{'data-dough-tagmanager-delete' => true}
+        %span.button__text
+          Delete
+
+      %button.unstyled-button{'data-dough-dialog-close' => true}
+        %span.button__text
+          Cancel
+
+

@@ -1,3 +1,5 @@
+- data = tag.in_use? ? { dough_component: 'TagManager', dough_tagmanager_context: 'delete-tag', dough_tagmanager_id: "#{tag.value.downcase.tr(' ', '_')}", dough_tagmanager_tag_usage: "#{tag.taggings_size}"} : {}
+
 %li.tag
   %span.taggle_text= tag.value
-  %a{id: "js_tags_delete_#{tag.value}", class: 'close', tabindex: '-1'} x
+  %a{id: "js_tags_delete_#{tag.value}", class: 'close', tabindex: '-1', data: data } x

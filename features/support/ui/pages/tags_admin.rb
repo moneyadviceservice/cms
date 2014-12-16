@@ -16,6 +16,8 @@ module UI::Pages
 
     end
 
+    element :delete_btn, '[data-dough-tagmanager-delete]'
+
     section :tags_listing, '.js-tags-listing' do
       element  :info,            'h2'
       elements :tag_index_links, '.js-tags-starting-by-link'

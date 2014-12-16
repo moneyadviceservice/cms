@@ -56,6 +56,15 @@ describe('Dialog', function () {
       expect(this.component.$dialogContentInner.find(this.component.config.selectors.close).length).to.equal(1);
     });
 
+    it('should use the context to find the target if a trigger attribute is not provided', function() {
+      var targetAttr = 'data-dough-dialog-target';
+      this.$fixture.removeAttr('data-dough-dialog-trigger');
+      this.$fixture.attr('data-dough-dialog-context', 'foo');
+      this.$fixture.parent('div').find('[' + targetAttr + ']').attr(targetAttr, 'foo');
+      this.component.init();
+      expect(this.component.$target.length).to.be.at.least(1);
+    });
+
     it('should save the dialog component context to a variable', function() {
       var context = this.$fixture.attr('data-dough-dialog-context');
       this.$fixture.attr('data-dough-dialog-context', 'bar');
@@ -71,14 +80,6 @@ describe('Dialog', function () {
       this.component.init();
       done();
     });
-
-    // Dialog 'cancel' event not being triggered from within Karma env
-    // it('should trigger the cancel handler when ESC is hit', function () {
-    //   var e = $.Event('keyup');
-    //   e.keyCode = 27;
-    //   $('body').trigger(e);
-    //   expect(this.handleCancelSpy.called).to.be.true;
-    // });
 
     it('should show the dialog when clicking the trigger ', function() {
       this.component.$trigger.click();
@@ -96,6 +97,11 @@ describe('Dialog', function () {
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show();
       expect(spy.args[0][0].emitter).to.equal('foo');
+    });
+
+    it('should show the dialog when the dialog:show event is published', function() {
+      this.eventsWithPromises.publish('dialog:show', { emitter: 'foo'});
+      expect(this.showSpy.called).to.be.true;
     });
 
     it('should close the dialog if a dialog:close event with matching emitter parameter is received', function() {
