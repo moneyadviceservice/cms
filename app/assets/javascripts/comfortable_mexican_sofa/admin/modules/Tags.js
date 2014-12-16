@@ -2,12 +2,14 @@ define([
   'jquery',
   'DoughBaseComponent',
   'taggle',
-  'componentLoader'
+  'componentLoader',
+  'eventsWithPromises'
 ], function (
   $,
   DoughBaseComponent,
   Taggle,
-  componentLoader
+  componentLoader,
+  eventsWithPromises
 ) {
   'use strict';
 
@@ -28,7 +30,7 @@ define([
 
     // update the list of tags starting by <prefix> if needed.
     function maybeUpdateDisplayedTagList(prefix) {
-      if (displayedTagsPrefix() == prefix.toLowerCase()) {
+      if (displayedTagsPrefix() === prefix.toLowerCase()) {
         displayTagList(prefix);
       }
     }
@@ -60,7 +62,8 @@ define([
     });
 
     // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
-    $('.js-tags-existing').on('click', 'a.close', function() {
+    $('.js-tags-existing:not([data-dough-tagmanager-tag-usage])').on('click', 'a.close:not([data-dough-tagmanager-tag-usage])', function() {
+      console.log('var1');
       handleDeleteTag($(this));
     });
 
@@ -106,8 +109,7 @@ define([
     });
 
     eventsWithPromises.subscribe('tagmanager:delete', function(data) {
-      console.log('trigger:', data.$trigger);
-      handleDeleteTag(data.$trigger);
+      handleDeleteTag($('body').find('[data-dough-tagmanager-id="' + data.id + '"]'));
     });
 
     this._initialisedSuccess(initialised);

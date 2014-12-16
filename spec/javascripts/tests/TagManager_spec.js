@@ -1,4 +1,4 @@
-describe.only('TagManager', function () {
+describe('TagManager', function () {
   'use strict';
 
   var sandbox;
