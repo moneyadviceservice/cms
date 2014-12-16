@@ -84,6 +84,9 @@ define([
 
   DialogProto._setupAppEvents = function() {
     eventsWithPromises.subscribe('dialog:close', $.proxy(this._handleClose, this));
+    eventsWithPromises.subscribe('dialog:show', $.proxy(function(eventData) {
+      this.show(eventData.showModal || false);
+    }, this));
   };
 
   DialogProto._handleCancel = function() {
