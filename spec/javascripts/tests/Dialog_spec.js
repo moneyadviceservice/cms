@@ -72,14 +72,6 @@ describe('Dialog', function () {
       done();
     });
 
-    // Dialog 'cancel' event not being triggered from within Karma env
-    // it('should trigger the cancel handler when ESC is hit', function () {
-    //   var e = $.Event('keyup');
-    //   e.keyCode = 27;
-    //   $('body').trigger(e);
-    //   expect(this.handleCancelSpy.called).to.be.true;
-    // });
-
     it('should show the dialog when clicking the trigger ', function() {
       this.component.$trigger.click();
       expect(this.showSpy.called).to.be.true;
