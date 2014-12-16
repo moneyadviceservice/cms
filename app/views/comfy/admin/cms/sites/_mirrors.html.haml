@@ -1,8 +1,7 @@
 - return unless @site.is_mirrored?
 
-- object ||= nil
+- en, cy = cms_mirror_options(local_assigns[:object])
 
-- en, cy = cms_mirror_options(object)
 - if en && cy
   #site__mirrors{data: { 'dough-component' => 'URLToggler' }}
     .toolbar__item.pull-right
