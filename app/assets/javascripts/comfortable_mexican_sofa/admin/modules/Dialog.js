@@ -13,9 +13,6 @@ define([
 
   var DialogProto,
       defaultConfig = {
-        uiEvents: {
-          'click': 'show'
-        },
         selectors: {
           dialog: '[data-dough-dialog]',
           target: '[data-dough-dialog-target]',
@@ -79,6 +76,7 @@ define([
   };
 
   DialogProto._setupUIEvents = function() {
+    this.$trigger.on('click', $.proxy(this.show, this));
     this.$dialog
       .on('click', this.config.selectors.close, $.proxy(this.close, this, false))
       .on('cancel', $.proxy(this._handleCancel, this));
