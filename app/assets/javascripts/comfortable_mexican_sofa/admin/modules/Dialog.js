@@ -87,7 +87,9 @@ define([
   DialogProto._setupAppEvents = function() {
     eventsWithPromises.subscribe('dialog:close', $.proxy(this._handleClose, this));
     eventsWithPromises.subscribe('dialog:show', $.proxy(function(eventData) {
-      this.show(eventData && eventData.showModal || false);
+      if(eventData && eventData.emitter === this.context) {
+        this.show(eventData.modal || true, eventData.id || null);
+      }
     }, this));
   };
 
@@ -112,7 +114,7 @@ define([
     this.$locationMarker.remove();
   };
 
-  DialogProto.show = function(showModal) {
+  DialogProto.show = function(showModal, id) {
     if(this.isShown) return;
 
     this._detachTarget();
@@ -133,7 +135,8 @@ define([
 
     eventsWithPromises.publish('dialog:shown', {
       emitter: this.context,
-      modal: showModal
+      modal: showModal,
+      id: id || null
     });
   };
 
