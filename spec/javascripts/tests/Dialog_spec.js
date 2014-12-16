@@ -91,7 +91,7 @@ describe('Dialog', function () {
     });
 
     it('should show the dialog when the dialog:show event is published', function() {
-      this.eventsWithPromises.publish('dialog:show');
+      this.eventsWithPromises.publish('dialog:show', { emitter: 'foo'});
       expect(this.showSpy.called).to.be.true;
     });
 
