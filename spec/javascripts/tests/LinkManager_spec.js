@@ -1,4 +1,4 @@
-describe('LinkManager', function () {
+describe('LinkManager', function() {
   'use strict';
 
   var sandbox;
@@ -33,7 +33,7 @@ describe('LinkManager', function () {
     this.eventsWithPromises.unsubscribeAll();
   });
 
-  describe('App Events', function () {
+  describe('App Events', function() {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture, {
         tabIds: {
@@ -56,7 +56,7 @@ describe('LinkManager', function () {
     });
   });
 
-  describe('When dialog is opened', function () {
+  describe('When dialog is opened', function() {
     beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture, {
         tabIds: {
@@ -78,7 +78,7 @@ describe('LinkManager', function () {
       expect(spy.args[0][0].emitter).to.equal('add-link');
     });
 
-    describe('Editing existing value', function () {
+    describe('Editing existing value', function() {
       it('should call the setup function with "existing" param and value', function() {
         var spy = sandbox.spy(this.LinkManager.prototype, '_setup');
 
@@ -91,7 +91,7 @@ describe('LinkManager', function () {
       });
     });
 
-    describe('Creating a new link', function () {
+    describe('Creating a new link', function() {
       it('should call the setup function with "new" param', function() {
         var spy = sandbox.spy(this.LinkManager.prototype, '_setup');
 

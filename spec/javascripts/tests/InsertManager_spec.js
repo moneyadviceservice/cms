@@ -1,4 +1,4 @@
-describe('InsertManager', function () {
+describe('InsertManager', function() {
   'use strict';
 
   var sandbox;
@@ -33,7 +33,7 @@ describe('InsertManager', function () {
     this.eventsWithPromises.unsubscribeAll();
   });
 
-  describe('Initialisation', function () {
+  describe('Initialisation', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -56,7 +56,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('App Events', function () {
+  describe('App Events', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -83,7 +83,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('UI Events', function () {
+  describe('UI Events', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -106,7 +106,7 @@ describe('InsertManager', function () {
       });
     });
 
-    describe('When new value is called', function () {
+    describe('When new value is called', function() {
       it('should activate the "default" tab trigger', function() {
         var spy = sandbox.spy();
         this.component.init();
@@ -117,8 +117,8 @@ describe('InsertManager', function () {
       });
     });
 
-    describe('When a value is being edited', function () {
-      it('should call the setValue function when a text input trigger element\'s value is updated', function () {
+    describe('When a value is being edited', function() {
+      it('should call the setValue function when a text input trigger element\'s value is updated', function() {
         var spy = sandbox.spy(this.InsertManager.prototype, 'setValue'),
             fakeEvent = $.Event('keyup'),
             $textInput,
@@ -139,7 +139,7 @@ describe('InsertManager', function () {
         $textInput.attr('data-dough-insertmanager-insert-type', textInputType).val(textInputVal);
       });
 
-      it('should call the setValue function when a radio trigger element\'s option is selected', function () {
+      it('should call the setValue function when a radio trigger element\'s option is selected', function() {
         var spy = sandbox.spy(this.InsertManager.prototype, 'setValue'),
             $radioInput,
             radioInputType,
@@ -162,7 +162,7 @@ describe('InsertManager', function () {
       });
     });
 
-    describe('When an Insert Value button is clicked', function () {
+    describe('When an Insert Value button is clicked', function() {
       it('should call the _handleInsertValue method', function() {
         var spy = sandbox.spy(this.InsertManager.prototype, '_handleInsertValue');
         this.component.init();
@@ -172,7 +172,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('Insert Value handler', function () {
+  describe('Insert Value handler', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -221,7 +221,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('Updating the insert type value inputs', function () {
+  describe('Updating the insert type value inputs', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -234,29 +234,29 @@ describe('InsertManager', function () {
       done();
     });
 
-    afterEach(function () {
+    afterEach(function() {
       this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="page"]').val('/foo');
       this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="external"]').val('http://foo.com');
       this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="file"]').val('foo.pdf');
     });
 
-    it('should set the page link value inputs with the passed link', function () {
+    it('should set the page link value inputs with the passed link', function() {
       this.component.setInputs('page', '/bar');
       expect(this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="page"]').first().val()).to.equal('/bar');
     });
 
-    it('should set the external link value inputs with the passed link', function () {
+    it('should set the external link value inputs with the passed link', function() {
       this.component.setInputs('external', 'http://bar.com');
       expect(this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="external"]').first().val()).to.equal('http://bar.com');
     });
 
-    it('should set the file link value inputs with the passed link', function () {
+    it('should set the file link value inputs with the passed link', function() {
       this.component.setInputs('file', 'bar.pdf');
       expect(this.component.$insertInputs.filter('[data-dough-insertmanager-insert-type="file"]').first().val()).to.equal('bar.pdf');
     });
   });
 
-  describe('Publish value', function () {
+  describe('Publish value', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -282,7 +282,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('Save the value to itemValues', function () {
+  describe('Save the value to itemValues', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -303,10 +303,10 @@ describe('InsertManager', function () {
     });
   });
 
-  describe.skip('getPageLabel', function () {
+  describe.skip('getPageLabel', function() {
     var server;
 
-    beforeEach(function () {
+    beforeEach(function() {
       server = sandbox.useFakeServer();
       server.autoRespond = true;
       this.component = new this.InsertManager(this.$fixture, {
@@ -318,13 +318,12 @@ describe('InsertManager', function () {
       });
     });
 
-    afterEach(function () {
+    afterEach(function() {
       server.restore();
     });
 
-    describe('When a value is being edited', function () {
-      describe('And the server returns a value type of page or file', function () {
-        it('should call the server with the value', function (done) {});
+    describe('When a value is being edited', function() {
+      describe('And the server returns a value type of page or file', function() {
         it('should call the _handleAjaxLabelDone method', function (done) {
           var link = 'test',
               spy = sinon.spy(this.InsertManager.prototype, '_handleAjaxLabelDone'),
@@ -334,11 +333,11 @@ describe('InsertManager', function () {
 
           getValueLabel = this.component._getPageLabel('test');
 
-          server.respondWith("GET", "/admin/links/?id=" + link,
-                           [200, { "Content-Type": "application/json" },
+          server.respondWith('GET', '/admin/links/?id=' + link,
+                           [200, { 'Content-Type': 'application/json' },
                             '{ "label": "Foo", "url": "/en/foo"}']);
 
-          getValueLabel.then(function(data) {
+          getValueLabel.then(function() {
             expect(spy.called).to.be.true;
             done();
           });
@@ -347,7 +346,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('getValue() Get a link from the itemValues hash', function () {
+  describe('getValue() Get a link from the itemValues hash', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -367,7 +366,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('setLabels()', function () {
+  describe('setLabels()', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -393,7 +392,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('showLoader', function () {
+  describe('showLoader', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -415,7 +414,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('hideLabels', function () {
+  describe('hideLabels', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -438,7 +437,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('showLabels', function () {
+  describe('showLabels', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -460,7 +459,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('hideLabels', function () {
+  describe('hideLabels', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
@@ -483,7 +482,7 @@ describe('InsertManager', function () {
     });
   });
 
-  describe('Closing the dialog', function () {
+  describe('Closing the dialog', function() {
     beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
