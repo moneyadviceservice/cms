@@ -37,23 +37,23 @@ define([
 
     // returns the prefix (letter) of the currently displayed tag list
     function displayedTagsPrefix() {
-      var active_link = $('.js-tags-starting-by-link.active');
-      if (active_link.length > 0) {
-        return active_link.attr('data-prefix');
+      var activeLink = $('.js-tags-starting-by-link.active');
+      if (activeLink.length > 0) {
+        return activeLink.attr('data-prefix');
       }
     }
 
     // render the list of tags starting by the given prefix (letter)
     function displayTagList(prefix) {
-      $(".js-tags-starting-by-link[data-prefix='" + prefix.toLowerCase() + "']").click();
+      $('.js-tags-starting-by-link[data-prefix="' + prefix.toLowerCase() + '"]').click();
     }
 
     function handleDeleteTag($el) {
-      var tag_value = $el.parent().find('.taggle_text').text();
-      if (taggle.getTagValues().indexOf(tag_value) > -1) {
-        taggle.remove(tag_value);
+      var tagValue = $el.parent().find('.taggle_text').text();
+      if (taggle.getTagValues().indexOf(tagValue) > -1) {
+        taggle.remove(tagValue);
       }
-      delete_tag_from_server(tag_value);
+      deleteTagFromServer(tagValue);
     }
 
     // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
@@ -63,35 +63,34 @@ define([
 
     // deletes a tag in the existing list from the server when clicking its 'x' on the corner.
     $('.js-tags-existing:not([data-dough-tagmanager-tag-usage])').on('click', 'a.close:not([data-dough-tagmanager-tag-usage])', function() {
-      console.log('var1');
       handleDeleteTag($(this));
     });
 
-    $('.js-tags-add-form').on("ajax:success", function (e, data, status, xhr) {
+    $('.js-tags-add-form').on('ajax:success', function () {
       var value = $('.js-tags-add-value').val();
       maybeUpdateDisplayedTagList(value[0]);
     });
 
-    $('.js-tags-delete-form').on("ajax:success", function (e, data, status, xhr) {
+    $('.js-tags-delete-form').on('ajax:success', function () {
       var value = $('.js-tags-delete-value').val();
       maybeUpdateDisplayedTagList(value[0]);
     });
 
     // set 'active' class to selected letter tags link when clicking.
-    $('.js-tags-starting-by-link').on("ajax:success", function (e, data, status, xhr) {
+    $('.js-tags-starting-by-link').on('ajax:success', function () {
       $('.js-tags-starting-by-link').removeClass('active');
       componentLoader.init($('.js-tags-existing'));
-      $(this).addClass("active");
+      $(this).addClass('active');
     });
 
     // creates a tag in the server and updates the list of existing tags
-    function create_tag_in_server(value) {
+    function createTagInServer(value) {
       $('.js-tags-add-value').val(value);
       $('.js-tags-add-submit').click();
     }
 
     // removes a tag from the server and updates the list of existing tags
-    function delete_tag_from_server(value) {
+    function deleteTagFromServer(value) {
       $('.js-tags-delete-value').val(value);
       $('.js-tags-delete-submit').click();
     }
@@ -103,7 +102,7 @@ define([
       additionalTagClasses: 'tag',
       onTagAdd: function(event, tag) {
         var tagListNodes = taggle.getTags().elements;
-        create_tag_in_server(tag);
+        createTagInServer(tag);
         tagListNodes[tagListNodes.length - 1].querySelector('.close').setAttribute('tabIndex', -1);
       }
     });
