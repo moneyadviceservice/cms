@@ -50,8 +50,10 @@ define([
   };
 
   DialogProto._cacheComponentElements = function() {
+    var targetSrc;
     this.$trigger = this.$el;
-    this.$target = $('[data-dough-dialog-target="' + this.$trigger.attr('data-dough-dialog-trigger') + '"]');
+    targetSrc = this.$el.attr('data-dough-dialog-trigger') || this.$el.attr('data-dough-dialog-context');
+    this.$target = $('[data-dough-dialog-target="' + targetSrc + '"]');
   };
 
   DialogProto._setupDialog = function() {

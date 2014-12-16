@@ -56,6 +56,15 @@ describe('Dialog', function () {
       expect(this.component.$dialogContentInner.find(this.component.config.selectors.close).length).to.equal(1);
     });
 
+    it('should use the context to find the target if a trigger attribute is not provided', function() {
+      var targetAttr = 'data-dough-dialog-target';
+      this.$fixture.removeAttr('data-dough-dialog-trigger');
+      this.$fixture.attr('data-dough-dialog-context', 'foo');
+      this.$fixture.parent('div').find('[' + targetAttr + ']').attr(targetAttr, 'foo');
+      this.component.init();
+      expect(this.component.$target.length).to.be.at.least(1);
+    });
+
     it('should save the dialog component context to a variable', function() {
       var context = this.$fixture.attr('data-dough-dialog-context');
       this.$fixture.attr('data-dough-dialog-context', 'bar');
