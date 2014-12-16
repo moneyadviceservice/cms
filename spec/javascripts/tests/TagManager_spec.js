@@ -60,7 +60,7 @@ describe('TagManager', function () {
     });
   });
 
-  describe('When the delete tag button is clicked', function () {
+  describe('When the dialog\'s delete button is clicked', function () {
     beforeEach(function (done) {
       this.component = new this.TagManager(this.$fixture);
       this.component.init();
