@@ -13,4 +13,6 @@
         =radio_button_tag('edit-mode', cy.first, cy.last == request.fullpath, class: 'toggle__control', data: { 'value' => cy.last })
         =label_tag('edit-mode_en', en.first, class: 'toggle__label-heading')
         %span.toggle__indicator
-        =label_tag('edit-mode_cy', cy.first, class: 'toggle__label-heading')
+        =label_tag('edit-mode_cy', class: 'toggle__label-heading') do
+          =cy.first
+          %span.icon-warning.fa.fa-warning
