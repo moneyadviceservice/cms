@@ -1,219 +1,46 @@
 define([
   'jquery',
   'DoughBaseComponent',
-  'eventsWithPromises'
+  'InsertManager',
+  'eventsWithPromises',
+  'filter-event'
 ], function (
   $,
   DoughBaseComponent,
-  eventsWithPromises
+  InsertManager,
+  eventsWithPromises,
+  filterEvent
 ) {
   'use strict';
 
   var LinkManagerProto,
       defaultConfig = {
         selectors: {
-          context: '[data-dough-linkmanager-context]',
-          insertLink: '[data-dough-linkmanager-insertlink]',
-          valueTrigger: '[data-dough-linkmanager-value-trigger]',
-          tabTrigger: '[data-dough-tab-selector-trigger]',
-          linkInputs: '[data-dough-linkmanager-link-type]',
-          linkLabels: '[data-dough-linkmanager-label]',
-          loader: '[data-dough-linkmanager-loader]',
-          linksUrl: '[data-dough-linkmanager-links-url]',
-          activeClass: 'is-active',
-          inactiveClass: 'is-inactive'
-        },
-        tabIds: {
-          'page': 'page',
-          'file': 'file',
-          'external': 'external'
         }
       };
 
-  function LinkManager($el, config) {
-    LinkManager.baseConstructor.call(this, $el, config, defaultConfig);
+  function LinkManager($el, config, customConfig) {
+    LinkManager.baseConstructor.call(this, $el, config, customConfig || defaultConfig);
     this.open = false;
-    this.linkValues = {
+    this.itemValues = {
       'page': null,
       'file': null,
       'external': null
     };
   }
 
-  DoughBaseComponent.extend(LinkManager);
+  DoughBaseComponent.extend(LinkManager, InsertManager);
 
   LinkManagerProto = LinkManager.prototype;
 
   LinkManagerProto.init = function(initialised) {
-    this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
-    this.linksUrl = this.$el.attr(this._stripSquareBrackets(this.config.selectors.linksUrl));
-    this._cacheComponentElements();
-    this._setupUIEvents();
-    this._setupAppEvents();
+    LinkManager.superclass.init.call(this);
     this._initialisedSuccess(initialised);
   };
 
-  LinkManagerProto._cacheComponentElements = function() {
-    this.$tabTriggers = this.$el.find(this.config.selectors.tabTrigger);
-    this.$linkInputs = this.$el.find(this.config.selectors.linkInputs);
-    this.$linkLabels = this.$el.find(this.config.selectors.linkLabels);
-    this.$insertLinks = this.$el.find(this.config.selectors.insertLink);
-    this.$valueTriggers = this.$el.find(this.config.selectors.valueTrigger);
-    this.$loader = this.$el.find(this.config.selectors.loader);
-  };
-
   LinkManagerProto._setupAppEvents = function() {
-    eventsWithPromises.subscribe('cmseditor:link-published', $.proxy(this._handleShown, this));
-    eventsWithPromises.subscribe('dialog:cancelled', $.proxy(this.close, this));
-    eventsWithPromises.subscribe('dialog:closed', $.proxy(this.close, this));
-  };
-
-  LinkManagerProto._setupUIEvents = function() {
-    this.$el
-      .on('input', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('keyup', '[data-dough-linkmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('change', '[data-dough-linkmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
-      .on('click', '[data-dough-linkmanager-insertlink]', $.proxy(this._handleInsertLink, this));
-  };
-
-  LinkManagerProto._handleFormControlUpdate = function(e) {
-    var $trigger = $(e.target),
-        type = $trigger.attr(this._stripSquareBrackets(this.config.selectors.linkInputs));
-
-    this.setLink(type, $trigger.val());
-  };
-
-  LinkManagerProto._handleShown = function(eventData) {
-    if(!eventData || eventData.emitter !== this.$el.attr(this._stripSquareBrackets(this.config.selectors.context))) return false;
-
-    if(eventData.link) {
-      this._setup('existing', eventData.link);
-    } else {
-      this._setup('new');
-    }
-    this.open = true;
-  };
-
-  LinkManagerProto._handleInsertLink = function(e) {
-    var type = $(e.target).attr(this._stripSquareBrackets(this.config.selectors.insertLink)),
-        link = this.getLink(type);
-
-    this.publishLink(type, link);
-    this.close();
-  };
-
-  LinkManagerProto._handleAjaxLabelDone = function(data) {
-    this.linkValues[data.type] = data.url;
-    this.setInputs(data.type, data.url);
-    this.setLabels(data.type, data.label);
-    this.showLabels();
-    this.changeTab(this.config.tabIds[data.type]);
-    this.hideLoader();
-  };
-
-  LinkManagerProto._handleAjaxLabelFail = function() {
-    this.hideLoader();
-    this.changeTab(this.config.tabIds['page']);
-  };
-
-  LinkManagerProto._setup = function(type, link) {
-    if(type === 'new') {
-      this.changeTab('page');
-    }
-    else if(type === 'existing') {
-      this.showLoader();
-      this.getPageLabelPromise = this._getPageLabel(link);
-      this.getPageLabelPromise
-        .done($.proxy(this._handleAjaxLabelDone,this))
-        .fail($.proxy(this._handleAjaxLabelFail,this));
-    }
-  };
-
-  LinkManagerProto._getPageLabel = function(link) {
-    var deferred = $.Deferred();
-    $.ajax(this.linksUrl + '?id=' + link).done(function(data) {
-      deferred.resolve(data);
-    })
-    .fail(function(data) {
-      deferred.reject(data);
-    });
-    return deferred;
-  };
-
-  LinkManagerProto._stripSquareBrackets = function(str) {
-    return str.replace(/([\[\]])+/gi,'');
-  };
-
-  LinkManagerProto.setLink = function(type, link) {
-    if(!link || !type) return;
-    this.linkValues[type] = link;
-  };
-
-  LinkManagerProto.getLink = function(type) {
-    return this.linkValues[type];
-  };
-
-  LinkManagerProto.publishLink = function(type, link) {
-    eventsWithPromises.publish('dialog:close', {
-      emitter: this.context
-    });
-
-    eventsWithPromises.publish('linkmanager:link-published', {
-      emitter: this.context,
-      link: link,
-      type: type
-    });
-  };
-
-  LinkManagerProto.changeTab = function(id) {
-    // Note: Ideally we would be calling the TabSelector methods directly
-    // but currently Dough doesn't allow deferred components so we have
-    // to click on the tab
-    this.$tabTriggers.filter('[data-dough-tab-selector-trigger="' + id + '"]').click();
-  };
-
-  LinkManagerProto.showLoader = function() {
-    this.$loader
-      .addClass(this.config.selectors.activeClass)
-      .removeClass(this.config.selectors.inactiveClass);
-  };
-
-  LinkManagerProto.hideLoader = function() {
-    this.$loader
-      .removeClass(this.config.selectors.activeClass)
-      .addClass(this.config.selectors.inactiveClass);
-  };
-
-  LinkManagerProto.close = function() {
-    if(!this.open) return false;
-    this.changeTab('page');
-    this.getPageLabelPromise && this.getPageLabelPromise.reject();
-    this.clearInputs();
-    this.open = false;
-  };
-
-  LinkManagerProto.setInputs = function(type, link) {
-    this.$linkInputs.filter('[data-dough-linkmanager-link-type="' + type + '"]').val(link);
-  };
-
-  LinkManagerProto.setLabels = function(type, link) {
-    this.$linkLabels.filter('[data-dough-linkmanager-label="' + type + '"]').text(link);
-  };
-
-  LinkManagerProto.showLabels = function() {
-    this.$linkLabels
-      .addClass(this.config.selectors.activeClass)
-      .removeClass(this.config.selectors.inactiveClass);
-  };
-
-  LinkManagerProto.hideLabels = function() {
-    this.$linkLabels
-      .removeClass(this.config.selectors.activeClass)
-      .addClass(this.config.selectors.inactiveClass);
-  };
-
-  LinkManagerProto.clearInputs = function() {
-    this.$linkInputs.val('');
+    eventsWithPromises.subscribe('cmseditor:insert-published', filterEvent($.proxy(this._handleShown, this), this.context));
+    LinkManager.superclass._setupAppEvents.call(this);
   };
 
   return LinkManager;

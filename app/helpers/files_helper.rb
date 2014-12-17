@@ -33,6 +33,10 @@ module FilesHelper
     options_for_select(options, selected_option)
   end
 
+  def options_to_filter_images
+    t('files.images.filter_by').map { |type| [type.strip, type.strip] }
+  end
+
   # The header to show in the files index page.
   def files_page_header(search_term:)
     header = search_term.present? ? t('search.results') : t('comfy.admin.cms.files.index.title')

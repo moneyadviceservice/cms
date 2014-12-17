@@ -1,5 +1,5 @@
 .js-dialog-target.is-inactive{'data-dough-dialog-target' => 'insert-link', 'data-dough-component' => 'TabSelector'}
-  %div{'data-dough-component' => 'LinkManager', 'data-dough-linkmanager-target' => 'insert-link', 'data-dough-linkmanager-context' => 'add-link', 'data-dough-linkmanager-links-url' => admin_link_url(only_path: true) }
+  %div{'data-dough-component' => 'LinkManager', 'data-dough-insertmanager-target' => 'insert-link', 'data-dough-insertmanager-context' => 'add-link', 'data-dough-insertmanager-url' => admin_link_url(only_path: true), 'data-dough-link-manager-config' => '{"tabIds": {"page": "page","file":"file","external":"external"}}'}
     .l-tab-panels.l-tab-panels--add-link
       .l-tab-panels__item.l-tab-panels__item--aside
         %h2.l-tab-panels__heading Add a link to&hellip;
@@ -14,12 +14,10 @@
 
       .l-tab-panels__item.l-tab-panels__item--content
         = render 'links/pages/form'
-
-        = render 'links/files/form'
-
+        = render 'links/documents/form'
         = render 'links/external/form'
 
-      .loader.is-inactive{'data-dough-linkmanager-loader' => true}
+      .loader.is-inactive{'data-dough-insertmanager-loader' => true}
         .loader__inner
           %span.loader__icon
             .fa.fa-spinner.fa-spin

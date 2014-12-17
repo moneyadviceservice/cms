@@ -1,18 +1,18 @@
 define('scribe-plugin-linkeditor', [
   'eventsWithPromises',
   'rangy-core',
-  'rangy-selectionsaverestore'
+  'rangy-selectionsaverestore',
+  'filter-event'
 ],
-function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
+function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
   'use strict';
 
   /**
    * This plugin adds a command for editing/creating links via LinkEditor/LinkInserter
    */
-  return function () {
+  return function (context) {
     return function (scribe) {
       var savedSelection,
-          linkManagerContext = 'add-link',
           linkEditorCommand = new scribe.api.Command('createLink'),
           externalLinkSuffix = '{:target="_blank"}',
           externalLinkSuffixRegEx = /\{\:target\=\"\_blank\"\}/i;
@@ -24,9 +24,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
 
         this.saveSelection();
 
-        eventsWithPromises.publish('cmseditor:link-published', {
-          emitter: linkManagerContext,
-          link: !!node? node.attributes['href'].value : null
+        eventsWithPromises.publish('cmseditor:insert-published', {
+          emitter: context,
+          val: !!node? node.attributes['href'].value : null
         });
       };
 
@@ -63,7 +63,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         return true;
       };
 
-      linkEditorCommand.getLinkSuffix = function(referenceNode, suffix, suffixRegEx) {
+      linkEditorCommand.haslinkSuffix = function(referenceNode, suffix, suffixRegEx) {
         if(referenceNode && referenceNode.nodeType === 3) {
           return suffixRegEx.test(referenceNode.substringData(0, suffix.length));
         }
@@ -83,7 +83,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       linkEditorCommand.formatLink = function(type) {
         var range = rangy.getSelection(),
             node = range.getRangeAt(0).commonAncestorContainer,
-            haslinkSuffix = this.getLinkSuffix(node.nextSibling, externalLinkSuffix, externalLinkSuffixRegEx);
+            haslinkSuffix = this.haslinkSuffix(node.nextSibling, externalLinkSuffix, externalLinkSuffixRegEx);
 
         type = type || 'page';
 
@@ -95,15 +95,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
         }
       };
 
-      linkEditorCommand.handleLinkPublished = function(eventData, promise) {
-        if(eventData && eventData.link && eventData.emitter === linkManagerContext) {
-          linkEditorCommand.inject.call(linkEditorCommand, eventData.link);
-          linkEditorCommand.formatLink(eventData.type);
-          promise.resolve();
-        }
-        else {
-          promise.reject();
-        }
+      linkEditorCommand.handleLinkPublished = function(eventData) {
+        this.inject(eventData.val);
+        this.formatLink(eventData.type);
       };
 
       linkEditorCommand.saveSelection = function() {
@@ -116,9 +110,9 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore) {
       };
 
       linkEditorCommand.setupEvents = function() {
-        eventsWithPromises.subscribe('dialog:closed', this.removeSelection.bind(this));
-        eventsWithPromises.subscribe('dialog:cancelled', this.removeSelection.bind(this));
-        eventsWithPromises.subscribe('linkmanager:link-published', linkEditorCommand.handleLinkPublished.bind(this));
+        eventsWithPromises.subscribe('dialog:closed', filterEvent(this.removeSelection.bind(this), context));
+        eventsWithPromises.subscribe('dialog:cancelled', filterEvent(this.removeSelection.bind(this), context));
+        eventsWithPromises.subscribe('insertmanager:insert-published', filterEvent(linkEditorCommand.handleLinkPublished.bind(this), context));
       };
 
       linkEditorCommand.init = function() {

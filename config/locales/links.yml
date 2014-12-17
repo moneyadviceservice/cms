@@ -6,9 +6,14 @@ en:
       insert_button: 'Insert Link'
       placeholder: 'Enter url'
     file:
-      header: 'Select file'
-      insert_button: 'Insert file'
-      placeholder: 'Search files'
+      documents:
+        header: 'Select file'
+        placeholder: 'Search files'
+        insert_button: 'Insert file'
+      images:
+        header: 'From library'
+        placeholder: 'Search images'
+        insert_button: 'Choose'
     page:
       header: 'Select page'
       insert_button: 'Insert page'

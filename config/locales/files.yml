@@ -8,6 +8,8 @@ en:
         date: date added (latest first)
         name: name (a to z)
         placeholder: "sort by:"
+    images:
+      filter_by: ['jpg' , 'png', 'gif']
     form:
       create: Upload File
       update: Update File

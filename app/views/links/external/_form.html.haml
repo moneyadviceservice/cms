@@ -4,10 +4,10 @@
   .form.form--vertical
     .form-group
       .form__input-wrapper
-        %input{ type: 'text', data: { 'dough-linkmanager-link-type' => 'external', 'dough-linkmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
+        %input{ type: 'text', data: { 'dough-insertmanager-insert-type' => 'external', 'dough-insertmanager-value-trigger' => true}, placeholder: t('links.external.placeholder') }
 
     .form-group
       .form__input-wrapper
         %button.button--action
-          %span.button__text{'data-dough-linkmanager-insertlink' => 'external' }
+          %span.button__text{'data-dough-insertmanager-insert' => 'external' }
             = t('links.external.insert_button')

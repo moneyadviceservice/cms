@@ -29,7 +29,7 @@
 }
 
 .editor--html .editor__content {
-  h2 {
+  & > h2 {
     @include body(30, 36);
   }
 
@@ -43,5 +43,10 @@
 
   h2, h3, h4 {
     font-weight: 700;
+  }
+
+  img {
+    margin: $baseline-unit*2 0;
+    width: 100%;
   }
 }

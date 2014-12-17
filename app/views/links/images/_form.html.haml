@@ -1,0 +1,27 @@
+%h3.l-tab-panels__heading
+  = t('links.file.images.header')
+= form_tag(site_links_images_path, method: 'get', remote: true, class: 'form form--vertical') do
+  .form-group
+    .form__row
+      = label_tag(:search, 'Search file', class: 'visually-hidden')
+      .search.search--fill-width
+        %span.search__item
+          = text_field_tag(:search, '', placeholder: t('links.file.images.placeholder'), class: 'form__input search__input t-search-box')
+        %span.search__item
+          = button_tag(:search, type: 'submit', name: nil, class: 'button--action button--search-action t-search-btn') do
+            %span.button__text.fa.fa-search
+
+  .form-group
+    .form__row
+      .choose-sort-by
+        = select_tag(:type, options_for_select(options_to_filter_images, @type), prompt: I18n.t('files.index.filter_by.placeholder'), data: { dough_component: 'SelectSubmitter' })
+
+  .form-group
+    .form__row
+      %ul.content-grid.js-linkable-images
+
+  .form-group
+    .form__row
+      %button.button--action
+        %span.button__text{ 'data-dough-insertmanager-insert' => 'image' }
+          = t('links.file.images.insert_button')

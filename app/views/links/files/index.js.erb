@@ -1,1 +1,1 @@
-$('.js-linkable-files').html("<%=j render 'listing', files: FilePresenter.collect(@files) %>");
+$('<%= ".js-linkable-#{controller_name}" %>').html("<%=j render 'listing', files: FilePresenter.collect(@files) %>");

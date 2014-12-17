@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       resources :snippets
 
       namespace 'links' do
-        resources :files, only: :index
+        resources :documents, only: :index
+        resources :images, only: :index
         resources :pages, only: :index
       end
     end
