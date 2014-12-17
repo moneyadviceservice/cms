@@ -44,13 +44,6 @@ Feature: Tags administration
     And   No tags get displayed
 
   @javascript
-  Scenario: Deleting a tag
-    Given I am on the tags admin page
-    And   There are tags starting by a certain letter
-    When  I click on a letter to list the tags starting by it
-    Then  I can delete a tag clicking on it
-
-  @javascript
   Scenario: Creating a valid tag updates its listing if displayed
     Given I am on the tags admin page
     And   I click on a letter to list the tags starting by it
