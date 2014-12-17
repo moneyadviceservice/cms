@@ -24,7 +24,8 @@
             %span.search__item
               = link_to new_site_page_path(@site), class: 'button--action button--search' do
                 %span.button__text
-                  = t('.new_link')
+                  %span.fa.fa-file-o
+                  = t('comfy.admin.cms.pages.index.new_link')
 
 - content_for :right_column do
   = render 'comfy/admin/cms/sites/mirrors'
