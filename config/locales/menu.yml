@@ -1,0 +1,7 @@
+en:
+  comfy:
+    admin:
+      cms:
+        base:
+          tags: Tags
+          users: Users
