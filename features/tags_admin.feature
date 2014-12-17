@@ -49,37 +49,3 @@ Feature: Tags administration
     And   I click on a letter to list the tags starting by it
     When  I create a new tag starting by that letter
     Then  The new tag must appear in the displayed tag listing
-
-  @javascript
-  Scenario: Deleting a tag from its listing updates it
-    Given I am on the tags admin page
-    And   There are tags starting by a certain letter
-    When  I click on a letter to list the tags starting by it
-    And   I delete the first tag
-    Then  The tag should be removed from its displayed listing
-
-  @javascript
-  Scenario: Deleting a tag from its listing updates it and the one in the creation box if exists
-    Given I am on the tags admin page
-    And   I create a new tag
-    When  I click on the letter to list the tags starting by the same letter
-    And   I delete the tag in the listing
-    Then  The tag should be removed from its displayed listing
-    And   The same tag in the creation box gets removed
-    And   The items tagged with it should lose it
-
-  @javascript
-  Scenario: Deleting a tag from the creation box does not delete the one in its listing when open
-    Given I am on the tags admin page
-    And   I create a new tag
-    When  I click on the letter to list the tags starting by the same letter
-    And   I delete the tag in the creation box
-    Then  The tag should not be removed from its displayed listing
-    And   The items tagged with it should not lose it
-
-  @javascript
-  Scenario: Deleting a tag from the creation box does not untag existing items
-    Given I am on the tags admin page
-    When  I create a new tag
-    And   I delete the tag in the creation box
-    Then  The items tagged with it should not lose it
