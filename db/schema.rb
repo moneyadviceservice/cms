@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141209135513) do
+ActiveRecord::Schema.define(version: 20141217154822) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20141209135513) do
     t.string   "meta_title"
     t.string   "translation_id"
     t.datetime "scheduled_on"
+    t.integer  "page_views",                        default: 0
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
@@ -140,17 +141,17 @@ ActiveRecord::Schema.define(version: 20141209135513) do
   add_index "comfy_cms_snippets", ["site_id", "position"], name: "index_comfy_cms_snippets_on_site_id_and_position", using: :btree
 
   create_table "comfy_cms_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name",                   default: "", null: false
+    t.string   "name",                   default: "",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
