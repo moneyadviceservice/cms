@@ -1,7 +1,21 @@
-= comfy_form_for @user, url: url, html: {class: 'form form--vertical'}, label_col: "form__label-heading", control_col: "form__input-wrapper" do |f|
-  =f.text_field :name
-  =f.text_field :email
-  =f.password_field :password
-  - if current_user.admin?
-    =f.check_box :admin
-  =f.submit :class => "t-create-user"
+.l-panel-content
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        = comfy_form_for @user, url: url, html: {class: 'form form--vertical'}, label_col: "form__label-heading", control_col: "form__input-wrapper" do |f|
+          =f.text_field :name
+          =f.text_field :email
+          =f.password_field :password
+
+          .form-group
+            .form__input-wrapper
+              - if current_user.admin?
+                =f.check_box :admin
+
+          .form-group
+            .form__input-wrapper
+              = button_tag nil, value: 'value', type: 'submit', class: "button--action t-create-user" do
+                %span.button__text
+                  = @user.new_record? ? "Create user" : "Edit user"
+
+      .l-panel-content__col

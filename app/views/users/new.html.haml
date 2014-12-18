@@ -1,3 +1,8 @@
-.l-panel-content
+.l-panel-content.l-panel-content--form
   .l-constrained
-    =render partial: "form", locals: {url: "/admin/users"}
+    .l-panel-content__row
+      .l-panel-content__col.page-header
+        %h1 New user
+      .l-panel-content__col
+
+=render partial: "form", locals: {url: "/admin/users"}
