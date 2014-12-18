@@ -33,6 +33,10 @@ class PageMirror
     find_mirror(language)
   end
 
+  def page_language?(language)
+    page.site.label.to_s == language.to_s
+  end
+
   def ==(other)
     page_equal?(:en, other) && page_equal?(:cy, other)
   end
@@ -47,7 +51,7 @@ class PageMirror
   private
 
   def find_mirror(language)
-    return page if page.site.label == language.to_s
+    return page if page_language?(language)
 
     mirrors.find { |mirror| mirror.site.label == language.to_s }
   end
