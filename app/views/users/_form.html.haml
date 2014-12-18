@@ -16,5 +16,6 @@
             .form__input-wrapper
               = button_tag nil, value: 'value', type: 'submit', class: "button--action t-create-user" do
                 %span.button__text
-                  Text
+                  = @user.new_record? ? "Create user" : "Edit user"
+
       .l-panel-content__col
