@@ -17,7 +17,7 @@ bowndler update
 ```
 
 ## Configuration
-Make sure you set the HOSTNAME variable in the `.env` file appropriately.
+Make sure you set the HOSTNAME, GA_API_EMAIL_ADDRESS, GA_PRIVATE_KEY_PATH variables in the `.env` file appropriately.
 
 ## JavaScript testing
 
@@ -48,3 +48,13 @@ Any new components should be built here first, then integrated into the views.
 ## Environment variables
 
     cp .env.dev .env
+
+## Cron / Rake
+
+The rake task
+```bundle exec rake cms:update_page_views```
+
+is to retrieve page views from Google Analytics for articles.
+This allows us to generate the Popular links section that is displayed in the frontend application.
+
+The rake task is setup by whenever in config/schedule.rb
