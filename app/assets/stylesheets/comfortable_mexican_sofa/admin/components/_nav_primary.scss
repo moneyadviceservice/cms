@@ -67,10 +67,6 @@
   }
 }
 
-.nav-primary__text--no-hover:hover {
-  background: transparent;
-}
-
 .nav-primary__item.is-active .nav-primary__text {
   background: $color-nav-primary-item-background;
 }
