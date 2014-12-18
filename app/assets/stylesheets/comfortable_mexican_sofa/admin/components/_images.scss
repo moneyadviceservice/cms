@@ -1,8 +1,21 @@
 .image-flag {
-  display: block;
-  height: 30px;
-  width: 30px;
   background-size: contain;
+  display: block;
+  height: 25px;
+  margin-left: 20px;
+  position: relative;
+  width: 25px;
+
+  &:before {
+    background: $color-image-flag-separator;
+    content: '';
+    height: 100%;
+    left: -10px;
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+    width: 1px;
+  }
 }
 
 .lang-en .image-flag {
