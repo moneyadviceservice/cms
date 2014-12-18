@@ -40,8 +40,7 @@
   &,
   &:visited,
   &:hover,
-  &:active,
-  a {
+  &:active {
     color: $color-nav-primary-foreground;
     outline: none;
     text-decoration: none;
