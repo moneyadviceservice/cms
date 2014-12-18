@@ -1,4 +1,4 @@
-%body#comfy.theme.theme--cms{:class => "c-#{params[:controller].slugify} a-#{params[:action].slugify} lang-#{@site.label}"}
+%body#comfy.theme.theme--cms{:class => "c-#{params[:controller].slugify} a-#{params[:action].slugify}"}
   .l-app
     = render 'comfy/admin/cms/partials/body_before'
     = render :partial => 'layouts/comfy/admin/cms/nav_main'
