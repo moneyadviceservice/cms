@@ -110,3 +110,5 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 # Enable page tagging!
 require_relative '../../lib/comfortable_mexican_sofa/extensions/is_taggable'
 Comfy::Cms::Page.send(:is_taggable)
+
+require_relative '../../lib/comfortable_mexican_sofa/extensions/page'
