@@ -115,6 +115,7 @@ GEM
       capybara (>= 1.0, < 3)
       colored
       launchy
+    chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
@@ -424,6 +425,8 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.3.5)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -468,4 +471,5 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn-rails
+  whenever (= 0.9.4)
   word-to-markdown!
