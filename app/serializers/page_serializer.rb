@@ -9,9 +9,12 @@ class PageSerializer < ActiveModel::Serializer
 
   def related_content
     popular_links = Comfy::Cms::Page.most_popular(3).map do |article|
+      current_locale = object.site.label
+      article = article.mirrors.first if current_locale == 'cy'
+
       {
         title: article.label,
-        path: "/en/articles/#{article.slug}"
+        path: "/#{current_locale}/articles/#{article.slug}"
       }
     end
 
