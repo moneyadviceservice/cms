@@ -11,15 +11,15 @@ class PagePresenter < Presenter
       input_options = input_options_for(mirror)
     end
 
-    radio_button_tag 'edit-mode', site_label(language), checked, options.merge(input_options)
+    radio_button_tag 'edit-mode', language, checked, options.merge(input_options)
   end
 
   def language_label_tag(language)
     mirror  = PageMirror.new(object).mirror(language)
-    content = site_label(language)
-    content = "#{content} #{missing_language_icon_tag}" if mirror.blank?
+    label = language.to_s.upcase
+    label = "#{label} #{missing_language_icon_tag}" if mirror.blank?
 
-    label_tag("edit-mode_#{language}", content.html_safe, class: 'toggle__label-heading')
+    label_tag("edit-mode_#{language}", label.html_safe, class: 'toggle__label-heading')
   end
 
   def missing_language_icon_tag
@@ -39,10 +39,6 @@ class PagePresenter < Presenter
 
   def same_language?(language)
     site.label.to_s == language.to_s
-  end
-
-  def site_label(language)
-    I18n.t("sites.label.#{language}")
   end
 
   def input_options_for(page)
