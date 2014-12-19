@@ -1,4 +1,6 @@
 class Comfy::Cms::Page
+  scope :most_popular, -> (number_of_items) { unscoped.order('page_views desc').limit(number_of_items) }
+
   def self.all_english_articles
     joins(:layout)
     .joins(:site)
