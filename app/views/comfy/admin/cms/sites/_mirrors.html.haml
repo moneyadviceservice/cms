@@ -1,17 +1,13 @@
-- return unless @site.is_mirrored?
+- return unless @site.is_mirrored? && local_assigns[:object].is_a?(Comfy::Cms::Page)
 
-- en, cy = cms_mirror_options(local_assigns[:object])
-
-- if en && cy
-  #site__mirrors{data: { 'dough-component' => 'URLToggler' }}
-    .toolbar__item.pull-right
-      %span.image-flag
+#site__mirrors{ data: { 'dough-component' => 'URLToggler' }}
+  .toolbar__item.pull-right
+    %span.image-flag
     .toolbar__item.js-switch-mode-buttons-group.pull-right
       .toggle.toggle--on-dark
-        =radio_button_tag('edit-mode', en.first, en.last == request.fullpath, class: 'toggle__control', data: { 'value' => en.last })
-        =radio_button_tag('edit-mode', cy.first, cy.last == request.fullpath, class: 'toggle__control', data: { 'value' => cy.last })
-        =label_tag('edit-mode_en', en.first, class: 'toggle__label-heading')
+        = presenter.language_input_tag(:en)
+        = presenter.language_input_tag(:cy)
+
+        = presenter.language_label_tag(:en)
         %span.toggle__indicator
-        =label_tag('edit-mode_cy', class: 'toggle__label-heading') do
-          =cy.first
-          %span.icon-warning.fa.fa-warning
+        = presenter.language_label_tag(:cy)

@@ -6,6 +6,11 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   protected
 
+  def presenter
+    @presenter ||= PagePresenter.new(@page)
+  end
+  helper_method :presenter
+
   def save_page
     PageRegister.new(@page, params: params, current_user: current_user).save
   end
