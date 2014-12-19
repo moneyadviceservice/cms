@@ -1,4 +1,4 @@
-- return unless @site.is_mirrored? && local_assigns[:object].is_a?(Comfy::Cms::Page)
+- return unless @site.is_mirrored? && local_assigns[:object].is_a?(Comfy::Cms::Page) && local_assigns[:object].persisted?
 
 #site__mirrors{ data: { 'dough-component' => 'URLToggler' }}
   .toolbar__item.pull-right
