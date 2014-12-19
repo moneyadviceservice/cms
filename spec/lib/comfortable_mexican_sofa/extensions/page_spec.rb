@@ -55,4 +55,21 @@ RSpec.describe Comfy::Cms::Page do
 
   end
 
+  describe '#most_popular scope' do
+
+    it 'has the three most popular articles' do
+      FactoryGirl.create :page, page_views: 100, position: 1
+      FactoryGirl.create :page, page_views: 5,   position: 2
+      FactoryGirl.create :page, page_views: 200, position: 3
+      FactoryGirl.create :page, page_views: 1,   position: 4
+      FactoryGirl.create :page, page_views: 152, position: 5
+      FactoryGirl.create :page, page_views: 50,  position: 6
+
+      results = Comfy::Cms::Page.most_popular(3)
+
+      expect(results.map(&:page_views)).to eq([200, 152, 100])
+    end
+
+  end
+
 end

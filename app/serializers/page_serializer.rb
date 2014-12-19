@@ -8,8 +8,13 @@ class PageSerializer < ActiveModel::Serializer
   has_many :blocks, serializer: BlockSerializer
 
   def related_content
-    {popular_links: [ {title: 'Sharky', path: '/cheese' },
-                      {title: 'George', path: '/wine' }
-                       ]}
+    popular_links = Comfy::Cms::Page.most_popular(3).map do |article|
+      {
+        title: article.label,
+        path: "/en/articles/#{article.slug}"
+      }
+    end
+
+    { popular_links: popular_links }
   end
 end
