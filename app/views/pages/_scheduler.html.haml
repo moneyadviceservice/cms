@@ -4,6 +4,6 @@
       %h2.l-tab-panels__heading Schedule
       = date_field_tag 'scheduled_date', nil, data: {dough_scheduler_date: true}
       = time_field_tag 'scheduled_time', nil, data: {dough_scheduler_time: true}
-      = button_tag "Schedule", value: 'schedule', type: 'submit', name: 'state_event', class: "button--action js-schedule-form-submit", data: {dough_maseditor_form_submit: true, dough_scheduler_trigger: true} do
+      = button_tag "Schedule", value: 'schedule', type: 'submit', name: 'state_event', class: "button--action", data: { dough_scheduler_trigger: true } do
         %span.button__text
           schedule
