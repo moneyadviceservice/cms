@@ -6,7 +6,7 @@ class BlockSerializer < ActiveModel::Serializer
   private
 
   def content
-    return object.content if scope == 'preview' || object.blockable.state == 'published'
+    return object.content if render_content_directly?
     published_content.fetch(:content, '')
   end
 
@@ -20,5 +20,13 @@ class BlockSerializer < ActiveModel::Serializer
 
   def last_published_revision
     object.blockable.revisions.find { |r| r.data[:previous_event] == 'published' }
+  end
+
+  def render_content_directly?
+    scope == 'preview' || object.blockable.state == 'published' || past_scheduled_time?
+  end
+
+  def past_scheduled_time?
+    object.blockable.state == 'scheduled' && object.blockable.scheduled_on <= Time.current
   end
 end
