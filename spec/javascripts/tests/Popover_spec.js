@@ -1,4 +1,4 @@
-describe('Popover', function () {
+describe('Popover', function() {
   'use strict';
 
   beforeEach(function(done) {
@@ -7,7 +7,7 @@ describe('Popover', function () {
       'jquery',
       'Popover'
     ],
-    function (
+    function(
       $,
       Popover
     ) {
@@ -39,8 +39,8 @@ describe('Popover', function () {
     return Math.floor(component.getElementBoundaries($el)[direction === 'horizontal'? 'left' : 'top'] + component.getElementCenterPosition($el)[direction]);
   }
 
-  describe('Close target on click', function () {
-    beforeEach(function (done) {
+  describe('Close target on click', function() {
+    beforeEach(function(done) {
       this.component = new this.Popover(this.$fixture, {
         direction: 'top',
         closeOnClick: true
@@ -48,7 +48,7 @@ describe('Popover', function () {
       this.component.init();
       done();
     });
-    it('should close when a click/touchend event is detected inside the target container', function () {
+    it('should close when a click/touchend event is detected inside the target container', function() {
       this.component.$trigger.click();
       expect(this.component.isShown).to.be.true;
       this.component.$target.click();
@@ -56,9 +56,9 @@ describe('Popover', function () {
     });
   });
 
-  describe('Position left', function () {
-    describe('Default', function () {
-      beforeEach(function (done) {
+  describe('Position left', function() {
+    describe('Default', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'left'
         });
@@ -75,8 +75,8 @@ describe('Popover', function () {
       });
     });
 
-    describe('With vertical alignment enabled', function () {
-      beforeEach(function (done) {
+    describe('With vertical alignment enabled', function() {
+      beforeEach(function(done) {
         this.$fixture.css({
           margin: 'auto'
         });
@@ -99,9 +99,9 @@ describe('Popover', function () {
     });
   });
 
-  describe('Position right', function () {
-    describe('Default', function () {
-      beforeEach(function (done) {
+  describe('Position right', function() {
+    describe('Default', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'right'
         });
@@ -119,8 +119,8 @@ describe('Popover', function () {
       });
     });
 
-    describe('With vertical alignment enabled', function () {
-      beforeEach(function (done) {
+    describe('With vertical alignment enabled', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'right',
           centerAlign: true
@@ -140,9 +140,9 @@ describe('Popover', function () {
     });
   });
 
-  describe('Position Top', function () {
-    describe('Default', function () {
-      beforeEach(function (done) {
+  describe('Position Top', function() {
+    describe('Default', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'top'
         });
@@ -160,8 +160,8 @@ describe('Popover', function () {
       });
     });
 
-    describe('With horizontal alignment enabled', function () {
-      beforeEach(function (done) {
+    describe('With horizontal alignment enabled', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'top',
           centerAlign: true
@@ -185,9 +185,9 @@ describe('Popover', function () {
     });
   });
 
-  describe('Position Bottom', function () {
-    describe('Default', function () {
-      beforeEach(function (done) {
+  describe('Position Bottom', function() {
+    describe('Default', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'bottom'
         });
@@ -208,8 +208,8 @@ describe('Popover', function () {
       });
     });
 
-    describe('With horizontal alignment enabled', function () {
-      beforeEach(function (done) {
+    describe('With horizontal alignment enabled', function() {
+      beforeEach(function(done) {
         this.component = new this.Popover(this.$fixture, {
           direction: 'bottom',
           centerAlign: true

@@ -1,4 +1,4 @@
-describe('TagManager', function () {
+describe('TagManager', function() {
   'use strict';
 
   var sandbox;
@@ -11,7 +11,7 @@ describe('TagManager', function () {
       'TagManager',
       'eventsWithPromises'
     ],
-    function (
+    function(
       $,
       TagManager,
       eventsWithPromises
@@ -32,8 +32,8 @@ describe('TagManager', function () {
     this.eventsWithPromises.unsubscribeAll();
   });
 
-  describe('Initialisation', function () {
-    beforeEach(function (done) {
+  describe('Initialisation', function() {
+    beforeEach(function(done) {
       this.component = new this.TagManager(this.$fixture);
       this.component.init();
       done();
@@ -47,21 +47,21 @@ describe('TagManager', function () {
     });
   });
 
-  describe('When a tag\'s delete button is clicked', function () {
-    beforeEach(function (done) {
+  describe('When a tag\'s delete button is clicked', function() {
+    beforeEach(function(done) {
       this.component = new this.TagManager(this.$fixture);
       this.component.init();
       done();
     });
 
-    it('should set the tag usage placeholder content', function () {
+    it('should set the tag usage placeholder content', function() {
       this.component.$trigger.click();
       expect(this.component.$tagUsagePlaceholders.first().text()).to.eq('45');
     });
   });
 
-  describe('When the dialog\'s delete button is clicked', function () {
-    beforeEach(function (done) {
+  describe('When the dialog\'s delete button is clicked', function() {
+    beforeEach(function(done) {
       this.component = new this.TagManager(this.$fixture);
       this.component.init();
       done();

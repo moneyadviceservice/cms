@@ -1,4 +1,4 @@
-describe('Element Filter', function () {
+describe('Element Filter', function() {
   'use strict';
 
   beforeEach(function(done) {
@@ -8,7 +8,7 @@ describe('Element Filter', function () {
       'jquery',
       'ElementFilter'
     ],
-    function (
+    function(
       $,
       ElementFilter
     ) {
@@ -23,8 +23,8 @@ describe('Element Filter', function () {
     this.$html.remove();
   });
 
-  describe('Filtering', function () {
-    beforeEach(function (done) {
+  describe('Filtering', function() {
+    beforeEach(function(done) {
       this.component = new this.ElementFilter(this.$fixture);
       this.component.init();
       done();
@@ -35,7 +35,7 @@ describe('Element Filter', function () {
       expect(this.component.$filterableItems.hasClass(this.component.config.selectors.activeClass)).to.be.true;
     });
 
-    it('should toggle new filterable items added to the list', function () {
+    it('should toggle new filterable items added to the list', function() {
       var $clonedElement = this.component.$filterableItems.first().clone();
       this.component.$target.append($clonedElement);
       this.component.$trigger.click();

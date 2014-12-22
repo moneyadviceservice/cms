@@ -1,4 +1,4 @@
-describe('Mirror Input Value', function () {
+describe('Mirror Input Value', function() {
   'use strict';
 
   beforeEach(function(done) {
@@ -9,7 +9,7 @@ describe('Mirror Input Value', function () {
       'MirrorInputValue',
       'phantom-shims'
     ],
-    function (
+    function(
       $,
       MirrorInputValue
     ) {
@@ -25,15 +25,15 @@ describe('Mirror Input Value', function () {
     this.$html.remove();
   });
 
-  describe('General', function () {
-    beforeEach(function (done) {
+  describe('General', function() {
+    beforeEach(function(done) {
       this.targetKeyupSpy = sinon.spy(this.MirrorInputValue.prototype, '_handleTargetKeyup');
       this.component = new this.MirrorInputValue(this.$html);
       this.component.init();
       done();
     });
 
-    afterEach(function () {
+    afterEach(function() {
       this.targetKeyupSpy.restore();
     });
 
