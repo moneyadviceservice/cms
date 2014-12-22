@@ -2,7 +2,7 @@
   = render 'comfy/admin/cms/sites/mirrors', object: @page
 
 %div{data:{dough_component: :StickyElements}}
-  = comfy_form_for @page, as: :page, label_col: 'form__label-heading', control_col: 'form__input-wrapper', url: site_page_path(@site, @page), html: { multipart: true, autocomplete: 'off'}, data: { dough_component: :MASEditor } do |form|
+  = comfy_form_for @page, as: :page, label_col: 'form__label-heading', control_col: 'form__input-wrapper', url: site_page_path(@site, @page), html: { multipart: true, autocomplete: 'off'}, data: { dough_component: :MASEditor, dough_scheduler_form: true } do |form|
     = render form
 
 = render 'activity_log_box'
