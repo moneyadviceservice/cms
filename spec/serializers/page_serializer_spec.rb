@@ -3,6 +3,11 @@ describe PageSerializer do
   let(:article) { Comfy::Cms::Page.new(site: site) }
   subject { described_class.new(article) }
 
+  before do
+    allow(article).to receive(:previous_article).and_return(nil)
+    allow(article).to receive(:next_article).and_return(nil)
+  end
+
   describe '#related_content' do
 
     context 'popular_links' do
@@ -41,6 +46,48 @@ describe PageSerializer do
         expect(popular_links).to eq([
           { title: 'First Article in Welsh', path: '/cy/articles/first-article-in-welsh' }
         ])
+      end
+
+    end
+
+    context 'has a previous link' do
+
+      it 'has the title and path from the previous article' do
+        previous_article = Comfy::Cms::Page.new(site: site, label: 'Previous Article', slug: 'previous-article')
+        allow(article).to receive(:previous_page).and_return(previous_article)
+
+        actual_previous_link = subject.related_content[:previous_link]
+
+        expect(actual_previous_link[:title]).to eq('Previous Article')
+        expect(actual_previous_link[:path]).to eq('/en/articles/previous-article')
+      end
+
+      it 'is empty if no previous article' do
+        Comfy::Cms::Page.new(site: site, label: 'Previous Article', slug: 'previous-article')
+        allow(article).to receive(:previous_page).and_return(nil)
+
+        expect(subject.related_content[:previous_link]).to be_empty
+      end
+
+    end
+
+    context 'has a next link' do
+
+      it 'has the title and path from the next article' do
+        next_article = Comfy::Cms::Page.new(site: site, label: 'Next Article', slug: 'next-article')
+        allow(article).to receive(:next_page).and_return(next_article)
+
+        actual_next_link = subject.related_content[:next_link]
+
+        expect(actual_next_link[:title]).to eq('Next Article')
+        expect(actual_next_link[:path]).to eq('/en/articles/next-article')
+      end
+
+      it 'is empty if no next article' do
+        Comfy::Cms::Page.new(site: site, label: 'Next Article', slug: 'next-article')
+        allow(article).to receive(:next_page).and_return(nil)
+
+        expect(subject.related_content[:next_link]).to be_empty
       end
 
     end

@@ -1,6 +1,49 @@
 require Rails.root.join('lib/comfortable_mexican_sofa/extensions/page')
 
 RSpec.describe Comfy::Cms::Page do
+
+  describe '#previous_page' do
+    let(:english_site) { FactoryGirl.create :site }
+    let(:welsh_site) { FactoryGirl.create :site, :welsh }
+    let(:category) { FactoryGirl.create :category }
+    let!(:first_article) { FactoryGirl.create :page, position: 1, site: english_site, categories: [category] }
+
+    it 'provides the previous article' do
+      second_article = FactoryGirl.create :page, position: 2, site: english_site, categories: [category]
+      expect(second_article.previous_page).to eq(first_article)
+    end
+
+    it 'returns nil when there are no categories' do
+      second_article = FactoryGirl.create :page, position: 2, site: english_site, categories: []
+      expect(second_article.previous_page).to be_nil
+    end
+
+    it 'returns nil when this is the first article' do
+      expect(first_article.previous_page).to be_nil
+    end
+  end
+
+  describe '#next_page' do
+    let(:english_site) { FactoryGirl.create :site }
+    let(:welsh_site) { FactoryGirl.create :site, :welsh }
+    let(:category) { FactoryGirl.create :category }
+    let!(:second_article) { FactoryGirl.create :page, position: 2, site: english_site, categories: [category] }
+
+    it 'provides the next article' do
+      first_article = FactoryGirl.create :page, position: 1, site: english_site, categories: [category]
+      expect(first_article.next_page).to eq(second_article)
+    end
+
+    it 'returns nil when there are no categories' do
+      first_article = FactoryGirl.create :page, position: 1, site: english_site, categories: []
+      expect(first_article.next_page).to be_nil
+    end
+
+    it 'returns nil when this is the last article' do
+      expect(second_article.next_page).to be_nil
+    end
+  end
+
   describe 'all_english_articles' do
     it 'does not return english news pages' do
       english_site = FactoryGirl.create :site, label: 'en'

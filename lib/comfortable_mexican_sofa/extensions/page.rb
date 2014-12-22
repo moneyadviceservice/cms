@@ -15,4 +15,39 @@ class Comfy::Cms::Page
     new_page_views = matching_analytic.present? ? matching_analytic[:page_views] : 0
     update_attribute(:page_views, new_page_views)
   end
+
+  def previous_page
+    fetch_adjacent_page do |index|
+      index - 1
+    end
+  end
+
+  def next_page
+    fetch_adjacent_page do |index|
+      index + 1
+    end
+  end
+
+  private
+
+  def fetch_adjacent_page
+    pages = pages_from_first_category
+    return nil if pages.nil?
+
+    page_index = yield pages.index(self)
+
+    fetch_page(pages, page_index)
+  end
+
+  def pages_from_first_category
+    return nil if categories.empty?
+
+    category = categories.first
+    site.pages.for_category(category.label)
+  end
+
+  def fetch_page(pages, page_index)
+    return nil if page_index < 0 || page_index >= pages.length
+    pages[page_index]
+  end
 end
