@@ -57,15 +57,15 @@ define([
             ol: {},
             ul: {},
             li: {},
-            a: { href: true },
+            a: { href: true, id: true },
             h2: {},
             h3: {},
             h4: {},
             h5: {},
             sub: {},
             sup: {},
-            span: { 'class': true, id: true},
-            img: { 'class': true, src: true}
+            span: { 'class': true, id: true },
+            img: { 'class': true, src: true }
           }
         }
       }
