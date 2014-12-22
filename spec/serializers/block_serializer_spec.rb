@@ -20,4 +20,25 @@ describe BlockSerializer do
       expect(subject).to eq('Last published content')
     end
   end
+
+  context 'when scheduled date is in the past' do
+    let(:passed_date) { Time.current - 1.day }
+    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: passed_date) }
+
+    it 'returns the blocks content' do
+      expect(subject).to eq('published content')
+    end
+  end
+
+  context 'when scheduled date in the future' do
+    let(:future_date) { Time.current + 1.day }
+    let(:blocks_attributes) { [{ identifier: 'content', content: 'Last published content' }] }
+    let(:data) { { previous_event: 'published', blocks_attributes: blocks_attributes } }
+    let(:revisions) { Comfy::Cms::Revision.new(data: data) }
+    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: future_date, revisions: [revisions]) }
+
+    it 'returns the last published revision content' do
+      expect(subject).to eq('Last published content')
+    end
+  end
 end

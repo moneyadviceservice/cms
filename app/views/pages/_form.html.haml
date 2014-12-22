@@ -29,7 +29,8 @@
 
 
     = form.text_field :meta_description
-    = form.text_field :meta_title, :data => {'dough-mirrorinputvalue-target' => ''}
+    = form.text_field :meta_title, data: {'dough-mirrorinputvalue-target' => ''}
+    = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
     .form-group
       .form__label-heading
@@ -37,7 +38,8 @@
       .form__input-wrapper
         = form.check_box :regulated_box, label: 'Regulated Content'
 
-= render :partial => 'form_blocks'
+= render partial: 'form_blocks'
+= render 'scheduler', object: form
 
 .nav-article.is-fixed
   .l-constrained
@@ -47,6 +49,7 @@
           =@site.label.upcase
           Status:
           =current_status(@page.current_state)
+          =@page.scheduled_on
       %span.nav-article__item
         %span.fa.fa-list-ul
         %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
@@ -59,7 +62,7 @@
       %span.nav-article__item.nav-article__item--right
         %span.button-menu
           - main_state_button(@page.current_state).each do |state_event|
-            = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}", data: {dough_maseditor_form_submit: true} do
+            = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
               %span.button__text
                 = state_event[:label]
             - unless page_state_buttons(@page.current_state).empty?
@@ -76,4 +79,4 @@
                       =state_event[:label]
           .popover__pointer
 
-= render 'comfy/admin/cms/partials/page_form_after', :object => form
+= render 'comfy/admin/cms/partials/page_form_after', object: form
