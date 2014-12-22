@@ -2,8 +2,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   'use strict';
 
-  var Popover,
-      defaultConfig = {
+  var defaultConfig = {
         direction: 'top',
         centerAlign: false,
         hideOnBlur: false,
