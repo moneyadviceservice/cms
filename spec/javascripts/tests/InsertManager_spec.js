@@ -12,7 +12,7 @@ describe('InsertManager', function() {
       'InsertManager',
       'eventsWithPromises'
     ],
-    function(
+    function (
       phantomShims,
       $,
       InsertManager,
@@ -34,7 +34,7 @@ describe('InsertManager', function() {
   });
 
   describe('Initialisation', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -57,7 +57,7 @@ describe('InsertManager', function() {
   });
 
   describe('App Events', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -84,7 +84,7 @@ describe('InsertManager', function() {
   });
 
   describe('UI Events', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -173,7 +173,7 @@ describe('InsertManager', function() {
   });
 
   describe('Insert Value handler', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -222,7 +222,7 @@ describe('InsertManager', function() {
   });
 
   describe('Updating the insert type value inputs', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -257,7 +257,7 @@ describe('InsertManager', function() {
   });
 
   describe('Publish value', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -283,7 +283,7 @@ describe('InsertManager', function() {
   });
 
   describe('Save the value to itemValues', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -324,7 +324,7 @@ describe('InsertManager', function() {
 
     describe('When a value is being edited', function() {
       describe('And the server returns a value type of page or file', function() {
-        it('should call the _handleAjaxLabelDone method', function(done) {
+        it('should call the _handleAjaxLabelDone method', function (done) {
           var link = 'test',
               spy = sinon.spy(this.InsertManager.prototype, '_handleAjaxLabelDone'),
               getValueLabel;
@@ -347,7 +347,7 @@ describe('InsertManager', function() {
   });
 
   describe('getValue() Get a link from the itemValues hash', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -367,7 +367,7 @@ describe('InsertManager', function() {
   });
 
   describe('setLabels()', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -393,7 +393,7 @@ describe('InsertManager', function() {
   });
 
   describe('showLoader', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -415,7 +415,7 @@ describe('InsertManager', function() {
   });
 
   describe('hideLabels', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -438,7 +438,7 @@ describe('InsertManager', function() {
   });
 
   describe('showLabels', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -460,7 +460,7 @@ describe('InsertManager', function() {
   });
 
   describe('hideLabels', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',
@@ -483,7 +483,7 @@ describe('InsertManager', function() {
   });
 
   describe('Closing the dialog', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.InsertManager(this.$fixture, {
         tabIds: {
           'default': 'default',

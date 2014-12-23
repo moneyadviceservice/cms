@@ -6,7 +6,7 @@ define([
   'scribe-plugin-mastalk',
   'scribe-plugin-linkeditor',
   'scribe-plugin-image-inserter'
-], function(
+], function (
   $,
   DoughBaseComponent,
   editorPluginAutoResizeTextarea,

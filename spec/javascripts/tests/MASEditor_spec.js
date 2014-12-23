@@ -1,4 +1,4 @@
-describe('MAS Editor', function() {
+describe('MAS Editor', function () {
   'use strict';
 
   beforeEach(function(done) {
@@ -9,7 +9,7 @@ describe('MAS Editor', function() {
       'MASEditor',
       'phantom-shims'
     ],
-    function(
+    function (
       $,
       MASEditor
     ) {
@@ -25,9 +25,9 @@ describe('MAS Editor', function() {
     this.$html.remove();
   });
 
-  describe('General', function() {
-    describe('Initialisation', function() {
-      beforeEach(function(done) {
+  describe('General', function () {
+    describe('Initialisation', function () {
+      beforeEach(function (done) {
         this.masEditor  = new this.MASEditor(this.$html);
         this.masEditor.init();
         done();
@@ -38,7 +38,7 @@ describe('MAS Editor', function() {
     });
 
     describe('Switching Edit mode', function() {
-      beforeEach(function(done) {
+      beforeEach(function (done) {
         this.masEditor  = new this.MASEditor(this.$html);
         this.masEditor.init();
         done();
@@ -73,14 +73,14 @@ describe('MAS Editor', function() {
   });
 
   describe('Events', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.handleFormSubmitSpy = sinon.spy(this.MASEditor.prototype, '_handleFormSubmit');
       this.masEditor  = new this.MASEditor(this.$html);
       this.masEditor.init();
       done();
     });
 
-    afterEach(function() {
+    afterEach(function () {
       this.handleFormSubmitSpy.restore();
     });
 

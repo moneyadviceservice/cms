@@ -12,7 +12,7 @@ describe('LinkManager', function() {
       'LinkManager',
       'eventsWithPromises'
     ],
-    function(
+    function (
       phantomShims,
       $,
       LinkManager,
@@ -34,7 +34,7 @@ describe('LinkManager', function() {
   });
 
   describe('App Events', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture, {
         tabIds: {
           'page': 'page',
@@ -57,7 +57,7 @@ describe('LinkManager', function() {
   });
 
   describe('When dialog is opened', function() {
-    beforeEach(function(done) {
+    beforeEach(function (done) {
       this.component = new this.LinkManager(this.$fixture, {
         tabIds: {
           'page': 'page',
