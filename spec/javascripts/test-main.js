@@ -81,7 +81,7 @@ requirejs.config({
     // Third-party dependencies
     'jquery': bowerPath + 'jquery/dist/jquery.min',
     'he': bowerPath + 'he/he',
-    'rsvp': bowerPath + 'rsvp/rsvp.amd',
+    'rsvp': bowerPath + 'rsvp/rsvp',
     'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
     'scribe': bowerPath + 'scribe/scribe',
     'scribe-plugin-blockquote-command': bowerPath + 'scribe-plugin-blockquote-command/scribe-plugin-blockquote-command',
