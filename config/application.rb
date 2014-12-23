@@ -22,6 +22,6 @@ module Cms
     # config.i18n.default_locale = :de
     config.autoload_paths += %W(#{config.root}/lib)
 
-    config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css)
+    config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css rsvp/rsvp.js)
   end
 end
