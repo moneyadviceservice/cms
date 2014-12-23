@@ -1,4 +1,4 @@
-describe('Hide and Remove element', function () {
+describe('Hide and Remove element', function() {
   'use strict';
 
   beforeEach(function(done) {
@@ -9,7 +9,7 @@ describe('Hide and Remove element', function () {
       'ElementHider',
       'phantom-shims'
     ],
-    function (
+    function(
       $,
       ElementHider
     ) {
@@ -25,8 +25,8 @@ describe('Hide and Remove element', function () {
     this.$html.remove();
   });
 
-  describe('Clicking the close node', function () {
-    beforeEach(function (done) {
+  describe('Clicking the close node', function() {
+    beforeEach(function(done) {
       this.elementHider = new this.ElementHider(this.$html);
       this.elementHider.init();
       done();
@@ -37,8 +37,8 @@ describe('Hide and Remove element', function () {
     });
   });
 
-  describe('After a delay', function () {
-    beforeEach(function (done) {
+  describe('After a delay', function() {
+    beforeEach(function(done) {
       this.elementHider = new this.ElementHider(this.$html);
       this.elementHider.init();
 

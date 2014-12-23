@@ -1,13 +1,11 @@
 define([
   'jquery',
   'DoughBaseComponent',
-  'InsertManager',
-  'eventsWithPromises'
+  'InsertManager'
 ], function (
   $,
   DoughBaseComponent,
-  InsertManager,
-  eventsWithPromises
+  InsertManager
 ) {
   'use strict';
 

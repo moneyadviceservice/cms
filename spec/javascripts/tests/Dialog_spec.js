@@ -1,4 +1,4 @@
-describe('Dialog', function () {
+describe('Dialog', function() {
   'use strict';
 
   var sandbox;
@@ -39,7 +39,7 @@ describe('Dialog', function () {
     this.eventsWithPromises.unsubscribeAll();
   });
 
-  describe('Initialisation', function () {
+  describe('Initialisation', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       done();
@@ -74,7 +74,7 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Events', function () {
+  describe('Events', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
@@ -113,7 +113,7 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Show dialog', function () {
+  describe('Show dialog', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
@@ -126,7 +126,7 @@ describe('Dialog', function () {
       expect($.contains(this.component.dialog, this.component.$target[0])).to.be.true;
     });
 
-    it('should trigger a shown event', function () {
+    it('should trigger a shown event', function() {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show();
@@ -139,7 +139,7 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Show dialog (showModal)', function () {
+  describe('Show dialog (showModal)', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
@@ -155,7 +155,7 @@ describe('Dialog', function () {
       expect(spy.called).to.be.true;
     });
 
-    it('should trigger a shown event and return modal=true in callback arguments', function () {
+    it('should trigger a shown event and return modal=true in callback arguments', function() {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:shown', spy);
       this.component.show(true);
@@ -179,7 +179,7 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Close dialog', function () {
+  describe('Close dialog', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
@@ -192,7 +192,7 @@ describe('Dialog', function () {
       expect($.contains(this.component.dialog, this.component.$target[0])).to.be.true;
     });
 
-    it('should trigger a closed event', function () {
+    it('should trigger a closed event', function() {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:closed', spy);
       this.component.show();
@@ -219,14 +219,14 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Close dialog (cancelled)', function () {
+  describe('Close dialog (cancelled)', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
       done();
     });
 
-    it('should trigger a cancelled event', function () {
+    it('should trigger a cancelled event', function() {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:cancelled', spy);
       this.component.show();
@@ -235,19 +235,19 @@ describe('Dialog', function () {
     });
   });
 
-  describe('Set Content', function () {
+  describe('Set Content', function() {
     beforeEach(function (done) {
       this.component = new this.Dialog(this.$fixture);
       this.component.init();
       done();
     });
 
-    it('should append the dialog target to the dialog content', function () {
+    it('should append the dialog target to the dialog content', function() {
       this.component.show();
       expect(this.component.$dialogContent.find(this.component.config.selectors.target).is(this.component.$target)).to.be.true;
     });
 
-    it('should trigger a ready event', function () {
+    it('should trigger a ready event', function() {
       var spy = sandbox.spy();
       this.eventsWithPromises.subscribe('dialog:ready', spy);
       this.component.show();
