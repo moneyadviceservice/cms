@@ -68,13 +68,9 @@ class HippoImport
   def import!
     records.select { |r| next_docs.include?(r.send(article_id)) }.map do |record|
       puts "Importing: #{record.id}"
-      page = if @_site == 'en'
-               Comfy::Cms::Page.where(slug: record.id, site: site).first
-             else
-               Comfy::Cms::Page.where(translation_id: record.translation_id, site: site).first
-             end
+      page = find_page(record) || Comfy::Cms::Page.new
 
-      (page || Comfy::Cms::Page.new).tap do |p|
+      page.tap do |p|
         p.site = site
         p.layout = layout
         p.parent = parent
@@ -91,6 +87,16 @@ class HippoImport
         ]
         p.save unless page && page.state == 'published'
       end
+    end
+  end
+
+  private
+
+  def find_page(record)
+    if @_site == 'en'
+      Comfy::Cms::Page.where(slug: record.id, site: site).first
+    else
+      Comfy::Cms::Page.where(translation_id: record.translation_id, site: site).first
     end
   end
 end
