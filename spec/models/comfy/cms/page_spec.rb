@@ -1,18 +1,18 @@
 RSpec.describe Comfy::Cms::Page do
 
   describe '#previous_page' do
-    let(:english_site) { FactoryGirl.create :site }
-    let(:welsh_site) { FactoryGirl.create :site, :welsh }
-    let(:category) { FactoryGirl.create :category }
-    let!(:first_article) { FactoryGirl.create :page, position: 1, site: english_site, categories: [category] }
+    let(:english_site) { create :site }
+    let(:welsh_site) { create :site, :welsh }
+    let(:category) { create :category }
+    let!(:first_article) { create :page, position: 1, site: english_site, categories: [category] }
 
     it 'provides the previous article' do
-      second_article = FactoryGirl.create :page, position: 2, site: english_site, categories: [category]
+      second_article = create :page, position: 2, site: english_site, categories: [category]
       expect(second_article.previous_page).to eq(first_article)
     end
 
     it 'returns nil when there are no categories' do
-      second_article = FactoryGirl.create :page, position: 2, site: english_site, categories: []
+      second_article = create :page, position: 2, site: english_site, categories: []
       expect(second_article.previous_page).to be_nil
     end
 
@@ -22,18 +22,18 @@ RSpec.describe Comfy::Cms::Page do
   end
 
   describe '#next_page' do
-    let(:english_site) { FactoryGirl.create :site }
-    let(:welsh_site) { FactoryGirl.create :site, :welsh }
-    let(:category) { FactoryGirl.create :category }
-    let!(:second_article) { FactoryGirl.create :page, position: 2, site: english_site, categories: [category] }
+    let(:english_site) { create :site }
+    let(:welsh_site) { create :site, :welsh }
+    let(:category) { create :category }
+    let!(:second_article) { create :page, position: 2, site: english_site, categories: [category] }
 
     it 'provides the next article' do
-      first_article = FactoryGirl.create :page, position: 1, site: english_site, categories: [category]
+      first_article = create :page, position: 1, site: english_site, categories: [category]
       expect(first_article.next_page).to eq(second_article)
     end
 
     it 'returns nil when there are no categories' do
-      first_article = FactoryGirl.create :page, position: 1, site: english_site, categories: []
+      first_article = create :page, position: 1, site: english_site, categories: []
       expect(first_article.next_page).to be_nil
     end
 
@@ -44,25 +44,25 @@ RSpec.describe Comfy::Cms::Page do
 
   describe 'all_english_articles' do
     it 'does not return english news pages' do
-      english_site = FactoryGirl.create :site, label: 'en'
-      news_layout = FactoryGirl.create :layout, identifier: 'news'
-      FactoryGirl.create :page, site: english_site, layout: news_layout
+      english_site = create :site, label: 'en'
+      news_layout = create :layout, identifier: 'news'
+      create :page, site: english_site, layout: news_layout
 
       expect(Comfy::Cms::Page.all_english_articles).to be_empty
     end
 
     it 'does not return welsh article pages' do
-      welsh_site = FactoryGirl.create :site, :welsh
-      article_layout = FactoryGirl.create :layout, identifier: 'article'
-      FactoryGirl.create :page, site: welsh_site, layout: article_layout
+      welsh_site = create :site, :welsh
+      article_layout = create :layout, identifier: 'article'
+      create :page, site: welsh_site, layout: article_layout
 
       expect(Comfy::Cms::Page.all_english_articles).to be_empty
     end
 
     it 'provides english article pages' do
-      english_site = FactoryGirl.create :site, label: 'en'
-      article_layout = FactoryGirl.create :layout, identifier: 'article'
-      article_page = FactoryGirl.create :page, site: english_site, layout: article_layout
+      english_site = create :site, label: 'en'
+      article_layout = create :layout, identifier: 'article'
+      article_page = create :page, site: english_site, layout: article_layout
 
       expect(Comfy::Cms::Page.all_english_articles.all).to eq([article_page])
     end
@@ -70,7 +70,6 @@ RSpec.describe Comfy::Cms::Page do
   end
 
   describe '#update_page_views' do
-
     let(:analytics) do
       [
         { label: 'first label', page_views: 1000 },
@@ -96,12 +95,12 @@ RSpec.describe Comfy::Cms::Page do
   describe '#most_popular scope' do
 
     it 'has the three most popular articles' do
-      FactoryGirl.create :page, page_views: 100, position: 1
-      FactoryGirl.create :page, page_views: 5,   position: 2
-      FactoryGirl.create :page, page_views: 200, position: 3
-      FactoryGirl.create :page, page_views: 1,   position: 4
-      FactoryGirl.create :page, page_views: 152, position: 5
-      FactoryGirl.create :page, page_views: 50,  position: 6
+      create :page, page_views: 100, position: 1
+      create :page, page_views: 5,   position: 2
+      create :page, page_views: 200, position: 3
+      create :page, page_views: 1,   position: 4
+      create :page, page_views: 152, position: 5
+      create :page, page_views: 50,  position: 6
 
       results = Comfy::Cms::Page.most_popular(3)
 

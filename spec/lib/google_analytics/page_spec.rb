@@ -20,20 +20,21 @@ module GoogleAnalytics
 
       before(:each) do
         allow(GoogleAnalytics::Page).to receive(:results).and_return(google_results)
-        @results = Page.popular_articles(profile)
       end
 
-      it { expect(@results).to contain_article_label('help-with-debt', 270) }
-      it { expect(@results).to contain_article_label('how-to-save-money', 180) }
-      it { expect(@results).to contain_article_label('a-new-advice-article', 80) }
-      it { expect(@results).to_not contain_article_label('ignore-news') }
-      it { expect(@results).to_not contain_article_label('ignore-tools') }
-      it { expect(@results).to_not contain_article_label('ignore-welsh-article') }
-      it { expect(@results).to_not contain_article_label('ignore-embedded-english-article') }
+      subject { Page.popular_articles(profile) }
+
+      it { expect(subject).to contain_article_label('help-with-debt', 270) }
+      it { expect(subject).to contain_article_label('how-to-save-money', 180) }
+      it { expect(subject).to contain_article_label('a-new-advice-article', 80) }
+      it { expect(subject).to_not contain_article_label('ignore-news') }
+      it { expect(subject).to_not contain_article_label('ignore-tools') }
+      it { expect(subject).to_not contain_article_label('ignore-welsh-article') }
+      it { expect(subject).to_not contain_article_label('ignore-embedded-english-article') }
 
       it 'handles strange JSON url' do
         # From real analytics
-        expect(@results).to_not contain_article_label('{"title":"Win Money","desc":"Online casinoPlay now"}&cost=0')
+        expect(subject).to_not contain_article_label('{"title":"Win Money","desc":"Online casinoPlay now"}&cost=0')
       end
     end
   end
