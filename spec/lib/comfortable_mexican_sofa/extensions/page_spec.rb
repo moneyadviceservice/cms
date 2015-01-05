@@ -1,5 +1,3 @@
-require Rails.root.join('lib/comfortable_mexican_sofa/extensions/page')
-
 RSpec.describe Comfy::Cms::Page do
 
   describe '#previous_page' do
