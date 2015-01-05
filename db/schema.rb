@@ -98,8 +98,8 @@ ActiveRecord::Schema.define(version: 20141217154822) do
     t.boolean  "regulated",                         default: false
     t.string   "meta_title"
     t.string   "translation_id"
-    t.datetime "scheduled_on"
     t.integer  "page_views",                        default: 0
+    t.datetime "scheduled_on"
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
