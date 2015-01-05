@@ -53,6 +53,7 @@ define([
 
   SchedulerProto._handleFormSubmit = function(e) {
     this.$scheduledOn.val(this.$scheduledDate.val() + "T" + this.$scheduledTime.val());
+    this.$formToSubmit.append($("<input>").attr("type", "hidden").attr("name", "state_event").val("schedule"));
     this.$formToSubmit.submit();
   };
 
