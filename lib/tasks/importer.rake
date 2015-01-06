@@ -3,8 +3,7 @@ require_relative '../cms/hippo_import'
 namespace :cms do
   namespace :hippo do
     desc 'Import Hippo XML data into database (options: FROM=folder_name TO=site_identifier DOCS=file_of_docs)'
-
-    task :import => :environment do
+    task import: :environment do
       from  = ENV['FROM']
       to    = ENV['TO']
       docs  = ENV['DOCS']

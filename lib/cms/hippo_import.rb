@@ -100,3 +100,13 @@ class HippoImport
     end
   end
 end
+
+class CorporatePageImport < HippoImport
+  TYPES = [
+    'contentauthoringwebsite:Debts'
+  ]
+
+  def layout
+    @_layout ||= site.layouts.find_by(identifier: 'corporate_page')
+  end
+end
