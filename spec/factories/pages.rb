@@ -4,6 +4,7 @@ FactoryGirl.define do
     layout
     label 'Default Page'
     full_path '/'
+    slug 'a-page'
     children_count 1
     position 0
     is_published true

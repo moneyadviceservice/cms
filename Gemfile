@@ -34,6 +34,11 @@ gem 'devise'
 gem 'reverse_markdown'
 gem 'active_model_serializers'
 
+gem 'oauth2', '1.0.0'
+gem 'google-api-client', '0.7.1'
+gem 'legato', '0.4.0'
+gem 'whenever', '0.9.4', require: false
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
