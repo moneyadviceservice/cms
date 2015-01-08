@@ -9,6 +9,7 @@ class PageSerializer < ActiveModel::Serializer
 
   def related_content
     {
+      latest_blog_post_links: latest_blog_post_links,
       popular_links: popular_links,
       previous_link: previous_link,
       next_link: next_link
@@ -19,6 +20,16 @@ class PageSerializer < ActiveModel::Serializer
 
   def current_locale
     object.site.label
+  end
+
+  def latest_blog_post_links
+    Publify::API.latest_links(3).map do |input_blog_post|
+      {
+        title: input_blog_post['title'],
+        path: input_blog_post['link'],
+        date: input_blog_post['pubDate']
+      }
+    end
   end
 
   def popular_links
