@@ -3,7 +3,7 @@ require 'net/http'
 module Publify
   class API
     def self.latest_links(limit)
-      uri = URI("http://#{PUBLIFY_HOSTNAME}/articles.json")
+      uri = URI("http://#{ENV['PUBLIFY_HOSTNAME']}/articles.json")
       response = Net::HTTP.get uri
       JSON.parse(response).first(limit)
     rescue => e
