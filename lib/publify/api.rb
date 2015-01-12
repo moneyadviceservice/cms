@@ -3,9 +3,11 @@ require 'net/http'
 module Publify
   class API
     def self.latest_links(limit)
-      uri = URI("http://#{ENV['PUBLIFY_HOSTNAME']}/articles.json")
-      response = Net::HTTP.get uri
-      JSON.parse(response).first(limit)
+      connection = Net::HTTP.new(ENV['PUBLIFY_HOSTNAME'], ENV['PUBLIFY_PORT'].to_i)
+      connection.open_timeout = 2
+      connection.read_timeout = 2
+      response = connection.get('/articles.json')
+      JSON.parse(response.body).first(limit)
     rescue => e
       Rails.logger.error(e.message)
       []

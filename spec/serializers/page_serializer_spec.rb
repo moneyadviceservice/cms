@@ -34,11 +34,9 @@ describe PageSerializer do
         result = subject.related_content[:latest_blog_post_links]
 
         expect(result.first).to eq(
-          {
-            title: 'First post',
-            path: 'http://a.com',
-            date: 'Thu, 08 Jan 2015 10:39:43 +0000'
-          }
+          title: 'First post',
+          path: 'http://a.com',
+          date: 'Thu, 08 Jan 2015 10:39:43 +0000'
         )
       end
 
