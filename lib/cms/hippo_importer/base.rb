@@ -1,9 +1,9 @@
 module Cms
   module HippoImporter
     class Base
-      def initialize(data:, docs:, to:, parser: HippoXmlParser, html_decoder: HTMLEntities.new)
+      def initialize(data:, docs:, to: 'en', parser: HippoXmlParser, html_decoder: HTMLEntities.new)
         @records = parser.parse(data, [hippo_type])
-        @_site = site || 'en'
+        @_site = to || 'en'
         @docs = docs || []
         @html_decoder = html_decoder
       end
