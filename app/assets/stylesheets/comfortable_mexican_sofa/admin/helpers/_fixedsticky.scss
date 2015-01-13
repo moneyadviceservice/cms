@@ -40,6 +40,7 @@
   @extend %z-index--fixedsticky;
 
   &.fixedsticky-on {
+    box-shadow: 0px 5px 10px rgba(0,0,0,.1);
     height: 50px;
     left: 0;
     top: 65px;
