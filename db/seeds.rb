@@ -43,7 +43,7 @@ puts "Seeding layouts..."
 default_content = <<-END
 {{ cms:page:content:rich_text }}
 END
-%w(article news action_plan tool corporate_article).each do |name|
+%w(article news action_plan tool corporate_article video).each do |name|
   Comfy::Cms::Layout.find_or_create_by(site: site_en, content: default_content, label: name.titleize, identifier: name)
   Comfy::Cms::Layout.find_or_create_by(site: site_cy, identifier: name).update_attributes!(content: default_content)
 end
