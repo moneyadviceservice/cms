@@ -99,7 +99,7 @@ table th select {
   color: $color-select-foreground;
 
   &:focus {
-    outline-color: $color-select-focus-outline;
     box-shadow: 0 0 0 2px $color-select-focus-outline;
+    outline-color: $color-select-focus-outline;
   }
 }
