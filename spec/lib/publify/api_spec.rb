@@ -42,6 +42,18 @@ describe Publify::API do
         expect_any_instance_of(Net::HTTP).to receive(:read_timeout=).with(2)
         described_class.latest_links(2)
       end
+
+      it 'sets use_ssl to false' do
+        ENV['PUBLIFY_USE_SSL'] = 'false'
+        expect_any_instance_of(Net::HTTP).to receive(:use_ssl=).with(false)
+        described_class.latest_links(2)
+      end
+
+      it 'sets use_ssl to true' do
+        ENV['PUBLIFY_USE_SSL'] = 'true'
+        expect_any_instance_of(Net::HTTP).to receive(:use_ssl=).with(true)
+        described_class.latest_links(2)
+      end
     end
 
     context 'when there has been an exception' do
