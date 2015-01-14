@@ -8,7 +8,7 @@ module ComfortableMexicanSofa
         # Comfy already define #tags and #tags= methods in some models, so let's call :keywords to the Tag associated
         # instances of a model to avoid naming collisions!!!
         # Creates the appropriate AR associations, scopes and instance methods.
-        def is_taggable
+        def is_taggable # rubocop:disable Style/PredicateName
           include ComfortableMexicanSofa::IsTaggable::ModelMethods
         end
       end
@@ -82,9 +82,8 @@ module ComfortableMexicanSofa
       # Synchorize the taggings of this item with the ones in its mirrors. So all of them
       # are associated to the same tags
       def sync_mirrors_with_taggings
-        if is_mirrored_with_taggings
-          mirrors.each { |mirror| mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id)) }
-        end
+        return unless is_mirrored_with_taggings
+        mirrors.each { |mirror| mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id)) }
       end
     end
   end
