@@ -16,7 +16,7 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
 
       insertImageCommand.nodeName = 'IMG';
 
-      insertImageCommand.execute = function (url) {
+      insertImageCommand.execute = function () {
         return true;
       };
 
