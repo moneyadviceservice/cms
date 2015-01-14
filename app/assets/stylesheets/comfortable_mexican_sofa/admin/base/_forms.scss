@@ -93,3 +93,13 @@ select.form-control {
   display: block;
   width: $form-element-width;
 }
+
+table th select {
+  background: white;
+  color: $color-select-foreground;
+
+  &:focus {
+    outline-color: $color-select-focus-outline;
+    box-shadow: 0 0 0 2px $color-select-focus-outline;
+  }
+}
