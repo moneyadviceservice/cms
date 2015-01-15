@@ -1,0 +1,35 @@
+.breadcrumb
+  - @category.parents.each do |category|
+    = link_to category.label, category_path(category)
+    >
+
+  =@category.label
+
+.pull-left
+  = comfy_form_for @category, url: {action: "update"} do |f|
+    = f.text_field :title_en
+    = f.text_field :title_cy
+    = f.text_field :description_cy
+    = f.text_field :description_cy
+    = f.check_box :navigation
+    = f.submit
+
+.pull-right
+  %h2 Subcategories
+  -@child_categories.each do |category|
+    %p
+      "->"
+      = link_to category.label, category_path(category)
+
+  - if @pages.present?
+    %h2 pages
+    - @pages.each do |page|
+      %p
+        "->->"
+        = link_to page.label, edit_site_page_path(site_id: page.site_id, id: page.id)
+
+  .up
+    - if @category.parent_id
+      = link_to "Up", category_path(@category.parent_id)
+    - else
+      = link_to "Up", categories_path

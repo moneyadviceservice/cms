@@ -1,0 +1,10 @@
+.primary_navigation.pull-left
+  %h2 Primary Site Navigation
+  - @primary_navigation.each do |category|
+    %p=link_to category.label, category_path(category)
+
+.secondary_navigation.pull-right
+  %h2 Secondary Site Navigation
+  - @secondary_navigation.each do |category|
+    %p=link_to category.label, category_path(category)
+

@@ -29,8 +29,20 @@ ActiveRecord::Schema.define(version: 20150121145709) do
     t.integer "site_id",          null: false
     t.string  "label",            null: false
     t.string  "categorized_type", null: false
+    t.string  "title_en"
+    t.string  "title_cy"
+    t.string  "description_en"
+    t.string  "description_cy"
+    t.string  "title_tag_en"
+    t.string  "title_tag_cy"
+    t.integer "parent_id"
+    t.integer "ordinal"
+    t.boolean "navigation"
+    t.string  "image"
+    t.string  "previe_image"
   end
 
+  add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
   add_index "comfy_cms_categories", ["site_id", "categorized_type", "label"], name: "index_cms_categories_on_site_id_and_cat_type_and_label", unique: true, using: :btree
 
   create_table "comfy_cms_categorizations", force: true do |t|

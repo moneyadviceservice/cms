@@ -97,6 +97,10 @@ GEM
     autoprefixer-rails (3.1.2.20141016)
       execjs
     bcrypt (3.1.7)
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bootstrap_form (2.1.1)
@@ -437,6 +441,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   autoprefixer-rails
+  better_errors
   bowndler!
   byebug
   capybara (= 2.4.1)
