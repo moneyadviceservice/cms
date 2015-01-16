@@ -5,7 +5,7 @@ namespace :cms do
       from  = ENV['FROM']
       to    = ENV['TO']
       docs  = ENV['DOCS']
-      type  = ENV['type'] || 'base'
+      type  = ENV.fetch('type', 'base')
 
       puts "Importing CMS Data from file [#{from}]..."
 
