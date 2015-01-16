@@ -32,6 +32,13 @@ class Comfy::Cms::Page < ActiveRecord::Base
       )
   end)
 
+  def self.in_category(category_id)
+    joins(
+      'INNER JOIN comfy_cms_categorizations
+       ON comfy_cms_categorizations.categorized_id = comfy_cms_pages.id'
+    ).where('comfy_cms_categorization.category_id = ?', category_id)
+  end
+
   def update_page_views(analytics)
     matching_analytic = analytics.find { |analytic| analytic[:label] == slug }
     new_page_views = matching_analytic.present? ? matching_analytic[:page_views] : 0

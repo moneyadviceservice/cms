@@ -1,18 +1,15 @@
 class CategoriesController < Comfy::Admin::Cms::BaseController
+  before_action :find_category, only: [:show, :update]
+
   def index
-    categories = Comfy::Cms::Category.where(site_id: 1, parent_id: nil).reorder(:ordinal)
-    @primary_navigation, @secondary_navigation = categories.partition(&:navigation?)
+    @primary_navigation, @secondary_navigation = Comfy::Cms::Category.navigation_categories
   end
 
   def show
-    @category = Comfy::Cms::Category.find(params[:id])
-    @child_categories = Comfy::Cms::Category.where(site_id: 1, parent_id: @category.id, navigation: true).reorder(:ordinal)
-    categorizations = Comfy::Cms::Categorization.where(category_id: @category.id).pluck(:categorized_id)
-    @pages = Comfy::Cms::Page.where(id: categorizations)
+    @pages = Comfy::Cms::Page.in_category(@category.id)
   end
 
   def update
-    @category = Comfy::Cms::Category.find(params[:id])
     @category.update_attributes!(category_params)
     redirect_to action: :show
   end
@@ -28,5 +25,9 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
       :ordinal,
       :navigation
     )
+  end
+
+  def find_category
+    @category = Comfy::Cms::Category.find(params[:id])
   end
 end
