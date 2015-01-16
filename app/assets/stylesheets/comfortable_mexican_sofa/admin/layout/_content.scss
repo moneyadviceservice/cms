@@ -1,0 +1,11 @@
+// Layout - Content
+//
+// Styleguide Layout - Content
+
+.l-split-content {
+  @include row(12);
+}
+
+.l-split-content__col {
+  @include column(6);
+}
