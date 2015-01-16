@@ -7,11 +7,11 @@
 
 .l-panel-content
   .l-constrained
-    - @category.parents.each do |category|
-      %h2.breadcrumb
+    %h2.breadcrumb
+      - @category.parents.each do |category|
         = link_to category.label, category_path(category)
         >
-        =@category.label
+      =@category.label
 
     .l-panel-content__row
       .l-panel-content__row
@@ -36,12 +36,11 @@
                 = f.submit
 
         .l-split-content__col
-          - unless @pages.present?
-            %h2 Sub-categories
-            %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'catman-sub-categories'}}
-              -@child_categories.each do |category|
-                %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
-                  = link_to category.label, category_path(category)
+          %h2 Sub-categories
+          %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'catman-sub-categories'}}
+            -@child_categories.each do |category|
+              %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
+                = link_to category.label, category_path(category)
 
           - if @pages.present?
             %h2 Pages
