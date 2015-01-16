@@ -7,5 +7,7 @@
 }
 
 .l-split-content__col {
-  @include column(6);
+  @include respond-to($mq-m) {
+    @include column(6);
+  };
 }

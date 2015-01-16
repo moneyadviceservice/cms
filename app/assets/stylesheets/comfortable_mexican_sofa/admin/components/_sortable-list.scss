@@ -23,9 +23,9 @@
   &:before {
     @include body(24,24);
     content: counter(item);
+    font-weight: 700;
     left: 15px;
     position: absolute;
-    font-weight: 700;
   }
 }
 
