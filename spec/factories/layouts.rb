@@ -15,6 +15,10 @@ FactoryGirl.define do
     js 'default_js'
     position 0
 
+    trait :article do
+      identifier 'article'
+    end
+
     trait :nested do
       label 'Nested Layout'
       identifier 'nested'
