@@ -6,7 +6,7 @@ module Cms
       end
 
       def layout
-        @_layout ||= site.layouts.find_by(identifier: 'corporate_article')
+        @layout ||= site.layouts.find_by(identifier: 'corporate_article')
       end
     end
   end

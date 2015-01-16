@@ -1,20 +1,21 @@
 module Cms
   module HippoImporter
     class Base
-      attr_reader :records
+      attr_reader :data, :site, :parser
 
       def initialize(data:, docs: [], to: 'en', parser: HippoXmlParser)
-        @records = parser.parse(data, [hippo_type])
-        @_site = to
+        @data = data
         @docs = docs
+        @site = Comfy::Cms::Site.find_by(label: to)
+        @parser = parser
+      end
+
+      def records
+        @records ||= parser.parse(data, [hippo_type])
       end
 
       def hippo_type
         'contentauthoringwebsite:Guide'
-      end
-
-      def site
-        @site ||= Comfy::Cms::Site.find_by(label: @_site)
       end
 
       def layout
@@ -71,7 +72,7 @@ module Cms
       end
 
       def english?
-        @_site == 'en'
+        site.label == 'en'
       end
 
       def find_page(record)
