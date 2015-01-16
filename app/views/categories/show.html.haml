@@ -38,7 +38,7 @@
         .l-split-content__col
           %h2 Sub-categories
           %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'catman-sub-categories'}}
-            -@child_categories.each do |category|
+            -@category.child_categories.each do |category|
               %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
                 = link_to category.label, category_path(category)
 
