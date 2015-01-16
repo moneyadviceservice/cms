@@ -23,8 +23,14 @@
             = f.text_field :title_cy
             = f.text_field :description_en
             = f.text_field :description_cy
-            = f.check_box :navigation
-            = f.submit
+
+            .form-group
+              .form__input-wrapper
+                = f.check_box :navigation
+
+            .form-group
+              .form__input-wrapper
+                = f.submit
 
         .l-split-content__col
           %h2 Sub-categories
