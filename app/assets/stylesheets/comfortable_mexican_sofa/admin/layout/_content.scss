@@ -7,6 +7,12 @@
 }
 
 .l-split-content__col {
+  & + & {
+    @include respond-to(0, $mq-m) {
+      margin-top: 30px;
+    };
+  }
+
   @include respond-to($mq-m) {
     @include column(6);
   };
