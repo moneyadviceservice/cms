@@ -28,6 +28,7 @@ define([
   ListSorterProto.init = function(initialised) {
     this.$el.sortable().bind('sortupdate', $.proxy(this._handleListUpdate, this));
     this._cacheComponentElements();
+    this.updateOrderFields();
     this._initialisedSuccess(initialised);
   };
 
@@ -36,7 +37,7 @@ define([
   };
 
   ListSorterProto._handleListUpdate = function() {
-    this.setOrderFieldValue('[' + this.getListOrderArray() + ']');
+    this.updateOrderFields();
   };
 
   ListSorterProto.getListOrderArray = function() {
@@ -52,6 +53,10 @@ define([
 
   ListSorterProto.setOrderFieldValue = function(val) {
     this.$listOrderFields.val(val);
+  };
+
+  ListSorterProto.updateOrderFields = function() {
+    this.setOrderFieldValue('[' + this.getListOrderArray() + ']');
   };
 
   return ListSorter;
