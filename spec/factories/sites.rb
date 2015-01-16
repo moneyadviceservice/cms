@@ -9,6 +9,12 @@ FactoryGirl.define do
       label 'cy'
     end
 
+    trait :with_article_layout do
+      after(:create) do |instance|
+        create(:layout, :article, site: instance)
+      end
+    end
+
     trait :with_files do
       after(:create) do |instance|
         create_list(:file, 2, site: instance)
