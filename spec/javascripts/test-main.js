@@ -53,6 +53,7 @@ requirejs.config({
     'InsertManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/InsertManager',
     'ImageManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ImageManager',
     'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
+    'CharacterCounter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/CharacterCounter',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',

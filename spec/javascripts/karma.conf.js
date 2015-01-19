@@ -1,7 +1,7 @@
 module.exports = function(config) {
   config.set({
     basePath: '../../',
-    frameworks: ['requirejs','mocha', 'chai', 'sinon'],
+    frameworks: ['requirejs','mocha', 'chai-jquery', 'chai', 'sinon', 'jquery-1.11.0'],
     files: [
       'spec/javascripts/fixtures/*.html',
       'spec/javascripts/test-main.js',
