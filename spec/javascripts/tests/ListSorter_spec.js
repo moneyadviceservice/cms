@@ -1,4 +1,4 @@
-describe.only('ListSorter', function() {
+describe('ListSorter', function() {
   'use strict';
 
   beforeEach(function(done) {
