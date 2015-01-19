@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150121145709) do
     t.integer "category_id",      null: false
     t.string  "categorized_type", null: false
     t.integer "categorized_id",   null: false
+    t.integer "ordinal",          default: 999
   end
 
   add_index "comfy_cms_categorizations", ["category_id", "categorized_type", "categorized_id"], name: "index_cms_categorizations_on_cat_id_and_catd_type_and_catd_id", unique: true, using: :btree

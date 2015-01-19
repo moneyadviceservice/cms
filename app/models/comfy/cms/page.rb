@@ -36,7 +36,9 @@ class Comfy::Cms::Page < ActiveRecord::Base
     joins(
       'INNER JOIN comfy_cms_categorizations
        ON comfy_cms_categorizations.categorized_id = comfy_cms_pages.id'
-    ).where('comfy_cms_categorizations.category_id = ?', category_id)
+    )
+      .where('comfy_cms_categorizations.category_id = ?', category_id)
+      .reorder('comfy_cms_categorizations.ordinal ASC')
   end
 
   def update_page_views(analytics)
