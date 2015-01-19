@@ -3,7 +3,7 @@
 // Styleguide Breadcrumb
 
 .breadcrumb {
-  @include body(24, 32);
+  @include body(18, 22);
   border-bottom: 1px solid $color-breadcrumb-border;
   margin-bottom: $baseline-unit*5;
   padding-bottom: $baseline-unit*2;
