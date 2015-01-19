@@ -35,7 +35,7 @@ describe('ListSorter', function() {
     });
   });
 
-  describe('#setOrderFieldValue', function () {
+  describe('#setOrderFieldValues', function () {
     beforeEach(function(done) {
       this.component = new this.ListSorter(this.$fixture);
       this.component.init();
@@ -44,7 +44,7 @@ describe('ListSorter', function() {
 
     it('should set the order field to the passed value', function() {
       var order = '[436,34,26,78]';
-      this.component.setOrderFieldValue(order);
+      this.component.setOrderFieldValues(order);
       expect(this.component.$listOrderFields.val()).to.equal(order);
     });
   });
