@@ -3,6 +3,10 @@ module Cms
     class Base
       attr_reader :data, :site, :parser
 
+      def self.migration_types
+        descendants.map { |klass| klass.name.demodulize.underscore }.sort
+      end
+
       def initialize(data:, docs: [], to: 'en', parser: HippoXmlParser)
         @data = data
         @docs = docs
