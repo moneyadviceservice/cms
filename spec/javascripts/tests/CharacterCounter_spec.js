@@ -1,4 +1,4 @@
-describe.only('CharacterCounter', function() {
+describe('CharacterCounter', function() {
   'use strict';
 
   var sandbox;
