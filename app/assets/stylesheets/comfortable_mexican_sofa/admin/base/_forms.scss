@@ -101,11 +101,11 @@
   width: auto;
 }
 
-.form__input.form__input--has-icon--right[type="text"],
-.form__input.form__input--has-icon--right[type="number"],
-.form__input.form__input--has-icon--right[type="email"],
-.form__input.form__input--has-icon--right[type="search"],
-.form__input.form__input--has-icon--right[type="password"] {
+.form__input.form__input--has-icon[type="text"],
+.form__input.form__input--has-icon[type="number"],
+.form__input.form__input--has-icon[type="email"],
+.form__input.form__input--has-icon[type="search"],
+.form__input.form__input--has-icon[type="password"] {
   padding-right: 25px;
 }
 
