@@ -50,7 +50,7 @@ class CategoryImport
         category['id'] == old_parent_id
       end['public_id']
     rescue => e
-      # puts "#{old_parent_id}"
+      puts "#{old_parent_id} could not be found"
     end
   end
 end
