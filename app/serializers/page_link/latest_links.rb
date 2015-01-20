@@ -4,8 +4,7 @@ module PageLink
       Publify::API.latest_links(3).map do |input_blog_post|
         {
           title: input_blog_post['title'],
-          path: input_blog_post['link'],
-          date: input_blog_post['pubDate']
+          path: input_blog_post['link']
         }
       end
     end
