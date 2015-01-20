@@ -30,7 +30,7 @@ describe('ListSorter', function() {
       done();
     });
 
-    it('it should find and cache the related order fields', function() {
+    it('should find and cache the related order fields', function() {
       expect(this.component.$listOrderFields.length).to.be.at.least(1);
     });
   });
