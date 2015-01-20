@@ -12,11 +12,11 @@
 }
 
 .form__label-heading {
-  @include column(1.5);
+  @include column(1.75);
 }
 
 .form__input-wrapper {
-  @include column(8.5);
+  @include column(8.25);
   position: relative;
 }
 
