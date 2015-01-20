@@ -41,14 +41,10 @@
   @include column(12);
 }
 
-.form__input--has-meta + .help-block {
-  color: $color-input-meta;
-  @include body(11,11);
-}
-
+.form__input--has-meta + .help-block,
 .form__hint {
-  color: $color-input-meta;
   @include body(11,11);
+  color: $color-input-meta;
 }
 
 .form-group.has-error .help-block {
