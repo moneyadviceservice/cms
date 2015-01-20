@@ -97,17 +97,19 @@ describe.only('CharacterCounter', function() {
     });
   });
 
-  describe('_handleInput', function () {
+  describe('#_handleInput', function () {
     beforeEach(function(done) {
       this.component = new this.CharacterCounter(this.$fixture);
       done();
     });
 
     it('should call the #updateUI() function when input is given', function() {
-      var spy = sandbox.spy(this.CharacterCounter.prototype, 'updateUI');
+      var spy = sandbox.spy(this.CharacterCounter.prototype, 'updateUI'),
+          val = 'foo';
+
       this.component.init();
-      this.component.$el.val('foo').trigger('input');
-      expect(spy.called).to.be.true;
+      this.component.$el.val(val).trigger('input');
+      expect(spy.calledWith(val.length, this.component.maxChars)).to.be.true;
     });
 
     it('should set the count property', function() {

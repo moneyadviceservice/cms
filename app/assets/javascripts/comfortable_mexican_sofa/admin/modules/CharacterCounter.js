@@ -21,6 +21,8 @@ define([
 
   function CharacterCounter($el, config) {
     CharacterCounter.baseConstructor.call(this, $el, config, defaultConfig);
+    this.context = this.$el.attr('data-dough-character-counter-context');
+    this.maxChars = this.$el.attr('data-dough-character-counter-max-chars') || 50;
   }
 
   DoughBaseComponent.extend(CharacterCounter);
@@ -28,8 +30,6 @@ define([
   CharacterCounterProto = CharacterCounter.prototype;
 
   CharacterCounterProto.init = function(initialised) {
-    this.context = this.$el.attr('data-dough-character-counter-context');
-    this.maxChars = this.$el.attr('data-dough-character-counter-max-chars');
     this._cacheComponentElements();
     this._setupUIEvents();
     this._initialisedSuccess(initialised);
@@ -77,7 +77,7 @@ define([
 
   CharacterCounterProto._handleInput = function(e) {
     this.count = this.getCharacterLength(e.currentTarget.value);
-    this.updateUI();
+    this.updateUI(this.count, this.maxChars);
   };
 
   return CharacterCounter;
