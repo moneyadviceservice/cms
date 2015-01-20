@@ -7,7 +7,7 @@ class HipposController < Comfy::Admin::Cms::BaseController
 
   def create
     @hippo_importer_form = HippoImporterForm.new(params[:hippo_importer_form])
-
+    @records = Cms::HippoImporter.migrate(@hippo_importer_form) if @hippo_importer_form.valid?
     render :new
   end
 end
