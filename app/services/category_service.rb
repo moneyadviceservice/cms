@@ -34,6 +34,6 @@ class CategoryService
   end
 
   def list_order(type)
-    (sub_category_params[type] || []).split(',').flatten
+    sub_category_params[type].to_s.split(',')
   end
 end
