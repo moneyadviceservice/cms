@@ -56,7 +56,7 @@ define([
   };
 
   ListSorterProto.updateOrderFieldValues = function() {
-    this.setOrderFieldValues('[' + this.getListOrderArray() + ']');
+    this.setOrderFieldValues(this.getListOrderArray());
   };
 
   return ListSorter;
