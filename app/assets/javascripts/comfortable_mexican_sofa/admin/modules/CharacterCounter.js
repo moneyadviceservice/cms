@@ -61,17 +61,20 @@ define([
     if(count < maxChars) {
       $uiIndicators
         .addClass(selectors.belowMaxClass)
-        .removeClass(selectors.aboveMaxClass);
+        .removeClass(selectors.aboveMaxClass)
+        .removeClass(selectors.zeroClass);
     }
     else if(count > maxChars) {
       $uiIndicators
         .addClass(selectors.aboveMaxClass)
-        .removeClass(selectors.belowMaxClass);
+        .removeClass(selectors.belowMaxClass)
+        .removeClass(selectors.zeroClass);
     }
     else {
       $uiIndicators
         .addClass(selectors.zeroClass)
-        .removeClass([selectors.aboveMaxClass,selectors.belowMaxClass].join(','));
+        .removeClass(selectors.aboveMaxClass)
+        .removeClass(selectors.belowMaxClass);
     }
   };
 
