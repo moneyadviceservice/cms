@@ -39,16 +39,16 @@ ActiveRecord::Schema.define(version: 20150121145709) do
     t.integer "ordinal"
     t.boolean "navigation"
     t.string  "image"
-    t.string  "previe_image"
+    t.string  "preview_image"
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
   add_index "comfy_cms_categories", ["site_id", "categorized_type", "label"], name: "index_cms_categories_on_site_id_and_cat_type_and_label", unique: true, using: :btree
 
   create_table "comfy_cms_categorizations", force: true do |t|
-    t.integer "category_id",      null: false
-    t.string  "categorized_type", null: false
-    t.integer "categorized_id",   null: false
+    t.integer "category_id",                    null: false
+    t.string  "categorized_type",               null: false
+    t.integer "categorized_id",                 null: false
     t.integer "ordinal",          default: 999
   end
 
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 20150121145709) do
     t.string   "preview_cache"
     t.boolean  "regulated",                                          default: false
     t.string   "meta_title"
+    t.boolean  "regulated",                         default: false
     t.string   "translation_id"
     t.integer  "page_views",                                         default: 0
     t.datetime "scheduled_on"
