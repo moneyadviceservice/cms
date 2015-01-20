@@ -102,6 +102,14 @@
   width: auto;
 }
 
+.form__input.form__input--has-icon--right[type="text"],
+.form__input.form__input--has-icon--right[type="number"],
+.form__input.form__input--has-icon--right[type="email"],
+.form__input.form__input--has-icon--right[type="search"],
+.form__input.form__input--has-icon--right[type="password"] {
+  padding-right: 25px;
+}
+
 select.form-control {
   display: block;
   width: $form-element-width;
