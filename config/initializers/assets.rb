@@ -24,6 +24,7 @@ Rails.application.configure do
                                   mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea.js
                                   mas-cms-editor/src/app/shims/mutationobserver.min.js
                                   comfortable_mexican_sofa/admin/modules/*.js
+                                  comfortable_mexican_sofa/admin/modules/mastalk/snippets-model.js
                                   comfortable_mexican_sofa/admin/modules/utils/filterEvent.js)
 
 # Vendor JavaScript

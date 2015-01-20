@@ -59,17 +59,18 @@ requirejs.config({
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
 
     // Snippets
-    'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/scribe-plugin-mastalk',
+    'scribe-plugin-mastalk': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-mastalk',
     'scribe-plugin-linkeditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-linkeditor',
     'scribe-plugin-image-inserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-image-inserter',
-    'snippet-collapsible': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/collapsible.md',
-    'snippet-ticks': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/ticks.md',
-    'snippet-callout': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/callout.md',
-    'snippet-add-action': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/add-action.md',
-    'snippet-video': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/video.md',
-    'snippet-action-item': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/action-item.md',
-    'snippet-table': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/table.md',
-    'snippet-bullets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/mastalk/snippets/bullets.md',
+    'snippets-model': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets-model',
+    'snippet-collapsible': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md',
+    'snippet-ticks': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/ticks.md',
+    'snippet-callout': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/callout.md',
+    'snippet-add-action': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/add-action.md',
+    'snippet-video': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/video.md',
+    'snippet-action-item': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/action-item.md',
+    'snippet-table': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/table.md',
+    'snippet-bullets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/bullets.md',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
