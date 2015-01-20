@@ -100,8 +100,8 @@ describe('CharacterCounter', function() {
     });
 
     it('should update the indicator text with the character count', function() {
-      this.component.updateUI(100, 100);
-      expect(this.component.$indicators.eq(0).text()).to.equal('0');
+      this.component.updateUI(100, 140);
+      expect(this.component.$indicators.eq(0).text()).to.equal('40');
     });
   });
 
