@@ -10,7 +10,7 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
   end
 
   def update
-    CategoryService.new(@category, category_params, params).update_category
+    CategoryService.new(@category, category_params, params).update_category!
     redirect_to action: :show
   end
 

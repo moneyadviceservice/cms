@@ -1,42 +1,37 @@
 RSpec.describe CategoryService do
-  let(:category_params) { {} }
+  let(:category_params) { { title_en: 'test' } }
   let(:sub_category_params) { {} }
-  let(:category) { double("Category") }
+  let(:category) { create(:category) }
+  let(:category_1) { create(:category, ordinal: 1, parent_id: category.id) }
+  let(:category_2) { create(:category, ordinal: 2, parent_id: category.id) }
+  let(:category_3) { create(:category, ordinal: 3, parent_id: category.id) }
 
   subject { described_class.new(category, category_params, sub_category_params) }
+  before { subject.update_category! }
 
-  it 'update the category attributes' do
-    expect(category).to receive(:update_attributes!)
-    subject.update_category
-  end
+  context 'categories' do
+    it 'update the category attributes' do
+      expect(category.title_en).to eq('test')
+    end
 
-  context 'sub categories' do
-    let(:sub_category_params) { { list_order_sub_categories: '1,2,3' } }
+    context 'sub categories' do
+      let(:category_order) { "#{category_3.id}, #{category_2.id}, #{category_1.id}" }
+      let(:sub_category_params) { { list_order_sub_categories: category_order } }
 
-    it 'update the sub category order' do
-      expect(category).to receive(:update_attributes!).with(category_params)
-      expect(category).to receive(:update_attributes!).with(ordinal: 1)
-      expect(category).to receive(:update_attributes!).with(ordinal: 2)
-      expect(category).to receive(:update_attributes!).with(ordinal: 3)
-      expect(Comfy::Cms::Category).to receive(:find).with('1').and_return(category)
-      expect(Comfy::Cms::Category).to receive(:find).with('2').and_return(category)
-      expect(Comfy::Cms::Category).to receive(:find).with('3').and_return(category)
-      subject.update_category
+      it 'update the sub category order' do
+        expect(category.child_categories).to eq([category_3, category_2, category_1])
+      end
     end
   end
 
   context 'categorization ordinal of pages' do
-    let(:categorization) { double('categorization') }
-    let(:sub_category_params) { { list_order_pages: '2,1' } }
+    let(:categorization_1) { create(:categorization, category_id: category.id, categorized_id: 1) }
+    let(:categorization_2) { create(:categorization, category_id: category.id, categorized_id: 2) }
+    let(:categorization_order) { "#{categorization_2.categorized_id}, #{categorization_1.categorized_id}" }
+    let(:sub_category_params) { { list_order_pages: categorization_order } }
 
-    it 'update the page order' do
-      expect(category).to receive(:update_attributes!).with(category_params)
-
-      expect(categorization).to receive(:update_attributes!).with(ordinal: 1)
-      expect(categorization).to receive(:update_attributes!).with(ordinal: 2)
-      expect(Comfy::Cms::Categorization).to receive(:find_by).with(categorized_id: '2').and_return(categorization)
-      expect(Comfy::Cms::Categorization).to receive(:find_by).with(categorized_id: '1').and_return(categorization)
-      subject.update_category
+    it 'update the categorization order' do
+      expect(categorization_1.reload.ordinal).to eq(2)
     end
   end
 end
