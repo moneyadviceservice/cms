@@ -32,6 +32,7 @@ define([
   CharacterCounterProto.init = function(initialised) {
     this._cacheComponentElements();
     this._setupUIEvents();
+    this.updateUI(this.getInputCharacterLength(), this.maxChars);
     this._initialisedSuccess(initialised);
   };
 
@@ -48,8 +49,8 @@ define([
     return maxChars - count;
   };
 
-  CharacterCounterProto.getCharacterLength = function(str) {
-    return str.length;
+  CharacterCounterProto.getInputCharacterLength = function() {
+    return this.$el.val().length;
   };
 
   CharacterCounterProto.updateUI = function(count, maxChars) {
@@ -78,8 +79,8 @@ define([
     }
   };
 
-  CharacterCounterProto._handleInput = function(e) {
-    this.count = this.getCharacterLength(e.currentTarget.value);
+  CharacterCounterProto._handleInput = function() {
+    this.count = this.getInputCharacterLength();
     this.updateUI(this.count, this.maxChars);
   };
 

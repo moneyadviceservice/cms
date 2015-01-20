@@ -29,15 +29,22 @@ describe.only('CharacterCounter', function() {
     sandbox.restore();
   });
 
-  describe('Initialisation', function() {
+  describe('On initialisation', function() {
     beforeEach(function(done) {
       this.component = new this.CharacterCounter(this.$fixture);
-      this.component.init();
       done();
     });
 
     it('should find and cache at least one indicator element', function() {
+      this.component.init();
       expect(this.component.$indicators.length).to.be.at.least(1);
+    });
+
+    it('should update the character indicator with the number of inputted characters', function() {
+      var str = 'foo';
+      this.component.$el.val(str);
+      this.component.init();
+      expect(parseInt(this.component.$indicators.eq(0).text(),10)).to.eq(this.component.maxChars - str.length);
     });
   });
 
@@ -48,9 +55,10 @@ describe.only('CharacterCounter', function() {
       done();
     });
 
-    it('should get the length of the passed string', function() {
+    it('should get the string length of the input', function() {
       var str = 'foo';
-      expect(this.component.getCharacterLength(str)).to.equal(str.length);
+      this.component.$el.val(str);
+      expect(this.component.getInputCharacterLength()).to.equal(str.length);
     });
   });
 
