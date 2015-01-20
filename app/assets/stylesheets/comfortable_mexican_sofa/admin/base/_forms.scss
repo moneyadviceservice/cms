@@ -17,6 +17,18 @@
 
 .form__input-wrapper {
   @include column(8.5);
+  position: relative;
+}
+
+.form__character-count-warning {
+  display: none;
+  position: absolute;
+  right: 10px;
+  top: $baseline-unit/2;
+
+  &.is-above-max {
+    display: block;
+  }
 }
 
 .form--vertical .form-group {
@@ -30,6 +42,11 @@
 }
 
 .form__input--has-meta + .help-block {
+  color: $color-input-meta;
+  @include body(11,11);
+}
+
+.form__hint {
   color: $color-input-meta;
   @include body(11,11);
 }

@@ -26,10 +26,8 @@
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
     = render 'tags/shared/form',                         form: form
-
-
-    = form.text_field :meta_description
-    = form.text_field :meta_title, data: {'dough-mirrorinputvalue-target' => ''}
+    = form.text_field :meta_description, data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 160 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description'})
+    = form.text_field :meta_title, data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-title'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 70 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-title'})
     = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
 
