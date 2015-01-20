@@ -6,6 +6,7 @@ describe PageSerializer do
   before do
     allow(article).to receive(:previous_article).and_return(nil)
     allow(article).to receive(:next_article).and_return(nil)
+    allow(article).to receive(:related_links).and_return([])
     allow(Publify::API).to receive(:latest_links).and_return([])
   end
 
@@ -26,12 +27,12 @@ describe PageSerializer do
       end
 
       it 'maps the 3 latest links' do
-        result = subject.related_content[:latest_blog_post_links]
+        result = subject.related_content[:latest_blog_post_links].as_json
         expect(result.length).to eq(3)
       end
 
       it 'maps the latest links correctly' do
-        result = subject.related_content[:latest_blog_post_links]
+        result = subject.related_content[:latest_blog_post_links].as_json
 
         expect(result.first).to eq(
           title: 'First post',
@@ -42,9 +43,67 @@ describe PageSerializer do
 
     end
 
+    context 'related links' do
+      let(:related_links) do
+        subject.related_content[:related_links].as_json
+      end
+
+      before do
+        allow(article)
+        .to receive(:related_links)
+        .with(3)
+        .and_return(pages)
+      end
+
+      context 'when has most related articles in english' do
+        let(:pages) do
+          [
+            build(:page, slug: 'first-article', label: 'First Article'),
+            build(:page, slug: 'second-article', label: 'Second Article')
+          ]
+        end
+
+        before do
+          site.label = 'en'
+        end
+
+        it 'returns english related links' do
+          expect(related_links).to eq([
+            { title: 'First Article', path: '/en/articles/first-article' },
+            { title: 'Second Article', path: '/en/articles/second-article' }
+          ])
+        end
+      end
+
+      context 'when has most related articles in welsh' do
+        let(:pages) do
+          [english_article]
+        end
+
+        let(:english_article) do
+          build(:page, slug: 'english-article', label: 'English Article', site: build(:site))
+        end
+
+        let(:welsh_article) do
+          build(:page, slug: 'welsh-article', label: 'Welsh Article', site: build(:site, :welsh))
+        end
+
+        before do
+          site.label = 'cy'
+          allow(english_article).to receive(:mirrors).and_return([welsh_article])
+        end
+
+        it 'returns welsh related links' do
+          expect(related_links).to eq([
+            { title: 'Welsh Article', path: '/cy/articles/welsh-article' }
+          ])
+        end
+      end
+    end
+
     context 'popular links' do
       let(:popular_links) do
-        subject.related_content[:popular_links]
+        subject.related_content[:popular_links].as_json
       end
 
       before do
@@ -80,11 +139,11 @@ describe PageSerializer do
         end
 
         let(:english_article) do
-          build(:page, slug: 'first-article-in_english', label: 'First Article in English')
+          build(:page, slug: 'first-article-in_english', label: 'First Article in English', site: build(:site))
         end
 
         let(:welsh_article) do
-          build(:page, slug: 'first-article-in-welsh', label: 'First Article in Welsh')
+          build(:page, slug: 'first-article-in-welsh', label: 'First Article in Welsh', site: build(:site, :welsh))
         end
 
         before do
@@ -102,16 +161,22 @@ describe PageSerializer do
 
     context 'when previous link' do
       let(:previous_link) do
-        subject.related_content[:previous_link]
+        subject.related_content[:previous_link].as_json
       end
 
-      before do
-        allow(article).to receive(:previous_page).and_return(previous_article)
-      end
+      let(:english_site) { create :site }
+      let(:welsh_site) { create :site, :welsh }
+      let(:category) { create :category }
+      let!(:article) { create :page, position: 1, site: english_site, categories: [category] }
 
       context 'when has previous article' do
-        let(:previous_article) do
-          build(:page, site: site, label: 'Previous Article', slug: 'previous-article')
+        let!(:previous_article) do
+          create :page,
+                 position:   0,
+                 site:       english_site,
+                 label:      'Previous Article',
+                 slug:       'previous-article',
+                 categories: [category]
         end
 
         it 'returns article title' do
@@ -134,16 +199,22 @@ describe PageSerializer do
 
     context 'when next link' do
       let(:next_link) do
-        subject.related_content[:next_link]
+        subject.related_content[:next_link].as_json
       end
 
-      before do
-        allow(article).to receive(:next_page).and_return(next_article)
-      end
+      let(:english_site) { create :site }
+      let(:welsh_site) { create :site, :welsh }
+      let(:category) { create :category }
+      let!(:article) { create :page, position: 1, site: english_site, categories: [category] }
 
       context 'when has next article' do
-        let(:next_article) do
-          build(:page, site: site, label: 'Next Article', slug: 'next-article')
+        let!(:next_article) do
+          create :page,
+                 site:       english_site,
+                 position:   2,
+                 label:      'Next Article',
+                 slug:       'next-article',
+                 categories: [category]
         end
 
         it 'returns article title' do

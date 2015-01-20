@@ -4,7 +4,7 @@ FactoryGirl.define do
     layout
     label 'Default Page'
     full_path '/'
-    slug 'a-page'
+    sequence(:slug) { |n| "a-page-#{n}" }
     children_count 1
     position 0
     is_published true
@@ -18,6 +18,16 @@ FactoryGirl.define do
       default_snippet_content
       layout_content_c
     )
+
+    factory :english_article do
+      site { create :site, label: 'en' }
+      layout { create :layout, identifier: 'article' }
+    end
+
+    factory :welsh_article do
+      site { create :site, :welsh }
+      layout { create :layout, identifier: 'article' }
+    end
   end
 
   factory :child_page, class: Comfy::Cms::Page do

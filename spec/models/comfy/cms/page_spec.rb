@@ -1,45 +1,88 @@
 RSpec.describe Comfy::Cms::Page do
 
-  describe '#previous_page' do
-    let(:english_site) { create :site }
-    let(:welsh_site) { create :site, :welsh }
-    let(:category) { create :category }
-    let!(:first_article) { create :page, position: 1, site: english_site, categories: [category] }
+  describe '#related_links' do
+    let(:animals_tag) { Tag.create value: 'animals' }
+    let(:cheese_tag) { Tag.create value: 'cheese' }
+    let(:animals_article) { create :english_article, keywords: [animals_tag] }
 
-    it 'provides the previous article' do
-      second_article = create :page, position: 2, site: english_site, categories: [category]
-      expect(second_article.previous_page).to eq(first_article)
+    context 'the more matching tags, the closer the match' do
+      context 'single keyword' do
+        it 'provides an empty array when no matching articles exist' do
+          expect(animals_article.related_links(1)).to be_empty
+        end
+
+        it 'provides one matching articles based on single keyword' do
+          related_animal_article = create :english_article, keywords: [animals_tag]
+          create :english_article, keywords: [cheese_tag]
+
+          expect(animals_article.related_links(2)).to eq([related_animal_article])
+        end
+      end
+
+      context 'two keywords' do
+        let(:dog_tag) { Tag.create value: 'dog' }
+        let!(:animals_article) { create :english_article, keywords: [animals_tag, dog_tag] }
+
+        it 'order by most matching tags' do
+          one_tag_match_article = create :english_article, keywords: [animals_tag]
+          all_tag_match_article = create :english_article, keywords: [animals_tag, dog_tag], page_views: 2
+
+          expect(animals_article.related_links(2)).to eq([all_tag_match_article, one_tag_match_article])
+        end
+      end
     end
 
-    it 'returns nil when there are no categories' do
-      second_article = create :page, position: 2, site: english_site, categories: []
-      expect(second_article.previous_page).to be_nil
+    context 'page_view ordering matches' do
+      it 'orders by page_view' do
+        related_unpopular_article = create :english_article, keywords: [animals_tag], page_views: 1
+        related_popular_article = create :english_article, keywords: [animals_tag], page_views: 2
+
+        expect(animals_article.related_links(2)).to eq([related_popular_article, related_unpopular_article])
+      end
     end
 
-    it 'returns nil when this is the first article' do
-      expect(first_article.previous_page).to be_nil
-    end
-  end
+    context 'when finding a welsh article' do
+      let(:layout) { create :layout }
+      let!(:english_article) do
+        create :english_article,
+               keywords:   [animals_tag],
+               page_views: 5,
+               full_path:  '/animals',
+               layout:     layout
+      end
+      let(:welsh_animal_article) do
+        create :welsh_article,
+               keywords:   [animals_tag],
+               page_views: 2,
+               full_path:  '/animals',
+               layout:     layout
+      end
 
-  describe '#next_page' do
-    let(:english_site) { create :site }
-    let(:welsh_site) { create :site, :welsh }
-    let(:category) { create :category }
-    let!(:second_article) { create :page, position: 2, site: english_site, categories: [category] }
-
-    it 'provides the next article' do
-      first_article = create :page, position: 1, site: english_site, categories: [category]
-      expect(first_article.next_page).to eq(second_article)
+      it 'excludes the alternate english version from the results' do
+        related_article = create :english_article, keywords: [animals_tag], page_views: 1, full_path: 'something else'
+        expect(welsh_animal_article.related_links(2)).to eq([related_article])
+      end
     end
 
-    it 'returns nil when there are no categories' do
-      first_article = create :page, position: 1, site: english_site, categories: []
-      expect(first_article.next_page).to be_nil
+    context 'in a site with non-English articles' do
+      it 'should not return non-English articles' do
+        welsh_animal_article = create :welsh_article, keywords: [animals_tag], page_views: 2
+        related_article = create :english_article, keywords: [animals_tag], page_views: 1
+        create :welsh_article, keywords: [animals_tag], page_views: 1
+
+        expect(welsh_animal_article.related_links(2)).to eq([related_article])
+      end
     end
 
-    it 'returns nil when this is the last article' do
-      expect(second_article.next_page).to be_nil
+    context 'limit' do
+      it 'limits to provided limit' do
+        create :english_article, keywords: [animals_tag], page_views: 1
+        related_popular_article = create :english_article, keywords: [animals_tag], page_views: 2
+
+        expect(animals_article.related_links(1)).to eq([related_popular_article])
+      end
     end
+
   end
 
   describe 'all_english_articles' do
