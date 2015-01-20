@@ -23,13 +23,13 @@
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
       .form-group
         .form__label-heading
-          = label_tag :layout_id
+          = form.label :layout_id
         .form__input-wrapper
           = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
     .form-group
       .form__label-heading
-        = label_tag :slug
+        = form.label :slug
       .form__input-wrapper
         = form.text_field :slug, class: 'form__input', data: {'dough-slugifier-slug' => '', slug: true}
         %span.form__hint
@@ -41,7 +41,7 @@
 
     .form-group
       .form__label-heading
-        = label_tag :meta_description
+        = form.label :meta_description
       .form__input-wrapper
         = form.text_field :meta_description, class: 'form__input form__input--has-icon--right', data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}
         %span.form__hint
@@ -54,7 +54,7 @@
 
     .form-group
       .form__label-heading
-        = label_tag :meta_title
+        = form.label :meta_title
       .form__input-wrapper
         = form.text_field :meta_title, class: 'form__input form__input--has-icon--right', data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}
         %span.form__hint
