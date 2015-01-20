@@ -1,5 +1,9 @@
 - if @categories.present?
-  = form.collection_select(:category_ids, @categories, :id, :label, {label: t('.label')}, include_blank: false, multiple: true,
-                           id:    'categories',
-                           class: 't-categories-select',
-                           data:  {dough_component: 'AutoComplete', dough_placeholder_text: ''})
+  .form-group
+    .form__label-heading
+      = label_tag 'Categories'
+    .form__input-wrapper
+      = form.collection_select(:category_ids, @categories, :id, :label, {label: t('.label')}, include_blank: false, multiple: true,
+                               id:    'categories',
+                               class: 't-categories-select',
+                               data:  {dough_component: 'AutoComplete', dough_placeholder_text: ''})

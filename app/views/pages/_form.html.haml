@@ -16,28 +16,70 @@
   .l-constrained{ data: dough_component(@page.new_record?, ['MirrorInputValue','Slugifier']) }
     .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
 
-    = form.text_field :label, hide_label: true, :class => 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: { 'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', slugify: @page.new_record?, "dough-sticky-element-target" => true}
+    .form-group
+      .form__input-wrapper
+        = form.text_field :label, hide_label: true, class: 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: { 'dough-slugifier-input' => '', 'dough-mirrorinputvalue-trigger' => '', slugify: @page.new_record?, "dough-sticky-element-target" => true}
 
     - if (options = ::Comfy::Cms::Layout.options_for_select(@site)).present?
-      = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
+      .form-group
+        .form__label-heading
+          = label_tag :layout_id
+        .form__input-wrapper
+          = form.select :layout_id, options, {}, 'data-url' => form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)
 
-    = form.text_field :slug, help: "in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}", class: 'form__input--has-meta', data: {'dough-slugifier-slug' => '', slug: true}
+    .form-group
+      .form__label-heading
+        = label_tag :slug
+      .form__input-wrapper
+        = form.text_field :slug, class: 'form__input', data: {'dough-slugifier-slug' => '', slug: true}
+        %span.form__hint
+          in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/articles/#{@page.slug}
 
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
     = render 'tags/shared/form',                         form: form
-    = form.text_field :meta_description, data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 160 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description'})
-    = form.text_field :meta_title, data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-title'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 70 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-title'})
-    = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
+    .form-group
+      .form__label-heading
+        = label_tag :meta_description
+      .form__input-wrapper
+        = form.text_field :meta_description, class: 'form__input form__input--has-icon--right', data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}
+        %span.form__hint
+          %span{data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}}
+            0
+          %span
+            characters remaining
+        %span.form__character-count-warning{data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description', title: 'You are over the recommended limit of 160 characters, please shorten your text.'}}
+          %span.fa.fa-warning
+
+    .form-group
+      .form__label-heading
+        = label_tag :meta_title
+      .form__input-wrapper
+        = form.text_field :meta_title, class: 'form__input form__input--has-icon--right', data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}
+        %span.form__hint
+          %span{data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-title'}}
+            0
+          %span
+            characters remaining
+        %span.form__character-count-warning{data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-title', title: 'You are over the recommended limit of 70 characters, please shorten your text.'}}
+          %span.fa.fa-warning
+
+    / = form.text_field :meta_description, data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 160 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description'})
+    / = form.text_field :meta_title, data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}, append: content_tag(:span, content_tag(:span, '0', data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-title'}) + content_tag(:span, ' characters remaining'), class: 'form__hint') + content_tag(:span, content_tag(:span, '', class: 'fa fa-warning'), class: 'form__character-count-warning', title: 'You are over the recommended limit of 70 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-title'})
+    = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
     .inline_checkboxes
       .form-group
         .form__label-heading
           &nbsp;
         .form__input-wrapper
-          = form.check_box :suppress_from_links_recirculation, label: 'Suppress from links recirculation'
-          = form.check_box :regulated_box, label: 'Regulated Content'
+					= label_tag do
+          	= form.check_box :suppress_from_links_recirculation
+						Suppress from links recirculation
+					= label_tag do
+						= form.check_box :regulated_box
+						Regulated Content
 
 = render partial: 'form_blocks'
 = render 'scheduler', object: form
