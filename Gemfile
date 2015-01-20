@@ -43,7 +43,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
-  gem "better_errors"
+  gem 'better_errors'
 end
 
 group :test do
