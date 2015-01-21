@@ -1,7 +1,14 @@
 require ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'page.rb')
 
 class Comfy::Cms::Page < ActiveRecord::Base
-  scope :most_popular, -> (number_of_items) { unscoped.order('page_views desc').limit(number_of_items) }
+  scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
+
+  scope :most_popular, (lambda do |number_of_items|
+    unscoped
+      .order('page_views desc')
+      .ignore_suppressed
+      .limit(number_of_items)
+  end)
 
   scope :with_tags, -> (tags) { joins(:taggings).where('taggings.tag_id' => tags.map(&:id)) }
 
@@ -37,9 +44,16 @@ class Comfy::Cms::Page < ActiveRecord::Base
     Comfy::Cms::Page
       .unscoped
       .all_english_articles
+      .ignore_suppressed
       .sort_by_tag_similarity(keywords)
       .remove_self_from_results(self)
       .where.not(id: mirrored_page.try(:id))
       .limit(limit)
+  end
+
+  def suppress_mirrors_from_links_recirculation
+    mirrors.each do |mirror|
+      mirror.update_column(:suppress_from_links_recirculation, suppress_from_links_recirculation)
+    end
   end
 end

@@ -32,11 +32,14 @@
     = form.text_field :meta_title, data: {'dough-mirrorinputvalue-target' => ''}
     = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
-    .form-group
-      .form__label-heading
-        &nbsp;
-      .form__input-wrapper
-        = form.check_box :regulated_box, label: 'Regulated Content'
+
+    .inline_checkboxes
+      .form-group
+        .form__label-heading
+          &nbsp;
+        .form__input-wrapper
+          = form.check_box :suppress_from_links_recirculation, label: 'Suppress from links recirculation'
+          = form.check_box :regulated_box, label: 'Regulated Content'
 
 = render partial: 'form_blocks'
 = render 'scheduler', object: form

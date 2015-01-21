@@ -5,3 +5,11 @@
 .l-editor {
   margin-bottom: $baseline-unit*20;
 }
+
+.inline_checkboxes {
+  .checkbox {
+    display: inline;
+    padding-right: 10px;
+  }
+}
+

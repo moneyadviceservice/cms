@@ -1,5 +1,69 @@
 RSpec.describe Comfy::Cms::Page do
 
+  describe '#suppress_from_links_recirculation' do
+    let(:english_site) { create :site, is_mirrored: true }
+    let(:welsh_site) { create :site, :welsh, is_mirrored: true }
+
+    let!(:english_article) do
+      create :english_article,
+             full_path:  '/animals',
+             site: english_site
+    end
+    let!(:welsh_article) do
+      create :welsh_article,
+             full_path:  '/animals',
+             site: welsh_site
+    end
+
+    context 'update welsh article when updating english article' do
+      before do
+        english_article.suppress_from_links_recirculation = supressed?
+        english_article.suppress_mirrors_from_links_recirculation
+        welsh_article.reload
+      end
+
+      context 'when english article supressed' do
+        let(:supressed?) { true }
+
+        it 'welsh article should be supressed' do
+          expect(welsh_article.suppress_from_links_recirculation).to be_truthy
+        end
+      end
+
+      context 'when english article not supressed' do
+        let(:supressed?) { false }
+
+        it 'welsh article should not be supressed' do
+          expect(welsh_article.suppress_from_links_recirculation).to be_falsey
+        end
+      end
+    end
+
+    context 'update english article when updating welsh article' do
+      before do
+        welsh_article.suppress_from_links_recirculation = supressed?
+        welsh_article.suppress_mirrors_from_links_recirculation
+        english_article.reload
+      end
+
+      context 'when welsh article supressed' do
+        let(:supressed?) { true }
+
+        it 'english article should be supressed' do
+          expect(english_article.suppress_from_links_recirculation).to be_truthy
+        end
+      end
+
+      context 'when welsh article not supressed' do
+        let(:supressed?) { false }
+
+        it 'english article should not be supressed' do
+          expect(english_article.suppress_from_links_recirculation).to be_falsey
+        end
+      end
+    end
+  end
+
   describe '#related_links' do
     let(:animals_tag) { Tag.create value: 'animals' }
     let(:cheese_tag) { Tag.create value: 'cheese' }
@@ -30,6 +94,26 @@ RSpec.describe Comfy::Cms::Page do
           expect(animals_article.related_links(2)).to eq([all_tag_match_article, one_tag_match_article])
         end
       end
+    end
+
+    context 'ignores suppressed articles' do
+      let(:animals_tag) { Tag.create value: 'animals' }
+      let!(:animals_article) { create :english_article, keywords: [animals_tag] }
+      let!(:suppressed_english_article) do
+        create :english_article,
+               keywords: [animals_tag],
+               suppress_from_links_recirculation: true
+      end
+      let!(:not_suppressed_match_article) do
+        create :english_article,
+               keywords: [animals_tag],
+               suppress_from_links_recirculation: false
+      end
+
+      it 'order by most matching tags' do
+        expect(animals_article.related_links(2)).to eq([not_suppressed_match_article])
+      end
+
     end
 
     context 'page_view ordering matches' do
@@ -148,6 +232,19 @@ RSpec.describe Comfy::Cms::Page do
       results = Comfy::Cms::Page.most_popular(3)
 
       expect(results.map(&:page_views)).to eq([200, 152, 100])
+    end
+
+    context 'suppressed artictiles' do
+      let!(:first_suppressed_page) { create :page, page_views: 200, suppress_from_links_recirculation: true }
+      let!(:first_not_suppressed_page) { create :page, page_views: 1, suppress_from_links_recirculation: false }
+      let!(:second_not_suppressed_page) { create :page, page_views: 150, suppress_from_links_recirculation: false }
+      let!(:second_suppressed_page) { create :page, page_views: 50, suppress_from_links_recirculation: true }
+
+      it 'are ignores' do
+        results = Comfy::Cms::Page.most_popular(3)
+
+        expect(results).to eq([second_not_suppressed_page, first_not_suppressed_page])
+      end
     end
 
   end

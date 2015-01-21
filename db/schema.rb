@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141217154822) do
+ActiveRecord::Schema.define(version: 20150121145709) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -78,28 +78,29 @@ ActiveRecord::Schema.define(version: 20141217154822) do
   add_index "comfy_cms_layouts", ["site_id", "identifier"], name: "index_comfy_cms_layouts_on_site_id_and_identifier", unique: true, using: :btree
 
   create_table "comfy_cms_pages", force: true do |t|
-    t.integer  "site_id",                                           null: false
+    t.integer  "site_id",                                                            null: false
     t.integer  "layout_id"
     t.integer  "parent_id"
     t.integer  "target_page_id"
-    t.string   "label",                                             null: false
+    t.string   "label",                                                              null: false
     t.string   "slug"
-    t.string   "full_path",                                         null: false
-    t.text     "content_cache",    limit: 16777215
-    t.integer  "position",                          default: 0,     null: false
-    t.integer  "children_count",                    default: 0,     null: false
-    t.boolean  "is_published",                      default: true,  null: false
-    t.boolean  "is_shared",                         default: false, null: false
+    t.string   "full_path",                                                          null: false
+    t.text     "content_cache",                     limit: 16777215
+    t.integer  "position",                                           default: 0,     null: false
+    t.integer  "children_count",                                     default: 0,     null: false
+    t.boolean  "is_published",                                       default: true,  null: false
+    t.boolean  "is_shared",                                          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
     t.string   "meta_description"
     t.string   "preview_cache"
-    t.boolean  "regulated",                         default: false
+    t.boolean  "regulated",                                          default: false
     t.string   "meta_title"
     t.string   "translation_id"
-    t.integer  "page_views",                        default: 0
+    t.integer  "page_views",                                         default: 0
     t.datetime "scheduled_on"
+    t.boolean  "suppress_from_links_recirculation",                  default: false
   end
 
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
