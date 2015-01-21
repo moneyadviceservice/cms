@@ -16,9 +16,9 @@ describe PageSerializer do
 
       let(:latest_links) do
         [
-          { 'title' => 'First post', 'link' => 'http://a.com', 'pubDate' => 'Thu, 08 Jan 2015 10:39:43 +0000' },
-          { 'title' => 'Second post', 'link' => 'http://b.com', 'pubDate' => 'Wed, 07 Jan 2015 10:39:43 +0000' },
-          { 'title' => 'Third post', 'link' => 'http://c.com', 'pubDate' => 'Tue, 06 Jan 2015 10:39:43 +0000' }
+          { 'title' => 'First post', 'link' => 'http://a.com' },
+          { 'title' => 'Second post', 'link' => 'http://b.com' },
+          { 'title' => 'Third post', 'link' => 'http://c.com' }
         ]
       end
 
@@ -36,8 +36,7 @@ describe PageSerializer do
 
         expect(result.first).to eq(
           title: 'First post',
-          path: 'http://a.com',
-          date: 'Thu, 08 Jan 2015 10:39:43 +0000'
+          path: 'http://a.com'
         )
       end
 
