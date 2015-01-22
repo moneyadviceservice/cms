@@ -41,10 +41,17 @@ describe('CharacterCounter', function() {
     });
 
     it('should update the character indicator with the number of inputted characters', function() {
-      var str = 'foo';
+      var str = 'foo',
+          inputValue,
+          remainingCharactersLength;
+
       this.component.$el.val(str);
       this.component.init();
-      expect(parseInt(this.component.$indicators.eq(0).text(),10)).to.eq(this.component.maxChars - str.length);
+
+      inputValue = parseInt(this.component.$indicators.eq(0).text(),10),
+      remainingCharactersLength = this.component.maxChars - str.length;
+
+      expect(inputValue).to.eq(remainingCharactersLength);
     });
   });
 
@@ -71,9 +78,11 @@ describe('CharacterCounter', function() {
 
     it('should calculate the difference between maxChars and the count', function() {
       var count = 100,
-          maxChars = 50;
+          maxChars = 50,
+          remainingCharactersLength = maxChars - count,
+          currentCharacterLength = this.component.calculateCharacterCount(count, maxChars);
 
-      expect(this.component.calculateCharacterCount(count, maxChars)).to.equal(maxChars - count);
+      expect(currentCharacterLength).to.equal(remainingCharactersLength);
     });
   });
 
