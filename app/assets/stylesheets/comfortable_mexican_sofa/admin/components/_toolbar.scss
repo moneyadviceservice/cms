@@ -27,6 +27,7 @@
 }
 
 .toolbar__item-group {
+  display: table-cell;
   padding-right: 40px;
 
   &.is-active {

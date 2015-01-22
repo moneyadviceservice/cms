@@ -5,27 +5,27 @@
 
     .toolbar__item-group.toolbar__item-group--markdown{data: {dough_maseditor_markdown_toolbar: true}}
       .toolbar__item-group
-        =content_tag(:div, "Insert snippet", title: 'Insert snippet', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
+        =content_tag(:div, "Insert snippet", title: 'Insert snippet', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 'markdown-menu'}) do
           %span.toolbar-button__icon.fa.fa-scissors
-        %div.popover.popover--bottom{ data: { dough_collapsable_target: 2 }}
+        %div.popover.popover--bottom{ data: { dough_collapsable_target: 'markdown-menu' }}
           .popover__inner
             %ul.menu.menu--toolbar
               %li.menu__item
-                =button_tag('Collapsible', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_collapsible'})
+                =button_tag('Collapsible', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'collapsible', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Action item', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_actionItem'})
+                =button_tag('Action item', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'actionItem', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Add action', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_addAction'})
+                =button_tag('Add action', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'addAction', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Call out box', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_callout'})
+                =button_tag('Call out box', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'callout', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Ticks', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_ticks'})
+                =button_tag('Ticks', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'ticks', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag("Bullets", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_bullets"})
+                =button_tag("Bullets", type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'bullets', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Table', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_table'})
+                =button_tag('Table', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'table', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_video'})
+                =button_tag('Video', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'video', dough_snippetinserter_context: 'markdown-snippets'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}

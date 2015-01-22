@@ -5,6 +5,6 @@
     .editor__content.theme.theme--dough{data: {dough_maseditor_html_content: true}}
 
   .editor.editor--markdown{data: {dough_maseditor_markdown_container: true}}
-    %textarea.editor__content.editor__content--markdown{ name: "#{fieldname}[blocks_attributes][#{index}][content]", data: {dough_maseditor_markdown_content: true} }
+    %textarea.editor__content.editor__content--markdown{ name: "#{fieldname}[blocks_attributes][#{index}][content]", data: {dough_maseditor_markdown_content: true, dough_component: 'SnippetInserter', dough_snippetinserter_context: 'markdown-snippets'} }
       =editor.content
     %input{type: 'hidden', name: "#{fieldname}[blocks_attributes][#{index}][identifier]", value: 'content'}

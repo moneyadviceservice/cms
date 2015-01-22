@@ -33,9 +33,7 @@ define([
         },
         uiEvents: {
           'submit': '_handleFormSubmit',
-          'change [data-dough-maseditor-mode-switch]': '_handleChangeMode',
-          'focus [data-dough-maseditor-html-content]': 'enableToolbar',
-          'focus [data-dough-maseditor-markdown-content]': 'enableMarkdownToolbar'
+          'change [data-dough-maseditor-mode-switch]': '_handleChangeMode'
         }
       };
 
