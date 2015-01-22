@@ -26,10 +26,13 @@
   }
 }
 
-
 .toolbar__item-group {
-  display: table-cell;
   padding-right: 40px;
+
+  &.is-active {
+    display: table-cell;
+    pointer-events: auto;
+  }
 
   & + &:last-child {
     padding-right: 0;
@@ -37,12 +40,10 @@
   }
 }
 
-.toolbar__item-group--html {
+.toolbar__item-group--html,
+.toolbar__item-group--markdown {
+  display: none;
   pointer-events: none;
-
-  &.is-active {
-    pointer-events: auto;
-  }
 }
 
 .toolbar__inner > .toolbar__item-group {

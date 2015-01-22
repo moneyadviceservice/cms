@@ -3,6 +3,31 @@
 %nav.toolbar.fixedsticky.top.fixedsticky-toolbar{data: {dough_maseditor_toolbar: true, dough_sticky_element_target: true}}
   .toolbar__inner
 
+    .toolbar__item-group.toolbar__item-group--markdown{data: {dough_maseditor_markdown_toolbar: true}}
+      .toolbar__item-group
+        =content_tag(:div, "Insert snippet", title: 'Insert snippet', class: 'toolbar__item toolbar-button', data: {dough_component: 'Popover', dough_popover_config: '{"hideOnBlur": true, "direction": "bottom", "centerAlign": true, "closeOnClick": true}', dough_collapsable_trigger: 2}) do
+          %span.toolbar-button__icon.fa.fa-scissors
+        %div.popover.popover--bottom{ data: { dough_collapsable_target: 2 }}
+          .popover__inner
+            %ul.menu.menu--toolbar
+              %li.menu__item
+                =button_tag('Collapsible', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_collapsible'})
+              %li.menu__item
+                =button_tag('Action item', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_actionItem'})
+              %li.menu__item
+                =button_tag('Add action', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_addAction'})
+              %li.menu__item
+                =button_tag('Call out box', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_callout'})
+              %li.menu__item
+                =button_tag('Ticks', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_ticks'})
+              %li.menu__item
+                =button_tag("Bullets", type: 'button', class: 'menu__action', data: { "command-name" => "mastalk_bullets"})
+              %li.menu__item
+                =button_tag('Table', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_table'})
+              %li.menu__item
+                =button_tag('Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_video'})
+
+          .popover__pointer{:data => {dough_collapsable_pointer: true}}
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
       .toolbar__item-group
         =button_tag(type: 'button', title: "Bold", class: 'toolbar__item toolbar-button', data: { "command-name" => "bold"}) do
