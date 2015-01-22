@@ -13,6 +13,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def save_page
     PageRegister.new(@page, params: params, current_user: current_user).save
+    @page.suppress_mirrors_from_links_recirculation
   end
 
   def set_activity_log

@@ -137,120 +137,135 @@ RSpec.describe PagesController do
       }
     end
 
-    before do
-      put :update,
-          site_id:     site.id,
-          id:          page.id,
-          state_event: state_event,
-          page:        page_attributes
-    end
-
-    context 'when passes the "save_unsaved" event state from an "unsaved" page' do
+    context 'suppress_mirrors_from_links_recirculation on requested page ' do
       let!(:page) { create(:page, state: 'unsaved') }
-      let(:state_event) { 'save_unsaved' }
 
       it 'persists page as "draft"' do
-        expect(assigns[:page].state).to eq 'draft'
+        expect_any_instance_of(Comfy::Cms::Page).to receive(:suppress_mirrors_from_links_recirculation)
+
+        put :update,
+            site_id:     site.id,
+            id:          page.id,
+            state_event: 'save_unsaved',
+            page:        page_attributes
       end
     end
 
-    context 'when passes the same event state from the page' do
-      let!(:page) { create(:page, state: 'published') }
-      let(:state_event) { 'publish' }
-
-      it 'does not save any revisions' do
-        expect(assigns[:page].revisions).to eq []
+    context 'when a request is made' do
+      before do
+        put :update,
+            site_id:     site.id,
+            id:          page.id,
+            state_event: state_event,
+            page:        page_attributes
       end
-    end
+      context 'when passes the "save_unsaved" event state from an "unsaved" page' do
+        let!(:page) { create(:page, state: 'unsaved') }
+        let(:state_event) { 'save_unsaved' }
 
-    context 'when passes the "publish" event state' do
-      let!(:page) { create(:page, state: 'draft') }
-      let(:state_event) { 'publish' }
-
-      it 'persists page as "published"' do
-        expect(assigns[:page].state).to eq 'published'
-      end
-
-      context 'creating revision' do
-        before do
-          assigns[:page].revisions.reload
-          expect(last_revision).to_not be nil
-        end
-
-        it 'saves the revision event and author' do
-          expect(last_revision.data.symbolize_keys).to eq(
-            event: 'published',
-            previous_event: 'draft',
-            blocks_attributes: [],
-            author: {
-              id: current_user.id,
-              name: current_user.name
-            }
-          )
+        it 'persists page as "draft"' do
+          expect(assigns[:page].state).to eq 'draft'
         end
       end
-    end
 
-    context 'when changing the block attributes' do
-      let!(:page) { create(:page, state: 'published') }
-      let(:state_event) { 'publish' }
-      let(:page_attributes) do
-        {
-          label: 'Another label',
-          slug:  'another-slug',
-          blocks_attributes: {
-            '0' => {
-              content:    'block-content',
-              identifier: 'content'
+      context 'when passes the same event state from the page' do
+        let!(:page) { create(:page, state: 'published') }
+        let(:state_event) { 'publish' }
+
+        it 'does not save any revisions' do
+          expect(assigns[:page].revisions).to eq []
+        end
+      end
+
+      context 'when passes the "publish" event state' do
+        let!(:page) { create(:page, state: 'draft') }
+        let(:state_event) { 'publish' }
+
+        it 'persists page as "published"' do
+          expect(assigns[:page].state).to eq 'published'
+        end
+
+        context 'creating revision' do
+          before do
+            assigns[:page].revisions.reload
+            expect(last_revision).to_not be nil
+          end
+
+          it 'saves the revision event and author' do
+            expect(last_revision.data.symbolize_keys).to eq(
+              event: 'published',
+              previous_event: 'draft',
+              blocks_attributes: [],
+              author: {
+                id: current_user.id,
+                name: current_user.name
+              }
+            )
+          end
+        end
+      end
+
+      context 'when changing the block attributes' do
+        let!(:page) { create(:page, state: 'published') }
+        let(:state_event) { 'publish' }
+        let(:page_attributes) do
+          {
+            label: 'Another label',
+            slug:  'another-slug',
+            blocks_attributes: {
+              '0' => {
+                content:    'block-content',
+                identifier: 'content'
+              }
             }
           }
-        }
-      end
-
-      context 'creating revision' do
-        before do
-          assigns[:page].revisions.reload
-          expect(last_revision).to_not be nil
         end
 
-        it 'saves the block attributes content in data revision' do
-          expect(last_revision.data.symbolize_keys).to eq(
-            author: {
-              id: current_user.id,
-              name: current_user.name
-            },
-            blocks_attributes: [
-              {
-                identifier: 'content', content: nil
-              }
-            ]
+        context 'creating revision' do
+          before do
+            assigns[:page].revisions.reload
+            expect(last_revision).to_not be nil
+          end
+
+          it 'saves the block attributes content in data revision' do
+            expect(last_revision.data.symbolize_keys).to eq(
+              author: {
+                id: current_user.id,
+                name: current_user.name
+              },
+              blocks_attributes: [
+                {
+                  identifier: 'content', content: nil
+                }
+              ]
+            )
+          end
+        end
+      end
+
+      context 'when passes the "delete_page" event state' do
+        let!(:page) { create(:page, state: 'draft') }
+        let(:state_event) { 'delete_page' }
+
+        it 'deletes the page' do
+          expect(assigns[:page]).to_not be_persisted
+        end
+      end
+
+      context 'when does not pass any event state' do
+        let!(:page) { create(:page, state: 'draft') }
+        let(:state_event) { nil }
+
+        it 'persists page attributes' do
+          expect(assigns[:page].attributes.symbolize_keys).to include(
+            label: 'Another label',
+            slug:  'another-slug'
           )
         end
-      end
-    end
 
-    context 'when passes the "delete_page" event state' do
-      let!(:page) { create(:page, state: 'draft') }
-      let(:state_event) { 'delete_page' }
-
-      it 'deletes the page' do
-        expect(assigns[:page]).to_not be_persisted
-      end
-    end
-
-    context 'when does not pass any event state' do
-      let!(:page) { create(:page, state: 'draft') }
-      let(:state_event) { nil }
-
-      it 'persists page attributes' do
-        expect(assigns[:page].attributes.symbolize_keys).to include(
-          label: 'Another label',
-          slug:  'another-slug'
-        )
-      end
-
-      it 'does not save any revisions' do
-        expect(assigns[:page].revisions).to eq []
+        it 'does not save any revisions' do
+          expect(assigns[:page].revisions).to eq []
+        end
       end
     end
   end

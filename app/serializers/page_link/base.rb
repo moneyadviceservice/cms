@@ -1,6 +1,5 @@
 module PageLink
   class Base
-
     def initialize(page)
       @page = page
     end
@@ -50,6 +49,5 @@ module PageLink
       return nil if page_index < 0 || page_index >= pages.length
       pages[page_index]
     end
-
   end
 end
