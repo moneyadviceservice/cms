@@ -11,6 +11,10 @@
   }
 }
 
+.form__row {
+  margin-bottom: 0;
+}
+
 .form__label-heading {
   @include column(1.75);
 }
