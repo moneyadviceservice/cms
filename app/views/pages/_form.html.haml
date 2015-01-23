@@ -67,17 +67,19 @@
 
     = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
-    .inline_checkboxes
-      .form-group
-        .form__label-heading
-          &nbsp;
-        .form__input-wrapper
-					= label_tag do
-          	= form.check_box :suppress_from_links_recirculation
-						Suppress from links recirculation
-					= label_tag do
-						= form.check_box :regulated_box
-						Regulated Content
+    .form-group
+      .form__label-heading
+        &nbsp;
+      .form__input-wrapper
+        .form__group.form__group--inline
+          .form__group-item
+            = label_tag do
+              = form.check_box :suppress_from_links_recirculation
+              Suppress from links recirculation
+          .form__group-item
+            = label_tag do
+              = form.check_box :regulated_box
+              Regulated Content
 
 = render partial: 'form_blocks'
 = render 'scheduler', object: form
