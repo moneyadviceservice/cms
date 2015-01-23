@@ -78,7 +78,7 @@
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
 
-    .toolbar__item-group{data: {dough_maseditor_mode_switch: true}}
+    .toolbar__item-group.toolbar__item-group--right{data: {dough_maseditor_mode_switch: true}}
       .toggle
         =radio_button_tag('edit-mode', 'html', true, class: 'toggle__control js-switch-mode')
         =radio_button_tag('edit-mode', 'markdown', false, class: 'toggle__control js-switch-mode')
