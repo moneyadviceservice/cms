@@ -1,5 +1,9 @@
 - if item_taggable?(form.object)
-  = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {label: t('.label')}, include_blank: false, multiple: true,
-                           id:    'tags--select',
-                           class: 't-tags-select',
-                           data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})
+  .form-group
+    .form__label-heading
+      = form.label :tags
+    .form__input-wrapper
+      = form.collection_select(:keywords_attributes, Tag.all, :id, :value, {label: t('.label')}, include_blank: false, multiple: true,
+                               id:    'tags--select',
+                               class: 't-tags-select',
+                               data:  {dough_component: 'AutoComplete', dough_placeholder_text: t('.placeholder')})

@@ -13,6 +13,13 @@ $responsive: true;
 
 // Dough imports -------------------------------------------------------------- //
 
+@import "dough/assets/stylesheets/helpers/_form-input-focus";
+@import "dough/assets/stylesheets/helpers/_form-input";
+@import "dough/assets/stylesheets/helpers/_clearfix";
+@import "dough/assets/stylesheets/helpers/_inline_block";
+@import "dough/assets/stylesheets/helpers/_unstyled_list";
+@import "dough/assets/stylesheets/helpers/_unstyled_button";
+@import "dough/assets/stylesheets/helpers/_visually_hidden";
 @import "dough/assets/stylesheets/lib/_grid";
 @import "dough/assets/stylesheets/lib/_mediaqueries";
 @import "dough/assets/stylesheets/lib/_typography";
@@ -22,17 +29,11 @@ $responsive: true;
 @import "dough/assets/stylesheets/base/_reset";
 @import "dough/assets/stylesheets/base/_type";
 @import "dough/assets/stylesheets/base/_forms";
+@import "dough/assets/stylesheets/components/common/_form";
 @import "dough/assets/stylesheets/components/common/_tables.scss";
 @import "dough/assets/stylesheets/components/common/_panel.scss";
 @import "dough/assets/stylesheets/layout/common/common";
 @import "dough/assets/stylesheets/layout/common/_constrained.scss";
-@import "dough/assets/stylesheets/helpers/_form-input-focus";
-@import "dough/assets/stylesheets/helpers/_form-input";
-@import "dough/assets/stylesheets/helpers/_clearfix";
-@import "dough/assets/stylesheets/helpers/_inline_block";
-@import "dough/assets/stylesheets/helpers/_unstyled_list";
-@import "dough/assets/stylesheets/helpers/_unstyled_button";
-@import "dough/assets/stylesheets/helpers/_visually_hidden";
 
 // Third-party libs -------------------------------------------------------------- //
 

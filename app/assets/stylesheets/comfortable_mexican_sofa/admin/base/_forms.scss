@@ -11,12 +11,17 @@
   }
 }
 
+.form__row {
+  margin-bottom: 0;
+}
+
 .form__label-heading {
-  @include column(1.5);
+  @include column(1.75);
 }
 
 .form__input-wrapper {
-  @include column(8.5);
+  @include column(8.25);
+  position: relative;
 }
 
 .form--vertical .form-group {
@@ -29,9 +34,20 @@
   @include column(12);
 }
 
-.form__input--has-meta + .help-block {
-  color: $color-input-meta;
+.form__hint {
   @include body(11,11);
+  color: $color-input-meta;
+}
+
+.form__character-count-warning {
+  display: none;
+  position: absolute;
+  right: 6px;
+  top: 4px;
+
+  &.is-above-max {
+    display: block;
+  }
 }
 
 .form-group.has-error .help-block {
@@ -87,6 +103,14 @@
 .form__input.form__input--constrained[type="search"],
 .form__input.form__input--constrained[type="password"] {
   width: auto;
+}
+
+.form__input.form__input--has-icon[type="text"],
+.form__input.form__input--has-icon[type="number"],
+.form__input.form__input--has-icon[type="email"],
+.form__input.form__input--has-icon[type="search"],
+.form__input.form__input--has-icon[type="password"] {
+  padding-right: 25px;
 }
 
 select.form-control {
