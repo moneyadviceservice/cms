@@ -61,6 +61,7 @@ group :test, :development do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
+  gem 'valid_attribute'
 end
 
 group :production do

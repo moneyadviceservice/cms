@@ -1,0 +1,24 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    %h1 Hippo Importer
+.l-panel-content
+  .l-constrained
+    %h3 Created/Updated records
+    - PagePresenter.collect(Array(@records)).each do |record|
+      %p
+        = link_to record.label, record.preview_url, class: 'menu__action', id: 'preview', target: '_blank'
+
+    = form_for(@hippo_importer_form, url: hippo_path, method: :post, html: { multipart: true, class: 'form form--vertical' }, label_col: "form__label-heading") do |form|
+      = form.label :site
+      = form.select :site, %w(en cy)
+
+      = form.label :migration_type
+      = form.select :migration_type, Cms::HippoImporter::Base.migration_types, selected: 'article'
+
+      = form.label :hippo_file
+      = form.file_field :hippo_file
+
+      = form.label :slugs
+      = form.text_area :slugs, rows: 10
+
+      = form.submit 'Migrate pages'

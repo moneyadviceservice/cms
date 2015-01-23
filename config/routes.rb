@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   scope '/admin' do
     get 'links/(*id)(.:format)' => 'links#show', as: 'admin_link'
 
+    resource :hippo, only: [:new, :create]
+
     resources :sites do
       resources :files
 
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
 
     resources :tags, only: [:index, :create] do
       collection do
-        get    :starting_by
+        get :starting_by
         delete :delete_from_value
       end
     end
@@ -37,11 +39,11 @@ Rails.application.routes.draw do
 
   root to: redirect('/admin')
 
-  comfy_route :cms_admin, :path => '/admin'
+  comfy_route :cms_admin, path: '/admin'
 
   # Make sure this routeset is defined last
 
   get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
   get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
-  comfy_route :cms, :sitemap => false
+  comfy_route :cms, sitemap: false
 end

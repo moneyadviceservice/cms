@@ -2,7 +2,7 @@ module Cms
   module HippoImporter
     class AboutUs < CorporatePage
       def hippo_type
-        'contentauthoringwebsite:Static'
+        'contentauthoringwebsite:StaticPage'
       end
     end
   end

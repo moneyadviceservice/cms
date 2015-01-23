@@ -1,7 +1,13 @@
+require 'cms/hippo_importer'
+
 module Cms
   module HippoImporter
     class Base
       attr_reader :data, :site, :parser
+
+      def self.migration_types
+        descendants.map { |klass| klass.name.demodulize.underscore }.sort
+      end
 
       def initialize(data:, docs: [], to: 'en', parser: HippoXmlParser)
         @data = data
@@ -40,7 +46,7 @@ module Cms
 
       def import!
         records.select { |r| next_docs.include?(r.send(article_id)) }.map do |record|
-          puts "Importing: #{record.id}" unless Rails.env.test?
+          Rails.logger.info("Importing: #{record.id}")
           page = find_page(record) || Comfy::Cms::Page.new
           content = HippoContent.new(site: site, body: record.body.to_s).to_contento
           blocks = [
