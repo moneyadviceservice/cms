@@ -118,6 +118,9 @@ GEM
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
+    clockwork (1.1.0)
+      activesupport
+      tzinfo
     cocaine (0.5.4)
       climate_control (>= 0.0.3, < 1.0)
     codemirror-rails (4.8)
@@ -437,6 +440,7 @@ DEPENDENCIES
   bowndler!
   byebug
   capybara (= 2.4.1)
+  clockwork
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.1.0)
   devise
