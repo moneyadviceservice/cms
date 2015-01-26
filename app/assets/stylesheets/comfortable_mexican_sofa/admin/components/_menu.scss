@@ -13,6 +13,7 @@
 
 .menu__item {
   border-bottom: 1px solid $color-menu-default-item-separator;
+  margin: 0;
 
   &:last-child {
     border-bottom: none;
@@ -24,6 +25,7 @@
 }
 
 .menu__action {
+  @include body(16,16);
   @extend .unstyled-button;
   color: $color-menu-default-foreground;
   display: block;
