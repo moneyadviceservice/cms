@@ -56,5 +56,3 @@ The rake task
 
 is to retrieve page views from Google Analytics for articles.
 This allows us to generate the Popular links section that is displayed in the frontend application.
-
-The rake task is setup by whenever in config/schedule.rb
