@@ -37,16 +37,29 @@
 .form__hint {
   @include body(11,11);
   color: $color-input-meta;
+  display: block;
 }
 
-.form__character-count-warning {
+.form__hint--align-right {
+  text-align: right;
+}
+
+.form__character-count-warning-icon {
   display: none;
   position: absolute;
   right: 6px;
   top: 4px;
 
   &.is-above-max {
+    color: $color-character-count-exceeded;
     display: block;
+  }
+}
+
+.form__character-count-text {
+  &.is-above-max {
+    color: $color-character-count-exceeded;
+    font-weight: bold;
   }
 }
 
