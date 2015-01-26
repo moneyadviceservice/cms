@@ -106,7 +106,3 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 #
 # To create a bcrypt hash:
 #   BCrypt::Password.create('password').to_s
-
-# Enable page tagging!
-require_relative '../../lib/comfortable_mexican_sofa/extensions/is_taggable'
-Comfy::Cms::Page.send(:is_taggable)

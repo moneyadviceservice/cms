@@ -1,19 +1,10 @@
 module ComfortableMexicanSofa
+  # Module to enable association of keywords to a model.
+  # Comfy already define #tags and #tags= methods in some models, so let's call :keywords to the Tag associated
+  # instances of a model to avoid naming collisions!!!
   module IsTaggable
-    module DSL
-      extend ActiveSupport::Concern
-
-      module ClassMethods
-        # Macro to enable association of keywords to a model.
-        # Comfy already define #tags and #tags= methods in some models, so let's call :keywords to the Tag associated
-        # instances of a model to avoid naming collisions!!!
-        # Creates the appropriate AR associations, scopes and instance methods.
-        def is_taggable # rubocop:disable Style/PredicateName
-          include ComfortableMexicanSofa::IsTaggable::ModelMethods
-        end
-      end
-    end
-
+    # Creates the appropriate AR associations, scopes and instance methods.
+    #
     module ModelMethods
       extend ActiveSupport::Concern
 
@@ -84,10 +75,11 @@ module ComfortableMexicanSofa
       # are associated to the same tags
       def sync_mirrors_with_taggings
         return unless mirrored_with_taggings?
-        mirrors.each { |mirror| mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id)) }
+
+        mirrors.each do |mirror|
+          mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id))
+        end
       end
     end
   end
 end
-
-ActiveRecord::Base.send(:include, ComfortableMexicanSofa::IsTaggable::DSL)
