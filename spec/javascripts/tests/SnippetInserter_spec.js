@@ -1,4 +1,4 @@
-describe.only('SnippetInserter', function() {
+describe('SnippetInserter', function() {
   'use strict';
 
   var sandbox;
