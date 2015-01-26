@@ -77,7 +77,7 @@ module ComfortableMexicanSofa
         return unless mirrored_with_taggings?
 
         mirrors.each do |mirror|
-          mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id))
+          mirror.assign_new_keywords!(new_keyword_ids: keyword_ids)
         end
       end
     end
