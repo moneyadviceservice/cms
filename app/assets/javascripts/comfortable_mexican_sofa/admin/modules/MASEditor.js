@@ -26,14 +26,14 @@ define([
           htmlToolbar: '[data-dough-maseditor-html-toolbar]',
           htmlContainer: '[data-dough-maseditor-html-container]',
           htmlContent: '[data-dough-maseditor-html-content]',
+          markdownToolbar: '[data-dough-maseditor-markdown-toolbar]',
           markdownContainer: '[data-dough-maseditor-markdown-container]',
           markdownContent: '[data-dough-maseditor-markdown-content]',
           switchModeContainer: '[data-dough-maseditor-mode-switch]'
         },
         uiEvents: {
           'submit': '_handleFormSubmit',
-          'change [data-dough-maseditor-mode-switch]': '_handleChangeMode',
-          'focus [data-dough-maseditor-html-content]': 'enableHTMLToolbar'
+          'change [data-dough-maseditor-mode-switch]': '_handleChangeMode'
         }
       };
 
@@ -80,7 +80,7 @@ define([
   MASEditorProto.init = function(initialised) {
     this._cacheComponentElements();
     this._stripEditorWhitespace();
-    this.enableHTMLToolbar();
+    this.enableToolbar('html');
     this.editorLib = new Editor(
       this.$htmlContent[0],
       this.$markdownContent[0],
@@ -110,7 +110,13 @@ define([
     this.$htmlContent = this.$el.find(this.config.selectors.htmlContent);
     this.$markdownContainer = this.$el.find(this.config.selectors.markdownContainer);
     this.$markdownContent = this.$el.find(this.config.selectors.markdownContent);
+    this.$markdownToolbar = this.$el.find(this.config.selectors.markdownToolbar);
     this.$switchModeContainer = this.$el.find(this.config.selectors.switchModeContainer);
+
+    this.toolbars = {
+      'html': this.$htmlToolbar,
+      'markdown': this.$markdownToolbar
+    };
   };
 
   MASEditorProto._stripEditorWhitespace = function() {
@@ -139,20 +145,20 @@ define([
   };
 
   /**
-   * [enableHTMLToolbar description]
+   * [enableToolbar description]
    * @return {[type]} [description]
    */
-  MASEditorProto.enableHTMLToolbar = function() {
-    this.$htmlToolbar.addClass(this.classActive);
+  MASEditorProto.enableToolbar = function(name) {
+    this.toolbars[name].addClass(this.classActive);
     return this;
   };
 
   /**
-   * [disableHTMLToolbar description]
+   * [disableToolbar description]
    * @return {[type]} [description]
    */
-  MASEditorProto.disableHTMLToolbar = function() {
-    this.$htmlToolbar.removeClass(this.classActive);
+  MASEditorProto.disableToolbar = function(name) {
+    this.toolbars[name].removeClass(this.classActive);
     return this;
   };
 
@@ -168,15 +174,18 @@ define([
 
     switch(mode) {
       case this.editorLib.constants.MODES.HTML:
-        this.enableHTMLToolbar();
+        this.enableToolbar('html');
+        this.disableToolbar('markdown');
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
       case this.editorLib.constants.MODES.MARKDOWN:
-        this.disableHTMLToolbar();
+        this.enableToolbar('markdown');
+        this.disableToolbar('html');
         this.show(this.$markdownContainer).hide(this.$htmlContainer);
         break;
       default:
-        this.enableHTMLToolbar();
+        this.enableToolbar('html');
+        this.disableToolbar('markdown');
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
     }

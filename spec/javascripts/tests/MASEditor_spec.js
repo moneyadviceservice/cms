@@ -1,4 +1,4 @@
-describe('MAS Editor', function() {
+describe('MASEditor', function() {
   'use strict';
 
   beforeEach(function(done) {
@@ -56,7 +56,16 @@ describe('MAS Editor', function() {
           .changeMode('markdown');
 
         expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.false;
+        expect(this.masEditor.$htmlToolbar.hasClass(this.classActive)).to.be.false;
         expect(this.masEditor.$markdownContainer.hasClass(this.classActive)).to.be.true;
+        expect(this.masEditor.$markdownToolbar.hasClass(this.classActive)).to.be.true;
+
+        this.masEditor.changeMode('html');
+
+        expect(this.masEditor.$htmlContainer.hasClass(this.classActive)).to.be.true;
+        expect(this.masEditor.$htmlToolbar.hasClass(this.classActive)).to.be.true;
+        expect(this.masEditor.$markdownContainer.hasClass(this.classActive)).to.be.false;
+        expect(this.masEditor.$markdownToolbar.hasClass(this.classActive)).to.be.false;
       });
 
       it('should add active class to the editor node', function() {
