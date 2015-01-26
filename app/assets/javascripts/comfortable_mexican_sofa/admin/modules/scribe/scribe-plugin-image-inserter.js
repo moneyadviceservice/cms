@@ -14,7 +14,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
     return function (scribe) {
       var insertImageCommand = new scribe.api.Command('insertHTML');
 
-      insertImageCommand.nodeName = 'IMG';
+      insertImageCommand.nodeName = 'P';
+      insertImageCommand.validNodes = ['P','LI','A'];
 
       insertImageCommand.execute = function () {
         return true;
@@ -25,7 +26,10 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       };
 
       insertImageCommand.queryEnabled = function() {
-        return true;
+        var selection = new scribe.api.Selection();
+        return selection.getContaining(function (node) {
+          return insertImageCommand.validNodes.indexOf(node.nodeName) !== -1;
+        });
       };
 
       insertImageCommand.insert = function (url) {
