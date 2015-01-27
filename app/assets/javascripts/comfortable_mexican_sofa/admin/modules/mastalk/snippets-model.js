@@ -1,12 +1,12 @@
 define([
-  'text!snippet-collapsible',
-  'text!snippet-ticks',
-  'text!snippet-callout',
-  'text!snippet-add-action',
-  'text!snippet-video',
-  'text!snippet-action-item',
-  'text!snippet-table',
-  'text!snippet-bullets'
+  'text!snippets/collapsible.md',
+  'text!snippets/ticks.md',
+  'text!snippets/callout.md',
+  'text!snippets/add-action.md',
+  'text!snippets/video.md',
+  'text!snippets/action-item.md',
+  'text!snippets/table.md',
+  'text!snippets/bullets.md'
 ], function (
     collapsibleSnippet,
     ticksSnippet,

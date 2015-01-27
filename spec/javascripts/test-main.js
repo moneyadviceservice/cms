@@ -64,14 +64,7 @@ requirejs.config({
     'scribe-plugin-linkeditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-linkeditor',
     'scribe-plugin-image-inserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-image-inserter',
     'snippets-model': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets-model',
-    'snippet-collapsible': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md',
-    'snippet-ticks': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/ticks.md',
-    'snippet-callout': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/callout.md',
-    'snippet-add-action': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/add-action.md',
-    'snippet-video': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/video.md',
-    'snippet-action-item': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/action-item.md',
-    'snippet-table': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/table.md',
-    'snippet-bullets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets/bullets.md',
+    'snippets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
