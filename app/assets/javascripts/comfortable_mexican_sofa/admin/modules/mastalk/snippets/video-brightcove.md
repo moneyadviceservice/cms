@@ -1,1 +1,1 @@
-(@EMBED_CODE@)
+(@BRIGHTCOVE_ID@)
