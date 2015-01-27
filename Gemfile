@@ -44,6 +44,7 @@ group :development do
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
   gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

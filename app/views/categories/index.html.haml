@@ -6,21 +6,26 @@
       .l-panel-content__col
         = link_to 'Create category', new_category_path
 
-.l-panel-content
-  .l-constrained
-    .l-split-content
-      .l-split-content__col
-        %h2 Primary Site Navigation
-        %p These categories appear within the main navigation.
-        %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-sub-categories'}}
-          -@primary_navigation.each do |category|
-            %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
-              =link_to category.label, category_path(category)
 
-      .l-split-content__col
-        %h2 Secondary Site Navigation
-        %p These categories do not appear within the main navigation and are usually part of the footer.
-        %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-sub-categories'}}
-          - @secondary_navigation.each do |category|
-            %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
-              =link_to category.label, category_path(category)
+=form_tag('/admin/categories/reorder', method: 'put') do |f|
+  .l-panel-content
+    .l-constrained
+      .l-split-content
+        .l-split-content__col
+          %h2 Primary Site Navigation
+          %p These categories appear within the main navigation.
+          %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-sub-categories'}}
+            -@primary_navigation.each do |category|
+              %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
+                =link_to category.label, category_path(category)
+
+        .l-split-content__col
+          %h2 Secondary Site Navigation
+          %p These categories do not appear within the main navigation and are usually part of the footer.
+          %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-sub-categories'}}
+            - @secondary_navigation.each do |category|
+              %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
+                =link_to category.label, category_path(category)
+  = hidden_field_tag 'list_order_sub_categories', nil, data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-sub-categories'}
+  = submit_tag 'update order'
+

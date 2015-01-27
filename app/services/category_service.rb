@@ -15,13 +15,13 @@ class CategoryService
     end
   end
 
-  private
-
   def update_sub_categories
     list_order(:list_order_sub_categories).each_with_index do |category_id, index|
       Comfy::Cms::Category.find(category_id).update!(ordinal: index + 1)
     end
   end
+
+  private
 
   def update_page_order
     list_order(:list_order_pages).each_with_index do |page_id, index|
