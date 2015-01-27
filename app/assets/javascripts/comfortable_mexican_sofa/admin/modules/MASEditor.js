@@ -94,6 +94,8 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('ticks'));
     this.editorLib.editor.use(scribePluginMastalk('addAction'));
     this.editorLib.editor.use(scribePluginMastalk('actionItem'));
+    this.editorLib.editor.use(scribePluginMastalk('videoYoutube'));
+    this.editorLib.editor.use(scribePluginMastalk('videoBrightcove'));
     this.editorLib.editor.use(scribePluginMastalk('video'));
     this.editorLib.editor.use(scribePluginMastalk('callout'));
     this.editorLib.editor.use(scribePluginMastalk('table'));
