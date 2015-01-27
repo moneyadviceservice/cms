@@ -25,7 +25,9 @@
               %li.menu__item
                 =button_tag('Table', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'table', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
-                =button_tag('Video', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'video', dough_snippetinserter_context: 'markdown-snippets'})
+                =button_tag('YouTube Video', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'videoYoutube', dough_snippetinserter_context: 'markdown-snippets'})
+              %li.menu__item
+                =button_tag('Brightcove Video', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'videoBrightcove', dough_snippetinserter_context: 'markdown-snippets'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
@@ -74,7 +76,9 @@
               %li.menu__item
                 =button_tag('Table', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_table'})
               %li.menu__item
-                =button_tag('Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_video'})
+                =button_tag('YouTube Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_videoYoutube'})
+              %li.menu__item
+                =button_tag('Brightcove Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_videoBrightcove'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
 

@@ -3,7 +3,8 @@ define([
   'text!snippets/ticks.md',
   'text!snippets/callout.md',
   'text!snippets/add-action.md',
-  'text!snippets/video.md',
+  'text!snippets/video-youtube.md',
+  'text!snippets/video-brightcove.md',
   'text!snippets/action-item.md',
   'text!snippets/table.md',
   'text!snippets/bullets.md'
@@ -12,7 +13,8 @@ define([
     ticksSnippet,
     calloutSnippet,
     addActionSnippet,
-    videoSnippet,
+    videoYoutubeSnippet,
+    videoBrightcoveSnippet,
     actionItemSnippet,
     tableSnippet,
     bulletsSnippet
@@ -26,7 +28,8 @@ define([
     callout: calloutSnippet,
     table: tableSnippet,
     ticks: ticksSnippet,
-    video: videoSnippet,
+    videoYoutube: videoYoutubeSnippet,
+    videoBrightcove: videoBrightcoveSnippet,
     bullets: bulletsSnippet
   };
 
