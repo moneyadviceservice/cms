@@ -7,7 +7,7 @@ ComfortableMexicanSofa.configure do |config|
                      'www.moneyadviceservice.org.uk'
                    end
 
-  config.preview_domain = ENV['FRONTEND_URL'] || preview_domain
+  config.preview_domain = ENV.fetch('FRONTEND_URL', preview_domain)
   # Title of the admin area
   #   config.cms_title = 'ComfortableMexicanSofa CMS Engine'
 
