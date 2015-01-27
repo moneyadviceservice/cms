@@ -12,7 +12,7 @@ Rails.application.configure do
   config.assets.precompile += %w(application.js)
 
 # Snippets source files
-  config.assets.precompile += %w(comfortable_mexican_sofa/admin/modules/mastalk/snippets/collapsible.md)
+  config.assets.precompile += %w(comfortable_mexican_sofa/admin/modules/mastalk/snippets/*.md)
 
 # Editor JavaScript/snippet content
   config.assets.precompile += %w(mas-cms-editor/src/app/constants/constants.js
