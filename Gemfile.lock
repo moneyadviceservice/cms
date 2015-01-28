@@ -14,12 +14,12 @@ GIT
 
 GIT
   remote: https://github.com/moneyadviceservice/dough.git
-  revision: bc5f79550769ec436a1398bd378a8af78185651a
+  revision: 0ac46cd40174744f9e87ba97bf4311a094c77ad7
   specs:
-    dough-ruby (4.0.0)
+    dough-ruby (5.1.0)
       activesupport
       rails (>= 3.2)
-      sass-rails
+      sass-rails (~> 4.0.0)
 
 GIT
   remote: https://github.com/moneyadviceservice/mas-development_dependencies.git
@@ -445,7 +445,7 @@ DEPENDENCIES
   comfortable_mexican_sofa (~> 1.12.1.0)
   devise
   dotenv-rails
-  dough-ruby (~> 4.0)!
+  dough-ruby (~> 5.0)!
   factory_girl_rails (~> 4.0)
   faker
   google-api-client (= 0.7.1)
