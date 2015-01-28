@@ -1,36 +1,16 @@
-define([
-  'text!snippets/collapsible.md',
-  'text!snippets/ticks.md',
-  'text!snippets/callout.md',
-  'text!snippets/add-action.md',
-  'text!snippets/video-youtube.md',
-  'text!snippets/video-brightcove.md',
-  'text!snippets/action-item.md',
-  'text!snippets/table.md',
-  'text!snippets/bullets.md'
-], function (
-    collapsibleSnippet,
-    ticksSnippet,
-    calloutSnippet,
-    addActionSnippet,
-    videoYoutubeSnippet,
-    videoBrightcoveSnippet,
-    actionItemSnippet,
-    tableSnippet,
-    bulletsSnippet
-  ) {
+define([], function () {
   'use strict';
 
   var snippets = {
-    actionItem: actionItemSnippet,
-    addAction: addActionSnippet,
-    collapsible: collapsibleSnippet,
-    callout: calloutSnippet,
-    table: tableSnippet,
-    ticks: ticksSnippet,
-    videoYoutube: videoYoutubeSnippet,
-    videoBrightcove: videoBrightcoveSnippet,
-    bullets: bulletsSnippet
+    actionItem: '$action\r\n## Header\r\n$collapsable\r\n$why\r\n  ### Why?\r\n  Your \'Cash ISA allowance\r\n$why\r\n$how\r\n  ### How?\r\n  If you already have an ISA\r\n$how\r\n$collapsable\r\n$item',
+    addAction: '^[Help to Buy schemes FAQs](\/en\/articles\/help-to-buy-schemes-faqs)^',
+    bullets: '$bullet\r\n[%] point 1 [\/%]\r\n[%] point 2 [\/%]\r\n$point',
+    collapsible: '$=\r\n# Before you borrow\r\n=$\r\n\r\n$-\r\nFind out if you need to borrow money and whether you can afford it. Learn how to work out the true cost of borrowing.\r\n\r\nTaking control of debt\r\n\r\nWhere to get free debt advice, how to speak to the people you owe money to, and tips to help you pay back your debts in the right order.\r\n-$',
+    callout: '$~callout\r\n# Budgeting tips\r\nIn 1985, average first-time buyers needed a deposit of 5% to buy a home - in 2012, this had increased to 20%\r\n*Source: HMS Treasury*\r\n~$\r\n',
+    table: '| Equity loans | Mortgage guarantees\r\n|---|---\r\n | New-build properties | New-build and pre-owned properties\r\n| Minimum 5% deposit | Minimum 5% deposit',
+    ticks: '$yes-no\r\n[y] yes [\/y]\r\n[n] no [\/n]\r\n$end',
+    videoYoutube: '({EMBED_CODE})',
+    videoBrightcove: '(@BRIGHTCOVE_ID@)'
   };
 
   return {
