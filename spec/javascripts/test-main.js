@@ -55,6 +55,7 @@ requirejs.config({
     'TagManager': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/TagManager',
     'CharacterCounter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/CharacterCounter',
     'SnippetInserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/SnippetInserter',
+    'ListSorter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ListSorter',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
@@ -92,7 +93,8 @@ requirejs.config({
     'text': bowerPath + 'text/text',
     'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill',
     'rangy-core': bowerPath + 'rangy-official/rangy-core',
-    'rangy-selectionsaverestore': bowerPath + 'rangy-official/rangy-selectionsaverestore'
+    'rangy-selectionsaverestore': bowerPath + 'rangy-official/rangy-selectionsaverestore',
+    'html-sortable': bowerPath + 'html.sortable/dist/html.sortable'
   },
   shim : {
     'to-markdown' : {

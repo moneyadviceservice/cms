@@ -1,0 +1,34 @@
+// Sortable List
+
+// Styleguide Sortable List
+
+.sortable-list {
+  list-style: none;
+  padding: 0;
+  position: relative;
+}
+
+.sortable-list__item,
+.sortable-placeholder {
+  margin-bottom: 1px;
+  padding: 10px 10px 10px 40px;
+  position: relative;
+}
+
+.sortable-list__item {
+  background-color: $color-sortable-list-item-background;
+  counter-increment: item;
+  cursor: move;
+
+  &:before {
+    @include body(24,24);
+    content: counter(item);
+    font-weight: 700;
+    left: 15px;
+    position: absolute;
+  }
+}
+
+.sortable-placeholder {
+  min-height: 44px;
+}

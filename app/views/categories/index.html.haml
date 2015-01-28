@@ -1,0 +1,21 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        %h1 Category Manager
+      .l-panel-content__col
+
+.l-panel-content
+  .l-constrained
+    .l-split-content
+      .l-split-content__col
+        %h2 Primary Site Navigation
+        %p These categories appear within the main navigation.
+        - @primary_navigation.each do |category|
+          %p=link_to category.label, category_path(category)
+
+      .l-split-content__col
+        %h2 Secondary Site Navigation
+        %p These categories do not appear within the main navigation and are usually part of the footer.
+        - @secondary_navigation.each do |category|
+          %p=link_to category.label, category_path(category)
