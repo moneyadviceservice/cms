@@ -18,7 +18,7 @@ class CategoryImport
           navigation: category['navigation']
         )
       rescue ActiveRecord::RecordNotFound
-        puts "Can not find c1ategory #{category['public_id']}"
+        puts "Can not find category #{category['public_id']}"
       end
     end
   end
@@ -26,7 +26,8 @@ class CategoryImport
   private
 
   def create_parent_categories
-    %w(saving-and-investing homes-and-mortgages insurance tools-and-calculators calculators
+    %w(
+      saving-and-investing homes-and-mortgages insurance tools-and-calculators calculators
       comparison-tables letter-templates order-forms free-printed-guides videos news
       Partners partners-universal-credit-banks partners-banks-universal-credit
       frontline-guide-test partners-uc-banks our-debt-work interactive-timelines
@@ -34,8 +35,9 @@ class CategoryImport
       resources-for-professionals-supporting-young-people resources-for-professionals-supporting-parents
       research-and-toolkits-on-young-people-and-money benefits care-and-disability debt-and-borrowing
       budgeting-and-managing-money births-deaths-and-family cars-and-travel
-      work-pensions-and-retirement).each do |label|
-      Comfy::Cms::Category.find_or_create_by!(label: label, site_id: 1, categorized_type: "Comfy::Cms::Page")
+      work-pensions-and-retirement
+    ).each do |label|
+      Comfy::Cms::Category.find_or_create_by!(label: label, site_id: 1, categorized_type: 'Comfy::Cms::Page')
     end
   end
 
@@ -45,12 +47,10 @@ class CategoryImport
   end
 
   def label_for(old_parent_id)
-    begin
-      CSV.open("#{Rails.root}/lib/cms/categories.csv", headers: true).find do |category|
-        category['id'] == old_parent_id
-      end['public_id']
-    rescue => e
-      puts "#{old_parent_id} could not be found"
-    end
+    CSV.open("#{Rails.root}/lib/cms/categories.csv", headers: true).find do |category|
+      category['id'] == old_parent_id
+    end['public_id']
+  rescue
+    puts "#{old_parent_id} could not be found"
   end
 end

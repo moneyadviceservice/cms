@@ -4,7 +4,6 @@ FactoryGirl.define do
     sequence(:label) { |n| "default-#{n}" }
     sequence(:title_en) { |n| "default-title-en-#{n}" }
     sequence(:title_cy) { |n| "default-title-cy-#{n}" }
-
     categorized_type Comfy::Cms::Page
   end
 end
