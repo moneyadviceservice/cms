@@ -234,13 +234,27 @@ RSpec.describe Comfy::Cms::Page do
       expect(results.map(&:page_views)).to eq([200, 152, 100])
     end
 
-    context 'suppressed artictiles' do
+    context 'when articles have zero page views' do
+      before do
+        create :page, page_views: 1, position: 1
+        create :page, page_views: 0, position: 2
+        create :page, page_views: 0, position: 3
+      end
+
+      it 'does not return articles with zero page_views' do
+        results = Comfy::Cms::Page.most_popular(3)
+
+        expect(results.map(&:page_views)).to eq([1])
+      end
+    end
+
+    context 'when there are suppressed articles' do
       let!(:first_suppressed_page) { create :page, page_views: 200, suppress_from_links_recirculation: true }
       let!(:first_not_suppressed_page) { create :page, page_views: 1, suppress_from_links_recirculation: false }
       let!(:second_not_suppressed_page) { create :page, page_views: 150, suppress_from_links_recirculation: false }
       let!(:second_suppressed_page) { create :page, page_views: 50, suppress_from_links_recirculation: true }
 
-      it 'are ignores' do
+      it 'ignores them' do
         results = Comfy::Cms::Page.most_popular(3)
 
         expect(results).to eq([second_not_suppressed_page, first_not_suppressed_page])
