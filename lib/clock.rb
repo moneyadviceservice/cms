@@ -4,8 +4,10 @@ require './config/environment'
 require './lib/cms/update_page_views_task'
 
 module Clockwork
-  handler do |job|
-    puts "Running #{job}"
+  Rails.logger = Logger.new(ENV.fetch('LOG_FILE', STDOUT))
+
+  configure do |config|
+    config[:logger] = Rails.logger
   end
 
   every(1.day, 'update_page_views.job', at: '03:00') do
