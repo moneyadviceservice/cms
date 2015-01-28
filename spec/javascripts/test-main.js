@@ -64,7 +64,6 @@ requirejs.config({
     'scribe-plugin-linkeditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-linkeditor',
     'scribe-plugin-image-inserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/scribe/scribe-plugin-image-inserter',
     'snippets-model': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets-model',
-    'snippets': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/mastalk/snippets',
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',

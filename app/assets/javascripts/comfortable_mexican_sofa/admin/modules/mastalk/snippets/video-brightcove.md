@@ -1,1 +1,0 @@
-(@BRIGHTCOVE_ID@)

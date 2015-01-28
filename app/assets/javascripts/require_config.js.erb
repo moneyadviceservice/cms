@@ -1,6 +1,5 @@
 //= require jquery
 //= require jquery_ujs
-//= require_tree ./comfortable_mexican_sofa/admin/modules/mastalk/snippets
 
 <% def requirejs_path(asset) ; javascript_path(asset).sub(/.js\z/, ''); end %>
 
@@ -56,7 +55,6 @@ requirejs.config({
 
     // Snippets
     'snippets-model': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/mastalk/snippets-model") %>',
-    'snippets': '<%= requirejs_path("/assets/comfortable_mexican_sofa/admin/modules/mastalk/snippets") %>',
 
     // Dough base modules
     'componentLoader': "<%= requirejs_path('dough/assets/js/lib/componentLoader') %>",
