@@ -12,6 +12,8 @@ class Comfy::Cms::Category < ActiveRecord::Base
     self.class.where(parent_id: id).reorder(:ordinal)
   end
 
+  alias :contents :child_categories
+
   def parents
     [find_parents].flatten.compact.reverse
   end

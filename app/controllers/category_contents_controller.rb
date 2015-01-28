@@ -1,10 +1,8 @@
-class CategoryContentsController < Comfy::Cms::ContentController
+class CategoryContentsController < ApplicationController
   skip_before_action :load_cms_page
 
   def index
-    # @categories = Comfy::Cms::Categories.all
-    respond_to do |format|
-      format.json { render json: {} }
-    end
+    @primary_navigation, @secondary_navigation = Comfy::Cms::Category.navigation_categories
+    render json: @primary_navigation, scope: params[:locale].to_sym
   end
 end
