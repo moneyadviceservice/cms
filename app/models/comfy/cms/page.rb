@@ -5,6 +5,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
 
   scope :most_popular, (lambda do |number_of_items|
     unscoped
+      .where.not(page_views: 0)
       .order('page_views desc')
       .ignore_suppressed
       .limit(number_of_items)
