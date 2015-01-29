@@ -7,10 +7,10 @@ class UpdatePageViewsTask
 
     Comfy::Cms::Page.all_english_articles.each do |article|
       begin
-        logger.info("Updating article: #{article.id}")
+        logger.info("Updating article: #{article.id} : #{article.slug}")
         article.update_page_views(google_analytics_results)
       rescue
-        logger.error("Could not update article: #{article.id} (#{$ERROR_INFO.message})")
+        logger.error("Could not update article: #{article.id} : #{article.slug} : (#{$ERROR_INFO.message})")
       end
     end
     logger.info('Completed UpdatePageViewsTask')
