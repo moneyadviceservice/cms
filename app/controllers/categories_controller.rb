@@ -14,16 +14,33 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
     redirect_to action: :show
   end
 
+  def new
+    @category = Comfy::Cms::Category.new
+  end
+
+  def create
+    @category = Comfy::Cms::Category.new(category_params)
+    if @category.save
+      redirect_to category_path(@category)
+    else
+      render :new
+    end
+  end
+
   private
 
   def category_params
     params.require(:comfy_cms_category).permit(
+      :label,
+      :parent_id,
       :title_en,
       :title_cy,
       :description_en,
       :description_cy,
       :ordinal,
-      :navigation
+      :navigation,
+      :site_id,
+      :categorized_type
     )
   end
 

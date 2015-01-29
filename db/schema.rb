@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150121145709) do
+ActiveRecord::Schema.define(version: 20150129120103) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20150121145709) do
     t.string  "title_tag_en"
     t.string  "title_tag_cy"
     t.integer "parent_id"
-    t.integer "ordinal"
+    t.integer "ordinal",          default: 999
     t.boolean "navigation"
     t.string  "image"
     t.string  "preview_image"
