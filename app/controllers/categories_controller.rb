@@ -1,5 +1,5 @@
 class CategoriesController < Comfy::Admin::Cms::BaseController
-  before_action :find_category, only: [:show, :update]
+  before_action :find_category, only: [:show, :update, :destroy]
 
   def index
     @primary_navigation, @secondary_navigation = Comfy::Cms::Category.navigation_categories
@@ -25,6 +25,11 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
     else
       render :new
     end
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to action: :index
   end
 
   private
