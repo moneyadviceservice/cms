@@ -21,8 +21,8 @@ module World
     end
 
     def cms_categories
-      self.categories ||= [cms_site.categories.create!(label: identifier, categorized_type: "Comfy::Cms::Page")]
-      self.categories << cms_site.categories.create!(label: identifier, categorized_type: "Comfy::Cms::Page") unless self.categories.length > 1
+      self.categories ||= [create(:category, site: cms_site, label: identifier)]
+      self.categories << create(:category, site: cms_site, label: identifier) unless self.categories.length > 1
       self.categories
     end
 
