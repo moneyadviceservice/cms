@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
   # Make sure this routeset is defined last
   get '/(*locale)/categories(.:format)' => 'category_contents#index'
+  get '/(*locale)/categories/(*id)(.:format)' => 'category_contents#show'
   get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
   get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
   comfy_route :cms, sitemap: false

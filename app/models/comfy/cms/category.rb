@@ -2,7 +2,7 @@ require ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms'
 
 class Comfy::Cms::Category < ActiveRecord::Base
   validates_presence_of :label, :title_en, :title_cy
-  validates_uniqueness_of :label, :title_en, :title_cy
+  validates_uniqueness_of :label, :title_en, :title_cy, scope: :site_id
 
   def self.navigation_categories
     where(parent_id: nil).reorder(:ordinal).partition(&:navigation?)
@@ -11,8 +11,6 @@ class Comfy::Cms::Category < ActiveRecord::Base
   def child_categories
     self.class.where(parent_id: id).reorder(:ordinal)
   end
-
-  alias :contents :child_categories
 
   def parents
     [find_parents].flatten.compact.reverse
