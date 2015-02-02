@@ -2,7 +2,7 @@ module Cms
   module HippoImporter
     class CorporatePage < HippoImporter::Base
       def hippo_type
-        'contentauthoringwebsite:Guide'
+        'contentauthoringwebsite:Static'
       end
 
       def layout
