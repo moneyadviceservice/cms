@@ -38,7 +38,7 @@ define([
   };
 
   MirrorInputValueProto._handleTriggerKeyup = function() {
-    this.$targetInput.val(this.$triggerInput.val());
+    this.$targetInput.val(this.$triggerInput.val()).trigger('input');
   };
 
   MirrorInputValueProto._handleTargetKeyup = function(e) {
