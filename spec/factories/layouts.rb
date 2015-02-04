@@ -19,6 +19,10 @@ FactoryGirl.define do
       identifier 'article'
     end
 
+    trait :corporate do
+      identifier 'corporate'
+    end
+
     trait :nested do
       label 'Nested Layout'
       identifier 'nested'

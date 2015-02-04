@@ -18,7 +18,22 @@ module API
     end
 
     def page
-      @page ||= current_site.pages.find_by(slug: params[:slug])
+      @page ||= if page_type.present? && page_type_supported?
+                  current_site.pages
+                    .published
+                    .joins(:layout)
+                    .find_by(slug: params[:slug], 'comfy_cms_layouts.identifier' => page_type)
+                else
+                  current_site.pages.find_by(slug: params[:slug])
+                end
+    end
+
+    def page_type_supported?
+      page_type.in?(current_site.layouts.pluck(:identifier))
+    end
+
+    def page_type
+      @page_type ||= params[:page_type].to_s.singularize
     end
   end
 end
