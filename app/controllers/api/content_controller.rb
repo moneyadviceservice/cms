@@ -1,19 +1,24 @@
 module API
-  class ContentController < Comfy::Cms::ContentController
+  class ContentController < APIController
+    before_action :find_site, only: [:show, :preview]
+    before_action :find_page, only: [:show, :preview]
+
     def show
-      respond_with(@cms_page) do |format|
-        format.json { render json: @cms_page }
-        format.html { render_html }
-      end
+      render json: page
     end
 
     def preview
-      @cms_page = @cms_site.pages.with_slug("#{params[:cms_path]}")
+      render json: page, scope: 'preview'
+    end
 
-      respond_with(@cms_page) do |format|
-        format.json { render json: @cms_page, scope: 'preview' }
-        format.html { render_html }
-      end
+    private
+
+    def find_page
+      render json: { message: 'Page not found' }, status: 404 if page.blank?
+    end
+
+    def page
+      @page ||= current_site.pages.find_by(slug: params[:slug])
     end
   end
 end

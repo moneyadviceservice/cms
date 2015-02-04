@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
-    get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
+    get '/:locale/articles/(*slug)(.:format)' => 'content#show', as: 'content'
   end
 
   comfy_route :cms, sitemap: false
