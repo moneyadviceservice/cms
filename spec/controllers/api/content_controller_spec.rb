@@ -42,6 +42,30 @@ RSpec.describe API::ContentController, type: :request do
       end
     end
 
+    context 'when does not pass any page type (API backwards compatibility)' do
+      let(:article_url) { '/en/borrow' }
+
+      it 'renders article resource' do
+        expect(response_body).to include(label: 'Borrow', slug: 'borrow')
+      end
+
+      it 'returns successful response' do
+        expect(response.status).to be 200
+      end
+    end
+
+    context 'when does not pass any page type and slug' do
+      let(:article_url) { '/en' }
+
+      it 'renders error message' do
+        expect(response_body).to eq(message: 'Page not found')
+      end
+
+      it 'responds not found' do
+        expect(response.status).to be 404
+      end
+    end
+
     context 'when inexistent site' do
       let(:article_url) { '/br/articles/borrow' }
 
@@ -63,6 +87,18 @@ RSpec.describe API::ContentController, type: :request do
 
       it 'responds not found' do
         expect(response.status).to be 404
+      end
+    end
+
+    context 'when inexistent page type' do
+      let(:article_url) { '/en/inexistent_page_type/borrow' }
+
+      it 'renders error message' do
+        expect(response_body).to eq(message: 'Page type "inexistent_page_type" not supported')
+      end
+
+      it 'responds bad request' do
+        expect(response.status).to be 400
       end
     end
   end

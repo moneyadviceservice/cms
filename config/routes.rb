@@ -53,5 +53,8 @@ Rails.application.routes.draw do
     get '/:locale/:page_type/(*slug)(.:format)' => 'content#show', as: 'content'
   end
 
+  # Overwriten comfy route to hit the application.
+  get '/(*locale)(.:format)' => 'api/content#show'
+
   comfy_route :cms, sitemap: false
 end
