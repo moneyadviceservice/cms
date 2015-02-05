@@ -47,8 +47,8 @@ Rails.application.routes.draw do
 
   # Make sure this routeset is defined last
   namespace :api, path: '/' do
-    get '/(*locale)/categories(.:format)' => 'category_contents#index'
-    get '/(*locale)/categories/(*id)(.:format)' => 'category_contents#show'
+    get '/:locale/categories(.:format)' => 'category_contents#index'
+    get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
     get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
   end
