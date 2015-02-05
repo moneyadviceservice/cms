@@ -17,7 +17,7 @@ describe CategorySerializer do
   subject { described_class.new(category, scope: scope) }
 
   context 'english' do
-    let(:scope) { :en }
+    let(:scope) { 'en' }
     let(:expected_en) do
       {
         id: 'test',
@@ -37,7 +37,7 @@ describe CategorySerializer do
   end
 
   context 'welsh' do
-    let(:scope) { :cy }
+    let(:scope) { 'cy' }
     let(:expected_cy) do
       {
         id: 'test',
