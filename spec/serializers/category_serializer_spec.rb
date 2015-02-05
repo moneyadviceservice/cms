@@ -29,8 +29,6 @@ describe CategorySerializer do
       }
     end
 
-    let(:child_categories) { nil }
-
     it 'returns the contents of the category' do
       expect(subject.as_json).to eq(expected_en)
     end
