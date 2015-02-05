@@ -5,3 +5,7 @@
 .js-html-editor {
   @extend %is-hidden;
 }
+
+.is-hidden {
+  @extend %is-hidden;
+}
