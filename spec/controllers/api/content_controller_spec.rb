@@ -137,9 +137,6 @@ RSpec.describe API::ContentController, type: :request do
     end
   end
 
-  describe 'GET /:locale/action_plans/:slug' do
-  end
-
   describe 'GET /preview/:locale/:slug' do
     let!(:page) { create(:page, label: 'Borrow', slug: 'borrow', site: site) }
 
