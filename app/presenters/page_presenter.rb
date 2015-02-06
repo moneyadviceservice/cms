@@ -2,6 +2,14 @@ class PagePresenter < Presenter
   include ActionView::Helpers::FormTagHelper
   attr_accessor :output_buffer
 
+  def page_type_url
+    if identifier
+      identifier.pluralize
+    else
+      'articles'
+    end
+  end
+
   def language_input_tag(language, options: { class: 'toggle__control' })
     if same_language?(language)
       checked = true

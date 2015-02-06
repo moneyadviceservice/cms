@@ -5,7 +5,7 @@
 - content_for :right_column do
   #form-save.box
     %label.checkbox-inline
-      %input{:type => 'checkbox'}
+      %input{ type: 'checkbox' }
       = ::Comfy::Cms::Page.human_attribute_name(:is_published)
     %button.btn.btn-sm.btn-primary.pull-right
   = render 'comfy/admin/cms/files/index'
@@ -35,7 +35,7 @@
         %span.form__hint>
           in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/
           %span{data: {dough_urlformatter_url_display: true}}
-            articles/#{@page.slug}
+            #{presenter.page_type_url}/#{@page.slug}
 
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
@@ -103,7 +103,7 @@
 
       %span.nav-article__item.nav-article__item--right
         - unless @page.unsaved?
-          = link_to t('.preview'), PagePresenter.new(@page).preview_url, :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
+          = link_to t('.preview'), presenter.preview_url, :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
 
       %span.nav-article__item.nav-article__item--right
         %span.button-menu
