@@ -5,8 +5,8 @@ namespace :b2b do
 
     site = Comfy::Cms::Site.first
     layout = site.layouts.find_or_initialize_by(
-      label: 'Corporate Article',
-      identifier: 'corporate_article',
+      label: 'Corporate',
+      identifier: 'corporate',
       content: "{{ cms:page:content:rich_text }}\n"
     )
 
