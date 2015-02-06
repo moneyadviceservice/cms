@@ -1,6 +1,9 @@
 require ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'page.rb')
+require Rails.root.join('lib', 'comfortable_mexican_sofa', 'extensions', 'is_taggable')
 
 class Comfy::Cms::Page < ActiveRecord::Base
+  include ComfortableMexicanSofa::IsTaggable::ModelMethods
+
   scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
 
   scope :most_popular, (lambda do |number_of_items|

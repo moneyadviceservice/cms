@@ -1,25 +1,17 @@
 module ComfortableMexicanSofa
+  # Module to enable association of keywords to a model.
+  # Comfy already define #tags and #tags= methods in some models, so let's call :keywords to the Tag associated
+  # instances of a model to avoid naming collisions!!!
   module IsTaggable
-    module DSL
-      extend ActiveSupport::Concern
-
-      module ClassMethods
-        # Macro to enable association of keywords to a model.
-        # Comfy already define #tags and #tags= methods in some models, so let's call :keywords to the Tag associated
-        # instances of a model to avoid naming collisions!!!
-        # Creates the appropriate AR associations, scopes and instance methods.
-        def is_taggable
-          include ComfortableMexicanSofa::IsTaggable::ModelMethods
-        end
-      end
-    end
-
+    # Creates the appropriate AR associations, scopes and instance methods.
+    #
     module ModelMethods
       extend ActiveSupport::Concern
 
       included do
         # -- Virtual Attributes -----------------------------------------------
-        attr_accessor :is_mirrored_with_taggings
+        attr_accessor :mirrored_with_taggings
+        alias_method :mirrored_with_taggings?, :mirrored_with_taggings
 
         # -- Relationships ----------------------------------------------------
         has_many :taggings, as: :taggable, dependent: :destroy, validate: false
@@ -52,7 +44,7 @@ module ComfortableMexicanSofa
 
       # Method to reset the tags of taggable item based in a form params.
       def keywords_attributes=(new_keyword_ids)
-        self.is_mirrored_with_taggings = true
+        self.mirrored_with_taggings = true
         assign_new_keywords!(new_keyword_ids: new_keyword_ids)
       end
 
@@ -68,7 +60,7 @@ module ComfortableMexicanSofa
 
       # Associates a tag to this item.
       def keyword!(keyword_ids:)
-        action = is_mirrored_with_taggings ? :build : :create
+        action = mirrored_with_taggings? ? :build : :create
         keyword_ids.each { |id| taggings.send(action, tag_id: id) }
       end
 
@@ -82,12 +74,12 @@ module ComfortableMexicanSofa
       # Synchorize the taggings of this item with the ones in its mirrors. So all of them
       # are associated to the same tags
       def sync_mirrors_with_taggings
-        if is_mirrored_with_taggings
-          mirrors.each { |mirror| mirror.assign_new_keywords!(new_keyword_ids: keywords.map(&:id)) }
+        return unless mirrored_with_taggings?
+
+        mirrors.each do |mirror|
+          mirror.assign_new_keywords!(new_keyword_ids: keyword_ids)
         end
       end
     end
   end
 end
-
-ActiveRecord::Base.send(:include, ComfortableMexicanSofa::IsTaggable::DSL)

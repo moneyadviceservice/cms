@@ -1,24 +1,27 @@
 # encoding: utf-8
 
 ComfortableMexicanSofa.configure do |config|
-    config.preview_domain = ENV['FRONTEND_URL'] || (ENV['MAS_ENVIRONMENT'] == "qa" ?
-       "qa.test.moneyadviceservice.org.uk" : "www.moneyadviceservice.org.uk")
+  preview_domain = if ENV['MAS_ENVIRONMENT'] == 'qa'
+                     'qa.test.moneyadviceservice.org.uk'
+                   else
+                     'www.moneyadviceservice.org.uk'
+                   end
 
+  config.preview_domain = ENV.fetch('FRONTEND_URL', preview_domain)
   # Title of the admin area
   #   config.cms_title = 'ComfortableMexicanSofa CMS Engine'
 
   # Controller that is inherited from CmsAdmin::BaseController
-    config.base_controller = 'ApplicationController'
+  config.base_controller = 'ApplicationController'
 
   # Module responsible for authentication. You can replace it with your own.
   # It simply needs to have #authenticate method. See http_auth.rb for reference.
-    config.admin_auth = 'Cms::DeviseAuth'
-
+  config.admin_auth = 'Cms::DeviseAuth'
 
   # Module responsible for public authentication. Similar to the above. You also
   # will have access to @cms_site, @cms_layout, @cms_page so you can use them in
   # your logic. Default module doesn't do anything.
-    config.public_auth = 'ComfortableMexicanSofa::DummyAuth'
+  config.public_auth = 'ComfortableMexicanSofa::DummyAuth'
 
   # When arriving at /cms-admin you may chose to redirect to arbirtary path,
   # for example '/cms-admin/users'
@@ -30,7 +33,7 @@ ComfortableMexicanSofa.configure do |config|
   # filesystem see: http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/Filesystem
   # If you are using S3 and HTTPS, pass :s3_protocol => '' to have URLs that use the protocol of the page
   #   config.upload_file_options = {:url => '/system/:class/:id/:attachment/:style/:filename'}
-  config.upload_file_options = { :styles => { cms_medium: '160x160' } }
+  config.upload_file_options = { styles: { cms_medium: '160x160' } }
 
   # Sofa allows you to setup entire site from files. Database is updated with each
   # request (if necessary). Please note that database entries are destroyed if there's
@@ -59,7 +62,7 @@ ComfortableMexicanSofa.configure do |config|
 
   # Locale definitions. If you want to define your own locale merge
   # {:locale => 'Locale Title'} with this.
-  #   config.locales = {:en => 'English', :es => 'Español'}
+  #   config.locales = { en: 'English' }
 
   # Admin interface will respect the locale of the site being managed. However you can
   # force it to English by setting this to `:en`
@@ -106,7 +109,3 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 #
 # To create a bcrypt hash:
 #   BCrypt::Password.create('password').to_s
-
-# Enable page tagging!
-require_relative '../../lib/comfortable_mexican_sofa/extensions/is_taggable'
-Comfy::Cms::Page.send(:is_taggable)
