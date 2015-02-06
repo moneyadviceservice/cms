@@ -32,10 +32,9 @@
         = form.label :slug
       .form__input-wrapper
         = form.text_field :slug, class: 'form__input', data: {'dough-urlformatter-slug' => '', slug: true}
-        %span.form__hint>
-          in #{ComfortableMexicanSofa.config.preview_domain}/#{@site.label}/
-          %span{data: {dough_urlformatter_url_display: true}}
-            #{presenter.page_type_url}/#{@page.slug}
+        %span.form__hint
+          in
+          = page_slug(@site.label, @page.slug, presenter.page_type_url)
 
     = render 'comfy/admin/cms/partials/page_form_inner', form: form
     = render 'comfy/admin/cms/categories/form',          form: form
