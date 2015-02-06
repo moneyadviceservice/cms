@@ -28,7 +28,7 @@ describe PagesHelper do
     let(:expected) { 'www.moneyadviceservice.org.uk/en/<span data-dough-urlformatter-url-display="true">articles/slug</span>' }
 
     it 'returns an article URL' do
-      expect(helper.page_slug(site, page, presenter)).to eq(expected)
+      expect(helper.page_slug(site, presenter, page)).to eq(expected)
     end
   end
 end
