@@ -70,7 +70,7 @@ RSpec.describe API::ContentController, type: :request do
       let(:article_url) { '/br/articles/borrow' }
 
       it 'renders error message' do
-        expect(response_body).to eq(message: 'Site not found')
+        expect(response_body).to eq(message: 'Site "br" not found')
       end
 
       it 'responds not found' do
