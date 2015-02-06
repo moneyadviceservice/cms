@@ -13,11 +13,11 @@ module PagesHelper
     end
   end
 
-  def page_slug(site_label, slug, page_type_url)
+  def page_slug(site_label, page_type_url, slug)
     [
-      [preview_domain] <<
-      [site_label] <<
-      [slug_tag(page_type_url, slug)]
+      preview_domain,
+      site_label,
+      slug_tag(page_type_url, slug)
     ].join('/').html_safe
   end
 
