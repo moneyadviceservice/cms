@@ -25,7 +25,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :categories
+    resources :categories do
+      collection { put :reorder }
+    end
 
     resources :tags, only: [:index, :create] do
       collection do
@@ -44,8 +46,12 @@ Rails.application.routes.draw do
   comfy_route :cms_admin, path: '/admin'
 
   # Make sure this routeset is defined last
+  namespace :api, path: '/' do
+    get '/:locale/categories(.:format)' => 'category_contents#index'
+    get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
+    get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
+    get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
+  end
 
-  get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
-  get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
   comfy_route :cms, sitemap: false
 end

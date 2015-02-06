@@ -9,6 +9,8 @@
       = f.text_field :description_cy
       = f.hidden_field :site_id, value: 1
       = f.hidden_field :categorized_type, value: 'Comfy::Cms::Page'
+      = hidden_field_tag 'list_order_sub_categories', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-sub-categories'}
+      = hidden_field_tag 'list_order_pages', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages'}
 
       .form-group
         .form__input-wrapper

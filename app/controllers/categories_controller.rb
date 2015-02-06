@@ -32,6 +32,11 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
     redirect_to action: :index
   end
 
+  def reorder
+    CategoryService.new(Comfy::Cms::Category.new, {}, params).update_sub_categories
+    redirect_to action: :index
+  end
+
   private
 
   def category_params

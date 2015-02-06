@@ -41,9 +41,9 @@ class CategoryImport
       resources-for-professionals-supporting-young-people resources-for-professionals-supporting-parents
       research-and-toolkits-on-young-people-and-money benefits care-and-disability debt-and-borrowing
       budgeting-and-managing-money births-deaths-and-family cars-and-travel
-      work-pensions-and-retirement
-    ).each do |label|
-      Comfy::Cms::Category.find_or_create_by!(label: label, site_id: 1, categorized_type: 'Comfy::Cms::Page')
+      work-pensions-and-retirement).each do |label|
+      category = Comfy::Cms::Category.find_or_initialize_by(label: label, site_id: 1, categorized_type: "Comfy::Cms::Page")
+      category.save(validate: false)
     end
   end
 
