@@ -20,4 +20,17 @@ describe PagesHelper do
       expect(Tester.new.dough_component(new_record)).to eq(expected)
     end
   end
+
+  context 'url preview' do
+    let(:site) { 'en' }
+    let(:page) { 'slug' }
+    let(:presenter) { 'articles' }
+    let(:expected) do
+      'localhost:5000/en/<span data-dough-urlformatter-url-display="true">articles/slug</span>'
+    end
+
+    it 'returns an article URL' do
+      expect(helper.page_slug(site, presenter, page)).to eq(expected)
+    end
+  end
 end

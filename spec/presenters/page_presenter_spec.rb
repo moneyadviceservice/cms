@@ -3,6 +3,35 @@ RSpec.describe PagePresenter do
     described_class.new(object)
   end
 
+  describe '#page_type_url' do
+    let(:page_type_url) { presenter.page_type_url }
+    let(:object) { create(:page, layout: layout) }
+
+    context 'when record persisted' do
+      let(:layout) { create(:layout, identifier: 'action_plan') }
+
+      it 'returns the layout identifier' do
+        expect(page_type_url).to eq('action_plans')
+      end
+    end
+
+    context 'when new record' do
+      let(:object) { Comfy::Cms::Page.new }
+
+      it 'returns the layout identifier' do
+        expect(page_type_url).to eq('articles')
+      end
+    end
+
+    context 'when "corporate" identifier' do
+      let(:layout) { create(:layout, identifier: 'corporate') }
+
+      it 'returns singular' do
+        expect(page_type_url).to eq('corporate')
+      end
+    end
+  end
+
   describe '#language_input_tag' do
     subject(:language_input_tag) do
       presenter.language_input_tag(language)

@@ -4,6 +4,8 @@ require Rails.root.join('lib', 'comfortable_mexican_sofa', 'extensions', 'is_tag
 class Comfy::Cms::Page < ActiveRecord::Base
   include ComfortableMexicanSofa::IsTaggable::ModelMethods
 
+  delegate :identifier, to: :layout, allow_nil: true
+
   scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
 
   scope :most_popular, (lambda do |number_of_items|

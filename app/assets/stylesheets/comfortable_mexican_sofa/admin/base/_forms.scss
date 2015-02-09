@@ -192,6 +192,10 @@ legend {
   padding-right: 25px;
 }
 
+.form__hint {
+  margin-top: $baseline-unit;
+}
+
 select.form-control {
   display: block;
   width: $form-element-width;

@@ -57,6 +57,7 @@ requirejs.config({
     'SnippetInserter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/SnippetInserter',
     'ListSorter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ListSorter',
     'WordCount': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/WordCount',
+    'URLFormatter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLFormatter',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
