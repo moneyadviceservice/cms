@@ -28,7 +28,7 @@ module PagesHelper
   end
 
   def slug_tag(page_type_url, slug)
-    content_tag(:span, {data: {dough_urlformatter_url_display: true}}) do
+    content_tag(:span, data: { dough_urlformatter_url_display: true }) do
       "#{page_type_url}/#{slug}"
     end
   end
