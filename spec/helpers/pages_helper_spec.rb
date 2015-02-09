@@ -22,11 +22,15 @@ describe PagesHelper do
   end
 
   context 'url preview' do
+    before do
+      allow(helper).to receive(:preview_domain).and_return('example.com')
+    end
+
     let(:site) { 'en' }
     let(:page) { 'slug' }
     let(:presenter) { 'articles' }
     let(:expected) do
-      'localhost:5000/en/<span data-dough-urlformatter-url-display="true">articles/slug</span>'
+      'example.com/en/<span data-dough-urlformatter-url-display="true">articles/slug</span>'
     end
 
     it 'returns an article URL' do
