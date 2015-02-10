@@ -4,7 +4,7 @@ module API
     # before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
     def show
-      page_slug = slug.present? ? slug : page_type
+      page_slug = slug.present? ? slug : params[:page_type]
       page = current_site.pages.published.find_by(slug: page_slug)
 
       render_page(page)
