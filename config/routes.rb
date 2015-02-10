@@ -49,9 +49,12 @@ Rails.application.routes.draw do
   namespace :api, path: '/' do
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
-    get '/preview(/*cms_path)(.:format)' => 'content#preview', as: 'preview_content'
-    get '/(*cms_path)(.:format)' => 'content#show', as: 'content'
+    get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
+    get '/:locale/:page_type/(*slug)(.:format)' => 'content#show', as: 'content'
   end
+
+  # Overwriten comfy route to hit the application.
+  get '/(*locale)(.:format)' => 'api/content#show'
 
   comfy_route :cms, sitemap: false
 end

@@ -12,8 +12,9 @@ Then(/^I should see the Draft Article$/) do
   expect(JSON.parse(preview_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to eq('test')
 end
 
-When(/^I should not be able to see live draft article$/) do
-  expect{live_page.load(locale: cms_site.label, slug: cms_page.slug)}.to raise_error
+Then(/^I should not be able to see live draft article$/) do
+  live_page.load(locale: cms_site.label, slug: cms_page.slug)
+  expect(JSON.load(live_page.text).symbolize_keys).to eq(message: 'Page not found')
 end
 
 Given(/^I have an articles with unpublished changes$/) do
