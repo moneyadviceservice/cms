@@ -5,6 +5,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
   include ComfortableMexicanSofa::IsTaggable::ModelMethods
 
   delegate :identifier, to: :layout, allow_nil: true
+  alias_method :translations, :mirrors
 
   scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
 

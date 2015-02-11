@@ -6,6 +6,7 @@ class PageSerializer < ActiveModel::Serializer
              :layout_identifier, :related_content
 
   has_many :blocks, serializer: BlockSerializer
+  has_many :translations, serializer: PageTranslationSerializer
 
   def related_content
     {
