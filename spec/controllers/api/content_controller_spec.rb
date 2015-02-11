@@ -1,6 +1,6 @@
 RSpec.describe API::ContentController, type: :request do
   let!(:site) { create(:site, path: 'en', locale: 'en', is_mirrored: true) }
-  let!(:welsh) { create(:site, :welsh, is_mirrored: true, path: 'cy') }
+  let!(:welsh) { create(:site, :welsh, is_mirrored: true, path: 'cy', locale: 'cy') }
   let(:response_body) { JSON.load(response.body).symbolize_keys }
 
   before do
@@ -15,7 +15,7 @@ RSpec.describe API::ContentController, type: :request do
     end
 
     before do
-      page.mirrors.first.update(label: 'Benthyciad', slug: 'benthyciad')
+      page.translation.update(label: 'Benthyciad', slug: 'benthyciad')
       get article_url
     end
 

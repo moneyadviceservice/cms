@@ -48,6 +48,10 @@ class Comfy::Cms::Page < ActiveRecord::Base
       .reorder('comfy_cms_categorizations.ordinal ASC')
   end
 
+  def translation(locale = :cy)
+    mirrors.find { |page| page.site.locale == locale.to_s }
+  end
+
   def update_page_views(analytics)
     matching_analytic = analytics.find { |analytic| analytic[:label] == slug }
     new_page_views = matching_analytic.present? ? matching_analytic[:page_views] : 0
