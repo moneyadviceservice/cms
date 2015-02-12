@@ -1,9 +1,3 @@
 module ReverseMarkdown
-  def self.site=(site)
-    @@site = site
-  end
-
-  def self.site
-    @@site
-  end
+  cattr_accessor :site, :record_id
 end
