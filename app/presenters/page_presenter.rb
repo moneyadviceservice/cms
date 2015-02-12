@@ -40,7 +40,7 @@ class PagePresenter < Presenter
 
   def preview_url
     preview_domain = ComfortableMexicanSofa.config.preview_domain
-    "#{url_scheme}#{preview_domain}/#{site.label}/articles/#{slug}/preview"
+    "#{url_scheme}#{preview_domain}/#{site.label}/#{page_type_url}/#{slug}/preview"
   end
 
   private

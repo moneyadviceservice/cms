@@ -147,15 +147,42 @@ RSpec.describe PagePresenter do
 
   describe '#preview_url' do
     let(:domain) { 'qa.contento.com' }
-    let(:object) { double(site: double(label: 'en'), slug: 'investing') }
 
     before do
       allow(presenter).to receive(:url_scheme).and_return('http://')
     end
 
-    it 'returns the preview domain and site label with the slug' do
-      allow(ComfortableMexicanSofa.config).to receive(:preview_domain).and_return(domain)
-      expect(presenter.preview_url).to eq('http://qa.contento.com/en/articles/investing/preview')
+    context 'when article' do
+      let(:object) do
+        double(site: double(label: 'en'), slug: 'investing', identifier: 'article')
+      end
+
+      it 'returns the preview domain and site label with the slug' do
+        allow(ComfortableMexicanSofa.config).to receive(:preview_domain).and_return(domain)
+        expect(presenter.preview_url).to eq('http://qa.contento.com/en/articles/investing/preview')
+      end
+    end
+
+    context 'when corporate' do
+      let(:object) do
+        double(site: double(label: 'en'), slug: 'investing', identifier: 'corporate')
+      end
+
+      it 'returns the preview domain and site label, "corporate" as page type with the slug' do
+        allow(ComfortableMexicanSofa.config).to receive(:preview_domain).and_return(domain)
+        expect(presenter.preview_url).to eq('http://qa.contento.com/en/corporate/investing/preview')
+      end
+    end
+
+    context 'when page does not have type' do
+      let(:object) do
+        double(site: double(label: 'en'), slug: 'investing', identifier: nil)
+      end
+
+      it 'returns the preview domain and site label, "articles" as page type with the slug' do
+        allow(ComfortableMexicanSofa.config).to receive(:preview_domain).and_return(domain)
+        expect(presenter.preview_url).to eq('http://qa.contento.com/en/articles/investing/preview')
+      end
     end
   end
 end

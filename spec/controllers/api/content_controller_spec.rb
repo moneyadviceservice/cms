@@ -93,8 +93,6 @@ RSpec.describe API::ContentController, type: :request do
     context 'when inexistent page type' do
       let(:article_url) { '/en/inexistent_page_type/borrow' }
 
-      before { pending }
-
       it 'renders error message' do
         expect(response_body).to eq(message: 'Page type "inexistent_page_type" not supported')
       end
@@ -129,12 +127,12 @@ RSpec.describe API::ContentController, type: :request do
     context 'when "article" page' do
       let(:page_url) { '/en/corporate/borrow' }
 
-      it 'renders corporate page' do
-        expect(response_body).to include(slug: 'borrow')
+      it 'responds page not found' do
+        expect(response_body).to eq(message: 'Page not found')
       end
 
-      it 'responds successfully' do
-        expect(response.status).to be 200
+      it 'responds not found' do
+        expect(response.status).to be 404
       end
     end
   end

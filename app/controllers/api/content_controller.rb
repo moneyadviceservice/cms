@@ -1,11 +1,17 @@
 module API
   class ContentController < APIController
     before_action :find_site, only: [:show, :preview]
-    # before_action :verify_page_type, only: :show, if: -> { slug.present? }
+    before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
     def show
-      page_slug = slug.present? ? slug : params[:page_type]
-      page = current_site.pages.published.find_by(slug: page_slug)
+      page = if slug.present?
+               current_site.pages
+                 .published
+                 .joins(:layout)
+                 .find_by(slug: slug, 'comfy_cms_layouts.identifier' => page_type)
+             else
+               current_site.pages.published.find_by(slug: params[:page_type])
+             end
 
       render_page(page)
     end
