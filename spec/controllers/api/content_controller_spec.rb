@@ -1,5 +1,6 @@
 RSpec.describe API::ContentController, type: :request do
-  let!(:site) { create(:site, path: 'en', locale: 'en') }
+  let!(:site) { create(:site, path: 'en', locale: 'en', is_mirrored: true) }
+  let!(:welsh) { create(:site, :welsh, is_mirrored: true, path: 'cy', locale: 'cy') }
   let(:response_body) { JSON.load(response.body).symbolize_keys }
 
   before do
@@ -10,18 +11,24 @@ RSpec.describe API::ContentController, type: :request do
     let(:state) { 'published' }
     let(:article_layout) { create(:layout, :article, site: site) }
     let!(:page) do
-      create(:page, label: 'Borrow', slug: 'borrow', site: site, state: state, layout: article_layout)
+      create(:page, label: 'Borrow', slug: 'borrow', site: site, state: state, layout: article_layout, full_path: '/')
     end
 
     before do
+      page.translation.update(label: 'Benthyciad', slug: 'benthyciad')
       get article_url
     end
 
     context 'when existing page' do
       let(:article_url) { '/en/articles/borrow' }
+      let(:translations) { [{ 'label' => 'Benthyciad', 'link' => '/cy/articles/benthyciad', 'language' => 'cy'  }] }
 
       it 'renders article resource' do
         expect(response_body).to include(label: 'Borrow', slug: 'borrow')
+      end
+
+      it 'returns page mirrors' do
+        expect(response_body[:translations]).to eq(translations)
       end
 
       it 'returns successful response' do

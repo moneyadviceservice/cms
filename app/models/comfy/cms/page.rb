@@ -1,10 +1,11 @@
-require ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'page.rb')
+require_dependency ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'page.rb')
 require Rails.root.join('lib', 'comfortable_mexican_sofa', 'extensions', 'is_taggable')
 
 class Comfy::Cms::Page < ActiveRecord::Base
   include ComfortableMexicanSofa::IsTaggable::ModelMethods
 
   delegate :identifier, to: :layout, allow_nil: true
+  alias_method :translations, :mirrors
 
   scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
 
@@ -45,6 +46,10 @@ class Comfy::Cms::Page < ActiveRecord::Base
     )
       .where('comfy_cms_categorizations.category_id = ?', category_id)
       .reorder('comfy_cms_categorizations.ordinal ASC')
+  end
+
+  def translation
+    mirrors.first
   end
 
   def update_page_views(analytics)
