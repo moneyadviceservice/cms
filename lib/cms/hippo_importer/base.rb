@@ -33,7 +33,7 @@ module Cms
       end
 
       def docs
-        @cached_docs ||= @docs.empty? ? Comfy::Cms::Page.all.map(&:slug) : @docs.map(&:strip)
+        @cached_docs ||= @docs.empty? ? Comfy::Cms::Page.pluck(:slug) : @docs.map(&:strip)
       end
 
       def next_docs
