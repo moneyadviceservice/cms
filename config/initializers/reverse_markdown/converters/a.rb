@@ -9,6 +9,8 @@ module ReverseMarkdown
 
         if node.attributes['data-type'].try(:value) == 'action'
           "^#{link}^"
+        elsif node.attributes['data-type'].try(:value) == 'video'
+          ::LinkLookup.new.video(ReverseMarkdown.record_id)
         else
           link
         end
@@ -26,12 +28,9 @@ module ReverseMarkdown
 
       def external_link(node, href, name, title)
         data_action = node.attributes['data-action-id'].try(:value)
-        if data_action
-          href, _ = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
-          " ^[#{name}](#{href}#{title}){:target='_blank'}^"
-        else
-          name
-        end
+        return name unless data_action
+        href, _ = ::LinkLookup.new.find_external(data_action.to_i, ReverseMarkdown.site.label.to_sym)
+        " ^[#{name}](#{href}#{title}){:target='_blank'}^"
       end
 
       def internal_link(name, href, title)

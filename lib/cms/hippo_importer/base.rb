@@ -33,7 +33,7 @@ module Cms
       end
 
       def docs
-        @cached_docs ||= @docs.empty? ? Comfy::Cms::Page.all.map(&:slug) : @docs
+        @cached_docs ||= @docs.empty? ? Comfy::Cms::Page.pluck(:slug) : @docs.map(&:strip)
       end
 
       def next_docs
@@ -48,6 +48,7 @@ module Cms
         records.select { |r| next_docs.include?(r.send(article_id)) }.map do |record|
           Rails.logger.info("Importing: #{record.id}")
           page = find_page(record) || Comfy::Cms::Page.new
+          ReverseMarkdown.record_id = record.id
           content = HippoContent.new(site: site, body: record.body.to_s).to_contento
           blocks = [
             Comfy::Cms::Block.new(identifier: 'content', content: content)

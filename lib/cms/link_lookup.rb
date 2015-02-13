@@ -3,6 +3,7 @@ require_relative 'link_type/action_plans'
 require_relative 'link_type/news'
 require_relative 'link_type/static'
 require_relative 'link_type/videos'
+require_relative 'link_type/video_page'
 require_relative 'link_type/welsh'
 require_relative 'link_type/external'
 
@@ -21,5 +22,9 @@ class LinkLookup
   def find_external(id, site = :en)
     link = LinkType::External::LINKS[id]
     [link[:url], link[site]]
+  end
+
+  def video(slug)
+    LinkType::VideoPage::LINKS[slug].to_s
   end
 end
