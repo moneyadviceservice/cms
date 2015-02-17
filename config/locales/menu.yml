@@ -3,5 +3,7 @@ en:
     admin:
       cms:
         base:
+          categories: Categories
+          snippets: Snippets
           tags: Tags
           users: Users
