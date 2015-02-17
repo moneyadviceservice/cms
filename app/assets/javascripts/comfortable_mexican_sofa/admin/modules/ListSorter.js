@@ -26,7 +26,12 @@ define([
   ListSorterProto = ListSorter.prototype;
 
   ListSorterProto.init = function(initialised) {
-    this.$el.sortable().bind('sortupdate', $.proxy(this._handleListUpdate, this));
+    this.$el
+      .sortable({
+        forcePlaceholderSize: true
+      })
+      .bind('sortupdate', $.proxy(this._handleListUpdate, this));
+
     this._cacheComponentElements();
     this.updateOrderFieldValues();
     this._initialisedSuccess(initialised);
