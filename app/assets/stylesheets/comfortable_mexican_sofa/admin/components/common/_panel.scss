@@ -9,6 +9,10 @@
   margin: $baseline-unit*4 0;
 }
 
+.panel--centered {
+  text-align: center;
+}
+
 .panel__heading {
   @extend %heading-extra-small;
   margin: 0 0 $baseline-unit 0;

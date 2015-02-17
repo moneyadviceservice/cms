@@ -41,14 +41,14 @@
           %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-sub-categories'}}
             -@category.child_categories.each do |category|
               %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
-                = link_to category.label, category_path(category)
+                = link_to category.label, category_path(category), class: 'sortable-list__link'
 
           - if @pages.present?
             %h2 Pages
             %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-pages'}}
               - @pages.each do |page|
                 %li.sortable-list__item{data: {dough_listsorter_item_id: page.id}}
-                  = link_to page.label, edit_site_page_path(site_id: page.site_id, id: page.id)
+                  = link_to page.label, edit_site_page_path(site_id: page.site_id, id: page.id), class: 'sortable-list__link'
 
 
           - if @category.parent_id
