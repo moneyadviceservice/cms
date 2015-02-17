@@ -18,4 +18,6 @@
 
       .form-group
         .form__input-wrapper
-          = f.submit
+          = button_tag class: 'button--action' do
+            %span.button__text
+              = t('categories.edit.submit.create')

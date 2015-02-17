@@ -34,7 +34,9 @@
 
             .form-group
               .form__input-wrapper
-                = f.submit
+                = button_tag class: 'button--action' do
+                  %span.button__text
+                    = t('categories.edit.submit.update')
 
         .l-split-content__col
           %h2 Sub-categories
@@ -53,7 +55,10 @@
 
           - if @category.parent_id
             = link_to category_path(@category.parent_id), class: 'button--action' do
-              %span.button__text Up
+              %span.button__text
+                = t('categories.listing.go_to_parent')
           - else
             = link_to categories_path, class: 'button--action' do
-              %span.button__text Up
+              %span.button__text
+                = t('categories.listing.go_to_parent')
+
