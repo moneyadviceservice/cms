@@ -23,7 +23,7 @@
   counter-increment: item;
 
   &:hover {
-    background-color: darken($color-sortable-list-item-background, 5%);
+    background-color: $color-sortable-list-item-hover;
   }
 
   &:before {
@@ -42,7 +42,7 @@
 
   &:before,
   &:after {
-    background-color: darken($color-sortable-list-item-background, 15%);
+    background-color: $color-sortable-list-item-placeholder;
   }
 }
 

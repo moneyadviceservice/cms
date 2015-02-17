@@ -136,6 +136,8 @@ $color-list-display-header-foreground: $color-dove-gray;
 
 // Sortable List
 $color-sortable-list-item-background: $color-concrete;
+$color-sortable-list-item-hover: darken($color-sortable-list-item-background, 5%);
+$color-sortable-list-item-placeholder: darken($color-sortable-list-item-background, 15%);
 $color-sortable-list-item-separator: $color-white;
 
 // Popover
