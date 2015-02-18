@@ -1,0 +1,11 @@
+en:
+  categories:
+    listing:
+      create: Create category
+      submit:
+        update_order: Update order
+      go_to_parent: Up
+    edit:
+      submit:
+        create: Create category
+        update: Update category
