@@ -3,10 +3,11 @@
     %h1 Hippo Importer
 .l-panel-content
   .l-constrained
-    %h3 Created/Updated records
-    - PagePresenter.collect(Array(@records)).each do |record|
-      %p
-        = link_to record.label, record.preview_url, class: 'menu__action', id: 'preview', target: '_blank'
+    - if @records.present?
+      %h3= "#{@records.size} Created/Updated records"
+      - PagePresenter.collect(@records).each do |record|
+        %p
+          = link_to record.label, record.preview_url, class: 'menu__action', id: 'preview', target: '_blank'
 
     = form_for(@hippo_importer_form, url: hippo_path, method: :post, html: { multipart: true, class: 'form form--vertical' }, label_col: "form__label-heading") do |form|
       = form.label :site
