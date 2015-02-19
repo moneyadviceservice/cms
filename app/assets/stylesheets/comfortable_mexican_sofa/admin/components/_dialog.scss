@@ -3,12 +3,24 @@
 // Styleguide Dialog
 
 .dialog {
+  background-color: transparent;
   border: none;
-  height: auto;
+  bottom: 0;
+  display: none;
+  height: 100%;
+  left: 0;
   padding: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
 
   &::backdrop {
     background: $color-dialog-backdrop;
+  }
+
+  .js-dialog-active & {
+    display: block;
   }
 }
 
@@ -21,12 +33,12 @@
 }
 
 .dialog__container {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   bottom: 0;
+  display: none;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 
   .js-dialog-active & {
     display: block;
