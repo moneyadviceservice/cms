@@ -210,3 +210,7 @@ table th select {
     outline-color: $color-select-focus-outline;
   }
 }
+
+.form__select--fill-width {
+  width: 100%;
+}
