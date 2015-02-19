@@ -36,6 +36,8 @@ bowndler install --production --config.interactive=false
 echo "Precompiling assets"
 echo "----"
 RAILS_ENV=production RAILS_GROUPS=assets rake assets:precompile
+cp vendor/assets/bower_components/components-font-awesome/fonts/fontawesome-webfont.woff public/assets/components-font-awesome/fonts/
+cp vendor/assets/bower_components/components-font-awesome/fonts/fontawesome-webfont.ttf public/assets/components-font-awesome/fonts/
 
 echo "Creating RPM"
 echo "----"
