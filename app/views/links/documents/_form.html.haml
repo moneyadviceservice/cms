@@ -18,7 +18,7 @@
       .choose-sort-by
         = label_tag(:sort_by, nil, class: 'form__label-heading visually-hidden')
         .form__input-wrapper
-          = select_tag(:order, options_to_sort_files(selected_option: @order),  prompt: I18n.t('files.index.sort_by.placeholder'), data: { dough_component: 'SelectSubmitter' })
+          = select_tag(:order, options_to_sort_files(selected_option: @order), prompt: I18n.t('files.index.sort_by.placeholder'), data: { dough_component: 'SelectSubmitter' }, class: 'form__select--fill-width')
 
     .form-group.js-linkable-documents
 
