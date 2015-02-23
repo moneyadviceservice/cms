@@ -13,7 +13,7 @@
 = render 'comfy/admin/cms/partials/page_form_before', object: form
 
 .l-panel-content.l-panel-content--form
-  .l-constrained{ data: dough_component(@page.new_record?, ['MirrorInputValue']), 'data-dough-urlformatter-base-url' => '{pageType}/{slug}', 'data-dough-component' => 'URLFormatter'}
+  .l-constrained{ data: page_form_component(@page, default: ['URLFormatter'], optional: ['MirrorInputValue']), 'data-dough-urlformatter-base-url' => '{pageType}/{slug}'}
     .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
 
     .form-group

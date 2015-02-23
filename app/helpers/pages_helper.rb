@@ -1,6 +1,6 @@
 module PagesHelper
-  def dough_component(new_record, components = [])
-    new_record ? { dough_component: components.join(' ') } : {}
+  def page_form_component(page, default: [], optional: [])
+    { dough_component: components(page, default, optional).join(' ') }
   end
 
   def page_type_options_for(site)
@@ -30,6 +30,14 @@ module PagesHelper
   def slug_tag(page_type_url, slug)
     content_tag(:span, data: { dough_urlformatter_url_display: true }) do
       "#{page_type_url}/#{slug}"
+    end
+  end
+
+  def components(page, default, optional)
+    if page.new_record?
+      [default, optional].flatten
+    else
+      default
     end
   end
 end
