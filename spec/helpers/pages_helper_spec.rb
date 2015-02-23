@@ -3,25 +3,35 @@ describe PagesHelper do
     include PagesHelper
   end
 
-  context 'new record' do
-    let(:new_record) { true }
-    let(:expected) { { dough_component: 'MirrorInputValue Slugifier' } }
+  describe '#page_form_component' do
+    subject(:page_form_component) do
+      Tester.new.page_form_component(
+        page,
+        default: ['URLFormatter'],
+        optional: ['MirrorInputValue']
+      )
+    end
 
-    it 'returns a dough component hash' do
-      expect(Tester.new.dough_component(true, %w(MirrorInputValue Slugifier))).to eq(expected)
+    context 'new record' do
+      let(:page) { double(new_record?: true) }
+      let(:expected) { { dough_component: 'URLFormatter MirrorInputValue' } }
+
+      it 'returns a dough component hash with optional and default components' do
+        expect(page_form_component).to eq(expected)
+      end
+    end
+
+    context 'existing record' do
+      let(:page) { double(new_record?: false) }
+      let(:expected) { { dough_component: 'URLFormatter' } }
+
+      it 'returns a dough component hash with only default components' do
+        expect(page_form_component).to eq(expected)
+      end
     end
   end
 
-  context 'existing record' do
-    let(:new_record) { false }
-    let(:expected) { {} }
-
-    it 'returns an empty hash' do
-      expect(Tester.new.dough_component(new_record)).to eq(expected)
-    end
-  end
-
-  context 'url preview' do
+  describe '#page_slug' do
     before do
       allow(helper).to receive(:preview_domain).and_return('example.com')
     end

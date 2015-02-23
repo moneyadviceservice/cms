@@ -1,6 +1,12 @@
 module PagesHelper
-  def dough_component(new_record, components = [])
-    new_record ? { dough_component: components.join(' ') } : {}
+  def page_form_component(page, default: [], optional: [])
+    components = if page.new_record?
+                   [default, optional].flatten
+                 else
+                   default
+                 end
+
+    { dough_component: components.join(' ') }
   end
 
   def page_type_options_for(site)
