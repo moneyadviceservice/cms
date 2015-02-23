@@ -1,5 +1,5 @@
 describe PageCategorySerializer do
-  let(:layout) { double("Layout", identifier: identifier) }
+  let(:layout) { double('Layout', identifier: identifier) }
 
   let(:page) do
     double(
