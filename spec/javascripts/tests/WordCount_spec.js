@@ -82,7 +82,7 @@ describe('WordCount', function() {
 
                   '({EMBED_CODE})' +
 
-                  '(@BRIGHTCOVE_ID@)' +
+                  '[[BRIGHTCOVE_ID]]' +
 
                   '$action ' +
                   '## Header ' +
