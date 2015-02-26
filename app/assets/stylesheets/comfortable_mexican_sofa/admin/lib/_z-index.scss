@@ -20,7 +20,14 @@ $z-index1: 100;
  //   1000   //
 //----------//
 
-%z-index--alert,
+%z-index--alert {
+  z-index: $z-index10;
+}
+
+  //----------//
+ //   900    //
+//----------//
+
 %z-index--toolbar,
 %z-index--toolbar.is-sticky,
 %z-index--nav-article.is-fixed,
@@ -29,15 +36,6 @@ $z-index1: 100;
 %z-index--loader,
 %z-index--dialog__close,
 %z-index--fixedsticky {
-  z-index: $z-index10;
-}
-
-  //----------//
- //   900    //
-//----------//
-
-%z-index--nav-primary__menu,
-%z-index--fixedsticky-background {
   z-index: $z-index9;
 }
 
@@ -45,6 +43,8 @@ $z-index1: 100;
  //   300    //
 //----------//
 
+%z-index--nav-primary__menu,
+%z-index--fixedsticky-background,
 %z-index--toggle__label-heading,
 %z-index--popover__pointer-top {
   z-index: $z-index3;
