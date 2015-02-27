@@ -12,6 +12,14 @@
         = link_to category.label, category_path(category)
         >
       =@category.label
+      - if @category.parent_id
+        = link_to category_path(@category.parent_id), class: 'breadcrumb__button button--action' do
+          %span.button__text
+            = t('categories.listing.go_to_parent')
+      - else
+        = link_to categories_path, class: 'breadcrumb__button button--action' do
+          %span.button__text
+            = t('categories.listing.go_to_parent')
 
     .l-panel-content__row
       .l-panel-content__row

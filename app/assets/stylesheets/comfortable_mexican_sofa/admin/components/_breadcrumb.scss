@@ -3,8 +3,13 @@
 // Styleguide Breadcrumb
 
 .breadcrumb {
+  @include clearfix();
   @include body(18, 22);
   border-bottom: 1px solid $color-breadcrumb-border;
   margin-bottom: $baseline-unit*5;
   padding-bottom: $baseline-unit*2;
+}
+
+.breadcrumb__button {
+  float: right;
 }
