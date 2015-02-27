@@ -28,7 +28,7 @@ RSpec.describe CategoryService do
     let(:categorization_1) { create(:categorization, category_id: category.id, categorized_id: 1) }
     let(:categorization_2) { create(:categorization, category_id: category.id, categorized_id: 2) }
     let(:categorization_order) { "#{categorization_2.categorized_id}, #{categorization_1.categorized_id}" }
-    let(:sub_category_params) { { list_order_pages: categorization_order } }
+    let(:sub_category_params) { { list_order_pages_en: categorization_order } }
 
     it 'update the categorization order' do
       expect(categorization_1.reload.ordinal).to eq(2)
