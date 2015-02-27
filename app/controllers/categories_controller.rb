@@ -6,7 +6,10 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
   end
 
   def show
-    @english_pages, @welsh_pages = Comfy::Cms::Page.in_category(@category.id).partition { |p| p.site_id == 1 }
+    @english_pages, @welsh_pages =
+      Comfy::Cms::Page
+        .in_category(@category.id)
+        .partition { |p| p.site == english_site }
   end
 
   def update
@@ -56,5 +59,9 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
 
   def find_category
     @category = Comfy::Cms::Category.find(params[:id])
+  end
+
+  def english_site
+    @english_site ||= Comfy::Cms::Site.first
   end
 end
