@@ -1,0 +1,8 @@
+%div{class: "tab-selector__target #{defaultClass}", id: "#{locale}", 'data-dough-tab-selector-target' => "#{locale}" }
+  - if pages.present?
+    %h2
+      = "#{locale.upcase} Pages"
+    %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: "category-manager-pages-#{locale}"}}
+      - pages.each do |page|
+        %li.sortable-list__item{data: {dough_listsorter_item_id: page.id}}
+          = link_to page.label, edit_site_page_path(site_id: page.site_id, id: page.id), class: 'sortable-list__link'

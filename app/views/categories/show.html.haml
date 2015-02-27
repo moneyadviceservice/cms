@@ -38,7 +38,8 @@
                 = f.check_box :navigation
 
             = hidden_field_tag 'list_order_sub_categories', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-sub-categories'}
-            = hidden_field_tag 'list_order_pages', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages'}
+            = hidden_field_tag 'list_order_pages', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages-en'}
+            = hidden_field_tag 'list_order_pages', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages-cy'}
 
             .form-group
               .form__input-wrapper
@@ -53,20 +54,15 @@
               %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
                 = link_to category.label, category_path(category), class: 'sortable-list__link'
 
-          - if @pages.present?
-            %h2 Pages
-            %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-manager-pages'}}
-              - @pages.each do |page|
-                %li.sortable-list__item{data: {dough_listsorter_item_id: page.id}}
-                  = link_to page.label, edit_site_page_path(site_id: page.site_id, id: page.id), class: 'sortable-list__link'
+          - if @english_pages.present?
+            .tab-selector.tab-selector--horizontal{'data-dough-component' => 'TabSelector'}
+              .tab-selector__triggers-outer{'data-dough-tab-selector-triggers-outer' => true }
+                .tab-selector__triggers-inner{'data-dough-tab-selector-triggers-inner' => true }
+                  .tab-selector__trigger-container.is-active{'data-dough-tab-selector-trigger-container' => true }
+                    %a.tab-selector__trigger{ href: '#en', 'data-dough-tab-selector-trigger' => 'en' } EN
+                  .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
+                    %a.tab-selector__trigger{ href: '#cy', 'data-dough-tab-selector-trigger' => 'cy' } CY
 
-
-          - if @category.parent_id
-            = link_to category_path(@category.parent_id), class: 'button--action' do
-              %span.button__text
-                = t('categories.listing.go_to_parent')
-          - else
-            = link_to categories_path, class: 'button--action' do
-              %span.button__text
-                = t('categories.listing.go_to_parent')
+              = render partial: 'sortable', locals: { pages: @english_pages, locale: 'en', defaultClass: 'is-active' }
+              = render partial: 'sortable', locals: { pages: @welsh_pages, locale: 'cy', defaultClass: 'is-inactive' }
 
