@@ -100,6 +100,7 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('callout'));
     this.editorLib.editor.use(scribePluginMastalk('table'));
     this.editorLib.editor.use(scribePluginMastalk('bullets'));
+    this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
     this._initialisedSuccess(initialised);
   };
 
