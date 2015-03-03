@@ -6,7 +6,10 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
   end
 
   def show
-    @pages = Comfy::Cms::Page.in_category(@category.id)
+    @english_pages, @welsh_pages =
+      Comfy::Cms::Page
+        .in_category(@category.id)
+        .partition { |p| p.site == english_site }
   end
 
   def update

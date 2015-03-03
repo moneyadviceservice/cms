@@ -40,6 +40,6 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def set_categories
-    @categories = Comfy::Cms::CategoriesListPresenter.new(@site.categories.of_type('Comfy::Cms::Page'))
+    @categories = Comfy::Cms::CategoriesListPresenter.new(Comfy::Cms::Category.where(site: english_site))
   end
 end

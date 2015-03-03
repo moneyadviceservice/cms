@@ -8,7 +8,10 @@ class CategorySerializer < ActiveModel::Serializer
   def contents
     (
       object.child_categories <<
-      Comfy::Cms::Page.in_category(object.id).map { |p| PageCategorySerializer.new(p) }
+      Comfy::Cms::Page
+        .in_locale(scope)
+        .in_category(object.id)
+        .map { |p| PageCategorySerializer.new(p) }
     ).flatten.compact
   end
 

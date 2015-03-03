@@ -17,6 +17,8 @@ class Comfy::Cms::Page < ActiveRecord::Base
       .limit(number_of_items)
   end)
 
+  scope :in_locale, -> (locale) { joins(:site).where('comfy_cms_sites.label' => locale) }
+
   scope :with_tags, -> (tags) { joins(:taggings).where('taggings.tag_id' => tags.map(&:id)) }
 
   scope :remove_self_from_results, -> (page) { where.not(id: page.id) }

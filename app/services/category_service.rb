@@ -11,7 +11,8 @@ class CategoryService
     Comfy::Cms::Category.transaction do
       category.update!(category_params)
       update_sub_categories
-      update_page_order
+      update_page_order(:list_order_pages_en)
+      update_page_order(:list_order_pages_cy)
     end
   end
 
@@ -23,8 +24,8 @@ class CategoryService
 
   private
 
-  def update_page_order
-    list_order(:list_order_pages).each_with_index do |page_id, index|
+  def update_page_order(locale)
+    list_order(locale).each_with_index do |page_id, index|
       categorization(page_id).update!(ordinal: index + 1)
     end
   end
