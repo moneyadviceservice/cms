@@ -60,8 +60,4 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
   def find_category
     @category = Comfy::Cms::Category.find(params[:id])
   end
-
-  def english_site
-    @english_site ||= Comfy::Cms::Site.first
-  end
 end
