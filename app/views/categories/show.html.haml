@@ -35,7 +35,7 @@
 
             .form-group
               .form__input-wrapper
-                = f.check_box :navigation
+                = f.check_box :navigation, :label => t('categories.edit.show_in_navigation')
 
             = hidden_field_tag 'list_order_sub_categories', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-sub-categories'}
             = hidden_field_tag 'list_order_pages_en', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages-en'}
