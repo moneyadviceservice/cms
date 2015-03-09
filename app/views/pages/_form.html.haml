@@ -17,7 +17,7 @@
     .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
 
     .form-group
-      .form__input-wrapper
+      .form__input-wrapper.form__input-wrapper--fill-width
         = form.text_field :label, hide_label: true, class: 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: {'dough-mirrorinputvalue-trigger' => '', 'dough-sticky-element-target' => true, 'dough-urlformatter-input' => (@page.new_record?)}
 
     - if @site.layouts.any?
@@ -25,7 +25,7 @@
         .form__label-heading
           = form.label :layout_id
         .form__input-wrapper
-          = form.select :layout_id, options_for_select(page_type_options_for(@site), @page.layout_id), {}, data: { dough_urlformatter_page_type: true, url: form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)}
+          = form.select :layout_id, options_for_select(page_type_options_for(@site), @page.layout_id), {}, class: 'form__select form__select--fill-width', data: { dough_urlformatter_page_type: true, url: form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)}
 
     .form-group
       .form__label-heading

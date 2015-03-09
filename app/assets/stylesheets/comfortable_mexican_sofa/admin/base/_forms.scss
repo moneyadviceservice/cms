@@ -82,12 +82,24 @@ legend {
 }
 
 .form__label-heading {
-  @include column(1.75);
+  @include column(12);
+
+  @include respond-to($mq-l) {
+    @include column(1.75);
+  };
 }
 
 .form__input-wrapper {
-  @include column(8.25);
+  @include column(12);
   position: relative;
+
+  @include respond-to($mq-l) {
+    @include column(10.25);
+  };
+}
+
+.form__input-wrapper--fill-width {
+  @include column(12);
 }
 
 .form--vertical .form-group {
