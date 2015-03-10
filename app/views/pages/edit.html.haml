@@ -1,10 +1,1 @@
-- content_for :right_column do
-  = render 'comfy/admin/cms/sites/mirrors', object: @page
-
-%div{data:{dough_component: :StickyElements}}
-  = form_for @page, as: :page, url: site_page_path(@site, @page), html: { multipart: true, autocomplete: 'off'}, data: { dough_component: :MASEditor, dough_scheduler_form: true } do |form|
-    = render form
-
-= render 'activity_log_box'
-= render 'insert_link_dialog'
-= render 'insert_image_dialog'
+= render 'form', form_url: site_page_path(@site, @page)
