@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   scope '/admin' do
     get 'links/(*id)(.:format)' => 'links#show', as: 'admin_link'
 
-    resource :hippo, only: [:new, :create]
+    resource :hippo, only: [:new, :create] do
+      resource :diff, module: 'hippo', only: :show
+    end
 
     resources :sites do
       resources :files

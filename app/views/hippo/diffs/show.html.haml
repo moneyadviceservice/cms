@@ -1,0 +1,13 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    %h1 Hippo Pages that are not in Contento
+
+.table-wrapper
+  %table.datatable-default.table
+    %thead
+      %tr
+        %th Slug
+    %tbody
+      - @hippo_diff.each do |hippo_page|
+        %tr
+          %td= hippo_page
