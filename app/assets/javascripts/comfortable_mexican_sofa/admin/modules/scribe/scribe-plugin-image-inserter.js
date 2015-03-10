@@ -12,13 +12,14 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
    */
   return function (context) {
     return function (scribe) {
-      var insertImageCommand = new scribe.api.Command('insertHTML');
+      var savedSelection,
+          insertImageCommand = new scribe.api.Command('insertHTML');
 
       insertImageCommand.nodeName = 'P';
       insertImageCommand.validNodes = ['P','LI','A'];
 
       insertImageCommand.execute = function () {
-        return true;
+        this.saveSelection();
       };
 
       insertImageCommand.queryState = function () {
@@ -41,7 +42,18 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         this.insert(eventData.val);
       };
 
+      insertImageCommand.saveSelection = function() {
+        savedSelection = rangy.saveSelection(document);
+      };
+
+      insertImageCommand.removeSelection = function() {
+        rangy.restoreSelection(savedSelection, false);
+        rangy.removeMarkers(savedSelection);
+      };
+
       insertImageCommand.setupEvents = function() {
+        eventsWithPromises.subscribe('dialog:closed', filterEvent(this.removeSelection.bind(this), context));
+        eventsWithPromises.subscribe('dialog:cancelled', filterEvent(this.removeSelection.bind(this), context));
         eventsWithPromises.subscribe('insertmanager:insert-published',
           filterEvent(this.handleInsertPublished.bind(this), context)
         );
