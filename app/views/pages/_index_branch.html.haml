@@ -4,11 +4,11 @@
       %thead
         %tr
           %th.table__header.table__header--page-title Page title
-          %th= select_tag(:layout, options_for_select(layout_list('Page type')), data: { dough_component: 'SelectSubmitter' })
-          %th= select_tag(:category, options_for_select(category_list('Child category')), data: { dough_component: 'SelectSubmitter' })
-          %th= select_tag(:last_edit, options_for_select(user_list('Last edited by')), data: { dough_component: 'SelectSubmitter' })
-          %th= select_tag(:status, options_for_select(state_list('Status')), data: { dough_component: 'SelectSubmitter' })
-          %th= select_tag(:language, options_for_select([['Language', nil], ['English', :en], ['Welsh', :cy]]), data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:layout, options_for_select(layout_list('Page type')), class: 'form__select form__select--fill-width', data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:category, options_for_select(category_list('Child category')), class: 'form__select form__select--fill-width', data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:last_edit, options_for_select(user_list('Last edited by')), class: 'form__select form__select--fill-width', data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:status, options_for_select(state_list('Status')), class: 'form__select form__select--fill-width', data: { dough_component: 'SelectSubmitter' })
+          %th= select_tag(:language, options_for_select([['Language', nil], ['English', :en], ['Welsh', :cy]]), class: 'form__select form__select--fill-width', data: { dough_component: 'SelectSubmitter' })
       %tbody.js-filter-pages
         - PagePresenter.collect(@pages).each do |page|
           = render page

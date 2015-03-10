@@ -73,10 +73,12 @@ th > p {
 }
 
 .table__header.table__header--page-title {
+  min-width: 290px;
   width: 30%;
 }
 
 .table th {
   @include body(16,16);
   color: $color-table-th-foreground;
+  min-width: 145px;
 }
