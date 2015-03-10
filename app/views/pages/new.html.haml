@@ -1,6 +1,1 @@
-= form_for @page, as: :page, url: site_pages_path(@site), class: 'form', method: :post, html: { multipart: true, autocomplete: 'off'}, data: { dough_component: :MASEditor, dough_scheduler_form: true } do |form|
-  = render form
-
-= render 'activity_log_box'
-= render 'insert_link_dialog'
-= render 'insert_image_dialog'
+= render 'form', form_url: site_pages_path(@site)
