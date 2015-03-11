@@ -1,0 +1,21 @@
+// Page
+// Formats Comfy's pagination view
+//
+// Styleguide Page
+
+.pagination {
+  text-align: center;
+}
+
+.pagination .page {
+  @extend .pagination__item;
+}
+
+.pagination .page.current {
+  @extend .pagination__item.is-active;
+}
+
+.pagination .next,
+.pagination .prev {
+  margin: 0 10px;
+}
