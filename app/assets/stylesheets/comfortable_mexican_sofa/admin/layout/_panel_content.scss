@@ -17,7 +17,7 @@
 }
 
 .l-panel-content__row {
-  display: table;
+  display: flex;
   width: 100%;
 }
 
@@ -26,8 +26,15 @@
 }
 
 .l-panel-content__col {
-  display: table-cell;
-  vertical-align: middle;
+  flex: 1;
+}
+
+.l-panel-content__col.l-panel-content__col--one-half {
+  width: 50%;
+}
+
+.l-panel-content--padded .l-panel-content__col:not(:first-child){
+  margin-left: 20px;
 }
 
 .l-panel-content__heading {
@@ -39,6 +46,6 @@
   text-align: left;
 }
 
-.l-panel-content__col:last-child {
+.l-panel-content__col--right {
   text-align: right;
 }

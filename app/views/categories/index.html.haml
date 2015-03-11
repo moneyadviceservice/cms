@@ -3,7 +3,7 @@
     .l-panel-content__row
       .l-panel-content__col
         %h1 Category Manager
-      .l-panel-content__col
+      .l-panel-content__col.l-panel-content__col--right
         = link_to new_category_path, class: 'button--action' do
           %span.button__text
             = t('categories.listing.create')

@@ -2,7 +2,7 @@
   .l-constrained
     .l-panel-content__row
       .l-panel-content__col.page-header= files_page_header(search_term: params[:search])
-      .l-panel-content__col.search-container
+      .l-panel-content__col.l-panel-content__col--right.search-container
         = render 'search_box', files: @files, search_term: params[:search]
 
 = render 'comfy/admin/cms/partials/files_before'
@@ -17,7 +17,7 @@
               %span.fa.fa-file-o
               = t('comfy.admin.cms.files.index.new_link')
 
-      .l-panel-content__col
+      .l-panel-content__col.l-panel-content__col--right
         = paginate @files
         .t-files-filters
           = form_tag(site_files_path(site_id: @site), method: :get, remote: true) do
