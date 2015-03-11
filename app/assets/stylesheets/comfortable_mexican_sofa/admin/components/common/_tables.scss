@@ -48,6 +48,10 @@ tr:nth-child(even) {
   background-color: $color-table-background-alt;
 }
 
+tr:last-child {
+  border-bottom: 1px solid $color-table-border;
+}
+
 thead > tr {
   background-color: $color-table-background;
 }
