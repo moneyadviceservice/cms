@@ -9,6 +9,7 @@
 
 .pagination .page {
   @extend .pagination__item;
+  margin-bottom: $baseline-unit*2;
 }
 
 .pagination .page.current {
