@@ -8,6 +8,11 @@
   width: 100%;
 }
 
+.l-panel-content--flush {
+  padding-bottom: 0;
+  padding-top: 0;
+}
+
 .l-panel-content h1:last-child {
   margin-bottom: 0;
 }
@@ -33,7 +38,7 @@
   width: 50%;
 }
 
-.l-panel-content--padded .l-panel-content__col:not(:first-child){
+.l-panel-row--padded .l-panel-content__col:not(:first-child){
   margin-left: 20px;
 }
 
