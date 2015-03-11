@@ -69,8 +69,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         }
       };
 
-      linkEditorCommand.insertLinkSuffix = function(referenceNode, suffix) {
-        referenceNode.parentNode.insertBefore(document.createTextNode(suffix), referenceNode);
+      linkEditorCommand.insertLinkSuffix = function(node, suffix) {
+        node.insertAdjacentText('afterend', suffix);
       };
 
       linkEditorCommand.removeLinkSuffix = function(referenceNode, suffixRegEx) {
@@ -88,10 +88,10 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         type = type || 'page';
 
         if(type === 'external' && !haslinkSuffix) {
-          this.insertLinkSuffix(node.nextSibling, externalLinkSuffix);
+          this.insertLinkSuffix(node, externalLinkSuffix);
         }
         else if(type !== 'external'){
-          this.removeLinkSuffix(node.nextSibling, externalLinkSuffixRegEx);
+          this.removeLinkSuffix(node, externalLinkSuffixRegEx);
         }
       };
 
