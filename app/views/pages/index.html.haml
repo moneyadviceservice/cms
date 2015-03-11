@@ -1,16 +1,13 @@
 .l-panel-content.l-panel-content--form
   .l-constrained
     .l-panel-content__row
-      .l-panel-content__col
+      .l-panel-content__col.page-header
         - if params[:search].present?
           %h1.l-panel-content__heading Search Results
         - else
-          %h1.l-panel-content__heading= t('.title')
-          = paginate @pages, remote: true
-        - if @last_published_pages
-          .panel
-            = render 'last_published_pages'
-      .l-panel-content__col
+          %h1.l-panel-content__heading
+            = "Welcome #{current_user.name}"
+      .l-panel-content__col.search-container
         = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
           .search.search--header
             %span.search__item
@@ -27,6 +24,16 @@
                   %span.fa.fa-file-o
                   = I18n.t('actions.pages.new')
 
+.l-panel-content.l-panel-content--flush
+  .l-constrained
+    .l-panel-content__row.l-panel-row--padded
+      - if @last_published_pages
+        .l-panel-content__col.panel
+          = render 'last_published_pages'
+      - if @draft_pages
+        .l-panel-content__col.panel.panel--alt
+          = render 'draft_pages'
+
 - content_for :right_column do
   = render 'comfy/admin/cms/sites/mirrors'
 
@@ -34,6 +41,8 @@
 
 .l-panel-content
   .l-constrained
+    = paginate @pages, remote: true
     = render 'index_branch'
+    = paginate @pages, remote: true
 
 = render 'comfy/admin/cms/partials/pages_after'
