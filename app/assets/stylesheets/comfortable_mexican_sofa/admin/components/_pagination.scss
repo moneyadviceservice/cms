@@ -20,6 +20,10 @@
   border-bottom: 1px solid;
 }
 
+.pagination--tags {
+  text-align: left;
+}
+
 .pagination--tags .pagination__item {
   @include body(22,22);
   text-transform: uppercase;
