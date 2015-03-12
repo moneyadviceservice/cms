@@ -27,12 +27,12 @@
 .l-panel-content.l-panel-content--flush
   .l-constrained
     .l-panel-content__row.l-panel-row--padded
-      - if @last_published_pages
-        .l-panel-content__col.panel
-          = render 'last_published_pages'
       - if @last_draft_pages
-        .l-panel-content__col.panel.panel--alt
+        .l-panel-content__col.panel
           = render 'draft_pages'
+      - if @last_published_pages
+        .l-panel-content__col.panel.panel--alt
+          = render 'last_published_pages'
 
 - content_for :right_column do
   = render 'comfy/admin/cms/sites/mirrors'
