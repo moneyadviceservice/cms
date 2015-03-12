@@ -3,10 +3,16 @@
 // Styleguide panel
 
 .panel {
-  border-radius: 5px;
   background-color: $color-panel-background;
-  padding: $baseline-unit*3;
+  box-shadow: 0 2px 0 darken($color-panel-background, 10%);
+  padding: $baseline-unit*5 30px $baseline-unit*3;
   margin: $baseline-unit*4 0;
+  text-align: left;
+}
+
+.panel--alt {
+  background-color: $color-panel-alt-background;
+  box-shadow: 0 2px 0 darken($color-panel-alt-background, 10%);
 }
 
 .panel--centered {
@@ -14,6 +20,11 @@
 }
 
 .panel__heading {
-  @extend %heading-extra-small;
+  @extend %heading-small;
+  color: $color-panel-heading-foreground;
   margin: 0 0 $baseline-unit 0;
+}
+
+.panel__heading-icon {
+  margin-right: 5px;
 }

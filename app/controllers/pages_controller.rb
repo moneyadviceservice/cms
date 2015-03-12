@@ -32,6 +32,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
       Comfy::Cms::Search.new(@pages, params[:search]).results
     else
       @last_published_pages = @all_pages.status(:published).reorder(updated_at: :desc).limit(4)
+      @last_draft_pages = @all_pages.status(:draft).reorder(updated_at: :desc).limit(4)
       @pages.reorder(updated_at: :desc).page(params[:page])
     end
   end

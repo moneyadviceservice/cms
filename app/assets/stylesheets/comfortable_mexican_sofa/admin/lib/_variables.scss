@@ -19,6 +19,7 @@ $color-mine-shaft: #333;
 // Blues
 $color-mariner: #277bb9;
 $color-rock-blue: #9fa7cb;
+$color-foam: #ECF8FD;
 
 // Reds
 $color-persian-red: #cc3333;
@@ -108,6 +109,8 @@ $color-button-action-separator: darken($color-mariner, 10%);
 $color-panel-content-background: $color-white;
 $color-panel-content-form-background: $color-concrete;
 $color-panel-background: $color-concrete;
+$color-panel-alt-background: $color-foam;
+$color-panel-heading-foreground: $color-dove-gray;
 
 // Menu
 $color-menu-default-body-background: $color-concrete;
