@@ -133,8 +133,11 @@ define([
    * @param  {Object} button Button DOM node
    * @return {[type]}        [description]
    */
-  MASEditorProto._handleChangeMode = function() {
+  MASEditorProto._handleChangeMode = function(e) {
+    var scrollY = document.body.scrollTop;
+    e.preventDefault();
     this.changeMode(this.$switchModeContainer.find(':checked').val());
+    document.body.scrollTop = scrollY;
   };
 
   /**
