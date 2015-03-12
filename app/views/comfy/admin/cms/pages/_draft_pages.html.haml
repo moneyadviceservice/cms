@@ -1,6 +1,6 @@
 %h2.panel__heading
   %span.panel__heading-icon.fa.fa-edit
-  Your recent drafts
+  Recent drafts
 - PagePresenter.collect(@last_draft_pages).each do |page|
   %p
     = link_to page.label, edit_comfy_admin_cms_site_page_path(page.site, page)
