@@ -4,13 +4,13 @@ RSpec.describe Cms::HippoDiff do
 
   describe '#collection' do
     subject(:collection) { hippo_diff.collection }
-    let(:slugs) do
-      %w(
-        partners
-        debt
-        about-us
-        media-centre
-      )
+    let(:partners) { double(id: 'partners') }
+    let(:debt) { double(id: 'debt') }
+    let(:about_us) { double(id: 'about-us') }
+    let(:media_centre) { double(id: 'media-centre') }
+
+    let(:hippo_pages) do
+      [partners, debt, about_us, media_centre]
     end
 
     let(:contento_slugs) do
@@ -21,18 +21,22 @@ RSpec.describe Cms::HippoDiff do
     end
 
     before do
-      expect(hippo_diff).to receive(:slugs).and_return(slugs)
-      expect(hippo_diff).to receive(:contento_slugs).and_return(contento_slugs)
+      expect(hippo_diff).to receive(:hippo_pages).and_return(hippo_pages)
+      expect(hippo_diff).to receive(:contento_slugs).at_least(:once).and_return(contento_slugs)
     end
 
     it 'returns the difference between hippo slugs and contento slugs' do
-      expect(collection).to eq(%w(about-us media-centre))
+      expect(collection).to eq([about_us, media_centre])
     end
   end
 
-  describe '#slugs' do
+  describe '#hippo_pages' do
+    before do
+      expect(hippo_diff.parser).to receive(:parse).and_return(['do-you-need-to-borrow-money'])
+    end
+
     it 'returns slugs from content file' do
-      expect(hippo_diff.slugs).to eq(['do-you-need-to-borrow-money'])
+      expect(hippo_diff.hippo_pages).to eq(['do-you-need-to-borrow-money'])
     end
   end
 

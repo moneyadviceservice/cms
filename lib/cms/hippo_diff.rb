@@ -19,11 +19,11 @@ module Cms
     end
 
     def collection
-      @collection ||= slugs - contento_slugs
+      @collection ||= hippo_pages.reject { |record| record.id.in?(contento_slugs) }
     end
 
-    def slugs
-      @slugs ||= parser.parse(data, HIPPO_TYPES).map(&:id)
+    def hippo_pages
+      @records ||= parser.parse(data, HIPPO_TYPES)
     end
 
     def contento_slugs
