@@ -9,21 +9,11 @@
         - else
           %h1.l-panel-content__heading
             = "Welcome #{current_user.name}"
-      .l-panel-content__col.search-container
-        = form_tag(comfy_admin_cms_site_pages_path, method: 'get', id: 'search-form') do
-          .search.search--header
-            %span.search__item.search__item--input
-              = label_tag(:search, nil, class: 'visually-hidden')
-              = text_field_tag(:search, params[:search], placeholder: 'Search pages', class: 'form__input form__input--constrained search__input')
-              = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
-                %span.button__text.fa.fa-search
-
-.l-panel-content.l-panel-content--flush-bottom
-  .l-constrained
-    = link_to new_site_page_path(@site), class: 'button--action button--search' do
-      %span.button__text
-        %span.fa.fa-file-o
-        = I18n.t('actions.pages.new')
+      .l-panel-content__col.l-panel-content__col--right
+        = link_to new_site_page_path(@site), class: 'button--action button--search' do
+          %span.button__text
+            %span.fa.fa-file-o
+            = I18n.t('actions.pages.new')
 
 .l-panel-content.l-panel-content--flush
   .l-constrained
@@ -40,7 +30,7 @@
 
 = render 'comfy/admin/cms/partials/pages_before'
 
-.l-panel-content.l-panel-content--flush
+.l-panel-content
   .l-constrained
     - unless params[:search].present?
       = paginate @pages, remote: true, window: 10
