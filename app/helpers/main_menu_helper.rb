@@ -6,7 +6,11 @@ module MainMenuHelper
 
   def menu_links(site)
     ([
-      MenuLink.new(name: t('comfy.admin.cms.base.pages'), path: comfy_admin_cms_site_pages_path(site)),
+      MenuLink.new(
+        name: t('comfy.admin.cms.base.pages'),
+        path: comfy_admin_cms_site_pages_path(site),
+        custom_class: 'nav-primary__text--logo'
+      ),
       MenuLink.new(name: t('comfy.admin.cms.base.files'), path: comfy_admin_cms_site_files_path(site))
     ] << admin_links(site)).flatten
   end
