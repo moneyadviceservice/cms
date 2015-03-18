@@ -40,7 +40,7 @@
 
 = render 'comfy/admin/cms/partials/pages_before'
 
-.l-panel-content
+.l-panel-content.l-panel-content--flush
   .l-constrained
     - unless params[:search].present?
       = paginate @pages, remote: true
