@@ -48,7 +48,7 @@
   }
 
   &:hover {
-    background: $color-nav-primary-item-background;
+    background-color: $color-nav-primary-item-background;
   }
 
   &,
@@ -68,11 +68,18 @@
 }
 
 .nav-primary__text--no-hover:hover {
-  background: transparent;
+  background-color: transparent;
+}
+
+.nav-primary__text--logo {
+  background: asset-data-url('contento_logo.svg') 50% 40% no-repeat;
+  background-size: 100% 35%;
+  text-indent: -99999px;
+  width: 90px;
 }
 
 .nav-primary__item.is-active .nav-primary__text {
-  background: $color-nav-primary-item-background;
+  background-color: $color-nav-primary-item-background;
 }
 
 .nav-primary__item--right .nav-primary__text {
@@ -80,7 +87,7 @@
 }
 
 .nav-primary__item.has-dropdown:hover .nav-primary__text {
-  background: $color-nav-primary-item-background;
+  background-color: $color-nav-primary-item-background;
 }
 
 .nav-primary__menu {
