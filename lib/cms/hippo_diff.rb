@@ -1,7 +1,7 @@
 module Cms
   class HippoDiff
     attr_reader :parser, :data
-    delegate :each, to: :collection
+    delegate :each, :size, to: :collection
 
     HIPPO_TYPES = [
       'contentauthoringwebsite:Guide',
@@ -23,11 +23,42 @@ module Cms
     end
 
     def hippo_pages
-      @records ||= parser.parse(data, HIPPO_TYPES)
+      @records ||= parser.parse(data, HIPPO_TYPES).map { |record| HippoPage.new(record) }
     end
 
     def contento_slugs
       @contento_slugs ||= Comfy::Cms::Page.pluck(:slug)
+    end
+  end
+
+  class HippoPage
+    PAGE_TYPES = {
+      'contentauthoringwebsite:Guide' => 'articles',
+      'contentauthoringwebsite:ActionPlan' => 'action_plans',
+      'contentauthoringwebsite:ToolPage' => 'tools',
+      'contentauthoringwebsite:StaticPage' => 'static',
+      'contentauthoringwebsite:VideoPage' => 'videos',
+      'contentauthoringwebsite:News' => 'news',
+      'contentauthoringwebsite:Campaign' => 'campaigns'
+    }
+
+    delegate :id, to: :record
+    attr_reader :record
+
+    def initialize(record)
+      @record = record
+    end
+
+    def link
+      "http://moneyadviceservice.org.uk/en/#{PAGE_TYPES[type]}/#{record.id}"
+    end
+
+    def type
+      @type ||= record.fetch('jcr:primaryType')
+    end
+
+    def ==(other)
+      id == other.id
     end
   end
 end

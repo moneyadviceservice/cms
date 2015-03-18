@@ -31,12 +31,14 @@ RSpec.describe Cms::HippoDiff do
   end
 
   describe '#hippo_pages' do
+    let(:record) { double(id: 'do-you-need-to-borrow-money') }
+
     before do
-      expect(hippo_diff.parser).to receive(:parse).and_return(['do-you-need-to-borrow-money'])
+      expect(hippo_diff.parser).to receive(:parse).and_return([record])
     end
 
     it 'returns slugs from content file' do
-      expect(hippo_diff.hippo_pages).to eq(['do-you-need-to-borrow-money'])
+      expect(hippo_diff.hippo_pages).to eq([Cms::HippoPage.new(record)])
     end
   end
 
