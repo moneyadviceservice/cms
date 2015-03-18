@@ -43,9 +43,9 @@
 .l-panel-content.l-panel-content--flush
   .l-constrained
     - unless params[:search].present?
-      = paginate @pages, remote: true
+      = paginate @pages, remote: true, window: 10
     = render 'index_branch'
     - unless params[:search].present?
-      = paginate @pages, remote: true
+      = paginate @pages, remote: true, window: 10
 
 = render 'comfy/admin/cms/partials/pages_after'
