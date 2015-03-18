@@ -20,7 +20,6 @@ module MainMenuHelper
         sublinks: [
           MenuLink.new(name: t('comfy.admin.cms.base.users'),    path: users_path),
           MenuLink.new(name: t('comfy.admin.cms.base.tags'),     path: tags_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.snippets'), path: comfy_admin_cms_site_snippets_path(site)),
           MenuLink.new(name: t('comfy.admin.cms.base.categories'), path: categories_path)
         ]
       )
