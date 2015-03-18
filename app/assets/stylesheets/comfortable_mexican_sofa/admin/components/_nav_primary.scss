@@ -71,6 +71,18 @@
   background: transparent;
 }
 
+.nav-primary__text--button {
+  padding: 0;
+
+  button {
+    padding: 0 18px;
+
+    &.is-active {
+      background: $color-search-bar-background;
+    }
+  }
+}
+
 .nav-primary__item.is-active .nav-primary__text {
   background: $color-nav-primary-item-background;
 }
