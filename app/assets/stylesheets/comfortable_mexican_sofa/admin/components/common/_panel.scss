@@ -5,7 +5,7 @@
 .panel {
   background-color: $color-panel-background;
   box-shadow: 0 2px 0 darken($color-panel-background, 10%);
-  padding: $baseline-unit*3 20px $baseline-unit*2;
+  padding: $baseline-unit*5 30px $baseline-unit*3;
   margin: $baseline-unit*4 0;
   text-align: left;
 }

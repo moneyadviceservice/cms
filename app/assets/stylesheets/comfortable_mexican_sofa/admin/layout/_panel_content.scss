@@ -13,10 +13,6 @@
   padding-top: 0;
 }
 
-.l-panel-content--flush-bottom {
-  padding-bottom: 0;
-}
-
 .l-panel-content h1:last-child {
   margin-bottom: 0;
 }
@@ -45,7 +41,6 @@
 .l-panel-content__heading {
   margin-bottom: $baseline-unit*2;
   margin-top: 0;
-  line-height: 1.2;
 }
 
 .l-panel-content__col:first-child {
