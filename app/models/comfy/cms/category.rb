@@ -1,4 +1,4 @@
-require ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'category')
+require_dependency ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'category')
 
 class Comfy::Cms::Category < ActiveRecord::Base
   validates_presence_of :label, :title_en, :title_cy
