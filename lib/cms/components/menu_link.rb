@@ -2,7 +2,7 @@ module Cms
   module Components
     class MenuLink
       include ActiveModel::Model
-      attr_accessor :name, :path, :sublinks
+      attr_accessor :name, :path, :sublinks, :custom_class
 
       def sublinks?
         sublinks.present?
@@ -13,7 +13,7 @@ module Cms
       end
 
       def link_class
-        'nav-primary__text'
+        ['nav-primary__text', custom_class].compact.join(' ')
       end
     end
   end

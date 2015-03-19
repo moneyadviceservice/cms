@@ -41,4 +41,22 @@ RSpec.describe Cms::Components::MenuLink do
       end
     end
   end
+
+  describe "#link_class" do
+    context 'when it has a custom class' do
+      subject(:menu_link) { described_class.new(custom_class: 'nav-primary__text--logo') }
+
+      it 'returns the default and custom classes' do
+        expect(menu_link.link_class).to eq 'nav-primary__text nav-primary__text--logo'
+      end
+    end
+
+    context 'when it does not have a custom class' do
+      subject(:menu_link) { described_class.new }
+
+      it 'returns the default class' do
+        expect(menu_link.link_class).to eq 'nav-primary__text'
+      end
+    end
+  end
 end
