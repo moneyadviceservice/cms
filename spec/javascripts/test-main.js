@@ -31,10 +31,6 @@ requirejs.config({
     'editor-lib-wrapper': bowerPath + 'mas-cms-editor/src/app/modules/editor-lib-wrapper/editor-lib-wrapper',
     'source-converter': bowerPath + 'mas-cms-editor/src/app/modules/source-converter/source-converter',
 
-    // Editor plugins
-    'editor-plugin-sticky-toolbar': bowerPath + 'mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar',
-    'editor-plugin-auto-resize-textarea': bowerPath + 'mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea',
-
     // Editor Shims
     'mutationobserver-shim': bowerPath + 'mas-cms-editor/src/app/shims/mutationobserver.min',
 
@@ -96,7 +92,8 @@ requirejs.config({
     'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill',
     'rangy-core': bowerPath + 'rangy-official/rangy-core',
     'rangy-selectionsaverestore': bowerPath + 'rangy-official/rangy-selectionsaverestore',
-    'html-sortable': bowerPath + 'html.sortable/dist/html.sortable'
+    'html-sortable': bowerPath + 'html.sortable/dist/html.sortable',
+    'autogrow': bowerPath + 'autogrow.js/autogrow'
   },
   shim : {
     'to-markdown' : {
