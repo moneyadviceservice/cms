@@ -1,19 +1,19 @@
 define([
   'jquery',
   'DoughBaseComponent',
-  'editor-plugin-auto-resize-textarea',
   'editor',
   'scribe-plugin-mastalk',
   'scribe-plugin-linkeditor',
-  'scribe-plugin-image-inserter'
+  'scribe-plugin-image-inserter',
+  'autogrow'
 ], function(
   $,
   DoughBaseComponent,
-  editorPluginAutoResizeTextarea,
   Editor,
   scribePluginMastalk,
   scribePluginLinkEditor,
-  scribePluginImageInserter
+  scribePluginImageInserter,
+  autogrow
 ) {
   'use strict';
 
@@ -87,7 +87,6 @@ define([
       this.$htmlToolbar[0],
       this.editorOptions
     );
-    this.editorLib.use(editorPluginAutoResizeTextarea(this.$markdownContent[0]));
     this.editorLib.editor.use(scribePluginLinkEditor('add-link'));
     this.editorLib.editor.use(scribePluginImageInserter('insert-image'));
     this.editorLib.editor.use(scribePluginMastalk('collapsible'));
@@ -101,6 +100,12 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('table'));
     this.editorLib.editor.use(scribePluginMastalk('bullets'));
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
+
+    this.$markdownContent.autogrow({
+      animate: false,
+      speed: 0
+    });
+
     this._initialisedSuccess(initialised);
   };
 
@@ -188,6 +193,7 @@ define([
         this.enableToolbar('markdown');
         this.disableToolbar('html');
         this.show(this.$markdownContainer).hide(this.$htmlContainer);
+        this.$markdownContent.trigger('keyup');
         break;
       default:
         this.enableToolbar('html');

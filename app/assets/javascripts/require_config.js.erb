@@ -19,10 +19,6 @@ requirejs.config({
      // Editor Shims
     'mutationobserver-shim': '<%= requirejs_path("mas-cms-editor/src/app/shims/mutationobserver.min") %>',
 
-    // Editor plugins
-    'editor-plugin-sticky-toolbar': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-sticky-toolbar/editor-sticky-toolbar") %>',
-    'editor-plugin-auto-resize-textarea': '<%= requirejs_path("mas-cms-editor/src/app/plugins/editor-auto-resize-textarea/editor-auto-resize-textarea") %>',
-
     // Application modules
     'URLToggler': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/URLToggler") %>',
     'MASEditor': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/MASEditor") %>',
@@ -94,7 +90,8 @@ requirejs.config({
 	'rangy-selectionsaverestore': '<%= requirejs_path("rangy-official/rangy-selectionsaverestore") %>',
     'filament-sticky': '<%= requirejs_path("filament-sticky/fixedsticky") %>',
     'filament-fixed': '<%= requirejs_path("filament-fixed/fixedfixed") %>',
-	'html-sortable': '<%= requirejs_path("html.sortable/dist/html.sortable") %>'
+    'html-sortable': '<%= requirejs_path("html.sortable/dist/html.sortable") %>',
+    'autogrow': '<%= requirejs_path("autogrow.js/autogrow") %>'
   },
   shim: {
     'to-markdown' : {
