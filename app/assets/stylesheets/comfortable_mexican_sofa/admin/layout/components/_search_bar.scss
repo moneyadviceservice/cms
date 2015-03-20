@@ -6,6 +6,7 @@
   &.is-active {
     @extend %is-active;
     display: table;
+    outline: none;
     width: 100%;
   }
 }
