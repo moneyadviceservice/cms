@@ -36,6 +36,7 @@ define([
     this.$titleInput = this.$el.find(this.config.selectors.input);
     this.$pageType = this.$el.find(this.config.selectors.pageType);
     this.$slugInput = this.$el.find(this.config.selectors.slugInput);
+    this.slugInput = this.$slugInput[0];
     this.$urlDisplays = this.$el.find(this.config.selectors.urlDisplay);
   };
 
@@ -78,9 +79,20 @@ define([
   };
 
   URLFormatterProto._handleSlugInput = function() {
+    var caretPos = this.getCaretPos(this.slugInput);
     this.slugifySlugInput(this.$slugInput.val());
     this._handleInput();
+    this.setCaretPos(this.slugInput, caretPos, caretPos);
     this._unbindInputEvent();
+  };
+
+  URLFormatterProto.getCaretPos = function(field) {
+    return field.selectionDirection === 'backward' ? field.selectionStart : field.selectionEnd;
+  };
+
+  URLFormatterProto.setCaretPos = function(field, start, end) {
+    field.focus();
+    field.setSelectionRange(start, end);
   };
 
   URLFormatterProto.slugifySlugInput = function(str) {
