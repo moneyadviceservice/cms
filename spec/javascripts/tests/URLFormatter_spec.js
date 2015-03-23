@@ -67,7 +67,7 @@ describe('URLFormatter', function() {
       expect(this.component.$urlDisplays.eq(0)).to.have.text('foo/foo-123-123');
     });
 
-    it('should stop any further input entries overriding the slug value', function() {
+    it('should stop any further title input entries overriding the slug value', function() {
       this.component.init();
 
       this.component.$titleInput.val('foo').trigger('input');
