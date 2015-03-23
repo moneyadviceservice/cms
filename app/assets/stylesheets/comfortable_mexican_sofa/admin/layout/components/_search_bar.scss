@@ -1,0 +1,21 @@
+.l-search-bar {
+  @extend %is-hidden;
+  background: $color-search-bar-background;
+  padding: $baseline-unit*2 24px;
+
+  &.is-active {
+    @extend %is-active;
+    display: table;
+    outline: none;
+    width: 100%;
+  }
+}
+
+.l-search-bar__input {
+  display: table-cell;
+  width: 100%;
+}
+
+.l-search-bar__button {
+  display: table-cell;
+}

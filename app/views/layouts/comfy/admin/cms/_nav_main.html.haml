@@ -1,6 +1,6 @@
 .l-nav-primary
-  .l-constrained
-    %nav
+  %nav
+    .l-constrained
       - if @site && @site.persisted?
         %ul.nav-primary
           - menu_links(@site).each do |menu_link|
@@ -18,8 +18,20 @@
 
           %li.nav-primary__item
           %li.nav-primary__item.nav-primary__item--right
+            = link_to "#{content_tag(:span, '', class: 'nav-primary__icon fa fa-search')}".html_safe, '#', class: 'nav-primary__text nav-primary__text--button', data: { dough_component: 'Collapsable', dough_collapsable_trigger: 'search' }
+          %li.nav-primary__item.nav-primary__item--right
             = link_to "#{current_user.name} #{content_tag(:span, '', class: 'nav-primary__icon fa fa-user')}".html_safe, edit_user_path(current_user), class: 'nav-primary__text'
           %li.nav-primary__item.nav-primary__item--right
             = link_to "#{t('users.sign_out')} #{content_tag(:span, '', class: 'nav-primary__icon fa fa-sign-out')}".html_safe, destroy_user_session_path, method: :delete, class: 'nav-primary__text'
 
-        = cms_hook :navigation
+    - if @site && @site.persisted?
+      = form_tag(comfy_admin_cms_site_pages_path(@site), method: 'get', id: 'search-form', class: 'l-search-bar', data: { dough_collapsable_target: 'search' }) do
+        .l-constrained
+          .l-search-bar__input
+            = label_tag(:search, nil, class: 'visually-hidden')
+            = text_field_tag(:search, params[:search], placeholder: 'Search pages', class: 'form__input')
+          .l-search-bar__button
+            = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
+              %span.button__text.fa.fa-search
+
+    = cms_hook :navigation
