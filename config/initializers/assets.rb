@@ -57,5 +57,5 @@ Rails.application.configure do
                                   filament-sticky/fixedsticky.js
                                   filament-fixed/fixedfixed.js
                                   html.sortable/dist/html.sortable.js
-                                  autogrow.js/autogrow.js)
+                                  autosize/src/autosize.js)
 end

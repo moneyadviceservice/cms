@@ -93,7 +93,7 @@ requirejs.config({
     'rangy-core': bowerPath + 'rangy-official/rangy-core',
     'rangy-selectionsaverestore': bowerPath + 'rangy-official/rangy-selectionsaverestore',
     'html-sortable': bowerPath + 'html.sortable/dist/html.sortable',
-    'autogrow': bowerPath + 'autogrow.js/autogrow'
+    'autosize': bowerPath + 'autosize/src/autosize'
   },
   shim : {
     'to-markdown' : {

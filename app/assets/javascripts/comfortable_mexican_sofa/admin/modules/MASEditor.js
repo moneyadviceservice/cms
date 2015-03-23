@@ -5,7 +5,7 @@ define([
   'scribe-plugin-mastalk',
   'scribe-plugin-linkeditor',
   'scribe-plugin-image-inserter',
-  'autogrow'
+  'autosize'
 ], function(
   $,
   DoughBaseComponent,
@@ -13,7 +13,7 @@ define([
   scribePluginMastalk,
   scribePluginLinkEditor,
   scribePluginImageInserter,
-  autogrow
+  autosize
 ) {
   'use strict';
 
@@ -83,7 +83,7 @@ define([
     this.enableToolbar('html');
     this.editorLib = new Editor(
       this.$htmlContent[0],
-      this.$markdownContent[0],
+      this.markdownContent,
       this.$htmlToolbar[0],
       this.editorOptions
     );
@@ -101,10 +101,7 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('bullets'));
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
 
-    this.$markdownContent.autogrow({
-      animate: false,
-      speed: 0
-    });
+    this.setupMarkdownContentResize();
 
     this._initialisedSuccess(initialised);
   };
@@ -118,6 +115,7 @@ define([
     this.$htmlContent = this.$el.find(this.config.selectors.htmlContent);
     this.$markdownContainer = this.$el.find(this.config.selectors.markdownContainer);
     this.$markdownContent = this.$el.find(this.config.selectors.markdownContent);
+    this.markdownContent = this.$markdownContent[0];
     this.$markdownToolbar = this.$el.find(this.config.selectors.markdownToolbar);
     this.$switchModeContainer = this.$el.find(this.config.selectors.switchModeContainer);
 
@@ -128,7 +126,7 @@ define([
   };
 
   MASEditorProto._stripEditorWhitespace = function() {
-    this.$markdownContent[0].value = this.$markdownContent[0].value.split('\n').map(function(e) {
+    this.markdownContent.value = this.markdownContent.value.split('\n').map(function(e) {
       return e.trim();
     }).join('\n');
   };
@@ -153,6 +151,25 @@ define([
     if(this.mode === this.editorLib.constants.MODES.HTML) {
       this.editorLib.changeEditingMode(this.editorLib.constants.MODES.MARKDOWN);
     }
+  };
+
+  /**
+   * Setups the autosize library and triggers initial resize
+   * @return {Object} this
+   */
+  MASEditorProto.setupMarkdownContentResize = function() {
+    autosize(this.$markdownContent);
+    this.resizeMarkdownContent();
+    return this;
+  };
+
+  /**
+   * Triggers resize event on autosize library
+   * @return {Object} this
+   */
+  MASEditorProto.resizeMarkdownContent = function() {
+    this.markdownContent.dispatchEvent(new Event('autosize.update'));
+    return this;
   };
 
   /**
@@ -182,6 +199,7 @@ define([
     if(mode === this.mode) return;
 
     this.mode = mode;
+    this.editorLib.changeEditingMode(this.mode);
 
     switch(mode) {
       case this.editorLib.constants.MODES.HTML:
@@ -193,7 +211,7 @@ define([
         this.enableToolbar('markdown');
         this.disableToolbar('html');
         this.show(this.$markdownContainer).hide(this.$htmlContainer);
-        this.$markdownContent.trigger('keyup');
+        this.resizeMarkdownContent();
         break;
       default:
         this.enableToolbar('html');
@@ -201,7 +219,6 @@ define([
         this.show(this.$htmlContainer).hide(this.$markdownContainer);
         break;
     }
-    this.editorLib.changeEditingMode(this.mode);
 
     return this;
   };
