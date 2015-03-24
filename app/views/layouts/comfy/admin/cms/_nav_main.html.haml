@@ -18,7 +18,7 @@
 
           %li.nav-primary__item
           %li.nav-primary__item.nav-primary__item--right
-            = link_to "#{content_tag(:span, '', class: 'nav-primary__icon fa fa-search')}".html_safe, '#', class: 'nav-primary__text nav-primary__text--button', data: { dough_component: 'Collapsable', dough_collapsable_trigger: 'search' }
+            = link_to "#{content_tag(:span, '', class: 'nav-primary__icon fa fa-search')}".html_safe, '#', class: 'nav-primary__text nav-primary__text--button', data: { dough_component: 'SearchBar', dough_search_bar_context: 'search', dough_collapsable_trigger: 'search' }
           %li.nav-primary__item.nav-primary__item--right
             = link_to "#{current_user.name} #{content_tag(:span, '', class: 'nav-primary__icon fa fa-user')}".html_safe, edit_user_path(current_user), class: 'nav-primary__text'
           %li.nav-primary__item.nav-primary__item--right
@@ -29,7 +29,7 @@
         .l-constrained
           .l-search-bar__input
             = label_tag(:search, nil, class: 'visually-hidden')
-            = text_field_tag(:search, params[:search], placeholder: 'Search pages', class: 'form__input')
+            = text_field_tag(:search, params[:search], placeholder: 'Search pages', class: 'form__input', data: { dough_search_bar_input: true, dough_search_bar_context: 'search' })
           .l-search-bar__button
             = button_tag('Search', type: 'submit', name: nil, class: 'button--action button--search-action') do
               %span.button__text.fa.fa-search
