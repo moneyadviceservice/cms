@@ -34,7 +34,7 @@
           .form__label-heading
             = form.label :slug
           .form__input-wrapper
-            = form.text_field :slug, class: 'form__input', disabled: @page.has_ever_been_published?, data: {'dough-urlformatter-slug' => @page.has_ever_been_published?, slug: true}
+            = form.text_field :slug, class: 'form__input', disabled: @page.ever_been_published?, data: {'dough-urlformatter-slug' => @page.ever_been_published?, slug: true}
             %span.form__hint
               in
               = page_slug(@site.label, presenter.page_type_url, @page.slug)

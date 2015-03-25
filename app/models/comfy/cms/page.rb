@@ -79,7 +79,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
     end
   end
 
-  def has_ever_been_published?
-    revisions.map {|revision| revision.data[:event]}.include?("published")
+  def ever_been_published?
+    revisions.map {|revision| revision.data[:event]}.include?('published')
   end
 end

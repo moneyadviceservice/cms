@@ -269,12 +269,12 @@ RSpec.describe Comfy::Cms::Page do
       before { page.revisions.create!(data: {event: 'published'}) }
 
       it 'when it has been published' do
-        expect(page.has_ever_been_published?).to be_truthy
+        expect(page.ever_been_published?).to be_truthy
       end
     end
 
     it 'when it has not been published' do
-      expect(page.has_ever_been_published?).to be_falsey
+      expect(page.ever_been_published?).to be_falsey
     end
   end
 
