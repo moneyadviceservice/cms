@@ -18,6 +18,6 @@ module TagsHelper
   def header_for_list_of_tags(tags, prefix)
     i18n_key  = tags.any? ? '.header' : '.no_tags'
     css_class = tags.any? ? 'js-existing-tags-msg' : 'js-tags-no-tags-msg'
-    content_tag(:span, t(i18n_key, prefix: prefix), class: css_class)
+    content_tag(:span, t(i18n_key, prefix: prefix.upcase), class: css_class)
   end
 end
