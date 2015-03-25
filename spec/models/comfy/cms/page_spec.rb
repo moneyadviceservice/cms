@@ -265,7 +265,7 @@ RSpec.describe Comfy::Cms::Page do
   describe 'has ever been published' do
     let(:page) { create(:page) }
 
-    context "when there is a previous published event" do
+    context 'when there is a previous published event' do
       before { page.revisions.create!(data: {event: 'published'}) }
 
       it 'when it has been published' do
