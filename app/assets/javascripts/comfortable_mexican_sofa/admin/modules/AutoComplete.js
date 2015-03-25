@@ -13,11 +13,14 @@ define(['jquery','DoughBaseComponent','chosen'], function ($, DoughBaseComponent
 
   AutoCompleteProto.init = function(initialised) {
     var placeholderText = this.$el.attr('data-dough-placeholder-text');
+
     this.$el.chosen({
       placeholder_text_multiple: !!placeholderText? placeholderText : ' ',
       width: "100%",
       single_backstroke_delete: false,
       inherit_select_classes: true
+    }).change(function() {
+      $(this).closest('form').trigger('input');
     });
 
     this._initialisedSuccess(initialised);
