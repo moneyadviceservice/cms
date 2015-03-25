@@ -78,4 +78,8 @@ class Comfy::Cms::Page < ActiveRecord::Base
       mirror.update_column(:suppress_from_links_recirculation, suppress_from_links_recirculation)
     end
   end
+
+  def has_ever_been_published?
+    revisions.map {|revision| revision.data[:event]}.include?("published")
+  end
 end

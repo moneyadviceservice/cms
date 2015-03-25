@@ -260,7 +260,22 @@ RSpec.describe Comfy::Cms::Page do
         expect(results).to eq([second_not_suppressed_page, first_not_suppressed_page])
       end
     end
+  end
 
+  describe 'has ever been published' do
+    let(:page) { create(:page) }
+
+    context "when there is a previous published event" do
+      before { page.revisions.create!(data: {event: 'published'}) }
+
+      it 'when it has been published' do
+        expect(page.has_ever_been_published?).to be_truthy
+      end
+    end
+
+    it 'when it has not been published' do
+      expect(page.has_ever_been_published?).to be_falsey
+    end
   end
 
 end
