@@ -98,10 +98,11 @@
               =current_status(@page.current_state)
               =@page.scheduled_on
             %span.is-hidden{ data: { dough_wordcount_display: 'article', dough_wordcount_text: ' | ~{count} words' } }
-          %span.nav-article__item
-            %span.fa.fa-list-ul
-            %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
-              Activity log
+          - if @page.persisted?
+            %span.nav-article__item
+              %span.fa.fa-list-ul
+              %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
+                Activity log
 
           %span.nav-article__item.nav-article__item--right
             - unless @page.unsaved?
