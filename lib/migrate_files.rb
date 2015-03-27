@@ -1,28 +1,54 @@
+require 'bundler/setup'
 require 'optparse'
 require 'base64'
-require 'nokogiri'
 require 'ostruct'
-require 'active_model'
+require 'nokogiri'
+require 'hippo_xml_parser'
+require 'pry'
 
-class HippoFile
-  include ActiveModel::Model
-  attr_accessor :blob
-end
+class HippoFile < HippoXmlParser::Document
+  alias :filename :namespace
 
-class HippoFileParser
-  include ActiveModel::Model
-  attr_accessor :file
-
-  def data
-    @data ||= ::Nokogiri::Slop(file)
+  def blob
+    @blob ||= Base64.decode64(asset.find_property('hippo:text').doc.text)
   end
 
-  def parse
-    xpath = '//sv:property[@sv:type="Binary"][@sv:name="jcr:data"]'
+  def mime_type
+    asset.find_property('jcr:mimeType').doc.text.strip
+  end
 
-    data.xpath(xpath).map do |hippo_file|
-      HippoFile.new(blob: Base64.decode64(hippo_file.children.text))
+  private
+
+  def asset
+    nodes.find { |node| node.find_node('hippogallery:asset') }.find_node('hippogallery:asset')
+  end
+end
+
+class HippoFileParser < HippoXmlParser::Crawler
+  def self.parse(file)
+    new(Nokogiri::XML(file)).all
+  end
+
+  def type?(element)
+    element.children.map do |e|
+      if e.name == "property" && e["sv:name"] == "jcr:primaryType"
+
+        e if e.children.select { |x| x.name == "value" }.any?
+      end
+    end.flatten.compact.first
+  end
+
+  def crawl(doc)
+    if type?(doc)
+      [HippoFile.new(doc)]
+    else
+      doc.children.map {|e| crawl(e) }
     end
+  end
+end
+
+class RackSpaceCDN
+  def self.upload(hippo_files)
   end
 end
 
@@ -46,8 +72,9 @@ OptionParser.new do |opts|
 end.parse!
 
 if options.file
-  files =  HippoFileParser.new(file: options.file).parse
-  files.each { |file| puts file.blob }
+  files =  HippoFileParser.parse(options.file)
+  files.each { |file| puts file.filename; puts file.blob; puts file.mime_type }
+  RackSpaceCDN.upload(files)
 else
   puts 'You need to pass the Hippo asset xml file with --file [FILE].'
 end
