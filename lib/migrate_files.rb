@@ -10,17 +10,17 @@ class HippoFile < HippoXmlParser::Document
   alias :filename :namespace
 
   def blob
-    @blob ||= Base64.decode64(asset.find_property('hippo:text').doc.text)
+    @blob ||= Base64.decode64(asset.find_property('hippo:text').value)
   end
 
   def mime_type
-    asset.find_property('jcr:mimeType').doc.text.strip
+    asset.find_property('jcr:mimeType').value
   end
 
   private
 
   def asset
-    nodes.find { |node| node.find_node('hippogallery:asset') }.find_node('hippogallery:asset')
+    nodes.first
   end
 end
 
@@ -30,17 +30,22 @@ class HippoFileParser < HippoXmlParser::Crawler
   end
 
   def type?(element)
-    element.children.map do |e|
-      if e.name == "property" && e["sv:name"] == "jcr:primaryType"
+    assets(element)
+  end
 
-        e if e.children.select { |x| x.name == "value" }.any?
+  def assets(element)
+    files = element.children.map do |e|
+      if e['sv:name'] =~ /[\w]*\.[\w]*/
+        e.children.select { |x| x['sv:name'] =~ /[\w]*\.[\w]*/ }
       end
-    end.flatten.compact.first
+    end
+
+    files.flatten.compact.first
   end
 
   def crawl(doc)
     if type?(doc)
-      [HippoFile.new(doc)]
+      [HippoFile.new(assets(doc))]
     else
       doc.children.map {|e| crawl(e) }
     end
@@ -73,7 +78,7 @@ end.parse!
 
 if options.file
   files =  HippoFileParser.parse(options.file)
-  files.each { |file| puts file.filename; puts file.blob; puts file.mime_type }
+  files.each { |file| puts file.filename; puts file.mime_type }
   RackSpaceCDN.upload(files)
 else
   puts 'You need to pass the Hippo asset xml file with --file [FILE].'
