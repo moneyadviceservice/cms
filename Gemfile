@@ -19,6 +19,8 @@ gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
+gem 'fog'
+
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
 gem 'jquery-ui-rails', '~> 5.0'
