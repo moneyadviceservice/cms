@@ -13,7 +13,7 @@ class HippoFile < HippoXmlParser::Document
   end
 
   def blob
-    binary_blob = find_property('hippo:text').value
+    binary_blob = (find_property('hippo:text') || find_property('jcr:data')).value
 
     @blob ||= Base64.decode64(binary_blob)
   end
@@ -39,17 +39,15 @@ class HippoFileParser
 
     blobs.map { |blob| HippoFile.new(blob.parent) }
   end
-
-  def mime_type
-    find_property('jcr:mimeType').value
-  end
 end
 
 class RackSpaceCDN
   attr_reader :hippo_files, :options
 
   def self.upload(hippo_files, options)
-    new(hippo_files, options).upload
+    rackspace = new(hippo_files, options)
+    rackspace.upload
+    rackspace
   end
 
   def initialize(hippo_files, options)
@@ -59,8 +57,7 @@ class RackSpaceCDN
 
   def upload
     hippo_files.each do |hippo_file|
-      puts "Uploading #{hippo_file.filename}"
-      hippo_file.blob
+      puts "Uploading '#{hippo_file.filename}'"
 
       bucket.files.create(
         key:    hippo_file.filename,
@@ -68,6 +65,10 @@ class RackSpaceCDN
         public: true
       )
     end
+  end
+
+  def list_files
+    bucket.files.each { |file| puts file.key }
   end
 
   def bucket
@@ -117,8 +118,13 @@ end.parse!
 
 if !options.file.empty? && options.username && options.key && options.bucket
   files =  HippoFileParser.parse(options.file)
-  RackSpaceCDN.upload(files, options)
+  puts "Uploading #{files.size} files."
+  rackspace = RackSpaceCDN.upload(files, options)
+  puts 'Done.'
+  puts
+  puts 'Files in the bucket:'
+  rackspace.list_files
 else
-  puts 'In order to migrate from Hippo to Rackspace CDN you will need to run like these:'
+  puts 'Usage:'
   puts 'ruby bin/migrate_files -u rackspace_username -k rackspace_key -b bucket_name -f hippo_file.xml'
 end
