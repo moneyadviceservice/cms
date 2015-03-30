@@ -46,41 +46,39 @@ class HippoFileParser
 end
 
 class RackSpaceCDN
-  RACKSPACE_USERNAME = ENV['RACKSPACE_USERNAME']
-  RACKSPACE_API_KEY  = ENV['RACKSPACE_API_KEY']
-  BUCKET_NAME        = ENV['RACKSPACE_BUCKET_NAME']
-  attr_reader :hippo_files
+  attr_reader :hippo_files, :options
 
-  def self.upload(hippo_files)
-    new(hippo_files).upload
+  def self.upload(hippo_files, options)
+    new(hippo_files, options).upload
   end
 
-  def initialize(hippo_files)
+  def initialize(hippo_files, options)
     @hippo_files = hippo_files
+    @options = options
   end
 
   def upload
     hippo_files.each do |hippo_file|
       puts "Uploading #{hippo_file.filename}"
-      puts hippo_file.blob
+      hippo_file.blob
 
-      #bucket.files.create(
-      #  key:    hippo_file.filename,
-      #  body:   hippo_file.blob,
-      #  public: true
-      #)
+      bucket.files.create(
+        key:    hippo_file.filename,
+        body:   hippo_file.blob,
+        public: true
+      )
     end
   end
 
   def bucket
-    connection.directories.find { |dir| dir.key == BUCKET_NAME }
+    connection.directories.find { |dir| dir.key == options.bucket }
   end
 
   def connection
     @connection ||= Fog::Storage.new(
       provider:           'Rackspace',
-      rackspace_username: RACKSPACE_USERNAME,
-      rackspace_api_key:  RACKSPACE_API_KEY,
+      rackspace_username: options.username,
+      rackspace_api_key:  options.key,
       rackspace_auth_url: 'lon.auth.api.rackspacecloud.com'
     )
   end
@@ -99,15 +97,28 @@ OptionParser.new do |opts|
     end
   end
 
+  opts.on('-u [RACKSPACE USERNAME]', '--username', 'Pass the rackspace username') do |username|
+    options.username = username
+  end
+
+  opts.on('-k [RACKSPACE API KEY]', '--key', 'Pass the rackspace key') do |key|
+    options.key = key
+  end
+
+  opts.on('-b [RACKSPACE BUCKET NAME]', '--bucket', 'Pass the rackspace bucket name') do |bucket|
+    options.bucket = bucket
+  end
+
   opts.on('-h', '--help', 'Show this message') do
     puts opts
     exit
   end
 end.parse!
 
-if options.file
+if !options.file.empty? && options.username && options.key && options.bucket
   files =  HippoFileParser.parse(options.file)
-  RackSpaceCDN.upload(files)
+  RackSpaceCDN.upload(files, options)
 else
-  puts 'You need to pass the Hippo asset xml file with --file [FILE].'
+  puts 'In order to migrate from Hippo to Rackspace CDN you will need to run like these:'
+  puts 'ruby bin/migrate_files -u rackspace_username -k rackspace_key -b bucket_name -f hippo_file.xml'
 end
