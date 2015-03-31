@@ -12,4 +12,12 @@ class HippoFile < HippoXmlParser::Document
   def mime_type
     find_property('jcr:mimeType').value
   end
+
+  def ==(other)
+    filename == other.filename
+  end
+
+  def inspect
+    "#<#{self.class}:#{object_id} @filename='#{filename}' @blob='#{blob[0..10]}...'>"
+  end
 end
