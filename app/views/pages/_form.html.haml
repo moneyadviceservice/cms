@@ -14,7 +14,6 @@
   = form_for @page, as: :page, url: form_url, class: 'form', html: { multipart: true, autocomplete: 'off'}, data: { dough_component: 'MASEditor UnsavedChangesPrompt', dough_scheduler_form: true } do |form|
 
     = render 'comfy/admin/cms/partials/page_form_before', object: form
-
     .l-panel-content.l-panel-content--form
       .l-constrained{ data: page_form_component(@page, default: ['URLFormatter'], optional: ['MirrorInputValue']), 'data-dough-urlformatter-base-url' => '{pageType}/{slug}'}
         .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
@@ -34,7 +33,7 @@
           .form__label-heading
             = form.label :slug
           .form__input-wrapper
-            = form.text_field :slug, class: 'form__input', disabled: @page.ever_been_published?, data: {'dough-urlformatter-slug' => @page.ever_been_published?, slug: true}
+            = form.text_field :slug, class: 'form__input', tabindex: '-1', readonly: @page.ever_been_published?, data: { :dough_component => ('FieldDisabledStateToggler' unless !@page.ever_been_published?), 'dough-urlformatter-slug' => @page.ever_been_published?, slug: true, title: 'Double click to edit this field', 'dough-field-disabled-state-toggler-attribute' => 'readonly'}
             %span.form__hint
               in
               = page_slug(@site.label, presenter.page_type_url, @page.slug)
