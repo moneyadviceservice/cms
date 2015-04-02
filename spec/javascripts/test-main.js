@@ -55,6 +55,7 @@ requirejs.config({
     'WordCount': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/WordCount',
     'URLFormatter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLFormatter',
     'SearchBar': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/SearchBar',
+    'FieldDisabledStateToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/FieldDisabledStateToggler',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',

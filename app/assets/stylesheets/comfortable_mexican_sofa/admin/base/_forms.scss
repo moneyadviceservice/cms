@@ -14,7 +14,8 @@ input[type="password"] {
   @extend %form-input;
   @extend %form-input-text;
 
-  &[disabled] {
+  &[disabled],
+  &[readonly] {
     background-color: $color-input-disabled-background;
     color: $color-input-disabled-text-color;
     font-style: italic;
