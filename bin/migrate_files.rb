@@ -40,7 +40,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-if !options.file.empty? && options.username && options.key && options.bucket
+if !options.file.nil? && options.username && options.key && options.bucket
   files =  HippoFileParser.parse(options.file)
   puts "Uploading #{files.size} files."
   rackspace = RackSpaceCDN.new(options)
