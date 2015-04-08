@@ -2,28 +2,56 @@
 
 The MAS CMS.
 
-## Installing front-end dependencies
+## Prerequisites
+
+- Ruby/Rails
+- ImageMagic
+- MySQL
+- Node.js (for Bower)
+- Bower (Install via NPM)
+
+## Installation
+
+### Configuration
 
 ```sh
-npm install
-bowndler install
+$ ./bin/setup
+$ rails s
 ```
 
-## Updating Dough
+The setup script will install required gems, bower modules and create the databases as well as seed some data to setup the CMS.
+
+Note: Make sure you've added all the required API keys for the app to work properly. Make sure you set the HOSTNAME, GA_API_EMAIL_ADDRESS, GA_PRIVATE_KEY_PATH variables in the `.env` file appropriately. The setup script above will set up the `.env` file  structure but you may need to set some keys seperately, particularly the Rackspace ones.
+
+### Updating Dough
+
+Sometimes you may need to seperately update Dough to pull the latest style changes. You can do that by running:
 
 ```sh
 bundle update dough-ruby
 bowndler update
 ```
 
-## Configuration
-Make sure you set the HOSTNAME, GA_API_EMAIL_ADDRESS, GA_PRIVATE_KEY_PATH variables in the `.env` file appropriately.
+## Testing
 
-## JavaScript testing
+Run unit specs with:
 
-We use [Karma](http://karma-runner.github.io) as our test runner.
+```sh
+$ bundle exec rspec
+```
 
-With [karma-cli](https://www.npmjs.org/package/karma-cli):
+Run feature specs with:
+
+```sh
+$ bundle exec cucumber
+```
+
+For JavaScript tests we use:
+
+- [Karma](http://karma-runner.github.io) as our test runner.
+- [karma-cli](https://www.npmjs.org/package/karma-cli):
+
+Run JavaScript tests with:
 
 ```sh
 npm test
@@ -39,17 +67,19 @@ Or for the direct command:
 
 Use `--single-run` if you only want it to run once.
 
-## Component Styleguide
+## Deploying
+
+This can easily be deployed to Heroku but the MAS organisation uses its own deploymen infranstructure. If you're a MAS employee, you can deploy this to QA by trigerring the `cms_commit` pipeline . Refer to the organisational [wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/TEAMB/Contento+CMS) on how to deploy to our production environment.
+
+## Additional Notes
+
+### Component Styleguide
 
 [The styleguide](http://0.0.0.0:3000/styleguide) lists all HTML/CSS components used within the CMS.
 
 Any new components should be built here first, then integrated into the views.
 
-## Environment variables
-
-    cp .env.dev .env
-
-## Cron / Rake
+### Cron / Rake
 
 The rake task
 ```bundle exec rake cms:update_page_views```
