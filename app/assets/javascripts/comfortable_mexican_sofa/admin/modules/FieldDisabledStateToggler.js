@@ -26,15 +26,18 @@ define([
   FieldDisabledStateTogglerProto = FieldDisabledStateToggler.prototype;
 
   FieldDisabledStateTogglerProto.init = function(initialised) {
-    this._initialisedSuccess(initialised);
+    this.$form = this.$el.closest('form');
+
     this._setupHotSpot();
     this._setupUIEvents();
+
+    this._initialisedSuccess(initialised);
   };
 
   FieldDisabledStateTogglerProto._setupUIEvents = function() {
     $(document).on('keyup', $.proxy(this._handleKeyPress, this));
     this.$hotspot.on('dblclick', $.proxy(this._handleDblClick, this));
-    this.$el.on('blur', $.proxy(this._handleBlur, this));
+    this.$form.on('click keyup', $.proxy(this._handleFocusChange, this));
   };
 
   FieldDisabledStateTogglerProto._setupHotSpot = function() {
@@ -63,16 +66,22 @@ define([
     }
   };
 
-  FieldDisabledStateTogglerProto._handleBlur = function() {
-    this.setDisabledState(true);
+  FieldDisabledStateTogglerProto._handleFocusChange = function(e) {
+    if(e.currentTarget === this.$hotspot[0] || e.keyCode && e.keyCode !== 9) return;
+
+    if(!$(e.target).is(this.$el)) {
+      this.setDisabledState(true);
+    }
   };
 
   FieldDisabledStateTogglerProto.setDisabledState = function(disabled) {
     if(disabled) {
       this.$el.attr(this.disabledAttr, true);
+      this.$hotspot.show();
     }
     else {
       this.$el.removeAttr(this.disabledAttr);
+      this.$hotspot.hide();
     }
   };
 
