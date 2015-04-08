@@ -39,6 +39,7 @@ describe('FieldDisabledStateToggler', function() {
       this.component.init();
       this.component.$el.attr(this.component.disabledAttr, true);
       this.component.$hotspot.trigger('dblclick');
+
       expect(!!this.component.$el.attr(this.component.disabledAttr)).to.be.false;
     });
   });
@@ -50,8 +51,14 @@ describe('FieldDisabledStateToggler', function() {
     });
 
     it('should disable the field', function() {
+      var $dummyField = $('<input type="text" />');
+
       this.component.init();
-      this.component.$el.trigger('blur');
+      this.component.$form.append($dummyField);
+
+      this.component.$el.focus();
+      $dummyField.click();
+
       expect(this.component.$el).to.have.attr(this.component.disabledAttr);
     });
   });
