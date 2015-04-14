@@ -76,7 +76,6 @@ requirejs.config({
 
     // Third-party dependencies
     'jquery': bowerPath + 'jquery/dist/jquery.min',
-    'he': bowerPath + 'he/he',
     'rsvp': bowerPath + 'rsvp/rsvp',
     'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',
     'scribe': bowerPath + 'scribe/scribe',
@@ -98,9 +97,6 @@ requirejs.config({
     'autosize': bowerPath + 'autosize/src/autosize'
   },
   shim : {
-    'to-markdown' : {
-      deps : ['he']
-    },
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']
