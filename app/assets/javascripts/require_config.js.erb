@@ -70,7 +70,6 @@ requirejs.config({
 
     // Third-party dependencies
     'jquery': '<%= requirejs_path("jquery/dist/jquery.min") %>',
-    'he': '<%= requirejs_path("he/he") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp') %>",
     'jqueryThrottleDebounce': "<%= requirejs_path('jqueryThrottleDebounce/jquery.ba-throttle-debounce') %>",
     'modernizr': "<%= requirejs_path('modernizr/modernizr') %>",
@@ -86,7 +85,7 @@ requirejs.config({
     'text': '<%= requirejs_path("text/text") %>',
     'dialog-polyfill': '<%= requirejs_path("dialog-polyfill/dialog-polyfill") %>',
     'marked': '<%= requirejs_path("marked/lib/marked") %>',
-    'to-markdown' : '<%= requirejs_path("to-markdown/src/to-markdown") %>',
+    'to-markdown' : '<%= requirejs_path("to-markdown/dist/to-markdown") %>',
     'chosen': '<%= requirejs_path("chosen-build/chosen.jquery") %>',
     'taggle': '<%= requirejs_path("taggle.js/dist/taggle.min") %>',
     'rangy-core': '<%= requirejs_path("rangy-official/rangy-core") %>',
@@ -97,9 +96,6 @@ requirejs.config({
     'autosize': '<%= requirejs_path("autosize/src/autosize") %>'
   },
   shim: {
-    'to-markdown' : {
-      deps: ['he']
-    },
     'chosen': {
       exports: 'Chosen',
       deps: ['jquery']

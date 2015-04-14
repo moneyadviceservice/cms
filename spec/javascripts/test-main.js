@@ -88,7 +88,7 @@ requirejs.config({
     'scribe-plugin-sanitizer': bowerPath + 'scribe-plugin-sanitizer/scribe-plugin-sanitizer',
     'scribe-plugin-toolbar': bowerPath + 'scribe-plugin-toolbar/scribe-plugin-toolbar',
     'marked': bowerPath + 'marked/lib/marked',
-    'to-markdown' : bowerPath + 'to-markdown/src/to-markdown',
+    'to-markdown' : bowerPath + 'to-markdown/dist/to-markdown',
     'chosen': bowerPath + 'chosen-build/chosen.jquery',
     'text': bowerPath + 'text/text',
     'dialog-polyfill': bowerPath + 'dialog-polyfill/dialog-polyfill',
