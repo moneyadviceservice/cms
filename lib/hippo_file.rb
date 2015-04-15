@@ -4,7 +4,7 @@ class HippoFile < HippoXmlParser::Document
   end
 
   def blob
-    binary_blob = (find_property('hippo:text') || find_property('jcr:data')).value
+    binary_blob = (find_property('jcr:data') || find_property('hippo:text')).value
 
     @blob ||= Base64.decode64(binary_blob)
   end
