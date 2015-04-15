@@ -1,3 +1,5 @@
+require 'timeout'
+
 class RackSpaceCDN
   attr_reader :options
 
@@ -17,11 +19,18 @@ class RackSpaceCDN
     files.each do |file|
       puts "Uploading '#{file.filename}'"
 
-      bucket.files.create(
-        key:    hippo_file.filename,
-        body:   hippo_file.blob,
-        public: true
-      )
+      begin
+        Timeout.timeout(30) do
+          bucket.files.create(
+            key:    file.filename,
+            body:   file.blob,
+            public: true
+          )
+        end
+      rescue
+        puts "Failed to upload: #{file.filename}"
+        File.open('failed.txt', 'a') { |f| f.write("#{file.filename}\n") }
+      end
     end
   end
 
