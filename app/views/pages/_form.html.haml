@@ -114,8 +114,9 @@
                   %span.button__text
                     = state_event[:label]
                 - unless page_state_buttons(@page.current_state).empty?
-                  %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
-                    %span.button__icon.fa.fa-caret-up
+                  - if @page.publishable?
+                    %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
+                      %span.button__icon.fa.fa-caret-up
 
             .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
               .popover__inner

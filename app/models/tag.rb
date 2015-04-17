@@ -20,4 +20,8 @@ class Tag < ActiveRecord::Base
   def in_use?
     taggings.exists?
   end
+
+  def publishable?
+    value != 'do-not-publish'
+  end
 end

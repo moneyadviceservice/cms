@@ -82,4 +82,8 @@ class Comfy::Cms::Page < ActiveRecord::Base
   def ever_been_published?
     revisions.map {|revision| revision.data[:event]}.include?('published')
   end
+
+  def publishable?
+    keywords.all?(&:publishable?)
+  end
 end
