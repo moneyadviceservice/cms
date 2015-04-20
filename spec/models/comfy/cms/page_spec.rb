@@ -1,5 +1,4 @@
 RSpec.describe Comfy::Cms::Page do
-
   describe '#suppress_from_links_recirculation' do
     let(:english_site) { create :site, is_mirrored: true }
     let(:welsh_site) { create :site, :welsh, is_mirrored: true }
@@ -278,4 +277,17 @@ RSpec.describe Comfy::Cms::Page do
     end
   end
 
+  describe '#publishable?' do
+    context 'when tagged with do-not-publish' do
+      it 'returns false' do
+        allow(subject).to receive(:keywords) { [Tag.new(value: 'do-not-publish')] }
+        expect(subject).to_not be_publishable
+      end
+    end
+
+    it 'returns true' do
+      allow(subject).to receive(:keywords) { [Tag.new(value: 'a-tag')] }
+      expect(subject).to be_publishable
+    end
+  end
 end
