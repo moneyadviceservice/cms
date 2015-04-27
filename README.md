@@ -69,7 +69,7 @@ Use `--single-run` if you only want it to run once.
 
 ## Deploying
 
-This can easily be deployed to Heroku but the MAS organisation uses its own deploymen infranstructure. If you're a MAS employee, you can deploy this to QA by trigerring the `cms_commit` pipeline . Refer to the organisational [wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/TEAMB/Contento+CMS) on how to deploy to our production environment.
+This can easily be deployed to Heroku but the MAS organisation uses its own deployment infrastructure. If you're a MAS employee, you can deploy this to QA by triggering the `cms_commit` pipeline . Refer to the organisational [wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/TEAMB/Contento+CMS) on how to deploy to our production environment.
 
 ## Additional Notes
 
