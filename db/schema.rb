@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150129120103) do
+ActiveRecord::Schema.define(version: 20150428091610) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 20150129120103) do
   add_index "comfy_cms_blocks", ["identifier"], name: "index_comfy_cms_blocks_on_identifier", using: :btree
 
   create_table "comfy_cms_categories", force: true do |t|
-    t.integer "site_id",          null: false
-    t.string  "label",            null: false
-    t.string  "categorized_type", null: false
+    t.integer "site_id",                                null: false
+    t.string  "label",                                  null: false
+    t.string  "categorized_type",                       null: false
     t.string  "title_en"
     t.string  "title_cy"
     t.string  "description_en"
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(version: 20150129120103) do
     t.string  "title_tag_en"
     t.string  "title_tag_cy"
     t.integer "parent_id"
-    t.integer "ordinal",          default: 999
+    t.integer "ordinal",                default: 999
     t.boolean "navigation"
     t.string  "image"
     t.string  "preview_image"
+    t.boolean "third_level_navigation", default: false
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
@@ -110,10 +111,9 @@ ActiveRecord::Schema.define(version: 20150129120103) do
     t.string   "preview_cache"
     t.boolean  "regulated",                                          default: false
     t.string   "meta_title"
-    t.boolean  "regulated",                         default: false
     t.string   "translation_id"
-    t.integer  "page_views",                                         default: 0
     t.datetime "scheduled_on"
+    t.integer  "page_views",                                         default: 0
     t.boolean  "suppress_from_links_recirculation",                  default: false
   end
 

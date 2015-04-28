@@ -7,6 +7,7 @@ en:
       go_to_parent: Up
     edit:
       show_in_navigation: Show in Primary navigation
+      third_level_navigation: Third level navigation
       submit:
         create: Create category
         update: Update category

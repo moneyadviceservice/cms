@@ -10,7 +10,8 @@ RSpec.describe CategoriesController, type: :controller do
       'id' => "#{category.id}",
       'list_order_sub_categories' => "#{sub_category_2.id}, #{sub_category_1.id}",
       'comfy_cms_category' => {
-        'title_en' => 'Debt and borrowing'
+        'title_en' => 'Debt and borrowing',
+        'third_level_navigation' => '1'
       }
     }
   end
@@ -25,7 +26,11 @@ RSpec.describe CategoriesController, type: :controller do
     end
 
     it 'updates the order of the sub categories' do
-      expect(category.child_categories.map(&:label)).to eq(['Sub Category 2', 'Sub Category 1'])
+      expect(category.reload.child_categories.map(&:label)).to eq(['Sub Category 2', 'Sub Category 1'])
+    end
+
+    it 'updates third_level_navigation' do
+      expect(category.reload.third_level_navigation).to eq(true)
     end
   end
 end
