@@ -52,6 +52,7 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
       :description_cy,
       :ordinal,
       :navigation,
+      :third_level_navigation,
       :site_id,
       :categorized_type
     )

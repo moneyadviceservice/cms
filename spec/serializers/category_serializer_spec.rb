@@ -11,7 +11,8 @@ describe CategorySerializer do
       description_en: 'description_en',
       description_cy: 'description_cy',
       parent_id: nil,
-      child_categories: [child_categories])
+      child_categories: [child_categories],
+      third_level_navigation: true)
   end
 
   subject { described_class.new(category, scope: scope) }
@@ -25,6 +26,7 @@ describe CategorySerializer do
         title: 'en_title',
         description: 'description_en',
         parent_id: '',
+        third_level_navigation: true,
         contents: []
       }
     end
@@ -43,6 +45,7 @@ describe CategorySerializer do
         title: 'cy_title',
         description: 'description_cy',
         parent_id: '',
+        third_level_navigation: true,
         contents: []
       }
     end

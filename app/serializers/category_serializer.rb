@@ -1,5 +1,5 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :type, :title, :description, :parent_id
+  attributes :id, :type, :title, :description, :parent_id, :third_level_navigation
 
   has_many :contents
 
@@ -34,5 +34,9 @@ class CategorySerializer < ActiveModel::Serializer
   def parent_id
     return '' unless object.parent_id.present?
     Comfy::Cms::Category.find(object.parent_id).label
+  end
+
+  def third_level_navigation
+    object.third_level_navigation
   end
 end
