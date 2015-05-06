@@ -6,8 +6,13 @@ class BlockSerializer < ActiveModel::Serializer
   private
 
   def content
-    return object.content if render_content_directly?
-    published_content.fetch(:content, '')
+    blocks = if render_content_directly?
+      [{ "identifier" => "content", "content" => object.content}]
+    else
+      [{ "identifier" => "content", "content" => published_content.fetch(:content, '') }]
+    end
+
+    BlockComposer.new(blocks).to_html
   end
 
   def published_content
