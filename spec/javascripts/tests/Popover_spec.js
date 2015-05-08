@@ -49,7 +49,7 @@ describe('Popover', function() {
       done();
     });
     it('should close when a click/touchend event is detected inside the target container', function() {
-      this.component.$trigger.click();
+      this.component.$triggers.click();
       expect(this.component.isShown).to.be.true;
       this.component.$target.click();
       expect(this.component.isShown).to.be.false;
@@ -68,7 +68,7 @@ describe('Popover', function() {
 
       it('should position itself to the left of the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         $trigger.click();
         expect(this.component.getElementBoundaries($target).right).to.be.below($('body').width());
@@ -90,7 +90,7 @@ describe('Popover', function() {
 
       it('should vertically centre itself to the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         $trigger.click();
         expect(getElementCenterFromViewport(this.component, $trigger, 'vertical'))
@@ -110,7 +110,7 @@ describe('Popover', function() {
       });
 
       it('should position itself to the right of the trigger', function() {
-        var $trigger = this.component.$trigger,
+        var $trigger = this.component.$triggers,
             $target = this.component.$target;
 
         $trigger.click();
@@ -131,7 +131,7 @@ describe('Popover', function() {
 
       it('should vertically centre itself to the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         $trigger.click();
         expect(getElementCenterFromViewport(this.component, $trigger, 'vertical'))
@@ -152,7 +152,7 @@ describe('Popover', function() {
 
       it('should position itself above the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         $trigger.click();
         expect(this.component.getElementBoundaries($target).bottom)
@@ -172,7 +172,7 @@ describe('Popover', function() {
 
       it('should horizontally centre itself to the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         this.$trigger.css({
           margin: '100px auto 0'
@@ -197,7 +197,7 @@ describe('Popover', function() {
 
       it('should position itself below the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         $trigger.css({
           display : 'block'
@@ -220,7 +220,7 @@ describe('Popover', function() {
 
       it('should horizontally centre itself to the trigger', function() {
         var $target = this.component.$target,
-            $trigger = this.component.$trigger;
+            $trigger = this.component.$triggers;
 
         this.component.$el.css({
           margin: '0 auto'

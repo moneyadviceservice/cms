@@ -91,14 +91,14 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   };
 
   Popover.prototype.centerAlignTargetToTrigger = function(pos, direction) {
-    return pos - this.getElementCenterPosition(this.$target)[direction] + this.getElementCenterPosition(this.$trigger)[direction];
+    return pos - this.getElementCenterPosition(this.$target)[direction] + this.getElementCenterPosition(this.$triggers)[direction];
   };
 
   Popover.prototype.calculateTargetOffsetFromTrigger = function(direction) {
     var directions;
 
     function calculateLeft() {
-      var left = this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left;
+      var left = this.getElementBoundaries(this.$triggers).left + this.bodyOffset.left;
 
       if(this.config.centerAlign) {
         left = this.centerAlignTargetToTrigger(left, 'horizontal');
@@ -110,7 +110,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
     }
 
     function calculateTop() {
-      var top = this.getElementBoundaries(this.$trigger).top + this.bodyOffset.top;
+      var top = this.getElementBoundaries(this.$triggers).top + this.bodyOffset.top;
 
       if(this.config.centerAlign) {
         top = this.centerAlignTargetToTrigger(top, 'vertical');
@@ -122,21 +122,21 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       directions = {
         top:  {
           left: calculateLeft.call(this),
-          bottom: this.$trigger.outerHeight() + this.getPointerHeight()
+          bottom: this.$triggers.outerHeight() + this.getPointerHeight()
         },
 
         bottom: {
           left: calculateLeft.call(this),
-          top: this.$trigger.outerHeight() + this.getPointerHeight()
+          top: this.$triggers.outerHeight() + this.getPointerHeight()
         },
 
         left: {
-          right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
+          right: $('body').width() - this.getElementBoundaries(this.$triggers).left + this.bodyOffset.left,
           top: calculateTop.call(this)
         },
 
         right: {
-          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
+          left: this.getElementBoundaries(this.$triggers).left + this.$triggers.outerWidth() + this.bodyOffset.left,
           top: calculateTop.call(this)
         }
       };
@@ -145,21 +145,21 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
       directions = {
         top:  {
           left: calculateLeft.call(this),
-          top: this.getElementBoundaries(this.$trigger).bottom - this.$trigger.outerHeight() - this.$target.outerHeight()
+          top: this.getElementBoundaries(this.$triggers).bottom - this.$triggers.outerHeight() - this.$target.outerHeight()
         },
 
         bottom: {
           left: calculateLeft.call(this),
-          top: this.getElementBoundaries(this.$trigger).bottom
+          top: this.getElementBoundaries(this.$triggers).bottom
         },
 
         left: {
-          right: $('body').width() - this.getElementBoundaries(this.$trigger).left + this.bodyOffset.left,
+          right: $('body').width() - this.getElementBoundaries(this.$triggers).left + this.bodyOffset.left,
           top: calculateTop.call(this)
         },
 
         right: {
-          left: this.getElementBoundaries(this.$trigger).left + this.$trigger.outerWidth() + this.bodyOffset.left,
+          left: this.getElementBoundaries(this.$triggers).left + this.$triggers.outerWidth() + this.bodyOffset.left,
           top: calculateTop.call(this)
         }
       };
@@ -170,10 +170,10 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
   Popover.prototype.calculatePointerOffsetFromTrigger = function(direction) {
     var directions = {
       horizontal: {
-        top: this.getElementBoundaries(this.$trigger).top + this.getElementCenterPosition(this.$trigger).vertical - this.getElementBoundaries(this.$target).top
+        top: this.getElementBoundaries(this.$triggers).top + this.getElementCenterPosition(this.$triggers).vertical - this.getElementBoundaries(this.$target).top
       },
       vertical: {
-        left: this.getElementBoundaries(this.$trigger).left + this.getElementCenterPosition(this.$trigger).horizontal - this.getElementBoundaries(this.$target).left
+        left: this.getElementBoundaries(this.$triggers).left + this.getElementCenterPosition(this.$triggers).horizontal - this.getElementBoundaries(this.$target).left
       }
     };
     return directions[direction] || directions.horizontal;
