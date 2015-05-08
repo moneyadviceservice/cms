@@ -15,7 +15,7 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
 
   function Popover($el, config, customConfig) {
     Popover.baseConstructor.call(this, $el, config, customConfig || defaultConfig);
-    this.$trigger.find('[data-dough-collapsable-icon]').remove();
+    this.$triggers.find('[data-dough-collapsable-icon]').remove();
   }
 
   /**
