@@ -75,6 +75,9 @@ define([
   }
 
   DoughBaseComponent.extend(MASEditor);
+
+  MASEditor.componentName = 'MASEditor';
+
   MASEditorProto = MASEditor.prototype;
 
   MASEditorProto.init = function(initialised) {

@@ -28,6 +28,8 @@ define([
 
   DoughBaseComponent.extend(TagManager);
 
+  TagManager.componentName = 'TagManager';
+
   TagManagerProto = TagManager.prototype;
 
   TagManagerProto.init = function(initialised) {

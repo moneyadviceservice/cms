@@ -23,6 +23,8 @@ define(['jquery', 'DoughBaseComponent', 'Collapsable'], function($, DoughBaseCom
    */
   DoughBaseComponent.extend(Popover, Collapsable);
 
+  Popover.componentName = 'Popover';
+
   Popover.prototype.init = function(initialised) {
     Popover.superclass.init.call(this);
 

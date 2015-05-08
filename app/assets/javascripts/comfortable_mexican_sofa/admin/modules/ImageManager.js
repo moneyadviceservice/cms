@@ -22,6 +22,8 @@ define([
 
   DoughBaseComponent.extend(ImageManager, InsertManager);
 
+  ImageManager.componentName = 'ImageManager';
+
   ImageManagerProto = ImageManager.prototype;
 
   ImageManagerProto.init = function(initialised) {

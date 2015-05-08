@@ -25,6 +25,8 @@ define([
 
   DoughBaseComponent.extend(MirrorInputValue);
 
+  MirrorInputValue.componentName = 'MirrorInputValue';
+
   MirrorInputValueProto = MirrorInputValue.prototype;
 
   MirrorInputValueProto.init = function(initialised) {

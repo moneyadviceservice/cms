@@ -23,6 +23,8 @@ define([
 
   DoughBaseComponent.extend(URLFormatter);
 
+  URLFormatter.componentName = 'URLFormatter';
+
   URLFormatterProto = URLFormatter.prototype;
 
   URLFormatterProto.init = function(initialised) {

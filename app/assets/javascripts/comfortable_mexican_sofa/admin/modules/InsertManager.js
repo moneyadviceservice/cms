@@ -33,6 +33,8 @@ define([
 
   DoughBaseComponent.extend(InsertManager);
 
+  InsertManager.componentName = 'InsertManager';
+
   InsertManagerProto = InsertManager.prototype;
 
   InsertManagerProto.init = function(initialised) {

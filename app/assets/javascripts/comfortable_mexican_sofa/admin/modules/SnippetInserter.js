@@ -28,6 +28,8 @@ define([
 
   DoughBaseComponent.extend(SnippetInserter);
 
+  SnippetInserter.componentName = 'SnippetInserter';
+
   SnippetInserterProto = SnippetInserter.prototype;
 
   SnippetInserterProto.init = function(initialised) {

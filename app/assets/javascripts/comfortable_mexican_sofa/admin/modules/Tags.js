@@ -23,6 +23,9 @@ define([
   }
 
   DoughBaseComponent.extend(Tags);
+
+  Tags.componentName = 'Tags';
+
   TagsProto = Tags.prototype;
 
   TagsProto.init = function(initialised) {

@@ -27,6 +27,8 @@ define([
 
   DoughBaseComponent.extend(ElementFilter);
 
+  ElementFilter.componentName = 'ElementFilter';
+
   ElementFilterProto = ElementFilter.prototype;
 
   ElementFilterProto.init = function(initialised) {

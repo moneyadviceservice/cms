@@ -23,6 +23,8 @@ define([
 
   DoughBaseComponent.extend(FieldDisabledStateToggler);
 
+  FieldDisabledStateToggler.componentName = 'FieldDisabledStateToggler';
+
   FieldDisabledStateTogglerProto = FieldDisabledStateToggler.prototype;
 
   FieldDisabledStateTogglerProto.init = function(initialised) {

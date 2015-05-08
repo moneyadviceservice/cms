@@ -27,6 +27,8 @@ define([
 
   DoughBaseComponent.extend(CharacterCounter);
 
+  CharacterCounter.componentName = 'CharacterCounter';
+
   CharacterCounterProto = CharacterCounter.prototype;
 
   CharacterCounterProto.init = function(initialised) {

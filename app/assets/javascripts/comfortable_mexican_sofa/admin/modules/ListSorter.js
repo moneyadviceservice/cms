@@ -23,6 +23,8 @@ define([
 
   DoughBaseComponent.extend(ListSorter);
 
+  ListSorter.componentName = 'ListSorter';
+
   ListSorterProto = ListSorter.prototype;
 
   ListSorterProto.init = function(initialised) {

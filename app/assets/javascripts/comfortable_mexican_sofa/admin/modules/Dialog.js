@@ -35,6 +35,8 @@ define([
 
   DoughBaseComponent.extend(Dialog);
 
+  Dialog.componentName = 'Dialog';
+
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {

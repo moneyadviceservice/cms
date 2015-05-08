@@ -31,6 +31,8 @@ define([
 
   DoughBaseComponent.extend(LinkManager, InsertManager);
 
+  LinkManager.componentName = 'LinkManager';
+
   LinkManagerProto = LinkManager.prototype;
 
   LinkManagerProto.init = function(initialised) {

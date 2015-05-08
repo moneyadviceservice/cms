@@ -17,6 +17,9 @@ define(['jquery','DoughBaseComponent'], function ($, DoughBaseComponent) {
   }
 
   DoughBaseComponent.extend(ElementHider);
+
+  ElementHider.componentName = 'ElementHider';
+
   ElementHiderProto = ElementHider.prototype;
 
   ElementHiderProto.init = function(initialised) {

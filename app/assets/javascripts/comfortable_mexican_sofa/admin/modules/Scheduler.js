@@ -21,9 +21,11 @@ define([
 
   function Scheduler($el, config) {
     Scheduler.baseConstructor.call(this, $el, config, defaultConfig);
-  };
+  }
 
   DoughBaseComponent.extend(Scheduler);
+
+  Scheduler.componentName = 'Scheduler';
 
   SchedulerProto = Scheduler.prototype;
 
