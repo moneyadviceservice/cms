@@ -18,6 +18,8 @@ define([
 
   DoughBaseComponent.extend(UnsavedChangesPrompt);
 
+  UnsavedChangesPrompt.componentName = 'UnsavedChangesPrompt';
+
   UnsavedChangesPromptProto = UnsavedChangesPrompt.prototype;
 
   UnsavedChangesPromptProto.init = function(initialised) {

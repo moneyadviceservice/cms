@@ -9,6 +9,9 @@ define(['jquery','DoughBaseComponent','chosen'], function ($, DoughBaseComponent
   }
 
   DoughBaseComponent.extend(AutoComplete);
+
+  AutoComplete.componentName = 'AutoComplete';
+
   AutoCompleteProto = AutoComplete.prototype;
 
   AutoCompleteProto.init = function(initialised) {

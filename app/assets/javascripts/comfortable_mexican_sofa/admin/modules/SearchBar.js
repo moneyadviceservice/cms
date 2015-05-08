@@ -25,6 +25,8 @@ define([
 
   DoughBaseComponent.extend(SearchBar);
 
+  SearchBar.componentName = 'SearchBar';
+
   SearchBarProto = SearchBar.prototype;
 
   SearchBarProto.init = function(initialised) {

@@ -18,6 +18,8 @@ define([
 
     DoughBaseComponent.extend(FileInputSubmit);
 
+    FileInputSubmit.componentName = 'FileInputSubmit';
+
     FileInputSubmitProto = FileInputSubmit.prototype;
 
     FileInputSubmitProto.init = function(initialised) {

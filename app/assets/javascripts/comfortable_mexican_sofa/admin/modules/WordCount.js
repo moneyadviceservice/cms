@@ -25,6 +25,8 @@ define([
 
   WordCountProto = WordCount.prototype;
 
+  WordCount.componentName = 'WordCount';
+
   WordCountProto.init = function(initialised) {
     this._cacheComponentElements();
     this.$el.on('input keydown', $.proxy(this._handleInput, this));

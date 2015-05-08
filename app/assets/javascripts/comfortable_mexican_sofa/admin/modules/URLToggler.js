@@ -20,6 +20,8 @@ define([
 
   DoughBaseComponent.extend(URLToggler);
 
+  URLToggler.componentName = 'URLToggler';
+
   URLTogglerProto = URLToggler.prototype;
 
   URLTogglerProto.init = function(initialised) {

@@ -21,6 +21,8 @@ define([
 
   DoughBaseComponent.extend(StickyElements);
 
+  StickyElements.componentName = 'StickyElements';
+
   StickyElementsProto = StickyElements.prototype;
 
   StickyElementsProto.init = function(initialised) {

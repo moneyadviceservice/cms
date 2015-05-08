@@ -13,6 +13,9 @@ define(['jquery','DoughBaseComponent'], function ($, DoughBaseComponent) {
   }
 
   DoughBaseComponent.extend(SelectSubmitter);
+
+  SelectSubmitter.componentName = 'SelectSubmitter';
+
   SelectSubmitterProto = SelectSubmitter.prototype;
 
   SelectSubmitterProto.init = function(initialised) {
