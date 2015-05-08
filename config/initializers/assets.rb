@@ -40,8 +40,7 @@ Rails.application.configure do
                                   text/text.js
                                   marked/lib/marked.js
                                   to-markdown/dist/to-markdown.js
-                                  dough/assets/js/lib/componentLoader.js
-                                  dough/assets/js/lib/featureDetect.js
+                                  dough/assets/js/lib/*
                                   dough/assets/js/components/DoughBaseComponent.js
                                   dough/assets/js/components/Collapsable.js
                                   dough/assets/js/components/TabSelector.js
