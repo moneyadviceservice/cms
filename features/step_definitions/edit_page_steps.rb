@@ -9,7 +9,7 @@ When(/^I preview the article$/) do
 end
 
 Then(/^I should see the Draft Article$/) do
-  expect(JSON.parse(preview_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to eq('test')
+  expect(JSON.parse(preview_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to include('test')
 end
 
 Then(/^I should not be able to see live draft article$/) do
@@ -30,7 +30,7 @@ When(/^I view the live published article$/) do
 end
 
 Then(/^I should see the published Article content$/) do
-  expect(JSON.parse(live_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to eq('New Published Content')
+  expect(JSON.parse(live_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to include('New Published Content')
 end
 
 When(/^I am working on a Draft Article$/) do

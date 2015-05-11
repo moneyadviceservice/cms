@@ -6,7 +6,15 @@ describe BlockSerializer do
     let(:page) { Comfy::Cms::Page.new(state: 'published') }
 
     it 'returns the blocks content' do
-      expect(subject).to eq('published content')
+      expect(subject).to eq("<p>published content</p>\n")
+    end
+
+    context 'when contains mastalk snippets' do
+      let(:object) { Comfy::Cms::Block.new(blockable: page, content: '## content') }
+
+      it 'converts output to html' do
+        expect(subject).to eq("<h2 id=\"content\">content</h2>\n")
+      end
     end
   end
 
@@ -17,7 +25,7 @@ describe BlockSerializer do
     let(:page) { Comfy::Cms::Page.new(state: 'published_being_edited', revisions: [revisions]) }
 
     it 'returns the last published content' do
-      expect(subject).to eq('Last published content')
+      expect(subject).to eq("<p>Last published content</p>\n")
     end
   end
 
@@ -26,7 +34,7 @@ describe BlockSerializer do
     let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: passed_date) }
 
     it 'returns the blocks content' do
-      expect(subject).to eq('published content')
+      expect(subject).to eq("<p>published content</p>\n")
     end
   end
 
@@ -38,7 +46,7 @@ describe BlockSerializer do
     let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: future_date, revisions: [revisions]) }
 
     it 'returns the last published revision content' do
-      expect(subject).to eq('Last published content')
+      expect(subject).to eq("<p>Last published content</p>\n")
     end
   end
 end

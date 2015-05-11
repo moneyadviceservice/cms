@@ -41,6 +41,8 @@ gem 'google-api-client', '0.7.1'
 gem 'legato', '0.4.0'
 gem 'clockwork'
 
+gem 'mastalk'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
