@@ -1,6 +1,6 @@
 module API
   class ContentController < APIController
-    before_action :find_site, only: [:show, :preview]
+    before_action :find_site, only: [:show, :preview, :published]
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
     def show
@@ -20,6 +20,12 @@ module API
       page = current_site.pages.find_by(slug: params[:slug])
 
       render_page(page, scope: 'preview')
+    end
+
+    def published
+      pages = current_site.pages.published
+
+      render json: pages
     end
 
     private
