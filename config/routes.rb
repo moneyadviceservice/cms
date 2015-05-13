@@ -52,6 +52,9 @@ Rails.application.routes.draw do
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
+
+    get '/:locale/:page_type/published(.:format)' => 'content#published', defaults: { format: 'json' }
+    get '/:locale/:page_type/unpublished(.:format)' => 'content#unpublished', defaults: { format: 'json' }
     get '/:locale/:page_type/(*slug)(.:format)' => 'content#show', as: 'content'
   end
 

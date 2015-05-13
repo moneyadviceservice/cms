@@ -7,6 +7,77 @@ RSpec.describe API::ContentController, type: :request do
     allow_any_instance_of(PageSerializer).to receive(:related_content).and_return({})
   end
 
+  describe 'GET /:locale/articles/published.json' do
+    let!(:article_layout) { create(:layout, :article, site: site) }
+    let(:response_body) { JSON.load(response.body) }
+
+    context 'when no published articles' do
+      it 'returns an empty array' do
+        get '/en/articles/published'
+        expect(response_body).to eql([])
+      end
+    end
+
+    context 'when published articles' do
+      let(:article_layout) { create(:layout, :article, site: site) }
+      let!(:page) do
+        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'published', layout: article_layout, full_path: '/')
+        object.blocks.create(identifier: 'content', content: '## title')
+        object
+      end
+
+      before :each do
+        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'draft', layout: article_layout, full_path: '/')
+      end
+
+      it 'returns published articles' do
+        get '/en/articles/published'
+        expect(response_body.count).to eql(1)
+      end
+
+      it 'content is html' do
+        get '/en/articles/published'
+        expect(response_body[0]['blocks'][0]['content']).to include('<h2 id="title">title</h2>')
+      end
+    end
+  end
+
+  describe 'GET /:locale/articles/unpublished.json' do
+    let!(:article_layout) { create(:layout, :article, site: site) }
+    let(:response_body) { JSON.load(response.body) }
+
+    context 'when no unpublished articles' do
+      it 'returns an empty array' do
+        get '/en/articles/unpublished'
+        expect(response_body).to eql([])
+      end
+    end
+
+    context 'when unpublished articles' do
+      let(:article_layout) { create(:layout, :article, site: site) }
+      let!(:page) do
+        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'unpublished', layout: article_layout, full_path: '/')
+        object.blocks.create(identifier: 'content', content: 'stuff')
+        object.revisions.create(data: {previous_event: 'published', event: 'unpublished', blocks_attributes: [{ identifier: 'content', content: "## title" }]})
+        object
+      end
+
+      before :each do
+        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'published', layout: article_layout, full_path: '/')
+      end
+
+      it 'returns unpublished articles' do
+        get '/en/articles/unpublished'
+        expect(response_body.count).to eql(1)
+      end
+
+      it 'content is html' do
+        get '/en/articles/unpublished'
+        expect(response_body[0]['blocks'][0]['content']).to include('<h2 id="title">title</h2>')
+      end
+    end
+  end
+
   describe 'GET /:locale/articles/:slug' do
     let(:state) { 'published' }
     let(:article_layout) { create(:layout, :article, site: site) }

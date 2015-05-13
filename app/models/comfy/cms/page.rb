@@ -41,6 +41,8 @@ class Comfy::Cms::Page < ActiveRecord::Base
       )
   end)
 
+  scope :unpublished, -> { where(state: 'unpublished') }
+
   def self.in_category(category_id)
     joins(
       'INNER JOIN comfy_cms_categorizations
