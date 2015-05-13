@@ -19,6 +19,10 @@ FactoryGirl.define do
       identifier 'article'
     end
 
+    trait :video do
+      identifier 'video'
+    end
+
     trait :corporate do
       identifier 'corporate'
     end
