@@ -43,6 +43,8 @@ class Comfy::Cms::Page < ActiveRecord::Base
 
   scope :unpublished, -> { where(state: 'unpublished') }
 
+  scope :layout_identifier, ->(identifier) { joins(:layout).where(comfy_cms_layouts: { identifier: identifier.singularize }) }
+
   def self.in_category(category_id)
     joins(
       'INNER JOIN comfy_cms_categorizations
