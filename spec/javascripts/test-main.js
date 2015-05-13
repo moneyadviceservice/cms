@@ -68,6 +68,7 @@ requirejs.config({
 
     // Dough base modules
     'componentLoader': bowerPath + 'dough/assets/js/lib/componentLoader',
+    'utilities': bowerPath + 'dough/assets/js/lib/utilities',
     'DoughBaseComponent': bowerPath + 'dough/assets/js/components/DoughBaseComponent',
     'featureDetect': bowerPath + 'dough/assets/js/lib/featureDetect',
 
