@@ -25,13 +25,13 @@ module API
     def published
       pages = current_site.pages.published
 
-      render json: pages
+      render json: pages, each_serializer: PageFeedSerializer
     end
 
     def unpublished
       pages = current_site.pages.unpublished
 
-      render json: pages
+      render json: pages, each_serializer: PageFeedSerializer
     end
 
     private
