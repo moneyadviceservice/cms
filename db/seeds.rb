@@ -37,7 +37,6 @@ categories.each do |parent, children|
   children.each { |child| Comfy::Cms::Category.create!(site: site_en, label: child, title_en: child.underscore.humanize, title_cy: child.underscore.humanize, categorized_type: "Comfy::Cms::Page", parent_id: saved_parent.id) }
 end
 
-
 puts "Seeding layouts..."
 default_content = <<-END
 {{ cms:page:content:rich_text }}
