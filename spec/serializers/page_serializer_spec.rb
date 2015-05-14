@@ -1,6 +1,6 @@
 describe PageSerializer do
   let(:site) { Comfy::Cms::Site.new(label: 'en') }
-  let(:article) { Comfy::Cms::Page.new(site: site) }
+  let(:article) { Comfy::Cms::Page.new(site: site, slug: 'i-am-slug') }
   subject { described_class.new(article) }
 
   before do
@@ -10,10 +10,14 @@ describe PageSerializer do
     allow(Publify::API).to receive(:latest_links).and_return([])
   end
 
+  describe '#full_path' do
+    it 'returns /locale/page_type/slug' do
+      expect(subject.full_path).to eql('/en/articles/i-am-slug')
+    end
+  end
+
   describe '#related_content' do
-
     context 'latest blog post links' do
-
       let(:latest_links) do
         [
           { 'title' => 'First post', 'link' => 'http://a.com' },

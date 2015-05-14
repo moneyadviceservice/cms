@@ -8,6 +8,10 @@ class PageSerializer < ActiveModel::Serializer
   has_many :blocks, serializer: BlockSerializer
   has_many :translations, serializer: PageTranslationSerializer
 
+  def full_path
+    PagePresenter.new(object).link
+  end
+
   def related_content
     {
       latest_blog_post_links: PageLink::LatestLinks.new(object),
