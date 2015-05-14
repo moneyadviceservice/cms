@@ -33,10 +33,8 @@ site_cy = Comfy::Cms::Site.find_or_create_by!(site_data_cy)
 puts "Seeding categories..."
 categories = YAML::load_file("#{Rails.root}/config/categories.yml")
 categories.each do |parent, children|
-  labels = children.nil? ? [parent] : children
-  [site_en, site_cy].each do |site|
-    labels.each { |label| Comfy::Cms::Category.create!(site: site, label: label, title_en: label.underscore.humanize, title_cy: label.underscore.humanize, categorized_type: "Comfy::Cms::Page") }
-  end
+  saved_parent = Comfy::Cms::Category.create!(site: site_en, label: parent, title_en: parent.underscore.humanize, title_cy: parent.underscore.humanize, categorized_type: "Comfy::Cms::Page", navigation: 1)
+  children.each { |child| Comfy::Cms::Category.create!(site: site_en, label: child, title_en: child.underscore.humanize, title_cy: child.underscore.humanize, categorized_type: "Comfy::Cms::Page", parent_id: saved_parent.id) }
 end
 
 puts "Seeding layouts..."
