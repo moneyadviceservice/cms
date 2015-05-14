@@ -7,6 +7,43 @@ RSpec.describe API::ContentController, type: :request do
     allow_any_instance_of(PageSerializer).to receive(:related_content).and_return({})
   end
 
+  describe 'GET /:locale/videos/published.json' do
+    let!(:video_layout) { create(:layout, :video, site: site) }
+    let!(:article_layout) { create(:layout, :article, site: site) }
+    let(:response_body) { JSON.load(response.body) }
+
+    context 'when no published videos' do
+      it 'returns an empty array' do
+        get '/en/videos/published'
+        expect(response_body).to eql([])
+      end
+    end
+
+    context 'when published videos' do
+      let(:video_layout) { create(:layout, :video, site: site) }
+      let!(:page) do
+        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'published', layout: video_layout, full_path: '/')
+        object.blocks.create(identifier: 'content', content: '## title')
+        object
+      end
+
+      before :each do
+        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'draft', layout: video_layout, full_path: '/')
+        create(:page, label: 'Borrow v3', slug: 'borrow-v3', site: site, state: 'published', layout: article_layout, full_path: '/')
+      end
+
+      it 'returns published videos' do
+        get '/en/videos/published'
+        expect(response_body.count).to eql(1)
+      end
+
+      it 'content is html' do
+        get '/en/videos/published'
+        expect(response_body[0]['blocks'][0]['content']).to include('<h2 id="title">title</h2>')
+      end
+    end
+  end
+
   describe 'GET /:locale/articles/published.json' do
     let!(:article_layout) { create(:layout, :article, site: site) }
     let(:response_body) { JSON.load(response.body) }
@@ -47,6 +84,14 @@ RSpec.describe API::ContentController, type: :request do
     let(:response_body) { JSON.load(response.body) }
 
     context 'when no unpublished articles' do
+      let(:video_layout) { create(:layout, :video, site: site) }
+
+      before :each do
+        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'unpublished', layout: video_layout, full_path: '/')
+        object.blocks.create(identifier: 'content', content: '## title')
+        object
+      end
+
       it 'returns an empty array' do
         get '/en/articles/unpublished'
         expect(response_body).to eql([])

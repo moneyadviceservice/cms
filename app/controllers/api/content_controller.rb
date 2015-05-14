@@ -23,13 +23,13 @@ module API
     end
 
     def published
-      pages = current_site.pages.published
+      pages = current_site.pages.published.layout_identifier(params[:page_type])
 
       render json: pages, each_serializer: PageFeedSerializer
     end
 
     def unpublished
-      pages = current_site.pages.unpublished
+      pages = current_site.pages.unpublished.layout_identifier(params[:page_type])
 
       render json: pages, each_serializer: PageFeedSerializer
     end
