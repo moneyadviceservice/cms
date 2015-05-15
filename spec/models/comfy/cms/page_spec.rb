@@ -290,4 +290,42 @@ RSpec.describe Comfy::Cms::Page do
       expect(subject).to be_publishable
     end
   end
+
+  describe '#published_at' do
+    subject { create(:page) }
+
+    context 'published' do
+      before { described_class.new(state: 'published', updated_at: Time.now) }
+
+      it 'returns published datetime' do
+        expect(subject.published_at).to be_within(10.seconds).of(Time.now)
+      end
+    end
+
+    context 'scheduled' do
+      subject { described_class.new(state: 'scheduled', scheduled_on: 1.hour.ago) }
+
+      it 'returns scheduled datetime' do
+        expect(subject.published_at).to be_within(10.seconds).of(1.hour.ago)
+      end
+    end
+
+    context 'been unpublished' do
+      subject { create(:page, state: 'draft') }
+
+      before { subject.revisions.create!(data: {event: 'published'}, created_at: 3.hours.ago) }
+
+      it 'returns last published revision datetime' do
+        expect(subject.published_at).to be_within(10.seconds).of(3.hours.ago)
+      end
+    end
+
+    context 'draft and never published' do
+      subject { described_class.new(state: 'draft', updated_at: Time.now) }
+
+      it 'returns nil' do
+        expect(subject.published_at).to be_nil
+      end
+    end
+  end
 end

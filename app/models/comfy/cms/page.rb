@@ -90,4 +90,14 @@ class Comfy::Cms::Page < ActiveRecord::Base
   def publishable?
     keywords.all?(&:publishable?)
   end
+
+  def published_at
+    if published?
+      updated_at
+    elsif scheduled?
+      scheduled_on
+    elsif ever_been_published?
+      revisions.detect { |revision| revision.data[:event].include?('published') }.created_at
+    end
+  end
 end
