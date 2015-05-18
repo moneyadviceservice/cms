@@ -313,10 +313,24 @@ RSpec.describe Comfy::Cms::Page do
     context 'been unpublished' do
       subject { create(:page, state: 'draft') }
 
-      before { subject.revisions.create!(data: {event: 'published'}, created_at: 3.hours.ago) }
+      context 'been published once' do
+        before { subject.revisions.create!(data: {event: 'published'}, created_at: 3.hours.ago) }
 
-      it 'returns last published revision datetime' do
-        expect(subject.published_at).to be_within(10.seconds).of(3.hours.ago)
+        it 'returns last published revision datetime' do
+          expect(subject.published_at).to be_within(10.seconds).of(3.hours.ago)
+        end
+      end
+
+      # possibly due to bad data in production
+      context 'when data event is nil' do
+        before do
+          subject.revisions.create!(data: {event: nil}, created_at: 7.hours.ago)
+          subject.revisions.create!(data: {event: 'published'}, created_at: 8.hours.ago)
+        end
+
+        it 'returns last published revision datetime' do
+          expect(subject.published_at).to be_within(10.seconds).of(8.hours.ago)
+        end
       end
     end
 
