@@ -97,7 +97,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
     elsif scheduled?
       scheduled_on
     elsif ever_been_published?
-      revisions.detect { |revision| revision.data[:event].include?('published') }.created_at
+      revisions.detect { |revision| revision.data[:event] == 'published' }.created_at
     end
   end
 end
