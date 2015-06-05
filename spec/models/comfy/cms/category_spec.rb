@@ -37,5 +37,8 @@ RSpec.describe Comfy::Cms::Category do
     it 'returns the direct child categories' do
       expect(category.child_categories.map(&:label)).to eq(%w(category_child category_child_2))
     end
+
+    it { expect(described_class.new).to belong_to(:small_image) }
+    it { expect(described_class.new).to belong_to(:large_image) }
   end
 end

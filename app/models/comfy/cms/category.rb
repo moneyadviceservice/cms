@@ -4,6 +4,9 @@ class Comfy::Cms::Category < ActiveRecord::Base
   validates_presence_of :label, :title_en, :title_cy
   validates_uniqueness_of :label, :title_en, :title_cy, scope: :site_id
 
+  belongs_to :small_image, class: Comfy::Cms::File
+  belongs_to :large_image, class: Comfy::Cms::File
+
   def self.navigation_categories
     where(parent_id: nil).reorder(:ordinal).partition(&:navigation?)
   end

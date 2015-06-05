@@ -1,9 +1,17 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :type, :title, :description, :parent_id, :third_level_navigation
+  attributes :id, :type, :title, :description, :parent_id,
+             :third_level_navigation, :images
 
   has_many :contents
 
   private
+
+  def images
+    {
+      small: object.small_image.try(:file).try(:url),
+      large: object.large_image.try(:file).try(:url)
+    }
+  end
 
   def contents
     (
