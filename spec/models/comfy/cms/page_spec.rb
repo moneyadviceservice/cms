@@ -292,53 +292,48 @@ RSpec.describe Comfy::Cms::Page do
   end
 
   describe '#published_at' do
-    subject { create(:page) }
+    let(:site) { create(:site) }
+    let(:layout) { create(:layout) }
 
-    context 'published' do
-      before { described_class.new(state: 'published', updated_at: Time.now) }
+    subject do
+      described_class.create!(site: site, layout: layout, label: 'this is my page')
+    end
 
-      it 'returns published datetime' do
-        expect(subject.published_at).to be_within(10.seconds).of(Time.now)
+    context 'when saving the record' do
+      it 'does not affect the published_at field' do
+        subject.label = 'new label'
+        expect { subject.save! }.to_not change(subject, :published_at)
+      end
+    end
+
+    context 'when draft' do
+      it 'is nil' do
+        subject.save_unsaved
+        expect(subject.published_at).to be_nil
+      end
+    end
+
+    context 'when published' do
+      it 'sets the published_at stamp' do
+        subject.save_unsaved
+        subject.publish
+        expect(subject.published_at).to_not be_nil
       end
     end
 
     context 'scheduled' do
-      subject { described_class.new(state: 'scheduled', scheduled_on: 1.hour.ago) }
-
-      it 'returns scheduled datetime' do
-        expect(subject.published_at).to be_within(10.seconds).of(1.hour.ago)
+      it 'leaves published_at stamp' do
+        subject.save_unsaved
+        subject.publish
+        expect { subject.schedule }.to_not change(subject, :published_at)
       end
     end
 
     context 'been unpublished' do
-      subject { create(:page, state: 'draft') }
-
-      context 'been published once' do
-        before { subject.revisions.create!(data: {event: 'published'}, created_at: 3.hours.ago) }
-
-        it 'returns last published revision datetime' do
-          expect(subject.published_at).to be_within(10.seconds).of(3.hours.ago)
-        end
-      end
-
-      # possibly due to bad data in production
-      context 'when data event is nil' do
-        before do
-          subject.revisions.create!(data: {event: nil}, created_at: 7.hours.ago)
-          subject.revisions.create!(data: {event: 'published'}, created_at: 8.hours.ago)
-        end
-
-        it 'returns last published revision datetime' do
-          expect(subject.published_at).to be_within(10.seconds).of(8.hours.ago)
-        end
-      end
-    end
-
-    context 'draft and never published' do
-      subject { described_class.new(state: 'draft', updated_at: Time.now) }
-
-      it 'returns nil' do
-        expect(subject.published_at).to be_nil
+      it 'leaves published_at stamp' do
+        subject.save_unsaved
+        subject.publish
+        expect { subject.unpublish }.to_not change(subject, :published_at)
       end
     end
   end
