@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    attributes:
+      link:
+        _destroy: Delete
   links:
     current: 'Current link'
     external:

@@ -3,6 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
              :third_level_navigation, :images
 
   has_many :contents
+  has_many :links, serializer: DbLinkSerializer
 
   private
 
@@ -37,6 +38,10 @@ class CategorySerializer < ActiveModel::Serializer
 
   def id
     object.label
+  end
+
+  def links
+    object.links.where(locale: scope)
   end
 
   def title

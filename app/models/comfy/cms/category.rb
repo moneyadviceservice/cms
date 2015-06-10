@@ -1,6 +1,10 @@
 require_dependency ComfortableMexicanSofa::Engine.root.join('app', 'models', 'comfy', 'cms', 'category')
 
 class Comfy::Cms::Category < ActiveRecord::Base
+  has_many :links, as: :linkable
+  accepts_nested_attributes_for :links, reject_if: ->(link) { link[:text].blank? },
+                                        allow_destroy: true
+
   validates_presence_of :label, :title_en, :title_cy
   validates_uniqueness_of :label, :title_en, :title_cy, scope: :site_id
 

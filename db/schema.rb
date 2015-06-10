@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150608142817) do
+ActiveRecord::Schema.define(version: 20150610093638) do
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20150608142817) do
     t.boolean "third_level_navigation", default: false
     t.integer "small_image_id"
     t.integer "large_image_id"
+    t.integer "file_id"
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
@@ -177,6 +178,14 @@ ActiveRecord::Schema.define(version: 20150608142817) do
 
   add_index "comfy_cms_users", ["email"], name: "index_comfy_cms_users_on_email", unique: true, using: :btree
   add_index "comfy_cms_users", ["reset_password_token"], name: "index_comfy_cms_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "links", force: true do |t|
+    t.string  "linkable_type", null: false
+    t.integer "linkable_id",   null: false
+    t.string  "text",          null: false
+    t.string  "url",           null: false
+    t.string  "locale",        null: false
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
