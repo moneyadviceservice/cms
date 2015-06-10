@@ -20,7 +20,7 @@ RSpec.describe CategoriesController, type: :controller do
     sign_in current_user
   end
 
-  context '#update' do
+  describe '#update' do
     before do
       patch :update, params
     end
