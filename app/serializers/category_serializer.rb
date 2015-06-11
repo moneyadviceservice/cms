@@ -8,8 +8,8 @@ class CategorySerializer < ActiveModel::Serializer
 
   def images
     {
-      small: object.small_image.try(:file).try(:url),
-      large: object.large_image.try(:file).try(:url)
+      small: URI.join(ActionController::Base.asset_host, object.small_image.try(:file).try(:url).to_s).to_s,
+      large: URI.join(ActionController::Base.asset_host, object.large_image.try(:file).try(:url).to_s).to_s
     }
   end
 
