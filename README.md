@@ -9,6 +9,7 @@ The MAS CMS.
 - MySQL
 - Node.js (for Bower)
 - Bower (Install via NPM)
+- an entry for `gems.test.mas` in your `/etc/hosts` file and access to the MAS network (so that you can bundle install the gems)
 
 ## Installation
 
