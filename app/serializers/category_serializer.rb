@@ -3,6 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
              :third_level_navigation, :images
 
   has_many :contents
+  has_many :category_promos
   has_many :links, serializer: CategoryLinkSerializer
 
   private
@@ -24,6 +25,10 @@ class CategorySerializer < ActiveModel::Serializer
     if has_large_image?
       URI.join(ActionController::Base.asset_host, object.large_image.try(:file).try(:url).to_s).to_s
     end
+  end
+
+  def category_promos
+    object.category_promos.where(locale: scope)
   end
 
   def contents

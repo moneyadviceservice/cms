@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      category_promo:
+        _destroy: Delete

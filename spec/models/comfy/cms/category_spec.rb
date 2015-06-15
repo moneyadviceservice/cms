@@ -1,7 +1,7 @@
 RSpec.describe Comfy::Cms::Category do
-  subject { described_class }
-
   context 'navigation categories' do
+    subject { described_class }
+
     let!(:navigation_category) { create(:category, navigation: true, label: 'Navigation', ordinal: 1) }
     let!(:non_navigation_category) { create(:category, navigation: false, label: 'Non Navigation') }
     let!(:navigation_category_position_2) do
@@ -25,6 +25,10 @@ RSpec.describe Comfy::Cms::Category do
     let!(:category_child)     { create(:category, parent_id: category.id, label: 'category_child', ordinal: 1) }
     let!(:category_child_2)   { create(:category, parent_id: category.id, label: 'category_child_2', ordinal: 2) }
     let(:category_grandchild) { create(:category, parent_id: category_child.id, label: 'category_grandchild') }
+
+    it 'has many promo categories' do
+      expect(subject).to have_many(:category_promos)
+    end
 
     it 'returns the parent of the category' do
       expect(category_child.parent).to eq(category)
