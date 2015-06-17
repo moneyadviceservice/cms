@@ -61,8 +61,14 @@ describe PageSerializer do
       context 'when has most related articles in english' do
         let(:pages) do
           [
-            build(:page, slug: 'first-article', label: 'First Article'),
-            build(:page, slug: 'second-article', label: 'Second Article')
+            build(:page,
+                  slug: 'first-article',
+                  label: 'First Article',
+                  layout: build(:layout, :article)),
+            build(:page,
+                  slug: 'second-article',
+                  label: 'Second Article',
+                  layout: build(:layout, :article))
           ]
         end
 
@@ -84,11 +90,19 @@ describe PageSerializer do
         end
 
         let(:english_article) do
-          build(:page, slug: 'english-article', label: 'English Article', site: build(:site))
+          build(:page,
+                slug: 'english-article',
+                label: 'English Article',
+                layout: build(:layout),
+                site: build(:site))
         end
 
         let(:welsh_article) do
-          build(:page, slug: 'welsh-article', label: 'Welsh Article', site: build(:site, :welsh))
+          build(:page,
+                slug: 'welsh-article',
+                label: 'Welsh Article',
+                site: build(:site, :welsh),
+                layout: build(:layout, :article))
         end
 
         before do
@@ -119,8 +133,14 @@ describe PageSerializer do
       context 'when has three most popular articles in english' do
         let(:pages) do
           [
-            build(:page, slug: 'first-article', label: 'First Article'),
-            build(:page, slug: 'second-article', label: 'Second Article')
+            build(:page,
+                  slug: 'first-article',
+                  label: 'First Article',
+                  layout: build(:layout, :article)),
+            build(:page,
+                  slug: 'second-article',
+                  label: 'Second Article',
+                  layout: build(:layout, :article))
           ]
         end
 
@@ -142,11 +162,19 @@ describe PageSerializer do
         end
 
         let(:english_article) do
-          build(:page, slug: 'first-article-in_english', label: 'First Article in English', site: build(:site))
+          build(:page,
+                slug: 'first-article-in_english',
+                label: 'First Article in English',
+                site: build(:site),
+                layout: build(:layout, :article))
         end
 
         let(:welsh_article) do
-          build(:page, slug: 'first-article-in-welsh', label: 'First Article in Welsh', site: build(:site, :welsh))
+          build(:page,
+                slug: 'first-article-in-welsh',
+                label: 'First Article in Welsh',
+                layout: build(:layout, :article),
+                site: build(:site, :welsh))
         end
 
         before do
@@ -179,7 +207,8 @@ describe PageSerializer do
                  site:       english_site,
                  label:      'Previous Article',
                  slug:       'previous-article',
-                 categories: [category]
+                 categories: [category],
+                 layout:     create(:layout, :article)
         end
 
         it 'returns article title' do
@@ -217,7 +246,8 @@ describe PageSerializer do
                  position:   2,
                  label:      'Next Article',
                  slug:       'next-article',
-                 categories: [category]
+                 categories: [category],
+                 layout:     create(:layout, :article)
         end
 
         it 'returns article title' do
