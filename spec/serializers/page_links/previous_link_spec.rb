@@ -1,5 +1,4 @@
 RSpec.describe PageLink::PreviousLink do
-
   describe '#as_json' do
     let(:english_site) { create :site }
     let(:welsh_site) { create :site, :welsh }
@@ -10,7 +9,8 @@ RSpec.describe PageLink::PreviousLink do
              site:       english_site,
              categories: [category],
              label:      'previous_page',
-             slug:       'previous-page'
+             slug:       'previous-page',
+             layout:     create(:layout, :article)
     end
 
     it 'provides the previous article' do

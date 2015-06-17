@@ -90,6 +90,10 @@ class Comfy::Cms::Page < ActiveRecord::Base
   def publishable?
     keywords.all?(&:publishable?)
   end
+
+  def fullest_path
+    "/#{site.label}/#{layout.identifier.pluralize}/#{slug}"
+  end
 end
 
 Comfy::Cms::Page.state_machine.events[:publish].timestamp = :published_at

@@ -21,7 +21,7 @@ module PageLink
     def build_hash_for(page_object)
       {
         title: page_object.label,
-        path: "/#{page_object.site.label}/articles/#{page_object.slug}"
+        path: page_object.fullest_path
       }
     end
 
