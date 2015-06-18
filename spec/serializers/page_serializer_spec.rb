@@ -198,17 +198,20 @@ describe PageSerializer do
       let(:english_site) { create :site }
       let(:welsh_site) { create :site, :welsh }
       let(:category) { create :category }
-      let!(:article) { create :page, position: 1, site: english_site, categories: [category] }
+      let!(:article) { create :page, site: english_site, categories: [category] }
 
       context 'when has previous article' do
         let!(:previous_article) do
           create :page,
-                 position:   0,
                  site:       english_site,
                  label:      'Previous Article',
                  slug:       'previous-article',
                  categories: [category],
                  layout:     create(:layout, :article)
+        end
+
+        before :each do
+          previous_article.categorizations.first.update_attribute(:ordinal, 1)
         end
 
         it 'returns article title' do
@@ -237,13 +240,12 @@ describe PageSerializer do
       let(:english_site) { create :site }
       let(:welsh_site) { create :site, :welsh }
       let(:category) { create :category }
-      let!(:article) { create :page, position: 1, site: english_site, categories: [category] }
+      let!(:article) { create :page, site: english_site, categories: [category] }
 
       context 'when has next article' do
         let!(:next_article) do
           create :page,
                  site:       english_site,
-                 position:   2,
                  label:      'Next Article',
                  slug:       'next-article',
                  categories: [category],

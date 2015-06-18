@@ -42,7 +42,7 @@ module PageLink
       return nil if @page.categories.empty?
 
       category = @page.categories.first
-      @page.site.pages.for_category(category.label)
+      @page.site.pages.in_category(category.id)
     end
 
     def fetch_page(pages, page_index)
