@@ -56,6 +56,7 @@ requirejs.config({
     'URLFormatter': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLFormatter',
     'SearchBar': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/SearchBar',
     'FieldDisabledStateToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/FieldDisabledStateToggler',
+    'EmbeddedGoogleAnalytics': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/EmbeddedGoogleAnalytics',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
@@ -76,6 +77,7 @@ requirejs.config({
     'Collapsable': bowerPath + 'dough/assets/js/components/Collapsable',
 
     // Third-party dependencies
+    'async': bowerPath + 'requirejs-plugins/src/async',
     'jquery': bowerPath + 'jquery/dist/jquery.min',
     'rsvp': bowerPath + 'rsvp/rsvp',
     'eventsWithPromises': bowerPath + 'eventsWithPromises/src/eventsWithPromises',

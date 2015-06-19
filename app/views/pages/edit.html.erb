@@ -1,0 +1,34 @@
+<div class="analytics-charts" style="display:none;" data-dough-component="EmbeddedGoogleAnalytics" data-dough-embedded-google-analytics-config='{"path": "<%= @page.fullest_path %>"}'>
+  <div class="l-constrained">
+    <h2>Google Analytics</h2>
+    <div id="embed-api-auth-container"></div>
+
+    <div class="l-2col">
+      <div class="row">
+        <div id="chart-1-container" class="l-2col-even"></div>
+        <div id="chart-2-container" class="l-2col-even"></div>
+      </div>
+    </div>
+
+    <div class="l-2col">
+      <div class="row">
+        <div id="chart-3-container" class="l-2col-even"></div>
+        <div id="chart-4-container" class="l-2col-even"></div>
+      </div>
+    </div>
+
+    <div class="l-2col">
+      <div class="row">
+        <div id="chart-5-container" class="l-2col-even"></div>
+      </div>
+    </div>
+
+    <div id="view-selector-1-container" class="is-hidden"></div>
+    <div id="view-selector-2-container" class="is-hidden"></div>
+    <div id="view-selector-3-container" class="is-hidden"></div>
+    <div id="view-selector-4-container" class="is-hidden"></div>
+    <div id="view-selector-5-container" class="is-hidden"></div>
+  </div>
+</div>
+
+<%= render 'form', form_url: site_page_path(@site, @page) %>

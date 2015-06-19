@@ -24,6 +24,14 @@
   @include column(12);
 }
 
+.l-2col-even {
+  @include column(6);
+}
+
+.row {
+  @include row(12);
+}
+
 // Layout split
 //
 // Styleguide layout-split

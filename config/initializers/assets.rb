@@ -26,6 +26,7 @@ Rails.application.configure do
 
 # Vendor JavaScript
   config.assets.precompile += %w(requirejs/require.js
+                                  requirejs-plugins/src/async.js
                                   jquery/dist/jquery.min.js
                                   rsvp/rsvp.amd.js
                                   eventsWithPromises/src/eventsWithPromises.js
