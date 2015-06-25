@@ -5,6 +5,7 @@
 
 requirejs.config({
   baseUrl: '../',
+  waitSeconds: 10,
   paths: {
     // Editor core
     'constants': '<%= requirejs_path("mas-cms-editor/src/app/constants/constants") %>',
@@ -46,6 +47,7 @@ requirejs.config({
     'SearchBar': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/SearchBar") %>',
     'UnsavedChangesPrompt': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/UnsavedChangesPrompt") %>',
     'FieldDisabledStateToggler': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/FieldDisabledStateToggler") %>',
+    'EmbeddedGoogleAnalytics': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/EmbeddedGoogleAnalytics") %>',
 
     // Utils
     'filter-event': '<%= requirejs_path("comfortable_mexican_sofa/admin/modules/utils/filterEvent") %>',
@@ -70,6 +72,7 @@ requirejs.config({
     'mediaQueries': "<%= requirejs_path('dough/assets/js/lib/mediaQueries') %>",
 
     // Third-party dependencies
+    'async': '<%= requirejs_path("requirejs-plugins/src/async") %>',
     'jquery': '<%= requirejs_path("jquery/dist/jquery.min") %>',
     'rsvp': "<%= requirejs_path('rsvp/rsvp') %>",
     'jqueryThrottleDebounce': "<%= requirejs_path('jqueryThrottleDebounce/jquery.ba-throttle-debounce') %>",
