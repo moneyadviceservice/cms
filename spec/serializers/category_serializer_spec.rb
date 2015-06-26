@@ -13,8 +13,8 @@ describe CategorySerializer do
       parent_id: nil,
       child_categories: [child_categories],
       third_level_navigation: true,
-      small_image: double,
-      large_image: double)
+      small_image: nil,
+      large_image: nil)
   end
 
   subject { described_class.new(category, scope: scope) }
