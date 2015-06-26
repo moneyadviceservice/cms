@@ -16,13 +16,6 @@ describe('EmbeddedGoogleAnalytics', function() {
 
       component = new EmbeddedGoogleAnalytics(self.$fixture, self.$fixture.data('doughEmbeddedGoogleAnalyticsConfig'));
       eventsWithPromises.subscribe(component.config.onReadyEvent, function() {
-        // When a user isn't able to authorize (the tests never will), this error
-        // event is thrown. It then bubbles up to Mocha,
-        // which throws an error "at some point later" (when
-        // ths response comes back). That error then makes whatever
-        // test is running at the time fail.
-        gapi.analytics.auth.on('error', function(response) {});
-
         done();
       });
 

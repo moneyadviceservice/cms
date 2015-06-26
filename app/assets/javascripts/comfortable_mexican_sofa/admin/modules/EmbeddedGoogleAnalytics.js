@@ -61,6 +61,8 @@ define(['jquery', 'DoughBaseComponent', 'eventsWithPromises'], function($, Dough
                        'chartContainer': 'chart-5-container',
                        'viewContainer': 'view-selector-5-container' });
 
+    gapi.analytics.auth.on('error', function(response) {});
+
     gapi.analytics.auth.authorize({
       container: 'embed-api-auth-container',
       clientid: this.config.clientid
