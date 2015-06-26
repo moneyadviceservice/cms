@@ -25,14 +25,6 @@ class CategorySerializer < ActiveModel::Serializer
     end
   end
 
-  def has_small_image?
-    object.small_image
-  end
-
-  def has_large_image?
-    object.large_image
-  end
-
   def contents
     (
       object.child_categories <<
@@ -67,4 +59,15 @@ class CategorySerializer < ActiveModel::Serializer
   def third_level_navigation
     object.third_level_navigation
   end
+
+  private
+
+  def has_small_image?
+    object.small_image
+  end
+
+  def has_large_image?
+    object.large_image
+  end
+
 end
