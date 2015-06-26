@@ -40,6 +40,7 @@
             - if @category.parent
               .form-group
                 .form__input-wrapper
+                  %h3 Promo links
                   = f.fields_for :category_promos, @category.category_promos do |promo|
                     = promo.select :promo_type, CategoryPromo::PROMO_TYPES
                     = promo.text_field :title
