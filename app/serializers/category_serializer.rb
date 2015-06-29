@@ -1,9 +1,29 @@
 class CategorySerializer < ActiveModel::Serializer
-  attributes :id, :type, :title, :description, :parent_id, :third_level_navigation
+  attributes :id, :type, :title, :description, :parent_id,
+             :third_level_navigation, :images
 
   has_many :contents
 
   private
+
+  def images
+    {
+      small: small_image_url,
+      large: large_image_url
+    }
+  end
+
+  def small_image_url
+    if has_small_image?
+      URI.join(ActionController::Base.asset_host, object.small_image.try(:file).try(:url).to_s).to_s
+    end
+  end
+
+  def large_image_url
+    if has_large_image?
+      URI.join(ActionController::Base.asset_host, object.large_image.try(:file).try(:url).to_s).to_s
+    end
+  end
 
   def contents
     (
@@ -39,4 +59,13 @@ class CategorySerializer < ActiveModel::Serializer
   def third_level_navigation
     object.third_level_navigation
   end
+
+  def has_small_image?
+    object.small_image
+  end
+
+  def has_large_image?
+    object.large_image
+  end
+
 end

@@ -54,7 +54,9 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
       :navigation,
       :third_level_navigation,
       :site_id,
-      :categorized_type
+      :categorized_type,
+      :large_image_id,
+      :small_image_id
     )
   end
 

@@ -31,6 +31,12 @@
             = f.text_field :description_en
             = f.text_field :description_cy
 
+            = f.collection_select :large_image_id, Comfy::Cms::File.images, :id, :label, include_blank: true
+            = image_tag @category.large_image.file.url if @category.large_image
+
+            = f.collection_select :small_image_id, Comfy::Cms::File.images, :id, :label, include_blank: true
+            = image_tag @category.small_image.file.url if @category.small_image
+
             .form-group
               .form__input-wrapper
                 = f.check_box :navigation, label: t('categories.edit.show_in_navigation')
