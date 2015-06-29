@@ -2,19 +2,14 @@ describe CategorySerializer do
   let(:child_categories) { nil }
 
   let(:category) do
-    double(
-      'Category',
-      id: 123,
+    build(:category, {
       label: 'test',
       title_en: 'en_title',
       title_cy: 'cy_title',
       description_en: 'description_en',
       description_cy: 'description_cy',
-      parent_id: nil,
-      child_categories: [child_categories],
-      third_level_navigation: true,
-      small_image: nil,
-      large_image: nil)
+      third_level_navigation: true
+    })
   end
 
   subject { described_class.new(category, scope: scope) }
@@ -33,7 +28,8 @@ describe CategorySerializer do
         images: {
           small: nil,
           large: nil
-        }
+        },
+        links: []
       }
     end
 
@@ -56,7 +52,8 @@ describe CategorySerializer do
         images: {
           small: nil,
           large: nil
-        }
+        },
+        links: []
       }
     end
 
