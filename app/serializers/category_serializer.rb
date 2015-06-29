@@ -60,8 +60,6 @@ class CategorySerializer < ActiveModel::Serializer
     object.third_level_navigation
   end
 
-  private
-
   def has_small_image?
     object.small_image
   end
