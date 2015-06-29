@@ -7,6 +7,7 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
 
   def show
     @category.links.build
+    @category.category_promos.build
     @english_pages, @welsh_pages =
       Comfy::Cms::Page
         .in_category(@category.id)
@@ -58,7 +59,8 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
       :categorized_type,
       :large_image_id,
       :small_image_id,
-      :links_attributes => [:text, :url, :locale, :id, :_destroy]
+      :links_attributes => [:text, :url, :locale, :id, :_destroy],
+      :category_promos_attributes => [:promo_type, :title, :description, :locale, :id, :_destroy, :url]
     )
   end
 

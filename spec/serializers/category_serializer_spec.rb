@@ -29,7 +29,8 @@ describe CategorySerializer do
           small: nil,
           large: nil
         },
-        links: []
+        links: [],
+        category_promos: []
       }
     end
 
@@ -53,7 +54,8 @@ describe CategorySerializer do
           small: nil,
           large: nil
         },
-        links: []
+        links: [],
+        category_promos: []
       }
     end
 

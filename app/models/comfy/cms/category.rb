@@ -11,6 +11,11 @@ class Comfy::Cms::Category < ActiveRecord::Base
   belongs_to :small_image, class: Comfy::Cms::File
   belongs_to :large_image, class: Comfy::Cms::File
 
+  has_many :category_promos
+
+  accepts_nested_attributes_for :category_promos, reject_if: ->(promo) { promo[:title].blank? },
+                                                  allow_destroy: true
+
   def self.navigation_categories
     where(parent_id: nil).reorder(:ordinal).partition(&:navigation?)
   end

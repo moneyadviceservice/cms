@@ -37,6 +37,18 @@
             = f.collection_select :small_image_id, Comfy::Cms::File.images, :id, :label, include_blank: true
             = image_tag @category.small_image.file.url if @category.small_image
 
+            - if @category.parent
+              .form-group
+                .form__input-wrapper
+                  %h3 Promo links
+                  = f.fields_for :category_promos, @category.category_promos do |promo|
+                    = promo.select :promo_type, CategoryPromo::PROMO_TYPES
+                    = promo.text_field :title
+                    = promo.text_field :url
+                    = promo.text_field :description
+                    = promo.select :locale, ['en', 'cy']
+                    = promo.check_box :_destroy
+
             .form-group
               .form__input-wrapper
                 = f.check_box :navigation, label: t('categories.edit.show_in_navigation')
@@ -44,6 +56,7 @@
 
             .form-group
               .form__input-wrapper
+                %h3 Category links
                 = f.fields_for :links, @category.links do |link|
                   = link.text_field :text
                   = link.text_field :url

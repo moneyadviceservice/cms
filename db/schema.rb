@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610093638) do
+ActiveRecord::Schema.define(version: 20150612153536) do
+
+  create_table "category_promos", force: true do |t|
+    t.string  "promo_type"
+    t.string  "title",       null: false
+    t.string  "description"
+    t.string  "locale",      null: false
+    t.string  "url"
+    t.integer "category_id", null: false
+  end
+
+  add_index "category_promos", ["locale"], name: "index_category_promos_on_locale", using: :btree
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -43,7 +54,6 @@ ActiveRecord::Schema.define(version: 20150610093638) do
     t.boolean "third_level_navigation", default: false
     t.integer "small_image_id"
     t.integer "large_image_id"
-    t.integer "file_id"
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
