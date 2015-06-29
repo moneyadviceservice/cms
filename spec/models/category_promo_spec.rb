@@ -1,5 +1,3 @@
 describe CategoryPromo do
-  it 'associations' do
-    expect(subject).to belong_to(:category)
-  end
+  it { is_expected.to belong_to(:category) }
 end
