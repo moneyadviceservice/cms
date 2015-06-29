@@ -3,7 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
              :third_level_navigation, :images
 
   has_many :contents
-  has_many :links, serializer: DbLinkSerializer
+  has_many :links, serializer: CategoryLinkSerializer
 
   private
 

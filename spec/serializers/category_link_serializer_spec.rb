@@ -1,4 +1,4 @@
-describe DbLinkSerializer do
+describe CategoryLinkSerializer do
   let(:attributes) do
     { text: 'some link', url: 'http://www.example.com', locale: 'en' }
   end
