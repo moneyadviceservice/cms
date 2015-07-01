@@ -58,10 +58,10 @@ define([
             ul: {},
             li: {},
             a: { href: true, id: true, title: true },
-            h2: {},
-            h3: {},
-            h4: {},
-            h5: {},
+            h2: { id: true },
+            h3: { id: true },
+            h4: { id: true },
+            h5: { id: true },
             sub: {},
             sup: {},
             span: { 'class': true, id: true },
@@ -84,6 +84,7 @@ define([
     this._cacheComponentElements();
     this._stripEditorWhitespace();
     this.enableToolbar('html');
+
     this.editorLib = new Editor(
       this.$htmlContent[0],
       this.markdownContent,
@@ -105,7 +106,6 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
 
     this.setupMarkdownContentResize();
-
     this._initialisedSuccess(initialised);
   };
 

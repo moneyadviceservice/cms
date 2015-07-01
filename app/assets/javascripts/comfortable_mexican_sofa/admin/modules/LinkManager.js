@@ -3,13 +3,15 @@ define([
   'DoughBaseComponent',
   'InsertManager',
   'eventsWithPromises',
-  'filter-event'
+  'filter-event',
+  'URLFormatter'
 ], function (
   $,
   DoughBaseComponent,
   InsertManager,
   eventsWithPromises,
-  filterEvent
+  filterEvent,
+  URLFormatter
 ) {
   'use strict';
 
@@ -40,9 +42,43 @@ define([
     this._initialisedSuccess(initialised);
   };
 
+  LinkManagerProto._setup = function(type, val) {
+    LinkManager.superclass._setup.call(this);
+    this._populateAnchors(val);
+  };
+
   LinkManagerProto._setupAppEvents = function() {
     eventsWithPromises.subscribe('cmseditor:insert-published', filterEvent($.proxy(this._handleShown, this), this.context));
     LinkManager.superclass._setupAppEvents.call(this);
+  };
+
+  LinkManagerProto._populateAnchors = function(selectedValue) {
+    var self = this,
+        html = '',
+        id,
+        text;
+
+    this._resetSelectOptions(this.config.selectors.anchors);
+
+    $(this.config.selectors.editorContents).find('h2, h3, h4').each(function() {
+      text = $(this).html();
+      id = '#' + self._slugify(text);
+      html += self._getAnchorOptionMarkup(self.config.selectors.anchors, id, text, selectedValue);
+    });
+
+    this.$insertInputs.filter(self.config.selectors.anchors).append(html);
+  };
+
+  LinkManagerProto._resetSelectOptions = function(selectSelector) {
+    $(selectSelector).find('option[value]').remove();
+  };
+
+  LinkManagerProto._getAnchorOptionMarkup = function(selectSelector, value, text, selectedValue) {
+    return '<option value="' + value + '"' + (value === selectedValue ? ' selected="selected"' : '') + '>' + text + '</option>';
+  };
+
+  LinkManagerProto._slugify = function(str) {
+    return URLFormatter.prototype.slugify(str);
   };
 
   return LinkManager;

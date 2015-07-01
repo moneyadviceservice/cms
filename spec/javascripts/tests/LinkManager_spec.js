@@ -33,6 +33,27 @@ describe('LinkManager', function() {
     this.eventsWithPromises.unsubscribeAll();
   });
 
+  describe('Slugify function', function() {
+    beforeEach(function(done) {
+      this.component = new this.LinkManager(this.$fixture, {
+        tabIds: {
+          'page': 'page',
+          'file': 'file',
+          'external': 'external',
+          'anchor': 'anchor'
+        }
+      });
+      done();
+    });
+
+    it('should return a URL-friendly version of the given string', function() {
+      var str = '  foo%^@£$%!   123-123 ',
+          generatedSlug = this.component._slugify(str);
+
+      expect(generatedSlug).to.equal('foo-123-123');
+    });
+  });
+
   describe('App Events', function() {
     beforeEach(function(done) {
       this.component = new this.LinkManager(this.$fixture, {
@@ -62,7 +83,8 @@ describe('LinkManager', function() {
         tabIds: {
           'page': 'page',
           'file': 'file',
-          'external': 'external'
+          'external': 'external',
+          'anchor': 'anchor'
         }
       });
       done();
@@ -103,6 +125,29 @@ describe('LinkManager', function() {
         expect(spy.calledWith('new')).to.be.true;
       });
     });
-  });
 
+    describe('Populating anchor links', function() {
+      beforeEach(function(done) {
+        this.component.init();        
+        done();
+      });
+
+      it('should call the _populateAnchors function', function() {
+        var spy = sandbox.spy(this.LinkManager.prototype, '_populateAnchors');
+        this.component._setup();
+        expect(spy.called).to.be.true;
+      });
+
+      it('should render additional select options based upon headings in the editable area', function() {
+        this.component._setup();
+        expect($(this.component.config.selectors.anchors).children('option').size()).to.equal(4);
+      });
+
+      it('should generate valid option values for headings without IDs', function() {
+        this.component._setup();
+        $(this.component.config.selectors.anchors).children().eq(3).prop('selected', true);
+        expect($(this.component.config.selectors.anchors)).to.have.value('#h-c');
+      });
+    });
+  });
 });

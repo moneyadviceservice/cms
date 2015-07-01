@@ -21,7 +21,9 @@ define([
           loader: '[data-dough-insertmanager-loader]',
           url: '[data-dough-insertmanager-url]',
           activeClass: 'is-active',
-          inactiveClass: 'is-inactive'
+          inactiveClass: 'is-inactive',
+          anchors: '[data-dough-insertmanager-insert-type="anchor"]',
+          editorContents: '.editor__content'
         }
       };
 
@@ -65,6 +67,7 @@ define([
       .on('input', '[data-dough-insertmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('keyup', '[data-dough-insertmanager-value-trigger][type="text"]', $.proxy(this._handleFormControlUpdate, this))
       .on('change', '[data-dough-insertmanager-value-trigger][type="radio"]', $.proxy(this._handleFormControlUpdate, this))
+      .on('change', 'select[data-dough-insertmanager-value-trigger]', $.proxy(this._handleFormControlUpdate, this))
       .on('click', '[data-dough-insertmanager-insert]', $.proxy(this._handleInsertValue, this));
   };
 
