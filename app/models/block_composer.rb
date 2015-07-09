@@ -16,10 +16,20 @@ class BlockComposer
   end
 
   def to_html
-    parser.new(to_s).to_html
+    html = parser.new(to_s).to_html
+
+    post_processors.inject(html) do |result, processor|
+      processor.new(result).call
+    end
   end
 
   def to_s
     find(id).to_s
+  end
+
+  private
+
+  def post_processors
+    [TableWrapper]
   end
 end

@@ -61,5 +61,16 @@ RSpec.describe BlockComposer do
         expect(composer.to_html).to eql("\n")
       end
     end
+
+    context 'post processing' do
+      let(:content_block) do
+        { 'identifier' => 'content', 'content' => '<table></table>' }
+      end
+      let(:blocks) { [content_block] }
+
+      it 'returns a composed html string' do
+        expect(composer.to_html).to eql("<div class=\"table-wrapper\"><table></table></div>\n")
+      end
+    end
   end
 end
