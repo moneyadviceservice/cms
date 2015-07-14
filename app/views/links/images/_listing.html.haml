@@ -2,7 +2,7 @@
   - files.each do |file|
     %li.content-grid__item.content-grid__item--media
       = label_tag "image_link_#{file.id}", class: 'content-grid__label' do
-        = radio_button_tag "image_link", file.full_path, false, id: "image_link_#{file.id}", class: 'content-grid__item__radio', data: { 'dough-insertmanager-value-trigger' => true, 'dough-insertmanager-insert-type' => 'image' }
+        = radio_button_tag "image_link", file.image_tag_code, false, id: "image_link_#{file.id}", class: 'content-grid__item__radio', data: { 'dough-insertmanager-value-trigger' => true, 'dough-insertmanager-insert-type' => 'image' }
         %span.content-grid__media-wrapper
           = image_tag nil, class: 'content-grid__media', style: "background-image: url(#{file.file.url})"
         %span.content-grid__outline

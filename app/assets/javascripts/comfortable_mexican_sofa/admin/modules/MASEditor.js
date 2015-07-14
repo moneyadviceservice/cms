@@ -65,7 +65,7 @@ define([
             sub: {},
             sup: {},
             span: { 'class': true, id: true },
-            img: { 'class': true, src: true }
+            img: { 'class': true, src: true, alt: true }
           }
         }
       }

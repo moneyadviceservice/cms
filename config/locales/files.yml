@@ -1,4 +1,8 @@
 en:
+  helpers:
+    label:
+      comfy/cms/file:
+        description: Alt text
   files:
     index:
       filter_by:

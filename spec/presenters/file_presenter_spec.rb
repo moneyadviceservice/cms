@@ -19,4 +19,11 @@ RSpec.describe FilePresenter do
       expect(presenter.edit_url).to eq('/admin/sites/1/files/2/edit')
     end
   end
+
+  describe '#image_tag_code' do
+    it 'generates image element with source and description' do
+      expected = "<img src='#{subject.full_path}' alt='Default Description'>"
+      expect(subject.image_tag_code).to eql(expected)
+    end
+  end
 end
