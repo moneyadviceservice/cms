@@ -10,4 +10,8 @@ class FilePresenter < Presenter
   def edit_url
     url_helpers.edit_site_file_path(site, object)
   end
+
+  def image_tag_code
+    "<img src='#{full_path}' alt='#{object.description}'>"
+  end
 end

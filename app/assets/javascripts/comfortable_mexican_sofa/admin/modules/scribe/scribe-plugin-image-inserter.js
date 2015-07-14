@@ -33,8 +33,8 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
         });
       };
 
-      insertImageCommand.insert = function (url) {
-        scribe.api.SimpleCommand.prototype.execute.call(this, '<img src="'+ url +'">');
+      insertImageCommand.insert = function (imageCode) {
+        scribe.api.SimpleCommand.prototype.execute.call(this, imageCode);
       };
 
       insertImageCommand.handleInsertPublished = function(eventData) {
