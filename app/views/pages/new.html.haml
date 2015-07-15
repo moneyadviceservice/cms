@@ -1,1 +1,3 @@
+- flash.now[:danger] = @page.errors.full_messages.join(', ') if @page.errors.present?
+
 = render 'form', form_url: site_pages_path(@site)
