@@ -1,8 +1,8 @@
 class PagesController < Comfy::Admin::Cms::PagesController
   before_action :build_file,     only: [:new, :edit]
-  before_action :set_categories, only: [:new, :edit]
+  before_action :set_categories, only: [:new, :edit, :create]
   before_action :set_pages,      only: :index
-  before_action :set_activity_log, only: [:new, :edit]
+  before_action :set_activity_log, only: [:new, :edit, :create]
 
   protected
 
