@@ -57,7 +57,7 @@ define([
             ol: {},
             ul: {},
             li: {},
-            a: { href: true, id: true },
+            a: { href: true, id: true, title: true },
             h2: {},
             h3: {},
             h4: {},
