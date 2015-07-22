@@ -1,0 +1,19 @@
+<div class="l-panel-content l-panel-content--form">
+  <div class="l-constrained">
+    <%= form_for @redirect do |f| %>
+      <div class="form-group">
+        <div class="form__input-wrapper form__input-wrapper--fill-width">
+          <%= f.label :source %>
+          <%= f.text_field :source %>
+
+          <%= f.label :destination %>
+          <%= f.text_field :destination %>
+
+          <%= f.label :redirect_type %>
+          <%= f.select :redirect_type, Redirect::REDIRECT_TYPES %>
+
+          <%= f.submit %>
+      </div>
+    <% end %>
+  </div>
+</div>

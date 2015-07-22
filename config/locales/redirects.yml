@@ -1,0 +1,9 @@
+en:
+  activerecord:
+    errors:
+      models:
+        redirect:
+          attributes:
+            destination:
+              identical_to_source: is identical to source
+
