@@ -12,6 +12,13 @@ class Redirect < ActiveRecord::Base
 
   scope :search, ->(query) { where('source LIKE ? OR destination LIKE ?', "%#{query}%", "%#{query}%") }
 
+  def status_code
+    {
+      'permanent' => 301,
+      'temporary' => 302
+    }[redirect_type]
+  end
+
   private
 
   def validate_different_source_and_destination
