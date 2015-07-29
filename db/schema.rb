@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612153536) do
+ActiveRecord::Schema.define(version: 20150721143304) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -195,6 +195,14 @@ ActiveRecord::Schema.define(version: 20150612153536) do
     t.string  "text",          null: false
     t.string  "url",           null: false
     t.string  "locale",        null: false
+  end
+
+  create_table "redirects", force: true do |t|
+    t.string   "source",        null: false
+    t.string   "destination",   null: false
+    t.string   "redirect_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "taggings", force: true do |t|
