@@ -32,4 +32,26 @@ describe Redirect do
       end
     end
   end
+
+  describe 'audit' do
+    let(:valid_attributes) do
+      {
+        source: '/en/foo',
+        destination: '/en/bar',
+        redirect_type: 'temporary'
+      }
+    end
+
+    context 'when creating' do
+      subject do
+        described_class.create!(valid_attributes)
+      end
+
+      it 'is audited' do
+        with_versioning do
+          expect { subject }.to change(RedirectVersion, :count).by(1)
+        end
+      end
+    end
+  end
 end

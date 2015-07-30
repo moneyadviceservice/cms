@@ -16,7 +16,7 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
   end
 
   def index
-    @redirects = Redirect.all
+    @redirects = Redirect.recently_updated_order.includes(:versions).all
   end
 
   private
