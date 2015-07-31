@@ -75,4 +75,15 @@ describe RedirectsController do
       expect(response).to render_template('index')
     end
   end
+
+  describe '#search' do
+    before :each do
+      create :redirect
+    end
+
+    it 'populates @search' do
+      get :search, redirect_search: { query: 'foo' }
+      expect(assigns[:redirects]).to be_present
+    end
+  end
 end

@@ -14,6 +14,22 @@
       </div>
     </div>
 
+    <%= form_for RedirectSearch.new, url: search_redirects_path,
+                                     method: :get,
+                                     class: 'l-search-bar' do |f| %>
+      <div class="l-constrained">
+        <div class="l-search-bar__input">
+          <%= f.label :query, 'Search', class: 'visually-hidden' %>
+          <%= f.text_field :query, class: 'form__input' %>
+        </div>
+        <div class="l-search-bar__button">
+          <button class="button--action button--search-action" type="submit">
+            <span class="button__text fa fa-search"></span>
+          </button>
+        </div>
+      </div>
+    <% end %>
+
     <table class="datatable-default table table--full-width">
       <thead>
         <tr>
