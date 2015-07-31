@@ -9,9 +9,7 @@ describe Redirect do
 
   describe 'validations' do
     subject do
-      described_class.new(source: 'foo',
-                          destination: 'bar',
-                          redirect_type: 'temporary')
+      described_class.new(valid_attributes)
     end
 
     it { is_expected.to validate_presence_of(:source)  }
@@ -28,15 +26,27 @@ describe Redirect do
     end
 
     describe 'format validation' do
-      it 'must begin with /en or /cy' do
-        subject.destination = '/en/foo'
-        expect(subject).to be_valid
+      context 'for source' do
+        it 'must begin with /' do
+          subject.source = '/en/foo'
+          expect(subject).to be_valid
 
-        subject.destination = '/cy/foo'
-        expect(subject).to be_valid
+          subject.source = 'foo'
+          expect(subject).to_not be_valid
+        end
+      end
 
-        subject.destination = '/foo'
-        expect(subject).to_not be_valid
+      context 'for destination' do
+        it 'must begin with /en or /cy' do
+          subject.destination = '/en/asd'
+          expect(subject).to be_valid
+
+          subject.destination = '/cy/foo'
+          expect(subject).to be_valid
+
+          subject.destination = '/foo'
+          expect(subject).to_not be_valid
+        end
       end
     end
   end

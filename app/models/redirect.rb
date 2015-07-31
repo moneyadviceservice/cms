@@ -3,7 +3,7 @@ class Redirect < ActiveRecord::Base
 
   has_paper_trail class_name: 'RedirectVersion'
 
-  validates :source, presence: true, uniqueness: true
+  validates :source, presence: true, uniqueness: true, format: { with: /\A\// }
   validates :destination, presence: true, format: { with: /\A\/en|\/cy/ }
   validates :redirect_type, presence: true, inclusion: { in: REDIRECT_TYPES }
   validate  :validate_different_source_and_destination
