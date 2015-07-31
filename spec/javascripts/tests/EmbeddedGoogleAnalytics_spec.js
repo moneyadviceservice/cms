@@ -46,9 +46,9 @@ describe('EmbeddedGoogleAnalytics', function() {
 
       var dataChart = component.createChart(config);
 
-      expect(dataChart.qa.chart.container).equal('some-chart-container');
-      expect(dataChart.qa.query.metrics).equal('some-metrics');
-      expect(dataChart.qa.query.filters).equal('ga:pagePath=~^/some/path');
+      expect(dataChart.Kh.chart.container).equal('some-chart-container');
+      expect(dataChart.Kh.query.metrics).equal('some-metrics');
+      expect(dataChart.Kh.query.filters).equal('ga:pagePath=~^/some/path');
     });
 
     it('create a ViewSelector', function() {
@@ -59,7 +59,7 @@ describe('EmbeddedGoogleAnalytics', function() {
           dataChart = new gapi.analytics.googleCharts.DataChart({}),
           viewSelector = component._createViewSelector(config, dataChart);
 
-      expect(viewSelector.qa.container).equal('some-view-container');
+      expect(viewSelector.Kh.container).equal('some-view-container');
     });
 
     it('create a ViewSelector change binding', function() {
@@ -70,7 +70,7 @@ describe('EmbeddedGoogleAnalytics', function() {
           dataChart = new gapi.analytics.googleCharts.DataChart({}),
           viewSelector = component._createViewSelector(config, dataChart);
 
-      expect(viewSelector.G.B).to.include('change');
+      expect(viewSelector.wc.Ka).to.include('change');
     });
 
     it('executes the viewSelector after creation', function() {
