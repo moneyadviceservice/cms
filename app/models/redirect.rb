@@ -10,6 +10,8 @@ class Redirect < ActiveRecord::Base
 
   scope :recently_updated_order, -> { order(updated_at: :desc) }
 
+  scope :search, ->(query) { where('source LIKE ? OR destination LIKE ?', "%#{query}%", "%#{query}%") }
+
   private
 
   def validate_different_source_and_destination

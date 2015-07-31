@@ -1,4 +1,12 @@
 describe Redirect do
+  let(:valid_attributes) do
+    {
+      source: '/en/foo',
+      destination: '/en/bar',
+      redirect_type: 'temporary'
+    }
+  end
+
   describe 'validations' do
     subject do
       described_class.new(source: 'foo',
@@ -51,6 +59,28 @@ describe Redirect do
         with_versioning do
           expect { subject }.to change(RedirectVersion, :count).by(1)
         end
+      end
+    end
+  end
+
+  describe '::search' do
+    context 'when there are no matches' do
+      it 'returns an empty array' do
+        expect(described_class.search('blank')).to be_empty
+      end
+    end
+
+    context 'when there is match' do
+      before :each do
+        described_class.create!(valid_attributes)
+      end
+
+      it 'searches source' do
+        expect(described_class.search('foo')).to be_present
+      end
+
+      it 'searches destination' do
+        expect(described_class.search('bar')).to be_present
       end
     end
   end

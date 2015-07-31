@@ -19,9 +19,19 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
     @redirects = Redirect.recently_updated_order.includes(:versions).all
   end
 
+  def search
+    @redirects = Redirect.search(search_params[:query]).recently_updated_order.includes(:versions).all
+
+    render :index
+  end
+
   private
 
   def redirect_params
     params.require(:redirect).permit(:source, :destination, :redirect_type)
+  end
+
+  def search_params
+    params.require(:redirect_search).permit(:query)
   end
 end
