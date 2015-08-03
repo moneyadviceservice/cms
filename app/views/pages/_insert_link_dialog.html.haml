@@ -11,11 +11,14 @@
               %a.tab-selector__trigger{ href: '#file', 'data-dough-tab-selector-trigger' => 'file' } A file
             .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
               %a.tab-selector__trigger{ href: '#external', 'data-dough-tab-selector-trigger' => 'external' } External site
+            .tab-selector__trigger-container.is-inactive{ 'data-dough-tab-selector-trigger-container' => true }
+              %a.tab-selector__trigger{ href: '#anchor', 'data-dough-tab-selector-trigger' => 'anchor' } An anchor
 
       .l-tab-panels__item.l-tab-panels__item--content
         = render 'links/pages/form'
         = render 'links/documents/form'
         = render 'links/external/form'
+        = render 'links/anchors/form'
 
       .loader.is-inactive{'data-dough-insertmanager-loader' => true}
         .loader__inner

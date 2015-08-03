@@ -5,6 +5,10 @@ en:
         _destroy: Delete
   links:
     current: 'Current link'
+    anchor:
+      header: Select an anchor
+      placeholder: Select an anchor
+      insert_button: Insert anchor
     external:
       header: 'Add external link'
       insert_button: 'Insert Link'

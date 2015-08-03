@@ -25,6 +25,7 @@
     "jshint": "^2.5.5",
     "karma": "^0.12.2",
     "karma-osx-reporter": "*",
+    "karma-spec-reporter": "0.0.13",
     "karma-chai": "^0.1.0",
     "karma-chai-jquery": "^1.0.0",
     "karma-chrome-launcher": "^0.1.2",

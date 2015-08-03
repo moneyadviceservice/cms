@@ -1,0 +1,17 @@
+.tab-selector__target#anchor.is-inactive{'data-dough-tab-selector-target' => 'anchor' }
+  %h3.l-tab-panels__heading
+    = t('links.anchor.header')
+  .form.form--vertical
+    .form-group
+      .form__input-wrapper
+        %select{ data: { 'dough-insertmanager-insert-type' => 'anchor',
+                         'dough-insertmanager-value-trigger' => true },
+                 class: 'pages-categories-select form__select--fill-width' }
+          %option
+            = t('links.anchor.placeholder')
+
+    .form-group
+      .form__input-wrapper
+        %button.button--action
+          %span.button__text{'data-dough-insertmanager-insert' => 'anchor' }
+            = t('links.anchor.insert_button')

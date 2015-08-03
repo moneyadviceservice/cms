@@ -18,7 +18,7 @@ module.exports = function(config) {
     preprocessors: {
       '**/*.html': ['html2js']
     },
-    reporters: ['progress', 'osx'],
+    reporters: ['spec', 'progress', 'osx'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_ERROR,

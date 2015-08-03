@@ -6,10 +6,14 @@
     <button data-dough-tab-selector-trigger="page">Internal Link</button>
     <button data-dough-tab-selector-trigger="external">External Link</button>
     <button data-dough-tab-selector-trigger="file">File</button>
+    <button data-dough-tab-selector-trigger="anchor">Anchor</button>
 
     <input data-dough-insertmanager-insert-type="page" type="text" value="/foo">
     <input data-dough-insertmanager-insert-type="external" type="text" value="http://foo.com">
     <input data-dough-insertmanager-insert-type="file" type="text" value="foo.pdf">
+    <select data-dough-insertmanager-insert-type="anchor">
+      <option>Select an anchor</option>
+    </select>    
 
     <span class="is-inactive" data-dough-insertmanager-label="file"></span>
 
@@ -20,4 +24,9 @@
 
     <div class="loader is-inactive" data-dough-insertmanager-loader></div>
   </div>
+</div>
+<div class="editor__content theme theme--dough" data-dough-component="WordCount" data-dough-maseditor-html-content="" data-dough-wordcount-target="article" data-dough-word-count-initialised="yes" contenteditable="true">
+  <h2 id="h-a">H A</h2>
+  <h3 id="h-b">H B</h3>
+  <h3>H C</h3>
 </div>
