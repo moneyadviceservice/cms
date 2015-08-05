@@ -62,8 +62,8 @@ define([
 
     $(this.config.selectors.editorContents).find('h2, h3, h4').each(function() {
       text = $(this).html();
-      id = '#' + self._slugify(text);
-      html += self._getAnchorOptionMarkup(self.config.selectors.anchors, id, text, selectedValue);
+      id = self._slugify(text); // Use our function which mimics the Ruby kramdown function
+      html += self._getAnchorOptionMarkup(self.config.selectors.anchors, '#' + id, text, selectedValue);
     });
 
     this.$insertInputs.filter(self.config.selectors.anchors).append(html);
@@ -78,7 +78,9 @@ define([
   };
 
   LinkManagerProto._slugify = function(str) {
-    return URLFormatter.prototype.slugify(str);
+    return str.toString().toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '');
   };
 
   return LinkManager;

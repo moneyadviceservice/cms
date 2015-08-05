@@ -47,10 +47,10 @@ describe('LinkManager', function() {
     });
 
     it('should return a URL-friendly version of the given string', function() {
-      var str = '  foo%^@£$%!   123-123 ',
+      var str = 'foo%^@£$%!   123--123   ?',
           generatedSlug = this.component._slugify(str);
 
-      expect(generatedSlug).to.equal('foo-123-123');
+      expect(generatedSlug).to.equal('foo-123--123-');
     });
   });
 
