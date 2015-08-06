@@ -34,6 +34,7 @@ gem 'devise'
 
 gem 'reverse_markdown'
 gem 'active_model_serializers'
+gem 'newrelic_rpm'
 
 gem 'oauth2', '1.0.0'
 gem 'google-api-client', '0.7.1'
