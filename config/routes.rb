@@ -53,8 +53,7 @@ Rails.application.routes.draw do
 
   comfy_route :cms_admin, path: '/admin'
 
-  # Make sure this routeset is defined last
-  namespace :api, path: '/' do
+  namespace :api do
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
@@ -62,6 +61,16 @@ Rails.application.routes.draw do
     get '/:locale/:page_type/published(.:format)' => 'content#published', defaults: { format: 'json' }
     get '/:locale/:page_type/unpublished(.:format)' => 'content#unpublished', defaults: { format: 'json' }
     get '/:locale/:page_type/(*slug)(.:format)' => 'content#show', as: 'content'
+  end
+
+  namespace :api, path: '/' do
+    get '/:locale/categories(.:format)' => 'category_contents#index'
+    get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
+    get '/preview/:locale/(*slug)(.:format)' => 'content#preview'
+
+    get '/:locale/:page_type/published(.:format)' => 'content#published', defaults: { format: 'json' }
+    get '/:locale/:page_type/unpublished(.:format)' => 'content#unpublished', defaults: { format: 'json' }
+    get '/:locale/:page_type/(*slug)(.:format)' => 'content#show'
   end
 
   # Overwriten comfy route to hit the application.
