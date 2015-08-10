@@ -15,3 +15,7 @@ cite {
   @include body(14,18);
   font-style: normal;
 }
+
+.fa--spacious {
+  margin-right: $baseline_unit*2;
+}

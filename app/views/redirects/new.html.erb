@@ -1,19 +1,65 @@
 <div class="l-panel-content l-panel-content--form">
+    <div class="l-constrained">
+      <div class="l-panel-content__row">
+        <div class="l-panel-content__col">
+          <h1>Create new redirect</h1>
+        </div>
+        <div class="l-panel-content__col l-panel-content__col--right">
+          <%= link_to redirects_path, class: 'button--action' do %>
+            <span class="button__text"><span class="fa fa-exchange fa--spacious"></span> List</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="l-panel-content">
   <div class="l-constrained">
     <%= form_for @redirect do |f| %>
       <div class="form-group">
         <div class="form__input-wrapper form__input-wrapper--fill-width">
-          <%= f.label :source %>
-          <%= f.text_field :source %>
+          <div class="form-group">
+            <div class="form__label-heading">
+              <%= f.label :source %>
+            </div>
+            <div class="form__input-wrapper">
+              <%= f.text_field :source %>
+              <span class="form__hint">Start with a forward-slash</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form__label-heading">
+              <%= f.label :destination %>
+            </div>
+            <div class="form__input-wrapper">
+              <%= f.text_field :destination %>
+              <span class="form__hint">Start with a forward-slash</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form__label-heading">
+              <%= f.label :redirect_type %>
+            </div>
+            <div class="form__input-wrapper">
+              <%= f.select :redirect_type, Redirect::REDIRECT_TYPES %>
+            </div>
+          </div>
 
-          <%= f.label :destination %>
-          <%= f.text_field :destination %>
+          <div class="nav-article is-fixed">
+            <div class="l-constrained">
+              <div class="nav-article__inner">
+                <span class="nav-article__item nav-article__item--right"></span>
+                <span class="nav-article__item nav-article__item--right">
+                  <button class="button--action" name="button" type="submit">
+                    <span class="button__text"><span class="fa fa-plus fa--spacious"></span> Create redirect</span>
+                  </button>                  
+                </span>
+              </div>
+            </div>
+          </div>
 
-          <%= f.label :redirect_type %>
-          <%= f.select :redirect_type, Redirect::REDIRECT_TYPES %>
-
-          <%= f.submit %>
+        </div>
       </div>
     <% end %>
+  </div>
   </div>
 </div>
