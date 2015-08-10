@@ -1,34 +1,32 @@
 <div class="l-panel-content l-panel-content--form">
   <div class="l-constrained">
     <div class="l-panel-content__row">
-      <div class="l-panel-content__col page-header">
-        <h1 class="l-panel-content__heading">
-          Redirects
-        </h1>
+      <div class="l-panel-content__col">
+        <h1>Redirects</h1>
       </div>
-
       <div class="l-panel-content__col l-panel-content__col--right">
-        <%= link_to new_redirect_path, class: 'button--action button--search' do %>
-          <span class="button__text"><span class="fa fa-exchange"></span> Create new redirect</span>
+        <%= link_to new_redirect_path, class: 'button--action' do %>
+          <span class="button__text"><span class="fa fa-exchange fa--spacious"></span> Create</span>
         <% end %>
       </div>
     </div>
-
     <%= form_for RedirectSearch.new, url: search_redirects_path,
                                      method: :get,
-                                     class: 'l-search-bar' do |f| %>
-      <div class="l-constrained">
-        <div class="l-search-bar__input">
-          <%= f.label :query, 'Search', class: 'visually-hidden' %>
-          <%= f.text_field :query, class: 'form__input' %>
-        </div>
-        <div class="l-search-bar__button">
-          <button class="button--action button--search-action" type="submit">
-            <span class="button__text fa fa-search"></span>
-          </button>
-        </div>
+                                     html: { class: 'l-search-bar l-search-bar--redirects' } do |f| %>
+      <div class="l-search-bar__input">
+        <%= f.label :query, 'Search', class: 'visually-hidden' %>
+        <%= f.text_field :query, class: 'form__input' %>
+      </div>
+      <div class="l-search-bar__button">
+        <button class="button--action button--search-action" type="submit">
+          <span class="button__text fa fa-search"></span>
+        </button>
       </div>
     <% end %>
+  </div>
+</div>
+<div class="l-panel-content">
+  <div class="l-constrained">
 
     <table class="datatable-default table table--full-width">
       <thead>
