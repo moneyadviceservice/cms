@@ -43,6 +43,7 @@ Rails.application.routes.draw do
         delete :delete_from_value
       end
     end
+
     resources :users
   end
 

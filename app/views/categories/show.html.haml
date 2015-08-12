@@ -37,7 +37,10 @@
                 = f.check_box :navigation, label: t('categories.edit.show_in_navigation')
                 = f.check_box :third_level_navigation, label: t('categories.edit.third_level_navigation')
 
-            %h3 Category images
+            %hr.roomy
+
+            %h2 Header image
+            %p Provide two square images of 400x400 &amp 1600x1600.
 
             = f.collection_select :small_image_id, Comfy::Cms::File.images, :id, :label, include_blank: true
             = image_tag @category.small_image.file.url if @category.small_image
@@ -45,30 +48,45 @@
             = f.collection_select :large_image_id, Comfy::Cms::File.images, :id, :label, include_blank: true
             = image_tag @category.large_image.file.url if @category.large_image
 
+            %hr.roomy
+
+            %h2 Header links
+            %p These appear at the top of the page with yellow underlines.
+
             .form-group
               .form__input-wrapper
-                %h3 Category links
-                = f.fields_for :links, @category.links do |link|
-                  = link.text_field :text
-                  = link.text_field :url
-                  = link.select :locale, ['en', 'cy']
-                  = link.check_box :_destroy
+                %ol.form-list
+                  = f.fields_for :links, @category.links do |link|
+                    %li.form-list__item
+                      = link.text_field :text
+                      = link.text_field :url
+                      = link.select :locale, ['en', 'cy']
+                      = link.check_box :_destroy
 
             - if @category.parent
+
+              %hr.roomy
+              
+              %h2 Promo links
+              %p These appear within nested categories, with blue/green tags.
+
               .form-group
                 .form__input-wrapper
-                  %h3 Promo links
-                  = f.fields_for :category_promos, @category.category_promos do |promo|
-                    = promo.select :promo_type, CategoryPromo::PROMO_TYPES
-                    = promo.text_field :title
-                    = promo.text_field :url
-                    = promo.text_field :description
-                    = promo.select :locale, ['en', 'cy']
-                    = promo.check_box :_destroy
+                  %ol.form-list
+                    = f.fields_for :category_promos, @category.category_promos do |promo|
+                      %li.form-list__item
+                        = promo.select :promo_type, CategoryPromo::PROMO_TYPES
+                        = promo.text_field :title
+                        = promo.text_field :url
+                        = promo.text_field :description
+                        = promo.select :locale, ['en', 'cy']
+                        = promo.check_box :_destroy
 
             = hidden_field_tag 'list_order_sub_categories', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-sub-categories'}
             = hidden_field_tag 'list_order_pages_en', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages-en'}
             = hidden_field_tag 'list_order_pages_cy', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-manager-pages-cy'}
+
+            %hr.roomy
 
             .form-group
               .form__input-wrapper
@@ -94,4 +112,3 @@
 
               = render partial: 'sortable', locals: { pages: @english_pages, locale: 'en', defaultClass: 'is-active' }
               = render partial: 'sortable', locals: { pages: @welsh_pages, locale: 'cy', defaultClass: 'is-inactive' }
-

@@ -51,6 +51,9 @@ hr {
   border-top-width: 1px;
   border-bottom-width: 0;
 
+  &.roomy {
+    margin: 50px 0;
+  }
 }
 
 th, td {
