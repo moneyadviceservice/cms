@@ -22,7 +22,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def set_pages
-    @all_pages = Comfy::Cms::Page.includes(:layout, :site)
+    @all_pages = Comfy::Cms::Page.includes(:layout, :site, :categories)
   end
 
   def apply_filters
