@@ -9,7 +9,7 @@ module Rack
         regex = /\A\/api(\/[^.]*)(.json)?\z/
         source_path = Array(regex.match(env['PATH_INFO']))[1]
 
-        if redirect = Redirect.find_by(source: source_path)
+        if source_path && redirect = Redirect.find_by(source: source_path)
           [redirect.status_code, {'Location' => "#{ENV['FARADAY_X_FORWARDED_PROTO']}://#{ENV['FARADAY_HOST']}#{redirect.destination}"}, ['']]
         else
           @app.call(env)

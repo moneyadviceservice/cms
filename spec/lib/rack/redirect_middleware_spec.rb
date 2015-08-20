@@ -40,6 +40,14 @@ describe Rack::RedirectMiddleware::Responder do
         get '/api/assets/components-font-awesome/css/font-awesome.css?body=1'
         expect(last_response.body).to include('root app')
       end
+
+      it 'does not perform a db lookup' do
+        redirect_class_spy = spy('Redirect')
+        stub_const('Redirect', redirect_class_spy)
+
+        get '/api/assets/components-font-awesome/css/font-awesome.css?body=1'
+        expect(redirect_class_spy).to_not have_received(:find_by)
+      end
     end
   end
 end
