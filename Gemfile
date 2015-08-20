@@ -41,6 +41,7 @@ gem 'google-api-client', '0.7.1'
 gem 'legato', '0.4.0'
 gem 'clockwork'
 gem 'paper_trail'
+gem 'feature'
 
 gem 'mastalk'
 
