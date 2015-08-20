@@ -10,6 +10,7 @@ module Cms
   class Application < Rails::Application
     require_relative '../lib/cms'
     require_relative '../lib/rack/redirect_middleware'
+    require_relative '../config/initializers/features'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -26,6 +27,8 @@ module Cms
 
     config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css rsvp/rsvp.js)
 
-    config.middleware.use Rack::RedirectMiddleware::Responder
+    if Feature.active?(:redirects)
+      config.middleware.use Rack::RedirectMiddleware::Responder
+    end
   end
 end
