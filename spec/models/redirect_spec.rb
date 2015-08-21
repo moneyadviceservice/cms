@@ -51,6 +51,22 @@ describe Redirect do
     end
   end
 
+  describe '#source' do
+    it 'removes any trailing slashes' do
+      subject.source = '/en/foo////'
+      subject.valid?
+      expect(subject.source).to eql('/en/foo')
+    end
+  end
+
+  describe '#destination' do
+    it 'removes any trailing slashes' do
+      subject.destination = '/en/foo////'
+      subject.valid?
+      expect(subject.destination).to eql('/en/foo')
+    end
+  end
+
   describe 'audit' do
     let(:valid_attributes) do
       {
