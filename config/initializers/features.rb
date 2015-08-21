@@ -27,5 +27,5 @@ class EnvironmentDetective
 end
 
 environment = EnvironmentDetective.new.environment
-repo = Feature::Repository::YamlRepository.new("#{Rails.root}/config/features/#{environment}.yml")
+repo = Feature::Repository::YamlRepository.new("#{Rails.root}/config/feature_toggles/#{environment}.yml")
 Feature.set_repository repo
