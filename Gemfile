@@ -12,8 +12,6 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'dotenv-rails'
-
 gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
@@ -70,6 +68,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'valid_attribute', require: false
+  gem 'dotenv-rails'
 end
 
 group :production do

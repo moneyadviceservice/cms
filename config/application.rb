@@ -9,6 +9,9 @@ Bundler.require(*Rails.groups)
 module Cms
   class Application < Rails::Application
     require_relative '../lib/cms'
+    require_relative '../lib/rack/redirect_middleware'
+    require_relative '../config/initializers/features'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -23,5 +26,9 @@ module Cms
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css rsvp/rsvp.js)
+
+    if Feature.active?(:redirects)
+      config.middleware.use Rack::RedirectMiddleware::Responder
+    end
   end
 end
