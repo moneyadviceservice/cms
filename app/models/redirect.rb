@@ -10,8 +10,8 @@ class Redirect < ActiveRecord::Base
   validates :destination, presence: true, format: { with: /\A\/en|\/cy/ }
   validates :redirect_type, presence: true, inclusion: { in: REDIRECT_TYPES }
   validate  :validate_different_source_and_destination
-  validate  :destination_matches_existing_source
-  validate  :source_matches_existing_destination
+  validate  :destination_does_not_match_existing_source
+  validate  :source_does_not_match_existing_destination
 
   scope :recently_updated_order, -> { order(updated_at: :desc) }
 
@@ -40,13 +40,13 @@ class Redirect < ActiveRecord::Base
     self.destination = destination.gsub(/\/*\z/, '') if destination.present?
   end
 
-  def destination_matches_existing_source
+  def destination_does_not_match_existing_source
     if Redirect.exists?(source: destination)
       errors.add(:destination, :matches_an_existing_source)
     end
   end
 
-  def source_matches_existing_destination
+  def source_does_not_match_existing_destination
     if Redirect.exists?(destination: source)
       errors.add(:source, :matches_an_existing_destination)
     end
