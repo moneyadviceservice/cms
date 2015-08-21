@@ -25,6 +25,30 @@ describe Redirect do
       expect(subject).to_not be_valid
     end
 
+    context 'when a redirect alreay exists' do
+      before :each do
+        described_class.create!(valid_attributes)
+      end
+
+      it 'can not chain' do
+        subject.source = '/en/other-source'
+        subject.destination = '/en/foo'
+        expect(subject).to_not be_valid
+      end
+
+      it 'can not chain' do
+        subject.source = '/en/bar'
+        subject.destination = '/en/other-destination'
+        expect(subject).to_not be_valid
+      end
+
+      it 'can not loop' do
+        subject.source = '/en/bar'
+        subject.destination = '/en/foo'
+        expect(subject).to_not be_valid
+      end
+    end
+
     describe 'format validation' do
       context 'for source' do
         it 'must begin with /' do
