@@ -76,6 +76,36 @@ describe RedirectsController do
     end
   end
 
+  describe '#show' do
+    let!(:redirect) { create(:redirect) }
+
+    it 'works' do
+      get :show, id: redirect.id
+    end
+  end
+
+  describe '#update' do
+    let!(:redirect) { create(:redirect) }
+
+    it 'updates the record' do
+      expect do
+        put :update, id: redirect.id, redirect: { source: '/en/a' }
+      end.to change { redirect.reload.source }.to('/en/a')
+    end
+
+    it 'redirects back to the resource' do
+      put :update, id: redirect.id, redirect: { source: '/en/a' }
+      expect(response).to redirect_to(redirect)
+    end
+
+    context 'when invalid' do
+      it 'renders show' do
+        put :update, id: redirect.id, redirect: { source: '/en/bar' }
+        expect(response).to render_template('redirects/show')
+      end
+    end
+  end
+
   describe '#search' do
     before :each do
       create :redirect

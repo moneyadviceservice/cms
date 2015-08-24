@@ -15,6 +15,22 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
     end
   end
 
+  def show
+    @redirect = Redirect.find(params[:id])
+  end
+
+  def update
+    @redirect = Redirect.find(params[:id])
+
+    if @redirect.update(redirect_params)
+      flash[:success] = 'Successfully updated redirect'
+      redirect_to @redirect
+    else
+      flash[:danger] = @redirect.errors.full_messages.join(', ')
+      render :show
+    end
+  end
+
   def index
     @redirects = Redirect.recently_updated_order.includes(:versions).all
   end
