@@ -35,6 +35,13 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
     @redirects = Redirect.recently_updated_order.includes(:versions).all
   end
 
+  def destroy
+    @redirect = Redirect.find(params[:id])
+    @redirect.inactivate!
+
+    redirect_to redirects_path
+  end
+
   def search
     @redirects = Redirect.search(search_params[:query]).recently_updated_order.includes(:versions).all
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730092459) do
+ActiveRecord::Schema.define(version: 20150821165652) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -209,11 +209,12 @@ ActiveRecord::Schema.define(version: 20150730092459) do
   add_index "redirect_versions", ["item_type", "item_id"], name: "index_redirect_versions_on_item_type_and_item_id", using: :btree
 
   create_table "redirects", force: true do |t|
-    t.string   "source",        null: false
-    t.string   "destination",   null: false
-    t.string   "redirect_type", null: false
+    t.string   "source",                       null: false
+    t.string   "destination",                  null: false
+    t.string   "redirect_type",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",        default: true
   end
 
   create_table "taggings", force: true do |t|
