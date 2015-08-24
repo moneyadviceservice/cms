@@ -113,6 +113,17 @@ describe Redirect do
     end
   end
 
+  describe '#inactivate!' do
+    subject do
+      described_class.create!(valid_attributes)
+    end
+
+    it 'marks the record as inactive' do
+      subject.inactivate!
+      expect(subject.reload.active).to be_falsey
+    end
+  end
+
   describe '::search' do
     context 'when there are no matches' do
       it 'returns an empty array' do

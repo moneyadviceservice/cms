@@ -54,6 +54,10 @@
               <%= link_to redirect do %>
                 <span class="fa fa-pencil"> Edit</span>
               <% end %>
+
+              <%= button_to redirect, { method: :delete } do %>
+                Delete
+              <% end %>
             </td>
           </tr>
         <% end %>

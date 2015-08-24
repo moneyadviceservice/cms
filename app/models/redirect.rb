@@ -1,6 +1,8 @@
 class Redirect < ActiveRecord::Base
   REDIRECT_TYPES = %w{ temporary permanent }
 
+  default_scope { where(active: true) }
+
   has_paper_trail class_name: 'RedirectVersion'
 
   before_validation :remove_source_trailing_slashes
@@ -22,6 +24,10 @@ class Redirect < ActiveRecord::Base
       'permanent' => 301,
       'temporary' => 302
     }[redirect_type]
+  end
+
+  def inactivate!
+    update(active: false)
   end
 
   private

@@ -106,6 +106,21 @@ describe RedirectsController do
     end
   end
 
+  describe '#destroy' do
+    let!(:redirect) { create(:redirect) }
+
+    it 'flags redirect as inactive' do
+      expect do
+        delete :destroy, id: redirect.id
+      end.to change { redirect.reload.active }.from(true).to(false)
+    end
+
+    it 'redirects back to index' do
+      delete :destroy, id: redirect.id
+      expect(response).to redirect_to(redirects_path)
+    end
+  end
+
   describe '#search' do
     before :each do
       create :redirect
