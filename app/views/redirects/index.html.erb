@@ -55,7 +55,7 @@
                 <span class="fa fa-pencil"> Edit</span>
               <% end %>
 
-              <%= button_to redirect, { method: :delete } do %>
+              <%= button_to redirect, { method: :delete, data: { confirm: 'Are you sure wish to delete this redirect?' } } do %>
                 Delete
               <% end %>
             </td>
