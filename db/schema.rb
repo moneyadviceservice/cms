@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821165652) do
+ActiveRecord::Schema.define(version: 20150903104729) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -216,6 +216,8 @@ ActiveRecord::Schema.define(version: 20150821165652) do
     t.datetime "updated_at"
     t.boolean  "active",        default: true
   end
+
+  add_index "redirects", ["source"], name: "index_redirects_on_source", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"
