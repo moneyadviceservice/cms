@@ -47,13 +47,13 @@ class Redirect < ActiveRecord::Base
   end
 
   def destination_does_not_match_existing_source
-    if Redirect.exists?(source: destination)
+    if Redirect.where.not(id: self.id).exists?(source: destination)
       errors.add(:destination, :matches_an_existing_source)
     end
   end
 
   def source_does_not_match_existing_destination
-    if Redirect.exists?(destination: source)
+    if Redirect.where.not(id: self.id).exists?(destination: source)
       errors.add(:source, :matches_an_existing_destination)
     end
   end

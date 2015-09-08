@@ -49,6 +49,17 @@ describe Redirect do
       end
     end
 
+    describe 'modifying an existing record' do
+      it 'does not perform validations against itself' do
+        subject.save!
+
+        subject.source = valid_attributes[:destination]
+        subject.destination = valid_attributes[:source]
+
+        subject.save!
+      end
+    end
+
     describe 'format validation' do
       context 'for source' do
         it 'must begin with /' do
