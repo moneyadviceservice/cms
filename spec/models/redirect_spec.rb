@@ -100,6 +100,12 @@ describe Redirect do
       subject.valid?
       expect(subject.destination).to eql('/en/foo')
     end
+
+    it 'removes any trailing hashes' do
+      subject.destination = '/en/foo####'
+      subject.valid?
+      expect(subject.destination).to eql('/en/foo')
+    end
   end
 
   describe 'audit' do

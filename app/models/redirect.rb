@@ -6,6 +6,7 @@ class Redirect < ActiveRecord::Base
   has_paper_trail class_name: 'RedirectVersion'
 
   before_validation :remove_source_trailing_slashes
+  before_validation :remove_destination_trailing_hashes
   before_validation :remove_destination_trailing_slashes
 
   validates :source, presence: true, uniqueness: true, format: { with: /\A\// }
@@ -36,6 +37,10 @@ class Redirect < ActiveRecord::Base
     if source == destination
       errors.add(:destination, :identical_to_source)
     end
+  end
+
+  def remove_destination_trailing_hashes
+    self.destination = destination.gsub(/#*\z/, '') if destination.present?
   end
 
   def remove_source_trailing_slashes
