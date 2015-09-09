@@ -69,6 +69,11 @@ describe Redirect do
           subject.source = 'foo'
           expect(subject).to_not be_valid
         end
+
+        it 'must not contain a hash character' do
+          subject.source = '/en/foo#anchor'
+          expect(subject).to_not be_valid
+        end
       end
 
       context 'for destination' do

@@ -10,6 +10,7 @@ class Redirect < ActiveRecord::Base
   before_validation :remove_destination_trailing_slashes
 
   validates :source, presence: true, uniqueness: true, format: { with: /\A\// }
+  validates :source, format: { without: /\#/ }
   validates :destination, presence: true, format: { with: /\A\/en|\/cy/ }
   validates :redirect_type, presence: true, inclusion: { in: REDIRECT_TYPES }
   validate  :validate_different_source_and_destination
