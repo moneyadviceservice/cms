@@ -32,7 +32,7 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
   end
 
   def index
-    @redirects = Redirect.recently_updated_order.includes(:versions).all
+    @redirects = Redirect.recently_updated_order.includes(:versions).page(params[:page])
   end
 
   def destroy

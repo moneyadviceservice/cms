@@ -25,10 +25,13 @@
     <% end %>
   </div>
 </div>
+
 <div class="l-panel-content">
   <div class="l-constrained">
 
-    <table class="datatable-default table table--full-width">
+    <%= paginate @redirects %>
+
+    <table class="datatable-default table table--full-width table--redirects">
       <thead>
         <tr>
           <th>Source</th>
@@ -61,5 +64,7 @@
         <% end %>
       </tbody>
     </table>
+
+    <%= paginate @redirects %>
   </div>
 </div>
