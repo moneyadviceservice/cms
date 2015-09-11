@@ -33,6 +33,12 @@ describe Rack::RedirectMiddleware::Responder do
         get '/api/en/foo.json'
         expect(last_response.headers['Location']).to eql('http://localhost:5000' + redirect.destination)
       end
+
+      it 'increments hits' do
+        expect do
+          get '/api/en/foo.json'
+        end.to change { redirect.reload.hits }.by(1)
+      end
     end
 
     context 'when some other path' do
