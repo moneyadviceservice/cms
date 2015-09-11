@@ -10,7 +10,7 @@
     %button.btn.btn-sm.btn-primary.pull-right
   = render 'comfy/admin/cms/files/index'
 
-%div{data:{dough_component: :StickyElements}}
+%div{data:{dough_component: 'StickyElements'}}
   = form_for @page, as: :page, url: form_url, class: 'form', html: { multipart: true, autocomplete: 'off'}, data: { dough_component: 'MASEditor UnsavedChangesPrompt', dough_scheduler_form: true } do |form|
 
     = render 'comfy/admin/cms/partials/page_form_before', object: form
@@ -84,7 +84,10 @@
                   = form.check_box :regulated_box
                   Regulated Content
 
-    = render partial: 'form_blocks'
+    - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
+      = render partial: "pages/form_blocks/#{@page.layout.identifier}"
+    - else
+      = render partial: 'form_blocks'
     = render 'scheduler', object: form
 
     .nav-article.is-fixed

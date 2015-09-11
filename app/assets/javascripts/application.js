@@ -2,6 +2,7 @@
 
 require(['componentLoader', 'jquery'], function(componentLoader, $) {
   'use strict';
+
   componentLoader.init($('body'));
 
   $('.analytics-button').on('click', function() {
