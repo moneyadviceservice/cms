@@ -109,3 +109,6 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 #
 # To create a bcrypt hash:
 #   BCrypt::Password.create('password').to_s
+
+require 'comfortable_mexican_sofa/extensions/tag'
+require 'comfortable_mexican_sofa/extensions/tags/page_image'

@@ -263,3 +263,7 @@ table th select {
     content: '+';
   }
 }
+
+.edit_page .form-group:last-child {
+  margin-bottom: $baseline-unit*12;
+}

@@ -1,0 +1,57 @@
+.form-image__preview-wrapper {
+  max-width: 300px;
+  border: 1px solid $color-alto;
+  margin-bottom: $baseline-unit;
+}
+
+.form-image__preview {
+  padding-bottom: 60%;
+  position: relative;
+
+  &:after {
+    content: "No image selected";
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    display: block;
+    height: 20px;
+    line-height: 20px;
+    margin-top: -10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: $color-alto;
+  }
+}
+
+.form-image__image-link {
+  position: absolute;
+  top: $baseline-unit;
+  left: $baseline-unit;
+  bottom: $baseline-unit;
+  right: $baseline-unit;
+  background: black;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.form-image__label {
+  display: block;
+  margin-bottom: $baseline-unit;
+}
+
+.form-image [data-dough-form-image-input] {
+  display: none;
+}
+
+.form-image__button--remove {
+  margin-left: $baseline-unit;
+  background: $color-silver-chalice;
+  display: none;
+
+  .form-image--image-selected & {
+    display: inline-block;
+  }
+}

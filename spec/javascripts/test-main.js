@@ -57,6 +57,7 @@ requirejs.config({
     'SearchBar': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/SearchBar',
     'FieldDisabledStateToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/FieldDisabledStateToggler',
     'EmbeddedGoogleAnalytics': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/EmbeddedGoogleAnalytics',
+    'FormImage': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/FormImage',
 
     // Utils
     'filter-event': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/utils/filterEvent',
