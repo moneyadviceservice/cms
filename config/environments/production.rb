@@ -56,7 +56,11 @@ Rails.application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ENV['MAS_CMS_URL']
+  config.action_controller.asset_host = if ENV.has_key?('MAS_CMS_PUBLIC_URL')
+                                          ENV['MAS_CMS_PUBLIC_URL']
+                                        else
+                                          ENV['MAS_CMS_URL']
+                                        end
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
