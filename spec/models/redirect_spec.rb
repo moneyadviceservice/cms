@@ -69,6 +69,11 @@ describe Redirect do
           subject.source = 'foo'
           expect(subject).to_not be_valid
         end
+
+        it 'must not contain a hash character' do
+          subject.source = '/en/foo#anchor'
+          expect(subject).to_not be_valid
+        end
       end
 
       context 'for destination' do
@@ -97,6 +102,12 @@ describe Redirect do
   describe '#destination' do
     it 'removes any trailing slashes' do
       subject.destination = '/en/foo////'
+      subject.valid?
+      expect(subject.destination).to eql('/en/foo')
+    end
+
+    it 'removes any trailing hashes' do
+      subject.destination = '/en/foo####'
       subject.valid?
       expect(subject.destination).to eql('/en/foo')
     end
