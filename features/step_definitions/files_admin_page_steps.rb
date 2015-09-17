@@ -74,7 +74,7 @@ end
 Then(/^Only (.+) files sorted by name are shown$/) do |type|
   expect(@page.files_filters.form).to have_select('order', selected: sort_by_options[:name])
   expect(@page.files_filters.form).to have_select('type',  selected: type)
-  expect(shown_filenames).to eq(filenames_of(type: type))
+  expect(shown_filenames).to eq(filenames_of(type: type).sort)
 end
 
 When(/^I add a new "(.*?)" file$/) do |type|
