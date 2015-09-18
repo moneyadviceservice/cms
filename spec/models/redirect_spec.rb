@@ -167,4 +167,20 @@ describe Redirect do
       end
     end
   end
+
+  describe '#increment_hits!' do
+    subject do
+      described_class.create!(valid_attributes)
+    end
+
+    it 'increments the hit counter' do
+      expect { subject.increment_hits! }.to change{ subject.hits }.by(1)
+    end
+
+    it 'does not create a new version' do
+      with_versioning do
+        expect { subject.increment_hits! }.to_not change{ subject.reload.versions.count }
+      end
+    end
+  end
 end
