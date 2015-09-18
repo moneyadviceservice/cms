@@ -3,7 +3,7 @@ class Redirect < ActiveRecord::Base
 
   default_scope { where(active: true) }
 
-  has_paper_trail class_name: 'RedirectVersion'
+  has_paper_trail class_name: 'RedirectVersion', ignore: [:hits]
 
   before_validation :remove_source_trailing_slashes
   before_validation :remove_destination_trailing_hashes
@@ -30,6 +30,10 @@ class Redirect < ActiveRecord::Base
 
   def inactivate!
     update(active: false)
+  end
+
+  def increment_hits!
+    increment!(:hits)
   end
 
   private

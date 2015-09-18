@@ -10,7 +10,7 @@ module Rack
         source_path = Array(regex.match(env['PATH_INFO']))[1]
 
         if source_path && redirect = Redirect.find_by(source: source_path)
-          redirect.increment!(:hits)
+          redirect.increment_hits!
           [redirect.status_code, {'Location' => "#{ENV['FARADAY_X_FORWARDED_PROTO']}://#{ENV['FARADAY_HOST']}#{redirect.destination}"}, ['']]
         else
           @app.call(env)
