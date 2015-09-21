@@ -130,5 +130,10 @@ describe RedirectsController do
       get :search, redirect_search: { query: 'foo' }
       expect(assigns[:redirects]).to be_present
     end
+
+    it 'search results can be paginated' do
+      get :search, redirect_search: { query: 'foo' }
+      expect(assigns[:redirects].current_page).to be_present
+    end
   end
 end
