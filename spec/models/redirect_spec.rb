@@ -144,6 +144,13 @@ describe Redirect do
       subject.inactivate!
       expect(subject.reload.active).to be_falsey
     end
+
+    it 'can create another redirect with same source' do
+      subject.inactivate!
+      expect do
+        described_class.create!(valid_attributes)
+      end.to_not raise_error
+    end
   end
 
   describe '::search' do
