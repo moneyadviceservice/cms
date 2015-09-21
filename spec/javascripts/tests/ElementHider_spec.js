@@ -46,8 +46,6 @@ describe('Hide and Remove element', function() {
         this.elementHider.hide();
         done();
       }.bind(this), this.delay);
-
-      done();
     });
 
     it('should hide the element from the DOM', function() {
