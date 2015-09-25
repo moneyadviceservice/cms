@@ -121,9 +121,9 @@ describe RedirectsController do
       end.to change { redirect.reload.source }.to('/en/a')
     end
 
-    it 'redirects back to the resource' do
+    it 'redirects to index' do
       put :update, id: redirect.id, redirect: { source: '/en/a' }
-      expect(response).to redirect_to(redirect)
+      expect(response).to redirect_to(redirects_path)
     end
 
     context 'when invalid' do

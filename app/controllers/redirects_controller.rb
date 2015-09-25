@@ -26,7 +26,7 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
 
     if @redirect.update(redirect_params)
       flash[:success] = 'Successfully updated redirect'
-      redirect_to @redirect
+      redirect_to redirects_path
     else
       flash[:danger] = @redirect.errors.full_messages.join(', ')
       render :show
