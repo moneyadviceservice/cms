@@ -1,4 +1,6 @@
 class RedirectsController < Comfy::Admin::Cms::BaseController
+  before_action :check_admin
+
   def new
     @redirect = Redirect.new
   end

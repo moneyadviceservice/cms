@@ -6,6 +6,34 @@ describe RedirectsController do
         expect(response).to redirect_to(new_user_session_path)
       end
     end
+
+    context 'when non admin logged in' do
+      let(:current_user) { create(:user, admin: false) }
+
+      before :each do
+        create(:site)
+        sign_in current_user
+      end
+
+      it 'redirects to root path' do
+        get :index
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'when admin logged in' do
+      let(:current_user) { create(:user) }
+
+      before :each do
+        create(:site)
+        sign_in current_user
+      end
+
+      it 'lets the user in' do
+        get :index
+        expect(response).to be_success
+      end
+    end
   end
 end
 
