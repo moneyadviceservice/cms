@@ -35,6 +35,28 @@ describe Rack::RedirectMiddleware::Responder do
       end
     end
 
+    extensions = %w{ aspx pdf html }
+
+    extensions.each do |extension|
+      context "when #{extension} redirect exists" do
+        let!(:redirect) do
+          Redirect.create!(source: "/en/foo.#{extension}",
+                           destination: '/en/bar',
+                           redirect_type: 'temporary')
+        end
+
+        it 'returns matching redirect status code' do
+          get "/api/en/foo.#{extension}"
+          expect(last_response.status).to eql(redirect.status_code)
+        end
+
+        it 'returns location header' do
+          get "/api/en/foo.#{extension}"
+          expect(last_response.headers['Location']).to eql('http://localhost:5000' + redirect.destination)
+        end
+      end
+    end
+
     context 'when some other path' do
       it 'passes thru' do
         get '/api/assets/components-font-awesome/css/font-awesome.css?body=1'
