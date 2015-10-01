@@ -104,17 +104,23 @@ RSpec.describe PageMirror do
 
     context 'when english' do
       let(:language) { :en }
+      let(:expected) do
+        "/en/#{page.layout.identifier.pluralize}/before-borrow-money"
+      end
 
       it 'returns english url' do
-        expect(url).to eq('/en/articles/before-borrow-money')
+        expect(url).to eq(expected)
       end
     end
 
     context 'when welsh' do
       let(:language) { :cy }
+      let(:expected) do
+        "/cy/#{welsh_page.layout.identifier.pluralize}/cyn-i-chi-fenthyca-arian"
+      end
 
       it 'returns welsh url' do
-        expect(url).to eq('/cy/articles/cyn-i-chi-fenthyca-arian')
+        expect(url).to eq(expected)
       end
     end
 
