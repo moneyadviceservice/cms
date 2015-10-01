@@ -39,7 +39,6 @@
           <th>Redirect type</th>
           <th>Last updated at</th>
           <th>Last updated by</th>
-          <th>Hits</th>
           <th></th>
         </tr>
       </thead>
@@ -52,7 +51,6 @@
             <td><%= redirect.redirect_type %></td>
             <td><time datetime="<%= redirect.versions.last.created_at %>" title="<%= redirect.versions.last.created_at %>"><%= time_ago_in_words(redirect.versions.last.created_at) %> ago</time></td>
             <td><%= redirect.versions.last.user.email_local_part %></td>
-            <td><%= redirect.hits %></td>
             <td>
               <%= link_to redirect do %>
                 <span class="fa fa-pencil"> Edit</span>
