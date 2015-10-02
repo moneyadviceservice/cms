@@ -151,6 +151,23 @@ describe Redirect do
         described_class.create!(valid_attributes)
       end.to_not raise_error
     end
+
+    context 'inactivating a duplicate redirect' do
+      let(:first) { described_class.create!(valid_attributes) }
+
+      before :each do
+        first.inactivate!
+      end
+
+      subject do
+        described_class.create!(valid_attributes)
+      end
+
+      it 'can be inactivated' do
+        subject.inactivate!
+        expect(subject.reload.active).to be_falsey
+      end
+    end
   end
 
   describe '::search' do
