@@ -49,6 +49,44 @@ describe Redirect do
       end
     end
 
+    describe 'chaining with utm parameters' do
+      context 'creating the first part' do
+        let!(:second) do
+          described_class.create!(source: '/en/middle',
+                                  destination: '/en/final',
+                                  redirect_type: 'temporary')
+        end
+
+        subject do
+          described_class.new(source: '/en/origin',
+                              destination: '/en/middle?utma=a',
+                              redirect_type: 'temporary')
+        end
+
+        it 'is invalid' do
+          expect(subject).to_not be_valid
+        end
+      end
+
+      context 'creating the second part' do
+        let!(:first) do
+          described_class.create!(source: '/en/origin',
+                                  destination: '/en/middle?utma=a',
+                                  redirect_type: 'temporary')
+        end
+
+        subject do
+          described_class.new(source: '/en/middle',
+                              destination: '/en/final',
+                              redirect_type: 'temporary')
+        end
+
+        it 'is invalid' do
+          expect(subject).to_not be_valid
+        end
+      end
+    end
+
     describe 'modifying an existing record' do
       it 'does not perform validations against itself' do
         subject.save!
