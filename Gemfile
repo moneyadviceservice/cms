@@ -25,8 +25,6 @@ gem 'jquery-ui-rails', '~> 5.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
 
-gem 'hippo_xml_parser', git: 'git@github.com:moneyadviceservice/hippo_xml_parser'
-
 gem 'remotipart', '~> 1.2'
 gem 'devise'
 

@@ -6,13 +6,6 @@ GIT
       thor
 
 GIT
-  remote: git@github.com:moneyadviceservice/hippo_xml_parser
-  revision: 6a782750a35d82e31eddfbb512433a63990eff7d
-  specs:
-    hippo_xml_parser (0.0.3)
-      nokogiri
-
-GIT
   remote: https://github.com/moneyadviceservice/dough.git
   revision: cf4e4cbd5ee86ef49b2db16fc44dde1ed9f2c0f4
   specs:
@@ -555,7 +548,6 @@ DEPENDENCIES
   feature
   fog
   google-api-client (= 0.7.1)
-  hippo_xml_parser!
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails (~> 5.0)

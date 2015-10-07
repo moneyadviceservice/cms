@@ -12,10 +12,6 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :hippo, only: [:new, :create] do
-      resource :diff, module: 'hippo', only: :show
-    end
-
     resources :sites do
       resources :files
 

@@ -42,5 +42,4 @@ AllCops:
   - 'tmp/**/*'
   - 'vendor/**/*'
   - 'spec/models/word_document_spec.rb'
-  - 'spec/lib/hippo_import_spec.rb'
   - 'lib/cms/link_type/*.rb'
