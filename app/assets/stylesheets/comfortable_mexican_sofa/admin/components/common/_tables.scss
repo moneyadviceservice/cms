@@ -40,6 +40,10 @@ table {
 
 .table--redirects {
   word-break: break-all;
+
+  time {
+    word-break: normal;
+  }
 }
 
 .table--full-width {
