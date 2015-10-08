@@ -1,5 +1,5 @@
 class Redirect < ActiveRecord::Base
-  REDIRECT_TYPES = %w{ temporary permanent }
+  REDIRECT_TYPES = %w{ permanent temporary }
 
   default_scope { where(active: true) }
 
