@@ -12,6 +12,9 @@ class Redirect < ActiveRecord::Base
   validates :source, presence: true, format: { with: /\A\// }
   validates :source, uniqueness: { scope: :active }, if: Proc.new { |r| r.active }
   validates :source, format: { without: /\#/ }
+  validates :source, format: { without: /\.\z/ }
+  validate :source_allows_certain_extensions
+
   validates :destination, presence: true, format: { with: /\A\/en|\/cy/ }
   validates :redirect_type, presence: true, inclusion: { in: REDIRECT_TYPES }
   validate  :validate_different_source_and_destination
@@ -34,6 +37,16 @@ class Redirect < ActiveRecord::Base
   end
 
   private
+
+  def source_allows_certain_extensions
+    if source.present?
+      unless source.match(/(\.html|\.pdf|\.aspx)\z/)
+        if source.match /(\..*)\z/
+          errors.add(:source, :invalid_extension)
+        end
+      end
+    end
+  end
 
   def validate_different_source_and_destination
     if source == destination

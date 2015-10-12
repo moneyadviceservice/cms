@@ -112,6 +112,23 @@ describe Redirect do
           subject.source = '/en/foo#anchor'
           expect(subject).to_not be_valid
         end
+
+        it 'can not end with a dot' do
+          subject.source = '/en/foo.'
+          expect(subject).to_not be_valid
+        end
+
+        it 'can only end in allowed extensions' do
+          %w{ html pdf aspx }.each do |allowed|
+            subject.source = "/en/foo.#{allowed}"
+            expect(subject).to be_valid
+          end
+
+          %w{ jpg png json }.each do |not_allowed|
+            subject.source = "/en/foo.#{not_allowed}"
+            expect(subject).to_not be_valid
+          end
+        end
       end
 
       context 'for destination' do
