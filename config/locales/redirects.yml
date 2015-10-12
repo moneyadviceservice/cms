@@ -9,3 +9,4 @@ en:
               matches_an_existing_source: must not match an existing redirect source
             source:
               matches_an_existing_destination: must not match an existing redirect destination
+              invalid_extension: extension is not supported
