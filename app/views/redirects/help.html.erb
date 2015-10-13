@@ -1,0 +1,161 @@
+<div class="l-panel-content l-panel-content--form">
+  <div class="l-constrained">
+    <div class="l-panel-content__row">
+      <div class="l-panel-content__col">
+        <h1>Redirects help</h1>
+      </div>
+      <div class="l-panel-content__col l-panel-content__col--right">
+        <%= link_to redirects_path, class: 'button--action' do %>
+          <span class="button__text"><span class="fa fa-exchange fa--spacious"></span> List</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="l-panel-content l-redirects-help">
+  <div class="l-constrained">
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="1"><span class="fa fa-plus"></span> Redirect an article, video and other pages served through Contento</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="1">
+        <p>Important: Before creating a new redirect, search for the url of the page you wish to redirect in the Redirect system.</p>
+
+        <h3>If a redirect already exists:</h3>
+
+        <ol>
+          <li>Click ‘Edit’ and change the url in ‘Destination’ to the new url you want to point to.</li>
+          <li>Click ‘Save’. The redirect will be available immediately.</li>
+        </ol>
+
+        <h3>To create a new redirect (if the redirect does not already exist):</h3>
+
+        <ol>
+          <li>Unpublish the article you want to redirect in Contento.</li>
+          <li>In the Redirect system, click ‘Create’.</li>
+          <li>In ‘Source’, add the the url of unpublished article (without the domain: e.g. /en/oldarticle).</li>
+          <li>In ‘Destination’, add the url you want the unpublished article to be redirected to (e.g. /en/newarticle).</li>
+          <li>Choose ‘Permanent’ as the redirect type.</li>
+          <li>Click ‘Create redirect’ to save your changes. The redirect will be available immediately.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="2"><span class="fa fa-plus"></span> Redirect a tool or campaign page:</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="2">
+        <p>Important: Before creating a new redirect, search for the url of the page you wish to redirect in the Redirect system.</p>
+
+        <h3>If a redirect already exists:</h3>
+
+        <ol>
+          <li>Click ‘Edit’ and change the url in ‘Destination’ to the new url you want to point to.</li>
+          <li>Raise a request with the dev team to unpublish the tool or campaign page.</li>
+          <li>When the tool or campaign page has been unpublished, create a new redirect.</li>
+        </ol>
+
+        <h3>To create a new redirect:</h3>
+
+        <ol>
+          <li>In the Redirect system, click ‘Create’.</li>
+          <li>In ‘Source’, add the the url of unpublished tool or campaign page (without the domain: e.g. /en/oldpage).</li>
+          <li>In ‘Destination’, add the url you want the unpublished tool or campaign page to be redirected to (e.g. /en/newpage).</li>
+          <li>Choose ‘Permanent’ as the redirect type.</li>
+          <li>Click ‘Create redirect’ to save your changes. The redirect will be available immediately.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="3"><span class="fa fa-plus"></span> Redirect a category page</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="3">
+        <p>Important: Before creating a new redirect, search for the url of the page you wish to redirect in the Redirect system.</p>
+
+        <h3>If a redirect already exists:</h3>
+
+        <ol>
+          <li>Click ‘Edit’ and change the url in ‘Destination’ to the new url you want to point to.</li>
+          <li>Raise a request with the dev team to unpublish category page.</li>
+          <li>When the page has been unpublished, create a new redirect.</li>
+        </ol>
+
+        <h3>To create a new redirect:</h3>
+
+        <ol>
+          <li>In the Redirect system, click ‘Create’.</li>
+          <li>In ‘Source’, add the the url of unpublished category page (without the domain: e.g. /en/oldpage).</li>
+          <li>In ‘Destination’, add the url you want the unpublished category page to be redirected to (e.g. /en/newpage).</li>
+          <li>Choose ‘Permanent’ as the redirect type.</li>
+          <li>Click ‘Create redirect’ to save your changes. The redirect will be available immediately.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="4"><span class="fa fa-plus"></span> Redirect a vanity url (e.g. moneyadviceservice.org.uk/cars)</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="4">
+        <ol>
+          <li>In the Redirect system, click ‘Create’.</li>
+          <li>In ‘Source’, add the the vanity url (without the domain: e.g. /cars).</li>
+          <li>In ‘Destination’, add the url you want the page to be redirected to (e.g. /newcars).</li>
+          <li>Choose ‘Permanent’ as the redirect type.</li>
+          <li>Click ‘Create redirect’ to save your changes. The redirect will be available immediately.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="5"><span class="fa fa-plus"></span> What the system supports:</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="5">
+        <p>The Redirect system handles all redirects within www.moneyadviceservice.org.uk.</p>
+
+        <p>It doesn’t support redirects to or from any other domains or subdomains, including:</p>
+
+        <ul>
+          <li>blog.moneyadviceservice.org.uk</li>
+          <li>partner-tools.moneyadviceservice.org.uk</li>
+          <li>any other sites</li>
+        </ul>
+
+        <p>All other requests should be raised with the dev team.</p>
+
+        <p>The redirect system only supports urls ending with:</p>
+
+        <ul>
+          <li>html</li>
+          <li>pdf</li>
+          <li>aspx</li>
+        </ul>
+
+        <p>All other extensions are currently not supported - including urls ending with “."</p>
+      </div>
+    </section>
+
+    <section data-dough-component="Collapsable">
+      <h2 data-dough-collapsable-trigger="6"><span class="fa fa-plus"></span> Best practice:</h2>
+
+      <hr>
+
+      <div class="l-redirects-help__section" data-dough-collapsable-target="6">
+        <ul>
+          <li>Before creating a new redirect, search for the url of the page you wish to redirect in the Redirect system.</li>
+          <li>If a redirect already exists, edit the destination to point it to the new url</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>

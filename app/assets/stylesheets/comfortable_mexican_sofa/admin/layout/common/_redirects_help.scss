@@ -1,0 +1,13 @@
+.l-redirects-help {
+  h2 {
+    margin-top: 80px;
+  }
+
+  .l-redirects-help__section {
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+  }
+}

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :redirects do
       collection do
         get :search
+        get :help
       end
     end
 
