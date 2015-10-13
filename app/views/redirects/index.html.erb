@@ -46,8 +46,8 @@
       <tbody>
         <% @redirects.each do |redirect| %>
           <tr>
-            <td><%= redirect.source %></td>
-            <td><%= redirect.destination %></td>
+            <td><%= highlight(redirect.source, @query) %></td>
+            <td><%= highlight(redirect.destination, @query) %></td>
             <td><%= redirect.redirect_type %></td>
             <td><time datetime="<%= redirect.versions.last.created_at %>" title="<%= redirect.versions.last.created_at %>"><%= time_ago_in_words(redirect.versions.last.created_at) %> ago</time></td>
             <td><%= redirect.versions.last.user.email_local_part %></td>
