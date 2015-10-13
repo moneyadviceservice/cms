@@ -50,6 +50,9 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
     render :index
   end
 
+  def help
+  end
+
   private
 
   def redirect_params

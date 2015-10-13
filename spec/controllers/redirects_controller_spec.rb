@@ -164,4 +164,11 @@ describe RedirectsController do
       expect(assigns[:redirects].current_page).to be_present
     end
   end
+
+  describe '#help' do
+    it 'works' do
+      get :help
+      expect(response).to be_success
+    end
+  end
 end

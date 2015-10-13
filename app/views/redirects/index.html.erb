@@ -5,6 +5,9 @@
         <h1>Redirects</h1>
       </div>
       <div class="l-panel-content__col l-panel-content__col--right">
+        <%= link_to help_redirects_path, class: 'button--action' do %>
+          <span class="button__text"><span class="fa fa-question fa--spacious"></span> Help</span>
+        <% end %>
         <%= link_to new_redirect_path, class: 'button--action' do %>
           <span class="button__text"><span class="fa fa-exchange fa--spacious"></span> Create</span>
         <% end %>
