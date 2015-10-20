@@ -12,7 +12,7 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
       flash[:success] = 'Successfully created redirect'
       redirect_to redirects_path
     else
-      flash[:danger] = @redirect.errors.full_messages.join(', ')
+      flash.now[:danger] = @redirect.errors.full_messages.join(', ')
       render :new
     end
   end
@@ -28,7 +28,7 @@ class RedirectsController < Comfy::Admin::Cms::BaseController
       flash[:success] = 'Successfully updated redirect'
       redirect_to redirects_path
     else
-      flash[:danger] = @redirect.errors.full_messages.join(', ')
+      flash.now[:danger] = @redirect.errors.full_messages.join(', ')
       render :show
     end
   end
