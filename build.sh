@@ -42,7 +42,7 @@ cp vendor/assets/bower_components/components-font-awesome/fonts/fontawesome-webf
 echo "Creating RPM"
 echo "----"
 cd ..
-/usr/local/rpm_builder/create-rails-rpm $artifact_name $artifact_name $version
+/usr/local/rpm_builder/create-rails-rpm $artifact_name $artifact_name $version_number
 
 #prune packaged gems
 rm -rf vendor/cache
