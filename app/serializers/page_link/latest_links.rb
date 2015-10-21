@@ -1,11 +1,13 @@
 module PageLink
   class LatestLinks < PageLink::Base
     def as_json
-      Publify::API.latest_links(3).map do |input_blog_post|
-        {
-          title: input_blog_post['title'],
-          path: input_blog_post['link']
-        }
+      Rails.cache.fetch("publify_api_latest_links_3", expires_in: 1.minute) do
+        Publify::API.latest_links(3).map do |input_blog_post|
+          {
+            title: input_blog_post['title'],
+            path: input_blog_post['link']
+          }
+        end
       end
     end
   end
