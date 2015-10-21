@@ -104,7 +104,7 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('table'));
     this.editorLib.editor.use(scribePluginMastalk('bullets'));
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
-    this.editorLib.editor.use(scribePluginMastalk('tool'));
+    this.editorLib.editor.use(scribePluginMastalk('costCalculator'));
 
     this.setupMarkdownContentResize();
     this._initialisedSuccess(initialised);
