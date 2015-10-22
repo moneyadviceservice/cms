@@ -61,7 +61,7 @@ npm test
 Or for the direct command:
 
 ```sh
-./node_modules/karma/bin/karma start test/karma.conf.js
+./node_modules/karma/bin/karma start ./spec/javascripts/karma.conf.js
 ```
 
 `autoWatch` is on by default so tests will rerun whenever changes are made.
