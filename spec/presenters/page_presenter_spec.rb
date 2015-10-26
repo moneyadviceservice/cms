@@ -3,6 +3,8 @@ RSpec.describe PagePresenter do
     described_class.new(object)
   end
 
+  let(:object) { Comfy::Cms::Page.new }
+
   describe '#page_type_url' do
     let(:page_type_url) { presenter.page_type_url }
     let(:object) { create(:page, layout: layout) }
@@ -182,6 +184,33 @@ RSpec.describe PagePresenter do
       it 'returns the preview domain and site label, "articles" as page type with the slug' do
         allow(ComfortableMexicanSofa.config).to receive(:preview_domain).and_return(domain)
         expect(presenter.preview_url).to eq('http://qa.contento.com/en/articles/investing/preview')
+      end
+    end
+  end
+
+  describe '#category_list' do
+    context 'when there are no categories' do
+      it 'returns empty string' do
+        expect(subject.category_list).to eql('')
+      end
+    end
+
+    context 'when there is one category' do
+      let(:object) { Comfy::Cms::Page.new(categories: [category]) }
+      let(:category) { create :category }
+
+      it 'returns the category' do
+        expect(subject.category_list).to eql("#{category.label}")
+      end
+    end
+
+    context 'when there are multiple category' do
+      let(:object) { Comfy::Cms::Page.new(categories: [category1, category2]) }
+      let(:category1) { create :category }
+      let(:category2) { create :category }
+
+      it 'returns the comma separated categories' do
+        expect(subject.category_list).to eql("#{category1.label}, #{category2.label}")
       end
     end
   end

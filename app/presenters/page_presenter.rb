@@ -47,6 +47,10 @@ class PagePresenter < Presenter
     "/#{site.label}/#{page_type_url}/#{slug}"
   end
 
+  def category_list
+    categories.map(&:label).join(', ')
+  end
+
   private
 
   def same_language?(language)

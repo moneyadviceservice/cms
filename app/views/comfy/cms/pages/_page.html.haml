@@ -1,7 +1,7 @@
 %tr
   %td= link_to(highlighted_terms(page.label, params[:search]), edit_comfy_admin_cms_site_page_path(page.site, page))
   %td= page.layout.label
-  %td= page_category_list(page)
+  %td{:class => 'categories'}= page.category_list
   %td= page.last_update
   %td= current_status(page.current_state)
   %td= { "en" => "English", "cy" => "Welsh" }[page.site.label]
