@@ -9,6 +9,9 @@ export BUNDLE_WITHOUT=development
 CORES=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 BUNDLE_JOBS=$((CORES-1))
 
+# remove prior dirty packaged gems e.g. build.sh
+rm -rf vendor/cache .bundle/config
+
 bundle install --jobs $BUNDLE_JOBS
 npm install
 

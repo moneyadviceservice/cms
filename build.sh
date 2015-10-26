@@ -19,7 +19,7 @@ EOT
 
 echo "Cleaning temporary files"
 echo "----"
-rm -rf public/assets vendor/cache coverage log/* tmp/*
+rm -rf public/assets vendor/cache coverage log/* tmp/* .bundle/config
 
 echo "Running Bundle package"
 echo "----"
