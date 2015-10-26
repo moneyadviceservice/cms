@@ -1,6 +1,6 @@
 .table-wrapper
   = form_tag(comfy_admin_cms_site_pages_url, method: :get, id: 'filter_form', remote: true) do
-    %table.datatable-default.table.table--full-width
+    %table.datatable-default.table.table--full-width{data: {dough_component: :CategoryExpand }}
       %thead
         %tr
           %th.table__header.table__header--page-title Page title
