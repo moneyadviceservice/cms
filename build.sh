@@ -5,7 +5,7 @@ set -e
 unset RUBYOPT
 export BUNDLE_WITHOUT="test:development"
 
-version_number=${GO_PIPELINE_COUNTER-0}
+version_number=${GO_PIPELINE_LABEL-0}
 revision=`git rev-parse HEAD`
 build_date=`date +'%Y-%m-%d %H:%M %z'`
 
