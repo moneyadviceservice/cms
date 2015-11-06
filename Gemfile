@@ -52,7 +52,7 @@ end
 group :test do
   gem 'rspec_junit_formatter'
   gem 'shoulda-matchers'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'site_prism'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
