@@ -1,13 +1,9 @@
 RSpec.describe ActivityLog do
   describe '.fetch' do
     subject(:fetch) { ActivityLog.fetch(from: page) }
-    let(:page) { double(revisions: revisions) }
+    let(:page) { double(revisions: double(reorder: revisions).as_null_object) }
     let(:created_at) { Time.now }
     let(:revision) { fetch.first }
-
-    before do
-      expect(revisions).to receive(:reorder).with(created_at: :asc).and_return(revisions)
-    end
 
     context 'when revisions have author and event information' do
       let(:revisions) do

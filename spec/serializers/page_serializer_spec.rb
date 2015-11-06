@@ -4,9 +4,6 @@ describe PageSerializer do
   subject { described_class.new(article) }
 
   before do
-    allow(article).to receive(:previous_article).and_return(nil)
-    allow(article).to receive(:next_article).and_return(nil)
-    allow(article).to receive(:related_links).and_return([])
     allow(Publify::API).to receive(:latest_links).and_return([])
   end
 

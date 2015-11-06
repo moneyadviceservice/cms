@@ -15,26 +15,6 @@ GIT
       sass-rails (~> 4.0.0)
 
 GIT
-  remote: https://github.com/moneyadviceservice/mas-development_dependencies.git
-  revision: de00ee49c85b92f24cc4bb1de273c991ae90b964
-  specs:
-    mas-development_dependencies (2.3.0)
-      capybara (~> 2.1)
-      capybara-screenshot (~> 0.3.13)
-      cucumber-rails
-      database_cleaner
-      factory_girl_rails (~> 4.0)
-      poltergeist (~> 1.3)
-      pry-rails
-      pry-rescue
-      rack-livereload
-      rails (>= 3.2)
-      rspec-rails (>= 2.0)
-      shoulda-matchers
-      site_prism
-      timecop
-
-GIT
   remote: https://github.com/moneyadviceservice/word-to-markdown.git
   revision: 6906e9caa3df2e53a3f88a06cc3f9067d554648d
   specs:
@@ -111,10 +91,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (0.3.22)
-      capybara (>= 1.0, < 3)
-      colored
-      launchy
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cliver (0.3.2)
@@ -133,7 +109,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colored (1.2)
     columnize (0.8.9)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
@@ -170,19 +145,19 @@ GEM
       transitions (>= 0.1.12)
     css_parser (1.3.5)
       addressable
-    cucumber (1.3.17)
+    cucumber (1.3.20)
       builder (>= 2.1.2)
       diff-lcs (>= 1.1.3)
       gherkin (~> 2.12)
       multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.1)
+      multi_test (>= 0.1.2)
     cucumber-rails (1.4.2)
       capybara (>= 1.1.2, < 3)
       cucumber (>= 1.3.8, < 2)
       mime-types (>= 1.16, < 3)
       nokogiri (~> 1.5)
       rails (>= 3, < 5)
-    database_cleaner (1.3.0)
+    database_cleaner (1.5.0)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     descriptive_statistics (1.1.5)
@@ -201,10 +176,10 @@ GEM
     excon (0.45.1)
     execjs (2.2.2)
     extlib (0.9.16)
-    factory_girl (4.4.0)
+    factory_girl (4.5.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.4.1)
-      factory_girl (~> 4.4.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
@@ -316,9 +291,8 @@ GEM
       railties (>= 4.0.1)
     hike (1.2.3)
     htmlentities (4.3.4)
-    i18n (0.6.11)
+    i18n (0.7.0)
     inflecto (0.0.2)
-    interception (0.5)
     ipaddress (0.8.0)
     jbuilder (2.2.2)
       activesupport (>= 3.0.0, < 5)
@@ -328,7 +302,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.2)
       railties (>= 3.2.16)
-    json (1.8.1)
+    json (1.8.3)
     jwt (1.2.0)
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
@@ -348,9 +322,9 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.6.0)
-    minitest (5.4.3)
+    minitest (5.8.2)
     multi_json (1.10.1)
-    multi_test (0.1.1)
+    multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.16)
@@ -380,7 +354,7 @@ GEM
     parser (2.2.0.pre.5)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
-    poltergeist (1.5.1)
+    poltergeist (1.7.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       multi_json (~> 1.0)
@@ -396,13 +370,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
-    pry-rescue (1.4.1)
-      interception (>= 0.5)
-      pry
-    rack (1.5.2)
-    rack-livereload (0.3.15)
-      rack
-    rack-test (0.6.2)
+    rack (1.5.5)
+    rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.1.1)
       actionmailer (= 4.1.1)
@@ -424,7 +393,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     raindrops (0.13.0)
-    rake (10.4.0)
+    rake (10.4.2)
     remotipart (1.2.1)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
@@ -468,16 +437,16 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
-    shoulda-matchers (2.7.0)
-      activesupport (>= 3.0.0)
+    shoulda-matchers (3.0.0)
+      activesupport (>= 4.0.0)
     signet (0.6.0)
       addressable (~> 2.3)
       extlib (~> 0.9)
       faraday (~> 0.9)
       jwt (~> 1.0)
       multi_json (~> 1.10)
-    site_prism (2.6)
-      addressable (~> 2.3.3)
+    site_prism (2.7)
+      addressable (>= 2.3.3, < 3.0)
       capybara (>= 2.1, < 3.0)
     slop (3.6.0)
     spring (1.1.3)
@@ -497,9 +466,8 @@ GEM
     sqlite3 (1.3.9)
     syslog-logger (1.6.8)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
-    timecop (0.7.1)
     tinymce-rails (4.1.6)
       railties (>= 3.1.1)
     transitions (0.1.13)
@@ -522,7 +490,9 @@ GEM
     valid_attribute (2.0.0)
     warden (1.2.3)
       rack (>= 1.0)
-    websocket-driver (0.3.5)
+    websocket-driver (0.6.2)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -540,6 +510,8 @@ DEPENDENCIES
   clockwork
   coffee-rails (~> 4.0.0)
   comfortable_mexican_sofa (~> 1.12.1.0)
+  cucumber-rails
+  database_cleaner
   devise
   dotenv-rails
   dough-ruby (~> 5.0)!
@@ -552,12 +524,12 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails (~> 5.0)
   legato (= 0.4.0)
-  mas-development_dependencies!
   mastalk (~> 0.5.5)
   mysql2
   newrelic_rpm
   oauth2 (= 1.0.0)
   paper_trail
+  poltergeist (~> 1.3)
   pry-rails
   rails (= 4.1.1)
   remotipart (~> 1.2)
@@ -566,6 +538,8 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop
   sass-rails (~> 4.0.3)
+  shoulda-matchers
+  site_prism
   spring
   spring-commands-cucumber
   spring-commands-rspec
