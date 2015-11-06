@@ -16,7 +16,7 @@ describe Redirect do
     it { is_expected.to validate_presence_of(:destination)  }
     it { is_expected.to validate_presence_of(:redirect_type)  }
 
-    it { is_expected.to validate_uniqueness_of(:source) }
+    it { is_expected.to validate_uniqueness_of(:source).scoped_to(:active) }
 
     it { is_expected.to validate_inclusion_of(:redirect_type).in_array(described_class::REDIRECT_TYPES) }
 

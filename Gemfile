@@ -51,6 +51,11 @@ end
 
 group :test do
   gem 'rspec_junit_formatter'
+  gem 'shoulda-matchers'
+  gem 'cucumber-rails'
+  gem 'site_prism'
+  gem 'database_cleaner'
+  gem 'poltergeist', '~> 1.3'
 end
 
 group :test, :development do
@@ -60,8 +65,6 @@ group :test, :development do
   gem 'capybara', '2.4.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
-  gem 'mas-development_dependencies',
-      git: 'https://github.com/moneyadviceservice/mas-development_dependencies.git'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
