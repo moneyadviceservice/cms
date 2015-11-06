@@ -26,6 +26,6 @@ fi
 CI_PIPELINE_COUNTER=${GO_PIPELINE_COUNTER-0}
 CI_EXECUTOR_NUMBER=${EXECUTOR_NUMBER-0}
 
-rspec spec --format html --out tmp/spec.html --format RspecJunitFormatter --out tmp/spec.xml --format progress --profile --deprecation-out log/rspec_deprecations.txt
-rake cucumber
+bundle exec rspec spec --format html --out tmp/spec.html --format RspecJunitFormatter --out tmp/spec.xml --format progress --profile --deprecation-out log/rspec_deprecations.txt
+bundle exec cucumber
 ./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js --single-run
