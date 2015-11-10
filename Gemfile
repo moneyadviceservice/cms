@@ -1,6 +1,7 @@
 source 'http://gems.test.mas'
 source 'https://rubygems.org'
 
+gem 'bugsnag'
 gem 'rails', '4.1.1'
 gem 'sqlite3'
 gem 'mysql2'
