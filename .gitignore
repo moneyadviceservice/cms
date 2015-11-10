@@ -13,6 +13,7 @@ capybara-*.html
 /public/a/*
 /public/assets/*
 /public/system/*
+/public/files/*
 /coverage/
 /spec/tmp/*
 **.orig
