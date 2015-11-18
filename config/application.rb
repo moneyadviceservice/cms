@@ -27,8 +27,6 @@ module Cms
 
     config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css rsvp/rsvp.js)
 
-    if Feature.active?(:redirects)
-      config.middleware.use Rack::RedirectMiddleware::Responder
-    end
+    config.middleware.use Rack::RedirectMiddleware::Responder
   end
 end
