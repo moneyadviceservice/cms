@@ -40,7 +40,7 @@ gem 'clockwork'
 gem 'paper_trail'
 gem 'feature'
 
-gem 'mastalk', '~> 0.5.5'
+gem 'mastalk', '~> 0.5.6'
 
 group :development do
   gem 'spring'
