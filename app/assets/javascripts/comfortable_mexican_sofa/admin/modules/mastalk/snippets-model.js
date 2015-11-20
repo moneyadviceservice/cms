@@ -12,6 +12,7 @@ define([], function () {
     ticks: '$yes-no\r\n[y] yes [\/y]\r\n[n] no [\/n]\r\n$end',
     videoYoutube: '({EMBED_CODE})',
     videoBrightcove: '$~brightcove_video\r\nBRIGHTCOVE_ID\r\n~$',
+    videoVimeo: '$~vimeo_video\r\nVIMEO_ID\r\n~$',
     costCalculator: '$~cost-calc\r\nCALCULATOR_ID\r\n~$'
   };
 
