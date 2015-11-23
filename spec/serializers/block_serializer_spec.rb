@@ -1,5 +1,10 @@
 describe BlockSerializer do
-  let(:object) { Comfy::Cms::Block.new(blockable: page, content: 'published content') }
+  let(:object) do
+    Comfy::Cms::Block.new(identifier: 'content',
+                          blockable: page,
+                          content: 'published content')
+  end
+
   subject { JSON.parse(described_class.new(object).to_json)['content'] }
 
   context 'when page is published' do
