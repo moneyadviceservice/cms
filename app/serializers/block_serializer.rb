@@ -9,14 +9,15 @@ class BlockSerializer < ActiveModel::Serializer
     content = if render_content_directly?
       object.content
     else
-      published_content.fetch(:content, '')
+      published_content
     end
 
     ContentComposer.new(content).to_html
   end
 
   def published_content
-    published_block_attributes.find { |a| a[:identifier] == 'content' } || {}
+    hash = published_block_attributes.find { |a| a[:identifier] == identifier } || {}
+    hash.fetch(:content, '')
   end
 
   def published_block_attributes
