@@ -2,7 +2,7 @@
   namespace = { }
   cms_object = @page || cms_object
   tags = cms_object.tags(true).select{|t| t.is_cms_block?}.uniq{|t| t.identifier}
-  
+
   tags.each do |tag|
     namespace[tag.namespace || 'default'] ||= []
     namespace[tag.namespace || 'default'] << tag
@@ -32,22 +32,22 @@
               <h2 class="l-home-edit__section-heading">Header</h2>
               <div class="l-split-content">
                 <div class="l-split-content__col">
-                  <% tag = tags.find { |t| t.identifier == 'heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 0) %>
-                  <% tag = tags.find { |t| t.identifier == 'bullet_1' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 2) %>
-                  <% tag = tags.find { |t| t.identifier == 'bullet_2' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 3) %>
-                  <% tag = tags.find { |t| t.identifier == 'bullet_3' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 4) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 0) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_bullet_1' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 2) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_bullet_2' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 3) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_bullet_3' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 4) %>
                 </div>
                 <div class="l-split-content__col">
-                  <% tag = tags.find { |t| t.identifier == 'hero_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 1) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_hero_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 1) %>
                   <p><i>Hero image dimensions: 920x508</i></p>
                 </div>
               </div>
               <div class="l-split-content">
                 <div class="l-split-content__col">
-                  <% tag = tags.find { |t| t.identifier == 'cta_text' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 5) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_cta_text' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 5) %>
                 </div>
                 <div class="l-split-content__col">
-                  <% tag = tags.find { |t| t.identifier == 'cta_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 6) %>
+                  <% tag = tags.find { |t| t.identifier == 'raw_cta_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 6) %>
                 </div>
               </div>
             </div>
@@ -57,23 +57,23 @@
               <ul class="l-home-edit__tile-list l-home-edit__tile-list--thirds">
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tool_1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 27) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_1_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 28) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_1_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 29) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 27) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_1_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 28) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_1_text' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 29) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tool_2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 30) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_2_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 31) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_2_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 32) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 30) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_2_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 31) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_2_text' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 32) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tool_3_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 33) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_3_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 34) %>
-                    <% tag = tags.find { |t| t.identifier == 'tool_3_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 35) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_3_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 33) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_3_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 34) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tool_3_text' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 35) %>
                   </div>
                 </li>
               </ul>
@@ -89,38 +89,38 @@
               <ul class="l-home-edit__tile-list">
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tile1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 7) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile1_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 8) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile1_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 9) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile1_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 10) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile1_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 11) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 7) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_1_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 8) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_1_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 9) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_1_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 10) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_1_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 11) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tile2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 12) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile2_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 13) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile2_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 14) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile2_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 15) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile2_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 16) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 12) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_2_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 13) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_2_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 14) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_2_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 15) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_2_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 16) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tile3_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 17) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile3_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 18) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile3_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 19) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile3_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 20) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile3_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 21) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_3_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 17) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_3_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 18) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_3_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 19) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_3_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 20) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_3_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 21) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'tile4_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 22) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile4_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 23) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile4_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 24) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile4_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 25) %>
-                    <% tag = tags.find { |t| t.identifier == 'tile4_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 26) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_4_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 22) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_4_image' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 23) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_4_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 24) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_4_label' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 25) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_tile_4_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 26) %>
                   </div>
                 </li>
               </ul>
@@ -131,16 +131,16 @@
               <ul class="l-home-edit__tile-list l-home-edit__tile-list--halves">
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 36) %>
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_1_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 37) %>
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_1_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 38) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_1_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 36) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_1_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 37) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_1_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 38) %>
                   </div>
                 </li>
                 <li class="l-home-edit__tile">
                   <div class="l-home-edit__tile-inner">
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 39) %>
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_2_link' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 40) %>
-                    <% tag = tags.find { |t| t.identifier == 'text_promo_2_teaser' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 41) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_2_heading' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 39) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_2_url' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 40) %>
+                    <% tag = tags.find { |t| t.identifier == 'raw_text_tile_2_content' } %><%= cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, 41) %>
                   </div>
                 </li>
               </ul>
@@ -153,46 +153,55 @@
 </div>
 <% 
 # Required home_page layout fields:
-# {{ cms:field:heading:string }}
-# {{ cms:page:hero_image:image }}
-# {{ cms:field:bullet_1:string }}
-# {{ cms:field:bullet_2:string }}
-# {{ cms:field:bullet_3:string }}
-# {{ cms:field:cta_text:string }}
-# {{ cms:field:cta_link:string }}
-# {{ cms:field:tile1_heading:string }}
-# {{ cms:page:tile1_image:image }}
-# {{ cms:field:tile1_link:string }}
-# {{ cms:field:tile1_label:string }}
-# {{ cms:field:tile1_teaser:text }}
-# {{ cms:field:tile2_heading:string }}
-# {{ cms:page:tile2_image:image }}
-# {{ cms:field:tile2_link:string }}
-# {{ cms:field:tile2_label:string }}
-# {{ cms:field:tile2_teaser:text }}
-# {{ cms:field:tile3_heading:string }}
-# {{ cms:page:tile3_image:image }}
-# {{ cms:field:tile3_link:string }}
-# {{ cms:field:tile3_label:string }}
-# {{ cms:field:tile3_teaser:text }}
-# {{ cms:field:tile4_heading:string }}
-# {{ cms:page:tile4_image:image }}
-# {{ cms:field:tile4_link:string }}
-# {{ cms:field:tile4_label:string }}
-# {{ cms:field:tile4_teaser:text }}
-# {{ cms:field:tool_1_heading:string }}
-# {{ cms:field:tool_1_link:string }}
-# {{ cms:field:tool_1_teaser:text }}
-# {{ cms:field:tool_2_heading:string }}
-# {{ cms:field:tool_2_link:string }}
-# {{ cms:field:tool_2_teaser:text }}
-# {{ cms:field:tool_3_heading:string }}
-# {{ cms:field:tool_3_link:string }}
-# {{ cms:field:tool_3_teaser:text }}
-# {{ cms:field:text_promo_1_heading:string }}
-# {{ cms:field:text_promo_1_link:string }}
-# {{ cms:field:text_promo_1_teaser:text }}
-# {{ cms:field:text_promo_2_heading:string }}
-# {{ cms:field:text_promo_2_link:string }}
-# {{ cms:field:text_promo_2_teaser:text }}
+# {{ cms:page:raw_heading:string }}
+# {{ cms:page:raw_hero_image:image }}
+# {{ cms:page:raw_bullet_1:string }}
+# {{ cms:page:raw_bullet_2:string }}
+# {{ cms:page:raw_bullet_3:string }}
+# {{ cms:page:raw_cta_text:string }}
+# {{ cms:page:raw_cta_link:string }}
+# 
+# {{ cms:field:raw_tool_1_heading }}
+# {{ cms:field:raw_tool_1_url }}
+# {{ cms:page:raw_tool_1_text }}
+# 
+# {{ cms:field:raw_tool_2_heading }}
+# {{ cms:field:raw_tool_2_url }}
+# {{ cms:page:raw_tool_2_text }}
+# 
+# {{ cms:field:raw_tool_3_heading }}
+# {{ cms:field:raw_tool_3_url }}
+# {{ cms:page:raw_tool_3_text }}
+# 
+# {{ cms:field:raw_tile_1_heading }}
+# {{ cms:page:raw_tile_1_image:image }}
+# {{ cms:field:raw_tile_1_url }}
+# {{ cms:field:raw_tile_1_label }}
+# {{ cms:page:raw_tile_1_content }}
+# 
+# {{ cms:field:raw_tile_2_heading }}
+# {{ cms:page:raw_tile_2_image:image }}
+# {{ cms:field:raw_tile_2_url }}
+# {{ cms:field:raw_tile_2_label }}
+# {{ cms:page:raw_tile_2_content }}
+# 
+# {{ cms:field:raw_tile_3_heading }}
+# {{ cms:page:raw_tile_3_image:image }}
+# {{ cms:field:raw_tile_3_url }}
+# {{ cms:field:raw_tile_3_label }}
+# {{ cms:page:raw_tile_3_content }}
+# 
+# {{ cms:field:raw_tile_4_heading }}
+# {{ cms:page:raw_tile_4_image:image }}
+# {{ cms:field:raw_tile_4_url }}
+# {{ cms:field:raw_tile_4_label }}
+# {{ cms:page:raw_tile_4_content }}
+# 
+# {{ cms:field:raw_text_tile_1_heading }}
+# {{ cms:field:raw_text_tile_1_url }}
+# {{ cms:page:raw_text_tile_1_content }}
+# 
+# {{ cms:field:raw_text_tile_2_heading }}
+# {{ cms:field:raw_text_tile_2_url }}
+# {{ cms:page:raw_text_tile_2_content }}
 %>
