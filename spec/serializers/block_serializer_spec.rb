@@ -7,6 +7,20 @@ describe BlockSerializer do
 
   subject { JSON.parse(described_class.new(object).to_json)['content'] }
 
+  context 'when raw_ is the identifier' do
+    let(:page) { Comfy::Cms::Page.new(state: 'published') }
+
+    let(:object) do
+      Comfy::Cms::Block.new(identifier: 'raw_content',
+                            blockable: page,
+                            content: 'published content')
+    end
+
+    it 'returns raw contents' do
+      expect(subject).to eq("published content")
+    end
+  end
+
   context 'when page is published' do
     let(:page) { Comfy::Cms::Page.new(state: 'published') }
 
@@ -15,7 +29,7 @@ describe BlockSerializer do
     end
 
     context 'when contains mastalk snippets' do
-      let(:object) { Comfy::Cms::Block.new(blockable: page, content: '## content') }
+      let(:object) { Comfy::Cms::Block.new(identifier: 'content', blockable: page, content: '## content') }
 
       it 'converts output to html' do
         expect(subject).to eq("<h2 id=\"content\">content</h2>\n")

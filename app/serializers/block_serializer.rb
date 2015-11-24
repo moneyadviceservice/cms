@@ -6,13 +6,19 @@ class BlockSerializer < ActiveModel::Serializer
   private
 
   def content
-    content = if render_content_directly?
+    if identifier.start_with?('raw_')
+      ContentComposer.new(block_content, RawParser).to_html
+    else
+      ContentComposer.new(block_content).to_html
+    end
+  end
+
+  def block_content
+    if render_content_directly?
       object.content
     else
       published_content
     end
-
-    ContentComposer.new(content).to_html
   end
 
   def published_content
