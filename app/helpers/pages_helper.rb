@@ -1,4 +1,9 @@
 module PagesHelper
+  def tag_for_identifier(tags, identifier, cms_blocks, index)
+    tag = tags.find { |t| t.identifier == identifier }
+    cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, index)
+  end
+
   def page_form_component(condition, default: [], optional: [], display: true)
     return {} unless display
     { dough_component: components(condition, default, optional).join(' ') }
