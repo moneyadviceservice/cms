@@ -30,6 +30,6 @@ class BlockComposer
   private
 
   def post_processors
-    [TableWrapper]
+    [ContentsTable, TableWrapper]
   end
 end
