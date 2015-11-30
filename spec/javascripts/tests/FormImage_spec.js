@@ -1,4 +1,4 @@
-describe.only('FormImage', function() {
+describe('FormImage', function() {
   'use strict';
 
   var sandbox;
