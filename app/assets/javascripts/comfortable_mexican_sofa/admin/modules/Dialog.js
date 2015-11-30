@@ -22,6 +22,8 @@ define([
           content: '[data-dough-dialog-content]',
           contentInner: '[data-dough-dialog-content-inner]',
           close: '[data-dough-dialog-close]',
+          context: '[data-dough-dialog-context]',
+          identifier: '[data-dough-dialog-identifier]',
           activeClass: 'is-active',
           inactiveClass: 'is-inactive',
           dialogOpenBodyClass: 'js-dialog-active'
@@ -40,7 +42,8 @@ define([
   DialogProto = Dialog.prototype;
 
   DialogProto.init = function(initialised) {
-    this.context = this.$el.attr('data-dough-dialog-context');
+    this.context = this.$el.attr(this._stripSquareBrackets(this.config.selectors.context));
+    this.identifier = this.$el.attr(this._stripSquareBrackets(this.config.selectors.identifier));
     this._cacheComponentElements();
     this._setupDialog();
     this._setupUIEvents();
@@ -135,7 +138,8 @@ define([
     eventsWithPromises.publish('dialog:shown', {
       emitter: this.context,
       modal: showModal,
-      id: id || null
+      id: id || null,
+      identifier: this.identifier || null
     });
   };
 
@@ -177,6 +181,10 @@ define([
     eventsWithPromises.publish('dialog:ready', {
       emitter: this.context
     });
+  };
+
+  DialogProto._stripSquareBrackets = function(str) {
+    return str.replace(/([\[\]])+/gi,'');
   };
 
   return Dialog;

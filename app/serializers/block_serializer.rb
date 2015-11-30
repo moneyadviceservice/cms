@@ -6,17 +6,24 @@ class BlockSerializer < ActiveModel::Serializer
   private
 
   def content
-    blocks = if render_content_directly?
-      [{ "identifier" => "content", "content" => object.content}]
+    if identifier.start_with?('raw_')
+      ContentComposer.new(block_content, RawParser).to_html
     else
-      [{ "identifier" => "content", "content" => published_content.fetch(:content, '') }]
+      ContentComposer.new(block_content).to_html
     end
+  end
 
-    BlockComposer.new(blocks).to_html
+  def block_content
+    if render_content_directly?
+      object.content
+    else
+      published_content
+    end
   end
 
   def published_content
-    published_block_attributes.find { |a| a[:identifier] == 'content' } || {}
+    hash = published_block_attributes.find { |a| a[:identifier] == identifier } || {}
+    hash.fetch(:content, '')
   end
 
   def published_block_attributes
