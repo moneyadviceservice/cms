@@ -34,6 +34,8 @@
                 =button_tag('Vimeo Video', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'videoVimeo', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
                 =button_tag('Cost Calculator', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'costCalculator', dough_snippetinserter_context: 'markdown-snippets'})
+              %li.menu__item
+                =button_tag('Contents Table', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'contentsTable', dough_snippetinserter_context: 'markdown-snippets'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
@@ -91,6 +93,8 @@
                 =button_tag('Vimeo Video', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_videoVimeo'})
               %li.menu__item
                 =button_tag('Cost Calculator', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_costCalculator'})
+              %li.menu__item
+                =button_tag('Contents Table', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_contentsTable'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
 
