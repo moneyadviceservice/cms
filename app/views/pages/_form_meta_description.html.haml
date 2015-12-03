@@ -1,0 +1,12 @@
+.form-group
+  .form__label-heading
+    = form.label :meta_description
+  .form__input-wrapper
+    = form.text_field :meta_description, class: 'form__input form__input--has-icon', data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}
+    %span.form__hint.form__hint--align-right
+      %span.form__character-count-text{data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}}
+        0
+      %span
+        characters remaining
+    %span.form__character-count-warning-icon{title: 'You are over the recommended limit of 160 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description'}}
+      %span.fa.fa-warning

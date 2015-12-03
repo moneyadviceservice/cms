@@ -1,0 +1,4 @@
+.fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
+.form-group
+  .form__input-wrapper.form__input-wrapper--fill-width
+    = form.text_field :label, hide_label: true, class: 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: {'dough-mirrorinputvalue-trigger' => '', 'dough-sticky-element-target' => true, 'dough-urlformatter-input' => (@page.new_record?)}

@@ -3,137 +3,42 @@
     = render 'comfy/admin/cms/sites/mirrors', object: @page
 
 - content_for :right_column do
-  #form-save.box
-    %label.checkbox-inline
-      %input{ type: 'checkbox' }
-      = ::Comfy::Cms::Page.human_attribute_name(:is_published)
-    %button.btn.btn-sm.btn-primary.pull-right
+  = render 'form_save'
   = render 'comfy/admin/cms/files/index'
 
 %div{data:{dough_component: 'StickyElements'}}
-  = form_for @page, as: :page, url: form_url, class: 'form', html: { multipart: true, autocomplete: 'off'}, data: { dough_component: 'MASEditor UnsavedChangesPrompt', dough_scheduler_form: true } do |form|
+  = form_for @page, as: :page,
+                    url: form_url,
+                    class: 'form',
+                    html: { multipart: true, autocomplete: 'off'},
+                    data: { dough_component: 'MASEditor UnsavedChangesPrompt', dough_scheduler_form: true } do |form|
 
     = render 'comfy/admin/cms/partials/page_form_before', object: form
     .l-panel-content.l-panel-content--form
       .l-constrained{ data: page_form_component(@page.new_record?, default: ['URLFormatter'], optional: ['MirrorInputValue']), 'data-dough-urlformatter-base-url' => '{pageType}/{slug}'}
-        .fixedsticky-background.fixedsticky-background--page-title.fixedsticky.top{"data-dough-sticky-element-target" => true}
 
-        .form-group
-          .form__input-wrapper.form__input-wrapper--fill-width
-            = form.text_field :label, hide_label: true, class: 'form__input form__input--inline form__input--inline--page-title fixedsticky top fixedsticky-page-title', placeholder: 'Untitled page', data: {'dough-mirrorinputvalue-trigger' => '', 'dough-sticky-element-target' => true, 'dough-urlformatter-input' => (@page.new_record?)}
+        = render 'form_title', form: form
 
         - if @site.layouts.any?
-          .form-group
-            .form__label-heading
-              = form.label :layout_id
-            .form__input-wrapper
-              = form.select :layout_id, options_for_select(page_type_options_for(@site), @page.layout_id), {}, class: 'form__select form__select--fill-width', data: { dough_urlformatter_page_type: true, url: form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)}
-
-        .form-group
-          .form__label-heading
-            = form.label :slug
-          .form__input-wrapper
-            = form.text_field :slug, class: 'form__input', tabindex: '-1', readonly: @page.ever_been_published?, title: 'Double click to edit this field', data: {'dough-urlformatter-slug' => @page.ever_been_published?, slug: true, 'dough-field-disabled-state-toggler-attribute' => 'readonly'}.merge(page_form_component(true, default: 'FieldDisabledStateToggler', display: @page.ever_been_published? ))
-            %span.form__hint
-              in
-              = page_slug(@site.label, presenter.page_type_url, @page.slug)
-
-        = render 'comfy/admin/cms/partials/page_form_inner', form: form
-        = render 'comfy/admin/cms/categories/form',          form: form
-        = render 'tags/shared/form',                         form: form
-
-        .form-group
-          .form__label-heading
-            = form.label :meta_description
-          .form__input-wrapper
-            = form.text_field :meta_description, class: 'form__input form__input--has-icon', data: {dough_component: 'CharacterCounter', dough_character_counter_max_chars: 160, dough_character_counter_context: 'meta-description'}
-            %span.form__hint.form__hint--align-right
-              %span.form__character-count-text{data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-description'}}
-                0
-              %span
-                characters remaining
-            %span.form__character-count-warning-icon{title: 'You are over the recommended limit of 160 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-description'}}
-              %span.fa.fa-warning
-
-        .form-group
-          .form__label-heading
-            = form.label :meta_title
-          .form__input-wrapper
-            = form.text_field :meta_title, class: 'form__input form__input--has-icon', data: {dough_mirrorinputvalue_target: '', dough_component: 'CharacterCounter', dough_character_counter_max_chars: 70, dough_character_counter_context: 'meta-title'}
-            %span.form__hint.form__hint--align-right
-              %span.form__character-count-text{data: {dough_character_counter_indicator: true, dough_character_counter_context: 'meta-title'}}
-                0
-              %span
-                characters remaining
-            %span.form__character-count-warning-icon{title: 'You are over the recommended limit of 70 characters, please shorten your text.', data: {dough_character_counter_warning: true, dough_character_counter_context: 'meta-title'}}
-              %span.fa.fa-warning
+          = render 'form_layout', form: form
 
         = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
-        .form-group
-          .form__label-heading
-            &nbsp;
-          .form__input-wrapper
-            .form__group.form__group--inline
-              .form__group-item
-                = label_tag do
-                  = form.check_box :suppress_from_links_recirculation
-                  Suppress from links recirculation
-              .form__group-item
-                = label_tag do
-                  = form.check_box :regulated_box
-                  Regulated Content
+        = render 'form_slug', form: form
+        = render 'comfy/admin/cms/partials/page_form_inner', form: form
+        = render 'comfy/admin/cms/categories/form',          form: form
+        = render 'tags/shared/form',                         form: form
+        = render 'form_meta_description',                    form: form
+        = render 'form_meta_title',                          form: form
+        = render 'form_additional_options',                  form: form
 
     - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
       = render partial: "pages/form_blocks/#{@page.layout.identifier}"
     - else
       = render partial: 'form_blocks'
+
     = render 'scheduler', object: form
-
-    .nav-article.is-fixed
-      .l-constrained
-        .nav-article__inner
-          %span.nav-article__item
-            %span#t-status
-              =@site.label.upcase
-              Status:
-              =current_status(@page.current_state)
-              =@page.scheduled_on
-            %span.is-hidden{ data: { dough_wordcount_display: 'article', dough_wordcount_text: ' | ~{count} words' } }
-          - if @page.persisted?
-            %span.nav-article__item
-              %span.fa.fa-list-ul
-              %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
-                Activity log
-            %span.nav-article__item
-              %span.fa.fa-line-chart
-              %a.button.button--article.analytics-button
-                Analytics
-          %span.nav-article__item.nav-article__item--right
-            - unless @page.unsaved?
-              = link_to t('.preview'), presenter.preview_url, :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
-
-          %span.nav-article__item.nav-article__item--right
-            %span.button-menu
-              - main_state_button(@page.current_state).each do |state_event|
-                = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
-                  %span.button__text
-                    = state_event[:label]
-                - unless page_state_buttons(@page.current_state).empty?
-                  - if @page.publishable?
-                    %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
-                      %span.button__icon.fa.fa-caret-up
-
-            .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
-              .popover__inner
-                .menu
-                  .menu__body
-                    - page_state_buttons(@page.current_state).each do |state_event|
-                      .menu__item
-                        = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "menu__action t-#{state_event[:value]}" do
-                          =state_event[:label]
-              .popover__pointer
-
+    = render 'footer_bar', object: form
     = render 'comfy/admin/cms/partials/page_form_after', object: form
 
 = render 'activity_log_box'
