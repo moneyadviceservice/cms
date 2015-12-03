@@ -1,0 +1,43 @@
+.nav-article.is-fixed
+  .l-constrained
+    .nav-article__inner
+      %span.nav-article__item
+        %span#t-status
+          =@site.label.upcase
+          Status:
+          =current_status(@page.current_state)
+          =@page.scheduled_on
+        %span.is-hidden{ data: { dough_wordcount_display: 'article', dough_wordcount_text: ' | ~{count} words' } }
+      - if @page.persisted?
+        %span.nav-article__item
+          %span.fa.fa-list-ul
+          %a.button.button--article.button--h-capitalized.activity-log-button{ data: { dough_component: :Popover, dough_collapsable_trigger: 'activity-log', dough_popover_config: '{"isFixed": true, "direction": "top", "centerAlign": true, "hideOnBlur": true }' } }
+            Activity log
+        %span.nav-article__item
+          %span.fa.fa-line-chart
+          %a.button.button--article.analytics-button
+            Analytics
+      %span.nav-article__item.nav-article__item--right
+        - unless @page.unsaved?
+          = link_to t('.preview'), presenter.preview_url, :class => 'button button--h-capitalized button--article', id: 'preview', target: '_blank'
+
+      %span.nav-article__item.nav-article__item--right
+        %span.button-menu
+          - main_state_button(@page.current_state).each do |state_event|
+            = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
+              %span.button__text
+                = state_event[:label]
+            - unless page_state_buttons(@page.current_state).empty?
+              - if @page.publishable?
+                %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
+                  %span.button__icon.fa.fa-caret-up
+
+        .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
+          .popover__inner
+            .menu
+              .menu__body
+                - page_state_buttons(@page.current_state).each do |state_event|
+                  .menu__item
+                    = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "menu__action t-#{state_event[:value]}" do
+                      =state_event[:label]
+          .popover__pointer

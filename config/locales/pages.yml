@@ -1,0 +1,46 @@
+en:
+  activerecord:
+    attributes:
+      comfy/cms/page:
+        raw_heading: Heading
+        raw_bullet_1: Bullet 1
+        raw_bullet_2: Bullet 2
+        raw_bullet_3: Bullet 3
+        raw_cta_text: Call to action text
+        raw_cta_link: Call to action URL
+        raw_hero_image: Hero image
+        raw_tool_1_heading: Tool 1 heading
+        raw_tool_2_heading: Tool 2 heading
+        raw_tool_3_heading: Tool 3 heading
+        raw_tool_1_url: Tool 1 URL
+        raw_tool_2_url: Tool 2 URL
+        raw_tool_3_url: Tool 3 URL
+        raw_tool_1_text: Tool 1 text
+        raw_tool_2_text: Tool 2 text
+        raw_tool_3_text: Tool 3 text
+        raw_tile_1_heading: Tile 1 heading
+        raw_tile_2_heading: Tile 2 heading
+        raw_tile_3_heading: Tile 3 heading
+        raw_tile_4_heading: Tile 4 heading
+        raw_tile_1_image: Tile 1 image
+        raw_tile_2_image: Tile 2 image
+        raw_tile_3_image: Tile 3 image
+        raw_tile_4_image: Tile 4 image
+        raw_tile_1_url: Tile 1 URL
+        raw_tile_2_url: Tile 2 URL
+        raw_tile_3_url: Tile 3 URL
+        raw_tile_4_url: Tile 4 URL
+        raw_tile_1_label: Tile 1 label
+        raw_tile_2_label: Tile 2 label
+        raw_tile_3_label: Tile 3 label
+        raw_tile_4_label: Tile 4 label
+        raw_tile_1_content: Tile 1 content
+        raw_tile_2_content: Tile 2 content
+        raw_tile_3_content: Tile 3 content
+        raw_tile_4_content: Tile 4 content
+        raw_text_tile_1_heading: Tile 1 heading
+        raw_text_tile_2_heading: Tile 2 heading
+        raw_text_tile_1_url: Tile 1 url
+        raw_text_tile_2_url: Tile 2 url
+        raw_text_tile_1_content: Tile 1 content
+        raw_text_tile_2_content: Tile 2 content

@@ -27,6 +27,17 @@ module PagesHelper
     ].join('/').html_safe
   end
 
+  def render_form_for_layout(site, page)
+    layout = page.layout
+    form_url = site_page_path(site, page)
+
+    if lookup_context.template_exists? "pages/_form_for_#{layout.identifier}"
+      render "form_for_#{layout.identifier}", form_url: form_url
+    else
+      render 'form', form_url: form_url
+    end
+  end
+
   private
 
   def preview_domain

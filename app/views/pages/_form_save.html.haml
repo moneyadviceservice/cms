@@ -1,0 +1,5 @@
+#form-save.box
+  %label.checkbox-inline
+    %input{ type: 'checkbox' }
+    = ::Comfy::Cms::Page.human_attribute_name(:is_published)
+  %button.btn.btn-sm.btn-primary.pull-right
