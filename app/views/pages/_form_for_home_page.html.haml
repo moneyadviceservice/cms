@@ -20,8 +20,6 @@
         = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
         = render 'comfy/admin/cms/partials/page_form_inner', form: form
-        = render 'form_meta_description',                    form: form
-        = render 'form_meta_title',                          form: form
 
     - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
       = render partial: "pages/form_blocks/#{@page.layout.identifier}"
