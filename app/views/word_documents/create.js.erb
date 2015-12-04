@@ -1,2 +1,2 @@
-$(".js-html-editor .editor__content").html('<%= escape_javascript(Kramdown::Document.new(@doc.to_s).to_html) %>')
+$(".editor__content").html('<%= escape_javascript(Kramdown::Document.new(@doc.to_s).to_html) %>')
 $(".js-markdown-editor-content").val('<%= escape_javascript(@doc.to_s) %>')
