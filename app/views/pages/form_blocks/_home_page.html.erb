@@ -145,6 +145,14 @@
                 </li>
               </ul>
             </div>
+
+            <div class="l-home-edit__section">
+              <h2 class="l-home-edit__section-heading">Promo banner</h2>
+              <div class="l-home-edit__promo-banner">
+                <%= tag_for_identifier(tags, 'raw_promo_banner_content', cms_blocks, 42) %>
+                <%= tag_for_identifier(tags, 'raw_promo_banner_url', cms_blocks, 43) %>
+              </div>
+            </div>
           <% end %>
         </div>
       <% end # fields_for %>
@@ -204,4 +212,7 @@
 # {{ cms:field:raw_text_tile_2_heading }}
 # {{ cms:field:raw_text_tile_2_url }}
 # {{ cms:page:raw_text_tile_2_content }}
+#
+# {{ cms:field:raw_promo_banner_content }}
+# {{ cms:field:raw_promo_banner_url }}
 %>
