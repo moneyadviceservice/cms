@@ -4,4 +4,12 @@ class RedirectVersion < PaperTrail::Version
   def user
     Comfy::Cms::User.find(whodunnit)
   end
+
+  def updated_by
+    begin
+      user.email_local_part
+    rescue ActiveRecord::RecordNotFound => e
+      "deleted user"
+    end
+  end
 end
