@@ -17,7 +17,7 @@ class MigrateUsersToHaveRole < ActiveRecord::Migration
     if user.read_attribute(:admin)
       Comfy::Cms::User.roles[:admin]
     else
-      Comfy::Cms::User.roles[:author]
+      Comfy::Cms::User.roles[:user]
     end
   end
 end

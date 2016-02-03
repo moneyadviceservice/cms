@@ -5,7 +5,7 @@ class Comfy::Cms::User < ActiveRecord::Base
 
   validates :role, presence: true
 
-  enum role: { author: 0, admin: 1 }
+  enum role: { user: 0, admin: 1 }
 
   def email_local_part
     email.split('@').first

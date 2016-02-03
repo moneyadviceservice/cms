@@ -47,7 +47,7 @@ end
 
 Given(/^I am not an admin user$/) do
   @current_user = Comfy::Cms::User.create!(
-    role: Comfy::Cms::User.roles[:author],
+    role: Comfy::Cms::User.roles[:user],
     email: 'test@tester.com',
     password: 'password'
   )

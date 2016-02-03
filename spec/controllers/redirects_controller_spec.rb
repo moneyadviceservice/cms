@@ -8,7 +8,7 @@ describe RedirectsController do
     end
 
     context 'when non admin logged in' do
-      let(:current_user) { create(:user, role: Comfy::Cms::User.roles[:author]) }
+      let(:current_user) { create(:user, role: Comfy::Cms::User.roles[:user]) }
 
       before :each do
         create(:site)
