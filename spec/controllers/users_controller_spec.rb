@@ -28,6 +28,14 @@ RSpec.describe UsersController, type: :controller  do
         before { get :edit, id: other_user.id }
         it { is_expected.to respond_with 200 }
       end
+
+      context 'creating a user' do
+        it 'allows the role (as an integer) to be set' do
+          allow(Comfy::Cms::User).to receive(:new).and_return(double(save: true))
+          post :create, comfy_cms_user: { role: '1' }
+          expect(Comfy::Cms::User).to have_received(:new).with(role: 1)
+        end
+      end
     end
   end
 end

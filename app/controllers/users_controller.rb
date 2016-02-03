@@ -41,9 +41,15 @@ class UsersController < Comfy::Admin::Cms::BaseController
   private
 
   def user_params
+    safe_params = params.require(:comfy_cms_user).permit(allowed_param_names)
+    safe_params[:role] = safe_params[:role].to_i if safe_params[:role]
+    safe_params
+  end
+
+  def allowed_param_names
     allowed = [:email, :password, :name]
-    allowed << :admin if current_user.admin?
-    params.require(:comfy_cms_user).permit(allowed)
+    allowed << :role if current_user.admin?
+    allowed
   end
 
   def check_user

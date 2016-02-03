@@ -10,7 +10,7 @@
           .form-group
             .form__input-wrapper
               - if current_user.admin?
-                =f.check_box :admin
+                = f.collection_select(:role, Comfy::Cms::User.roles, :last, :first, selected: Comfy::Cms::User.roles[f.object.role])
 
           .form-group
             .form__input-wrapper
