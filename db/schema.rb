@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203094504) do
+ActiveRecord::Schema.define(version: 20160203104825) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -170,20 +170,19 @@ ActiveRecord::Schema.define(version: 20160203094504) do
   add_index "comfy_cms_snippets", ["site_id", "position"], name: "index_comfy_cms_snippets_on_site_id_and_position", using: :btree
 
   create_table "comfy_cms_users", force: true do |t|
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name",                   default: "",    null: false
+    t.string   "name",                   default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin",                  default: false
     t.integer  "role"
   end
 
