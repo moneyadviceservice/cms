@@ -15,7 +15,7 @@ describe Comfy::Cms::User do
     end
 
     it 'allows the role to be set as an editor' do
-      subject.role = 2
+      subject.role = Comfy::Cms::User.roles[:editor]
       expect(subject.role).to eq('editor')
     end
   end
