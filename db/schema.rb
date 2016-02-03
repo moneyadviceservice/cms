@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001102656) do
+ActiveRecord::Schema.define(version: 20160203094504) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20151001102656) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                  default: false
+    t.integer  "role"
   end
 
   add_index "comfy_cms_users", ["email"], name: "index_comfy_cms_users_on_email", unique: true, using: :btree
