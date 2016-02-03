@@ -24,7 +24,6 @@ Feature: User Management
     And I go to my profile page
     Then I should be able to see my profile
 
-    Scenario: Editor goes to the user management
+  Scenario: Editor goes to the user management page
     Given I am an editor user
     Then I should not be able to visit the user management page
-    
