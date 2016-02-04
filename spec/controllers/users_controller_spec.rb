@@ -30,10 +30,10 @@ RSpec.describe UsersController, type: :controller  do
       end
 
       context 'creating a user' do
-        it 'allows the role (as an integer) to be set' do
+        it 'allows the role to be set' do
           allow(Comfy::Cms::User).to receive(:new).and_return(double(save: true))
-          post :create, comfy_cms_user: { role: '1' }
-          expect(Comfy::Cms::User).to have_received(:new).with(role: 1)
+          post :create, comfy_cms_user: { role: role }
+          expect(Comfy::Cms::User).to have_received(:new).with(role: role)
         end
       end
     end

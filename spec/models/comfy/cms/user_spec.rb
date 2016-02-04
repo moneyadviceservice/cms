@@ -4,13 +4,13 @@ describe Comfy::Cms::User do
   end
 
   describe 'role' do
-    it 'allows the role to be set as a "user"' do
-      subject.role = 0
+    it 'allows the role to be set as user' do
+      subject.role = Comfy::Cms::User.roles[:user]
       expect(subject.role).to eq('user')
     end
 
     it 'allows the role to be set as an admin' do
-      subject.role = 1
+      subject.role = Comfy::Cms::User.roles[:admin]
       expect(subject.role).to eq('admin')
     end
   end
