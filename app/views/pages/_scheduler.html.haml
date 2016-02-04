@@ -1,9 +1,18 @@
+- article = object.object
+
 .js-dialog-target.is-inactive{'data-dough-dialog-target' => 'scheduler'}
   .l-tab-panels.l-tab-panels--add-link
     .l-tab-panels__item.l-tab-panels__item--aside
-      %h2.l-tab-panels__heading Schedule
-      = date_field_tag 'scheduled_date', nil, data: {dough_scheduler_date: true}
-      = time_field_tag 'scheduled_time', nil, data: {dough_scheduler_time: true}
-      = button_tag "Schedule", value: 'schedule', type: 'submit', name: 'state_event', class: "button--action", data: { dough_scheduler_trigger: true } do
+      - if article.scheduled_on.present?
+        %h2.l-tab-panels__heading Update scheduled post
+        %p If desired you can adjust the scheduled time
+
+      - else
+        %h2.l-tab-panels__heading Schedule this post
+        %p Set the time you wish for the article to go live
+
+      = date_field_tag 'scheduled_date', article.scheduled_on.try(:strftime, '%Y-%m-%d'), data: {dough_scheduler_date: true}
+      = time_field_tag 'scheduled_time', article.scheduled_on.try(:strftime, '%H:%M'), data: {dough_scheduler_time: true}
+      = button_tag value: 'schedule', type: 'submit', name: 'state_event', class: "button--action", data: { dough_scheduler_trigger: true } do
         %span.button__text
-          schedule
+          Save
