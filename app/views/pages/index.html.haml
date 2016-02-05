@@ -9,11 +9,12 @@
         - else
           %h1.l-panel-content__heading
             = "Welcome #{current_user.name}"
-      .l-panel-content__col.l-panel-content__col--right
-        = link_to new_site_page_path(@site), class: 'button--action button--search' do
-          %span.button__text
-            %span.fa.fa-file-o
-            = I18n.t('actions.pages.new')
+      - unless current_user.editor?
+        .l-panel-content__col.l-panel-content__col--right
+          = link_to new_site_page_path(@site), class: 'button--action button--search' do
+            %span.button__text
+              %span.fa.fa-file-o
+              = I18n.t('actions.pages.new')
 
 .l-panel-content.l-panel-content--flush
   .l-constrained
