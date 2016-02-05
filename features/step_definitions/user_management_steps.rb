@@ -46,11 +46,21 @@ Then(/^the new user should not be able to log in$/) do
 end
 
 Given(/^I am not an admin user$/) do
-  @current_user = Comfy::Cms::User.create!(
-    role: Comfy::Cms::User.roles[:user],
-    email: 'test@tester.com',
-    password: 'password'
-  )
+  @current_user = FactoryGirl.create(:user,
+                                     role: Comfy::Cms::User.roles[:user],
+                                     email: 'test@tester.com',
+                                     password: 'password',
+                                     password_confirmation: 'password'
+                                    )
+end
+
+Given(/^I am an editor user$/) do
+  @current_user = FactoryGirl.create(:user,
+                                     role: Comfy::Cms::User.roles[:editor],
+                                     email: 'test@tester.com',
+                                     password: 'password',
+                                     password_confirmation: 'password'
+                                    )
 end
 
 Then(/^I should not be able to visit the user management page$/) do

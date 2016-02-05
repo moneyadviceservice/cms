@@ -13,6 +13,11 @@ describe Comfy::Cms::User do
       subject.role = Comfy::Cms::User.roles[:admin]
       expect(subject.role).to eq('admin')
     end
+
+    it 'allows the role to be set as an editor' do
+      subject.role = Comfy::Cms::User.roles[:editor]
+      expect(subject.role).to eq('editor')
+    end
   end
 
   describe '#email_local_part' do
