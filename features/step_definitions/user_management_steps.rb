@@ -54,6 +54,15 @@ Given(/^I am not an admin user$/) do
                                     )
 end
 
+Given(/^I am an admin user$/) do
+  @current_user = FactoryGirl.create(:user,
+                                     role: Comfy::Cms::User.roles[:admin],
+                                     email: 'test@tester.com',
+                                     password: 'password',
+                                     password_confirmation: 'password'
+                                    )
+end
+
 Given(/^I am an editor user$/) do
   @current_user = FactoryGirl.create(:user,
                                      role: Comfy::Cms::User.roles[:editor],
