@@ -3,12 +3,25 @@ class WordDocument
 
   delegate :path, to: :file
 
-  def initialize(file, parser = WordToMarkdown)
+  class Pandoc
+    attr_reader :path
+
+    def initialize(path)
+      @path = path
+    end
+
+    # TODO WARNING open to injection
+    def to_markdown
+      `pandoc -S --no-wrap --to=markdown_github --from=docx --atx-headers #{path}`.gsub('’', '\'').gsub('“', '"').gsub('”', '"').gsub('‘', '\'')
+    end
+  end
+
+  def initialize(file, parser = Pandoc)
     @file = file
     @parser = parser
   end
 
-  def to_s
-    @_converted ||= parser.new(path, format: 'html:"HTML (StarWriter)"').to_s
+  def to_markdown
+    @_converted ||= parser.new(path).to_markdown
   end
 end

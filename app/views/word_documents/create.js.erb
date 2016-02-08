@@ -1,2 +1,2 @@
-$(".editor__content").html('<%= escape_javascript(Kramdown::Document.new(@doc.to_s).to_html) %>')
-$(".js-markdown-editor-content").val('<%= escape_javascript(@doc.to_s) %>')
+<% TODO BUG this should be updating the markdown not HTML %>
+$(".editor__content").html('<%= escape_javascript(Kramdown::Document.new(@doc.to_markdown).to_html) %>')

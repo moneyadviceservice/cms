@@ -15,8 +15,6 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'comfortable_mexican_sofa', '~>1.12.1.0'
 
-gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
-
 gem 'fog'
 
 # Used in comfy. pegging version fixes asset pipeline error.
