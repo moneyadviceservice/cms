@@ -11,14 +11,10 @@ class PageRegister
   end
 
   def save
-    update_state if new_record? && state_event == 'save_unsaved'
+    ensure_permission_to_save!
 
-    if persisted? && state_event
-      update_state
-    else
-      save!
-    end
-
+    update_state_if_new_page
+    update_state_or_save_existing_page
     create_revision
   end
 
@@ -57,5 +53,32 @@ class PageRegister
 
   def state_event
     @state_event ||= params[:state_event]
+  end
+
+  def page_changes_not_permitted
+    @page.errors.add(:base, 'Insufficient permissions to change')
+    ActiveRecord::RecordInvalid.new(@page)
+  end
+
+  def ensure_permission_to_save!
+    return unless @current_user.editor?
+    fail page_changes_not_permitted if new_record?
+    fail page_changes_not_permitted unless editor_can_perform_event?
+  end
+
+  def editor_can_perform_event?
+    %w(save_changes save_unsaved).include? state_event
+  end
+
+  def update_state_if_new_page
+    update_state if new_record? && state_event == 'save_unsaved'
+  end
+
+  def update_state_or_save_existing_page
+    if persisted? && state_event
+      update_state
+    else
+      save!
+    end
   end
 end
