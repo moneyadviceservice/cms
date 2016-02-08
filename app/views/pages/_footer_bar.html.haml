@@ -27,11 +27,9 @@
             = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
               %span.button__text
                 = state_event[:label]
-            - unless current_user.editor?
-              - unless page_state_buttons(@page).empty?
-                - if @page.publishable?
-                  %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
-                    %span.button__icon.fa.fa-caret-up
+            - if display_additional_button_menu?(@page, current_user)
+              %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
+                %span.button__icon.fa.fa-caret-up
 
         - unless current_user.editor?
           .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
