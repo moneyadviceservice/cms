@@ -20,6 +20,7 @@ class PageRegister
     end
 
     create_revision
+    send_change_notfication
   end
 
   def create_revision
@@ -50,6 +51,12 @@ class PageRegister
   end
 
   private
+
+  def send_change_notfication
+    return unless @current_user.editor?
+    RevisionMailer.external_editor_change(user: @current_user, page: @page)
+                  .deliver
+  end
 
   def update_state
     @page.update_state!(state_event)
