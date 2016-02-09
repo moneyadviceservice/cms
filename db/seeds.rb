@@ -47,4 +47,4 @@ END
 end
 
 puts "Seeding MAS users..."
-Comfy::Cms::User.create_with(password: 'password').find_or_create_by!(email: 'user@test.com')
+Comfy::Cms::User.create_with(password: 'password', role: 'admin').find_or_create_by!(email: 'user@test.com')
