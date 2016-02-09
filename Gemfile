@@ -41,6 +41,7 @@ gem 'paper_trail'
 gem 'feature'
 
 gem 'mastalk', '~> 0.5.8'
+gem 'mailjet'
 
 group :development do
   gem 'spring'
