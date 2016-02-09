@@ -1,0 +1,6 @@
+.content-hub-form {
+  display: none;
+  @include column(12);
+  padding-top: $baseline-unit*4;
+  min-height: 500px;
+}
