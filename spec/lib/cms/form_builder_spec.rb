@@ -29,7 +29,7 @@ describe Cms::FormBuilder do
     end
 
     it 'adds insert button' do
-      expect(subject.page_image(tag, 0)).to match(/button.*insert-image.*button/)
+      expect(subject.page_image(tag, 0)).to match(/button[\s\S]*insert-image[\s\S.]*button/)
     end
 
     it 'adds remove button' do
