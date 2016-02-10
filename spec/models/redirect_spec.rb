@@ -119,12 +119,12 @@ describe Redirect do
         end
 
         it 'can only end in allowed extensions' do
-          %w{ html pdf aspx }.each do |allowed|
+          %w(html pdf aspx).each do |allowed|
             subject.source = "/en/foo.#{allowed}"
             expect(subject).to be_valid
           end
 
-          %w{ jpg png json }.each do |not_allowed|
+          %w(jpg png json).each do |not_allowed|
             subject.source = "/en/foo.#{not_allowed}"
             expect(subject).to_not be_valid
           end

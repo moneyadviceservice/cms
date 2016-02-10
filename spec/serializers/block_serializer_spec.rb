@@ -17,7 +17,7 @@ describe BlockSerializer do
     end
 
     it 'returns raw contents' do
-      expect(subject).to eq("published content")
+      expect(subject).to eq('published content')
     end
   end
 

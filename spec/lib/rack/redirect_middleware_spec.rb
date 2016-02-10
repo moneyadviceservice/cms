@@ -6,7 +6,7 @@ describe Rack::RedirectMiddleware::Responder do
   end
 
   def root_app
-    -> (env) { [200, {}, 'root app'] }
+    -> (_env) { [200, {}, 'root app'] }
   end
 
   describe '#call' do

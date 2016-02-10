@@ -18,12 +18,8 @@ class RedirectImporter
       ::PaperTrail.whodunnit = user
 
       unless (r = Redirect.create(source: source, destination: destination, redirect_type: 'permanent')).persisted?
-        error_count += 1;
-        puts
-        puts '===== FAILED ====='
-        puts source
-        puts destination
-        puts r.errors.full_messages
+        error_count += 1
+        output_fail(source, destination, r)
       end
     end
 
@@ -43,5 +39,13 @@ class RedirectImporter
 
   def file_contents
     File.open(path, 'r').read
+  end
+
+  def output_fail(source, destination, redirect)
+    puts
+    puts '===== FAILED ====='
+    puts source
+    puts destination
+    puts redirect.errors.full_messages
   end
 end

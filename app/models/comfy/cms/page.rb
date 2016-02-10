@@ -43,7 +43,9 @@ class Comfy::Cms::Page < ActiveRecord::Base
 
   scope :unpublished, -> { where(state: 'unpublished') }
 
-  scope :layout_identifier, ->(identifier) { joins(:layout).where(comfy_cms_layouts: { identifier: identifier.singularize }) }
+  scope :layout_identifier, (lambda do |identifier|
+    joins(:layout).where(comfy_cms_layouts: { identifier: identifier.singularize })
+  end)
 
   def self.in_category(category_id)
     joins(
@@ -84,7 +86,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
   end
 
   def ever_been_published?
-    revisions.map {|revision| revision.data[:event]}.include?('published')
+    revisions.map { |revision| revision.data[:event] }.include?('published')
   end
 
   def publishable?

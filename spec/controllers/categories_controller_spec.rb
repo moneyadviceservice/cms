@@ -1,8 +1,12 @@
 RSpec.describe CategoriesController, type: :controller do
   let(:site) { create(:site) }
   let(:current_user) { create(:user) }
-  let(:category_promo) { CategoryPromo.new(promo_type: 'blog', title: 'title', description: 'description', locale: 'en') }
-  let!(:category) { create(:category, category_promos: [category_promo], links: [Link.new({text: 'a', url: 'b', locale: 'en'})]) }
+  let(:category_promo) do
+    CategoryPromo.new(promo_type: 'blog', title: 'title', description: 'description', locale: 'en')
+  end
+  let!(:category) do
+    create(:category, category_promos: [category_promo], links: [Link.new(text: 'a', url: 'b', locale: 'en')])
+  end
   let(:sub_category_1) { create(:category, ordinal: 1, label: 'Sub Category 1', parent_id: category.id) }
   let(:sub_category_2) { create(:category, ordinal: 2, label: 'Sub Category 2', parent_id: category.id) }
   let(:params) do
@@ -13,11 +17,18 @@ RSpec.describe CategoriesController, type: :controller do
       'comfy_cms_category' => {
         'title_en' => 'Debt and borrowing',
         'third_level_navigation' => '1',
-        "links_attributes" => {
-          "0"=>{"id"=> "#{category.links.first.id}", "_destroy"=>"1"}
+        'links_attributes' => {
+          '0' => { 'id' => "#{category.links.first.id}", '_destroy' => '1' }
         },
         'category_promos_attributes' => {
-          '0' => { promo_type: 'blog', title: 'Some promotion', description: 'some description', locale: 'en', id: category_promo.id, _destroy: true },
+          '0' => {
+            promo_type: 'blog',
+            title: 'Some promotion',
+            description: 'some description',
+            locale: 'en',
+            id: category_promo.id,
+            _destroy: true
+          },
           '1' => { promo_type: '', title: '', description: '', locale: '' }
         }
       }
@@ -58,10 +69,10 @@ RSpec.describe CategoriesController, type: :controller do
           'title_cy' => 'Welsh Debt and borrowing',
           'categorized_type' => 'Comfy::Cms::Page', # i have no idea what this is
           'third_level_navigation' => '1',
-          "links_attributes" => {
-            "0"=>{"text"=>"some link", "url"=>"http://www.example.com", "locale"=>"en"},
-            "1"=>{"text"=>"test 2", "url"=>"http://yahoo.com", "locale"=>"en"},
-            "3"=>{"text"=>"", "url"=>"", "locale"=>""}
+          'links_attributes' => {
+            '0' => { 'text' => 'some link', 'url' => 'http://www.example.com', 'locale' => 'en' },
+            '1' => { 'text' => 'test 2', 'url' => 'http://yahoo.com', 'locale' => 'en' },
+            '3' => { 'text' => '', 'url' => '', 'locale' => '' }
           },
           'category_promos_attributes' => {
             '0' => { promo_type: 'blog', title: 'Some promotion', description: 'some description', locale: 'en' }
