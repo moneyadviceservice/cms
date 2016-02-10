@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'comfortable_mexican_sofa', '~>1.12.1.0'
+gem 'comfortable_mexican_sofa', '~>2.0.0.0'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
