@@ -1,5 +1,5 @@
 class Redirect < ActiveRecord::Base
-  REDIRECT_TYPES = %w{ permanent temporary }
+  REDIRECT_TYPES = %w( permanent temporary )
 
   default_scope { where(active: true) }
 
@@ -10,16 +10,16 @@ class Redirect < ActiveRecord::Base
   before_validation :remove_destination_trailing_slashes
 
   validates :source, presence: true, format: { with: /\A\// }
-  validates :source, uniqueness: { scope: :active }, if: Proc.new { |r| r.active }
+  validates :source, uniqueness: { scope: :active }, if: :active?
   validates :source, format: { without: /\#/ }
   validates :source, format: { without: /\.\z/ }
   validate :source_allows_certain_extensions
 
   validates :destination, presence: true, format: { with: /\A\/en|\/cy/ }
   validates :redirect_type, presence: true, inclusion: { in: REDIRECT_TYPES }
-  validate  :validate_different_source_and_destination
-  validate  :destination_does_not_match_existing_source
-  validate  :source_does_not_match_existing_destination
+  validate :validate_different_source_and_destination
+  validate :destination_does_not_match_existing_source
+  validate :source_does_not_match_existing_destination
 
   scope :recently_updated_order, -> { order(updated_at: :desc) }
 
@@ -39,19 +39,17 @@ class Redirect < ActiveRecord::Base
   private
 
   def source_allows_certain_extensions
-    if source.present?
-      unless source.match(/(\.html|\.pdf|\.aspx)\z/)
-        if source.match /(\..*)\z/
-          errors.add(:source, :invalid_extension)
-        end
-      end
-    end
+    return unless source.present?
+    return if source.match(/(\.html|\.pdf|\.aspx)\z/)
+    return unless source.match(/(\..*)\z/)
+
+    errors.add(:source, :invalid_extension)
   end
 
   def validate_different_source_and_destination
-    if source == destination
-      errors.add(:destination, :identical_to_source)
-    end
+    return unless source == destination
+
+    errors.add(:destination, :identical_to_source)
   end
 
   def remove_destination_trailing_hashes
@@ -67,16 +65,15 @@ class Redirect < ActiveRecord::Base
   end
 
   def destination_does_not_match_existing_source
-    if destination.present?
-      if Redirect.where.not(id: self.id).exists?(source: destination.split('?').first)
-        errors.add(:destination, :matches_an_existing_source)
-      end
-    end
+    return unless destination.present?
+    return unless Redirect.where.not(id: id).exists?(source: destination.split('?').first)
+
+    errors.add(:destination, :matches_an_existing_source)
   end
 
   def source_does_not_match_existing_destination
-    if Redirect.where.not(id: self.id).exists?(["destination = ? OR destination LIKE ?", source, "#{source}?%"])
-      errors.add(:source, :matches_an_existing_destination)
-    end
+    return unless Redirect.where.not(id: id).exists?(['destination = ? OR destination LIKE ?', source, "#{source}?%"])
+
+    errors.add(:source, :matches_an_existing_destination)
   end
 end
