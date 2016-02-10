@@ -3,5 +3,5 @@
   %td= page.layout.label
   %td{:class => 'categories'}= page.category_list
   %td= page.last_update
-  %td= current_status(page.current_state)
+  %td= current_status(page)
   %td= { "en" => "English", "cy" => "Welsh" }[page.site.label]
