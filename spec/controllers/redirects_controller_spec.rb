@@ -65,28 +65,28 @@ describe RedirectsController do
   describe '#create' do
     it 'creates a new redirect' do
       expect do
-        post :create, { redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' } }
+        post :create, redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' }
       end.to change(Redirect, :count).by(1)
     end
 
     it 'redirects to index' do
-      post :create, { redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' } }
+      post :create, redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' }
       expect(response).to redirect_to(redirects_path)
     end
 
     it 'flashes success' do
-      post :create, { redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' } }
+      post :create, redirect: { source: '/en/foo', destination: '/en/bar', redirect_type: 'temporary' }
       expect(flash[:success]).to be_present
     end
 
     describe 'sad path' do
       it 'renders the form' do
-        post :create, { redirect: { source: '/en/foo', destination: '/en/foo', redirect_type: 'temporary' } }
+        post :create, redirect: { source: '/en/foo', destination: '/en/foo', redirect_type: 'temporary' }
         expect(response).to render_template('new')
       end
 
       it 'flashes errors' do
-        post :create, { redirect: { source: '/en/foo', destination: '/en/foo', redirect_type: 'temporary' } }
+        post :create, redirect: { source: '/en/foo', destination: '/en/foo', redirect_type: 'temporary' }
         expect(flash[:danger]).to be_present
       end
     end

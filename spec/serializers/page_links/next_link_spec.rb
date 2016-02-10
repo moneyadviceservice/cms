@@ -54,7 +54,7 @@ RSpec.describe PageLink::NextLink do
         result = PageLink::NextLink.new(first_article).as_json
 
         expect(result[:title]).to eq('next_page')
-        expect(result[:path]).to eq("/en/action_plans/next-page")
+        expect(result[:path]).to eq('/en/action_plans/next-page')
       end
     end
 
@@ -73,7 +73,7 @@ RSpec.describe PageLink::NextLink do
         result = PageLink::NextLink.new(first_article).as_json
 
         expect(result[:title]).to eq('next_page')
-        expect(result[:path]).to eq("/en/corporate/next-page")
+        expect(result[:path]).to eq('/en/corporate/next-page')
       end
     end
   end
