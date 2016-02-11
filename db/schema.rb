@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(version: 20160224114634) do
   add_index "comfy_cms_layouts", ["site_id", "identifier"], name: "index_comfy_cms_layouts_on_site_id_and_identifier", unique: true, using: :btree
 
   create_table "comfy_cms_pages", force: true do |t|
+    t.integer  "active_revision_id"
     t.integer  "site_id",                                                            null: false
     t.integer  "layout_id"
     t.integer  "parent_id"
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 20160224114634) do
     t.datetime "published_at"
   end
 
+  add_index "comfy_cms_pages", ["active_revision_id"], name: "index_comfy_cms_pages_on_active_revision_id", using: :btree
   add_index "comfy_cms_pages", ["parent_id", "position"], name: "index_comfy_cms_pages_on_parent_id_and_position", using: :btree
   add_index "comfy_cms_pages", ["site_id", "full_path"], name: "index_comfy_cms_pages_on_site_id_and_full_path", using: :btree
 
