@@ -90,3 +90,23 @@ end
 Given(/^the article is regulated$/) do
   cms_page.update_attributes!(regulated: true)
 end
+
+Then(/^I should be able to delete the article$/) do
+  expect(edit_page).to have_delete_page
+end
+
+Then(/^I should not be able to delete the article$/) do
+  expect(edit_page).not_to have_delete_page
+end
+
+Then(/^I should not be able to publish the article$/) do
+  expect(edit_page).not_to have_publish
+end
+
+Then(/^I should be able to schedule the article$/) do
+  expect(edit_page).to have_schedule
+end
+
+Then(/^I should not be able to schedule the article$/) do
+  expect(edit_page).not_to have_schedule
+end

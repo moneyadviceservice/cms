@@ -10,3 +10,8 @@ Feature: Publish
   Scenario: Publish draft article
     When I am working on a Draft Article
     Then I should be able to publish it
+
+  Scenario: External editor cannot publish an article
+    Given I am an editor user
+    When I am working on a Draft Article
+    Then I should not be able to publish the article
