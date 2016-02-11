@@ -32,7 +32,10 @@ define([
   SearchBarProto.init = function(initialised) {
     this._cacheComponentElements();
     this._setupAppEvents();
+
+    Collapsable.componentName = 'SearchBar';
     this.collapsable = new Collapsable(this.$el).init();
+
     this._initialisedSuccess(initialised);
   };
 
