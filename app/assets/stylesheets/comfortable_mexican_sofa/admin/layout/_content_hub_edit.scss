@@ -1,6 +1,13 @@
-.content-hub-form {
-  display: none;
+.content-hub-edit {
   @include column(12);
-  padding-top: $baseline-unit*4;
-  min-height: 500px;
+  margin-top: $baseline-unit*4;
+}
+
+.content-hub-form {
+  margin: $baseline-unit*6 0;
+  @extend %clearfix;
+}
+
+.page-form-hide {
+  display: none;
 }

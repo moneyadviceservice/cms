@@ -1,3 +1,40 @@
-<div data-main-form="content_hubs" class="content-hub-form">
-  <h1>Content Hub Editor</h1>
+<div data-main-form="content_hubs" class="content-hub-form <%= page_form_html_class(@page, identifier) %>">
+  <!-- Hero Module -->
+  <div class="content-hub-module__hero">
+    <div class="content-hub-module__hero-image">
+      <label class="content-hub-module__label">Image upload</label>
+    </div>
+    <div class="content-hub-module__hero-content">
+    <div class="content-hub-module__hero-title">
+      <label class="content-hub-module__label">Title</label>
+      <input />
+    </div>
+    <div class="content-hub-module__hero-text">
+      <label class="content-hub-module__label">Main content</label>
+      <textarea></textarea>
+    </div>
+    <div class="content-hub-module__hero-cta">
+      <label class="content-hub-module__label">Button URL</label>
+      <input />
+      <label class="content-hub-module__label">Button text</label>
+      <input />
+    </div>
+  </div>
+  </div>
+  <!-- End of Hero Module -->
+
+  <!-- Add module -->
+  <div class="content-hub-edit">
+    <div class="content-hub-form__add-module">
+      <h2>Add module</h2>
+      <select>
+        <option>Hero</option>
+        <option>3 column</option>
+        <option>2 column</option>
+      </select>
+      <button>Add module</button>
+    </div>
+  </div>
+  <!-- End of add module -->
+
 </div>

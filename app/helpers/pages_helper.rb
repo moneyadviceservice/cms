@@ -9,6 +9,14 @@ module PagesHelper
     { dough_component: components(condition, default, optional).join(' ') }
   end
 
+  OTHER_PAGE_FORM_TYPES = %w(content_hub)
+
+  def page_form_html_class(page, identifier)
+    return unless page.layout.identifier != identifier.to_s
+
+    'page-form-hide' unless identifier == :main && !page.layout.identifier.in?(OTHER_PAGE_FORM_TYPES)
+  end
+
   def page_type_options_for(site)
     site.layouts.map do |layout|
       [

@@ -3,6 +3,71 @@ describe PagesHelper do
     include PagesHelper
   end
 
+  describe '#page_form_html_class' do
+    subject(:page_form_html_class) { Tester.new.page_form_html_class(page, identifier) }
+    let(:page) { double(layout: layout, new_record?: false) }
+
+    context 'when page is new record' do
+      let(:page) { double(new_record?: true, layout: double(identifier: nil)) }
+
+      context 'when identifier is main' do
+        let(:identifier) { :main }
+
+        it 'returns nil' do
+          expect(page_form_html_class).to be(nil)
+        end
+      end
+
+      context 'when identifier is content hub' do
+        let(:identifier) { :content_hub }
+
+        it 'returns page form hide' do
+          expect(page_form_html_class).to eq('page-form-hide')
+        end
+      end
+    end
+
+    context 'when page is an article' do
+      let(:layout) { double(identifier: 'article') }
+
+      context 'when identifier is main' do
+        let(:identifier) { :main }
+
+        it 'returns nil' do
+          expect(page_form_html_class).to be(nil)
+        end
+      end
+
+      context 'when identifier is content hub' do
+        let(:identifier) { :content_hub }
+
+        it 'returns page form hide' do
+          expect(page_form_html_class).to eq('page-form-hide')
+        end
+      end
+    end
+
+    context 'when page is content hub' do
+      let(:layout) { double(identifier: 'content_hub') }
+
+      context 'when identifier is main' do
+        let(:identifier) { :main }
+
+        it 'returns page form hide' do
+          expect(page_form_html_class).to eq('page-form-hide')
+        end
+      end
+
+      context 'when identifier is content hub' do
+        let(:identifier) { :content_hub }
+
+        it 'returns nil' do
+          expect(page_form_html_class).to be(nil)
+        end
+      end
+    end
+  end
+
   describe '#page_form_component' do
     let(:display) { true }
 

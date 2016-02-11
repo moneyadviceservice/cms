@@ -34,9 +34,9 @@
 
     - @page.site.layouts.pluck(:identifier).each do |identifier|
       - if lookup_context.exists? "#{identifier}", ['pages/form_blocks'], true
-        = render partial: "pages/form_blocks/#{identifier}"
+        = render partial: "pages/form_blocks/#{identifier}", locals: { identifier: identifier }
 
-    = render partial: 'form_blocks'
+    = render partial: 'form_blocks', locals: { identifier: :main }
 
     = render 'scheduler', object: form
     = render 'footer_bar', object: form
