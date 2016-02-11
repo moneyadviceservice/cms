@@ -17,14 +17,17 @@ class CategorySerializer < ActiveModel::Serializer
 
   def small_image_url
     return unless small_image?
-
-    URI.join(ActionController::Base.asset_host, object.small_image.try(:file).try(:url).to_s).to_s
+    asset_url_for(:small_image)
   end
 
   def large_image_url
     return unless large_image?
+    asset_url_for(:large_image)
+  end
 
-    URI.join(ActionController::Base.asset_host, object.large_image.try(:file).try(:url).to_s).to_s
+  def asset_url_for(asset)
+    image_url = object.send(asset).try(:file).try(:url).to_s
+    URI.join(ActionController::Base.asset_host, image_url).to_s
   end
 
   def category_promos
