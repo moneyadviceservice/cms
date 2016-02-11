@@ -41,7 +41,7 @@ describe BlockSerializer do
     let(:blocks_attributes) { [{ identifier: 'content', content: 'Last published content' }] }
     let(:data) { { previous_event: 'published', blocks_attributes: blocks_attributes } }
     let(:revisions) { Comfy::Cms::Revision.new(data: data) }
-    let(:page) { Comfy::Cms::Page.new(state: 'published_being_edited', revisions: [revisions]) }
+    let(:page) { Comfy::Cms::Page.new(state: 'published_being_edited', revisions: [revisions], active_revision: revisions) }
 
     it 'returns the last published content' do
       expect(subject).to eq("<p>Last published content</p>\n")
@@ -62,7 +62,7 @@ describe BlockSerializer do
     let(:blocks_attributes) { [{ identifier: 'content', content: 'Last published content' }] }
     let(:data) { { previous_event: 'published', blocks_attributes: blocks_attributes } }
     let(:revisions) { Comfy::Cms::Revision.new(data: data) }
-    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: future_date, revisions: [revisions]) }
+    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: future_date, revisions: [revisions], active_revision: revisions) }
 
     it 'returns the last published revision content' do
       expect(subject).to eq("<p>Last published content</p>\n")

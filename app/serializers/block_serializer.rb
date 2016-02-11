@@ -27,11 +27,7 @@ class BlockSerializer < ActiveModel::Serializer
   end
 
   def published_block_attributes
-    (last_published_revision.try(:data) || {}).fetch(:blocks_attributes, [])
-  end
-
-  def last_published_revision
-    object.blockable.revisions.find { |r| r.data[:previous_event] == 'published' }
+    (object.blockable.active_revision.try(:data) || {}).fetch(:blocks_attributes, [])
   end
 
   def render_content_directly?

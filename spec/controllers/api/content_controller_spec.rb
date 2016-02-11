@@ -145,11 +145,8 @@ RSpec.describe API::ContentController, type: :request do
                         layout: article_layout,
                         full_path: '/')
         object.blocks.create(identifier: 'content', content: 'stuff')
-        object.revisions.create(data: {
-                                  previous_event: 'published',
-                                  event: 'unpublished',
-                                  blocks_attributes: [{ identifier: 'content', content: '## title' }]
-                                })
+        object.revisions.create(data: { previous_event: 'published', event: 'unpublished', blocks_attributes: [{ identifier: 'content', content: '## title' }]})
+        object.update_column(:active_revision_id, object.revisions.first.id)
         object
       end
 
