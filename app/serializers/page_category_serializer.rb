@@ -20,6 +20,6 @@ class PageCategorySerializer < ActiveModel::Serializer
   end
 
   def guide
-    {'article' => 'guide'}[object.layout.identifier]
+    { 'article' => 'guide' }[object.layout.identifier]
   end
 end

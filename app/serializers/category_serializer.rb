@@ -16,15 +16,18 @@ class CategorySerializer < ActiveModel::Serializer
   end
 
   def small_image_url
-    if has_small_image?
-      URI.join(ActionController::Base.asset_host, object.small_image.try(:file).try(:url).to_s).to_s
-    end
+    return unless small_image?
+    asset_url_for(:small_image)
   end
 
   def large_image_url
-    if has_large_image?
-      URI.join(ActionController::Base.asset_host, object.large_image.try(:file).try(:url).to_s).to_s
-    end
+    return unless large_image?
+    asset_url_for(:large_image)
+  end
+
+  def asset_url_for(asset)
+    image_url = object.send(asset).try(:file).try(:url).to_s
+    URI.join(ActionController::Base.asset_host, image_url).to_s
   end
 
   def category_promos
@@ -70,12 +73,11 @@ class CategorySerializer < ActiveModel::Serializer
     object.third_level_navigation
   end
 
-  def has_small_image?
+  def small_image?
     object.small_image
   end
 
-  def has_large_image?
+  def large_image?
     object.large_image
   end
-
 end

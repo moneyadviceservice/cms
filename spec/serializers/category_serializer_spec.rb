@@ -2,14 +2,14 @@ describe CategorySerializer do
   let(:child_categories) { nil }
 
   let(:category) do
-    build(:category, {
-      label: 'test',
-      title_en: 'en_title',
-      title_cy: 'cy_title',
-      description_en: 'description_en',
-      description_cy: 'description_cy',
-      third_level_navigation: true
-    })
+    build(:category,
+          label: 'test',
+          title_en: 'en_title',
+          title_cy: 'cy_title',
+          description_en: 'description_en',
+          description_cy: 'description_cy',
+          third_level_navigation: true
+         )
   end
 
   subject { described_class.new(category, scope: scope) }

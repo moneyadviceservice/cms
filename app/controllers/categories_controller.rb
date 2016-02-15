@@ -46,21 +46,11 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
 
   def category_params
     params.require(:comfy_cms_category).permit(
-      :label,
-      :parent_id,
-      :title_en,
-      :title_cy,
-      :description_en,
-      :description_cy,
-      :ordinal,
-      :navigation,
-      :third_level_navigation,
-      :site_id,
-      :categorized_type,
-      :large_image_id,
-      :small_image_id,
-      :links_attributes => [:text, :url, :locale, :id, :_destroy],
-      :category_promos_attributes => [:promo_type, :title, :description, :locale, :id, :_destroy, :url]
+      :label, :parent_id, :title_en, :title_cy, :description_en,
+      :description_cy, :ordinal, :navigation, :third_level_navigation,
+      :site_id, :categorized_type, :large_image_id, :small_image_id,
+      links_attributes: [:text, :url, :locale, :id, :_destroy],
+      category_promos_attributes: [:promo_type, :title, :description, :locale, :id, :_destroy, :url]
     )
   end
 

@@ -24,13 +24,11 @@ module API
     end
 
     def validate_locale
-      begin
-        yield
-      rescue InvalidLocale
-        render json: {
-          error: "Unaccepted locale (must be #{accepted_locales.join(' ')})"
-        }, status: 400
-      end
+      yield
+    rescue InvalidLocale
+      render json: {
+        error: "Unaccepted locale (must be #{accepted_locales.join(' ')})"
+      }, status: 400
     end
 
     def accepted_locales

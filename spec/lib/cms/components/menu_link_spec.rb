@@ -42,7 +42,7 @@ RSpec.describe Cms::Components::MenuLink do
     end
   end
 
-  describe "#link_class" do
+  describe '#link_class' do
     context 'when it has a custom class' do
       subject(:menu_link) { described_class.new(custom_class: 'nav-primary__text--logo') }
 

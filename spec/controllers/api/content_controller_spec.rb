@@ -22,14 +22,32 @@ RSpec.describe API::ContentController, type: :request do
     context 'when published videos' do
       let(:video_layout) { create(:layout, :video, site: site) }
       let!(:page) do
-        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'published', layout: video_layout, full_path: '/')
+        object = create(:page,
+                        label: 'Borrow',
+                        slug: 'borrow',
+                        site: site,
+                        state: 'published',
+                        layout: video_layout,
+                        full_path: '/')
         object.blocks.create(identifier: 'content', content: '## title')
         object
       end
 
       before :each do
-        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'draft', layout: video_layout, full_path: '/')
-        create(:page, label: 'Borrow v3', slug: 'borrow-v3', site: site, state: 'published', layout: article_layout, full_path: '/')
+        create(:page,
+               label: 'Borrow v2',
+               slug: 'borrow-v2',
+               site: site,
+               state: 'draft',
+               layout: video_layout,
+               full_path: '/')
+        create(:page,
+               label: 'Borrow v3',
+               slug: 'borrow-v3',
+               site: site,
+               state: 'published',
+               layout: article_layout,
+               full_path: '/')
       end
 
       it 'returns published videos' do
@@ -58,13 +76,25 @@ RSpec.describe API::ContentController, type: :request do
     context 'when published articles' do
       let(:article_layout) { create(:layout, :article, site: site) }
       let!(:page) do
-        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'published', layout: article_layout, full_path: '/')
+        object = create(:page,
+                        label: 'Borrow',
+                        slug: 'borrow',
+                        site: site,
+                        state: 'published',
+                        layout: article_layout,
+                        full_path: '/')
         object.blocks.create(identifier: 'content', content: '## title')
         object
       end
 
       before :each do
-        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'draft', layout: article_layout, full_path: '/')
+        create(:page,
+               label: 'Borrow v2',
+               slug: 'borrow-v2',
+               site: site,
+               state: 'draft',
+               layout: article_layout,
+               full_path: '/')
       end
 
       it 'returns published articles' do
@@ -87,7 +117,13 @@ RSpec.describe API::ContentController, type: :request do
       let(:video_layout) { create(:layout, :video, site: site) }
 
       before :each do
-        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'unpublished', layout: video_layout, full_path: '/')
+        object = create(:page,
+                        label: 'Borrow',
+                        slug: 'borrow',
+                        site: site,
+                        state: 'unpublished',
+                        layout: video_layout,
+                        full_path: '/')
         object.blocks.create(identifier: 'content', content: '## title')
         object
       end
@@ -101,14 +137,30 @@ RSpec.describe API::ContentController, type: :request do
     context 'when unpublished articles' do
       let(:article_layout) { create(:layout, :article, site: site) }
       let!(:page) do
-        object = create(:page, label: 'Borrow', slug: 'borrow', site: site, state: 'unpublished', layout: article_layout, full_path: '/')
+        object = create(:page,
+                        label: 'Borrow',
+                        slug: 'borrow',
+                        site: site,
+                        state: 'unpublished',
+                        layout: article_layout,
+                        full_path: '/')
         object.blocks.create(identifier: 'content', content: 'stuff')
-        object.revisions.create(data: {previous_event: 'published', event: 'unpublished', blocks_attributes: [{ identifier: 'content', content: "## title" }]})
+        object.revisions.create(data: {
+                                  previous_event: 'published',
+                                  event: 'unpublished',
+                                  blocks_attributes: [{ identifier: 'content', content: '## title' }]
+                                })
         object
       end
 
       before :each do
-        create(:page, label: 'Borrow v2', slug: 'borrow-v2', site: site, state: 'published', layout: article_layout, full_path: '/')
+        create(:page,
+               label: 'Borrow v2',
+               slug: 'borrow-v2',
+               site: site,
+               state: 'published',
+               layout: article_layout,
+               full_path: '/')
       end
 
       it 'returns unpublished articles' do

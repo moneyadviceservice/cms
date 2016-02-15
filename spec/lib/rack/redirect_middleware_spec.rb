@@ -6,7 +6,7 @@ describe Rack::RedirectMiddleware::Responder do
   end
 
   def root_app
-    lambda { |env| [200, {}, "root app"] }
+    -> (_env) { [200, {}, 'root app'] }
   end
 
   describe '#call' do
@@ -35,7 +35,7 @@ describe Rack::RedirectMiddleware::Responder do
       end
     end
 
-    extensions = %w{ aspx pdf html }
+    extensions = %w(aspx pdf html)
 
     extensions.each do |extension|
       context "when #{extension} redirect exists" do
