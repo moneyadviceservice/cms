@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 ComfortableMexicanSofa.configure do |config|
+  # TODO Change this stuff to use config_for gem unless updating Rails to 4.2
   preview_domain = if ENV['MAS_ENVIRONMENT'] == 'qa'
                      'qa.test.moneyadviceservice.org.uk'
                    else
@@ -33,8 +34,15 @@ ComfortableMexicanSofa.configure do |config|
   # filesystem see: http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/Filesystem
   # If you are using S3 and HTTPS, pass :s3_protocol => '' to have URLs that use the protocol of the page
   config.upload_file_options = {
-    url: '/system/:attachment/:id_partition/:style/:filename',
-    styles: { cms_medium: '160x160' }
+    azure_credentials: {
+      access_key: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
+      container: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_CONTAINER'],
+      storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
+    },
+    path: ':attachment/:id_partition/:style/:filename',
+    storage: azure,
+    styles: { cms_medium: '160x160' },
+    url: ':azure_path_url'
   }
 
   # Sofa allows you to setup entire site from files. Database is updated with each
