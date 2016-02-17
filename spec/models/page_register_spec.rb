@@ -63,16 +63,6 @@ RSpec.describe PageRegister do
               .to include('Insufficient permissions to change')
           end
         end
-
-        context 'trying to schedule an existing page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'schedule' } }
-
-          it 'updates the page' do
-            expect(page).to receive(:update_state!)
-            subject.save
-          end
-        end
       end
 
       context 'new page record' do

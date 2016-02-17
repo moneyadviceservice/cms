@@ -2,7 +2,7 @@ class PageRegister
   attr_reader :page, :params, :current_user, :state_was
   delegate :new_record?, :persisted?, :save!, to: :page
 
-  ALLOWED_EDITOR_STATE_EVENTS = %w(create_initial_draft create_new_draft schedule)
+  ALLOWED_EDITOR_STATE_EVENTS = %w(create_initial_draft create_new_draft)
 
   def initialize(page, params: params, current_user: current_user)
     @page                  = page
