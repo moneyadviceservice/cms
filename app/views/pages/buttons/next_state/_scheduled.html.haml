@@ -1,0 +1,13 @@
+- if @page.scheduled_on <= Time.current
+  .menu__item
+    = button_tag value: :publish_changes, type: :submit, name: :state_event, class: "menu__action t-publish_changes" do
+      Publish changes
+
+  .menu__item
+    = button_tag value: :unpublish, type: :submit, name: :state_event, class: "menu__action t-unpublish" do
+      Unpublish
+
+- else
+  .menu__item
+    = button_tag value: :publish_changes, type: :submit, name: :state_event, class: "menu__action t-publish_changes" do
+      Publish now

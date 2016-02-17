@@ -28,8 +28,7 @@ module PagesHelper
   end
 
   def display_additional_button_menu?(page, user)
-    return false if user.editor? || page_state_buttons(page).empty?
-    page.publishable?
+    !(user.editor? || page.unsaved? || page.unpublished?)
   end
 
   def display_metadata_form_fields?(page)

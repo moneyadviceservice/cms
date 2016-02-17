@@ -1,0 +1,11 @@
+.menu__item
+  = button_tag value: :publish_changes, type: :submit, name: :state_event, class: "menu__action t-publish_changes" do
+    Publish changes
+
+.menu__item
+  = button_tag value: :schedule, type: :submit, name: :state_event, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "menu__action t-schedule" do
+    Schedule
+
+.menu__item
+  = button_tag value: :unpublish, type: :submit, name: :state_event, class: "menu__action t-unpublish" do
+    Unpublish

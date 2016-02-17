@@ -1,0 +1,11 @@
+.menu__item
+  = button_tag value: :publish, type: :submit, name: :state_event, class: "menu__action t-publish" do
+    Publish
+
+.menu__item
+  = button_tag value: :schedule, type: :submit, name: :state_event, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "menu__action t-schedule" do
+    Schedule
+
+.menu__item
+  = button_tag value: :delete_page, type: :submit, name: :state_event, data: { confirm: 'Are you sure?' }, class: "menu__action t-delete" do
+    Delete

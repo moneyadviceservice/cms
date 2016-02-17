@@ -23,21 +23,16 @@
 
       %span.nav-article__item.nav-article__item--right
         %span.button-menu
-          - main_state_button(@page).each do |state_event|
-            = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "button--action t-#{state_event[:value]}" do
-              %span.button__text
-                = state_event[:label]
-            - if display_additional_button_menu?(@page, current_user)
-              %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
-                %span.button__icon.fa.fa-caret-up
+          = render "pages/buttons/main_state/#{@page.state}"
+          - if display_additional_button_menu?(@page, current_user)
+            %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
+              %span.button__icon.fa.fa-caret-up
 
-        - unless current_user.editor?
+        - if display_additional_button_menu?(@page, current_user)
           .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
             .popover__inner
               .menu
                 .menu__body
-                  - page_state_buttons(@page).each do |state_event|
-                    .menu__item
-                      = button_tag state_event[:label], value: state_event[:value], data: state_event[:data], type: 'submit', name: 'state_event', class: "menu__action t-#{state_event[:value]}" do
-                        =state_event[:label]
+                  = render "pages/buttons/next_state/#{@page.state}"
+
             .popover__pointer
