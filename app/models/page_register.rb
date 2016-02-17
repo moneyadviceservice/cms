@@ -74,7 +74,7 @@ class PageRegister
   end
 
   def editor_can_perform_event?
-    %w(save_changes save_unsaved).include? state_event
+    %w(save_changes save_unsaved save_draft_changes).include? state_event
   end
 
   def update_state_if_new_page
