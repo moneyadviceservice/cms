@@ -18,6 +18,7 @@ module UI::Pages
     element :save_changes, 'button[type="submit"][value="save_changes_as_draft"]'
     element :delete_page, '.t-delete_page'
     element :schedule, '.t-schedule'
+    element :save_changes_button, '.t-save_changes'
     element :category_remove, '.search-choice-close'
     element :category_chosen, '#categories_chosen .chosen-choices'
     elements :categories_selected, '.t-categories-select > option[selected]'
