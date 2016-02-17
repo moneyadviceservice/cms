@@ -42,6 +42,16 @@ RSpec.describe PageRegister do
           end
         end
 
+        context 'trying to save changes to an existing PUBLISHED page' do
+          let(:page) { FactoryGirl.create(:page) }
+          let(:params) { { state_event: 'save_draft_changes' } }
+
+          it 'updates the page' do
+            expect(page).to receive(:update_state!)
+            subject.save
+          end
+        end
+
         context 'trying to publish an existing page' do
           let(:page) { FactoryGirl.create(:page) }
           let(:params) { { state_event: 'publish' } }
@@ -200,6 +210,53 @@ RSpec.describe PageRegister do
           end
         end
       end
+
+      context 'existing PUBLISHED page record' do
+        let(:page) { FactoryGirl.create(:page) }
+
+        context 'PageRegister has state_event "save_unsaved"' do
+          let(:params) { { state_event: 'save_draft_changes' } }
+
+          it 'updates the state of the page' do
+            expect(page).to receive(:update_state!).with('save_draft_changes')
+            subject.save
+          end
+
+          it 'creates a revision' do
+            subject.save
+            expect(subject).to have_received(:create_revision)
+          end
+        end
+
+        context 'PageRegister has state_event which is not "save_draft_changes"' do
+          let(:params) { { state_event: 'publish' } }
+
+          it 'updates the state of the page' do
+            expect(page).to receive(:update_state!).with('publish')
+            subject.save
+          end
+
+          it 'creates a revision' do
+            subject.save
+            expect(subject).to have_received(:create_revision)
+          end
+        end
+
+        context 'PageRegister has no state_event' do
+          let(:params) { {} }
+
+          it 'does not update the state of the page' do
+            expect(page).not_to receive(:update_state!)
+            subject.save
+          end
+
+          it 'creates a revision' do
+            subject.save
+            expect(subject).to have_received(:create_revision)
+          end
+        end
+      end
+
     end
   end
 end
