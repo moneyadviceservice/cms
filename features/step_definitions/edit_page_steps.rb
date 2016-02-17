@@ -18,7 +18,7 @@ Then(/^I should not be able to see live draft article$/) do
 end
 
 Given(/^I have an articles with unpublished changes$/) do
-  edit_page.load(site: cms_site.id, page: cms_draft_page.id)
+  edit_page.load(site: cms_site.id, page: cms_new_draft_page.id)
   edit_page.content.set("New Published Content")
   edit_page.publish.click
   edit_page.content.set("New unpublished Content")
@@ -33,8 +33,8 @@ Then(/^I should see the published Article content$/) do
   expect(JSON.parse(live_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to include('New Published Content')
 end
 
-When(/^I am working on a Draft Article$/) do
-  edit_page.load(site: cms_site.id, page: cms_draft_page.id)
+When(/^I am working on a new draft article$/) do
+  edit_page.load(site: cms_site.id, page: cms_new_draft_page.id)
 end
 
 When(/^I am working on a published article$/) do
@@ -64,8 +64,8 @@ Given(/^there is an English and Welsh site$/) do
   cms_sites
 end
 
-When(/^I am working on a Draft Article on the "(.*?)" site$/) do |locale|
-  cms_page(locale: locale).save_unsaved!
+When(/^I am working on a new draft article on the "(.*?)" site$/) do |locale|
+  cms_page(locale: locale).create_initial_draft!
   step("I am logged in")
   edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
 end

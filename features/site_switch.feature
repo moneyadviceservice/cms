@@ -6,7 +6,7 @@ Feature: Site switch
   @javascript
   Scenario Outline: Switch article site
     Given there is an English and Welsh site
-    When I am working on a Draft Article on the "<current_locale>" site
+    When I am working on a new draft article on the "<current_locale>" site
     When I switch to the "<switch_to_locale>" article
     And I should be working on the "<switch_to_locale>" article
 

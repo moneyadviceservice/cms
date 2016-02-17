@@ -308,14 +308,14 @@ RSpec.describe Comfy::Cms::Page do
 
     context 'when draft' do
       it 'is nil' do
-        subject.save_unsaved
+        subject.create_initial_draft
         expect(subject.published_at).to be_nil
       end
     end
 
     context 'when published' do
       it 'sets the published_at stamp' do
-        subject.save_unsaved
+        subject.create_initial_draft
         subject.publish
         expect(subject.published_at).to_not be_nil
       end
@@ -323,15 +323,18 @@ RSpec.describe Comfy::Cms::Page do
 
     context 'scheduled' do
       it 'leaves published_at stamp' do
-        subject.save_unsaved
+        subject.create_initial_draft
         subject.publish
-        expect { subject.schedule }.to_not change(subject, :published_at)
+        expect {
+          subject.create_new_draft
+          subject.schedule
+        }.to_not change(subject, :published_at)
       end
     end
 
     context 'been unpublished' do
       it 'leaves published_at stamp' do
-        subject.save_unsaved
+        subject.create_initial_draft
         subject.publish
         expect { subject.unpublish }.to_not change(subject, :published_at)
       end

@@ -55,11 +55,11 @@ RSpec.describe PagesController do
     let(:site)   { create(:site) }
     let(:layout) { create(:layout) }
 
-    context 'when passing the state event "save_unsaved"' do
+    context 'when passing the state event "create_initial_draft"' do
       before do
         post :create,
              site_id: site.id,
-             state_event:  'save_unsaved',
+             state_event:  'create_initial_draft',
              page: {
                label: 'Test Page',
                slug: 'test-page',
@@ -151,7 +151,7 @@ RSpec.describe PagesController do
         put :update,
             site_id:     site.id,
             id:          page.id,
-            state_event: 'save_unsaved',
+            state_event: 'create_initial_draft',
             page:        page_attributes
       end
     end
@@ -164,9 +164,9 @@ RSpec.describe PagesController do
             state_event: state_event,
             page:        page_attributes
       end
-      context 'when passes the "save_unsaved" event state from an "unsaved" page' do
+      context 'when passes the "create_initial_draft" event state from an "unsaved" page' do
         let!(:page) { create(:page, state: 'unsaved') }
-        let(:state_event) { 'save_unsaved' }
+        let(:state_event) { 'create_initial_draft' }
 
         it 'persists page as "draft"' do
           expect(assigns[:page].state).to eq 'draft'

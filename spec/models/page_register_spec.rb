@@ -24,7 +24,7 @@ RSpec.describe PageRegister do
 
         context 'trying to save an "unsaved" existing page' do
           let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'save_unsaved' } }
+          let(:params) { { state_event: 'create_initial_draft' } }
 
           it 'updates the page' do
             expect(page).to receive(:update_state!)
@@ -32,9 +32,9 @@ RSpec.describe PageRegister do
           end
         end
 
-        context 'trying to save changes as draft' do
+        context 'trying to save a new draft of a published page' do
           let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'save_changes_as_draft' } }
+          let(:params) { { state_event: 'create_new_draft' } }
 
           it 'updates the page' do
             expect(page).to receive(:update_state!)
@@ -125,11 +125,11 @@ RSpec.describe PageRegister do
       context 'new page record' do
         let(:page) { FactoryGirl.build(:page) }
 
-        context 'PageRegister has state_event "save_unsaved"' do
-          let(:params) { { state_event: 'save_unsaved' } }
+        context 'PageRegister has state_event "create_initial_draft"' do
+          let(:params) { { state_event: 'create_initial_draft' } }
 
           it 'updates the state of the page' do
-            expect(page).to receive(:update_state!).with('save_unsaved')
+            expect(page).to receive(:update_state!).with('create_initial_draft')
             subject.save
           end
 
@@ -139,7 +139,7 @@ RSpec.describe PageRegister do
           end
         end
 
-        context 'PageRegister has state_event which is not "save_unsaved"' do
+        context 'PageRegister has state_event which is not "create_initial_draft"' do
           let(:params) { { state_event: 'publish' } }
 
           it 'does not update the state of the page' do
@@ -157,11 +157,11 @@ RSpec.describe PageRegister do
       context 'existing PUBLISHED page record' do
         let(:page) { FactoryGirl.create(:page) }
 
-        context 'PageRegister has state_event "save_unsaved"' do
-          let(:params) { { state_event: 'save_unsaved' } }
+        context 'PageRegister has state_event "create_initial_draft"' do
+          let(:params) { { state_event: 'create_initial_draft' } }
 
           it 'updates the state of the page' do
-            expect(page).to receive(:update_state!).with('save_unsaved')
+            expect(page).to receive(:update_state!).with('create_initial_draft')
             subject.save
           end
 

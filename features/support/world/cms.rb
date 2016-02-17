@@ -34,15 +34,15 @@ module World
       self.a_page[locale]
     end
 
-    def cms_draft_page
+    def cms_new_draft_page
       cms_site
-      cms_page.save_unsaved!
+      cms_page.create_initial_draft!
       log_me_in!
       cms_page
     end
 
     def cms_published_page
-      cms_draft_page.publish!
+      cms_new_draft_page.publish!
       cms_page
     end
 
