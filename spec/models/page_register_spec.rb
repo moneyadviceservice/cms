@@ -32,16 +32,6 @@ RSpec.describe PageRegister do
           end
         end
 
-        context 'trying to save changes to an existing PUBLISHED page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'save_draft_changes' } }
-
-          it 'updates the page' do
-            expect(page).to receive(:update_state!)
-            subject.save
-          end
-        end
-
         context 'trying to save changes as draft' do
           let(:page) { FactoryGirl.create(:page) }
           let(:params) { { state_event: 'save_changes_as_draft' } }
