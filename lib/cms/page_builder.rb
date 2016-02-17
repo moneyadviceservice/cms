@@ -1,5 +1,11 @@
 module Cms
   class PageBuilder
+    def self.add_example_article!
+      site   = Comfy::Cms::Site.find_by(label: 'en')
+      layout = site.layouts.find_by(identifier: 'article')
+      Comfy::Cms::Page.create!(slug: 'example-article', site: site, layout: layout)
+    end
+
     def self.add_home_page!
       site   = Comfy::Cms::Site.find_by(label: 'en')
       layout = site.layouts.find_by(identifier: 'home_page')

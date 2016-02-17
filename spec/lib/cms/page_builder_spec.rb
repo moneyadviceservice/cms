@@ -1,6 +1,19 @@
 RSpec.describe Cms::PageBuilder do
   let!(:site)   { create(:site) }
-  let!(:layout) { create(:layout, identifier: 'home_page', site: site) }
+  let!(:article_layout) { create(:layout, identifier: 'article', site: site) }
+  let!(:home_page_layout) { create(:layout, identifier: 'home_page', site: site) }
+
+  describe '.add_example_article!' do
+    before { Cms::PageBuilder.add_example_article! }
+
+    it 'adds a page' do
+      expect(Comfy::Cms::Page.count).to eq(1)
+    end
+
+    it 'adds a page using the "article" layout' do
+      expect(Comfy::Cms::Page.first.layout).to eq(article_layout)
+    end
+  end
 
   describe '.add_home_page!' do
     let(:page) { Comfy::Cms::Page.first }
@@ -12,7 +25,7 @@ RSpec.describe Cms::PageBuilder do
     end
 
     it 'adds a page using the "home_page" layout' do
-      expect(page.layout).to eq(layout)
+      expect(page.layout).to eq(home_page_layout)
     end
 
     it 'adds the page to the english site' do
