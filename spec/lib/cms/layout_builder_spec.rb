@@ -16,7 +16,7 @@ RSpec.describe Cms::LayoutBuilder do
         expect(layout.label).to eq('Home Page')
       end
 
-      it 'sets the label for the layout to be "Home Page"' do
+      it 'sets the identifier for the layout to be home_page' do
         expect(layout.identifier).to eq('home_page')
       end
 
@@ -89,4 +89,50 @@ RSpec.describe Cms::LayoutBuilder do
       end
     end
   end
+
+  describe '.add_contact_panels!' do
+    before { Cms::LayoutBuilder.add_contact_panels! }
+
+    context 'English site' do
+      let(:layout) { english_site.layouts.reload.first }
+
+      it 'creates a layout for the English site' do
+        expect(english_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Contact Panels"' do
+        expect(layout.label).to eq('Contact Panels')
+      end
+
+      it 'sets the identifier for the layout to be contact_panels' do
+        expect(layout.identifier).to eq('contact_panels')
+      end
+
+      it 'defines the content areas for the home page layout' do
+        expect(layout.content).to include('{{ cms:page:web_chat_times }}')
+      end
+    end
+
+    context 'Welsh site' do
+      let(:layout) { welsh_site.layouts.reload.first }
+
+      it 'creates a layout for the Welsh site' do
+        expect(welsh_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Contact Panels"' do
+        expect(layout.label).to eq('Contact Panels')
+      end
+
+      it 'sets the identifier for the layout to be contact_panels' do
+        expect(layout.identifier).to eq('contact_panels')
+      end
+
+      it 'uses the same content areas as the english layout' do
+        english_layout = english_site.layouts.reload.first
+        expect(layout.content).to eq(english_layout.content)
+      end
+    end
+  end
+
 end
