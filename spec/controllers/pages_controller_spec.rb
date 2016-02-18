@@ -1,272 +1,329 @@
 RSpec.describe PagesController do
-  let(:site) { page.site }
-  let(:current_user) { create(:user) }
+  let(:site) { create(:site) }
+  let(:layout) { create(:layout) }
+  let(:role) { :user }
+  let(:current_user) { create(:user, role: Comfy::Cms::User.roles[role]) }
   let(:last_revision) { assigns[:page].revisions.last }
 
   before do
     sign_in current_user
   end
 
-  describe 'GET /pages' do
-    let(:page) { create(:page) }
+  describe 'POST create' do
+    let(:label) { Faker::Lorem.sentence }
+    let(:slug) { Faker::Internet.slug(label, '-')}
+    let(:content) { Faker::Lorem.sentence }
 
-    context 'when searching pages' do
-      before do
-        get :index, site_id: site.id, search: page.label
-      end
-
-      it 'assigns pages using the comfy search' do
-        expect(assigns[:pages]).to contain_exactly(page)
-      end
-    end
-
-    context 'when filtering pages' do
-      let(:page) do
-        create(:page,
-               label:  'test1',
-               slug:   'test1',
-               parent: create(:child_page))
-      end
-
-      let!(:another_page) do
-        create(:page,
-               site:   page.site,
-               label:  'test2',
-               slug:   'test2',
-               parent: create(:child_page),
-               layout: create(:layout, :nested))
-      end
-
-      before do
-        get :index, site_id: site.id, layout: :nested
-      end
-
-      it 'does not assign filters variable' do
-        expect(assigns[:filters_present]).to be_falsey
-      end
-
-      it 'assigns pages filtering the results' do
-        expect(assigns[:pages]).to contain_exactly(another_page)
-      end
-    end
-  end
-
-  describe 'POST /pages' do
-    let(:site)   { create(:site) }
-    let(:layout) { create(:layout) }
-
-    context 'when passing the state event "create_initial_draft"' do
-      before do
-        post :create,
-             site_id: site.id,
-             state_event:  'create_initial_draft',
-             page: {
-               label: 'Test Page',
-               slug: 'test-page',
-               layout_id: layout.id
-             }
-      end
-
-      it 'creates a page with draft as state event' do
-        expect(assigns[:page].state).to eq 'draft'
-      end
-
-      context 'creating a revision' do
-        before do
-          assigns[:page].revisions.reload
-          expect(last_revision).to_not be nil
-        end
-
-        it 'saves the event state revision data' do
-          expect(last_revision.data).to eq(
-            event: 'draft',
-            previous_event: nil,
-            blocks_attributes: [],
-            author: {
-              id: current_user.id,
-              name: current_user.name
-            }
-          )
-        end
-      end
-    end
-
-    context 'when passing the state event "publish"' do
-      before do
-        post :create,
-             site_id: site.id,
-             state_event:  'publish',
-             page: {
-               label: 'Test Page',
-               slug: 'test-page',
-               layout_id: layout.id
-             }
-      end
-
-      it 'ignores the state event and persists as "unsaved"' do
-        expect(assigns[:page].state).to eq 'unsaved'
-      end
-    end
-
-    context 'when not passing the state event' do
-      before do
-        post :create,
-             site_id: site.id,
-             page: {
-               label: 'Test Page',
-               slug: 'test-page',
-               layout_id: layout.id
-             }
-      end
-
-      it 'persists page as "unsaved"' do
-        expect(assigns[:page].state).to eq 'unsaved'
-      end
-
-      it 'does not save any revision' do
-        expect(assigns[:page].revisions).to eq []
-      end
-    end
-  end
-
-  describe 'PUT /pages/:id' do
-    let(:page_attributes) do
+    let(:params) do
       {
-        label: 'Another label',
-        slug:  'another-slug'
+        site_id: site,
+        page: {
+          label: label,
+          slug: slug,
+          layout_id: layout
+        },
+        blocks_attributes: [
+          {
+            identifier: 'content',
+            content: content
+          }
+        ]
       }
     end
 
-    context 'mirror_suppress_from_links_recirculation! on requested page ' do
-      let!(:page) { create(:page, state: 'unsaved') }
+    context 'when it fails the permisson check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { true } }
 
-      it 'persists page as "draft"' do
-        expect_any_instance_of(Comfy::Cms::Page).to receive(:mirror_suppress_from_links_recirculation!)
+      it 'redirects to the page index' do
+        post :create, params
+        expect(response).to redirect_to(comfy_admin_cms_site_pages_path(site))
+      end
 
-        put :update,
-            site_id:     site.id,
-            id:          page.id,
-            state_event: 'create_initial_draft',
-            page:        page_attributes
+      it "shows a flash message saying you don't have sufficient permissions" do
+        post :create, params
+        expect(flash[:danger]).to eq 'Insufficient permissions to change'
       end
     end
 
-    context 'when a request is made' do
-      before do
-        put :update,
-            site_id:     site.id,
-            id:          page.id,
-            state_event: state_event,
-            page:        page_attributes
-      end
-      context 'when passes the "create_initial_draft" event state from an "unsaved" page' do
-        let!(:page) { create(:page, state: 'unsaved') }
-        let(:state_event) { 'create_initial_draft' }
+    context 'when it passes the permission check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { false } }
 
-        it 'persists page as "draft"' do
-          expect(assigns[:page].state).to eq 'draft'
+      context 'and it saves successfully' do
+        it "redirects to the article's main content edit page" do
+          post :create, params
+          page = Comfy::Cms::Page.order('id ASC').last
+          expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
         end
       end
 
-      context 'when passes the same event state from the page' do
-        let!(:page) { create(:page, state: 'published') }
-        let(:state_event) { 'publish' }
+      context 'and it does not save successfully' do
+        let(:layout) { nil }
 
-        it 'does not save any revisions' do
-          expect(assigns[:page].revisions).to eq []
-        end
-      end
-
-      context 'when passes the "publish" event state' do
-        let!(:page) { create(:page, state: 'draft') }
-        let(:state_event) { 'publish' }
-
-        it 'persists page as "published"' do
-          expect(assigns[:page].state).to eq 'published'
-        end
-
-        context 'creating revision' do
-          before do
-            assigns[:page].revisions.reload
-            expect(last_revision).to_not be nil
-          end
-
-          it 'saves the revision event and author' do
-            expect(last_revision.data.symbolize_keys).to eq(
-              event: 'published',
-              previous_event: 'draft',
-              blocks_attributes: [],
-              author: {
-                id: current_user.id,
-                name: current_user.name
-              }
-            )
-          end
-        end
-      end
-
-      context 'when changing the block attributes' do
-        let!(:page) { create(:page, state: 'published') }
-        let(:state_event) { 'publish' }
-        let(:page_attributes) do
-          {
-            label: 'Another label',
-            slug:  'another-slug',
-            blocks_attributes: {
-              '0' => {
-                content:    'block-content',
-                identifier: 'content'
-              }
-            }
-          }
-        end
-
-        context 'creating revision' do
-          before do
-            assigns[:page].revisions.reload
-            expect(last_revision).to_not be nil
-          end
-
-          it 'saves the block attributes content in data revision' do
-            expect(last_revision.data.symbolize_keys).to eq(
-              author: {
-                id: current_user.id,
-                name: current_user.name
-              },
-              blocks_attributes: [
-                {
-                  identifier: 'content', content: nil
-                }
-              ]
-            )
-          end
-        end
-      end
-
-      context 'when passes the "delete_page" event state' do
-        let!(:page) { create(:page, state: 'draft') }
-        let(:state_event) { 'delete_page' }
-
-        it 'deletes the page' do
-          expect(assigns[:page]).to_not be_persisted
-        end
-      end
-
-      context 'when does not pass any event state' do
-        let!(:page) { create(:page, state: 'draft') }
-        let(:state_event) { nil }
-
-        it 'persists page attributes' do
-          expect(assigns[:page].attributes.symbolize_keys).to include(
-            label: 'Another label',
-            slug:  'another-slug'
-          )
-        end
-
-        it 'does not save any revisions' do
-          expect(assigns[:page].revisions).to eq []
+        it 're-renders the edit template' do
+          post :create, params
+          expect(response).to render_template(:new)
         end
       end
     end
   end
+
+  describe 'PUT update' do
+    let(:original_content) { Faker::Lorem.sentence }
+    let(:state) { 'published' }
+    let(:page) { create(:page, site: site, state: state) }
+    let!(:block) { create(:block, blockable: page, content: original_content) }
+
+    let(:params) do
+      {
+        site_id: site,
+        id: page,
+        blocks_attributes: [
+          {
+            identifier: 'content',
+            content: Faker::Lorem.sentence
+          }
+        ]
+      }
+    end
+
+    before { ActionMailer::Base.deliveries.clear }
+
+    context 'when it fails the permisson check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { true } }
+
+      it 'redirects to the page index' do
+        put :update, params
+        expect(response).to redirect_to(comfy_admin_cms_site_pages_path(site))
+      end
+
+      it "shows a flash message saying you don't have sufficient permissions" do
+        put :update, params
+        expect(flash[:danger]).to eq 'Insufficient permissions to change'
+      end
+    end
+
+    context 'when it passes the permission check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { false } }
+
+      context 'if we are updating main content' do
+        before { allow(controller).to receive(:updating_alternate_content?) { false } }
+
+        context 'and it saves successfully' do
+          it "redirects to the article's main content edit page" do
+            put :update, params
+            expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
+          end
+        end
+      end
+
+      context 'if we are updating alternate content' do
+        # Just need to be in an appropriate state to update alternate content. Strictly speaking
+        # the page should have an active_revision but we can make do without in this situation.
+        let(:state) { 'published_being_edited' }
+
+        before { allow(controller).to receive(:updating_alternate_content?) { true } }
+
+        context 'and the page actually has alternate content' do
+          before { allow_any_instance_of(AlternatePageBlocksRetriever).to receive(:blocks_attributes) { double } }
+
+          context 'and it saves successfully' do
+            it "redirects to the article's alternate content edit page" do
+              put :update, params.merge(alternate: true)
+              expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page, alternate: true))
+            end
+
+            context 'when the user is an editor' do
+              let(:role) { :editor }
+
+              it 'sends a notification email' do
+                put :update, params.merge(alternate: true)
+                expect(ActionMailer::Base.deliveries.last.subject).to include('Content updated by External Editor')
+              end
+            end
+          end
+
+          context 'and it does not save successfully' do
+            before { put :update, params.merge(alternate: true, page: { layout_id: '' }) }
+
+            it 're-renders the edit template' do
+              expect(response).to render_template(:edit)
+            end
+
+            context 'when the user is an editor' do
+              let(:role) { :editor }
+
+              it 'does not send a notification email' do
+                expect(ActionMailer::Base.deliveries).to be_empty
+              end
+            end
+          end
+        end
+
+        context 'but the page does not have alternate content' do
+          before { allow_any_instance_of(AlternatePageBlocksRetriever).to receive(:blocks_attributes) { nil } }
+
+          it "redirects to the article's main content edit page" do
+            put :update, params.merge(alternate: true)
+            expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
+          end
+
+          it "shows a flash message saying alternate content isn't available for this page" do
+            put :update, params.merge(alternate: true)
+            expect(flash[:danger]).to eq 'Alternate content is not currently available for this page'
+          end
+        end
+      end
+    end
+  end
+
+  describe 'DELETE destroy' do
+    let(:original_content) { Faker::Lorem.sentence }
+    let(:state) { 'published' }
+    let(:page) { create(:page, site: site, state: state) }
+    let!(:block) { create(:block, blockable: page, content: original_content) }
+
+    let(:params) do
+      {
+        site_id: site,
+        id: page
+      }
+    end
+
+    before { ActionMailer::Base.deliveries.clear }
+
+    context 'when it fails the permisson check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { true } }
+
+      it 'redirects to the page index' do
+        delete :destroy, params
+        expect(response).to redirect_to(comfy_admin_cms_site_pages_path(site))
+      end
+
+      it "shows a flash message saying you don't have sufficient permissions" do
+        delete :destroy, params
+        expect(flash[:danger]).to eq 'Insufficient permissions to change'
+      end
+    end
+
+    context 'when it passes the permission check' do
+      before { allow_any_instance_of(PermissionCheck).to receive(:fail?) { false } }
+
+      context 'if we are updating main content' do
+        before { allow(controller).to receive(:updating_alternate_content?) { false } }
+
+        context 'and it saves successfully' do
+          it "redirects to the article's main content edit page" do
+            delete :destroy, params
+            expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
+          end
+        end
+      end
+
+      context 'if we are deleting alternate content' do
+        before { allow(controller).to receive(:updating_alternate_content?) { true } }
+
+        context 'and the page actually has alternate content' do
+          before { allow_any_instance_of(AlternatePageBlocksRetriever).to receive(:blocks_attributes) { double } }
+
+          it "redirects to the article's main content edit page" do
+            delete :destroy, params.merge(alternate: true)
+            expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
+          end
+        end
+
+        context 'but the page does not have alternate content' do
+          before { allow_any_instance_of(AlternatePageBlocksRetriever).to receive(:blocks_attributes) { nil } }
+
+          it "redirects to the article's main content edit page" do
+            delete :destroy, params.merge(alternate: true)
+            expect(response).to redirect_to(edit_comfy_admin_cms_site_page_path(site, page))
+          end
+
+          it "shows a flash message saying alternate content isn't available for this page" do
+            delete :destroy, params.merge(alternate: true)
+            expect(flash[:danger]).to eq 'Alternate content is not currently available for this page'
+          end
+        end
+      end
+    end
+  end
+
+  describe '#updating_alternate_content?' do
+    let(:page) { create(:page, state: state) }
+
+    before { controller.instance_variable_set(:@page, page) }
+
+    subject { controller.send(:updating_alternate_content?) }
+
+    context 'when the page is "unsaved"' do
+      let(:state) { 'unsaved' }
+
+      it { should be false }
+    end
+
+    context 'when the page is "draft"' do
+      let(:state) { 'draft' }
+
+      it { should be false }
+    end
+
+    context 'when the page is "published"' do
+      let(:state) { 'published' }
+
+      it { should be false }
+    end
+
+    context 'when the page is "published_being_edited"' do
+      let(:state) { 'published_being_edited' }
+
+      context 'and the "alternate" param is not set' do
+        it { should be false }
+
+        context 'but we have just transitioned from "published"' do
+          before { controller.params[:state_event] = 'create_new_draft' }
+
+          it { should be true }
+        end
+      end
+
+      context 'and the "alternate" param is set' do
+        before { controller.params[:alternate] = true }
+
+        it { should be true }
+      end
+    end
+
+    context 'when the page is "scheduled"' do
+      let(:state) { 'scheduled' }
+
+      it { should be false }
+
+      context 'and the "alternate" param is not set' do
+        it { should be false }
+
+        context 'but we have just transitioned from a draft state' do
+          before { controller.params[:state_event] = 'schedule' }
+
+          context 'and this is a scheduled update to a live article' do
+            let(:revision) { create(:revision, record: page) }
+            before { page.update_column(:active_revision_id, revision.id) }
+
+            it { should be false }
+          end
+        end
+      end
+
+      context 'and the "alternate" param is set' do
+        before { controller.params[:alternate] = true }
+
+        context 'and this article live article' do
+          let(:revision) { create(:revision, record: page) }
+          before { page.update_column(:active_revision_id, revision.id) }
+
+          it { should be true }
+        end
+      end
+    end
+  end
+
 end

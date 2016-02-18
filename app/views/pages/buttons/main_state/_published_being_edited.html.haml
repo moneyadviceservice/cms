@@ -1,3 +1,8 @@
-= button_tag type: :submit, class: "button--action t-save_draft_changes" do
-  %span.button__text
-    Save draft changes
+- if params[:alternate]
+  = button_tag type: :submit, class: "button--action t-save_draft_changes" do
+    %span.button__text
+      Update Draft New Version
+- else
+  = button_tag type: :submit, class: "button--action t-publish" do
+    %span.button__text
+      Update Live Article

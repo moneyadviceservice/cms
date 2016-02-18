@@ -7,5 +7,5 @@
     Schedule
 
 .menu__item
-  = button_tag value: :delete_page, type: :submit, name: :state_event, data: { confirm: 'Are you sure?' }, class: "menu__action t-delete" do
+  = button_tag type: :submit, data: { dough_dialog_trigger: :remover, dough_component: 'Dialog Remover' }, class: "menu__action t-delete" do
     Delete

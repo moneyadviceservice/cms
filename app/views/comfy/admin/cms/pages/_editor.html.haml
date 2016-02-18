@@ -2,9 +2,10 @@
   = render 'comfy/admin/cms/pages/toolbar'
 
   .editor.editor--html.is-active{data: {dough_maseditor_html_container: true}}
-    .editor__content.theme.theme--dough{data: {dough_component: :WordCount, dough_wordcount_target: 'article', dough_maseditor_html_content: true}}
+    #t-editor.editor__content.theme.theme--dough{data: {dough_component: :WordCount, dough_wordcount_target: 'article', dough_maseditor_html_content: true}}
 
   .editor.editor--markdown{data: {dough_maseditor_markdown_container: true}}
-    %textarea.editor__content.editor__content--markdown{ name: "#{fieldname}[blocks_attributes][#{index}][content]", data: {dough_maseditor_markdown_content: true, dough_component: 'SnippetInserter', dough_snippetinserter_context: 'markdown-snippets'} }
-      =editor.content
-    %input{type: 'hidden', name: "#{fieldname}[blocks_attributes][#{index}][identifier]", value: 'content'}
+    %input{type: :hidden, name: "blocks_attributes[#{index}][identifier]", value: 'content'}
+    %textarea.editor__content.editor__content--markdown{ name: "blocks_attributes[#{index}][content]", data: {dough_maseditor_markdown_content: true, dough_component: 'SnippetInserter', dough_snippetinserter_context: 'markdown-snippets'} }
+      - if @blocks_attributes.present?
+        = @blocks_attributes[index][:content]

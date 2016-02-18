@@ -34,15 +34,65 @@ module World
       self.a_page[locale]
     end
 
+    def cms_new_unsaved_page
+      cms_site
+      cms_page.save!
+      log_me_in!
+      cms_page
+    end
+
     def cms_new_draft_page
       cms_site
-      cms_page.create_initial_draft!
+      cms_page.create_initial_draft
+      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
       log_me_in!
       cms_page
     end
 
     def cms_published_page
-      cms_new_draft_page.publish!
+      cms_new_draft_page
+
+      cms_page.publish
+      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
+      cms_page
+    end
+
+    def cms_draft_version_of_page
+      cms_published_page
+
+      cms_page.create_new_draft
+      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
+      log_me_in!
+      cms_page
+    end
+
+    def cms_scheduled_page(live = false)
+      cms_new_draft_page
+
+      cms_page.schedule
+      cms_page.scheduled_on = live ? 1.minute.ago : 1.minute.from_now
+      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
+      log_me_in!
+      cms_page
+    end
+
+    def cms_scheduled_new_version_of_page(live = false)
+      cms_published_page
+
+      cms_page.create_new_draft
+      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
+      cms_page.schedule
+      cms_page.scheduled_on = 1.minute.from_now
+      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+
+      cms_page.update_column(:scheduled_on, 1.minute.ago) if live == true
+
+      log_me_in!
       cms_page
     end
 

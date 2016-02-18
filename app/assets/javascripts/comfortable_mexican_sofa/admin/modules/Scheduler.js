@@ -11,6 +11,7 @@ define([
       defaultConfig = {
         selectors: {
           scheduleButton: '[data-dough-dialog-trigger=scheduler]',
+          alternateTag: '[js-alternate]',
           formToSubmit: '[data-dough-scheduler-form]',
           scheduleTrigger: '[data-dough-scheduler-trigger]',
           scheduledDate: '[data-dough-scheduler-date]',
@@ -37,6 +38,7 @@ define([
 
   SchedulerProto._cacheComponentElements = function() {
     this.$scheduleButton  = $(this.config.selectors.scheduleButton);
+    this.$alternateTag    = $(this.config.selectors.alternateTag);
     this.$formToSubmit    = $(this.config.selectors.formToSubmit);
     this.$scheduledDate   = $(this.config.selectors.scheduledDate);
     this.$scheduledTime   = $(this.config.selectors.scheduledTime);
@@ -55,7 +57,15 @@ define([
 
   SchedulerProto._handleFormSubmit = function(e) {
     this.$scheduledOn.val(this.$scheduledDate.val() + "T" + this.$scheduledTime.val());
-    this.$formToSubmit.append($("<input>").attr("type", "hidden").attr("name", "state_event").val("schedule"));
+
+    if (this.$alternateTag.length > 1) {
+      this.$formToSubmit.append($("<input>").attr("type", "hidden").attr("name", this.$alternateTag.name));
+    }
+
+    if (this.$scheduleButton.val().length > 0) {
+      this.$formToSubmit.append($("<input>").attr("type", "hidden").attr("name", "state_event").val(this.$scheduleButton.val()));
+    }
+
     this.$formToSubmit.submit();
   };
 

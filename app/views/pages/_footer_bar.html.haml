@@ -24,11 +24,11 @@
       %span.nav-article__item.nav-article__item--right
         %span.button-menu
           = render "pages/buttons/main_state/#{@page.state}"
-          - if display_additional_button_menu?(@page, current_user)
+          - if display_additional_button_menu?(@page, current_user) && render("pages/buttons/next_state/#{@page.state}").present?
             %span{:data => {:'dough-component' => 'Collapsable', :'dough-collapsable-trigger' => 1, :'dough-collapsable-config' => '{"hideOnBlur": "true"}'}}
               %span.button__icon.fa.fa-caret-up
 
-        - if display_additional_button_menu?(@page, current_user)
+        - if display_additional_button_menu?(@page, current_user) && render("pages/buttons/next_state/#{@page.state}").present?
           .popover.popover--options.popover--top{:data => { :'dough-collapsable-target' => 1 }}
             .popover__inner
               .menu

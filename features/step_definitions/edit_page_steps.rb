@@ -22,7 +22,7 @@ Given(/^I have an articles with unpublished changes$/) do
   edit_page.content.set("New Published Content")
   edit_page.publish.click
   edit_page.content.set("New unpublished Content")
-  edit_page.save_changes.click
+  edit_page.create_new_draft.click
 end
 
 When(/^I view the live published article$/) do
@@ -33,12 +33,36 @@ Then(/^I should see the published Article content$/) do
   expect(JSON.parse(live_page.text)['blocks'].find {|b| b["identifier"] == 'content'}['content']).to include('New Published Content')
 end
 
-When(/^I am working on a new draft article$/) do
+When(/^I (?:am working on|edit) a new unsaved article$/) do
+  edit_page.load(site: cms_site.id, page: cms_new_unsaved_page.id)
+end
+
+When(/^I (?:am working on|edit) a new draft article$/) do
   edit_page.load(site: cms_site.id, page: cms_new_draft_page.id)
 end
 
-When(/^I am working on a published article$/) do
+When(/^I (?:am working on|edit) a published article$/) do
   edit_page.load(site: cms_site.id, page: cms_published_page.id)
+end
+
+When(/^I (?:am working on|edit) a scheduled but not live article$/) do
+  edit_page.load(site: cms_site.id, page: cms_scheduled_page.id)
+end
+
+When(/^I (?:am working on|edit) a scheduled and live article$/) do
+  edit_page.load(site: cms_site.id, page: cms_scheduled_page(true).id)
+end
+
+When(/^I (?:am working on|edit) a draft new version of an article$/) do
+  alternate_edit_page.load(site: cms_site.id, page: cms_draft_version_of_page.id)
+end
+
+When(/^I (?:am working on|edit) a scheduled update to an article$/) do
+  alternate_edit_page.load(site: cms_site.id, page: cms_scheduled_new_version_of_page.id)
+end
+
+When(/^I (?:am working on|edit) a live scheduled update to an article$/) do
+  edit_page.load(site: cms_site.id, page: cms_scheduled_new_version_of_page(true).id)
 end
 
 When(/^I publish the article$/) do
@@ -46,7 +70,7 @@ When(/^I publish the article$/) do
 end
 
 When(/^I save changes to the page$/) do
-  edit_page.save_changes_button.click
+  edit_page.save_changes_to_draft.click
 end
 
 Then(/^I should be able to publish it$/) do
@@ -64,7 +88,7 @@ Given(/^there is an English and Welsh site$/) do
   cms_sites
 end
 
-When(/^I am working on a new draft article on the "(.*?)" site$/) do |locale|
+When(/^I (?:am working on|edit) a new draft article on the "(.*?)" site$/) do |locale|
   cms_page(locale: locale).create_initial_draft!
   step("I am logged in")
   edit_page.load(site: cms_site(locale).id, page: cms_page(locale: locale).id)
@@ -101,10 +125,6 @@ end
 
 Then(/^I should not be able to delete the article$/) do
   expect(edit_page).not_to have_delete_page
-end
-
-Then(/^I should not be able to publish the article$/) do
-  expect(edit_page).not_to have_publish
 end
 
 Then(/^I should be able to schedule the article$/) do

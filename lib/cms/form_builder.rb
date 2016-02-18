@@ -26,4 +26,38 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
 
     markup.html_safe
   end
+
+  # This is overriding comfy with an almost identical method, just that the
+  # name attributes are different - "blocks_attributes[#{index}]" instead of
+  # "#{fieldname}[blocks_attributes][#{index}]".
+  #
+  # This is because we handle the block attributes independently from the page
+  # attributes in forms.
+  def default_tag_field(tag, index, method = :text_field_tag, options = {})
+
+  label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
+  css_class   = tag.class.to_s.demodulize.underscore
+  content     = ''
+  case method
+  when :file_field_tag
+    input_params = {:id => nil}
+    name = "blocks_attributes[#{index}][content]"
+
+    if options.delete(:multiple)
+      input_params.merge!(:multiple => true)
+      name << '[]'
+    end
+
+    content << @template.send(method, name, input_params)
+    content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
+  else
+    options[:class] = ' form-control'
+    content << @template.send(method, "blocks_attributes[#{index}][content]", tag.content, options)
+  end
+  content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+
+  form_group :label => {:text => label} do
+    content.html_safe
+  end
+end
 end

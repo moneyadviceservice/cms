@@ -1,7 +1,18 @@
-.menu__item
-  = button_tag value: :schedule, type: :submit, name: :state_event, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "menu__action t-schedule" do
-    Schedule
+- if params[:alternate].nil?
+  - if !has_alternate_content?(@page)
+    .menu__item
+      = button_tag value: :schedule, type: :submit, name: :state_event, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "menu__action t-schedule" do
+        Schedule
 
-.menu__item
-  = button_tag value: :publish, type: :submit, name: :state_event, class: "menu__action t-publish" do
-    Publish changes
+- else
+  .menu__item
+    = button_tag value: :schedule, type: :submit, name: :state_event, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "menu__action t-schedule" do
+      Schedule
+
+  .menu__item
+    = button_tag value: :publish, type: :submit, name: :state_event, class: "menu__action t-publish" do
+      Publish
+
+  .menu__item
+    = button_tag type: :submit, data: { dough_dialog_trigger: :remover, dough_component: 'Dialog Remover' }, class: "menu__action t-delete" do
+      Remove
