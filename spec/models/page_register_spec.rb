@@ -88,10 +88,9 @@ RSpec.describe PageRegister do
           let(:page) { FactoryGirl.create(:page) }
           let(:params) { { state_event: 'schedule' } }
 
-          it 'does not allow the object to be saved' do
-            expect { subject.save }.to raise_error(ActiveRecord::RecordInvalid)
-            expect(page.errors.full_messages)
-              .to include('Insufficient permissions to change')
+          it 'updates the page' do
+            expect(page).to receive(:update_state!)
+            subject.save
           end
         end
       end
