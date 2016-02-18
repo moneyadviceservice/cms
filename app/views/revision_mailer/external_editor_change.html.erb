@@ -1,0 +1,5 @@
+<p>
+  The external editor <%= @user.name %> has made changes to the page
+  <%= link_to @page.meta_title,
+              edit_comfy_admin_cms_site_page_url(@page, site_id: @page.site_id) %>
+</p>

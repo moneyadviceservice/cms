@@ -45,6 +45,10 @@ When(/^I publish the article$/) do
   edit_page.publish.click
 end
 
+When(/^I save changes to the page$/) do
+  edit_page.save_changes_button.click
+end
+
 Then(/^I should be able to publish it$/) do
   edit_page.should have_publish
   edit_page.publish.click
@@ -89,4 +93,32 @@ end
 
 Given(/^the article is regulated$/) do
   cms_page.update_attributes!(regulated: true)
+end
+
+Then(/^I should be able to delete the article$/) do
+  expect(edit_page).to have_delete_page
+end
+
+Then(/^I should not be able to delete the article$/) do
+  expect(edit_page).not_to have_delete_page
+end
+
+Then(/^I should not be able to publish the article$/) do
+  expect(edit_page).not_to have_publish
+end
+
+Then(/^I should be able to schedule the article$/) do
+  expect(edit_page).to have_schedule
+end
+
+Then(/^I should not be able to schedule the article$/) do
+  expect(edit_page).not_to have_schedule
+end
+
+Then(/^an email notification should be sent$/) do
+  expect(ActionMailer::Base.deliveries.last.subject).to include('Content updated by External Editor')
+end
+
+Then(/^no email notifications are sent$/) do
+  expect(ActionMailer::Base.deliveries).to be_empty
 end

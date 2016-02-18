@@ -60,4 +60,34 @@ describe PagesHelper do
       expect(helper.page_slug(site, presenter, page)).to eq(expected)
     end
   end
+
+  describe '#display_additional_button_menu?' do
+    let(:page) { FactoryGirl.build(:page) }
+    let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:user]) }
+    let(:buttons) { [double] }
+    before { allow(helper).to receive(:page_state_buttons).and_return(buttons) }
+
+    context 'user is an editor' do
+      let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:editor]) }
+
+      it 'returns false if the current user is an editor' do
+        expect(helper.display_additional_button_menu?(page, user)).to be(false)
+      end
+    end
+
+    context 'page is publishable and page_state_buttons is empty' do
+      let(:buttons) { [] }
+      it { expect(helper.display_additional_button_menu?(page, user)).to be(false) }
+    end
+
+    context 'page is publishable and page_state_buttons contains something' do
+      let(:buttons) { [double] }
+      it { expect(helper.display_additional_button_menu?(page, user)).to be(true) }
+    end
+
+    context 'page is not publishable' do
+      before { allow(page).to receive(:publishable?).and_return(false) }
+      it { expect(helper.display_additional_button_menu?(page, user)).to be(false) }
+    end
+  end
 end
