@@ -53,7 +53,7 @@
             <td><%= highlight(redirect.destination, @query) %></td>
             <td><%= redirect.redirect_type %></td>
             <td><time datetime="<%= redirect.versions.last.created_at %>" title="<%= redirect.versions.last.created_at %>"><%= time_ago_in_words(redirect.versions.last.created_at) %> ago</time></td>
-            <td><%= redirect.versions.last.user.email_local_part %></td>
+            <td><%= RedirectVersionsPresenter.new(redirect.versions.last).last_updated_by %></td>
             <td>
               <%= link_to redirect do %>
                 <span class="fa fa-pencil"> Edit</span>
