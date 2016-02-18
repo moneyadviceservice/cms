@@ -42,6 +42,7 @@ gem 'feature'
 
 gem 'mastalk', '~> 0.5.8'
 gem 'mailjet'
+gem 'paperclip-azure', '~> 0.2'
 
 group :development do
   gem 'spring'
@@ -68,6 +69,7 @@ group :test, :development do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   gem 'pry-rails'
+  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'valid_attribute', require: false
