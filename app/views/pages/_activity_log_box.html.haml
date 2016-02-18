@@ -9,8 +9,8 @@
             Show notes
       .list-display__body
         %dl.notes-list.notes-list--activity-log{ data: { dough_element_filter_target: 'activity-log', activity_log_list: true } }
-          - @activity_logs.each do |activity_log|
-            = render 'activity_log', activity_log: activity_log
+          - activity_log(@page).each do |entry|
+            = render 'activity_log', activity_log: entry
 
       - if @page.persisted?
         = form_tag(site_page_notes_path(@site, @page), method: :post, remote: true, data: { :'activity-log-form' => true }) do

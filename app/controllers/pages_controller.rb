@@ -1,8 +1,20 @@
 class PagesController < Comfy::Admin::Cms::PagesController
-  before_action :build_file,     only: [:new, :edit]
-  before_action :set_categories, only: [:new, :edit, :create]
-  before_action :set_pages,      only: :index
-  before_action :set_activity_log, only: [:new, :edit, :create]
+
+  def index
+    @all_pages = Comfy::Cms::Page.includes(:layout, :site, :categories)
+
+    super
+  end
+
+  def new
+    @file = Comfy::Cms::File.new
+  end
+
+  def create
+    @file = Comfy::Cms::File.new
+
+    super
+  end
 
   protected
 
@@ -17,14 +29,6 @@ class PagesController < Comfy::Admin::Cms::PagesController
     @page.suppress_mirrors_from_links_recirculation
   end
 
-  def set_activity_log
-    @activity_logs = ActivityLogPresenter.collect(ActivityLog.fetch(from: @page))
-  end
-
-  def set_pages
-    @all_pages = Comfy::Cms::Page.includes(:layout, :site, :categories)
-  end
-
   def apply_filters
     @pages = @all_pages.filter(params.slice(:category, :layout, :last_edit, :status, :language))
 
@@ -37,11 +41,4 @@ class PagesController < Comfy::Admin::Cms::PagesController
     end
   end
 
-  def build_file
-    @file = Comfy::Cms::File.new
-  end
-
-  def set_categories
-    @categories = Comfy::Cms::CategoriesListPresenter.new(Comfy::Cms::Category.where(site: english_site))
-  end
 end

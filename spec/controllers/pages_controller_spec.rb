@@ -71,11 +71,6 @@ RSpec.describe PagesController do
         expect(assigns[:page].state).to eq 'draft'
       end
 
-      it 'assigns required instance variables' do
-        expect(assigns[:categories]).to_not be_nil
-        expect(assigns[:activity_logs]).to_not be_nil
-      end
-
       context 'creating a revision' do
         before do
           assigns[:page].revisions.reload

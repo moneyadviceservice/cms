@@ -35,6 +35,14 @@ module PagesHelper
     !page.layout.identifier.in?(%w(home_page footer))
   end
 
+  def activity_log(page)
+    ActivityLogPresenter.collect(ActivityLog.fetch(from: page))
+  end
+
+  def categories
+    @categories ||= Comfy::Cms::CategoriesListPresenter.new(Comfy::Cms::Category.where(site: english_site))
+  end
+
   private
 
   def preview_domain
