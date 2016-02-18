@@ -64,7 +64,7 @@ RSpec.describe PageRegister do
 
         context 'trying to publish an existing page' do
           let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'publish' } }
+          let(:params) { { state_event: 'publish_changes' } }
 
           it 'does not allow the object to be saved' do
             expect { subject.save }.to raise_error(ActiveRecord::RecordInvalid)
@@ -178,10 +178,10 @@ RSpec.describe PageRegister do
         let(:page) { FactoryGirl.create(:page) }
 
         context 'PageRegister has state_event "save_unsaved"' do
-          let(:params) { { state_event: 'save_draft_changes' } }
+          let(:params) { { state_event: 'save_unsaved' } }
 
           it 'updates the state of the page' do
-            expect(page).to receive(:update_state!).with('save_draft_changes')
+            expect(page).to receive(:update_state!).with('save_unsaved')
             subject.save
           end
 
