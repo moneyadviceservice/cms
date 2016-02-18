@@ -97,6 +97,3 @@ class Comfy::Cms::Page < ActiveRecord::Base
     "/#{site.label}/#{layout.identifier.pluralize}/#{slug}"
   end
 end
-
-Comfy::Cms::Page.state_machine.events[:publish].timestamp = :published_at
-Comfy::Cms::Page.state_machine.events[:publish_changes].timestamp = :published_at
