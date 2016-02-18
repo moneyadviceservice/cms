@@ -40,7 +40,7 @@ ComfortableMexicanSofa.configure do |config|
       storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
     },
     path: ':attachment/:id_partition/:style/:filename',
-    storage: azure,
+    storage: 'azure',
     styles: { cms_medium: '160x160' },
     url: ':azure_path_url'
   }
