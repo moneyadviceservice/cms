@@ -174,52 +174,6 @@ RSpec.describe PageRegister do
         end
       end
 
-      context 'existing page record' do
-        let(:page) { FactoryGirl.create(:page) }
-
-        context 'PageRegister has state_event "save_unsaved"' do
-          let(:params) { { state_event: 'save_unsaved' } }
-
-          it 'updates the state of the page' do
-            expect(page).to receive(:update_state!).with('save_unsaved')
-            subject.save
-          end
-
-          it 'creates a revision' do
-            subject.save
-            expect(subject).to have_received(:create_revision)
-          end
-        end
-
-        context 'PageRegister has state_event which is not "save_unsaved"' do
-          let(:params) { { state_event: 'publish' } }
-
-          it 'updates the state of the page' do
-            expect(page).to receive(:update_state!).with('publish')
-            subject.save
-          end
-
-          it 'creates a revision' do
-            subject.save
-            expect(subject).to have_received(:create_revision)
-          end
-        end
-
-        context 'PageRegister has no state_event' do
-          let(:params) { {} }
-
-          it 'does not update the state of the page' do
-            expect(page).not_to receive(:update_state!)
-            subject.save
-          end
-
-          it 'creates a revision' do
-            subject.save
-            expect(subject).to have_received(:create_revision)
-          end
-        end
-      end
-
       context 'existing PUBLISHED page record' do
         let(:page) { FactoryGirl.create(:page) }
 
