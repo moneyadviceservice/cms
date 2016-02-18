@@ -49,6 +49,12 @@ end
 puts "Seeding MAS users..."
 Comfy::Cms::User.create_with(password: 'password', role: 'admin').find_or_create_by!(email: 'user@test.com')
 
+puts 'Creating an example article'
+# If we don't do this, we end up in a weird state where because the home_page has
+# been created first, then Comfy decides the default layout for future pages should
+# also be home_page.
+Cms::PageBuilder.add_example_article!
+
 puts 'Adding home page...'
 Cms::LayoutBuilder.add_home_page!
 Cms::PageBuilder.add_home_page!
