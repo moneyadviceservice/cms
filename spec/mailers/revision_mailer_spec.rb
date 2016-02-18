@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RevisionMailer, type: :mailer do
   let(:user) { FactoryGirl.build(:user, name: 'Mr. Ed Itor') }
-  let(:page) { FactoryGirl.create(:page, meta_title: 'How to save 50p a day.') }
+  let(:page) { FactoryGirl.create(:page, label: 'How to save 50p a day.') }
 
   describe '#external_editor_change' do
     let(:email) { described_class.external_editor_change(user: user, page: page) }
