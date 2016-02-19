@@ -58,3 +58,7 @@ Cms::PageBuilder.add_example_article!
 puts 'Adding home page...'
 Cms::LayoutBuilder.add_home_page!
 Cms::PageBuilder.add_home_page!
+
+puts 'Adding contact panels...'
+Cms::LayoutBuilder.add_contact_panels!
+Cms::PageBuilder.add_contact_panels_page!
