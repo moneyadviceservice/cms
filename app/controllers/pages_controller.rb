@@ -8,16 +8,6 @@ class PagesController < Comfy::Admin::Cms::PagesController
     super
   end
 
-  def new
-    @file = Comfy::Cms::File.new
-  end
-
-  def create
-    @file = Comfy::Cms::File.new
-
-    super
-  end
-
   protected
 
   def presenter
