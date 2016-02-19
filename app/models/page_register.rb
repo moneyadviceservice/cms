@@ -2,8 +2,6 @@ class PageRegister
   attr_reader :page, :params, :current_user, :state_was
   delegate :new_record?, :persisted?, :save!, to: :page
 
-  ALLOWED_EDITOR_STATE_EVENTS = %w(create_initial_draft create_new_draft)
-
   def initialize(page, params: params, current_user: current_user)
     @page                  = page
     @params                = params
@@ -13,8 +11,6 @@ class PageRegister
   end
 
   def save
-    ensure_permission_to_save!
-
     update_state_if_new_page
     update_state_or_save_existing_page
     create_revision
@@ -62,21 +58,6 @@ class PageRegister
 
   def state_event
     @state_event ||= params[:state_event]
-  end
-
-  def page_changes_not_permitted
-    @page.errors.add(:base, 'Insufficient permissions to change')
-    ActiveRecord::RecordInvalid.new(@page)
-  end
-
-  def ensure_permission_to_save!
-    return unless @current_user.editor?
-    fail page_changes_not_permitted if new_record?
-    fail page_changes_not_permitted unless editor_can_perform_event?
-  end
-
-  def editor_can_perform_event?
-    ALLOWED_EDITOR_STATE_EVENTS.include? state_event
   end
 
   def update_state_if_new_page

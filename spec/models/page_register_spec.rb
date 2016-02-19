@@ -7,64 +7,6 @@ RSpec.describe PageRegister do
     before { allow(subject).to receive(:create_revision) }
 
     describe 'saving the page' do
-      context 'user is an editor' do
-        let(:user) do
-          FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:editor])
-        end
-
-        context 'new page' do
-          let(:page) { FactoryGirl.build(:page) }
-
-          it 'allows the object to be saved' do
-            expect { subject.save }.to raise_error(ActiveRecord::RecordInvalid)
-            expect(page.errors.full_messages)
-              .to include('Insufficient permissions to change')
-          end
-        end
-
-        context 'trying to save an "unsaved" existing page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'create_initial_draft' } }
-
-          it 'updates the page' do
-            expect(page).to receive(:update_state!)
-            subject.save
-          end
-        end
-
-        context 'trying to save a new draft of a published page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'create_new_draft' } }
-
-          it 'updates the page' do
-            expect(page).to receive(:update_state!)
-            subject.save
-          end
-        end
-
-        context 'trying to publish an existing page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'publish_changes' } }
-
-          it 'does not allow the object to be saved' do
-            expect { subject.save }.to raise_error(ActiveRecord::RecordInvalid)
-            expect(page.errors.full_messages)
-              .to include('Insufficient permissions to change')
-          end
-        end
-
-        context 'trying to unpublish an existing page' do
-          let(:page) { FactoryGirl.create(:page) }
-          let(:params) { { state_event: 'unpublish' } }
-
-          it 'does not allow the object to be saved' do
-            expect { subject.save }.to raise_error(ActiveRecord::RecordInvalid)
-            expect(page.errors.full_messages)
-              .to include('Insufficient permissions to change')
-          end
-        end
-      end
-
       context 'new page record' do
         let(:page) { FactoryGirl.build(:page) }
         let(:params) { {} }

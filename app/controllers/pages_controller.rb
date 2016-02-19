@@ -1,5 +1,7 @@
 class PagesController < Comfy::Admin::Cms::PagesController
 
+  before_action :check_permissions
+
   def index
     @all_pages = Comfy::Cms::Page.includes(:layout, :site, :categories)
 
@@ -41,4 +43,10 @@ class PagesController < Comfy::Admin::Cms::PagesController
     end
   end
 
+  def check_permissions
+    if PermissionCheck.new(current_user, @page, action_name, params[:state_event]).fail?
+      flash[:danger] = 'Insufficient permissions to change'
+      redirect_to comfy_admin_cms_site_pages_path(params[:site_id])
+    end
+  end
 end
