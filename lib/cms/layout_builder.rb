@@ -17,11 +17,11 @@ module Cms
         site: english_site,
         label: 'Footer',
         identifier: 'footer',
-        content: '{{ cms:page:web_chat_times }}'
+        content: footer_content
       )
 
       welsh_layout = welsh_site.layouts.find_by(identifier: 'footer')
-      welsh_layout.update_attributes!(content: '{{ cms:page:web_chat_times }}')
+      welsh_layout.update_attributes!(content: footer_content)
     end
 
     def self.english_site
@@ -30,6 +30,28 @@ module Cms
 
     def self.welsh_site
       Comfy::Cms::Site.find_by(label: 'cy')
+    end
+
+    # rubocop:disable Metrics/MethodLength
+    def self.footer_content
+      <<-CONTENT
+        {{ cms:page:raw_web_chat_heading:string }}
+        {{ cms:page:raw_web_chat_additional_one:string }}
+        {{ cms:page:raw_web_chat_additional_two:string }}
+        {{ cms:page:raw_web_chat_additional_three:string }}
+        {{ cms:page:raw_web_chat_small_print:string }}
+
+        {{ cms:page:raw_contact_heading:string }}
+        {{ cms:page:raw_contact_introduction:string }}
+        {{ cms:page:raw_contact_phone_number:string }}
+        {{ cms:page:raw_contact_additional_one:string }}
+        {{ cms:page:raw_contact_additional_two:string }}
+        {{ cms:page:raw_contact_additional_three:string }}
+        {{ cms:page:raw_contact_small_print:string }}
+
+        {{ cms:page:raw_newsletter_heading:string }}
+        {{ cms:page:raw_newsletter_introduction:string }}
+      CONTENT
     end
 
     # rubocop:disable Metrics/MethodLength

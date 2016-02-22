@@ -108,8 +108,27 @@ RSpec.describe Cms::LayoutBuilder do
         expect(layout.identifier).to eq('footer')
       end
 
-      it 'defines the content areas for the home page layout' do
-        expect(layout.content).to include('{{ cms:page:web_chat_times }}')
+      it 'defines the content areas for the footer web_chat section' do
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_one:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_two:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_three:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_small_print:string }}')
+      end
+
+      it 'defines the content areas for the footer contact section' do
+        expect(layout.content).to include('{{ cms:page:raw_contact_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_introduction:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_phone_number:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_one:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_two:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_three:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_small_print:string }}')
+      end
+
+      it 'defines the content areas for the footer newsletter section' do
+        expect(layout.content).to include('{{ cms:page:raw_newsletter_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_newsletter_introduction:string }}')
       end
     end
 
