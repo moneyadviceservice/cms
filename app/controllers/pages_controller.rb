@@ -17,8 +17,8 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def save_page
     PageRegister.new(@page, params: params, current_user: current_user).save
-    CategoryMirror.new.assign_categories_to_mirrors(@page.categories, @page.mirrors)
-    @page.suppress_mirrors_from_links_recirculation
+    @page.mirror_categories!
+    @page.mirror_suppress_from_links_recirculation!
   end
 
   def apply_filters

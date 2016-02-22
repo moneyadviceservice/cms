@@ -137,11 +137,11 @@ RSpec.describe PagesController do
       }
     end
 
-    context 'suppress_mirrors_from_links_recirculation on requested page ' do
+    context 'mirror_suppress_from_links_recirculation! on requested page ' do
       let!(:page) { create(:page, state: 'unsaved') }
 
       it 'persists page as "draft"' do
-        expect_any_instance_of(Comfy::Cms::Page).to receive(:suppress_mirrors_from_links_recirculation)
+        expect_any_instance_of(Comfy::Cms::Page).to receive(:mirror_suppress_from_links_recirculation!)
 
         put :update,
             site_id:     site.id,

@@ -17,7 +17,7 @@ RSpec.describe Comfy::Cms::Page do
     context 'update welsh article when updating english article' do
       before do
         english_article.suppress_from_links_recirculation = supressed?
-        english_article.suppress_mirrors_from_links_recirculation
+        english_article.mirror_suppress_from_links_recirculation!
         welsh_article.reload
       end
 
@@ -41,7 +41,7 @@ RSpec.describe Comfy::Cms::Page do
     context 'update english article when updating welsh article' do
       before do
         welsh_article.suppress_from_links_recirculation = supressed?
-        welsh_article.suppress_mirrors_from_links_recirculation
+        welsh_article.mirror_suppress_from_links_recirculation!
         english_article.reload
       end
 
@@ -60,6 +60,35 @@ RSpec.describe Comfy::Cms::Page do
           expect(english_article.suppress_from_links_recirculation).to be_falsey
         end
       end
+    end
+  end
+
+  describe '#mirror_categories!' do
+    let(:categories) { [create(:category), create(:category)] }
+
+    let(:english_site) { create :site, is_mirrored: true }
+    let(:welsh_site) { create :site, :welsh, is_mirrored: true }
+
+    let!(:english_article) do
+      create :english_article,
+             full_path:  '/animals',
+             site: english_site,
+             categories: categories
+    end
+    let!(:welsh_article) do
+      create :welsh_article,
+             full_path:  '/animals',
+             site: welsh_site
+    end
+
+    let(:article) { create(:page) }
+
+    before do
+      english_article.mirror_categories!
+    end
+
+    it 'assigns the categories to the mirror' do
+      expect(welsh_article.categories).to eq(categories)
     end
   end
 

@@ -79,9 +79,15 @@ class Comfy::Cms::Page < ActiveRecord::Base
       .limit(limit)
   end
 
-  def suppress_mirrors_from_links_recirculation
-    mirrors.each do |mirror|
-      mirror.update_column(:suppress_from_links_recirculation, suppress_from_links_recirculation)
+  def mirror_suppress_from_links_recirculation!
+    mirrors.map do |mirror|
+      mirror.update_attribute(:suppress_from_links_recirculation, suppress_from_links_recirculation)
+    end
+  end
+
+  def mirror_categories!
+    mirrors.map do |mirror|
+      mirror.update_attribute(:categories, categories)
     end
   end
 
