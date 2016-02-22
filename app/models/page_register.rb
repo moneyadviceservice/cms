@@ -20,20 +20,7 @@ class PageRegister
   def create_revision
     return unless content_changed? && page.persisted?
 
-    page.revisions.create!(data: revision_data)
-  end
-
-  def revision_data
-    data = {}
-
-    if state_changed?
-      data[:previous_event] = @state_was
-      data[:event]          = page.state
-    end
-
-    data[:blocks_attributes] = @blocks_attributes_was
-
-    RevisionData.dump(data.merge(current_user: current_user))
+    RevisionRegister.new(page, user: current_user).save!
   end
 
   def content_changed?
