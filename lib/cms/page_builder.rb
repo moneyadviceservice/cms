@@ -21,10 +21,10 @@ module Cms
       page.publish!
     end
 
-    def self.add_contact_panels_page!
-      layout       = english_site.layouts.find_by(identifier: 'contact_panels')
-      english_page = Comfy::Cms::Page.create!(slug: 'contact-panels', site: english_site, layout: layout)
-      welsh_page   = welsh_site.pages.find_by(slug: 'contact-panels')
+    def self.add_footer!
+      layout       = english_site.layouts.find_by(identifier: 'footer')
+      english_page = Comfy::Cms::Page.create!(slug: 'footer', site: english_site, layout: layout)
+      welsh_page   = welsh_site.pages.find_by(slug: 'footer')
 
       create_page_blocks layout, [english_page, welsh_page]
       publish_pages [english_page, welsh_page]

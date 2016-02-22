@@ -90,8 +90,8 @@ RSpec.describe Cms::LayoutBuilder do
     end
   end
 
-  describe '.add_contact_panels!' do
-    before { Cms::LayoutBuilder.add_contact_panels! }
+  describe '.add_footer!' do
+    before { Cms::LayoutBuilder.add_footer! }
 
     context 'English site' do
       let(:layout) { english_site.layouts.reload.first }
@@ -100,12 +100,12 @@ RSpec.describe Cms::LayoutBuilder do
         expect(english_site.layouts.count).to eq(1)
       end
 
-      it 'sets the label for the layout to be "Contact Panels"' do
-        expect(layout.label).to eq('Contact Panels')
+      it 'sets the label for the layout to be "Footer"' do
+        expect(layout.label).to eq('Footer')
       end
 
-      it 'sets the identifier for the layout to be contact_panels' do
-        expect(layout.identifier).to eq('contact_panels')
+      it 'sets the identifier for the layout to be footer' do
+        expect(layout.identifier).to eq('footer')
       end
 
       it 'defines the content areas for the home page layout' do
@@ -120,12 +120,12 @@ RSpec.describe Cms::LayoutBuilder do
         expect(welsh_site.layouts.count).to eq(1)
       end
 
-      it 'sets the label for the layout to be "Contact Panels"' do
-        expect(layout.label).to eq('Contact Panels')
+      it 'sets the label for the layout to be "Footer"' do
+        expect(layout.label).to eq('Footer')
       end
 
-      it 'sets the identifier for the layout to be contact_panels' do
-        expect(layout.identifier).to eq('contact_panels')
+      it 'sets the identifier for the layout to be footer' do
+        expect(layout.identifier).to eq('footer')
       end
 
       it 'uses the same content areas as the english layout' do
@@ -134,5 +134,4 @@ RSpec.describe Cms::LayoutBuilder do
       end
     end
   end
-
 end

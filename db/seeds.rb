@@ -59,6 +59,6 @@ puts 'Adding home page...'
 Cms::LayoutBuilder.add_home_page!
 Cms::PageBuilder.add_home_page!
 
-puts 'Adding contact panels...'
-Cms::LayoutBuilder.add_contact_panels!
-Cms::PageBuilder.add_contact_panels_page!
+puts 'Adding footer...'
+Cms::LayoutBuilder.add_footer!
+Cms::PageBuilder.add_footer!

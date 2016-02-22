@@ -1,9 +1,9 @@
 RSpec.describe Cms::PageBuilder do
-  let!(:english_site)          { create(:site, is_mirrored: true) }
-  let!(:welsh_site)            { create(:site, :welsh, is_mirrored: true) }
-  let!(:article_layout)        { create(:layout, identifier: 'article', site: english_site) }
-  let!(:home_page_layout)      { create(:layout, identifier: 'home_page', site: english_site) }
-  let!(:contact_panels_layout) { create(:layout, identifier: 'contact_panels', site: english_site) }
+  let!(:english_site)     { create(:site, is_mirrored: true) }
+  let!(:welsh_site)       { create(:site, :welsh, is_mirrored: true) }
+  let!(:article_layout)   { create(:layout, identifier: 'article', site: english_site) }
+  let!(:home_page_layout) { create(:layout, identifier: 'home_page', site: english_site) }
+  let!(:footer_layout)    { create(:layout, identifier: 'footer', site: english_site) }
 
   describe '.add_example_article!' do
     before { Cms::PageBuilder.add_example_article! }
@@ -47,8 +47,8 @@ RSpec.describe Cms::PageBuilder do
     end
   end
 
-  describe '.add_contact_panels_page!' do
-    before { Cms::PageBuilder.add_contact_panels_page! }
+  describe '.add_footer!' do
+    before { Cms::PageBuilder.add_footer! }
 
     context 'English site' do
       let(:page) { english_site.pages.reload.first }
@@ -57,16 +57,16 @@ RSpec.describe Cms::PageBuilder do
         expect(english_site.pages.count).to eq(1)
       end
 
-      it 'adds a page using the "contact_panels" layout' do
-        expect(page.layout).to eq(contact_panels_layout)
+      it 'adds a page using the "footer" layout' do
+        expect(page.layout).to eq(footer_layout)
       end
 
       it 'adds the page to the english site' do
         expect(page.site).to eq(english_site)
       end
 
-      it 'sets the slug to be "contact-panels"' do
-        expect(page.slug).to eq('contact-panels')
+      it 'sets the slug to be "footer"' do
+        expect(page.slug).to eq('footer')
       end
 
       it "generates blank 'blocks' for each of the layout's content areas" do
@@ -85,16 +85,16 @@ RSpec.describe Cms::PageBuilder do
         expect(welsh_site.pages.count).to eq(1)
       end
 
-      it 'adds a page using the "contact_panels" layout' do
-        expect(page.layout.identifier).to eq('contact_panels')
+      it 'adds a page using the "footer" layout' do
+        expect(page.layout.identifier).to eq('footer')
       end
 
       it 'adds the page to the welsh site' do
         expect(page.site).to eq(welsh_site)
       end
 
-      it 'sets the slug to be "contact-panels"' do
-        expect(page.slug).to eq('contact-panels')
+      it 'sets the slug to be "footer"' do
+        expect(page.slug).to eq('footer')
       end
 
       it "generates blank 'blocks' for each of the layout's content areas" do

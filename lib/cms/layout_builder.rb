@@ -12,15 +12,15 @@ module Cms
       welsh_layout.update_attributes!(content: home_page_content)
     end
 
-    def self.add_contact_panels!
+    def self.add_footer!
       Comfy::Cms::Layout.create!(
         site: english_site,
-        label: 'Contact Panels',
-        identifier: 'contact_panels',
+        label: 'Footer',
+        identifier: 'footer',
         content: '{{ cms:page:web_chat_times }}'
       )
 
-      welsh_layout = welsh_site.layouts.find_by(identifier: 'contact_panels')
+      welsh_layout = welsh_site.layouts.find_by(identifier: 'footer')
       welsh_layout.update_attributes!(content: '{{ cms:page:web_chat_times }}')
     end
 
