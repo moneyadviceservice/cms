@@ -1,0 +1,67 @@
+<%
+  namespace = { }
+  cms_object = @page || cms_object
+  tags = cms_object.tags(true).select{|t| t.is_cms_block?}.uniq{|t| t.identifier}
+
+  tags.each do |tag|
+    namespace[tag.namespace || 'default'] ||= []
+    namespace[tag.namespace || 'default'] << tag
+  end
+%>
+<div class="l-panel-content">
+  <div class="l-constrained">
+    <% if tags.empty? %>
+      <div class="no-tags">
+        <%= link_to cms_object.layout.label, edit_comfy_admin_cms_site_layout_path(@site, cms_object.layout) %>
+        <%= t('.no_tags').html_safe %>
+      </div>
+    <% else %>
+      <%= fields_for :blocks, nil, :builder => Cms::FormBuilder, :layout => :horizontal do |cms_blocks| %>
+        <% if namespace.size > 1 %>
+          <% namespace.each_with_index do |(name, tags), index| %>
+            <div<%= index == 0 ? ' class="active"' : '' %>>
+              <%= link_to name.humanize, "#ns-#{name}", :data => {:toggle => 'tab'} %>
+            </div
+          <% end %>
+        <% end %>
+
+        <div class="l-home-edit">
+          <% block_index = 0 %>
+          <% namespace.each_with_index do |(name, tags), index| %>
+            <div class="l-split-content">
+              <div class="l-split-content__col">
+                <h2>Web Chat Panel</h2>
+                <%= tag_for_identifier(tags, 'raw_web_chat_heading', cms_blocks, 0) %>
+                <%= tag_for_identifier(tags, 'raw_web_chat_additional_one', cms_blocks, 1) %>
+                <%= tag_for_identifier(tags, 'raw_web_chat_additional_two', cms_blocks, 2) %>
+                <%= tag_for_identifier(tags, 'raw_web_chat_additional_three', cms_blocks, 3) %>
+                <%= tag_for_identifier(tags, 'raw_web_chat_small_print', cms_blocks, 4) %>
+              </div>
+            </div>
+
+            <div class="l-split-content">
+              <div class="l-split-content__col">
+                <h2>Contact Panel</h2>
+                <%= tag_for_identifier(tags, 'raw_contact_heading', cms_blocks, 5) %>
+                <%= tag_for_identifier(tags, 'raw_contact_introduction', cms_blocks, 6) %>
+                <%= tag_for_identifier(tags, 'raw_contact_phone_number', cms_blocks, 7) %>
+                <%= tag_for_identifier(tags, 'raw_contact_additional_one', cms_blocks, 8) %>
+                <%= tag_for_identifier(tags, 'raw_contact_additional_two', cms_blocks, 9) %>
+                <%= tag_for_identifier(tags, 'raw_contact_additional_three', cms_blocks, 10) %>
+                <%= tag_for_identifier(tags, 'raw_contact_small_print', cms_blocks, 11) %>
+              </div>
+            </div>
+
+            <div class="l-split-content">
+              <div class="l-split-content__col">
+                <h2>Newsletter Panel</h2>
+                <%= tag_for_identifier(tags, 'raw_newsletter_heading', cms_blocks, 12) %>
+                <%= tag_for_identifier(tags, 'raw_newsletter_introduction', cms_blocks, 13) %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end # fields_for %>
+    <% end %>
+  </div>
+</div>
