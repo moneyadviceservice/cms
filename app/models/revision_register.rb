@@ -1,31 +1,30 @@
 class RevisionRegister
-  attr_accessor :page, :user
+  attr_accessor :page, :user, :blocks_attributes
 
-  def initialize(page, user: user)
+  def initialize(page, user: user, blocks_attributes: blocks_attributes)
     @page = page
     @user = user
+    @blocks_attributes = blocks_attributes
   end
 
   def save!
     page.revisions.create!(data: revision_data)
   end
 
+  def save_as_active_revision!
+    new_revision = page.revisions.create!(data: revision_data)
+    page.update_column(:active_revision_id, new_revision.id)
+  end
+
   private
 
   def revision_data
-    data = { user: user }
+    data = { user: user, blocks_attributes: blocks_attributes }
 
-    # Note that we're using #previous_changes because the page has been saved
-    # at this point and the dirty tracking data has been reset.
-    if page.previous_changes[:state].present?
+    if page.state_changed?
       data[:event]          = page.state
-      data[:previous_event] = page.previous_changes[:state].first
+      data[:previous_event] = page.state_was
     end
-
-    # However here, while it looks like we're somehow using dirty tracking to see the changes,
-    # it's because this is not real dirty tracking. It's DIY dirty tracking defined in
-    # ComfortableMexicanSofa::CmsManageable, which doesn't clear after save.
-    data[:blocks_attributes] = page.blocks_attributes_was
 
     RevisionData.dump(data)
   end
