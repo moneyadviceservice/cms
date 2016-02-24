@@ -40,8 +40,7 @@ module Cms
       Comfy::Cms::Site.find_by(label: 'cy')
     end
 
-    # rubocop:disable Metrics/MethodLength
-    def self.footer_content
+    def self.footer_content # rubocop:disable Metrics/MethodLength
       <<-CONTENT
         {{ cms:page:raw_web_chat_heading:string }}
         {{ cms:page:raw_web_chat_additional_one:string }}
@@ -62,8 +61,7 @@ module Cms
       CONTENT
     end
 
-    # rubocop:disable Metrics/MethodLength
-    def self.home_page_content
+    def self.home_page_content # rubocop:disable Metrics/MethodLength
       <<-CONTENT
         {{ cms:page:raw_heading:string }}
         {{ cms:page:raw_hero_image:image }}
