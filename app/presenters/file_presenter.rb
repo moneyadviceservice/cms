@@ -4,7 +4,7 @@ class FilePresenter < Presenter
   end
 
   def full_path
-    "http://#{object.site.hostname}/#{object.file.url}"
+    object.file.url
   end
 
   def edit_url
