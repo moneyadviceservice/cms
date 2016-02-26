@@ -9,7 +9,7 @@ module PagesHelper
     { dough_component: components(condition, default, optional).join(' ') }
   end
 
-  OTHER_PAGE_FORM_TYPES = %w(content_hub)
+  OTHER_PAGE_FORM_TYPES = %w(content_hub home_page)
 
   def page_form_html_class(page, identifier)
     return unless page.layout.identifier != identifier.to_s

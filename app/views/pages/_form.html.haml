@@ -32,7 +32,7 @@
         = render 'form_meta_title',                          form: form
         = render 'form_additional_options',                  form: form
 
-    - @page.site.layouts.pluck(:identifier).each do |identifier|
+    - @page.site.layouts.pluck(:identifier).reject { |identifier| identifier == 'home_page' }.each do |identifier|
       - if lookup_context.exists? "#{identifier}", ['pages/form_blocks'], true
         = render partial: "pages/form_blocks/#{identifier}", locals: { identifier: identifier }
 
