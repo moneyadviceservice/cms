@@ -90,4 +90,26 @@ describe PagesHelper do
       it { expect(helper.display_additional_button_menu?(page, user)).to be(false) }
     end
   end
+
+  describe '#display_metadata_form_fields?' do
+    let(:page) { FactoryGirl.build(:page, layout: layout) }
+
+    context 'page layout is not a footer or home page' do
+      let(:layout) { FactoryGirl.build(:layout, identifier: 'article') }
+
+      it { expect(helper.display_metadata_form_fields?(page)).to be(true) }
+    end
+
+    context 'page layout is a footer' do
+      let(:layout) { FactoryGirl.build(:layout, identifier: 'footer') }
+
+      it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
+    end
+
+    context 'page layout is a home page' do
+      let(:layout) { FactoryGirl.build(:layout, identifier: 'home_page') }
+
+      it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
+    end
+  end
 end

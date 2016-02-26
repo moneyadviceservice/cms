@@ -31,4 +31,4 @@
   </div>
 </div>
 
-<%= render_form_for_layout @site, @page %>
+<%= render 'form', form_url: site_page_path(@site, @page) %>

@@ -27,20 +27,13 @@ module PagesHelper
     ].join('/').html_safe
   end
 
-  def render_form_for_layout(site, page)
-    layout = page.layout
-    form_url = site_page_path(site, page)
-
-    if lookup_context.template_exists? "pages/_form_for_#{layout.identifier}"
-      render "form_for_#{layout.identifier}", form_url: form_url
-    else
-      render 'form', form_url: form_url
-    end
-  end
-
   def display_additional_button_menu?(page, user)
     return false if user.editor? || page_state_buttons(page).empty?
     page.publishable?
+  end
+
+  def display_metadata_form_fields?(page)
+    page.layout.identifier != 'home_page' && page.layout.identifier != 'footer'
   end
 
   private

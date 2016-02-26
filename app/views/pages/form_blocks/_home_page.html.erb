@@ -1,165 +1,134 @@
-<%
-  namespace = { }
-  cms_object = @page || cms_object
-  tags = cms_object.tags(true).select{|t| t.is_cms_block?}.uniq{|t| t.identifier}
-
-  tags.each do |tag|
-    namespace[tag.namespace || 'default'] ||= []
-    namespace[tag.namespace || 'default'] << tag
-  end
-%>
-<div class="l-panel-content">
-  <div class="l-constrained">
-    <% if tags.empty? %>
-      <div class="no-tags">
-        <%= link_to cms_object.layout.label, edit_comfy_admin_cms_site_layout_path(@site, cms_object.layout) %>
-        <%= t('.no_tags').html_safe %>
-      </div>
-    <% else %>
-      <%= fields_for :blocks, nil, :builder => Cms::FormBuilder, :layout => :horizontal do |cms_blocks| %>
-        <% if namespace.size > 1 %>
-          <% namespace.each_with_index do |(name, tags), index| %>
-            <div<%= index == 0 ? ' class="active"' : '' %>>
-              <%= link_to name.humanize, "#ns-#{name}", :data => {:toggle => 'tab'} %>
-            </div
-          <% end %>
-        <% end %>
-
-        <div class="l-home-edit">
-          <% block_index = 0 %>
-          <% namespace.each_with_index do |(name, tags), index| %>
-            <div class="l-home-edit__section l-home-edit__section--header">
-              <h2 class="l-home-edit__section-heading">Header</h2>
-              <div class="l-split-content">
-                <div class="l-split-content__col">
-                  <%= tag_for_identifier(tags, 'raw_heading', cms_blocks, 0) %>
-                  <%= tag_for_identifier(tags, 'raw_bullet_1', cms_blocks, 2) %>
-                  <%= tag_for_identifier(tags, 'raw_bullet_2', cms_blocks, 3) %>
-                  <%= tag_for_identifier(tags, 'raw_bullet_3', cms_blocks, 4) %>
-                </div>
-                <div class="l-split-content__col">
-                  <%= tag_for_identifier(tags, 'raw_hero_image', cms_blocks, 1) %>
-                  <p><i>Hero image dimensions: 460 x 254</i></p>
-                </div>
-              </div>
-              <div class="l-split-content">
-                <div class="l-split-content__col">
-                  <%= tag_for_identifier(tags, 'raw_cta_text', cms_blocks, 5) %>
-                </div>
-                <div class="l-split-content__col">
-                  <%= tag_for_identifier(tags, 'raw_cta_link', cms_blocks, 6) %>
-                </div>
-              </div>
-            </div>
-
-            <div class="l-home-edit__section l-home-edit__section--tools">
-              <h2 class="l-home-edit__section-heading">Popular tools &amp; calculators x3</h2>
-              <ul class="l-home-edit__tile-list l-home-edit__tile-list--thirds">
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tool_1_heading', cms_blocks, 27) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_1_url', cms_blocks, 28) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_1_text', cms_blocks, 29) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tool_2_heading', cms_blocks, 30) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_2_url', cms_blocks, 31) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_2_text', cms_blocks, 32) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tool_3_heading', cms_blocks, 33) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_3_url', cms_blocks, 34) %>
-                    <%= tag_for_identifier(tags, 'raw_tool_3_text', cms_blocks, 35) %>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="l-home-edit__section l-home-edit__section--tiles">
-              <h2 class="l-home-edit__section-heading">Promo tiles x4</h2>
-              <ul class="tips">
-                <li>Images should be 468x293 ideally, and definitely all the same height.</li>
-                <li>The only valid option for a promo label is: blog</li>
-                <li>Use absolute URLs for promo links</li>
-              </ul>
-              <ul class="l-home-edit__tile-list">
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tile_1_heading', cms_blocks, 7) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_1_image', cms_blocks, 8) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_1_url', cms_blocks, 9) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_1_label', cms_blocks, 10) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_1_content', cms_blocks, 11) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tile_2_heading', cms_blocks, 12) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_2_image', cms_blocks, 13) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_2_url', cms_blocks, 14) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_2_label', cms_blocks, 15) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_2_content', cms_blocks, 16) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tile_3_heading', cms_blocks, 17) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_3_image', cms_blocks, 18) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_3_url', cms_blocks, 19) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_3_label', cms_blocks, 20) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_3_content', cms_blocks, 21) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_tile_4_heading', cms_blocks, 22) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_4_image', cms_blocks, 23) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_4_url', cms_blocks, 24) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_4_label', cms_blocks, 25) %>
-                    <%= tag_for_identifier(tags, 'raw_tile_4_content', cms_blocks, 26) %>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="l-home-edit__section l-home-edit__section--tools">
-              <h2 class="l-home-edit__section-heading">Text-only promos x2</h2>
-              <ul class="l-home-edit__tile-list l-home-edit__tile-list--halves">
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_text_tile_1_heading', cms_blocks, 36) %>
-                    <%= tag_for_identifier(tags, 'raw_text_tile_1_url', cms_blocks, 37) %>
-                    <%= tag_for_identifier(tags, 'raw_text_tile_1_content', cms_blocks, 38) %>
-                  </div>
-                </li>
-                <li class="l-home-edit__tile">
-                  <div class="l-home-edit__tile-inner">
-                    <%= tag_for_identifier(tags, 'raw_text_tile_2_heading', cms_blocks, 39) %>
-                    <%= tag_for_identifier(tags, 'raw_text_tile_2_url', cms_blocks, 40) %>
-                    <%= tag_for_identifier(tags, 'raw_text_tile_2_content', cms_blocks, 41) %>
-                  </div>
-                </li>
-              </ul>
-            </div>
-
-            <div class="l-home-edit__section">
-              <h2 class="l-home-edit__section-heading">Promo banner</h2>
-              <div class="l-home-edit__promo-banner">
-                <%= tag_for_identifier(tags, 'raw_promo_banner_content', cms_blocks, 42) %>
-                <%= tag_for_identifier(tags, 'raw_promo_banner_url', cms_blocks, 43) %>
-              </div>
-            </div>
-          <% end %>
+<div class="l-home-edit">
+  <% block_index = 0 %>
+  <% namespace.each_with_index do |(name, tags), index| %>
+    <div class="l-home-edit__section l-home-edit__section--header">
+      <h2 class="l-home-edit__section-heading">Header</h2>
+      <div class="l-split-content">
+        <div class="l-split-content__col">
+          <%= tag_for_identifier(tags, 'raw_heading', cms_blocks, 0) %>
+          <%= tag_for_identifier(tags, 'raw_bullet_1', cms_blocks, 2) %>
+          <%= tag_for_identifier(tags, 'raw_bullet_2', cms_blocks, 3) %>
+          <%= tag_for_identifier(tags, 'raw_bullet_3', cms_blocks, 4) %>
         </div>
-      <% end # fields_for %>
-    <% end %>
-  </div>
+        <div class="l-split-content__col">
+          <%= tag_for_identifier(tags, 'raw_hero_image', cms_blocks, 1) %>
+          <p><i>Hero image dimensions: 460 x 254</i></p>
+        </div>
+      </div>
+      <div class="l-split-content">
+        <div class="l-split-content__col">
+          <%= tag_for_identifier(tags, 'raw_cta_text', cms_blocks, 5) %>
+        </div>
+        <div class="l-split-content__col">
+          <%= tag_for_identifier(tags, 'raw_cta_link', cms_blocks, 6) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="l-home-edit__section l-home-edit__section--tools">
+      <h2 class="l-home-edit__section-heading">Popular tools &amp; calculators x3</h2>
+      <ul class="l-home-edit__tile-list l-home-edit__tile-list--thirds">
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tool_1_heading', cms_blocks, 27) %>
+            <%= tag_for_identifier(tags, 'raw_tool_1_url', cms_blocks, 28) %>
+            <%= tag_for_identifier(tags, 'raw_tool_1_text', cms_blocks, 29) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tool_2_heading', cms_blocks, 30) %>
+            <%= tag_for_identifier(tags, 'raw_tool_2_url', cms_blocks, 31) %>
+            <%= tag_for_identifier(tags, 'raw_tool_2_text', cms_blocks, 32) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tool_3_heading', cms_blocks, 33) %>
+            <%= tag_for_identifier(tags, 'raw_tool_3_url', cms_blocks, 34) %>
+            <%= tag_for_identifier(tags, 'raw_tool_3_text', cms_blocks, 35) %>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="l-home-edit__section l-home-edit__section--tiles">
+      <h2 class="l-home-edit__section-heading">Promo tiles x4</h2>
+      <ul class="tips">
+        <li>Images should be 468x293 ideally, and definitely all the same height.</li>
+        <li>The only valid option for a promo label is: blog</li>
+        <li>Use absolute URLs for promo links</li>
+      </ul>
+      <ul class="l-home-edit__tile-list">
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tile_1_heading', cms_blocks, 7) %>
+            <%= tag_for_identifier(tags, 'raw_tile_1_image', cms_blocks, 8) %>
+            <%= tag_for_identifier(tags, 'raw_tile_1_url', cms_blocks, 9) %>
+            <%= tag_for_identifier(tags, 'raw_tile_1_label', cms_blocks, 10) %>
+            <%= tag_for_identifier(tags, 'raw_tile_1_content', cms_blocks, 11) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tile_2_heading', cms_blocks, 12) %>
+            <%= tag_for_identifier(tags, 'raw_tile_2_image', cms_blocks, 13) %>
+            <%= tag_for_identifier(tags, 'raw_tile_2_url', cms_blocks, 14) %>
+            <%= tag_for_identifier(tags, 'raw_tile_2_label', cms_blocks, 15) %>
+            <%= tag_for_identifier(tags, 'raw_tile_2_content', cms_blocks, 16) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tile_3_heading', cms_blocks, 17) %>
+            <%= tag_for_identifier(tags, 'raw_tile_3_image', cms_blocks, 18) %>
+            <%= tag_for_identifier(tags, 'raw_tile_3_url', cms_blocks, 19) %>
+            <%= tag_for_identifier(tags, 'raw_tile_3_label', cms_blocks, 20) %>
+            <%= tag_for_identifier(tags, 'raw_tile_3_content', cms_blocks, 21) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_tile_4_heading', cms_blocks, 22) %>
+            <%= tag_for_identifier(tags, 'raw_tile_4_image', cms_blocks, 23) %>
+            <%= tag_for_identifier(tags, 'raw_tile_4_url', cms_blocks, 24) %>
+            <%= tag_for_identifier(tags, 'raw_tile_4_label', cms_blocks, 25) %>
+            <%= tag_for_identifier(tags, 'raw_tile_4_content', cms_blocks, 26) %>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="l-home-edit__section l-home-edit__section--tools">
+      <h2 class="l-home-edit__section-heading">Text-only promos x2</h2>
+      <ul class="l-home-edit__tile-list l-home-edit__tile-list--halves">
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_text_tile_1_heading', cms_blocks, 36) %>
+            <%= tag_for_identifier(tags, 'raw_text_tile_1_url', cms_blocks, 37) %>
+            <%= tag_for_identifier(tags, 'raw_text_tile_1_content', cms_blocks, 38) %>
+          </div>
+        </li>
+        <li class="l-home-edit__tile">
+          <div class="l-home-edit__tile-inner">
+            <%= tag_for_identifier(tags, 'raw_text_tile_2_heading', cms_blocks, 39) %>
+            <%= tag_for_identifier(tags, 'raw_text_tile_2_url', cms_blocks, 40) %>
+            <%= tag_for_identifier(tags, 'raw_text_tile_2_content', cms_blocks, 41) %>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="l-home-edit__section">
+      <h2 class="l-home-edit__section-heading">Promo banner</h2>
+      <div class="l-home-edit__promo-banner">
+        <%= tag_for_identifier(tags, 'raw_promo_banner_content', cms_blocks, 42) %>
+        <%= tag_for_identifier(tags, 'raw_promo_banner_url', cms_blocks, 43) %>
+      </div>
+    </div>
+  <% end %>
 </div>
-<% 
+<%
 # Required home_page layout fields:
 # {{ cms:page:raw_heading:string }}
 # {{ cms:page:raw_hero_image:image }}
@@ -168,47 +137,47 @@
 # {{ cms:page:raw_bullet_3:string }}
 # {{ cms:page:raw_cta_text:string }}
 # {{ cms:page:raw_cta_link:string }}
-# 
+#
 # {{ cms:field:raw_tool_1_heading }}
 # {{ cms:field:raw_tool_1_url }}
 # {{ cms:page:raw_tool_1_text }}
-# 
+#
 # {{ cms:field:raw_tool_2_heading }}
 # {{ cms:field:raw_tool_2_url }}
 # {{ cms:page:raw_tool_2_text }}
-# 
+#
 # {{ cms:field:raw_tool_3_heading }}
 # {{ cms:field:raw_tool_3_url }}
 # {{ cms:page:raw_tool_3_text }}
-# 
+#
 # {{ cms:field:raw_tile_1_heading }}
 # {{ cms:page:raw_tile_1_image:image }}
 # {{ cms:field:raw_tile_1_url }}
 # {{ cms:field:raw_tile_1_label }}
 # {{ cms:page:raw_tile_1_content }}
-# 
+#
 # {{ cms:field:raw_tile_2_heading }}
 # {{ cms:page:raw_tile_2_image:image }}
 # {{ cms:field:raw_tile_2_url }}
 # {{ cms:field:raw_tile_2_label }}
 # {{ cms:page:raw_tile_2_content }}
-# 
+#
 # {{ cms:field:raw_tile_3_heading }}
 # {{ cms:page:raw_tile_3_image:image }}
 # {{ cms:field:raw_tile_3_url }}
 # {{ cms:field:raw_tile_3_label }}
 # {{ cms:page:raw_tile_3_content }}
-# 
+#
 # {{ cms:field:raw_tile_4_heading }}
 # {{ cms:page:raw_tile_4_image:image }}
 # {{ cms:field:raw_tile_4_url }}
 # {{ cms:field:raw_tile_4_label }}
 # {{ cms:page:raw_tile_4_content }}
-# 
+#
 # {{ cms:field:raw_text_tile_1_heading }}
 # {{ cms:field:raw_text_tile_1_url }}
 # {{ cms:page:raw_text_tile_1_content }}
-# 
+#
 # {{ cms:field:raw_text_tile_2_heading }}
 # {{ cms:field:raw_text_tile_2_url }}
 # {{ cms:page:raw_text_tile_2_content }}
