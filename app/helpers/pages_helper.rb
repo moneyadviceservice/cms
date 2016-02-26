@@ -33,7 +33,7 @@ module PagesHelper
   end
 
   def display_metadata_form_fields?(page)
-    page.layout.identifier != 'home_page' && page.layout.identifier != 'footer'
+    !page.layout.identifier.in?(%w(home_page footer))
   end
 
   private
