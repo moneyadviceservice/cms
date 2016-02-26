@@ -22,7 +22,7 @@
         = render 'comfy/admin/cms/partials/page_form_inner', form: form
 
     - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
-      = render partial: "pages/form_blocks/#{@page.layout.identifier}"
+      = render partial: "pages/form_blocks/#{@page.layout.identifier}", locals: { identifier: identifier }
     - else
       = render partial: 'form_blocks'
 

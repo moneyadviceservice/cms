@@ -1,4 +1,4 @@
-.l-panel-content
+%div{ class: "l-panel-content #{page_form_html_class(@page, identifier)}", data: { :'main-form' => 'default-editor'}}
   .l-constrained
     - namespace = { }
     - cms_object = @page || cms_object

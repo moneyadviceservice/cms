@@ -1,0 +1,13 @@
+.content-hub-edit {
+  @include column(12);
+  margin-top: $baseline-unit*4;
+}
+
+.content-hub-form {
+  margin: $baseline-unit*6 0;
+  @extend %clearfix;
+}
+
+.page-form-hide {
+  display: none;
+}

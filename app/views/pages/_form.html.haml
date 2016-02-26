@@ -32,10 +32,11 @@
         = render 'form_meta_title',                          form: form
         = render 'form_additional_options',                  form: form
 
-    - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
-      = render partial: "pages/form_blocks/#{@page.layout.identifier}"
-    - else
-      = render partial: 'form_blocks'
+    - @page.site.layouts.pluck(:identifier).reject { |identifier| identifier == 'home_page' }.each do |identifier|
+      - if lookup_context.exists? "#{identifier}", ['pages/form_blocks'], true
+        = render partial: "pages/form_blocks/#{identifier}", locals: { identifier: identifier }
+
+    = render partial: 'form_blocks', locals: { identifier: :main }
 
     = render 'scheduler', object: form
     = render 'footer_bar', object: form

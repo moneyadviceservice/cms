@@ -2,4 +2,4 @@
   .form__label-heading
     = form.label :layout_id
   .form__input-wrapper
-    = form.select :layout_id, options_for_select(page_type_options_for(@site), @page.layout_id), {}, class: 'form__select form__select--fill-width', data: { dough_urlformatter_page_type: true, url: form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)}
+    = form.select :layout_id, options_for_select(page_type_options_for(@site), @page.layout_id), {}, class: 'form__select form__select--fill-width', data: { dough_urlformatter_page_type: true, dough_component: 'PageFormType', url: form_blocks_comfy_admin_cms_site_page_path(@site, @page.id.to_i)}
