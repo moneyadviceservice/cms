@@ -1,0 +1,9 @@
+%div
+  - block_index = 0
+  - namespace.each_with_index do |(name, tags), index|
+    - tags.each do |tag|
+      - begin
+        = cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, block_index)
+      - rescue
+        - Rails.env.production?? nil : raise
+      - block_index += 1

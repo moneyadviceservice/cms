@@ -58,3 +58,7 @@ Cms::PageBuilder.add_example_article!
 puts 'Adding home page...'
 Cms::LayoutBuilder.add_home_page!
 Cms::PageBuilder.add_home_page!
+
+puts 'Adding footer...'
+Cms::LayoutBuilder.add_footer!
+Cms::PageBuilder.add_footer!

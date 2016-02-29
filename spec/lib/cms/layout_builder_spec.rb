@@ -16,7 +16,7 @@ RSpec.describe Cms::LayoutBuilder do
         expect(layout.label).to eq('Home Page')
       end
 
-      it 'sets the label for the layout to be "Home Page"' do
+      it 'sets the identifier for the layout to be home_page' do
         expect(layout.identifier).to eq('home_page')
       end
 
@@ -81,6 +81,70 @@ RSpec.describe Cms::LayoutBuilder do
 
       it 'sets the label for the layout to be "Home Page"' do
         expect(layout.identifier).to eq('home_page')
+      end
+
+      it 'uses the same content areas as the english layout' do
+        english_layout = english_site.layouts.reload.first
+        expect(layout.content).to eq(english_layout.content)
+      end
+    end
+  end
+
+  describe '.add_footer!' do
+    before { Cms::LayoutBuilder.add_footer! }
+
+    context 'English site' do
+      let(:layout) { english_site.layouts.reload.first }
+
+      it 'creates a layout for the English site' do
+        expect(english_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Footer"' do
+        expect(layout.label).to eq('Footer')
+      end
+
+      it 'sets the identifier for the layout to be footer' do
+        expect(layout.identifier).to eq('footer')
+      end
+
+      it 'defines the content areas for the footer web_chat section' do
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_one:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_two:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_additional_three:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_web_chat_small_print:string }}')
+      end
+
+      it 'defines the content areas for the footer contact section' do
+        expect(layout.content).to include('{{ cms:page:raw_contact_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_introduction:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_phone_number:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_one:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_two:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_additional_three:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_contact_small_print:string }}')
+      end
+
+      it 'defines the content areas for the footer newsletter section' do
+        expect(layout.content).to include('{{ cms:page:raw_newsletter_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_newsletter_introduction:string }}')
+      end
+    end
+
+    context 'Welsh site' do
+      let(:layout) { welsh_site.layouts.reload.first }
+
+      it 'creates a layout for the Welsh site' do
+        expect(welsh_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Footer"' do
+        expect(layout.label).to eq('Footer')
+      end
+
+      it 'sets the identifier for the layout to be footer' do
+        expect(layout.identifier).to eq('footer')
       end
 
       it 'uses the same content areas as the english layout' do

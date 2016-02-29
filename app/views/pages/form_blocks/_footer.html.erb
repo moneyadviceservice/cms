@@ -1,0 +1,36 @@
+<div class="l-home-edit">
+  <% block_index = 0 %>
+  <% namespace.each_with_index do |(name, tags), index| %>
+    <div class="l-split-content">
+      <div class="l-split-content__col">
+        <h2>Web Chat Panel</h2>
+        <%= tag_for_identifier(tags, 'raw_web_chat_heading', cms_blocks, 0) %>
+        <%= tag_for_identifier(tags, 'raw_web_chat_additional_one', cms_blocks, 1) %>
+        <%= tag_for_identifier(tags, 'raw_web_chat_additional_two', cms_blocks, 2) %>
+        <%= tag_for_identifier(tags, 'raw_web_chat_additional_three', cms_blocks, 3) %>
+        <%= tag_for_identifier(tags, 'raw_web_chat_small_print', cms_blocks, 4) %>
+      </div>
+    </div>
+
+    <div class="l-split-content">
+      <div class="l-split-content__col">
+        <h2>Contact Panel</h2>
+        <%= tag_for_identifier(tags, 'raw_contact_heading', cms_blocks, 5) %>
+        <%= tag_for_identifier(tags, 'raw_contact_introduction', cms_blocks, 6) %>
+        <%= tag_for_identifier(tags, 'raw_contact_phone_number', cms_blocks, 7) %>
+        <%= tag_for_identifier(tags, 'raw_contact_additional_one', cms_blocks, 8) %>
+        <%= tag_for_identifier(tags, 'raw_contact_additional_two', cms_blocks, 9) %>
+        <%= tag_for_identifier(tags, 'raw_contact_additional_three', cms_blocks, 10) %>
+        <%= tag_for_identifier(tags, 'raw_contact_small_print', cms_blocks, 11) %>
+      </div>
+    </div>
+
+    <div class="l-split-content">
+      <div class="l-split-content__col">
+        <h2>Newsletter Panel</h2>
+        <%= tag_for_identifier(tags, 'raw_newsletter_heading', cms_blocks, 12) %>
+        <%= tag_for_identifier(tags, 'raw_newsletter_introduction', cms_blocks, 13) %>
+      </div>
+    </div>
+  <% end %>
+</div>

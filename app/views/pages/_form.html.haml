@@ -17,25 +17,22 @@
     .l-panel-content.l-panel-content--form
       .l-constrained{ data: page_form_component(@page.new_record?, default: ['URLFormatter'], optional: ['MirrorInputValue']), 'data-dough-urlformatter-base-url' => '{pageType}/{slug}'}
 
-        = render 'form_title', form: form
-
-        - if @site.layouts.any?
-          = render 'form_layout', form: form
+        - if display_metadata_form_fields?(@page)
+          = render 'form_title', form: form
+          = render 'form_layout', form: form if @site.layouts.any?
 
         = form.hidden_field :scheduled_on, data: {'dough-scheduler-on' => ''}
 
-        = render 'form_slug', form: form
-        = render 'comfy/admin/cms/partials/page_form_inner', form: form
-        = render 'comfy/admin/cms/categories/form',          form: form
-        = render 'tags/shared/form',                         form: form
-        = render 'form_meta_description',                    form: form
-        = render 'form_meta_title',                          form: form
-        = render 'form_additional_options',                  form: form
+        - if display_metadata_form_fields?(@page)
+          = render 'form_slug', form: form
+          = render 'comfy/admin/cms/partials/page_form_inner', form: form
+          = render 'comfy/admin/cms/categories/form',          form: form
+          = render 'tags/shared/form',                         form: form
+          = render 'form_meta_description',                    form: form
+          = render 'form_meta_title',                          form: form
+          = render 'form_additional_options',                  form: form
 
-    - if lookup_context.exists? "#{@page.layout.identifier}", ['pages/form_blocks'], true
-      = render partial: "pages/form_blocks/#{@page.layout.identifier}"
-    - else
-      = render partial: 'form_blocks'
+    = render partial: 'form_blocks'
 
     = render 'scheduler', object: form
     = render 'footer_bar', object: form
