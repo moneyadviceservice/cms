@@ -2,11 +2,7 @@
 
 ComfortableMexicanSofa.configure do |config|
   # TODO Change this stuff to use config_for gem unless updating Rails to 4.2
-  preview_domain = if ENV['MAS_ENVIRONMENT'] == 'qa'
-                     'qa.test.moneyadviceservice.org.uk'
-                   else
-                     'www.moneyadviceservice.org.uk'
-                   end
+  preview_domain = ENV['MAS_PUBLIC_WEBSITE_URL']
 
   config.preview_domain = ENV.fetch('FRONTEND_URL', preview_domain)
   # Title of the admin area
