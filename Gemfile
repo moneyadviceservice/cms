@@ -74,6 +74,7 @@ group :test, :development do
   gem 'rubocop', require: false
   gem 'valid_attribute', require: false
   gem 'dotenv-rails'
+  gem 'launchy'
 end
 
 group :production do

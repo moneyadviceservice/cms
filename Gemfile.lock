@@ -579,6 +579,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-ui-rails (~> 5.0)
+  launchy
   legato (= 0.4.0)
   mailjet
   mastalk (~> 0.5.8)
