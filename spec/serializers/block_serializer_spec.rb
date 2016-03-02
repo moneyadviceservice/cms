@@ -1,71 +1,163 @@
 describe BlockSerializer do
-  let(:object) do
-    Comfy::Cms::Block.new(identifier: 'content',
-                          blockable: page,
-                          content: 'published content')
-  end
-
-  subject { JSON.parse(described_class.new(object).to_json)['content'] }
-
   context 'when raw_ is the identifier' do
-    let(:page) { Comfy::Cms::Page.new(state: 'published') }
-
-    let(:object) do
-      Comfy::Cms::Block.new(identifier: 'raw_content',
-                            blockable: page,
-                            content: 'published content')
+    let(:block_content) { 'raw content' }
+    let(:page) { create(:page) }
+    let(:block) do
+      create(:block, identifier: 'raw_content',
+                     blockable: page,
+                     content: block_content)
     end
 
-    it 'returns raw contents' do
-      expect(subject).to eq('published content')
+    subject { JSON.parse(described_class.new(block).to_json)['content'] }
+
+    it 'returns the raw content' do
+      expect(subject).to eq(block_content)
     end
   end
 
-  context 'when page is published' do
-    let(:page) { Comfy::Cms::Page.new(state: 'published') }
+  context 'when "content" is the identifier' do
+    let(:scheduled_on) { nil }
+    let(:published_revision) { nil }
+    let(:block_content) { 'block content' }
+    let(:block_content_wrapped_in_markup) { "<p>#{block_content}</p>\n" }
+    let(:active_revision_content) { 'active revision content' }
+    let(:active_revision_content_wrapped_in_markup) { "<p>#{active_revision_content}</p>\n" }
+    let(:page) { create(:page, state: state, scheduled_on: scheduled_on) }
+    let(:block) { create(:block, identifier: 'content', blockable: page, content: block_content) }
 
-    it 'returns the blocks content' do
-      expect(subject).to eq("<p>published content</p>\n")
+    before do
+      if published_revision.present?
+        page.update_attribute(:active_revision, published_revision)
+      end
+
+      # Reload the page to make it see it's block
+      page.reload
     end
 
-    context 'when contains mastalk snippets' do
-      let(:object) { Comfy::Cms::Block.new(identifier: 'content', blockable: page, content: '## content') }
+    context 'without a scope provided' do
+      subject { JSON.parse(described_class.new(block).to_json)['content'] }
 
-      it 'converts output to html' do
-        expect(subject).to eq("<h2 id=\"content\">content</h2>\n")
+      context 'with a page state of unsaved' do
+        let(:state) { 'unsaved' }
+
+        it { should be_nil }
+      end
+
+      context 'with a page state of draft' do
+        let(:state) { 'draft' }
+
+        it { should be_nil }
+      end
+
+      context 'with a page state of published' do
+        let(:state) { 'published' }
+
+        it { should eq block_content_wrapped_in_markup }
+      end
+
+      context 'with a page state of published_being_edited' do
+        let(:state) { 'published_being_edited' }
+        let(:published_revision) { create(:revision, content: active_revision_content, record: page) }
+
+        it { should eq active_revision_content_wrapped_in_markup }
+      end
+
+      context 'with a page state of scheduled' do
+        let(:state) { 'scheduled' }
+
+        context 'and no active revision' do
+          context 'with a scheduled_on timestamp in the past' do
+            let(:scheduled_on) { 1.minute.ago }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+
+          context 'with a scheduled_on timestamp in the future' do
+            let(:scheduled_on) { 1.minute.from_now }
+
+            it { should be_nil }
+          end
+        end
+
+        context 'and an active revision' do
+          let(:published_revision) { create(:revision, content: active_revision_content, record: page) }
+
+          context 'with a scheduled_on timestamp in the past' do
+            let(:scheduled_on) { 1.minute.ago }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+
+          context 'with a scheduled_on timestamp in the future' do
+            let(:scheduled_on) { 1.minute.from_now }
+
+            it { should eq active_revision_content_wrapped_in_markup }
+          end
+        end
       end
     end
-  end
 
-  context 'when page is published being edited' do
-    let(:blocks_attributes) { [{ identifier: 'content', content: 'Last published content' }] }
-    let(:data) { { previous_event: 'published', blocks_attributes: blocks_attributes } }
-    let(:revisions) { Comfy::Cms::Revision.new(data: data) }
-    let(:page) { Comfy::Cms::Page.new(state: 'published_being_edited', revisions: [revisions], active_revision: revisions) }
+    context 'and the scope is "preview"' do
+      subject { JSON.parse(described_class.new(block, scope: 'preview').to_json)['content'] }
 
-    it 'returns the last published content' do
-      expect(subject).to eq("<p>Last published content</p>\n")
-    end
-  end
+      context 'with a page state of unsaved' do
+        let(:state) { 'unsaved' }
 
-  context 'when scheduled date is in the past' do
-    let(:passed_date) { Time.current - 1.day }
-    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: passed_date) }
+        it { should eq block_content_wrapped_in_markup }
+      end
 
-    it 'returns the blocks content' do
-      expect(subject).to eq("<p>published content</p>\n")
-    end
-  end
+      context 'with a page state of draft' do
+        let(:state) { 'draft' }
 
-  context 'when scheduled date in the future' do
-    let(:future_date) { Time.current + 1.day }
-    let(:blocks_attributes) { [{ identifier: 'content', content: 'Last published content' }] }
-    let(:data) { { previous_event: 'published', blocks_attributes: blocks_attributes } }
-    let(:revisions) { Comfy::Cms::Revision.new(data: data) }
-    let(:page) { Comfy::Cms::Page.new(state: 'scheduled', scheduled_on: future_date, revisions: [revisions], active_revision: revisions) }
+        it { should eq block_content_wrapped_in_markup }
+      end
 
-    it 'returns the last published revision content' do
-      expect(subject).to eq("<p>Last published content</p>\n")
+      context 'with a page state of published' do
+        let(:state) { 'published' }
+
+        it { should eq block_content_wrapped_in_markup }
+      end
+
+      context 'with a page state of published_being_edited' do
+        let(:state) { 'published_being_edited' }
+        let(:published_revision) { create(:revision, content: active_revision_content, record: page) }
+
+        it { should eq block_content_wrapped_in_markup }
+      end
+
+      context 'with a page state of scheduled' do
+        let(:state) { 'scheduled' }
+
+        context 'and no active revision' do
+          context 'with a scheduled_on timestamp in the past' do
+            let(:scheduled_on) { 1.minute.ago }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+
+          context 'with a scheduled_on timestamp in the future' do
+            let(:scheduled_on) { 1.minute.from_now }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+        end
+
+        context 'and an active revision' do
+          let(:published_revision) { create(:revision, content: active_revision_content, record: page) }
+
+          context 'with a scheduled_on timestamp in the past' do
+            let(:scheduled_on) { 1.minute.ago }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+
+          context 'with a scheduled_on timestamp in the future' do
+            let(:scheduled_on) { 1.minute.from_now }
+
+            it { should eq block_content_wrapped_in_markup }
+          end
+        end
+      end
     end
   end
 end
