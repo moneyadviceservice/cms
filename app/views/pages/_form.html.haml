@@ -2,10 +2,6 @@
   %li.nav-secondary__item.nav-secondary__item--right
     = render 'comfy/admin/cms/sites/mirrors', object: @page
 
-- content_for :right_column do
-  = render 'form_save'
-  = render 'comfy/admin/cms/files/index'
-
 %div{data:{dough_component: 'StickyElements'}}
   = form_for @page, as: :page,
                     url: form_url,
