@@ -31,7 +31,7 @@ module API
     def unpublished
       pages = current_site.pages.unpublished.layout_identifier(params[:page_type])
 
-      render json: pages, each_serializer: FeedPageSerializer
+      render json: pages, each_serializer: FeedPageSerializer, scope: 'preview'
     end
 
     private

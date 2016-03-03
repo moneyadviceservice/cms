@@ -167,7 +167,7 @@ RSpec.describe API::ContentController, type: :request do
 
       it 'content is html' do
         get '/en/articles/unpublished'
-        expect(response_body[0]['blocks'][0]['content']).to include('<h2 id="title">title</h2>')
+        expect(response_body[0]['blocks'][0]['content']).to include('<p>stuff</p>')
       end
     end
   end
