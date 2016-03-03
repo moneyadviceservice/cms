@@ -25,13 +25,13 @@ module API
     def published
       pages = current_site.pages.published.layout_identifier(params[:page_type])
 
-      render json: pages, each_serializer: PageFeedSerializer
+      render json: pages, each_serializer: FeedPageSerializer
     end
 
     def unpublished
       pages = current_site.pages.unpublished.layout_identifier(params[:page_type])
 
-      render json: pages, each_serializer: PageFeedSerializer
+      render json: pages, each_serializer: FeedPageSerializer
     end
 
     private
