@@ -25,7 +25,7 @@ GIT
       reverse_markdown (~> 0.5)
 
 GEM
-  remote: http://gems.test.mas/
+  remote: http://gems.dev.mas.local/
   remote: https://rubygems.org/
   specs:
     CFPropertyList (2.3.1)
