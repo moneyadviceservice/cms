@@ -25,8 +25,8 @@ GIT
       reverse_markdown (~> 0.5)
 
 GEM
-  remote: http://gems.dev.mas.local/
   remote: https://rubygems.org/
+  remote: http://gems.dev.mas.local/
   specs:
     CFPropertyList (2.3.1)
     actionmailer (4.1.1)
@@ -565,7 +565,7 @@ DEPENDENCIES
   capybara (= 2.4.1)
   clockwork
   coffee-rails (~> 4.0.0)
-  comfortable_mexican_sofa (~> 2.0.0.0)
+  comfortable_mexican_sofa (~> 2.0.0.0)!
   cucumber-rails
   database_cleaner
   devise
