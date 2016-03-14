@@ -28,12 +28,19 @@ module PagesHelper
   end
 
   def display_additional_button_menu?(page, user)
-    return false if user.editor? || page_state_buttons(page).empty?
-    page.publishable?
+    !(user.editor? || page.unsaved? || page.unpublished?)
   end
 
   def display_metadata_form_fields?(page)
     !page.layout.identifier.in?(%w(home_page footer))
+  end
+
+  def activity_log(page)
+    ActivityLogPresenter.collect(ActivityLog.fetch(from: page))
+  end
+
+  def categories
+    @categories ||= Comfy::Cms::CategoriesListPresenter.new(Comfy::Cms::Category.where(site: english_site))
   end
 
   private

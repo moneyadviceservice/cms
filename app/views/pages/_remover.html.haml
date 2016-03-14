@@ -1,0 +1,25 @@
+.js-dialog-target.is-inactive{'data-dough-dialog-target' => 'remover'}
+  .l-tab-panels.l-tab-panels--add-link
+    .l-tab-panels__item.l-tab-panels__item--aside
+      - if params[:alternate]
+        %h2.l-tab-panels__heading Remove draft #{page.layout.label} update
+        %p
+          Are you sure you wish to remove this draft update
+          for the #{page.layout.label.downcase} "#{page.label}".
+
+      - else
+        %h2.l-tab-panels__heading Delete this draft #{page.layout.label}
+        %p
+          Are you sure you want to delete this #{page.layout.label.downcase},
+          "#{page.label}".
+
+      = form_tag comfy_admin_cms_site_page_path(page.site, page), method: :delete do
+        - if params[:alternate]
+          = hidden_field_tag :alternate, true
+
+        = button_tag type: 'submit', class: "button--action" do
+          %span.button__text
+            - if params[:alternate]
+              Yes, remove this draft
+            - else
+              Yes, delete this draft #{page.layout.label}

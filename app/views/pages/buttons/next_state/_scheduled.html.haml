@@ -1,0 +1,18 @@
+- if params[:alternate].nil?
+  - if @page.scheduled_on <= Time.current
+    .menu__item
+      = button_tag value: :create_new_draft, type: :submit, name: :state_event, class: "menu__action t-unpublish" do
+        Create Draft New Version
+
+  .menu__item
+    = button_tag value: :unschedule, type: :submit, name: :state_event, class: "menu__action t-unpublish" do
+      - if @page.scheduled_on <= Time.current
+        Unpublish
+      - else
+        Unschedule
+
+
+- elsif params[:alternate]
+  .menu__item
+    = button_tag value: :unschedule_update, type: :submit, name: :state_event, class: "menu__action t-unschedule" do
+      Unschedule

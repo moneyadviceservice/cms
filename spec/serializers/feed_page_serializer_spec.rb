@@ -1,4 +1,4 @@
-describe PageFeedSerializer do
+describe FeedPageSerializer do
   let(:site) { Comfy::Cms::Site.new(label: 'en') }
   let(:article) { Comfy::Cms::Page.new(site: site) }
   subject { described_class.new(article) }

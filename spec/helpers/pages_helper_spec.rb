@@ -63,31 +63,45 @@ describe PagesHelper do
 
   describe '#display_additional_button_menu?' do
     let(:page) { FactoryGirl.build(:page) }
-    let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:user]) }
-    let(:buttons) { [double] }
-    before { allow(helper).to receive(:page_state_buttons).and_return(buttons) }
 
     context 'user is an editor' do
       let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:editor]) }
 
-      it 'returns false if the current user is an editor' do
+      it 'returns false' do
         expect(helper.display_additional_button_menu?(page, user)).to be(false)
       end
     end
 
-    context 'page is publishable and page_state_buttons is empty' do
-      let(:buttons) { [] }
-      it { expect(helper.display_additional_button_menu?(page, user)).to be(false) }
-    end
+    context 'user is not an editor' do
+      let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:user]) }
 
-    context 'page is publishable and page_state_buttons contains something' do
-      let(:buttons) { [double] }
-      it { expect(helper.display_additional_button_menu?(page, user)).to be(true) }
-    end
+      context 'and the page is in the state "unsaved"' do
+        before { allow(page).to receive(:unsaved?) { true } }
 
-    context 'page is not publishable' do
-      before { allow(page).to receive(:publishable?).and_return(false) }
-      it { expect(helper.display_additional_button_menu?(page, user)).to be(false) }
+        it 'returns false' do
+          expect(helper.display_additional_button_menu?(page, user)).to be(false)
+        end
+      end
+
+      context 'and the page not in the state "unsaved"' do
+        before { allow(page).to receive(:unsaved?) { false } }
+
+        context 'and the page is in the state "unpublished"' do
+          before { allow(page).to receive(:unpublished?) { true } }
+
+          it 'returns false' do
+            expect(helper.display_additional_button_menu?(page, user)).to be(false)
+          end
+        end
+
+        context 'and the page not in the state "unpublished"' do
+          before { allow(page).to receive(:unpublished?) { false } }
+
+          it 'returns true' do
+            expect(helper.display_additional_button_menu?(page, user)).to be(true)
+          end
+        end
+      end
     end
   end
 

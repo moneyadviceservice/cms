@@ -45,7 +45,7 @@ Then(/^the new user should not be able to log in$/) do
   expect(page).to_not have_content('Signed in successfully.')
 end
 
-Given(/^I am not an admin user$/) do
+Given(/^I am (?:a normal|not an admin) user$/) do
   @current_user = FactoryGirl.create(:user,
                                      role: Comfy::Cms::User.roles[:user],
                                      email: 'test@tester.com',

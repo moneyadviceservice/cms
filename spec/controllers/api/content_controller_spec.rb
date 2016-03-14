@@ -145,11 +145,8 @@ RSpec.describe API::ContentController, type: :request do
                         layout: article_layout,
                         full_path: '/')
         object.blocks.create(identifier: 'content', content: 'stuff')
-        object.revisions.create(data: {
-                                  previous_event: 'published',
-                                  event: 'unpublished',
-                                  blocks_attributes: [{ identifier: 'content', content: '## title' }]
-                                })
+        object.revisions.create(data: { previous_event: 'published', event: 'unpublished', blocks_attributes: [{ identifier: 'content', content: '## title' }]})
+        object.update_column(:active_revision_id, object.revisions.first.id)
         object
       end
 
@@ -170,7 +167,7 @@ RSpec.describe API::ContentController, type: :request do
 
       it 'content is html' do
         get '/en/articles/unpublished'
-        expect(response_body[0]['blocks'][0]['content']).to include('<h2 id="title">title</h2>')
+        expect(response_body[0]['blocks'][0]['content']).to include('<p>stuff</p>')
       end
     end
   end

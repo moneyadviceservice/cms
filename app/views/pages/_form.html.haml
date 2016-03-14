@@ -2,16 +2,15 @@
   %li.nav-secondary__item.nav-secondary__item--right
     = render 'comfy/admin/cms/sites/mirrors', object: @page
 
-- content_for :right_column do
-  = render 'form_save'
-  = render 'comfy/admin/cms/files/index'
-
 %div{data:{dough_component: 'StickyElements'}}
   = form_for @page, as: :page,
                     url: form_url,
                     class: 'form',
                     html: { multipart: true, autocomplete: 'off'},
-                    data: { dough_component: 'MASEditor UnsavedChangesPrompt', dough_scheduler_form: true } do |form|
+                    data: { dough_component: 'MASEditor', dough_scheduler_form: true } do |form|
+
+    - if params[:alternate]
+      = hidden_field :alternate, true, id: 'js-alternate'
 
     = render 'comfy/admin/cms/partials/page_form_before', object: form
     .l-panel-content.l-panel-content--form
@@ -41,3 +40,6 @@
 = render 'activity_log_box'
 = render 'insert_link_dialog'
 = render 'insert_image_dialog'
+
+- unless @page.new_record?
+  = render 'remover', page: @page

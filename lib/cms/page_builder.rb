@@ -17,7 +17,7 @@ module Cms
         page.blocks.create!(identifier: content_area, content: '')
       end
 
-      page.save_unsaved!
+      page.create_initial_draft!
       page.publish!
     end
 
@@ -47,7 +47,7 @@ module Cms
 
     def self.publish_pages(pages)
       pages.each do |page|
-        page.save_unsaved!
+        page.create_initial_draft!
         page.publish!
       end
     end

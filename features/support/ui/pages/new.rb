@@ -16,6 +16,6 @@ module UI::Pages
     elements :tags_chosen,   '.t-tags-select .search-choice'
     element :meta_description, '#page_meta_description'
     element :meta_title, '#page_meta_title'
-    element :save_button, '.t-save_unsaved'
+    element :save_button, '.t-create_initial_draft'
   end
 end

@@ -17,7 +17,7 @@
     .form-group
       .form__row.choose-category
         = label_tag :category, t('links.page.category.label')
-        = select_tag(:category, options_from_collection_for_select(@categories, :label, :label, params[:category]),
+        = select_tag(:category, options_from_collection_for_select(categories, :label, :label, params[:category]),
             include_blank: false,
             multiple:      false,
             id:            'categories',

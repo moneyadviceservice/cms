@@ -4,12 +4,12 @@ module RevisionData
   end
 
   def self.dump(options)
-    current_user = options.delete(:current_user)
+    user = options.delete(:user)
 
     {
       author: {
-        id:   current_user.id,
-        name: current_user.name
+        id:   user.id,
+        name: user.name
       }
     }.merge(options)
   end

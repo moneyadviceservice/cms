@@ -12,11 +12,11 @@ RSpec.describe RevisionData do
   end
 
   describe '.dump' do
-    let(:current_user) { double(id: 42, name: 'Luke') }
+    let(:user) { double(id: 42, name: 'Luke') }
 
     context 'when note' do
       let(:revision_data) do
-        { current_user: current_user, note: 'A note' }
+        { user: user, note: 'A note' }
       end
 
       it 'returns the revision data with note text' do

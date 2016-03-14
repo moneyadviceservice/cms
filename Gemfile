@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'comfortable_mexican_sofa', '~>1.12.1.0'
+gem 'comfortable_mexican_sofa', '~>2.0.0.0'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
@@ -50,6 +50,7 @@ group :development do
   gem 'spring-commands-rspec'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'unicorn-rails'
 end
 
 group :test do
@@ -74,6 +75,7 @@ group :test, :development do
   gem 'rubocop', require: false
   gem 'valid_attribute', require: false
   gem 'dotenv-rails'
+  gem 'launchy'
 end
 
 group :production do

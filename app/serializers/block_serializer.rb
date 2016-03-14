@@ -9,36 +9,43 @@ class BlockSerializer < ActiveModel::Serializer
     if identifier.start_with?('raw_')
       ContentComposer.new(block_content, RawParser).to_html
     else
-      ContentComposer.new(block_content).to_html
+      if block_content
+        ContentComposer.new(block_content).to_html
+      end
     end
+  end
+
+  private
+
+  def page
+    object.blockable
   end
 
   def block_content
-    if render_content_directly?
+    if identifier.start_with?('raw_')
       object.content
     else
-      published_content
+      # If we're previewing, we want to recognise when a live article
+      # has a draft new version in progress.
+      if scope == 'preview'
+        if alternate_blocks_retriever.blocks_attributes.present?
+          alternate_blocks_retriever.block_content(:content)
+        else
+          blocks_retriever.block_content(:content)
+        end
+
+      else
+        blocks_retriever.block_content(:content) if blocks_retriever.live?
+      end
     end
   end
 
-  def published_content
-    hash = published_block_attributes.find { |a| a[:identifier] == identifier } || {}
-    hash.fetch(:content, '')
+  def blocks_retriever
+    @blocks_retriever ||= PageBlocksRetriever.new(page)
   end
 
-  def published_block_attributes
-    (last_published_revision.try(:data) || {}).fetch(:blocks_attributes, [])
+  def alternate_blocks_retriever
+    @alternate_blocks_retriever ||= AlternatePageBlocksRetriever.new(page)
   end
 
-  def last_published_revision
-    object.blockable.revisions.find { |r| r.data[:previous_event] == 'published' }
-  end
-
-  def render_content_directly?
-    scope == 'preview' || object.blockable.state == 'published' || past_scheduled_time?
-  end
-
-  def past_scheduled_time?
-    object.blockable.state == 'scheduled' && object.blockable.scheduled_on <= Time.current
-  end
 end

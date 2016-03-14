@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
   def english_site
     @english_site ||= Comfy::Cms::Site.find_by(label: 'en')
   end
+  helper_method :english_site
 end
