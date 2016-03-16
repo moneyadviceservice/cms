@@ -4,6 +4,7 @@ Feature: Page Delete
   I want to be able to delete unwanted drafts
   So that I can stop them accumulating
 
+  @wip
   Scenario: User or Admin user can unschedule a scheduled article
     Given I am a normal user
     And I am working on a new unsaved article
@@ -23,6 +24,7 @@ Feature: Page Delete
     When I press the button "Unschedule"
     Then I should see that the state is "Draft"
 
+  @wip
   Scenario: User or Admin user can unschedule an update to a published article
     Given I am a normal user
     And I am working on a new unsaved article
