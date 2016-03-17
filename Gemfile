@@ -40,7 +40,7 @@ gem 'clockwork'
 gem 'paper_trail'
 gem 'feature'
 
-gem 'mastalk', '~> 0.5.8'
+gem 'mastalk', '~> 0.5.9'
 gem 'mailjet'
 gem 'paperclip-azure', '~> 0.2'
 
