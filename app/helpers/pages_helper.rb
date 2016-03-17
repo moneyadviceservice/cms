@@ -43,6 +43,26 @@ module PagesHelper
     @categories ||= Comfy::Cms::CategoriesListPresenter.new(Comfy::Cms::Category.where(site: english_site))
   end
 
+  def main_status(page)
+    current_status(page).split(/\ \|\ /)[0]
+  end
+
+  def alternate_status(page)
+    current_status(page).split(/\ \|\ /)[1]
+  end
+
+  def scheduled_time(page)
+    if page.scheduled_on.today?
+      page.scheduled_on.strftime('%H:%M today')
+    else
+      if page.scheduled_on.year == Date.today.year
+        page.scheduled_on.strftime('%H:%M %a %-d %b')
+      else
+        page.scheduled_on.strftime('%H:%M %a %-d %b %Y')
+      end
+    end
+  end
+
   private
 
   def preview_domain

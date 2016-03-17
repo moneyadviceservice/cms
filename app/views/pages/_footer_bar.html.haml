@@ -3,10 +3,19 @@
     .nav-article__inner
       %span.nav-article__item
         %span#t-status
-          =@site.label.upcase
+          = @site.label.upcase
           Status:
-          =current_status(@page)
-          =@page.scheduled_on
+          - if params[:alternate].nil?
+            = main_status(@page)
+            - if @page.scheduled? && @page.scheduled_on > Time.current && @page.active_revision.nil?
+              for #{scheduled_time(@page)}
+
+          - else
+            = alternate_status(@page)
+
+            - if @page.scheduled? && @page.scheduled_on > Time.current && @page.active_revision.present?
+              for #{scheduled_time(@page)}
+
         %span.is-hidden{ data: { dough_wordcount_display: 'article', dough_wordcount_text: ' | ~{count} words' } }
       - if @page.persisted?
         %span.nav-article__item
