@@ -24,7 +24,7 @@ Feature: Publishing an article then scheduling an update
     When I populate the editor with the text "a new draft"
     And I click the caret to show more buttons
     And I press the button "Create New Draft Version"
-    Then I should see that the state is "Published | Draft"
+    Then I should see that the state is "Draft"
     And I should be on the alternate content editing page
     And I should see the text "a new draft" in the editor
 

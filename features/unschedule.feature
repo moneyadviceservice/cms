@@ -40,7 +40,7 @@ Feature: Page Delete
     When I populate the editor with the text "a new draft"
     And I click the caret to show more buttons
     And I press the button "Create New Draft Version"
-    Then I should see that the state is "Published | Draft"
+    Then I should see that the state is "Draft"
 
     When I populate the editor with the text "a new version for scheduling for the future"
     And I click the caret to show more buttons
@@ -55,4 +55,4 @@ Feature: Page Delete
     # display properly on a smaller window.
     When I increase the size of my browser window
     And I press the button "Unschedule"
-    Then I should see that the state is "Published | Draft"
+    Then I should see that the state is "Draft"

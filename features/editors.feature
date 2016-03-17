@@ -27,10 +27,10 @@ Feature: Publish
   Scenario: External editor can update but not publish a draft new version of an article
     Given I am an editor user
     And I am working on a draft new version of an article
-    And I see that the state is "Published | Draft"
+    And I see that the state is "Draft"
     When I populate the editor with the text "new content"
     And I press the button "Update Draft New Version"
-    Then I should see that the state is still "Published | Draft"
+    Then I should see that the state is still "Draft"
     And I should see the text "new content" in the editor
     And I should see the button "Update Draft New Version"
     And I should not see the button "Publish changes"
@@ -56,10 +56,10 @@ Feature: Publish
   Scenario: External editor can update a scheduled update to a live article
     Given I am an editor user
     And I am working on a scheduled update to an article
-    And I see that the state is "Published | Scheduled"
+    And I see that the state is "Scheduled"
     When I populate the editor with the text "new content"
     And I press the button "Save Changes to Scheduled Update"
-    Then I see that the state is still "Published | Scheduled"
+    Then I see that the state is still "Scheduled"
     And I should see the text "new content" in the editor
     And I should see the button "Save Changes to Scheduled Update"
 
