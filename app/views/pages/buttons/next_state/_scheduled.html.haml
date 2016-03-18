@@ -1,4 +1,4 @@
-- if params[:alternate].nil?
+- if params[:alternate].nil? && @page.active_revision.nil?
   - if @page.scheduled_on <= Time.current
     .menu__item
       = button_tag value: :create_new_draft, type: :submit, name: :state_event, class: "menu__action t-unpublish" do
