@@ -38,9 +38,14 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
   label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
   css_class   = tag.class.to_s.demodulize.underscore
   content     = ''
+
+  # ACHTUNG, HACKY! - looks for the instance variable @blocks_attributes in the view to retrieve the current content
+  blocks_attributes = @template.instance_variable_get('@blocks_attributes')
+  current_value = blocks_attributes.find { |block_attributes| block_attributes[:identifier] == tag.identifier.to_s }[:content]
+
   case method
   when :file_field_tag
-    input_params = {:id => nil}
+    input_params = {:id => nil, value: current_value}
     name = "blocks_attributes[#{index}][content]"
 
     if options.delete(:multiple)
@@ -51,8 +56,8 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
     content << @template.send(method, name, input_params)
     content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
   else
-    options[:class] = ' form-control'
-    content << @template.send(method, "blocks_attributes[#{index}][content]", tag.content, options)
+    options[:class] = 'form-control'
+    content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
   end
   content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
 

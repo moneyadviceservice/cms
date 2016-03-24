@@ -22,21 +22,17 @@ class BlockSerializer < ActiveModel::Serializer
   end
 
   def block_content
-    if identifier.start_with?('raw_')
-      object.content
-    else
-      # If we're previewing, we want to recognise when a live article
-      # has a draft new version in progress.
-      if scope == 'preview'
-        if alternate_blocks_retriever.blocks_attributes.present?
-          alternate_blocks_retriever.block_content(:content)
-        else
-          blocks_retriever.block_content(:content)
-        end
-
+    # If we're previewing, we want to recognise when a live article
+    # has a draft new version in progress.
+    if scope == 'preview'
+      if alternate_blocks_retriever.blocks_attributes.present?
+        alternate_blocks_retriever.block_content(identifier)
       else
-        blocks_retriever.block_content(:content) if blocks_retriever.live?
+        blocks_retriever.block_content(identifier)
       end
+
+    else
+      blocks_retriever.block_content(identifier) if blocks_retriever.live?
     end
   end
 

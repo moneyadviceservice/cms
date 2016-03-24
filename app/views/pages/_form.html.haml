@@ -3,11 +3,14 @@
     = render 'comfy/admin/cms/sites/mirrors', object: @page
 
 %div{data:{dough_component: 'StickyElements'}}
+  - data_attributes = { dough_scheduler_form: true }
+  - data_attributes[:dough_component] = 'MASEditor' if @blocks_attributes && @blocks_attributes.any? { |block| block[:identifier] == 'content' }
+
   = form_for @page, as: :page,
                     url: form_url,
                     class: 'form',
                     html: { multipart: true, autocomplete: 'off'},
-                    data: { dough_component: 'MASEditor', dough_scheduler_form: true } do |form|
+                    data: data_attributes do |form|
 
     - if params[:alternate]
       = hidden_field :alternate, true, id: 'js-alternate'
