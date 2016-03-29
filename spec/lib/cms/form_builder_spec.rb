@@ -1,6 +1,13 @@
 describe Cms::FormBuilder do
+  let(:template) { ActionView::Base.new }
+  let(:identifier) { 'identifier' }
+  let(:content) { 'content' }
+  let(:block_attributes) { { identifier: identifier, content: content } }
+
+  before { template.instance_variable_set('@blocks_attributes', [block_attributes]) }
+
   subject do
-    described_class.new(:model, Object.new, ActionView::Base.new, {})
+    described_class.new(:model, Object.new, template, {})
   end
 
   describe '#page_image' do
@@ -8,12 +15,12 @@ describe Cms::FormBuilder do
     let(:tag) do
       ComfortableMexicanSofa::Tag::PageImage.new.tap do |pi|
         pi.blockable = page
-        pi.identifier = 'hero_image'
+        pi.identifier = identifier
       end
     end
 
     it 'adds label' do
-      expect(subject.page_image(tag, 0)).to match(/label.*Hero image.*label/)
+      expect(subject.page_image(tag, 0)).to match(/label.*#{identifier.capitalize}.*label/)
     end
 
     it 'adds text input' do

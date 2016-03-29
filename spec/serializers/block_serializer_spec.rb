@@ -10,6 +10,8 @@ describe BlockSerializer do
 
     subject { JSON.parse(described_class.new(block).to_json)['content'] }
 
+    before { page.reload }
+
     it 'returns the raw content' do
       expect(subject).to eq(block_content)
     end
