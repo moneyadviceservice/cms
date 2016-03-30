@@ -5,8 +5,8 @@
     %span.image-flag
     .toolbar__item.js-switch-mode-buttons-group.pull-right
       .toggle.toggle--on-dark
-        = presenter.language_input_tag(:en)
-        = presenter.language_input_tag(:cy)
+        = presenter.language_input_tag(:en, alternate: params[:alternate])
+        = presenter.language_input_tag(:cy, alternate: params[:alternate])
 
         = presenter.language_label_tag(:en)
         %span.toggle__indicator
