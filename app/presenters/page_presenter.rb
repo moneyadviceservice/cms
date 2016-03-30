@@ -59,7 +59,7 @@ class PagePresenter < Presenter
     site.label.to_s == language.to_s
   end
 
-  def input_options_for(page, alternate)
+  def input_options_for(page, alternate:)
     return { disabled: true } if page.blank?
 
     { data: { value: url_helpers.edit_site_page_path(page.site, page, alternate: alternate) } }
