@@ -10,13 +10,15 @@ class PagePresenter < Presenter
     end
   end
 
-  def language_input_tag(language, options: { class: 'toggle__control' })
+  def language_input_tag(language, options = {})
+    options[:class] ||= 'toggle__control'
+
     if same_language?(language)
       checked = true
-      input_options = input_options_for(object)
+      input_options = input_options_for(object, alternate: options[:alternate])
     else
       mirror = PageMirror.new(object).mirror(language)
-      input_options = input_options_for(mirror)
+      input_options = input_options_for(mirror, alternate: options[:alternate])
     end
 
     radio_button_tag 'edit-mode', language, checked, options.merge(input_options)
@@ -57,10 +59,10 @@ class PagePresenter < Presenter
     site.label.to_s == language.to_s
   end
 
-  def input_options_for(page)
+  def input_options_for(page, alternate)
     return { disabled: true } if page.blank?
 
-    { data: { value: url_helpers.edit_site_page_path(page.site, page) } }
+    { data: { value: url_helpers.edit_site_page_path(page.site, page, alternate: alternate) } }
   end
 
   def url_scheme
