@@ -22,30 +22,4 @@ RSpec.describe PageMirrorPresenter do
       end
     end
   end
-
-  describe '#disabled?' do
-    context 'when page is published' do
-      let(:object) { double(published?: true) }
-
-      it 'returns false' do
-        expect(presenter).to_not be_disabled
-      end
-    end
-
-    context 'when page published being edited' do
-      let(:object) { double(published?: false, published_being_edited?: true) }
-
-      it 'returns false' do
-        expect(presenter).to_not be_disabled
-      end
-    end
-
-    context 'when page is not published or published being edited' do
-      let(:object) { double(published?: false, published_being_edited?: false) }
-
-      it 'returns true' do
-        expect(presenter).to be_disabled
-      end
-    end
-  end
 end
