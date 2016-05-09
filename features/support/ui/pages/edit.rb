@@ -31,5 +31,16 @@ module UI::Pages
     element :regulated_checkbox, '#page_regulated_box'
     element :activity_log_button, '.activity-log-button'
     element :activity_log_box, '.activity-log-box'
+    section :link_manager, '[data-dough-component="LinkManager"]' do
+      section :pages, '#page' do
+        element :search_input_box, '#search'
+        element :search_button, '.t-search-btn'
+        sections :results, '.js-linkable-pages .grid-list--page-listing .grid-list__row:nth-child(1n+2)' do
+          element :en, '.grid-list__item:nth-child(0n+1)'
+          element :cy, '.grid-list__item:nth-child(0n+2)'
+          element :page_name, '.grid-list__item:nth-child(0n+3)'
+        end
+      end
+    end
   end
 end

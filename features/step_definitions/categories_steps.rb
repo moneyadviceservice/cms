@@ -9,6 +9,7 @@ end
 When(/^I visit the article's edit page$/) do
   step("I am logged in")
   edit_page.load(site: cms_site.id, page: cms_page.id)
+  wait_for_page_load
 end
 
 Then(/^I should see the article's (new )?category$/) do |new_category|

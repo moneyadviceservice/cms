@@ -13,11 +13,15 @@ module World
     end
 
     def cms_layout(locale='en')
-      self.layout ||= cms_site(locale).layouts.create!(identifier: identifier, content: '{{ cms:page:content:rich_text }}')
+      self.layout ||= cms_site(locale).layouts.create!(
+        identifier: 'article',
+        content: '{{ cms:page:content:rich_text }}'
+      )
     end
 
     def cms_root(locale='en')
       self.root ||= cms_site(locale).pages.create!(layout: cms_layout, label: 'root')
+      self.root
     end
 
     def cms_categories
@@ -26,74 +30,140 @@ module World
       self.categories
     end
 
-    def cms_page(published: true, locale: "en")
-      self.a_page ||= {}
-      self.a_page[locale] ||= cms_site(locale).pages.create!(parent: cms_root(locale), layout: cms_layout(locale), label: identifier, slug: identifier.downcase)
-      self.a_page[locale].blocks.create!(identifier: 'content', content: 'test') if self.a_page[locale].blocks.empty?
-      self.a_page[locale].update_columns(is_published: published)
-      self.a_page[locale]
+    def cms_page(published: true, locale: 'en', identifier: identifier())
+      @cms_page ||= build_cms_page(
+        published: published,
+        locale: locale,
+        identifier: identifier
+      )
+    end
+
+    def build_cms_page(page: nil, published: true, locale: 'en', identifier: identifier())
+      page ||= cms_site(locale).pages.create!(
+        parent: cms_root(locale),
+        layout: cms_layout(locale),
+         label: identifier,
+          slug: identifier.downcase
+      )
+      page.blocks.create!(
+        identifier: 'content',
+        content: 'test'
+      ) if page.blocks.empty?
+      page.update_columns(is_published: published)
+      page
     end
 
     def cms_new_unsaved_page
-      cms_site
-      cms_page.save!
-      log_me_in!
-      cms_page
+      build_cms_new_unsaved_page(page: cms_page)
     end
 
-    def cms_new_draft_page
-      cms_site
-      cms_page.create_initial_draft
-      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
-
-      log_me_in!
-      cms_page
+    def build_cms_new_unsaved_page(page: nil)
+      page ||= build_cms_page
+      page.save!
+      page
     end
 
-    def cms_published_page
-      cms_new_draft_page
+    def cms_new_draft_page(identifier: identifier(), locale: 'en')
+      build_cms_new_draft_page(page: cms_page)
+    end
 
-      cms_page.publish
-      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+    def build_cms_new_draft_page(page: nil, identifier: identifier(), locale: 'en')
+      page ||= build_cms_page(identifier: identifier, locale: locale)
+      page.create_initial_draft
+      PageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+      page
+    end
 
-      cms_page
+    def cms_published_page(identifier: identifier(), locale: 'en')
+      build_cms_published_page(
+        page: cms_new_draft_page,
+        identifier: identifier,
+        locale: locale
+      )
+    end
+
+    def build_cms_published_page(page: nil, identifier: identifier(), locale: 'en')
+      page ||= build_cms_new_draft_page(identifier: identifier, locale: locale)
+
+      page.publish
+      PageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+
+      page
     end
 
     def cms_draft_version_of_page
-      cms_published_page
-
-      cms_page.create_new_draft
-      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
-
-      log_me_in!
-      cms_page
+      build_cms_draft_version_of_page(page: cms_published_page)
     end
 
-    def cms_scheduled_page(live = false)
-      cms_new_draft_page
+    def build_cms_draft_version_of_page(page: nil)
+      page ||= build_cms_published_page
 
-      cms_page.schedule
-      cms_page.scheduled_on = live ? 1.minute.ago : 1.minute.from_now
-      PageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
-
-      log_me_in!
-      cms_page
+      page.create_new_draft
+      AlternatePageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+      page
     end
 
-    def cms_scheduled_new_version_of_page(live = false)
-      cms_published_page
+    def cms_scheduled_page(live: false, identifier: identifier(), locale: 'en')
+      build_cms_scheduled_page(
+        page: cms_new_draft_page,
+        live: live,
+        identifier: identifier,
+        locale: locale
+      )
+    end
 
-      cms_page.create_new_draft
-      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+    def build_cms_scheduled_page(page: nil, live: false, identifier: identifier(), locale: 'en')
+      page ||= build_cms_new_draft_page(identifier: identifier, locale: locale)
 
-      cms_page.schedule
-      cms_page.scheduled_on = 1.minute.from_now
-      AlternatePageBlocksRegister.new(cms_page, author: set_current_user, new_blocks_attributes: cms_page.blocks_attributes).save!
+      page.schedule
+      page.scheduled_on = live ? 1.minute.ago : 1.minute.from_now
+      PageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+      page
+    end
 
-      cms_page.update_column(:scheduled_on, 1.minute.ago) if live == true
+    def cms_scheduled_new_version_of_page(live: false)
+      build_cms_scheduled_new_version_of_page(
+        page: cms_published_page,
+        live: live
+      )
+    end
 
-      log_me_in!
-      cms_page
+    def build_cms_scheduled_new_version_of_page(page: nil, live: false)
+      page ||= build_cms_published_page(live: live)
+
+      page.create_new_draft
+      AlternatePageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+
+      page.schedule
+      page.scheduled_on = 1.minute.from_now
+      AlternatePageBlocksRegister.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
+
+      page.update_column(:scheduled_on, 1.minute.ago) if live == true
+      page
     end
 
     def set_current_user(email: 'user@test.com', password: 'password')
@@ -102,6 +172,18 @@ module World
 
     def log_me_in!(user = set_current_user)
       login_as(user, scope: :user)
+    end
+
+    def load_page_in_editor(page: cms_page, site: cms_site)
+      log_me_in!
+      edit_page.load(site: site.id, page: page.id)
+      wait_for_page_load
+      page
+    end
+
+    def load_alternate_page_in_editor(page: cms_page, site: cms_site)
+      log_me_in!
+      alternate_edit_page.load(site: cms_site.id, page: page.id)
     end
 
     private
