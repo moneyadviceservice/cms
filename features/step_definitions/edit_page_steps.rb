@@ -25,20 +25,16 @@ Given(/^I have an articles with unpublished changes$/) do
   edit_page.create_new_draft.click
 end
 
-Given(/^I have a scheduled article with the slug "([\w\s-]+)"/) do |title|
-  build_cms_scheduled_page(identifier: title)
+Given(/^I have a scheduled article with the slug "([\w\s-]+)"/) do |label|
+  build_cms_scheduled_page(label: label)
 end
 
-Given(/^I have a published article "([\w\s-]+)" in "([a-zA-Z]{2})"$/) do |slug, locale|
-  build_cms_published_page(identifier: slug, locale: locale)
+Given(/^I have a published article "([\w\s-]+)" in "([a-zA-Z]{2})"$/) do |label, locale|
+  build_cms_published_page(label: label, locale: locale)
 end
 
-Given(/^I have a scheduled update to the "([a-zA-Z]{2})" mirror of "([\w\s-]+)"$/) do |slug, locale|
-  build_cms_scheduled_page(identifier: slug, locale: locale)
-end
-
-Given(/^the published article has a "([a-zA-Z]{2})" update scheduled$/) do |locale|
-  cms_scheduled_page(identifier: title)
+Given(/^I have a scheduled update to the "([a-zA-Z]{2})" mirror of "([\w\s-]+)"$/) do |label, locale|
+  build_cms_scheduled_page(label: label, locale: locale)
 end
 
 When(/^I view the live published article$/) do

@@ -30,20 +30,20 @@ module World
       self.categories
     end
 
-    def cms_page(published: true, locale: 'en', identifier: identifier())
+    def cms_page(published: true, locale: 'en', label: identifier())
       @cms_page ||= build_cms_page(
         published: published,
         locale: locale,
-        identifier: identifier
+        label: label
       )
     end
 
-    def build_cms_page(page: nil, published: true, locale: 'en', identifier: identifier())
+    def build_cms_page(page: nil, published: true, locale: 'en', label: identifier())
       page ||= cms_site(locale).pages.create!(
         parent: cms_root(locale),
         layout: cms_layout(locale),
-         label: identifier,
-          slug: identifier.downcase
+        label: label,
+        slug: label.parameterize
       )
       page.blocks.create!(
         identifier: 'content',
@@ -63,12 +63,12 @@ module World
       page
     end
 
-    def cms_new_draft_page(identifier: identifier(), locale: 'en')
+    def cms_new_draft_page(label: identifier(), locale: 'en')
       build_cms_new_draft_page(page: cms_page)
     end
 
-    def build_cms_new_draft_page(page: nil, identifier: identifier(), locale: 'en')
-      page ||= build_cms_page(identifier: identifier, locale: locale)
+    def build_cms_new_draft_page(page: nil, label: identifier(), locale: 'en')
+      page ||= build_cms_page(label: label, locale: locale)
       page.create_initial_draft
       PageBlocksRegister.new(
         page,
@@ -78,16 +78,16 @@ module World
       page
     end
 
-    def cms_published_page(identifier: identifier(), locale: 'en')
+    def cms_published_page(label: identifier(), locale: 'en')
       build_cms_published_page(
         page: cms_new_draft_page,
-        identifier: identifier,
+        label: label,
         locale: locale
       )
     end
 
-    def build_cms_published_page(page: nil, identifier: identifier(), locale: 'en')
-      page ||= build_cms_new_draft_page(identifier: identifier, locale: locale)
+    def build_cms_published_page(page: nil, label: identifier(), locale: 'en')
+      page ||= build_cms_new_draft_page(label: label, locale: locale)
 
       page.publish
       PageBlocksRegister.new(
@@ -115,17 +115,17 @@ module World
       page
     end
 
-    def cms_scheduled_page(live: false, identifier: identifier(), locale: 'en')
+    def cms_scheduled_page(live: false, label: identifier(), locale: 'en')
       build_cms_scheduled_page(
         page: cms_new_draft_page,
         live: live,
-        identifier: identifier,
+        label: label,
         locale: locale
       )
     end
 
-    def build_cms_scheduled_page(page: nil, live: false, identifier: identifier(), locale: 'en')
-      page ||= build_cms_new_draft_page(identifier: identifier, locale: locale)
+    def build_cms_scheduled_page(page: nil, live: false, label: identifier(), locale: 'en')
+      page ||= build_cms_new_draft_page(label: label, locale: locale)
 
       page.schedule
       page.scheduled_on = live ? 1.minute.ago : 1.minute.from_now
