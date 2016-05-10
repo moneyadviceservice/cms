@@ -21,7 +21,6 @@ module World
 
     def cms_root(locale='en')
       self.root ||= cms_site(locale).pages.create!(layout: cms_layout, label: 'root')
-      self.root
     end
 
     def cms_categories
