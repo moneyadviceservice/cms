@@ -29,6 +29,12 @@ module World
       self.categories
     end
 
+    def register_page_blocks(page: page, blocks_registrar: PageBlocksRegister)
+      blocks_registrar.new(
+        page,
+        author: set_current_user,
+        new_blocks_attributes: page.blocks_attributes
+      ).save!
     end
 
     def build_cms_page(page: nil, published: true, locale: 'en', label: identifier())
@@ -55,11 +61,7 @@ module World
     def build_cms_new_draft_page(page: nil, label: identifier(), locale: 'en')
       page ||= build_cms_page(label: label, locale: locale)
       page.create_initial_draft
-      PageBlocksRegister.new(
-        page,
-        author: set_current_user,
-        new_blocks_attributes: page.blocks_attributes
-      ).save!
+      register_page_blocks(page: page)
       page
     end
 
@@ -67,12 +69,7 @@ module World
       page ||= build_cms_new_draft_page(label: label, locale: locale)
 
       page.publish
-      PageBlocksRegister.new(
-        page,
-        author: set_current_user,
-        new_blocks_attributes: page.blocks_attributes
-      ).save!
-
+      register_page_blocks(page: page)
       page
     end
 
@@ -80,11 +77,10 @@ module World
       page ||= build_cms_published_page
 
       page.create_new_draft
-      AlternatePageBlocksRegister.new(
-        page,
-        author: set_current_user,
-        new_blocks_attributes: page.blocks_attributes
-      ).save!
+      register_page_blocks(
+        page: page,
+        blocks_registrar: AlternatePageBlocksRegister
+      )
       page
     end
 
@@ -93,11 +89,7 @@ module World
 
       page.schedule
       page.scheduled_on = live ? 1.minute.ago : 1.minute.from_now
-      PageBlocksRegister.new(
-        page,
-        author: set_current_user,
-        new_blocks_attributes: page.blocks_attributes
-      ).save!
+      register_page_blocks(page: page)
       page
     end
 
@@ -105,11 +97,10 @@ module World
       page ||= build_cms_published_page
 
       page.create_new_draft
-      AlternatePageBlocksRegister.new(
-        page,
-        author: set_current_user,
-        new_blocks_attributes: page.blocks_attributes
-      ).save!
+      register_page_blocks(
+        page: page,
+        blocks_registrar: AlternatePageBlocksRegister
+      )
 
       page.schedule
       page.scheduled_on = 1.minute.from_now
