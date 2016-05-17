@@ -1,14 +1,14 @@
 Given(/^I have an article with(out)? categories$/) do |uncategorized|
   cms_site
   cms_layout
-  cms_page
+  @cms_page = build_cms_page
   cms_categories
-  cms_page.categories << cms_categories.first unless uncategorized
+  @cms_page.categories << cms_categories.first unless uncategorized
 end
 
 When(/^I visit the article's edit page$/) do
   step("I am logged in")
-  edit_page.load(site: cms_site.id, page: cms_page.id)
+  edit_page.load(site: cms_site.id, page: @cms_page.id)
   wait_for_page_load
 end
 
