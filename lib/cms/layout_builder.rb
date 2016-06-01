@@ -55,9 +55,6 @@ module Cms
         {{ cms:page:raw_contact_additional_two:string }}
         {{ cms:page:raw_contact_additional_three:string }}
         {{ cms:page:raw_contact_small_print:string }}
-
-        {{ cms:page:raw_newsletter_heading:string }}
-        {{ cms:page:raw_newsletter_introduction:string }}
       CONTENT
     end
 

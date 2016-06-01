@@ -125,11 +125,6 @@ RSpec.describe Cms::LayoutBuilder do
         expect(layout.content).to include('{{ cms:page:raw_contact_additional_three:string }}')
         expect(layout.content).to include('{{ cms:page:raw_contact_small_print:string }}')
       end
-
-      it 'defines the content areas for the footer newsletter section' do
-        expect(layout.content).to include('{{ cms:page:raw_newsletter_heading:string }}')
-        expect(layout.content).to include('{{ cms:page:raw_newsletter_introduction:string }}')
-      end
     end
 
     context 'Welsh site' do
