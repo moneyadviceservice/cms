@@ -13,4 +13,4 @@
           .grid-list__item.grid-list__item--center-aligned
             = render 'page_button', page_mirror: page.mirror(:cy), page_url: page.url(:cy)
           .grid-list__item
-            = page.label
+            #{page.label} (#{current_status(page.page)})

@@ -12,7 +12,7 @@ end
 Then(/^I am editing a page$/) do
   loging_in_user do
     @page = edit_page
-    @page.load(site: cms_site.id, page: cms_page.id)
+    @page.load(site: cms_site.id, page: build_cms_page.id)
   end
 end
 

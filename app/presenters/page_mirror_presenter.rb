@@ -6,8 +6,4 @@ class PageMirrorPresenter < Presenter
   def label
     object.label(:en) || object.page_label
   end
-
-  def disabled?
-    (published? || published_being_edited?).blank?
-  end
 end
