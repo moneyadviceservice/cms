@@ -5,7 +5,9 @@ Then(/^I should be able to preview it in a new window$/) do
 end
 
 When(/^I preview the article$/) do
-  preview_page.load(locale: cms_site.label, slug: @cms_page.slug)
+  VCR.use_cassette("publify/api/latest_links") do
+    preview_page.load(locale: cms_site.label, slug: @cms_page.slug)
+  end
 end
 
 Then(/^I should see the Draft Article$/) do
@@ -38,7 +40,9 @@ Given(/^I have a scheduled update to the "([a-zA-Z]{2})" mirror of "([\w\s-]+)"$
 end
 
 When(/^I view the live published article$/) do
-  live_page.load(locale: cms_site.label, slug: @cms_page.slug)
+  VCR.use_cassette("publify/api/latest_links") do
+    live_page.load(locale: cms_site.label, slug: @cms_page.slug)
+  end
 end
 
 Then(/^I should see the published Article content$/) do
