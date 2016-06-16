@@ -7,7 +7,10 @@ module Publify
       connection.open_timeout = 2
       connection.read_timeout = 2
       connection.use_ssl = ENV['PUBLIFY_USE_SSL'] == 'true'
-      response = connection.get('/articles.json')
+      # We have no way of inferring the prefix used by the blog from the environment,
+      # so we have to fall back to this slightly hacky approach...
+      path = Rails.env.development? ? '/articles.json' : '/blog/articles.json'
+      response =  connection.get(path)
       JSON.parse(response.body).first(limit)
     rescue => e
       Rails.logger.error(e.message)
