@@ -10,7 +10,7 @@ describe Publify::API do
         ENV['PUBLIFY_HOSTNAME'] = 'example.com'
         ENV['PUBLIFY_PORT'] = '4000'
 
-        allow_any_instance_of(Net::HTTP).to receive(:get).with('/articles.json').and_return(response)
+        allow_any_instance_of(Net::HTTP).to receive(:get).with('/blog/articles.json').and_return(response)
       end
 
       it 'connects to the specified server' do
