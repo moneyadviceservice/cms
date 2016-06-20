@@ -6,6 +6,7 @@ module Publify
       connection = Net::HTTP.new(ENV['PUBLIFY_HOSTNAME'], ENV['PUBLIFY_PORT'].to_i)
       connection.open_timeout = 2
       connection.read_timeout = 2
+      connection.use_ssl = ENV['PUBLIFY_USE_SSL'] == 'true'
       # We have no way of inferring the prefix used by the blog from the environment,
       # so we have to fall back to this slightly hacky approach...
       path = Rails.env.development? ? '/articles.json' : '/blog/articles.json'
