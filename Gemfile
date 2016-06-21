@@ -39,6 +39,7 @@ gem 'legato', '0.4.0'
 gem 'clockwork'
 gem 'paper_trail'
 gem 'feature'
+gem 'httparty', '~> 0.13.7'
 
 gem 'mastalk', '~> 0.5.9'
 gem 'mailjet'

@@ -2,19 +2,20 @@ describe Publify::API do
 
   describe 'latest links' do
 
+    before do
+      ENV['MAS_BLOG_URL'] = 'http://example.com:4000'
+    end
+
     context 'when successfully getting a response from Publify' do
       let(:json) { '[{"title": "newest blog post"}, {"title": "oldest blog post"}]' }
       let(:response) { double(body: json) }
 
       before do
-        ENV['PUBLIFY_HOSTNAME'] = 'example.com'
-        ENV['PUBLIFY_PORT'] = '4000'
-
-        allow_any_instance_of(Net::HTTP).to receive(:get).with('/blog/articles.json').and_return(response)
+        allow(HTTParty).to receive(:get).with('http://example.com:4000/articles.json', timeout: 2).and_return(response)
       end
 
       it 'connects to the specified server' do
-        expect(Net::HTTP).to receive(:new).with('example.com', 4000)
+        expect(HTTParty).to receive(:get).with('http://example.com:4000/articles.json', timeout: 2)
         described_class.latest_links(2)
       end
 
@@ -33,38 +34,17 @@ describe Publify::API do
         expect(result.length).to eq(1)
       end
 
-      it 'sets up the open timeout limit' do
-        expect_any_instance_of(Net::HTTP).to receive(:open_timeout=).with(2)
-        described_class.latest_links(2)
-      end
-
-      it 'sets up the read timeout limit' do
-        expect_any_instance_of(Net::HTTP).to receive(:read_timeout=).with(2)
-        described_class.latest_links(2)
-      end
-
-      it 'sets use_ssl to false' do
-        ENV['PUBLIFY_USE_SSL'] = 'false'
-        expect_any_instance_of(Net::HTTP).to receive(:use_ssl=).with(false)
-        described_class.latest_links(2)
-      end
-
-      it 'sets use_ssl to true' do
-        ENV['PUBLIFY_USE_SSL'] = 'true'
-        expect_any_instance_of(Net::HTTP).to receive(:use_ssl=).with(true)
-        described_class.latest_links(2)
-      end
     end
 
     context 'when there has been an exception' do
 
       it 'gracefully returns an empty array' do
-        allow_any_instance_of(Net::HTTP).to receive(:get).and_raise('Failed to reach Publify')
+        allow(HTTParty).to receive(:get).and_raise('Failed to reach Publify')
         expect(described_class.latest_links(2)).to be_empty
       end
 
       it 'gracefully returns an empty array when there has been an exception' do
-        allow_any_instance_of(Net::HTTP).to receive(:get).and_raise('Failed to reach Publify')
+        allow(HTTParty).to receive(:get).and_raise('Failed to reach Publify')
         expect(Rails.logger).to receive(:error).with('Failed to reach Publify')
 
         described_class.latest_links(2)
