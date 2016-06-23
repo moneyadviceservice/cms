@@ -1,3 +1,4 @@
+@vcr
 Feature: Preview
   As a content editor
   I want to see the article I am working on in the actual site
