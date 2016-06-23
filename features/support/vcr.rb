@@ -6,7 +6,7 @@ VCR.configure do |c|
   c.ignore_request do |req|
     # Don't mock the call that Poltergeist polls while waiting for
     # Phantomjs to load (http://localhost:<random port>/__identify__)
-    req.uri =~ /\/__identify__$/
+    req.uri =~ /\/__identify__$|blob\.core\.windows\.net/
   end
 end
 
