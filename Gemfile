@@ -61,6 +61,8 @@ group :test do
   gem 'site_prism'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :test, :development do

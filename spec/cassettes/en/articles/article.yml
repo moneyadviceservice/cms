@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.moneyadviceservice.org.uk/blog/articles.json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: 'OK '
+    headers:
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Content-Type-Options:
+      - nosniff
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"b732a2b904a81692555b3e9947896043"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 0dab29e2-dc25-4be1-b415-c3de58903340
+      X-Runtime:
+      - '0.275319'
+      Server:
+      - WEBrick/1.3.1 (Ruby/2.2.0/2014-12-25)
+      Date:
+      - Thu, 23 Jun 2016 12:48:31 GMT
+      Content-Length:
+      - '346'
+      Connection:
+      - Keep-Alive
+    body:
+      encoding: UTF-8
+      string: '[{"title":"Extent of wedding budget blues revealed","link":"https://www.moneyadviceservice.org.uk/blog/extent-of-wedding-budget-blues-revealed"},{"title":"Revealed:
+        The cost of replacing lost items","link":"https://www.moneyadviceservice.org.uk/blog/revealed-the-cost-of-replacing-lost-items"},{"title":"How
+        easy is it to switch?","link":"https://www.moneyadviceservice.org.uk/blog/how-easy-is-it-to-switch"}]'
+    http_version:
+  recorded_at: Thu, 23 Jun 2016 12:48:31 GMT
+recorded_with: VCR 2.9.2
