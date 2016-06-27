@@ -11,11 +11,19 @@ describe Publify::API do
       let(:response) { double(body: json) }
 
       before do
-        allow(HTTParty).to receive(:get).with('http://example.com:4000/articles.json', timeout: 2).and_return(response)
+        allow(HTTParty).to receive(:get).with(
+                             'http://example.com:4000/articles.json',
+                             timeout: 2,
+                             verify: false
+                           ).and_return(response)
       end
 
       it 'connects to the specified server' do
-        expect(HTTParty).to receive(:get).with('http://example.com:4000/articles.json', timeout: 2)
+        expect(HTTParty).to receive(:get).with(
+                              'http://example.com:4000/articles.json',
+                              timeout: 2,
+                              verify: false
+                            )
         described_class.latest_links(2)
       end
 
