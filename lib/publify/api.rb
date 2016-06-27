@@ -3,7 +3,11 @@ require 'httparty'
 module Publify
   class API
     def self.latest_links(limit)
-      response = HTTParty.get(ENV['MAS_BLOG_URL'] + '/articles.json', timeout: 2)
+      response = HTTParty.get(
+        ENV['MAS_BLOG_URL'] + '/articles.json',
+        timeout: 2,
+        verify: Rails.env.production?
+      )
       JSON.parse(response.body).first(limit)
     rescue => e
       Rails.logger.error(e.message)
