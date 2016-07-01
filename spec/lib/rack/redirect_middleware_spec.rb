@@ -31,7 +31,8 @@ describe Rack::RedirectMiddleware::Responder do
 
       it 'returns location header' do
         get '/api/en/foo.json'
-        expect(last_response.headers['Location']).to eql('http://localhost:5000' + redirect.destination)
+        expect(last_response.headers['Location']).
+          to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
       end
     end
 
@@ -52,7 +53,8 @@ describe Rack::RedirectMiddleware::Responder do
 
         it 'returns location header' do
           get "/api/en/foo.#{extension}"
-          expect(last_response.headers['Location']).to eql('http://localhost:5000' + redirect.destination)
+          expect(last_response.headers['Location']).
+            to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
         end
       end
     end
