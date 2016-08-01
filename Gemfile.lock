@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/moneyadviceservice/mastalk.git
+  revision: c33f96ba1a42bfb4a04529bffca50070a1274e5a
+  branch: 7482-accessible-videos
+  specs:
+    mastalk (0.6.0)
+      htmlentities (~> 4.3.2, >= 4.3.2)
+      kramdown (~> 1.5.0, >= 1.5.0)
+
+GIT
   remote: git@github.com:moneyadviceservice/bowndler
   revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
   specs:
@@ -357,9 +366,6 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mastalk (0.5.9)
-      htmlentities (~> 4.3.2, >= 4.3.2)
-      kramdown (~> 1.5.0, >= 1.5.0)
     method_source (0.8.2)
     mime-types (1.25.1)
     mimemagic (0.3.0)
@@ -597,7 +603,7 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk (~> 0.5.9)
+  mastalk (~> 0.6.0)!
   mysql2
   newrelic_rpm
   oauth2 (= 1.0.0)
