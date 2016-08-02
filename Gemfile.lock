@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/moneyadviceservice/mastalk.git
-  revision: c33f96ba1a42bfb4a04529bffca50070a1274e5a
+  revision: 904b304a0c3f192160df21b1563de4a43a600142
   branch: 7482-accessible-videos
   specs:
     mastalk (0.6.0)
