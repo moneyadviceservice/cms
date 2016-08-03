@@ -10,9 +10,9 @@ define([], function () {
     promoBlock: '$bl\r\n\r\n$bl_m\r\n\r\nbl_m$\r\n\r\n$bl_c\r\n\r\nbl_c$\r\n\r\nbl$',
     table: '| Equity loans | Mortgage guarantees\r\n|---|---\r\n | New-build properties | New-build and pre-owned properties\r\n| Minimum 5% deposit | Minimum 5% deposit',
     ticks: '$yes-no\r\n[y] yes [\/y]\r\n[n] no [\/n]\r\n$end',
-    videoYoutube: '({EMBED_CODE})',
-    videoBrightcove: '$~brightcove_video\r\nBRIGHTCOVE_ID\r\n~$',
-    videoVimeo: '$~vimeo_video\r\nVIMEO_ID\r\n~$',
+    videoYoutube: '$~youtube_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
+    videoBrightcove: '$~brightcove_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
+    videoVimeo: '$~vimeo_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
     costCalculator: '$~cost-calc\r\nCALCULATOR_ID\r\n~$'
   };
 
