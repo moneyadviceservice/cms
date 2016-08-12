@@ -39,8 +39,9 @@ gem 'legato', '0.4.0'
 gem 'clockwork'
 gem 'paper_trail'
 gem 'feature'
+gem 'httparty', '~> 0.13.7'
 
-gem 'mastalk', '~> 0.5.9'
+gem 'mastalk', '~> 0.6.0'
 gem 'mailjet'
 gem 'paperclip-azure', '~> 0.2'
 
@@ -60,6 +61,8 @@ group :test do
   gem 'site_prism'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
+  gem 'vcr'
+  gem 'webmock'
 end
 
 group :test, :development do

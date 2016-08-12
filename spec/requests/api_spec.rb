@@ -4,8 +4,10 @@ RSpec.describe 'old api endpoint', type: :request do
   let!(:article) { create(:page, site: site, layout: article_layout) }
 
   it 'returns the article at /en/articles/article.json' do
-    get "/en/articles/#{article.slug}.json"
-    expect(JSON.parse(response.body)['full_path']).to eql("/en/articles/#{article.slug}")
+    VCR.use_cassette 'en/articles/article' do
+      get "/en/articles/#{article.slug}.json"
+      expect(JSON.parse(response.body)['full_path']).to eql("/en/articles/#{article.slug}")
+    end
   end
 end
 
@@ -15,7 +17,9 @@ RSpec.describe 'new api endpoint', type: :request do
   let!(:article) { create(:page, site: site, layout: article_layout) }
 
   it 'returns the article at /en/articles/article.json' do
-    get "/api/en/articles/#{article.slug}.json"
-    expect(JSON.parse(response.body)['full_path']).to eql("/en/articles/#{article.slug}")
+    VCR.use_cassette 'en/articles/article' do
+      get "/api/en/articles/#{article.slug}.json"
+      expect(JSON.parse(response.body)['full_path']).to eql("/en/articles/#{article.slug}")
+    end
   end
 end
