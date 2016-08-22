@@ -31,7 +31,7 @@ ComfortableMexicanSofa.configure do |config|
   config.upload_file_options = {
     azure_credentials: {
       access_key: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
-      container: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_CONTAINER'],
+      container: ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER'],
       storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
     },
     path: ':attachment/:id_partition/:style/:filename',
