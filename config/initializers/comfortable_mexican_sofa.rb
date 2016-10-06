@@ -28,17 +28,24 @@ ComfortableMexicanSofa.configure do |config|
   # http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/S3, and for
   # filesystem see: http://rdoc.info/gems/paperclip/2.3.8/Paperclip/Storage/Filesystem
   # If you are using S3 and HTTPS, pass :s3_protocol => '' to have URLs that use the protocol of the page
-  config.upload_file_options = {
-    azure_credentials: {
-      access_key: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
-      container: ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER'],
-      storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
-    },
-    path: ':attachment/:id_partition/:style/:filename',
-    storage: 'azure',
-    styles: { cms_medium: '160x160' },
-    url: ':azure_path_url'
-  }
+  if Rails.env.production?
+    config.upload_file_options = {
+      azure_credentials: {
+        access_key: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
+        container: ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER'],
+        storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
+      },
+      path: ':attachment/:id_partition/:style/:filename',
+      storage: 'azure',
+      styles: { cms_medium: '160x160' },
+      url: ':azure_path_url'
+    }
+  else
+    config.upload_file_options = {
+      url: '/:attachment/:id_partition/:style/:filename',
+      styles: { cms_medium: '160x160' }
+    }
+  end
 
   # Sofa allows you to setup entire site from files. Database is updated with each
   # request (if necessary). Please note that database entries are destroyed if there's
