@@ -38,7 +38,10 @@ describe('EmbeddedGoogleAnalytics', function() {
       expect(component.config.path).to.equal('/en/articles/foo');
     });
 
-    it('create a DataChart', function() {
+    // Skipping next three tests. 
+    // They are checking a JS object that is returned from Google API, which changes every few months without warning / documentaiton
+    // Instead we should be testing that the chart actually renders
+    xit('create a DataChart', function() {
       var config = { 'chartContainer': 'some-chart-container',
                      'viewContainer': 'some-view-container',
                      'metrics': 'some-metrics',
@@ -51,7 +54,7 @@ describe('EmbeddedGoogleAnalytics', function() {
       expect(dataChart.Ka.query.filters).equal('ga:pagePath=~^/some/path');
     });
 
-    it('create a ViewSelector', function() {
+    xit('create a ViewSelector', function() {
       var config = { 'chartContainer': 'some-chart-container',
                      'viewContainer': 'some-view-container',
                      'metrics': 'some-metrics',
@@ -62,7 +65,7 @@ describe('EmbeddedGoogleAnalytics', function() {
       expect(viewSelector.Ka.container).equal('some-view-container');
     });
 
-    it('create a ViewSelector change binding', function() {
+    xit('create a ViewSelector change binding', function() {
       var config = { 'chartContainer': 'some-chart-container',
                      'viewContainer': 'some-view-container',
                      'metrics': 'some-metrics',
