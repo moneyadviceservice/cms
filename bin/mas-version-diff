@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+# USAGE
+# ./bin/mas-version-diff 1869 1870
+# They should be in ascending order
+
+if [[ -z "$1" || -z "$2" ]]
+then
+    echo "Usage: $0 START_VERSION END_VERSION"
+    exit 1
+fi
+
+git --no-pager log --decorate --pretty=format:"%C(yellow)moneyadviceservice/cms@%h%C(auto)%d %C(reset)%s %C(blue)[%cn]"  $1..$2
+echo ''
