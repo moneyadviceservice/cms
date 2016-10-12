@@ -3,7 +3,8 @@ namespace :adhoc do
   task :extract_page => :environment do
     File.open('pages_with_cat.csv','w') do |file|
       file.write "Url\tCategories\n"
-      Comfy::Cms::Page.where(state: :published).find_each do |page|
+      en = Comfy::Cms::Site.where(label: :en).first
+      Comfy::Cms::Page.where(site: en, state: :published).find_each do |page|
         file.write "/en/articles/#{page.slug}\t#{page.categories.map(&:label).join(', ')}\n"
         $stdout.write '.'
       end
