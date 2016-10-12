@@ -3,13 +3,16 @@ namespace :adhoc do
   task :extract_page => :environment do
     File.open('pages_with_cat.csv','w') do |file|
       file.write "Url\tCategories\n"
-      en = Comfy::Cms::Site.where(label: :en).first
-      Comfy::Cms::Page.where(site: en, state: :published).find_each do |page|
-        file.write "/en/articles/#{page.slug}\t#{page.categories.map(&:label).join(', ')}\n"
-        $stdout.write '.'
+      if en = Comfy::Cms::Site.find_by(label: :en)
+        en.pages.published.find_each do |page|
+          file.write "/en/articles/#{page.slug}\t#{page.categories.map(&:label).join(', ')}\n"
+          $stdout.write '.'
+        end
+        puts "\nCreated csv file `#{file.path}`"
+        file.flush
+      else
+        puts 'No english site'
       end
-      puts "\nCreated csv file `#{file.path}`"
-      file.flush
     end
   end
 end
