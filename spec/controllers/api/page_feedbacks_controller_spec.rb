@@ -6,7 +6,7 @@ RSpec.describe API::PageFeedbacksController do
     context 'when the page receives a like' do
       let(:params) do
         {
-          page_id: page.id,
+          slug: page.slug,
           liked: true,
           session_id: '5cfe12kc'
         }
@@ -32,7 +32,7 @@ RSpec.describe API::PageFeedbacksController do
     context 'when the page receives a dislike' do
       let(:params) do
         {
-          page_id: page.id,
+          slug: page.slug,
           liked: false,
           session_id: '5cfe12kc'
         }
@@ -51,7 +51,26 @@ RSpec.describe API::PageFeedbacksController do
     context 'when passing an inexistent page' do
       let(:params) do
         {
-          page_id: 'inexistent',
+          slug: 'inexistent',
+          liked: true
+        }
+      end
+
+      it 'returns not found' do
+        expect(response.status).to be(404)
+      end
+
+      it 'returns message about inexistent page' do
+        expect(JSON.load(response.body)).to include({
+          'errors' => 'Page not found'
+        })
+      end
+    end
+
+    describe 'when passing a blank session' do
+      let(:params) do
+        {
+          slug: page.slug,
           liked: true
         }
       end
@@ -62,7 +81,7 @@ RSpec.describe API::PageFeedbacksController do
 
       it 'returns error message in response body' do
         expect(JSON.load(response.body)).to include({
-          'errors' => ["Page can't be blank", "Session can't be blank"]
+          'errors' => ["Session can't be blank"]
         })
       end
     end
