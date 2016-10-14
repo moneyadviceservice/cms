@@ -3,9 +3,9 @@ class API::PageFeedbacksController < APIController
     page_feedback = PageFeedback.new(page_feedback_params)
 
     if page_feedback.save
-      render json: {}, status: 201
+      render json: page_feedback, status: 201, serializer: PageFeedbackSerializer
     else
-      render json: {}, status: 422
+      render json: { errors: page_feedback.errors.full_messages }, status: 422
     end
   end
 

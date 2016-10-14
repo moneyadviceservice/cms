@@ -20,6 +20,13 @@ RSpec.describe API::PageFeedbacksController do
         expect(page.feedbacks.count).to be(1)
         expect(page.feedbacks.last).to be_liked
       end
+
+      it 'returns JSON in response body' do
+        expect(JSON.load(response.body)).to include({
+          'liked'      => true,
+          'session_id' => '5cfe12kc'
+        })
+      end
     end
 
     context 'when the page receives a dislike' do
@@ -51,6 +58,12 @@ RSpec.describe API::PageFeedbacksController do
 
       it 'returns unprocessable entity' do
         expect(response.status).to be(422)
+      end
+
+      it 'returns error message in response body' do
+        expect(JSON.load(response.body)).to include({
+          'errors' => ["Page can't be blank", "Session can't be blank"]
+        })
       end
     end
   end
