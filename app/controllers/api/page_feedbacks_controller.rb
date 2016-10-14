@@ -11,6 +11,6 @@ class API::PageFeedbacksController < APIController
 
   private
   def page_feedback_params
-    params.permit(:page_id, :liked)
+    params.permit(:page_id, :liked, :session_id)
   end
 end

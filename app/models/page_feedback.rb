@@ -1,4 +1,4 @@
 class PageFeedback < ActiveRecord::Base
   belongs_to :page, class: Comfy::Cms::Page
-  validates :page, presence: true
+  validates :page, :session_id, presence: true
 end

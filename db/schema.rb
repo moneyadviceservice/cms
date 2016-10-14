@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007123641) do
+ActiveRecord::Schema.define(version: 20161014135133) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -206,10 +206,12 @@ ActiveRecord::Schema.define(version: 20161007123641) do
     t.string   "shared_on"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "session_id"
   end
 
   add_index "page_feedbacks", ["page_id", "liked"], name: "index_page_feedbacks_on_page_id_and_liked", using: :btree
   add_index "page_feedbacks", ["page_id"], name: "index_page_feedbacks_on_page_id", using: :btree
+  add_index "page_feedbacks", ["session_id"], name: "index_page_feedbacks_on_session_id", using: :btree
 
   create_table "redirect_versions", force: true do |t|
     t.string   "item_type",                     null: false

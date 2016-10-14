@@ -3,5 +3,6 @@ RSpec.describe PageFeedback, type: :model do
 
   describe 'validations' do
     it { should validate_presence_of(:page) }
+    it { should validate_presence_of(:session_id) }
   end
 end

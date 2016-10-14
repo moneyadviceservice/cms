@@ -7,7 +7,8 @@ RSpec.describe API::PageFeedbacksController do
       let(:params) do
         {
           page_id: page.id,
-          liked: true
+          liked: true,
+          session_id: '5cfe12kc'
         }
       end
 
@@ -25,7 +26,8 @@ RSpec.describe API::PageFeedbacksController do
       let(:params) do
         {
           page_id: page.id,
-          liked: false
+          liked: false,
+          session_id: '5cfe12kc'
         }
       end
 
