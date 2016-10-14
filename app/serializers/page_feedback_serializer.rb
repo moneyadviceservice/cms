@@ -1,3 +1,3 @@
 class PageFeedbackSerializer < ActiveModel::Serializer
-  attributes :page_id, :liked, :session_id
+  attributes :id, :page_id, :liked, :session_id
 end
