@@ -1,5 +1,5 @@
 class API::PageFeedbacksController < APIController
-  before_action :find_page
+  before_action :find_site, :find_page
 
   def create
     page_feedback = PageFeedback.new(page_feedback_params)
@@ -12,10 +12,12 @@ class API::PageFeedbacksController < APIController
   end
 
   private
-  def find_page
-    @page = Comfy::Cms::Page.find_by(slug: params[:slug])
 
-    render json: { errors: 'Page not found' }, status: 404 if @page.blank?
+  def find_page
+    @page = @current_site.pages.find_by(slug: params[:slug])
+
+    render json: { message: %(Page "#{params[:slug]}" not found) },
+           status: 404 if @page.blank?
   end
 
   def page_feedback_params

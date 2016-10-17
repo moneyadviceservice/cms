@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     get '/:locale/:page_type/unpublished(.:format)' => 'content#unpublished', defaults: { format: 'json' }
     get '/:locale/:page_type/(*slug)(.:format)' => 'content#show'
 
-    post '/api/:slug/page_feedbacks' => 'page_feedbacks#create' if Feature.active?(:page_feedback)
+    post '/api/:locale/:slug/page_feedbacks' => 'page_feedbacks#create' if Feature.active?(:page_feedback)
   end
 
   # Overwriten comfy route to hit the application.

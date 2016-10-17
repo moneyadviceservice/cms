@@ -1,6 +1,7 @@
 RSpec.describe API::PageFeedbacksController do
   describe 'POST /page_feedbacks' do
-    let(:page) { create(:page) }
+    let(:site) { create(:site, path: 'en') }
+    let(:page) { create(:page, site: site) }
     before { post :create, params }
 
     context 'when the page receives a like' do
@@ -8,7 +9,8 @@ RSpec.describe API::PageFeedbacksController do
         {
           slug: page.slug,
           liked: true,
-          session_id: '5cfe12kc'
+          session_id: '5cfe12kc',
+          locale: 'en'
         }
       end
 
@@ -22,10 +24,10 @@ RSpec.describe API::PageFeedbacksController do
       end
 
       it 'returns JSON in response body' do
-        expect(JSON.load(response.body)).to include({
+        expect(JSON.load(response.body)).to include(
           'liked'      => true,
           'session_id' => '5cfe12kc'
-        })
+        )
       end
     end
 
@@ -34,7 +36,8 @@ RSpec.describe API::PageFeedbacksController do
         {
           slug: page.slug,
           liked: false,
-          session_id: '5cfe12kc'
+          session_id: '5cfe12kc',
+          locale: 'en'
         }
       end
 
@@ -48,11 +51,33 @@ RSpec.describe API::PageFeedbacksController do
       end
     end
 
+    context 'when passing an inexistent locale' do
+      let(:params) do
+        {
+          slug: page.slug,
+          liked: true,
+          locale: 'pt-br',
+          session_id: 'CVtuSY'
+        }
+      end
+
+      it 'returns 404 not found' do
+        expect(response.status).to be(404)
+      end
+
+      it 'returns inexistent site' do
+        expect(JSON.load(response.body)).to include(
+          'message' => 'Site "pt-br" not found'
+        )
+      end
+    end
+
     context 'when passing an inexistent page' do
       let(:params) do
         {
           slug: 'inexistent',
-          liked: true
+          liked: true,
+          locale: page.site.path
         }
       end
 
@@ -61,9 +86,9 @@ RSpec.describe API::PageFeedbacksController do
       end
 
       it 'returns message about inexistent page' do
-        expect(JSON.load(response.body)).to include({
-          'errors' => 'Page not found'
-        })
+        expect(JSON.load(response.body)).to include(
+          'message' => 'Page "inexistent" not found'
+        )
       end
     end
 
@@ -71,7 +96,8 @@ RSpec.describe API::PageFeedbacksController do
       let(:params) do
         {
           slug: page.slug,
-          liked: true
+          liked: true,
+          locale: 'en'
         }
       end
 
@@ -80,9 +106,9 @@ RSpec.describe API::PageFeedbacksController do
       end
 
       it 'returns error message in response body' do
-        expect(JSON.load(response.body)).to include({
+        expect(JSON.load(response.body)).to include(
           'errors' => ["Session can't be blank"]
-        })
+        )
       end
     end
   end
