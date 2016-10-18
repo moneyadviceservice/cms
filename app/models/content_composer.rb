@@ -18,9 +18,7 @@ class ContentComposer
     content.to_s
   end
 
-  private
-
   def post_processors
-    [TableWrapper]
+    [TableWrapper, ExternalLink]
   end
 end
