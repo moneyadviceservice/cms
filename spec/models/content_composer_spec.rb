@@ -1,5 +1,6 @@
 RSpec.describe ContentComposer do
-  subject { described_class.new(content) }
+  let(:locale) { 'en' }
+  subject      { described_class.new(locale, content) }
 
   let(:content) do
     'Content Block'

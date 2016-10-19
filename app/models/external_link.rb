@@ -1,11 +1,12 @@
 require 'nokogiri'
 
 class ExternalLink
-  attr_reader :source, :screen_reader_tag
+  attr_reader :locale, :source, :description
 
-  def initialize(source)
+  def initialize(locale, source)
     @source = source
-    @screen_reader_tag = '<span class="visually-hidden">open in a tab</span>'
+    @locale = locale.to_s.downcase.to_sym
+    @description = { en: 'opens in new window', cy: 'yn agor mewn ffenestr newydd' }
     freeze
   end
 
@@ -14,5 +15,15 @@ class ExternalLink
     nodes = doc.css 'a[target="_blank"]'
     nodes.after(screen_reader_tag) if nodes.present?
     doc.to_s
+  end
+
+  private
+
+  def screen_reader_tag
+    [
+      '<span class="visually-hidden">',
+      description.fetch(locale, description[:en]),
+      '</span>'
+    ].join
   end
 end

@@ -7,10 +7,10 @@ class BlockSerializer < ActiveModel::Serializer
 
   def content
     if identifier.start_with?('raw_')
-      ContentComposer.new(block_content, RawParser).to_html
+      ContentComposer.new(locale, block_content, RawParser).to_html
     else
       if block_content
-        ContentComposer.new(block_content).to_html
+        ContentComposer.new(locale, block_content).to_html
       end
     end
   end
@@ -19,6 +19,10 @@ class BlockSerializer < ActiveModel::Serializer
 
   def page
     object.blockable
+  end
+
+  def locale
+    page.site.path
   end
 
   def block_content
