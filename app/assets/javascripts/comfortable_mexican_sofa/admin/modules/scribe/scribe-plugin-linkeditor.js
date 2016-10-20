@@ -70,7 +70,13 @@ function (eventsWithPromises, rangy, rangySelectionSaveRestore, filterEvent) {
       };
 
       linkEditorCommand.insertLinkSuffix = function(node, suffix) {
-        node.insertAdjacentText('afterend', suffix);
+        var childNode = node.childNodes[0];
+
+        if(childNode.nodeType === 3) {
+          node.insertAdjacentText('afterend', suffix);
+        } else {
+          childNode.insertAdjacentText('afterend', suffix);
+        }
       };
 
       linkEditorCommand.removeLinkSuffix = function(referenceNode, suffixRegEx) {
