@@ -5,4 +5,18 @@ RSpec.describe PageFeedback, type: :model do
     it { should validate_presence_of(:page) }
     it { should validate_presence_of(:session_id) }
   end
+
+  describe 'scopes' do
+    let(:page_id) { 1 }
+
+    it '#liked_count' do
+      expect(PageFeedback.liked(page_id).to_sql)
+        .to eq PageFeedback.where(page: page_id, liked: true).to_sql
+     end
+
+    it '#disliked_count' do
+      expect(PageFeedback.disliked(page_id).to_sql)
+        .to eq PageFeedback.where(page: page_id, liked: false).to_sql
+     end
+  end
 end
