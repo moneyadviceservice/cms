@@ -1,7 +1,8 @@
 RSpec.describe API::PageFeedbacksController do
-  describe 'POST /page_feedbacks' do
-    let(:site) { create(:site, path: 'en') }
-    let(:page) { create(:page, site: site) }
+  let(:site) { create(:site, path: 'en') }
+  let(:page) { create(:page, site: site) }
+
+  describe 'POST /en/articles/slug/page_feedbacks' do
     before { post :create, params }
 
     context 'when the page receives a like' do
@@ -108,6 +109,81 @@ RSpec.describe API::PageFeedbacksController do
       it 'returns error message in response body' do
         expect(JSON.load(response.body)).to include(
           'errors' => ["Session can't be blank"]
+        )
+      end
+    end
+  end
+
+  describe 'PATCH /en/articles/slug/page_feedback' do
+    before do
+      patch :update, params.merge(locale: 'en')
+    end
+
+    context 'when page feedback exists' do
+      let!(:page_feedback) do
+        create(:page_feedback, page_id: page.id)
+      end
+
+      context 'when is valid' do
+        let(:params) do
+          {
+            session_id: page_feedback.session_id,
+            slug: page.slug,
+            comment: 'Terrible article!',
+            shared_on: 'Facebook'
+          }
+        end
+
+        it 'returns success response' do
+          expect(response.status).to be(200)
+        end
+
+        it 'returns page feedback' do
+          expect(JSON.load(response.body)).to include(
+            'liked'     => true,
+            'comment'   => 'Terrible article!',
+            'shared_on' => 'Facebook'
+          )
+        end
+      end
+
+      context 'when is invalid' do
+        let(:params) do
+          {
+            session_id: page_feedback.session_id,
+            slug: page.slug
+          }
+        end
+
+        before do
+          expect_any_instance_of(PageFeedback).to receive(:update).and_return(false)
+          patch :update, params.merge(locale: 'en')
+        end
+
+        it 'returns unprocessable entity' do
+          expect(response.status).to be(422)
+        end
+
+        it 'includes message node' do
+          expect(JSON.load(response.body)).to include(
+            'message' => []
+          )
+        end
+      end
+    end
+
+    context 'when page feedback does not exists' do
+      let(:params) do
+        { session_id: 'inexistent', slug: page.slug }
+      end
+
+      it 'returns page not found' do
+        expect(response.status).to be(404)
+      end
+
+      it 'returns error message' do
+        expect(JSON.load(response.body)).to include(
+          'message' => %(Page feedback "#{page.slug}" not found)
         )
       end
     end

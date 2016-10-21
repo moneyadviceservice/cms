@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     get '/:locale/:page_type/(*slug)(.:format)' => 'content#show'
 
     post '/api/:locale/:slug/page_feedbacks' => 'page_feedbacks#create' if Feature.active?(:page_feedback)
+    patch '/api/:locale/:slug/page_feedbacks' => 'page_feedbacks#update' if Feature.active?(:page_feedback)
   end
 
   # Overwriten comfy route to hit the application.
