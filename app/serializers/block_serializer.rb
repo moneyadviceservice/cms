@@ -43,5 +43,4 @@ class BlockSerializer < ActiveModel::Serializer
   def alternate_blocks_retriever
     @alternate_blocks_retriever ||= AlternatePageBlocksRetriever.new(page)
   end
-
 end
