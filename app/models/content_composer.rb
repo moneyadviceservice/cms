@@ -1,16 +1,17 @@
 class ContentComposer
-  attr_reader :content, :parser
+  attr_reader :locale, :content, :parser
 
-  def initialize(content, parser = Mastalk::Document)
+  def initialize(locale, content, parser = Mastalk::Document)
+    @locale  = locale
     @content = content
-    @parser = parser
+    @parser  = parser
   end
 
   def to_html
     html = parser.new(to_s).to_html
 
     post_processors.inject(html) do |result, processor|
-      processor.new(result).call
+      processor.new(locale, result).call
     end
   end
 
@@ -18,9 +19,7 @@ class ContentComposer
     content.to_s
   end
 
-  private
-
   def post_processors
-    [TableWrapper]
+    [TableWrapper, ExternalLink]
   end
 end

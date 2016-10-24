@@ -1,5 +1,6 @@
 RSpec.describe ContentComposer do
-  subject { described_class.new(content) }
+  let(:locale) { 'en' }
+  subject      { described_class.new(locale, content) }
 
   let(:content) do
     'Content Block'
@@ -34,14 +35,11 @@ RSpec.describe ContentComposer do
       end
     end
 
-    context 'post processing' do
-      let(:content) do
-        '<table></table>'
-      end
+   describe '#post_processors' do
+     it 'returns TableWrapper and ExternalLink' do
+       expect(subject.post_processors).to match_array [TableWrapper, ExternalLink]
+     end
+   end
 
-      it 'returns a composed html string' do
-        expect(subject.to_html).to eql("<div class=\"table-wrapper\"><table></table></div>\n")
-      end
-    end
   end
 end

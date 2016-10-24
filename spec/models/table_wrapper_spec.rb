@@ -1,9 +1,10 @@
 describe TableWrapper do
+  let(:locale) { 'en' }
   context 'when there is no table' do
     let(:source) { '<p>hello</p>' }
 
     subject do
-      described_class.new(source)
+      described_class.new(locale, source)
     end
 
     it 'does nothing' do
@@ -15,7 +16,7 @@ describe TableWrapper do
     let(:source) { '<table></table>' }
 
     subject do
-      described_class.new(source)
+      described_class.new(locale, source)
     end
 
     it 'wraps the table' do
