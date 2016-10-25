@@ -4,6 +4,7 @@ RSpec.describe PageFeedback, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:page) }
     it { should validate_presence_of(:session_id) }
+    it { should validate_inclusion_of(:shared_on).in_array(%w(Facebook Twitter Email)) }
   end
 
   describe 'scopes' do
