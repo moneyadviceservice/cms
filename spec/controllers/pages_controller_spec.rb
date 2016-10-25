@@ -325,5 +325,4 @@ RSpec.describe PagesController do
       end
     end
   end
-
 end
