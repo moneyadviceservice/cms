@@ -1,0 +1,42 @@
+<div class="l-panel-content l-panel-content--form">
+  <div class="l-constrained">
+    <div class="l-panel-content__row">
+      <div class="l-panel-content__col">
+        <h1>Page Feedbacks</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="l-panel-content">
+  <div class="l-constrained">
+
+    <%= paginate @page_feedbacks %>
+
+    <table class="datatable-default table table--full-width table--redirects">
+      <thead>
+        <tr>
+          <th>Page</th>
+          <th>Status</th>
+          <th>Shared on</th>
+          <th>Comment</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @page_feedbacks.each do |page_feedback| %>
+          <tr>
+            <td><%= page_feedback.page.slug %></td>
+            <td><%= page_feedback.liked? ? 'Liked' : 'Disliked' %></td>
+            <td><%= page_feedback.shared_on %></td>
+            <td><%= page_feedback.comment %></td>
+            <td><%=l page_feedback.updated_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @page_feedbacks %>
+  </div>
+</div>

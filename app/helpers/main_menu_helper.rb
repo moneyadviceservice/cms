@@ -12,10 +12,10 @@ module MainMenuHelper
         custom_class: 'nav-primary__text--logo'
       ),
       MenuLink.new(name: t('comfy.admin.cms.base.files'), path: comfy_admin_cms_site_files_path(site))
-    ] << admin_links).flatten
+    ] << admin_links(site)).flatten
   end
 
-  def admin_links
+  def admin_links(site)
     return [] unless current_user.admin?
     [
       MenuLink.new(
@@ -25,7 +25,11 @@ module MainMenuHelper
           MenuLink.new(name: t('comfy.admin.cms.base.users'),    path: users_path),
           MenuLink.new(name: t('comfy.admin.cms.base.tags'),     path: tags_path),
           MenuLink.new(name: t('comfy.admin.cms.base.categories'), path: categories_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.redirects'), path: redirects_path)
+          MenuLink.new(name: t('comfy.admin.cms.base.redirects'), path: redirects_path),
+          MenuLink.new(
+            name: t('comfy.admin.cms.base.page_feedbacks'),
+            path: site_page_feedbacks_path(site)
+          )
         ]
       )
     ]

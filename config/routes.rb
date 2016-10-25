@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
       resources :layouts
       resources :snippets
+      resources :page_feedbacks, only: [:index]
 
       namespace 'links' do
         resources :documents, only: :index
