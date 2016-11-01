@@ -48,16 +48,16 @@ RSpec.describe PermissionCheck do
       context 'and the action is new' do
         let(:action) { 'new' }
 
-        it 'returns false' do
-          expect(subject).to be false
+        it 'returns true' do
+          expect(subject).to be true
         end
       end
 
       context 'and the action is create' do
         let(:action) { 'create' }
 
-        it 'returns false' do
-          expect(subject).to be false
+        it 'returns true' do
+          expect(subject).to be true
         end
       end
 
