@@ -9,7 +9,7 @@
         - else
           %h1.l-panel-content__heading
             = "Welcome #{current_user.name}"
-      - unless current_user.editor?
+      - if current_user.editor? || current_user.admin?
         .l-panel-content__col.l-panel-content__col--right
           = link_to new_site_page_path(@site), class: 'button--action button--search' do
             %span.button__text

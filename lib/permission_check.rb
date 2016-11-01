@@ -8,7 +8,7 @@ class PermissionCheck
 
   attr_accessor :user, :page, :action, :event
 
-  FORBIDDEN_ACTIONS = %w(new create destroy)
+  FORBIDDEN_ACTIONS = %w(destroy)
   ALLOWED_EDITOR_STATE_EVENTS = %w(create_initial_draft create_new_draft)
   ALLOWED_EDITOR_UPDATE_STATES = %w(draft published_being_edited scheduled)
 
