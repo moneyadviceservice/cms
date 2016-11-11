@@ -20,6 +20,6 @@ class ContentComposer
   end
 
   def post_processors
-    [TableWrapper, TableCaptioner, ExternalLink]
+    [TableWrapper, TableCaptioner, ExternalLink, InternalLink]
   end
 end
