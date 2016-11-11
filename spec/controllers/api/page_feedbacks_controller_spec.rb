@@ -1,6 +1,40 @@
-RSpec.describe API::PageFeedbacksController do
+RSpec.describe API::PageFeedbacksController, type: :controller do
   let(:site) { create(:site, path: 'en') }
   let(:page) { create(:page, site: site) }
+
+  before do
+    controller.request.env['HTTP_AUTHORIZATION'] =
+      ActionController::HttpAuthentication::Token.encode_credentials('mytoken')
+  end
+
+  describe 'API authentication' do
+    before do
+      controller.request.env['HTTP_AUTHORIZATION'] =
+        ActionController::HttpAuthentication::Token.encode_credentials('fake')
+      post :create, params
+    end
+
+    context 'when token is invalid' do
+      let(:params) do
+        {
+          slug: page.slug,
+          liked: true,
+          session_id: '5cfe12kc',
+          locale: 'en'
+        }
+      end
+
+      it 'returns 401' do
+        expect(response.status).to be(401)
+      end
+
+      it 'add www-authenticate header' do
+        expect(response.headers).to include(
+          'WWW-Authenticate' => "Token realm=\"Application\""
+        )
+      end
+    end
+  end
 
   describe 'POST /en/articles/slug/page_feedbacks' do
     before { post :create, params }

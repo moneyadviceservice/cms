@@ -1,6 +1,7 @@
 class API::PageFeedbacksController < APIController
   before_action :find_site, :find_page
   before_action :find_page_feedback, only: :update
+  before_action API::AuthenticationFilter
 
   def create
     page_feedback = @page.feedbacks.new(page_feedback_params)
