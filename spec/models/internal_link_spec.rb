@@ -7,9 +7,9 @@ describe InternalLink do
       let(:source) { s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
-<h2>Section 1</h2>
+<h2>Section 1, and this</h2>
 <p>some text</p>
-<h2>Section 2</h2>
+<h2>Do you have Section 2?</h2>
 <p>some text</p>
 <h2>Section 3</h2>
 <p>some text</p>
@@ -21,13 +21,13 @@ EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <ul>
-<li><a href="#section-1">Section 1</a></li>
-<li><a href="#section-2">Section 2</a></li>
+<li><a href="#section-1-and-this">Section 1, and this</a></li>
+<li><a href="#do-you-have-section-2">Do you have Section 2?</a></li>
 <li><a href="#section-3">Section 3</a></li>
 </ul>
-<h2 id="section-1">Section 1</h2>
+<h2 id="section-1-and-this">Section 1, and this</h2>
 <p>some text</p>
-<h2 id="section-2">Section 2</h2>
+<h2 id="do-you-have-section-2">Do you have Section 2?</h2>
 <p>some text</p>
 <h2 id="section-3">Section 3</h2>
 <p>some text</p>
@@ -45,11 +45,11 @@ EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <ul>
-<li><a href="#section-1">Section 1</a></li>
+<li><a href="#section-1-and-this">Section 1, and this</a></li>
 <li><a href="#section-2">Section 2</a></li>
 <li><a href="#section-3">Section 3</a></li>
 </ul>
-<h2 id="section-1">Section 1</h2>
+<h2 id="section-1-and-this">Section 1, and this</h2>
 <p>some text</p>
 <h2 id="section-2">Section 2</h2>
 <p>some text</p>
