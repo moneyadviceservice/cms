@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'nokogiri'
 
 class InternalLink
@@ -7,7 +8,7 @@ class InternalLink
     @source              = source
     @doc                 = Nokogiri::HTML.fragment(source)
     @sections            = doc.css('h2')
-    @internal_links_menu = doc.css('h1 + p + ul')
+    @internal_links_menu = doc.css(existing_menu_selector(@sections[0])) if @sections[0]
     freeze
   end
 
@@ -45,6 +46,17 @@ class InternalLink
   end
 
   def parse_id(s)
-    s.downcase.tr(' ', '-')
+    s.downcase
+      .delete(',?!.:;')  # deletes punctuation marks
+      .tr(' –', '-')     # replaces spaces and emdash (\u2013) with dash
+      .gsub('---', '--') # edge case to support emdash
+  end
+
+  def existing_menu_selector(node)
+    [
+      'a[href="#',
+      parse_id(node.content),
+      '"]'
+    ].join('')
   end
 end
