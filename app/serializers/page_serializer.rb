@@ -3,7 +3,7 @@ require 'active_model_serializers'
 class PageSerializer < ActiveModel::Serializer
   attributes :label, :slug, :full_path,
              :meta_description, :meta_title, :category_names,
-             :layout_identifier, :related_content, :published_at
+             :layout_identifier, :related_content, :published_at, :supports_amp
 
   has_many :blocks, serializer: BlockSerializer
   has_many :translations, serializer: PageTranslationSerializer
