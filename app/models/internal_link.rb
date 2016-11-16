@@ -7,7 +7,7 @@ class InternalLink
     @source              = source
     @doc                 = Nokogiri::HTML.fragment(source)
     @sections            = doc.css('h2')
-    @internal_links_menu = doc.css('h1 + p + ul')
+    @internal_links_menu = doc.css(existing_menu_selector(@sections[0])) if @sections[0]
     freeze
   end
 
@@ -46,5 +46,13 @@ class InternalLink
 
   def parse_id(s)
     s.downcase.tr(' ', '-')
+  end
+
+  def existing_menu_selector(node)
+    [
+      'a[href="#',
+      parse_id(node.content),
+      '"]'
+    ].join('')
   end
 end
