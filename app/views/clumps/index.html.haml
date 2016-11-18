@@ -1,0 +1,26 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        %h1 Clumps
+
+.l-panel-content
+  .l-constrained
+    %p Clumps and the categories they contain
+
+    %ul.sortable-list
+      - @clumps.each do |clump|
+        %li
+          <b>Clump:</b> #{clump.name_en} / #{clump.name_cy}
+          %p
+            #{clump.description_en} / #{clump.description_cy}
+
+          %ul
+            - clump.categories.each do |category|
+              %li
+                <b>Category:</b> #{link_to category.title_en, category_path(category)}
+
+                %ul
+                  - category.child_categories.each do |child|
+                    %li
+                      <b>Child category:</b> #{link_to child.title_en, category_path(child)}
