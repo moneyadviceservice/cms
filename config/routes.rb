@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       collection { put :reorder }
     end
 
+    resources :clumps, only: :index
+
     resources :tags, only: [:index, :create] do
       collection do
         get :starting_by
