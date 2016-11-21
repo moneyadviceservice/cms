@@ -8,14 +8,14 @@ class PageFeedback < ActiveRecord::Base
 
   delegate :slug, to: :page, prefix: true
 
-  CSV_COLUMNS = ['page_slug', column_names].flatten
-
   def self.to_csv(_ = {})
+    csv_columns = ['page_slug', column_names].flatten
+
     CSV.generate do |csv|
-      csv << CSV_COLUMNS
+      csv << csv_columns
 
       find_each do |page_feedback|
-        csv << CSV_COLUMNS.map { |column| page_feedback.send(column) }
+        csv << csv_columns.map { |column| page_feedback.send(column) }
       end
     end
   end
