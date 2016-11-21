@@ -64,4 +64,8 @@ class Clump < ActiveHash::Base
   def categories
     category_labels.collect { |l| Comfy::Cms::Category.find_by(label: l) }
   end
+
+  def read_attribute_for_serialization(n)
+    attributes[n]
+  end
 end
