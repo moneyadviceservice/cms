@@ -4,6 +4,15 @@
       <div class="l-panel-content__col">
         <h1>Page Feedbacks</h1>
       </div>
+      <div class=".l-panel-content__col.l-panel-content__col--right">
+        <%= link_to site_page_feedbacks_path(@site, format: :csv), class: 'button--action button--search' do %>
+          <span class="button__text">
+            <span class="fa fa-file-o">
+              Export CSV
+            </span>
+          </span>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
