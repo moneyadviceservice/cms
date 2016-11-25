@@ -12,7 +12,7 @@ class AlternatePageBlocksRemover
 
   attr_writer :new_blocks_attributes
 
-  def initialize(page, remover: remover)
+  def initialize(page, remover:)
     @page = page
     @remover = remover
   end
