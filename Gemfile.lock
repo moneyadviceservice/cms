@@ -7,10 +7,9 @@ GIT
 
 GIT
   remote: git@github.com:moneyadviceservice/comfortable-mexican-sofa.git
-  revision: 6f7d8d1983aa6541f719c912873206fec1e78636
-  branch: ruby-update
+  revision: 979234fc966d65b7b4a842192a4761a5e88d04d5
   specs:
-    comfortable_mexican_sofa (2.0.0)
+    comfortable_mexican_sofa (2.0.1)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
@@ -579,7 +578,7 @@ DEPENDENCIES
   capybara (= 2.4.1)
   clockwork
   coffee-rails (~> 4.0.0)
-  comfortable_mexican_sofa (~> 2.0.0.0)!
+  comfortable_mexican_sofa (~> 2.0.1)!
   cucumber-rails
   database_cleaner
   devise
