@@ -8,8 +8,8 @@ class Comfy::Cms::Category < ActiveRecord::Base
   validates_presence_of :label, :title_en, :title_cy
   validates_uniqueness_of :label, :title_en, :title_cy, scope: :site_id
 
-  belongs_to :small_image, class_name: Comfy::Cms::File
-  belongs_to :large_image, class_name: Comfy::Cms::File
+  belongs_to :small_image, class_name: 'Comfy::Cms::File'
+  belongs_to :large_image, class_name: 'Comfy::Cms::File'
 
   has_many :category_promos
 
