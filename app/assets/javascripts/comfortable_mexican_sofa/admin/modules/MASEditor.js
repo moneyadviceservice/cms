@@ -102,6 +102,7 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('videoVimeo'));
     this.editorLib.editor.use(scribePluginMastalk('video'));
     this.editorLib.editor.use(scribePluginMastalk('callout'));
+    this.editorLib.editor.use(scribePluginMastalk('calloutTool'));
     this.editorLib.editor.use(scribePluginMastalk('table'));
     this.editorLib.editor.use(scribePluginMastalk('bullets'));
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));

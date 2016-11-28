@@ -19,6 +19,8 @@
               %li.menu__item
                 =button_tag('Call out box', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'callout', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
+                =button_tag('Call out box - Tool', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'calloutTool', dough_snippetinserter_context: 'markdown-snippets'})
+              %li.menu__item
                 =button_tag('Ticks', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger:'ticks', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
                 =button_tag("Bullets", type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'bullets', dough_snippetinserter_context: 'markdown-snippets'})
@@ -75,6 +77,8 @@
                 =button_tag('Add action', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_addAction'})
               %li.menu__item
                 =button_tag('Call out box', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_callout'})
+              %li.menu__item
+                =button_tag('Call out box - Tools', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_calloutTool'})
               %li.menu__item
                 =button_tag('Ticks', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_ticks'})
               %li.menu__item
