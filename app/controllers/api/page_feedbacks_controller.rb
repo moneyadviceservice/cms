@@ -1,4 +1,4 @@
-class API::PageFeedbacksController < APIController
+class API::PageFeedbacksController < API::ApplicationController
   before_action :find_site, :find_page
   before_action :find_page_feedback, only: :update
   before_action API::AuthenticationFilter

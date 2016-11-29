@@ -1,4 +1,4 @@
-class APIController < ApplicationController
+class API::ApplicationController < ApplicationController
   respond_to :json
   attr_reader :current_site
 

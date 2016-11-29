@@ -1,5 +1,5 @@
 module API
-  class ContentController < APIController
+  class ContentController < API::ApplicationController
     before_action :find_site, only: [:show, :preview, :published, :unpublished]
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
