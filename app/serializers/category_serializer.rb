@@ -3,6 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
              :third_level_navigation, :images
 
   has_many :contents
+  has_many :legacy_contents
   has_many :category_promos
   has_many :links, serializer: CategoryLinkSerializer
 
@@ -43,6 +44,17 @@ class CategorySerializer < ActiveModel::Serializer
         .map { |p| PageCategorySerializer.new(p) }
     ).flatten.compact
   end
+
+  def legacy_contents
+    (
+      object.legacy_child_categories <<
+      Comfy::Cms::Page
+        .in_locale(scope)
+        .in_category(object.id)
+        .map { |p| PageCategorySerializer.new(p) }
+    ).flatten.compact
+  end
+
 
   def id
     object.label
