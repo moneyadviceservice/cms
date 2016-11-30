@@ -1,4 +1,8 @@
 RSpec.describe Comfy::Cms::Page do
+  describe 'relations' do
+    it { should have_many(:feedbacks).dependent(:destroy) }
+  end
+
   describe '#suppress_from_links_recirculation' do
     let(:english_site) { create :site, is_mirrored: true }
     let(:welsh_site) { create :site, :welsh, is_mirrored: true }
