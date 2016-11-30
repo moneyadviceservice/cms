@@ -1,7 +1,7 @@
 class CategoryPromo < ActiveRecord::Base
   PROMO_TYPES = %w(blog recommended popular calculator tool)
 
-  belongs_to :category, class: Comfy::Cms::Category
+  belongs_to :category, class_name: 'Comfy::Cms::Category'
 
   validates :title, presence: true
   validates :promo_type, inclusion: PROMO_TYPES

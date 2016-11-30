@@ -1,7 +1,7 @@
 class RevisionRegister
   attr_accessor :page, :user, :blocks_attributes
 
-  def initialize(page, user: user, blocks_attributes: blocks_attributes)
+  def initialize(page, user:, blocks_attributes:)
     @page = page
     @user = user
     @blocks_attributes = blocks_attributes

@@ -2,8 +2,7 @@ source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
 
 gem 'bugsnag'
-gem 'rails', '4.1.1'
-gem 'sqlite3'
+gem 'rails', '4.1.16'
 gem 'mysql2'
 gem 'sass-rails', '~> 4.0.3'
 gem 'autoprefixer-rails'
@@ -13,7 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'comfortable_mexican_sofa', '~>2.0.0.0', :source => 'http://gems.dev.mas.local/'
+gem 'comfortable_mexican_sofa', '~>2.0.1', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 

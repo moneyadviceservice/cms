@@ -12,7 +12,7 @@ class AlternatePageBlocksRegister
 
   attr_writer :new_blocks_attributes
 
-  def initialize(page, author: author, new_blocks_attributes: new_blocks_attributes)
+  def initialize(page, author:, new_blocks_attributes:)
     @page = page
     @author = author
     @new_blocks_attributes = new_blocks_attributes
