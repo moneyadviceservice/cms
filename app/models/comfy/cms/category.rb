@@ -27,6 +27,10 @@ class Comfy::Cms::Category < ActiveRecord::Base
     self.class.where(parent_id: id).reorder(:ordinal)
   end
 
+  def legacy_child_categories
+    self.class.where(legacy_parent_id: id).reorder(:ordinal)
+  end
+
   def parents
     [find_parents].flatten.compact.reverse
   end
