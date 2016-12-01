@@ -42,6 +42,7 @@ gem 'httparty', '~> 0.13.7'
 
 gem 'mastalk', '~> 0.7.0'
 gem 'mailjet'
+gem 'azure', '0.7.7'
 gem 'paperclip-azure', '~> 0.2'
 
 group :development do
