@@ -35,26 +35,23 @@ class CategorySerializer < ActiveModel::Serializer
     object.category_promos.where(locale: scope)
   end
 
-  def contents
+  def base_contents(version:)
     (
-      object.child_categories <<
+      object.find_children(version: version) <<
       Comfy::Cms::Page
         .in_locale(scope)
         .in_category(object.id)
         .map { |p| PageCategorySerializer.new(p) }
     ).flatten.compact
+  end
+
+  def contents
+    base_contents(version: :latest)
   end
 
   def legacy_contents
-    (
-      object.legacy_child_categories <<
-      Comfy::Cms::Page
-        .in_locale(scope)
-        .in_category(object.id)
-        .map { |p| PageCategorySerializer.new(p) }
-    ).flatten.compact
+    base_contents(version: :legacy)
   end
-
 
   def id
     object.label
