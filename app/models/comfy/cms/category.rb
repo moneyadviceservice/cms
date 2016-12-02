@@ -13,8 +13,8 @@ class Comfy::Cms::Category < ActiveRecord::Base
 
   has_many :category_promos
 
-  has_many :clumpings, inverse_of: :category
-  has_many :clumps, through: :clumpings
+  has_one :clumping, inverse_of: :category
+  has_one :clump, through: :clumping
 
   accepts_nested_attributes_for :category_promos, reject_if: ->(promo) { promo[:title].blank? },
                                                   allow_destroy: true
