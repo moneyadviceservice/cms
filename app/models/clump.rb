@@ -13,4 +13,10 @@ class Clump < ActiveRecord::Base
 
   default_scope { order(:ordinal) }
 
+  before_validation :set_default_ordinal, on: :create
+
+  def set_default_ordinal
+    self.ordinal ||= Clump.count
+  end
+
 end
