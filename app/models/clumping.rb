@@ -7,4 +7,10 @@ class Clumping < ActiveRecord::Base
   validates :category, presence: true
   validates :ordinal, presence: true
 
+  before_validation :set_default_ordinal, on: :create
+
+  def set_default_ordinal
+    self.ordinal ||= clump.clumpings.count
+  end
+
 end
