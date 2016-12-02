@@ -35,6 +35,18 @@ class Comfy::Cms::Category < ActiveRecord::Base
     @parent ||= self.class.find_by(id: parent_id)
   end
 
+  def clump_id
+    clump.try(:id)
+  end
+
+  def clump_id=(new_clump_id)
+    if new_clump_id.blank?
+      self.clump = nil
+    else
+      self.clump = Clump.find(new_clump_id)
+    end
+  end
+
   private
 
   def find_parents
