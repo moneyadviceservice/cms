@@ -35,7 +35,9 @@ Rails.application.routes.draw do
       collection { put :reorder }
     end
 
-    resources :clumps, only: :index
+    resources :clumps, except: :destroy do
+      collection { put :reorder }
+    end
 
     resources :tags, only: [:index, :create] do
       collection do
