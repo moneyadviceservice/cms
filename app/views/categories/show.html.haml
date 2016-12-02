@@ -26,6 +26,7 @@
           %h2 Category details
           = comfy_form_for @category, url: {action: 'update'}, html: {class: 'form form--vertical'}, label_col: 'form__label-heading', control_col: 'form__input-wrapper' do |f|
             = f.collection_select :parent_id, Comfy::Cms::Category.where(site_id: 1).reorder(:label), :id, :label, include_blank: true
+            = f.collection_select :clump_id, Clump.reorder(:name_en), :id, :name_en, include_blank: true
             = f.text_field :title_en
             = f.text_field :title_cy
             = f.text_field :description_en
