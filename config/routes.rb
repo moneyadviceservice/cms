@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       collection { put :reorder }
     end
 
+    resources :clumps, only: :index
+
     resources :tags, only: [:index, :create] do
       collection do
         get :starting_by
@@ -63,6 +65,8 @@ Rails.application.routes.draw do
   end
 
   namespace :api, path: '/' do
+    get '/:locale/clumps(.:format)' => 'clumps#index'
+
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview'
