@@ -4,7 +4,10 @@ require Rails.root.join('lib', 'comfortable_mexican_sofa', 'extensions', 'is_tag
 class Comfy::Cms::Page < ActiveRecord::Base
   include ComfortableMexicanSofa::IsTaggable::ModelMethods
 
-  has_many :feedbacks, class: PageFeedback, foreign_key: 'page_id'
+  has_many :feedbacks,
+           class_name: PageFeedback,
+           foreign_key: 'page_id',
+           dependent: :destroy
 
   delegate :identifier, to: :layout, allow_nil: true
   alias_method :translations, :mirrors

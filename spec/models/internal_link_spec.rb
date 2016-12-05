@@ -1,9 +1,9 @@
 # coding: utf-8
 describe InternalLink do
-  describe '.call' do
-    let(:locale) { 'en' }
-    subject { InternalLink.new(locale, source).call }
+  let(:locale) { 'en' }
+  subject { InternalLink.new(locale, source).call }
 
+  describe '.call' do
     context 'when internal links menu is missing' do
       let(:source) { s = <<EOF
 <h1>Page Title</h1>
@@ -62,6 +62,44 @@ EOF
 
       it 'does nothing' do
         expect(subject).to eq source
+      end
+    end
+  end
+
+  describe 'Punctuation marks' do
+    context 'are removed in tag id' do
+      let(:source) { s=<<EOF
+<h1>Page Title</h1>
+<p>some description</p>
+<h2>'Section 1', and this</h2>
+<p>some text</p>
+<h2>(Section 2) [brackets]</h2>
+<p>some text</p>
+<h2>{Section 3} "double quotes"</h2>
+<p>some text</p>
+EOF
+        s
+      }
+
+      let(:generated_output) { s=<<EOF
+<h1>Page Title</h1>
+<p>some description</p>
+<ul>
+<li><a href="#section-1-and-this">'Section 1', and this</a></li>
+<li><a href="#section-2-brackets">(Section 2) [brackets]</a></li>
+<li><a href="#section-3-double-quotes">{Section 3} "double quotes"</a></li>
+</ul>
+<h2 id="section-1-and-this">'Section 1', and this</h2>
+<p>some text</p>
+<h2 id="section-2-brackets">(Section 2) [brackets]</h2>
+<p>some text</p>
+<h2 id="section-3-double-quotes">{Section 3} "double quotes"</h2>
+<p>some text</p>
+EOF
+        s
+      }
+      it 'does nothing' do
+        expect(subject).to eq generated_output
       end
     end
   end

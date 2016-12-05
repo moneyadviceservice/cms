@@ -2,9 +2,10 @@
 require 'nokogiri'
 
 class InternalLink
-  attr_reader :source, :doc, :sections, :internal_links_menu
+  attr_reader :source, :doc, :sections, :internal_links_menu, :excluded_characters
 
   def initialize(_, source)
+    @excluded_characters = ',?!.:;–"\'()[]{}“”‘’‛‟,‚„"′″´˝^°¸˛¨`˙˚ªº…&_¯§#⁊¶†‡@%‰‱¦|/\ˉˆ˘ˇˇ~*❛❜❝❞'
     @source              = source
     @doc                 = Nokogiri::HTML.fragment(source)
     @sections            = doc.css('h2')
@@ -47,8 +48,8 @@ class InternalLink
 
   def parse_id(s)
     s.downcase
-      .delete(',?!.:;–')  # deletes punctuation marks and emdash (\u2013)
-      .tr(' ', '-')       # replaces spaces with dash
+      .delete(excluded_characters) # deletes punctuation marks and emdash (\u2013)
+      .tr(' ', '-')                # replaces spaces with dash
   end
 
   def existing_menu_selector(node)
