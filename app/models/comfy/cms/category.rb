@@ -24,11 +24,11 @@ class Comfy::Cms::Category < ActiveRecord::Base
   end
 
   def child_categories
-    find_children(version: :latest)
+    find_children
   end
 
   def legacy_child_categories
-    find_children(version: :legacy)
+    find_children(legacy: true)
   end
 
   def parents
@@ -51,20 +51,14 @@ class Comfy::Cms::Category < ActiveRecord::Base
     end
   end
 
-  def find_children(version: :latest)
-    self.class.where(registry.fetch(version, registry[:latest]) => id).reorder(:ordinal)
+  def find_children(legacy: false)
+    column_name = legacy ? :legacy_parent_id : :parent_id
+    self.class.where(column_name  => id).reorder(:ordinal)
   end
 
   private
 
   def find_parents
     [parent] << parent.parents if parent.present?
-  end
-
-  def registry
-    {
-      latest: :parent_id,
-      legacy: :legacy_parent_id
-    }
   end
 end
