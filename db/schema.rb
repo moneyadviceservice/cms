@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014135133) do
+ActiveRecord::Schema.define(version: 20161121120920) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20161014135133) do
     t.boolean "third_level_navigation", default: false
     t.integer "small_image_id"
     t.integer "large_image_id"
+    t.integer "legacy_parent_id"
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
