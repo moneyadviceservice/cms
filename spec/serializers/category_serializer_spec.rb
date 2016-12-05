@@ -25,6 +25,8 @@ describe CategorySerializer do
         parent_id: '',
         third_level_navigation: true,
         contents: [],
+        legacy_contents: [],
+        legacy: false,
         images: {
           small: nil,
           large: nil
@@ -50,6 +52,8 @@ describe CategorySerializer do
         parent_id: '',
         third_level_navigation: true,
         contents: [],
+        legacy_contents: [],
+        legacy: false,
         images: {
           small: nil,
           large: nil
