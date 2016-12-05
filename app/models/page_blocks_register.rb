@@ -1,3 +1,4 @@
+# coding: utf-8
 # This class wraps logic for updating the "current" blocks_attributes of a page, taking into account
 # situations where it might have an "alternate" version.
 #
@@ -25,7 +26,7 @@ class PageBlocksRegister
 
   attr_writer :new_blocks_attributes
 
-  def initialize(page, author: author, new_blocks_attributes: nil)
+  def initialize(page, author:, new_blocks_attributes: nil)
     @page = page
     @author = author
     @new_blocks_attributes = new_blocks_attributes

@@ -2,7 +2,7 @@ class ActivityLog
   include ActiveModel::Model
   attr_accessor :id, :author, :created_at, :type, :text
 
-  def self.fetch(from: from)
+  def self.fetch(from:)
     revisions = from.revisions.reorder(created_at: :asc)
     parse_method = method(:parse)
 
