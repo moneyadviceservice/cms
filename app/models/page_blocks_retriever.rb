@@ -72,7 +72,9 @@ class PageBlocksRetriever
   end
 
   def block_content(identifier)
-    blocks_attributes.find { |block_attributes| block_attributes[:identifier] == identifier.to_s }[:content]
+    block = blocks_attributes.find { |block_attributes| block_attributes[:identifier] == identifier.to_s }
+
+    block[:processed_content] || block[:content]
   end
 
   private

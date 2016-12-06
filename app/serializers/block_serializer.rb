@@ -34,7 +34,6 @@ class BlockSerializer < ActiveModel::Serializer
       else
         blocks_retriever.block_content(identifier)
       end
-
     else
       blocks_retriever.block_content(identifier) if blocks_retriever.live?
     end
