@@ -1,0 +1,23 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        %h1 Clump Manager
+
+.l-panel-content
+  .l-constrained
+    %h2.breadcrumb
+      = @clump.name_en
+
+    %h2 Clump details
+    = comfy_form_for @clump, url: {action: 'create'}, html: {class: 'form form--vertical'}, label_col: 'form__label-heading', control_col: 'form__input-wrapper' do |f|
+      = f.text_field :name_en
+      = f.text_field :name_cy
+      = f.text_field :description_en
+      = f.text_field :description_cy
+
+      .form-group
+        .form__input-wrapper
+          = button_tag class: 'button--action' do
+            %span.button__text
+              = t('categories.edit.submit.create')

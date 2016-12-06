@@ -1,7 +1,53 @@
 class ClumpsController < Comfy::Admin::Cms::BaseController
 
   def index
-    @clumps = Clump.all
+    @clumps = Clump.order('ordinal ASC')
+  end
+
+  def show
+    @clump = Clump.find(params[:id])
+  end
+
+  def new
+    @clump = Clump.new
+  end
+
+  def create
+    @clump = Clump.new(clump_params)
+    if @clump.save
+      redirect_to clump_path(@clump)
+    else
+      render :new
+    end
+  end
+
+  def update
+    @clump = Clump.find(params[:id])
+    begin
+      Clump.transaction do
+        @clump.update_attributes!(clump_params)
+        params[:category_order].split(',').each_with_index do |category_id, index|
+          @clump.clumpings.find_by(category_id: category_id).update_column(:ordinal, index)
+        end
+      end
+      redirect_to clump_path(@clump)
+    rescue ActiveRecord::RecordInvalid
+      render :show
+    end
+  end
+
+  def reorder
+    Clump.transaction do
+      params[:order].split(',').each_with_index do |clump_id, index|
+        Clump.find(clump_id).update_column(:ordinal, index)
+      end
+    end
+
+    redirect_to clumps_path
+  end
+
+  def clump_params
+    params.require(:clump).permit(:name_en, :name_cy, :description_en, :description_cy)
   end
 
 end
