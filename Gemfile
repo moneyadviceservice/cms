@@ -78,6 +78,7 @@ group :test, :development do
   gem 'valid_attribute', require: false
   gem 'dotenv-rails'
   gem 'launchy'
+  gem 'ruby-prof', require: false
 end
 
 group :production do

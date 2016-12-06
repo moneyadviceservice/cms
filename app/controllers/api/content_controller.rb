@@ -23,7 +23,7 @@ module API
     end
 
     def published
-      pages = current_site.pages.published.layout_identifier(params[:page_type])
+      pages = current_site.pages.published.layout_identifier(params[:page_type]).includes(:site, :layout, :categories, :blocks)
 
       render json: pages, each_serializer: FeedPageSerializer
     end
