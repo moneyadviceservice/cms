@@ -1,0 +1,19 @@
+- f.object.clump_links.each_with_index do |link, index|
+  = f.fields_for :clump_links, link do |l|
+    - unless l.object.new_record?
+      = l.hidden_field :id
+
+    .l-panel-content
+      .l-constrained
+        %h2 Link ##{index + 1}
+
+        .l-panel-content__row
+          .l-split-content
+            .l-split-content__col
+              = l.text_field :text_en
+              = l.text_field :url_en
+              = l.text_field :style
+
+            .l-split-content__col
+              = l.text_field :text_cy
+              = l.text_field :url_cy

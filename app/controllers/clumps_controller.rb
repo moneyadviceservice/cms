@@ -9,7 +9,9 @@ class ClumpsController < Comfy::Admin::Cms::BaseController
   end
 
   def new
-    @clump = Clump.new
+    @clump = Clump.new do |clump|
+      4.times { clump.clump_links.build }
+    end
   end
 
   def create
@@ -46,8 +48,19 @@ class ClumpsController < Comfy::Admin::Cms::BaseController
     redirect_to clumps_path
   end
 
+  PERMITTED_PARAMS = [
+    :name_en, :name_cy,
+    :description_en, :description_cy,
+    clump_links_attributes: [
+      :id,
+      :text_en, :text_cy,
+      :url_en, :url_cy,
+      :style
+    ]
+  ]
+
   def clump_params
-    params.require(:clump).permit(:name_en, :name_cy, :description_en, :description_cy)
+    params.require(:clump).permit(PERMITTED_PARAMS)
   end
 
 end
