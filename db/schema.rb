@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121120920) do
+ActiveRecord::Schema.define(version: 20161207123802) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20161121120920) do
   end
 
   add_index "category_promos", ["locale"], name: "index_category_promos_on_locale", using: :btree
+
+  create_table "clump_links", force: true do |t|
+    t.integer  "clump_id"
+    t.string   "text_en"
+    t.string   "text_cy"
+    t.string   "url_en"
+    t.string   "url_cy"
+    t.string   "style"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clumpings", force: true do |t|
     t.integer  "clump_id"
