@@ -42,4 +42,28 @@ describe ClumpLink do
       it { should_not be_empty }
     end
   end
+
+  describe '#complete?' do
+    context 'with all attributes are present' do
+      before do
+        subject.text_en = subject.text_cy = subject.url_en = subject.url_cy = subject.style = 'x'
+      end
+
+      it { should be_complete }
+
+      context 'but one is an empty string' do
+        before { subject.text_en = '' }
+        it { should_not be_complete }
+      end
+
+      context 'but one is nil' do
+        before { subject.text_en = nil }
+        it { should_not be_complete }
+      end
+    end
+
+    context 'with no attributes present' do
+      it { should_not be_complete }
+    end
+  end
 end

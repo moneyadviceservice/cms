@@ -1,5 +1,5 @@
 class ClumpSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description
+  attributes :id, :name, :description, :links
 
   has_many :categories
 
@@ -13,4 +13,9 @@ class ClumpSerializer < ActiveModel::Serializer
     scope == 'en' ? object.description_en : object.description_cy
   end
 
+  def links
+    object.clump_links.select(&:complete?).map do |link|
+      ClumpLinkSerializer.new(link, scope_name: :locale)
+    end
+  end
 end

@@ -12,4 +12,8 @@ class ClumpLink < ActiveRecord::Base
     [text_en, text_cy, url_en, url_cy, style].all?(&:blank?)
   end
 
+  def complete?
+    [text_en, text_cy, url_en, url_cy, style].all?(&:present?)
+  end
+
 end
