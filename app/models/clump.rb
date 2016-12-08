@@ -5,6 +5,8 @@ class Clump < ActiveRecord::Base
   # Category model has a default scope on label, so have to override this
   has_many :categories, -> { reorder('clumpings.ordinal ASC') }, through: :clumpings
 
+  has_many :clump_links
+
   validates :name_en, presence: true
   validates :name_cy, presence: true
   validates :description_en, presence: true
