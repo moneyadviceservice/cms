@@ -7,6 +7,8 @@ class Clump < ActiveRecord::Base
 
   has_many :clump_links
 
+  accepts_nested_attributes_for :clump_links
+
   validates :name_en, presence: true
   validates :name_cy, presence: true
   validates :description_en, presence: true
