@@ -34,7 +34,8 @@ module FilesHelper
   end
 
   def options_to_filter_images
-    t('files.images.filter_by').map { |type| [type.strip, type.strip] }
+#    t('files.images.filter_by').map { |type| [type.strip, type.strip] }
+    Set.new(Comfy::Cms::File.new.file.styles.keys.map(&:to_s).map {|s| s.split('_')[1] }).to_a
   end
 
   # The header to show in the files index page.

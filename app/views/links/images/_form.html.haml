@@ -14,7 +14,7 @@
   .form-group
     .form__row
       .choose-sort-by
-        = select_tag(:type, options_for_select(options_to_filter_images, @type), prompt: I18n.t('files.index.filter_by.placeholder'), data: { dough_component: 'SelectSubmitter' })
+        = select_tag(:style, options_for_select(options_to_filter_images, @type), prompt: 'Image Style', data: { dough_component: 'SelectSubmitter' })
 
   .form-group
     .form__row
