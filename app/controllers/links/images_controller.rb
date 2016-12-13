@@ -11,11 +11,10 @@ class Links::ImagesController < Links::FilesController
 
   def avalaible_styles
     @as ||= Comfy::Cms::File.new.file.styles.keys
-      .reduce({}) do |hsh, e|
+      .each_with_object({}) do |e, hsh|
         v = e.to_s.freeze
         k = v.split('_')[1].freeze
         hsh[k] = e if v =~ /png_1x/
-        hsh
     end
   end
 end
