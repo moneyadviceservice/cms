@@ -1,0 +1,26 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        %h1 Clump Manager
+      .l-panel-content__col.l-panel-content__col--right
+        = link_to new_clump_path, class: 'button--action' do
+          %span.button__text
+            = t('clumps.listing.create')
+
+
+= form_tag(reorder_clumps_path, method: 'put') do |f|
+  .l-panel-content
+    .l-constrained
+      %p Clumps used to group categories in the navigation bar
+      %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'clump-order'}}
+        -@clumps.each do |clump|
+          %li.sortable-list__item{data: {dough_listsorter_item_id: clump.id}}
+            = link_to clump.name_en, clump_path(clump), class: 'sortable-list__link'
+
+  = hidden_field_tag 'order', nil, data: { dough_listsorter_order_field: true, dough_listsorter_context: 'clump-order'}
+  .l-constrained
+    .panel.panel--centered
+      = button_tag class: 'button--action' do
+        %span.button__text
+          = t('clumps.listing.submit.update_order')

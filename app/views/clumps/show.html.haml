@@ -1,0 +1,39 @@
+.l-panel-content.l-panel-content--form
+  .l-constrained
+    .l-panel-content__row
+      .l-panel-content__col
+        %h1 Clump Manager
+
+.l-panel-content
+  .l-constrained
+    %h2.breadcrumb
+      = @clump.name_en
+
+    .l-panel-content__row
+      .l-split-content
+        .l-split-content__col
+          %h2 Clump details
+          = comfy_form_for @clump, url: {action: 'update'}, html: {class: 'form form--vertical'}, label_col: 'form__label-heading', control_col: 'form__input-wrapper' do |f|
+            = f.text_field :name_en
+            = f.text_field :name_cy
+            = f.text_field :description_en
+            = f.text_field :description_cy
+            = hidden_field_tag 'category_order', nil , data: { dough_listsorter_order_field: true, dough_listsorter_context: 'category-order'}
+
+            %hr.roomy
+
+            .form-group
+              .form__input-wrapper
+                = button_tag class: 'button--action' do
+                  %span.button__text
+                    = t('categories.edit.submit.update')
+
+        .l-split-content__col
+          %h2 Categories
+          - if @clump.categories.present?
+            %ol.sortable-list{data: {dough_component: :ListSorter, dough_listsorter_context: 'category-order'}}
+              -@clump.categories.each do |category|
+                %li.sortable-list__item{data: {dough_listsorter_item_id: category.id}}
+                  = link_to category.label, category_path(category), class: 'sortable-list__link'
+          - else
+            %p No categories allocated

@@ -1,0 +1,10 @@
+en:
+  clumps:
+    listing:
+      create: Create clump
+      submit:
+        update_order: Update order
+    edit:
+      submit:
+        create: Create clump
+        update: Update clump
