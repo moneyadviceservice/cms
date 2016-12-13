@@ -38,10 +38,11 @@ class ImgSrcset
   def srcset(cms_file)
     r = Regexp.new(cms_file.style)
     cms_file.file.styles.keys
-      .select {|style|  style.to_s =~ r }
-      .map do |style|
-             density = style.to_s.split('_').last
+      .map!(&:to_s)
+      .select { |style| style =~ r }
+      .map! do |style|
              url = URI.join(ActionController::Base.asset_host, cms_file.file.url(style)).to_s
+             density = style.split('_').last
              "#{url} #{density}"
            end
       .join(', ')
