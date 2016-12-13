@@ -2,20 +2,20 @@ class Links::ImagesController < Links::FilesController
   def index
     super
 
-    @files = @files.images.map { |f| f.tap { |o| o.style = image_style } }
+    @files = @files.images.map do |f|
+      f.tap { |o| o.style = avalaible_styles.fetch(params[:style], :original) }
+    end
   end
 
   private
 
-  def image_style
-    @image_style ||= if available_image_styles.include?(params[:style])
-      "hp_#{params[:style]}_png_1x".to_sym
-    else
-      :original
+  def avalaible_styles
+    @as ||= Comfy::Cms::File.new.file.styles.keys
+      .reduce({}) do |hsh, e|
+        v = e.to_s.freeze
+        k = v.split('_')[1].freeze
+        hsh[k] = e if v =~ /png_1x/
+        hsh
     end
-  end
-
-  def available_image_styles
-    @available_image_styles ||= Set.new(Comfy::Cms::File.new.file.styles.keys.map(&:to_s).map {|s| s.split('_')[1] })
   end
 end
