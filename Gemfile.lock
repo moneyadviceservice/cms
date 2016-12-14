@@ -7,7 +7,8 @@ GIT
 
 GIT
   remote: git@github.com:moneyadviceservice/comfortable-mexican-sofa.git
-  revision: d8b968b08a393e178fac9baa2d7d3c895b1fe3ab
+  revision: 2c3dcc88f6dfb995e10b3e8e212e3b7734b6d5de
+  ref: 2c3dcc8
   branch: 7783-image-perf
   specs:
     comfortable_mexican_sofa (2.0.1)
