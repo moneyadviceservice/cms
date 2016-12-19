@@ -44,6 +44,8 @@ gem 'mailjet'
 gem 'azure', '0.7.7'
 gem 'paperclip-azure', '~> 0.2'
 
+gem 'active_hash'
+
 group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
