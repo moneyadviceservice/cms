@@ -37,11 +37,15 @@ class ImgSrcset
     cms_file.file.styles.keys
       .map!(&:to_s)
       .select { |style| style =~ r }
-      .map! do |style|
-             url = URI.join(ActionController::Base.asset_host, cms_file.file.url(style)).to_s
-             density = style.split('_').last
-             "#{url} #{density}"
-           end
+      .map!   { |style| "#{image_url(cms_file, style)} #{density(style)}" }
       .join(', ')
+  end
+
+  def image_url(cf, style)
+    URI.join(ActionController::Base.asset_host, cf.file.url(style)).to_s
+  end
+
+  def density(style)
+    style.split('_').last
   end
 end
