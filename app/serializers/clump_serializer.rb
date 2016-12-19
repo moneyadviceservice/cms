@@ -15,7 +15,7 @@ class ClumpSerializer < ActiveModel::Serializer
 
   def links
     object.clump_links.select(&:complete?).map do |link|
-      ClumpLinkSerializer.new(link, scope_name: :locale)
+      ClumpLinkSerializer.new(link, scope: scope)
     end
   end
 end
