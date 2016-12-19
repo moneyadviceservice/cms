@@ -22,11 +22,8 @@ class ImgSrcset
   private
 
   def image_file(path)
-    # /files/000/000/595/original/oregon-chai-what-is-chai-tea.jpg
-    # /files/000/000/596/hp_thumb_png_1x/flower.png
-    path_parts = path.split('/')
-    id = path_parts[4].to_i
-    Comfy::Cms::File.find(id).tap { |f| f.style = image_style(path_parts[5]) }
+    id, style = path.split('/')[-3..-2]
+    Comfy::Cms::File.find(id).tap { |f| f.style = image_style(style) }
   end
 
 
