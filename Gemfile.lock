@@ -6,29 +6,6 @@ GIT
       thor
 
 GIT
-  remote: git@github.com:moneyadviceservice/comfortable-mexican-sofa.git
-  revision: 979234fc966d65b7b4a842192a4761a5e88d04d5
-  specs:
-    comfortable_mexican_sofa (2.0.1)
-      active_link_to (>= 1.0.0)
-      bootstrap-sass (~> 3.1.0)
-      bootstrap_form (~> 2.1.1)
-      codemirror-rails (>= 3.0.0)
-      coffee-rails (>= 3.1.0)
-      haml-rails (>= 0.3.0)
-      i18n (~> 0.6.11)
-      jquery-rails (>= 3.0.0)
-      jquery-ui-rails (>= 5.0.0)
-      kaminari (>= 0.14.0)
-      kramdown (>= 1.0.0)
-      paperclip (>= 4.0.0)
-      rails (>= 4.0.0, <= 4.1.16)
-      rails-i18n (~> 4.0.0)
-      sass-rails (>= 4.0.3)
-      tinymce-rails (>= 4.0.0)
-      transitions (>= 0.1.12)
-
-GIT
   remote: https://github.com/moneyadviceservice/dough.git
   revision: cf4e4cbd5ee86ef49b2db16fc44dde1ed9f2c0f4
   specs:
@@ -46,6 +23,28 @@ GIT
       nokogiri-styles (~> 0.1)
       premailer (~> 1.8)
       reverse_markdown (~> 0.5)
+
+PATH
+  remote: ../comfortable-mexican-sofa
+  specs:
+    comfortable_mexican_sofa (2.0.1)
+      active_link_to (>= 1.0.0)
+      bootstrap-sass (~> 3.1.0)
+      bootstrap_form (~> 2.1.1)
+      codemirror-rails (>= 3.0.0)
+      coffee-rails (>= 3.1.0)
+      haml-rails (>= 0.3.0)
+      i18n (~> 0.7)
+      jquery-rails (>= 3.0.0)
+      jquery-ui-rails (>= 5.0.0)
+      kaminari (>= 0.14.0)
+      kramdown (~> 1.5)
+      paperclip (>= 4.0.0)
+      rails (>= 4.0.0, <= 4.1.16)
+      rails-i18n (~> 4.0.0)
+      sass-rails (>= 4.0.3)
+      tinymce-rails (>= 4.0.0)
+      transitions (>= 0.1.12)
 
 GEM
   remote: http://gems.dev.mas.local/
@@ -212,7 +211,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faker (1.4.3)
+    faker (1.7.2)
       i18n (~> 0.5)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -335,7 +334,7 @@ GEM
     httparty (0.13.7)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
-    i18n (0.6.11)
+    i18n (0.7.0)
     inflecto (0.0.2)
     ipaddress (0.8.0)
     jbuilder (2.2.2)

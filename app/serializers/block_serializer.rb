@@ -3,47 +3,33 @@ require 'active_model_serializers'
 class BlockSerializer < ActiveModel::Serializer
   attributes :identifier, :content, :created_at, :updated_at
 
-  private
-
   def content
-    if identifier.start_with?('raw_')
-      ContentComposer.new(locale, block_content, RawParser).to_html
+    block = BlocksRetriever.new(object, scope).retrieve
+
+    if block[:processed_content].present?
+      Rails.logger.info("Cache HIT for #{page.slug}")
+      block[:processed_content]
     else
-      if block_content
-        ContentComposer.new(locale, block_content).to_html
-      end
+      Rails.logger.info("Cache MISS for #{page.slug}")
+      convert_markdown_to_html(block)
     end
   end
-
-  private
 
   def page
     object.blockable
   end
 
+  private
+
   def locale
     page.site.path
   end
 
-  def block_content
-    # If we're previewing, we want to recognise when a live article
-    # has a draft new version in progress.
-    if scope == 'preview'
-      if alternate_blocks_retriever.blocks_attributes.present?
-        alternate_blocks_retriever.block_content(identifier)
-      else
-        blocks_retriever.block_content(identifier)
-      end
+  def convert_markdown_to_html(block)
+    if identifier.start_with?('raw_')
+      ContentComposer.new(locale, block[:content], RawParser).to_html
     else
-      blocks_retriever.block_content(identifier) if blocks_retriever.live?
+      ContentComposer.new(locale, block[:content]).to_html if block
     end
-  end
-
-  def blocks_retriever
-    @blocks_retriever ||= PageBlocksRetriever.new(page)
-  end
-
-  def alternate_blocks_retriever
-    @alternate_blocks_retriever ||= AlternatePageBlocksRetriever.new(page)
   end
 end

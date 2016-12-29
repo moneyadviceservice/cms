@@ -71,16 +71,22 @@ class PageBlocksRetriever
     end
   end
 
-  def block_content(identifier)
-    block = blocks_attributes.find { |block_attributes| block_attributes[:identifier] == identifier.to_s }
-
-    block[:processed_content] || block[:content]
+  def block(identifier)
+    blocks_attributes.find do |block_attributes|
+      block_attributes[:identifier] == identifier.to_s
+    end
   end
 
   private
 
   def return_page_blocks_attributes
-    page.blocks.collect { |block| { identifier: block.identifier, content: block.content }.with_indifferent_access }
+    page.blocks.map do |block|
+      {
+        identifier: block.identifier,
+        content: block.content,
+        processed_content: block.processed_content
+      }.with_indifferent_access
+    end
   end
 
   def return_active_revision_blocks_attributes

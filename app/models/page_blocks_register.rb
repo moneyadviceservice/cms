@@ -46,7 +46,7 @@ class PageBlocksRegister
       blocks_attributes.first['content']
     ).to_html
 
-    blocks_attributes.first.merge(
+    blocks_attributes.first.merge!(
       processed_content: processed_content
     )
 
