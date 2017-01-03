@@ -125,5 +125,11 @@ describe PagesHelper do
 
       it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
     end
+
+    context 'page layout is an offline page' do
+      let(:layout) { FactoryGirl.build(:layout, identifier: 'offline_page') }
+
+      it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
+    end
   end
 end

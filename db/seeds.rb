@@ -62,3 +62,7 @@ Cms::PageBuilder.add_home_page!
 puts 'Adding footer...'
 Cms::LayoutBuilder.add_footer!
 Cms::PageBuilder.add_footer!
+
+puts 'Adding offline page...'
+Cms::LayoutBuilder.add_offline_page!
+Cms::PageBuilder.add_offline_page!

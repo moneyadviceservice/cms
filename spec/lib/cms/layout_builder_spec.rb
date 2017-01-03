@@ -148,4 +148,54 @@ RSpec.describe Cms::LayoutBuilder do
       end
     end
   end
+
+  describe '.add_offline_page!' do
+    before { Cms::LayoutBuilder.add_offline_page! }
+
+    context 'English site' do
+      let(:layout) { english_site.layouts.reload.first }
+
+      it 'creates a layout for the English site' do
+        expect(english_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Offline page"' do
+        expect(layout.label).to eq('Offline page')
+      end
+
+      it 'sets the identifier for the layout to be offline_page' do
+        expect(layout.identifier).to eq('offline_page')
+      end
+
+      it 'defines the content areas for the offline page' do
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_heading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_subheading:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_text:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_phone:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_dates:string }}')
+        expect(layout.content).to include('{{ cms:page:raw_offline_page_smallprint:string }}')
+      end
+    end
+
+    context 'Welsh site' do
+      let(:layout) { welsh_site.layouts.reload.first }
+
+      it 'creates a layout for the Welsh site' do
+        expect(welsh_site.layouts.count).to eq(1)
+      end
+
+      it 'sets the label for the layout to be "Offline Page"' do
+        expect(layout.label).to eq('Offline Page')
+      end
+
+      it 'sets the identifier for the layout to be Offline Page' do
+        expect(layout.identifier).to eq('offline_page')
+      end
+
+      it 'uses the same content areas as the english layout' do
+        english_layout = english_site.layouts.reload.first
+        expect(layout.content).to eq(english_layout.content)
+      end
+    end
+  end
 end

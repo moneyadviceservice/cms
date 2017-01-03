@@ -32,7 +32,7 @@ module PagesHelper
   end
 
   def display_metadata_form_fields?(page)
-    !page.layout.identifier.in?(%w(home_page footer))
+    !page.layout.identifier.in?(%w(home_page footer offline_page))
   end
 
   def activity_log(page)
