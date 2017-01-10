@@ -21,38 +21,7 @@
 #      During the process the time for the update to go live passes by and when you hit submit
 #      the article has gone back to having only a single version, the live update.
 #
-class PageBlocksRegister
-  attr_accessor :page, :author
-
-  attr_writer :new_blocks_attributes
-
-  def initialize(page, author:, new_blocks_attributes: nil)
-    @page = page
-    @author = author
-    @new_blocks_attributes = new_blocks_attributes
-  end
-
-  # If passed in via params, attributes can be a hash rather than array,
-  # so this is just a custom reader to handle that.
-  def new_blocks_attributes
-    blocks_attributes = if @new_blocks_attributes.is_a?(Hash)
-      @new_blocks_attributes.values
-    else
-      @new_blocks_attributes
-    end
-
-    processed_content = ContentComposer.new(
-      @page.site.locale,
-      blocks_attributes.first['content']
-    ).to_html
-
-    blocks_attributes.first.merge!(
-      processed_content: processed_content
-    )
-
-    blocks_attributes
-  end
-
+class PageBlocksRegister < PageContentRegister
   def save!
     # If a page is has not been saved before, we always want to put the
     # new data straight into the first blocks.

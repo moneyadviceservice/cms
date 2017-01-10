@@ -4,7 +4,7 @@ class BlockSerializer < ActiveModel::Serializer
   attributes :identifier, :content, :created_at, :updated_at
 
   def content
-    block = BlocksRetriever.new(object, scope).retrieve
+    block = BlocksRetriever.new(object, scope).retrieve || return
 
     if block[:processed_content].present?
       Rails.logger.info("Cache HIT for #{page.slug}")
@@ -29,7 +29,7 @@ class BlockSerializer < ActiveModel::Serializer
     if identifier.start_with?('raw_')
       ContentComposer.new(locale, block[:content], RawParser).to_html
     else
-      ContentComposer.new(locale, block[:content]).to_html if block
+      ContentComposer.new(locale, block[:content]).to_html
     end
   end
 end
