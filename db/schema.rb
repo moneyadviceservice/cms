@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170110153128) do
+ActiveRecord::Schema.define(version: 20170111102641) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
