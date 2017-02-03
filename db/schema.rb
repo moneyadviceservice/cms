@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20170202130530) do
     t.string  "title_tag_en"
     t.string  "title_tag_cy"
     t.integer "parent_id"
+    t.integer "legacy_parent_id"
     t.integer "ordinal",                default: 999
     t.boolean "navigation"
     t.string  "image"
@@ -83,7 +84,6 @@ ActiveRecord::Schema.define(version: 20170202130530) do
     t.boolean "third_level_navigation", default: false
     t.integer "small_image_id"
     t.integer "large_image_id"
-    t.integer "legacy_parent_id"
   end
 
   add_index "comfy_cms_categories", ["parent_id"], name: "index_comfy_cms_categories_on_parent_id", using: :btree
