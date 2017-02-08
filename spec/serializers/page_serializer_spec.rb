@@ -7,6 +7,13 @@ describe PageSerializer do
     allow(Publify::API).to receive(:latest_links).and_return([])
   end
 
+  describe 'supports_amp' do
+    let(:serialized_page) { build(:page).to_json }
+    it 'exposes supports_amp' do
+      expect(JSON.parse(serialized_page)).to have_key("supports_amp")
+    end
+  end
+
   describe '#full_path' do
     it 'returns /locale/page_type/slug' do
       expect(subject.full_path).to eql('/en/articles/i-am-slug')
