@@ -45,4 +45,44 @@ RSpec.describe Comfy::Cms::Category do
     it { expect(described_class.new).to belong_to(:small_image) }
     it { expect(described_class.new).to belong_to(:large_image) }
   end
+
+  describe '#clump_id' do
+    let(:subject) { create(:category) }
+
+    context 'when there is a clumping' do
+      let!(:clumping) { create(:clumping, category: subject) }
+
+      it 'returns the clump id from the clumping' do
+        expect(subject.clump_id).to eq(clumping.clump_id)
+      end
+    end
+
+    context 'when there is no clumping' do
+      it 'returns nil' do
+        expect(subject.clump_id).to be_nil
+      end
+    end
+  end
+
+  describe '#clump_id=' do
+    let(:subject) { create(:category) }
+    let(:clump) { create(:clump) }
+
+    context 'assigning a new clump' do
+
+      it 'associates the clump (through a clumping)' do
+        subject.clump_id = clump.id
+        expect(subject.reload.clump).to eq(clump)
+      end
+    end
+
+    context 'unassigning a clump' do
+      before { create(:clumping, clump: clump, category: subject) }
+
+      it 'removes the clump (and clumping)' do
+        subject.clump_id = nil
+        expect(subject.clump).to be_nil
+      end
+    end
+  end
 end
