@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104151936) do
+ActiveRecord::Schema.define(version: 20170202130530) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -23,6 +23,35 @@ ActiveRecord::Schema.define(version: 20161104151936) do
   end
 
   add_index "category_promos", ["locale"], name: "index_category_promos_on_locale", using: :btree
+
+  create_table "clump_links", force: true do |t|
+    t.integer  "clump_id"
+    t.string   "text_en"
+    t.string   "text_cy"
+    t.string   "url_en"
+    t.string   "url_cy"
+    t.string   "style"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clumpings", force: true do |t|
+    t.integer  "clump_id"
+    t.integer  "category_id"
+    t.integer  "ordinal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clumps", force: true do |t|
+    t.string   "name_en"
+    t.string   "name_cy"
+    t.text     "description_en"
+    t.text     "description_cy"
+    t.integer  "ordinal"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comfy_cms_blocks", force: true do |t|
     t.string   "identifier",                      null: false
@@ -47,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161104151936) do
     t.string  "title_tag_en"
     t.string  "title_tag_cy"
     t.integer "parent_id"
+    t.integer "legacy_parent_id"
     t.integer "ordinal",                default: 999
     t.boolean "navigation"
     t.string  "image"

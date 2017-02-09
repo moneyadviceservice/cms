@@ -1,8 +1,9 @@
 class CategorySerializer < ActiveModel::Serializer
   attributes :id, :type, :title, :description, :parent_id,
-             :third_level_navigation, :images
+             :third_level_navigation, :images, :legacy
 
   has_many :contents
+  has_many :legacy_contents
   has_many :category_promos
   has_many :links, serializer: CategoryLinkSerializer
 
@@ -34,14 +35,22 @@ class CategorySerializer < ActiveModel::Serializer
     object.category_promos.where(locale: scope)
   end
 
-  def contents
+  def base_contents(legacy: false)
     (
-      object.child_categories <<
+      object.find_children(legacy: legacy) <<
       Comfy::Cms::Page
         .in_locale(scope)
         .in_category(object.id)
         .map { |p| PageCategorySerializer.new(p) }
     ).flatten.compact
+  end
+
+  def contents
+    base_contents
+  end
+
+  def legacy_contents
+    base_contents(legacy: true)
   end
 
   def id
@@ -79,5 +88,9 @@ class CategorySerializer < ActiveModel::Serializer
 
   def large_image?
     object.large_image
+  end
+
+  def legacy
+    object.find_children(legacy: true).any?
   end
 end

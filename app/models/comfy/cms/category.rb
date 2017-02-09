@@ -13,6 +13,9 @@ class Comfy::Cms::Category < ActiveRecord::Base
 
   has_many :category_promos
 
+  has_one :clumping, inverse_of: :category
+  has_one :clump, through: :clumping
+
   accepts_nested_attributes_for :category_promos, reject_if: ->(promo) { promo[:title].blank? },
                                                   allow_destroy: true
 
@@ -21,7 +24,11 @@ class Comfy::Cms::Category < ActiveRecord::Base
   end
 
   def child_categories
-    self.class.where(parent_id: id).reorder(:ordinal)
+    find_children
+  end
+
+  def legacy_child_categories
+    find_children(legacy: true)
   end
 
   def parents
@@ -30,6 +37,23 @@ class Comfy::Cms::Category < ActiveRecord::Base
 
   def parent
     @parent ||= self.class.find_by(id: parent_id)
+  end
+
+  def clump_id
+    clump.try(:id)
+  end
+
+  def clump_id=(new_clump_id)
+    if new_clump_id.blank?
+      self.clump = nil
+    else
+      self.clump = Clump.find(new_clump_id)
+    end
+  end
+
+  def find_children(legacy: false)
+    column_name = legacy ? :legacy_parent_id : :parent_id
+    self.class.where(column_name  => id).reorder(:ordinal)
   end
 
   private
