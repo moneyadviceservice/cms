@@ -24,31 +24,9 @@ GIT
       premailer (~> 1.8)
       reverse_markdown (~> 0.5)
 
-PATH
-  remote: ../comfortable-mexican-sofa
-  specs:
-    comfortable_mexican_sofa (2.0.1)
-      active_link_to (>= 1.0.0)
-      bootstrap-sass (~> 3.1.0)
-      bootstrap_form (~> 2.1.1)
-      codemirror-rails (>= 3.0.0)
-      coffee-rails (>= 3.1.0)
-      haml-rails (>= 0.3.0)
-      i18n (~> 0.7)
-      jquery-rails (>= 3.0.0)
-      jquery-ui-rails (>= 5.0.0)
-      kaminari (>= 0.14.0)
-      kramdown (~> 1.5)
-      paperclip (>= 4.0.0)
-      rails (>= 4.0.0, <= 4.1.16)
-      rails-i18n (~> 4.0.0)
-      sass-rails (>= 4.0.3)
-      tinymce-rails (>= 4.0.0)
-      transitions (>= 0.1.12)
-
 GEM
-  remote: http://gems.dev.mas.local/
   remote: https://rubygems.org/
+  remote: http://gems.dev.mas.local/
   specs:
     CFPropertyList (2.3.1)
     actionmailer (4.1.16)
@@ -119,10 +97,6 @@ GEM
     bugsnag (2.8.12)
       json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
-    byebug (3.5.1)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -147,19 +121,20 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    columnize (0.8.9)
+    comfortable_mexican_sofa (2.0.1.79.79)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
       codemirror-rails (>= 3.0.0)
       coffee-rails (>= 3.1.0)
       haml-rails (>= 0.3.0)
+      i18n (~> 0.7)
       jquery-rails (>= 3.0.0)
       jquery-ui-rails (>= 5.0.0)
       kaminari (>= 0.14.0)
-      kramdown (>= 1.0.0)
+      kramdown (>= 1.13)
       paperclip (>= 4.0.0)
-      rails (>= 4.0.0)
+      rails (>= 4.0.0, <= 4.1.16)
       rails-i18n (~> 4.0.0)
       sass-rails (>= 4.0.3)
       tinymce-rails (>= 4.0.0)
@@ -187,7 +162,6 @@ GEM
     cucumber-wire (0.0.1)
     database_cleaner (1.5.0)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     descriptive_statistics (1.1.5)
     devise (3.4.0)
       bcrypt (~> 3.0)
@@ -351,7 +325,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.2)
-    kramdown (1.5.0)
+    kramdown (1.13)
     launchy (2.4.2)
       addressable (~> 2.3)
     legato (0.4.0)
@@ -362,9 +336,9 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mastalk (0.8.1)
+    mastalk (0.9.0)
       htmlentities (~> 4.3.2, >= 4.3.2)
-      kramdown (~> 1.5.0, >= 1.5.0)
+      kramdown (~> 1.13, >= 1.13)
     method_source (0.8.2)
     mime-types (2.99.3)
     mimemagic (0.3.0)
@@ -420,9 +394,6 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
-    pry-byebug (3.0.1)
-      byebug (~> 3.4)
-      pry (~> 0.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     public_suffix (2.0.4)
@@ -576,11 +547,10 @@ DEPENDENCIES
   binding_of_caller
   bowndler!
   bugsnag
-  byebug
   capybara (= 2.4.1)
   clockwork
   coffee-rails (~> 4.0.0)
-  comfortable_mexican_sofa (~> 2.0.1)!
+  comfortable_mexican_sofa (= 2.0.1.79.79)!
   cucumber-rails
   database_cleaner
   devise
@@ -598,14 +568,13 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk (~> 0.8.0)
+  mastalk (= 0.9.0)
   mysql2
   newrelic_rpm
   oauth2 (= 1.0.0)
   paper_trail
   paperclip-azure (~> 0.2)
   poltergeist (~> 1.3)
-  pry-byebug
   pry-rails
   rails (= 4.1.16)
   remotipart (~> 1.2)
