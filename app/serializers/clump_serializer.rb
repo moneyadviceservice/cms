@@ -1,7 +1,5 @@
 class ClumpSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :links
-
-  has_many :categories
+  attributes :id, :name, :description, :links, :categories
 
   private
 
@@ -11,6 +9,12 @@ class ClumpSerializer < ActiveModel::Serializer
 
   def description
     scope == 'en' ? object.description_en : object.description_cy
+  end
+
+  def categories
+    object.categories.map do |category|
+      ClumpCategorySerializer.new(category, scope: scope)
+    end
   end
 
   def links
