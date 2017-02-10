@@ -73,7 +73,6 @@ class PageBlocksRegister < PageContentRegister
   end
 
   private
-
   # Populate the blocks_attributes for the first time to create the initial block
   def create_initial_blocks!
     page.blocks_attributes = new_blocks_attributes
