@@ -12,7 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'comfortable_mexican_sofa', '~>2.0.1', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
+gem 'comfortable_mexican_sofa', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git', branch: '7783-image-perf', ref: '2c3dcc8'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 

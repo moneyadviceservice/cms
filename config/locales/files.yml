@@ -13,7 +13,7 @@ en:
         name: name (a to z)
         placeholder: "sort by:"
     images:
-      filter_by: ['jpg' , 'png', 'gif']
+      filter_by: ['jpg' , 'png', 'gif', 'webp']
     form:
       create: Upload File
       update: Update File
