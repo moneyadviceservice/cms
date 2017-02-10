@@ -43,7 +43,13 @@ ComfortableMexicanSofa.configure do |config|
   else
     config.upload_file_options = {
       url: '/:attachment/:id_partition/:style/:filename',
-      styles: { cms_medium: '160x160' }
+      styles: {
+        cms_medium: '160x160',
+        extra_small: '553x346',
+        small: '766x480',
+        medium: '1110x600',
+        large: '1440x902'
+      }
     }
   end
 
