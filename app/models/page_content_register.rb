@@ -17,7 +17,7 @@ class PageContentRegister
                         else
                           @new_blocks_attributes
                         end
-    return @new_blocks_attributes if home_page?
+    return @new_blocks_attributes if home_page? || footer?
 
     convert_content_to_html(blocks_attributes)
 
@@ -27,7 +27,15 @@ class PageContentRegister
   private
 
   def home_page?
-    @page.layout.try(:identifier) == 'home_page'
+     layout_identifier == 'home_page'
+  end
+
+  def footer?
+    layout_identifier == 'footer'
+  end
+
+  def layout_identifier
+    @page.layout.try(:identifier)
   end
 
   def convert_content_to_html(blocks_attributes)

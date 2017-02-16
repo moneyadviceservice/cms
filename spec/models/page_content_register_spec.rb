@@ -35,5 +35,13 @@ describe PageContentRegister do
         expect(subject).to eq(new_blocks_attributes)
       end
     end
+
+    context 'when page is footer' do
+      let(:layout) { double(identifier: 'footer') }
+
+      it 'returns processed content as blank' do
+        expect(subject).to eq(new_blocks_attributes)
+      end
+    end
   end
 end
