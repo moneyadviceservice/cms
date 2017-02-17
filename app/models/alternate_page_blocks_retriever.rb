@@ -26,7 +26,9 @@ class AlternatePageBlocksRetriever
     end
   end
 
-  def block_content(identifier)
-    blocks_attributes.find { |block_attributes| block_attributes[:identifier] == identifier.to_s }[:content]
+  def block(identifier)
+    blocks_attributes.find do |block_attributes|
+      block_attributes[:identifier] == identifier.to_s
+    end
   end
 end

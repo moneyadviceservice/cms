@@ -59,7 +59,20 @@ RSpec.describe AlternatePageBlocksRemover do
 
     context 'when the page state is published_being_edited' do
       let(:state) { 'published_being_edited' }
-      let(:published_revision) { create(:revision, record: page) }
+      let(:published_revision) do
+        create(:revision,
+               record: page,
+               data: {
+                 blocks_attributes: [
+                   {
+                     identifier: 'content',
+                     content: 'some content',
+                     processed_content: "<p>some content</p>\n"
+                   }
+                 ]
+               }
+              )
+      end
 
       before do
         described_class.new(page, remover: remover).remove!

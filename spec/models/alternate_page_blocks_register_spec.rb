@@ -27,7 +27,15 @@ RSpec.describe AlternatePageBlocksRegister do
   describe '#save!' do
     let(:author) { create(:user) }
     let(:new_content) { 'new content' }
-    let(:new_blocks_attributes) { [{ identifier: 'content', content: new_content }] }
+    let(:new_blocks_attributes) do
+      [
+        {
+          identifier: 'content',
+          content: new_content,
+          processed_content: "<p>new content</p>\n"
+        }
+      ]
+    end
 
     context 'when the page state is unsaved' do
       let(:state) { 'unsaved' }

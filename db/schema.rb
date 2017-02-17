@@ -54,12 +54,13 @@ ActiveRecord::Schema.define(version: 20170202130530) do
   end
 
   create_table "comfy_cms_blocks", force: true do |t|
-    t.string   "identifier",                      null: false
-    t.text     "content",        limit: 16777215
+    t.string   "identifier",                         null: false
+    t.text     "content",           limit: 16777215
     t.integer  "blockable_id"
     t.string   "blockable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "processed_content", limit: 16777215
   end
 
   add_index "comfy_cms_blocks", ["blockable_id", "blockable_type"], name: "index_comfy_cms_blocks_on_blockable_id_and_blockable_type", using: :btree
