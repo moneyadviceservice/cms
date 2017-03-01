@@ -27,32 +27,6 @@ RSpec.describe PageBlocksRegister do
     page.reload
   end
 
-  describe '#new_blocks_attributes' do
-    let(:state) { 'unsaved' }
-    let(:author) { create(:user) }
-    let(:page) { create :homepage }
-
-    subject(:page_block_register) { described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes) }
-
-    let!(:actual_blocks) do
-      page_block_register.new_blocks_attributes
-    end
-
-    let!(:block) { create(:block,
-                         blockable: page,
-                         identifier: 'raw_tile_2_image',
-                         content: 'http://e.co/original/UC.jpg' ) }
-    let(:new_blocks_attributes) { page.blocks_attributes }
-
-		it 'expects page to have image_srcset block' do
-      expect(actual_blocks.map{ |b| b[:identifier] }).to include('raw_tile_1_srcset', 'raw_tile_2_image')
-		end
-
-    it 'expects image srcset to contain correct srcset info' do
-      expect(actual_blocks.map{ |b| b[:content] }).to include('http://e.co/extra_small/UC.jpg 390w, http://e.co/small/UC.jpg 485w, http://e.co/medium/UC.jpg 900w, http://e.co/large/UC.jpg 1350w')
-    end
-  end
-
   describe '#save!' do
     let(:author) { create(:user) }
     let(:new_content) { 'new content' }

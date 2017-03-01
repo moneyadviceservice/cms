@@ -30,9 +30,21 @@ describe PageContentRegister do
 
     context 'when page is the homepage' do
       let(:layout) { double(identifier: 'home_page') }
+      let(:new_blocks_attributes) do
+        [{ content: 'super awesome content' },
+         { identifier: 'raw_tile_1_image', content: 'http://e.co/original/img.png' }]
+      end
 
-      it 'returns processed content as blank' do
-        expect(subject).to eq(new_blocks_attributes)
+      context 'image tile srcset' do
+        it 'is added to blocks attributes' do
+          blocks_identifiers = subject.map { |b| b[:identifier] }
+          expect(blocks_identifiers).to include('raw_tile_1_srcset')
+        end
+
+        it 'contains all available styles' do
+          blocks_contents = subject.map{ |b| b[:content] }
+          expect(blocks_contents).to include('http://e.co/extra_small/img.png 390w, http://e.co/small/img.png 485w, http://e.co/medium/img.png 900w, http://e.co/large/img.png 1350w')
+        end
       end
     end
 

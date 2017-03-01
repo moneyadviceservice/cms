@@ -1,12 +1,14 @@
 class PageContentRegister
   attr_accessor :page, :author
 
+  attr_reader :home_page_tile_identifer
   attr_writer :new_blocks_attributes
 
   def initialize(page, author:, new_blocks_attributes: nil)
     @page = page
     @author = author
     @new_blocks_attributes = new_blocks_attributes
+    @home_page_tile_identifer = /raw_tile_\d_image/
   end
 
   # If passed in via params, attributes can be a hash rather than array,
@@ -17,7 +19,10 @@ class PageContentRegister
                         else
                           @new_blocks_attributes
                         end
-    return @new_blocks_attributes if home_page? || footer?
+
+    if home_page? || footer?
+      return blocks_attributes + srcset_blocks(blk_attrs: blocks_attributes)
+    end
 
     convert_content_to_html(blocks_attributes)
 
@@ -25,6 +30,34 @@ class PageContentRegister
   end
 
   private
+
+  def srcset_blocks(blk_attrs: [])
+    blk_attrs
+      .select { |b| b[:identifier] =~ home_page_tile_identifer }
+      .map do |b|
+      {
+        identifier: b[:identifier].sub('image', 'srcset'),
+        content: srcset_content(original_url: b[:content]).join(', ')
+      }
+    end
+  end
+
+  def available_styles
+    Comfy::Cms::File.new.file.styles
+      .reject { |k,_| [:cms_thumb, :cms_medium].include? k }
+      .map do |style, object|
+      {
+        style: style,
+        width: object.geometry.split('x').first
+      }
+    end
+  end
+
+  def srcset_content(original_url:)
+    available_styles.map do |h|
+      "#{original_url.sub('original', h[:style].to_s)} #{h[:width]}w"
+    end
+  end
 
   def home_page?
      layout_identifier == 'home_page'
