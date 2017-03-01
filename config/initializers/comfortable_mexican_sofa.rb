@@ -37,7 +37,13 @@ ComfortableMexicanSofa.configure do |config|
       },
       path: ':attachment/:id_partition/:style/:filename',
       storage: 'azure',
-      styles: { cms_medium: '160x160' },
+      styles: {
+        cms_medium: '160x160',
+        extra_small: '390x244',
+        small: '485x304',
+        medium: '900x564',
+        large: '1350x846'
+      },
       url: ':azure_path_url'
     }
   else
@@ -45,10 +51,10 @@ ComfortableMexicanSofa.configure do |config|
       url: '/:attachment/:id_partition/:style/:filename',
       styles: {
         cms_medium: '160x160',
-        extra_small: '553x346',
-        small: '766x480',
-        medium: '1110x600',
-        large: '1440x902'
+        extra_small: '390x244',
+        small: '485x304',
+        medium: '900x564',
+        large: '1350x846'
       }
     }
   end

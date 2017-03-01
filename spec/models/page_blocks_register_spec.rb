@@ -49,23 +49,7 @@ RSpec.describe PageBlocksRegister do
 		end
 
     it 'expects image srcset to contain correct srcset info' do
-      expect(actual_blocks.map{ |b| b[:content] }).to include('http://e.co/extra_small/UC.jpg 553w, http://e.co/small/UC.jpg 766w, http://e.co/medium/UC.jpg 1110w, http://e.co/large/UC.jpg 1440w')
-    end
-  end
-
-  describe '#available_styles' do
-    let(:new_blocks_attributes) {}
-
-    it 'returns list of styles' do
-      styles = page_block_register.available_styles.map{ |h| h[:style] }
-
-      expect(styles).to eq([:extra_small, :small, :medium, :large])
-    end
-
-    it 'returns width' do
-      widths = page_block_register.available_styles.map{ |h| h[:width] }
-
-      expect(widths).to eq(['553', '766', '1110', '1440'])
+      expect(actual_blocks.map{ |b| b[:content] }).to include('http://e.co/extra_small/UC.jpg 390w, http://e.co/small/UC.jpg 485w, http://e.co/medium/UC.jpg 900w, http://e.co/large/UC.jpg 1350w')
     end
   end
 
