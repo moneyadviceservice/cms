@@ -73,6 +73,11 @@ class PageBlocksRegister < PageContentRegister
   end
 
   private
+  def srcset_content(original_url:)
+    available_styles.map do |h|
+      "#{original_url.sub('original', h[:style].to_s)} #{h[:width]}w"
+    end
+  end
 
   # Populate the blocks_attributes for the first time to create the initial block
   def create_initial_blocks!

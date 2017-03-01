@@ -28,6 +28,17 @@ FactoryGirl.define do
       site { create :site, :welsh }
       layout { create :layout, identifier: 'article' }
     end
+
+    factory :homepage do
+      site { create :site, identifier: 'test-homepage' }
+      after(:create) do |page|
+        create :block, identifier: 'raw_tile_1_label', blockable: page
+        create :block, identifier: 'raw_tile_1_image', content: 'http://e.co/original/uc.jpg', blockable: page
+        create :block, identifier: 'raw_tile_1_url', blockable: page
+        create :block, identifier: 'raw_tile_1_heading', blockable: page
+        page.reload
+      end
+    end
   end
 
   factory :child_page, class: Comfy::Cms::Page do

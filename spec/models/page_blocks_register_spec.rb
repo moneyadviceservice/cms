@@ -13,6 +13,10 @@ RSpec.describe PageBlocksRegister do
   let(:published_revision) { nil }
   let(:page) { create(:page, site: site, state: state, scheduled_on: scheduled_on) }
   let!(:block) { create(:block, blockable: page, content: original_content) }
+  let(:state) { 'unsaved' }
+  let(:author) { create(:user) }
+
+  subject(:page_block_register) { described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes) }
 
   before do
     if published_revision.present?
@@ -21,6 +25,48 @@ RSpec.describe PageBlocksRegister do
 
     # Reload the page to make it see it's block
     page.reload
+  end
+
+  describe '#new_blocks_attributes' do
+    let(:state) { 'unsaved' }
+    let(:author) { create(:user) }
+    let(:page) { create :homepage }
+
+    subject(:page_block_register) { described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes) }
+
+    let!(:actual_blocks) do
+      page_block_register.new_blocks_attributes
+    end
+
+    let!(:block) { create(:block,
+                         blockable: page,
+                         identifier: 'raw_tile_2_image',
+                         content: 'http://e.co/original/UC.jpg' ) }
+    let(:new_blocks_attributes) { page.blocks_attributes }
+
+		it 'expects page to have image_srcset block' do
+      expect(actual_blocks.map{ |b| b[:identifier] }).to include('raw_tile_1_srcset', 'raw_tile_2_image')
+		end
+
+    it 'expects image srcset to contain correct srcset info' do
+      expect(actual_blocks.map{ |b| b[:content] }).to include('http://e.co/extra_small/UC.jpg 553w, http://e.co/small/UC.jpg 766w, http://e.co/medium/UC.jpg 1110w, http://e.co/large/UC.jpg 1440w')
+    end
+  end
+
+  describe '#available_styles' do
+    let(:new_blocks_attributes) {}
+
+    it 'returns list of styles' do
+      styles = page_block_register.available_styles.map{ |h| h[:style] }
+
+      expect(styles).to eq([:extra_small, :small, :medium, :large])
+    end
+
+    it 'returns width' do
+      widths = page_block_register.available_styles.map{ |h| h[:width] }
+
+      expect(widths).to eq(['553', '766', '1110', '1440'])
+    end
   end
 
   describe '#save!' do

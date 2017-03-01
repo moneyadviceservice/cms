@@ -1,5 +1,5 @@
 Given(/^that I am a CMS admin$/) do
-  step 'I visit the new file page'
+  step 'I visit the files admin page'
 end
 
 When(/^I upload a file$/) do

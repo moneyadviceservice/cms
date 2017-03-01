@@ -4,16 +4,15 @@ module ImageHelper
   #   image => Expects an image file attached using Paperclip
   #
   def srcset_image_tag(image)
-    image_tag(image.file.url, alt: '', srcset: generate_srcset(image))
+    image = FilePresenter.new(image)
+    image_tag(image.full_path(style: :original), alt: '', srcset: generate_srcset(image))
   end
 
   private
   def generate_srcset(image)
-    file_name, extension = image.file_file_name.split '.'
-
     srcset = []
-    [*1..4].each do |i|
-      srcset << "#{file_name}-#{i}x.#{extension} #{i}x"
+    %w(extra_small small medium large).each_with_index do |style, i|
+      srcset << "#{image.full_path(style: style)} #{i+1}x"
     end
     srcset.join(', ').strip
   end
