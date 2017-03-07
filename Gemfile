@@ -12,7 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 
-gem 'comfortable_mexican_sofa', '~>2.0.1', git: 'git@github.com:moneyadviceservice/comfortable-mexican-sofa.git'
+gem 'comfortable_mexican_sofa', '2.0.1.79.79', source: 'http://gems.dev.mas.local'
 
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
@@ -39,7 +39,7 @@ gem 'clockwork'
 gem 'paper_trail'
 gem 'feature'
 gem 'httparty', '~> 0.13.7'
-gem 'mastalk', '~> 0.8.0'
+gem 'mastalk', '0.9.0'
 gem 'mailjet'
 gem 'azure', '0.7.7'
 gem 'paperclip-azure', '~> 0.2'
@@ -65,19 +65,18 @@ group :test do
 end
 
 group :test, :development do
-  gem 'byebug'
   # temporarily pin capybara, the following breaks Rake:
   # https://github.com/jnicklas/capybara/commit/385a7507f6525d9b2d1e23bef0bb2e6fe5ad0c97
   gem 'capybara', '2.4.1'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
   gem 'pry-rails'
-  gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'valid_attribute', require: false
   gem 'dotenv-rails'
   gem 'launchy'
+  gem 'ruby-prof', require: false
 end
 
 group :production do
