@@ -140,7 +140,7 @@ describe('LinkManager', function() {
 
       it('should render additional select options based upon headings in the editable area', function() {
         this.component._setup();
-        expect($(this.component.config.selectors.anchors).children('option').size()).to.equal(4);
+        expect($(this.component.config.selectors.anchors).children('option').length).to.equal(4);
       });
 
       it('should generate valid option values for headings without IDs', function() {
