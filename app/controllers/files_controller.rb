@@ -1,6 +1,7 @@
 class FilesController < Comfy::Admin::Cms::FilesController
   before_action :check_files_existence, only: :index
   before_action :set_categories, only: [:new, :edit]
+  before_action :set_file_presenter, only: [:new, :edit]
   after_action :set_files_presenter, only: :index
 
   def index
@@ -23,6 +24,10 @@ class FilesController < Comfy::Admin::Cms::FilesController
 
   def set_files_presenter
     @files = FilePresenter.collect(@files)
+  end
+
+  def set_file_presenter
+    @file_presenter = FilePresenter.new(@file)
   end
 
   def build_file
