@@ -7,7 +7,10 @@
   = form.form_group t('.current_file') do
     - if @file.is_image?
       .file-image= image_tag @file.file.url
-    = link_to @file.file.url, @file.file.url, target: '_blank'
+    %ul
+      - FilesHelper::IMAGE_STYLES.each do |size|
+        %li
+          = link_to size.humanize, @file_presenter.full_path(style: size.to_sym), target: '_blank'
 
 = form.text_area :description
 

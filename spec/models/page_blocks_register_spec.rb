@@ -13,6 +13,10 @@ RSpec.describe PageBlocksRegister do
   let(:published_revision) { nil }
   let(:page) { create(:page, site: site, state: state, scheduled_on: scheduled_on) }
   let!(:block) { create(:block, blockable: page, content: original_content) }
+  let(:state) { 'unsaved' }
+  let(:author) { create(:user) }
+
+  subject(:page_block_register) { described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes) }
 
   before do
     if published_revision.present?
