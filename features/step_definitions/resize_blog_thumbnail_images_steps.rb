@@ -8,9 +8,7 @@ When(/^I upload a file$/) do
 end
 
 Then(/^I should see the original url of the file$/) do
-  expect(@page).to have_content(uploaded_file_path)
-end
+  uploaded_file_path = Comfy::Cms::File.find_by_file_file_name('afile_11.png').file.path
 
-def uploaded_file_path
-  Comfy::Cms::File.find_by_file_file_name('afile_11.png').file.path
+  expect(@page).to have_content(uploaded_file_path)
 end
