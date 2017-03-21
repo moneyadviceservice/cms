@@ -3,11 +3,19 @@ Given(/^that I am a CMS admin$/) do
 end
 
 When(/^I upload a file$/) do
-  sample_file = File.join(Rails.root, 'features/support/files/test/afile_11.png')
-  add_file sample_file
+  sample = File.join(Rails.root, sample_file)
+  add_file sample
+  p Comfy::Cms::File.all
 end
 
-Then(/^I should have an image with varying sizes "([^"]*)"$/) do |size|
-  expect(@page).to have_content('Files uploaded')
-  expect(@page).to have_content(size)
+Then(/^I should the original url of the file$/) do
+  expect(@page).to have_content(uploaded_file_path)
+end
+
+def uploaded_file_path
+  Comfy::Cms::File.find_by_file_file_name('afile_11.png').file.path
+end
+
+def sample_file
+  'features/support/files/test/afile_11.png'
 end
