@@ -5,7 +5,6 @@ end
 When(/^I upload a file$/) do
   sample = File.join(Rails.root, sample_file)
   add_file sample
-  p Comfy::Cms::File.all
 end
 
 Then(/^I should the original url of the file$/) do
