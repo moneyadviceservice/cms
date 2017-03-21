@@ -4,7 +4,7 @@ class FilePresenter < Presenter
   end
 
   def full_path(options={})
-    object.file.url(options[:style])
+    object.file.path(options[:style])
   end
 
   def edit_url
