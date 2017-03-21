@@ -3,7 +3,7 @@ Given(/^that I am a CMS admin$/) do
 end
 
 When(/^I upload a file$/) do
-  sample = File.join(Rails.root, sample_file)
+  sample = File.join(Rails.root, 'features/support/files/test/afile_11.png')
   add_file sample
 end
 
@@ -13,8 +13,4 @@ end
 
 def uploaded_file_path
   Comfy::Cms::File.find_by_file_file_name('afile_11.png').file.path
-end
-
-def sample_file
-  'features/support/files/test/afile_11.png'
 end
