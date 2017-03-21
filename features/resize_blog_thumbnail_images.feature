@@ -6,4 +6,4 @@ Feature: Resize blog thumbnail image
   Scenario:
   Given that I am a CMS admin
   When I upload a file
-  Then I should the original url of the file
+  Then I should see the original url of the file

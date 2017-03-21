@@ -7,7 +7,7 @@ When(/^I upload a file$/) do
   add_file sample
 end
 
-Then(/^I should the original url of the file$/) do
+Then(/^I should see the original url of the file$/) do
   expect(@page).to have_content(uploaded_file_path)
 end
 
