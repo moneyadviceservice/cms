@@ -4,7 +4,7 @@ RSpec.describe FilePresenter do
 
   describe '#full_path' do
     let(:site) { build(:site) }
-    let(:file) { double(site: site, file: double(path: 'foo-bar')) }
+    let(:file) { double(site: site, file: double(url: 'foo-bar')) }
 
     it 'returns the file url' do
       expect(presenter.full_path).to eq('foo-bar')
