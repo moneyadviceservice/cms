@@ -7,7 +7,19 @@
   = form.form_group t('.current_file') do
     - if @file.is_image?
       .file-image= image_tag @file.file.url
-    = link_to @file_presenter.full_path, @file_presenter.full_path, target: '_blank'
+    %ul
+      %li
+        @file_presenter.full_path, @file_presenter.full_path
+        = link_to @file_presenter.full_path, @file_presenter.full_path, target: '_blank'
+      %li
+        @file.file.url, @file.file.url
+        = link_to @file.file.url, @file.file.url, target: '_blank'
+      %li
+        @file.file.path, @file.file.url
+        = link_to @file.file.path, @file.file.url, target: '_blank'
+      %li
+        @file.file.url, @file.file.path
+        = link_to @file.file.url, @file.file.path, target: '_blank'
 
 = form.text_area :description
 
