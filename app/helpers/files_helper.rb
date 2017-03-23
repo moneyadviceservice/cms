@@ -1,7 +1,6 @@
 module FilesHelper
   private
 
-  IMAGE_STYLES = %w(Original Extra_small Small Medium Large)
   FA_FILE_TYPES = { 'doc'  => 'fa-file-word-o',
                     'docx' => 'fa-file-word-o',
                     'xls'  => 'fa-file-excel-o',
