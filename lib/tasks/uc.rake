@@ -4,11 +4,15 @@ namespace :uc do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
 
     save_page = lambda do |page, object|
-      page.slug = object.title
+      page.slug = "uc-#{object.title}"
+      puts '*' * 80
+      puts "Creating page #{page.slug}"
+      puts '*' * 80
       page.blocks.delete_all
       page.blocks.new(identifier: 'content', content: object.content)
       page.state = 'published'
       page.save!
+      page
     end
 
     load_preamble = lambda do |path|
@@ -28,7 +32,7 @@ namespace :uc do
 
     Dir["#{dir_path}/*.md"].each do |en_file|
       object = load_preamble[en_file]
-      page = en_site.pages.find_or_initialize_by(slug: object.title, layout: en_uc_layout)
+      page = en_site.pages.find_or_initialize_by(slug: "uc-#{object.title}", layout: en_uc_layout)
       save_page[page, object] # save english page
 
       welsh_page = page.mirrors.find { |mirror| mirror.site.label == 'cy' }
