@@ -353,7 +353,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
     netrc (0.11.0)
-    newrelic_rpm (3.12.1.298)
+    newrelic_rpm (4.0.0.332)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     nokogiri-styles (0.1.2)
@@ -601,4 +601,4 @@ DEPENDENCIES
   word-to-markdown!
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
