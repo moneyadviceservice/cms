@@ -4,7 +4,7 @@ namespace :uc do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
 
     save_page = lambda do |page, object|
-      page.slug = "uc-#{object.title}"
+      page.slug = object.metadata['slug']
       puts '*' * 80
       puts "Creating page #{page.slug}"
       puts '*' * 80
