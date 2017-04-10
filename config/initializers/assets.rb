@@ -53,8 +53,6 @@ Rails.application.configure do
                                   dialog-polyfill/dialog-polyfill.js
                                   rangy-official/rangy-core.js
                                   rangy-official/rangy-selectionsaverestore.js
-                                  filament-sticky/fixedsticky.js
-                                  filament-fixed/fixedfixed.js
                                   html.sortable/dist/html.sortable.js
                                   autosize/src/autosize.js)
 end

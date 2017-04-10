@@ -99,7 +99,7 @@ end
 def file_type_options; %w(doc jpg pdf xls) end
 def sort_by_options; { name: 'name (a to z)', date: 'date added (latest first)' } end
 def sample_file_description(filename); ['this is the description for file:', filename].join(' ') end
-def sample_files_path; File.join(Rails.root, 'features', 'support', 'files', '*') end
+def sample_files_path; File.join(Rails.root, 'features', 'support', 'files', 'samples', '*') end
 def sample_filenames; @filenames ||= Dir.glob(sample_files_path) end
 def sample_filenames_string; sample_filenames.join(', ') end
 

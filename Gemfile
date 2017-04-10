@@ -1,48 +1,40 @@
 source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
 
-gem 'bugsnag'
-gem 'rails', '4.1.16'
-gem 'mysql2'
-gem 'sass-rails', '~> 4.0.3'
+gem 'active_model_serializers'
 gem 'autoprefixer-rails'
-gem 'uglifier', '>= 1.3.0'
+gem 'azure', '0.7.7'
+gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
+gem 'bugsnag'
+gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-
-gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-
 gem 'comfortable_mexican_sofa', '2.0.1.79.79', source: 'http://gems.dev.mas.local'
-
-gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
-
+gem 'devise'
+gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
+gem 'feature'
 gem 'fog'
-
+gem 'google-api-client', '0.7.1'
+gem 'httparty', '~> 0.13.7'
+gem 'jbuilder', '~> 2.0'
 # Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
+gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
-
-gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
-gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
-
-gem 'remotipart', '~> 1.2'
-gem 'devise'
-
-gem 'reverse_markdown'
-gem 'active_model_serializers'
-gem 'newrelic_rpm'
-
-gem 'oauth2', '1.0.0'
-gem 'google-api-client', '0.7.1'
 gem 'legato', '0.4.0'
-gem 'clockwork'
-gem 'paper_trail'
-gem 'feature'
-gem 'httparty', '~> 0.13.7'
-gem 'mastalk', '0.9.0'
 gem 'mailjet'
-gem 'azure', '0.7.7'
+gem 'mastalk', '0.9.0'
+gem 'mysql2'
+gem 'newrelic_rpm'
+gem 'oauth2', '1.0.0'
+gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
+gem 'preamble', '0.0.3'
+gem 'rails', '4.1.16'
+gem 'remotipart', '~> 1.2'
+gem 'reverse_markdown'
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
 group :development do
   gem 'spring'
