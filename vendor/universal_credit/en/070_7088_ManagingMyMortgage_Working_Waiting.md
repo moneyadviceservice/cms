@@ -1,7 +1,8 @@
 ---
 target_process_id: 7088
-title: Sorting out your mortgage if you're working & claiming Universal Credit
-advice_anchor_id: sorting-out-your-mortgage-if-you-are-working-and-claiming-universal-credit
+title: Managing your mortgage if you're working and claiming UC
+advice_anchor_id: managing-your-mortgage-if-youre-working-and-claiming-uc
+slug: managing-your-mortgage-if-youre-working-and-claiming-uc
 tasks:
   now:
     task01: Make an appointment with my mortgage lender to talk about repayment options
@@ -47,4 +48,4 @@ You could try:
 *  changing when you make payments, for example, taking a payment holiday
 *  extending the term of your mortgage, so that you'll pay back a lower amount each month over a longer period of time.
 
-If you’re struggling to pay your mortgage, [talk to a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+If you’re struggling to pay your mortgage, [talk to a free debt adviser now.](/en/tools/debt-advice-locator)

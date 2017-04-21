@@ -2,6 +2,7 @@
 target_process_id: 7143
 title: Managing your mortgage if you're not working & claiming Universal Credit
 advice_anchor_id: managing-your-mortgage-if-you-are-not-working-and-claiming-universal-credit
+slug: managing-your-mortgage-if-you-are-not-working-and-claiming-universal-credit
 tasks:
   now:
     task01: Talk to my lender about how I will cover mortgage payments until my first Universal Credit payment
@@ -75,4 +76,4 @@ If you get any paid work or income while you're waiting for SMI to start, your w
 
 You will have to claim SMI again when your paid work ends and wait another nine months without earned income before SMI will be paid.
 
-If you’re struggling to pay your mortgage, talk to a free debt adviser. [Find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+If you're struggling to pay your mortgage, talk to a free debt adviser. [Find a free debt adviser now.](/en/tools/debt-advice-locator)

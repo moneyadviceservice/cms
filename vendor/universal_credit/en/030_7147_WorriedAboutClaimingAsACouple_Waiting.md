@@ -2,6 +2,7 @@
 target_process_id: 7147
 title: Worried about claiming as a couple
 advice_anchor_id: worried-about-claiming-as-a-couple
+slug: worried-about-claiming-as-a-couple
 tasks:
   now:
     task01: Talk to my work coach about an Alternative Payment Arrangement
@@ -28,4 +29,4 @@ You can ask for a Split Payment to be set up at any point during your Universal 
 
 If you're worried for your safety because of reporting financial abuse, there is support and help for you and your family.
 
-Find out more in our guide ['Protecting against financial abuse'.](https://www.moneyadviceservice.org.uk/en/articles/protecting-against-financial-abuse)
+Find out more in our guide ['Protecting against financial abuse'](/en/articles/protecting-against-financial-abuse).

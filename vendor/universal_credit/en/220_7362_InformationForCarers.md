@@ -2,6 +2,7 @@
 target_process_id: 7362
 title: Information for carers
 advice_anchor_id: information-for-carers
+slug: information-for-carers
 tasks:
   now:
     task01: Look at my budget to see if I can make savings
@@ -26,7 +27,7 @@ You can also set up a budget using a spreadsheet or just write it all down on a 
 
 Keep a spending diary and keep a note of everything you buy in a month.
 
-Use our [Quick cash finder](https://www.moneyadviceservice.org.uk/en/tools/quick-cash-finder) to help you see where you could save money.
+Use our [Quick cash finder](/en/tools/quick-cash-finder) to help you see where you could save money.
 
 ####  Grants and charities
 There are lots of grants and charities that offer help to people caring for someone who is ill or disabled.
@@ -44,13 +45,13 @@ You may also be entitled to financial support to help pay for the things that wi
 
 Help includes:
 * Time out: Short breaks from your caring role, including respite care, can give you a chance to recharge your batteries.
-* Practical help: Things that perhaps used to be simple, such as housework, laundry, grocery shopping or gardening, which can become a strain when you’re caring for someone.
+* Practical help: Things that perhaps used to be simple, such as housework, laundry, grocery shopping or gardening, which can become a strain when you're caring for someone.
 * Modifications: Equipment or alterations to the home that can make life easier.
-* Emotional support: Whether it’s professional counselling or just someone to talk to on a regular basis.
+* Emotional support: Whether it's professional counselling or just someone to talk to on a regular basis.
 * Support to improve your well-being: Access to exercise, learning opportunities or social activities.
 * Advocacy: Having someone to speak on your behalf.
 
-Find out more about a carer's assessment on the [Money Advice Website](https://www.moneyadviceservice.org.uk/en/articles/support-services-available-to-carers)
+Find out more about a carer's assessment on the [Money Advice Website](/en/articles/support-services-available-to-carers)
 
 #### If you're worried about debts
 When you're a carer, you may be worried about getting behind with important bill payments.
@@ -60,7 +61,7 @@ This can be hard to deal with now when you've already got a lot going on in your
 Debt can make you really stressed and anxious, but eight out of ten people who have got debt advice tell us that they feel happier and more in control of their life again. They wish they'd done it sooner.
 
 Getting advice as soon as you can will help you solve your problems faster.
-[Get free debt advice now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Get free debt advice now.](/en/tools/debt-advice-locator)
 
 #### How can a debt adviser help you?
 A free and impartial debt adviser will:
@@ -72,6 +73,6 @@ A free and impartial debt adviser will:
 * find ways to manage your debts even if you think you have no money to pay them off
 * check you have applied for all the benefits and entitlements available to you
 * give advice about better ways of managing your money
-* You can get advice in a way that’s best for you: over the phone, online or face to face
+* You can get advice in a way that's best for you: over the phone, online or face to face
 
-[Get free debt advice now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Get free debt advice now.](/en/tools/debt-advice-locator)

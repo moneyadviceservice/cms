@@ -2,6 +2,7 @@
 target_process_id: 7154
 title: Dealing with debts
 advice_anchor_id: dealing-with-debts
+slug: dealing-with-debts
 tasks:
   now:
     task01: Talk to a free debt adviser
@@ -9,7 +10,7 @@ tasks:
     task02: Write all my expenses down to budget while waiting for my first payment
 ---
 #### If you're falling behind with gas and electricity bills
-Contact your supplier and explain that you’re struggling to pay your bills.
+Contact your supplier and explain that you're struggling to pay your bills.
 
 Your supplier should treat you fairly and allow you to repay at a rate you can afford.
 
@@ -17,12 +18,12 @@ If you're not working, you or your supplier can ask to pay the money back out of
 
 If you do this, make sure it is at a rate you can afford.
 
-If you’d like someone to help you, [find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+If you'd like someone to help you, [find a free debt adviser now.](/en/tools/debt-advice-locator)
 
 #### Switching to a cheaper supplier when you're in arrears
 If you pay your energy bills directly and have been in arrears for less than 28 days, you might be able to switch suppliers to a cheaper rate and take your debt with you.
 
-If you’ve owed the money for more than 28 days you can switch to a cheaper supplier but your debt must be below:
+If you've owed the money for more than 28 days you can switch to a cheaper supplier but your debt must be below:
 
 * £500 for gas
 * £500 for electricity
@@ -32,23 +33,23 @@ If you’ve owed the money for more than 28 days you can switch to a cheaper sup
 #### If you're struggling to pay off a payday loan
 Contact your lender as soon as possible and let them know your situation.
 
-If you’re struggling with repayments on a payday loan, the lender has to give you reasonable time to get free debt advice and repay the debt.
+If you're struggling with repayments on a payday loan, the lender has to give you reasonable time to get free debt advice and repay the debt.
 
 This may include freezing interest and charges or agreeing a repayment plan with you.
 
-Don’t roll your loan over or put all your debts into a new loan unless you know what the lender will charge you for this and you know you can repay the loan on time.
+Don't roll your loan over or put all your debts into a new loan unless you know what the lender will charge you for this and you know you can repay the loan on time.
 
-If you don’t repay on time, your debts can quickly spiral out of control.
+If you don't repay on time, your debts can quickly spiral out of control.
 
 Some credit unions may help you pay off a payday loan more quickly.
 
 They will repay the loan for you. You then pay the credit union back at a rate you can afford. You need to be a member first.
 
-[Find out more about credit unions.](https://www.moneyadviceservice.org.uk/en/articles/credit-unions)
+[Find out more about credit unions.](/en/articles/credit-unions)
 
 Get free, confidential debt advice. The adviser will be on your side and can help you sort out your money problems.
 
-[Find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Find a free debt adviser now.](/en/tools/debt-advice-locator)
 
 #### If you're in arrears with Council Tax
 
@@ -68,7 +69,7 @@ They won't judge you or make you feel bad about your situation.
 
 And they can help you find ways to deal with your debts even if you think you have no spare money.
 
-[Find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Find a free debt adviser now.](/en/tools/debt-advice-locator)
 
 #### If you're getting behind on credit debts
 Before you pay off credit debts, think first about how you can pay priority debts like:
@@ -99,10 +100,10 @@ A debt adviser will:
 More than eight out of ten people who have received debt advice tell us they feel less stressed or anxious and more in control of their life again.
 
 #### Contact a debt adviser now
-You can contact a debt adviser in a way that’s best for you – online, over the phone or face-to-face.
+You can contact a debt adviser in a way that's best for you – online, over the phone or face-to-face.
 
 You may only need to have one conversation or you may need more long-term support - whatever you need is there for you.
 
 So join one of the hundreds of thousands of people who get advice each year and take the first step to being debt free.
 
-[Find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator).
+[Find a free debt adviser now.](/en/tools/debt-advice-locator).

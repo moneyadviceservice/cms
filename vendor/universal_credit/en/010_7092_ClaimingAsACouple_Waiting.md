@@ -2,6 +2,7 @@
 target_process_id: 7092
 title: Claiming as a couple
 advice_anchor_id: claiming-as-a-couple
+slug: claiming-as-a-couple
 tasks:
   now:
     task01: Talk to my partner about how I manage my Universal Credit payment
@@ -16,7 +17,7 @@ You can choose to have it paid into a joint or a single account.
 * You can talk about money with your partner without arguing
 * You can agree ground rules for spending, for instance when it’s OK to go ahead and buy something and when you have to discuss it with your partner
 
-Read our guide for more about joint accounts and [how to set one up.](https://www.moneyadviceservice.org.uk/en/articles/joint-accounts)
+Read our guide for more about joint accounts and [how to set one up.](/en/articles/joint-accounts)
 
 #### When a joint account is not a good idea
 
@@ -29,4 +30,4 @@ Just living with someone, or being married to them, will not affect your credit 
 
 If you are concerned that your partner’s bad credit rating might affect your own, you can ask for the payment to be paid into your own account.
 
-For more tips about talking to your partner about money, see our guide ['Should you manage money jointly or separately?'.](https://www.moneyadviceservice.org.uk/en/articles/should-we-manage-money-jointly-or-separately)
+For more tips about talking to your partner about money, see our guide ['Should you manage money jointly or separately?'](/en/articles/should-we-manage-money-jointly-or-separately)

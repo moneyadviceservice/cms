@@ -2,6 +2,7 @@
 target_process_id: 7424
 title: Managing your rent while in shared accommodation
 advice_anchor_id: managing-your-rent-while-in-shared-accommodation
+slug: managing-your-rent-while-in-shared-accommodation
 tasks:
   now:
     task01: Check my tenancy agreement to see who is liable for paying the rent
@@ -25,7 +26,7 @@ You are liable for paying your share of the rent. Neither you nor your landlord 
 
 Talk to your landlord and try to reach an agreement about how you can manage your rent until you get paid.
 
-[Talking to your landlord about your rent.](/pages/talking-to-my-landlord-about-my-rent)
+[Talking to your landlord about your rent](/en/articles/talking-to-my-landlord-about-my-rent).
 
 #### If you will struggle to pay your rent
 If you're in financial need, have no other means of support and you won't be able to manage until your first UC payment, you can ask for a Universal Credit Advance.

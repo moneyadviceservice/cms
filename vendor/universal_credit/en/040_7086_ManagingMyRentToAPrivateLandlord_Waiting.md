@@ -2,9 +2,10 @@
 target_process_id: 7086
 title: Managing your rent while waiting for your first payment
 advice_anchor_id: managing-your-rent-while-waiting-for-your-first-payment
+slug: managing-your-rent-while-waiting-for-your-first-payment
 tasks:
   now:
-    task01: "Speak to my landlord and use <a href=\"/pages/talking-to-my-landlord-about-my-rent\">Talking to my landlord about my rent</a> to help me know what to say"
+    task01: "Speak to my landlord and use <a href=\"/en/articles/talking-to-my-landlord-about-my-rent\">Talking to my landlord about my rent</a> to help me know what to say"
   soon:
     task02: "Talk to my work coach if I don't know how I'll make up my shortfall"
 ---
@@ -18,7 +19,7 @@ Or you can think about keeping your rent money in a separate bank account.
 
 If you pay your rent just after your payment comes in, you'll know exactly how much you've got left to spend for the rest of the month.
 
-Find out more about setting up [separate bank accounts to pay your rent and bills.](/pages/setting-up-multiple-bank-accounts)
+Find out more about setting up [separate bank accounts to pay your rent and bills](/en/articles/setting-up-multiple-bank-accounts).
 
 Here's what to do while you're waiting for your first payment:
 * find out how to set up a Direct Debit or standing order to pay your rent on the same day each month
@@ -30,7 +31,7 @@ Here's what to do while you're waiting for your first payment:
 
 Wait until your first Universal Credit payment has come in before you set up a Direct Debit or standing order to pay your rent. You will then know what date your money will come in each month.
 
-[Find out about fee-free basic bank accounts.](https://www.moneyadviceservice.org.uk/en/articles/basic-bank-accounts)
+[Find out about fee-free basic bank accounts.](/en/articles/basic-bank-accounts)
 
 #### If you don't have enough money to pay your rent until your first payment
 
@@ -38,7 +39,7 @@ Wait until your first Universal Credit payment has come in before you set up a D
 * offer to pay what you can until you get paid
 * ask your work coach for a Universal Credit Advance until you get paid. You have to pay this back
 
-[Talking to your landlord about your rent.](/pages/talking-to-my-landlord-about-my-rent)
+[Talking to your landlord about your rent.](/en/articles/talking-to-my-landlord-about-my-rent)
 
 [Get advice from Shelter in England.](http://england.shelter.org.uk/get_advice)
 
@@ -46,4 +47,4 @@ Wait until your first Universal Credit payment has come in before you set up a D
 
 [Gwt advice from the Citizens Advice Bureau.](https://www.citizensadvice.org.uk/about-us/how-we-provide-advice/advice/)
 
-[Get free confidential debt advice.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Get free confidential debt advice.](/en/tools/debt-advice-locator)

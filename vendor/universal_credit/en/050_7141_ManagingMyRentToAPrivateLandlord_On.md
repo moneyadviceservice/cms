@@ -1,7 +1,8 @@
 ---
 target_process_id: 7141
-title: Sorting out your rent
-advice_anchor_id: sorting-out-your-rent
+title: Managing your rent to your landlord (While on UC)
+advice_anchor_id: managing-your-rent-to-your-landlord-while-on-uc
+slug: managing-your-rent-to-your-landlord-while-on-uc
 tasks:
   now:
     task01: Set up a Direct Debit or standing order for my rent to be paid on the right day
@@ -16,9 +17,9 @@ You could also think about keeping your rent money in a separate bank account.
 
 That way, you can be sure your rent is taken care of and you'll know exactly how much you've got left to spend for the rest of the month.
 
-Find out more about setting up [separate bank accounts to pay your rent and bills.](/pages/setting-up-multiple-bank-accounts)
+Find out more about setting up [separate bank accounts to pay your rent and bills](/en/articles/setting-up-multiple-bank-accounts).
 
-#### If your housing cost element doesn’t cover all your rent
+#### If your housing cost element doesn't cover all your rent
 
 You might be able to claim a Discretionary Housing Payment (DHP) to cover the shortfall in your rent from your local council.
 
@@ -36,7 +37,7 @@ You do not have to repay a DHP.
 
 The council must be fair and reasonable when deciding your case.
 
-Contact your [local council and ask for a Discretionary Housing Payment.](https://www.gov.uk/find-your-local-council)
+Contact your [local council and ask for a Discretionary Housing Payment](https://www.gov.uk/find-your-local-council).
 
 #### If you start to struggle with rent payments
 
@@ -50,4 +51,4 @@ Contact your work coach to ask about a More Frequent Payment.
 
 If you are struggling to pay other bills as well as your rent, get help urgently.
 
-[Find a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+[Find a free debt adviser now](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator).

@@ -1,7 +1,8 @@
 ---
 target_process_id: 7376
-title: Managing your mortgage if you're not working
-advice_anchor_id: managing-your-mortgage-if-you-are-not-working
+title: Managing your mortgage if you're working and claiming UC
+advice_anchor_id: managing-your-mortgage-if-youre-working-and-claiming-uc
+slug: managing-your-mortgage-if-youre-working-and-claiming-uc
 tasks:
   now:
     task01: Make an appointment with my mortgage lender to talk about my repayment options
@@ -27,8 +28,8 @@ MPPI or ASU insurance can be offered as an add-on to other insurance policies or
 
 If you have it, make your claim as soon as you can.
 
-####  Keeping up with repayments
-Your lender must  try to help you and should talk through your options to keep up with your repayments.
+#### Keeping up with repayments
+Your lender must try to help you and should talk through your options to keep up with your repayments.
 
 They must try to reach an agreement with you.
 
@@ -72,4 +73,4 @@ If you get any paid work while you're waiting for SMI to start, your waiting per
 
 You will have to claim SMI again when your paid work ends. This will mean waiting another nine months without earned income before SMI will be paid.
 
-If you’re struggling to pay your mortgage, talk to [a free debt adviser now.](https://www.moneyadviceservice.org.uk/en/tools/debt-advice-locator)
+If you’re struggling to pay your mortgage, talk to [a free debt adviser now.](/en/tools/debt-advice-locator)

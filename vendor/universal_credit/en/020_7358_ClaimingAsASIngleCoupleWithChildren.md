@@ -2,6 +2,7 @@
 target_process_id: 7358
 title: Claiming with children
 advice_anchor_id: claiming-with-children
+slug: claiming-with-children
 ---
 #### Extra help if you have children
 
