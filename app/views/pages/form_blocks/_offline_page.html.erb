@@ -1,0 +1,22 @@
+<div class="l-home-edit">
+  <% block_index = 0 %>
+  <% namespace.each_with_index do |(name, tags), index| %>
+    <h2>Offline Page Content</h2>
+    <%= tag_for_identifier(tags, 'raw_offline_page_heading', cms_blocks, 0) %>
+    <%= tag_for_identifier(tags, 'raw_offline_page_subheading', cms_blocks, 1) %>
+    <%= tag_for_identifier(tags, 'raw_offline_page_text', cms_blocks, 2) %>
+    <%= tag_for_identifier(tags, 'raw_offline_page_phone', cms_blocks, 3) %>
+    <%= tag_for_identifier(tags, 'raw_offline_page_dates', cms_blocks, 4) %>
+    <%= tag_for_identifier(tags, 'raw_offline_page_smallprint', cms_blocks, 5) %>
+  <% end %>
+</div>
+
+<%
+# Required offline_page layout fields:
+# {{ cms:page:raw_offline_page_heading:string }}
+# {{ cms:page:raw_offline_page_subheading:string }}
+# {{ cms:page:raw_offline_page_text:string }}
+# {{ cms:page:raw_offline_page_phone:string }}
+# {{ cms:page:raw_offline_page_dates:string }}
+# {{ cms:page:raw_offline_page_smallprint:string }}
+%>

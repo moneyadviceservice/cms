@@ -20,6 +20,16 @@ module Cms
       )
     end
 
+    def self.add_offline_page!
+      add_layout!(
+        label: 'Offline page',
+        identifier: 'offline_page',
+        content: offline_page_content,
+        en_site: english_site,
+        cy_site: welsh_site
+      )
+    end
+
     def self.add_layout!(label:, identifier:, content:, en_site:, cy_site:)
       Comfy::Cms::Layout.create!(
         site: en_site,
@@ -55,6 +65,17 @@ module Cms
         {{ cms:page:raw_contact_additional_two:string }}
         {{ cms:page:raw_contact_additional_three:string }}
         {{ cms:page:raw_contact_small_print:string }}
+      CONTENT
+    end
+
+    def self.offline_page_content # rubocop:disable Metrics/MethodLength
+      <<-CONTENT
+        {{ cms:page:raw_offline_page_heading:string }}
+        {{ cms:page:raw_offline_page_subheading:string }}
+        {{ cms:page:raw_offline_page_text:string }}
+        {{ cms:page:raw_offline_page_phone:string }}
+        {{ cms:page:raw_offline_page_dates:string }}
+        {{ cms:page:raw_offline_page_smallprint:string }}
       CONTENT
     end
 

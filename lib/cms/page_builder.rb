@@ -22,13 +22,22 @@ module Cms
     end
 
     def self.add_footer!
-      layout       = english_site.layouts.find_by(identifier: 'footer')
-      english_page = Comfy::Cms::Page.create!(slug: 'footer', site: english_site, layout: layout)
-      welsh_page   = welsh_site.pages.find_by(slug: 'footer')
+      create_page('footer')
+    end
+
+    def self.add_offline_page!
+      create_page('offline_page')
+    end
+
+    def self.create_page(identifier)
+      layout       = english_site.layouts.find_by(identifier: identifier)
+      english_page = Comfy::Cms::Page.create!(slug: identifier, site: english_site, layout: layout)
+      welsh_page   = welsh_site.pages.find_by(slug: identifier)
 
       create_page_blocks layout, [english_page, welsh_page]
       publish_pages [english_page, welsh_page]
     end
+
 
     def self.english_site
       Comfy::Cms::Site.find_by(label: 'en')
