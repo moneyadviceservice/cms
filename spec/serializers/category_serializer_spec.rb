@@ -32,7 +32,8 @@ describe CategorySerializer do
           large: nil
         },
         links: [],
-        category_promos: []
+        category_promos: [],
+        url_path: 'en/categories/test'
       }
     end
 
@@ -59,7 +60,8 @@ describe CategorySerializer do
           large: nil
         },
         links: [],
-        category_promos: []
+        category_promos: [],
+        url_path: 'cy/categories/test'
       }
     end
 
