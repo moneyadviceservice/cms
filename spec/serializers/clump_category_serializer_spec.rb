@@ -1,4 +1,4 @@
-describe CategorySerializer do
+describe ClumpCategorySerializer do
   let(:child_categories) { nil }
 
   let(:category) do
@@ -7,8 +7,7 @@ describe CategorySerializer do
           title_en: 'en_title',
           title_cy: 'cy_title',
           description_en: 'description_en',
-          description_cy: 'description_cy',
-          third_level_navigation: true
+          description_cy: 'description_cy'
          )
   end
 
@@ -21,18 +20,8 @@ describe CategorySerializer do
         id: 'test',
         type: 'category',
         title: 'en_title',
-        description: 'description_en',
-        parent_id: '',
-        third_level_navigation: true,
         contents: [],
-        legacy_contents: [],
-        legacy: false,
-        images: {
-          small: nil,
-          large: nil
-        },
-        links: [],
-        category_promos: []
+        url_path: 'en/categories/test'
       }
     end
 
@@ -48,18 +37,8 @@ describe CategorySerializer do
         id: 'test',
         type: 'category',
         title: 'cy_title',
-        description: 'description_cy',
-        parent_id: '',
-        third_level_navigation: true,
         contents: [],
-        legacy_contents: [],
-        legacy: false,
-        images: {
-          small: nil,
-          large: nil
-        },
-        links: [],
-        category_promos: []
+        url_path: 'cy/categories/test'
       }
     end
 

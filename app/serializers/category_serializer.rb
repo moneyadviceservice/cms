@@ -1,13 +1,11 @@
 class CategorySerializer < ActiveModel::Serializer
   attributes :id, :type, :title, :description, :parent_id,
-             :third_level_navigation, :images, :legacy, :url_path
+             :third_level_navigation, :images, :legacy
 
   has_many :contents
   has_many :legacy_contents
   has_many :category_promos
   has_many :links, serializer: CategoryLinkSerializer
-
-  URL_PATH_PREFIX = 'categories'
 
   private
 
@@ -94,9 +92,5 @@ class CategorySerializer < ActiveModel::Serializer
 
   def legacy
     object.find_children(legacy: true).any?
-  end
-
-  def url_path
-    "#{scope}/#{URL_PATH_PREFIX}/#{id}"
   end
 end
