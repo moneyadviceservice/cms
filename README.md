@@ -9,7 +9,7 @@ The MAS CMS.
 - MySQL
 - Node.js (for Bower)
 - Bower (Install via NPM)
-- an entry for `gems.test.mas` in your `/etc/hosts` file and access to the MAS network (so that you can bundle install the gems)
+- Access to the MAS network (so that you can bundle install the private gems)
 
 ## Installation
 
@@ -72,9 +72,8 @@ Use `--single-run` if you only want it to run once.
 
 When developing [the front end](https://github.com/moneyadviceservice/frontend) it is usual to point it to a locally running instance of this CMS. In this case it is useful to clone the QA database to your local database.
 
-```
+```sh
 mysqldump -h az2-tst-qa01.dev.mas.local -u cms -p cms_qa > cms_qa.sql
-
 mysql -u root cms_development < cms_qa.sql
 
 ```
