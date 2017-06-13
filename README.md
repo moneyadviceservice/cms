@@ -68,6 +68,21 @@ Or for the direct command:
 
 Use `--single-run` if you only want it to run once.
 
+## Using for front-end development
+
+When developing [the front end](https://github.com/moneyadviceservice/frontend) it is usual to point it to a locally running instance of this CMS. In this case it is useful to clone the QA database to your local database.
+
+```
+mysqldump -h az2-tst-qa01.dev.mas.local -u cms -p cms_qa > cms_qa.sql
+
+mysql -u root cms_development < cms_qa.sql
+
+```
+
+The credentials for the QA database are kept in Keepass under "MAS QA" --> "mysql password".
+
+Note that the database is quite large, so it may take a while.
+
 ## Deploying
 
 This can easily be deployed to Heroku but the MAS organisation uses its own deployment infrastructure. If you're a MAS employee, you can deploy this to QA by triggering the `cms_commit` pipeline . Refer to the organisational [wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/TEAMB/Contento+CMS) on how to deploy to our production environment.
