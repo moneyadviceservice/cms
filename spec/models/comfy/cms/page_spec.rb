@@ -251,6 +251,24 @@ RSpec.describe Comfy::Cms::Page do
     end
   end
 
+  describe '.scheduled_today' do
+    context 'pages scheduled in the past, present and future' do
+      it 'includes only pages scheduled for today' do
+        page_one = create :page, state: :scheduled, scheduled_on: Time.now.end_of_day - 2.hours
+        page_two = create :page, state: :scheduled, scheduled_on: Time.now
+        create :page, state: :scheduled, scheduled_on: Time.now.end_of_day + 1.day
+        create :page
+        create :page
+        create :page
+
+        expect(Comfy::Cms::Page.scheduled_today).to contain_exactly(
+          page_one,
+          page_two
+        )
+      end
+    end
+  end
+
   describe '#most_popular scope' do
 
     it 'has the three most popular articles' do
