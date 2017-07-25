@@ -48,6 +48,13 @@ class Comfy::Cms::Page < ActiveRecord::Base
 
   scope :unpublished, -> { where(state: 'unpublished') }
 
+  scope :scheduled_today, (lambda do
+    where(
+      arel_table[:state].eq('scheduled')
+      .and(arel_table[:scheduled_on].lt(Time.now.end_of_day))
+    )
+  end)
+
   scope :layout_identifier, (lambda do |identifier|
     joins(:layout).where(comfy_cms_layouts: { identifier: identifier.singularize })
   end)
