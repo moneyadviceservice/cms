@@ -15,3 +15,6 @@ After do |scenario|
   end
 end
 
+After '@categories_admin' do |scenario|
+  DatabaseCleaner.clean
+end

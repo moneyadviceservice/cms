@@ -8,6 +8,7 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
   def show
     @category.links.build
     @category.category_promos.build
+    @categories = Comfy::Cms::Category.where(site_id: 1).reorder(:label)
     @english_pages, @welsh_pages =
       Comfy::Cms::Page
         .in_category(@category.id)
