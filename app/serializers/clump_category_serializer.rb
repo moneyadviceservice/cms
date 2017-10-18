@@ -1,5 +1,7 @@
 class ClumpCategorySerializer < ActiveModel::Serializer
-  attributes :id, :title, :contents, :type
+  attributes :id, :type, :title, :contents, :url_path
+
+  URL_PATH_PREFIX = 'categories'
 
   def id
     object.label
@@ -11,6 +13,10 @@ class ClumpCategorySerializer < ActiveModel::Serializer
 
   def type
     'category'
+  end
+
+  def url_path
+    "#{scope}/#{URL_PATH_PREFIX}/#{id}"
   end
 
   def contents
