@@ -86,6 +86,10 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     default_tag_field(tag, index)
   end
 
+  def field_text(tag, index)
+    default_tag_field(tag, index)
+  end
+  
   def field_name_for(tag)
     tag.blockable.class.name.demodulize.underscore.gsub(/\//, '_')
   end
