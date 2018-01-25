@@ -31,7 +31,7 @@ module Prismic
       end
 
       parser.evidence_hub_pages.each do |evidence_hub_page|
-        @site.pages.create! do |cms_page|
+        @site.pages.create do |cms_page|
           cms_page.label = evidence_hub_page.title
           cms_page.slug  = evidence_hub_page.title.parameterize
 
@@ -39,7 +39,7 @@ module Prismic
             identifier: evidence_hub_page.evidence_type.parameterize
           )
           cms_page.blocks = evidence_hub_page.to_h.except(
-            :type, :evidence_type
+            :type, :evidence_type, :new, :tag, :lang
           ).map do |key, value|
             Comfy::Cms::Block.new do |cms_block|
               cms_block.identifier = key
