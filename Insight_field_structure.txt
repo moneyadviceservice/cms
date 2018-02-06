@@ -1,0 +1,68 @@
++-----------------------------+------+----------------+------------+------------+------------------+---------------------+
+|                                                insight Field Structure                                                 |
++-----------------------------+------+----------------+---------------+------------+------------------+---------------------+
+| Field                       | Size | Current format | CMS Format    | Mandatory? | Needs Migrating? | Needs Transforming? |
++-----------------------------+------+----------------+---------------+------------+------------------+---------------------+
+| type                        | 11   | String         |               |            | NO               |                     |
+| tags                        | 2    | Array          |               |            | YES              |into Tag             |
+| lang                        | 5    | String         |               |            | NO               |                     |
+| grouplang                   | 16   | String         |               |            | NO               |                     |
+| title                       | 34   | String         |               |            | YES              |NO                   |
+| evidence_type               | 7    | String         |Layout         |            | YES              |into Layout          |
+| client_groups               | 2    | Array          |Block -text    |            | YES              |into Blocks          |
+| year_of_publication         | 4    | String         |               |            | YES              |NO                   |
+| country_search_filter_group | 2    | Array          |Block          |            | YES              |into one Block       |
+| country_of_delivery         | 14   | String         |               |            | YES              |NO                   |
+| links_to_research           | 2    | Array          |Block -text    |            | YES              |YES- 'paragraph' type|
+| contact_details             | 4    | Array          |Block -text    |            | YES              |YES- 'paragraph' type|
+| topics                      | 3    | Array          |Block -text    |            | YES              |into Blocks          |
+| the_study                   | 2    | Array          |Block -content |            | YES              |YES-multiple types   |
+| points_to_consider          | 3    | Array          |Block -content |            | YES              |YES-multiple types   |
+| key_findings                | 7    | Array          |Block -content |            | YES              |YES-multiple types   |
+| overview                    | 2    | Array          |Block -text    |            | YES              |YES- 'paragraph' type|
+| quantitative                | 3    | Boolean        |               |            | YES              |see notes            |
+| qualitative                 | 2    | Boolean        |               |            | YES              |see notes            |
+| context                     | 2    | Array          |Block -content |            | YES              |YES-multiple types   |
+| new                         | 3    | String         |               |            | NO               |                     |
+| NEW_measured_outcomes       | 2    | Array          |               |            | NO               |                     |
+| review_sections             | 2    | Array          |               |            | NO               |                     |
+| causality                   | 0    | String         |               |            | NO               |                     |
+| programme_delivery          | 1    | Array          |               |            | NO               |                     |
++-----------------------------+------+----------------+---------------+------------+------------------+---------------------+
+
+
+================================================================================
+An example of insight
+================================================================================
+'type': 'hub-summary'
+'tags': '["Thematic Review Young Adults"]'
+'lang': 'en-us'
+'grouplang': 'WeXlzywAAI8yENw4'
+'title': 'Banking on the Facebook generation'
+'evidence_type': 'Insight'
+'client_groups': '[{"client_group"=>"Young adults (17 - 24)"}]'
+'year_of_publication': '2011'
+'country_search_filter_group': '[{"country_search_filter"=>"0United Kingdom"}]'
+'country_of_delivery': 'United Kingdom'
+'links_to_research': '[{"type"=>"paragraph", "content"=>{"text"=>"Banking on the Facebook Generation - full report", "spans"=>[{"start"=>0, "end"=>48, "type"=>"hyperlink", "data"=>{"url"=>"http://www.experian.co.uk/assets/credit/white-paper/banking-on-the-facebook-generation.pdf", "preview"=>{"title"=>"http://www.experian.co.uk/assets/credit/white-paper/banking-on-the-facebook-generation.pdf"}}}]}}]'
+'contact_details': '[{"type"=>"paragraph", "content"=>{"text"=>"Patti J. Fisher", "spans"=>[]}}, {"type"=>"paragraph", "content"=>{"text"=>"Virginia Tech, Apparel, Housing, and Resource Management, 258 Wallace Hall, Blacksburg, VA 24060, United States", "spans"=>[]}}, {"type"=>"paragraph", "content"=>{"text"=>"Catherine P. Montalto", "spans"=>[]}}, {"type"=>"paragraph", "content"=>{"text"=>"The Ohio State University, United States", "spans"=>[]}}]'
+'topics': '[{"topic"=>"Saving"}, {"topic"=>"Credit Use and Debt"}, {"topic"=>"Insurance and protection"}]'
+'the_study': '[{"type"=>"paragraph", "content"=>{"text"=>"This is a study primarily of 18 to 25 years olds: the ‘Facebook Generation’, representing 15 per cent of the UK population. It involved exploratory, quantitative analysis of YouGov survey data (with a sample of 55,000 adults of all ages) of the financial behaviour of the Facebook Generation and how the needs and characteristics of this group differs from other groups in the UK; there were no specific research questions and the report primarily reflects a set of considerations about how this group can be better served by the Financial Services Industry. The resulting segments fed into the Experian’s Financial Strategy Segments, a classification tool. The main audience for the research appears to be financial services providers.", "spans"=>[]}}]'
+'points_to_consider': '[{"type"=>"list-item", "content"=>{"text"=>"Methodological strengths or limitations: This is largely a think piece highlighting issues which the Financial Services Industry should become aware of, supported by some YouGov survey data analysis. Comparisons of product penetration rates are against the adult population as a whole, which includes the 18-25 year olds of interest (a better comparison might have been 18-25s versus the rest). There is no evidence of statistical testing of differences. ", "spans"=>[{"start"=>0, "end"=>41, "type"=>"strong"}]}}, {"type"=>"list-item", "content"=>{"text"=>"Relevance: Marginal: the main learning is for commercial financial services providers and markets. Where there are social/societal implications these relate, only tacitly, to financial inclusion and peripherally to financial capability.", "spans"=>[{"start"=>0, "end"=>10, "type"=>"strong"}]}}, {"type"=>"list-item", "content"=>{"text"=>"Generalisability/ transferability: No information is given about sampling methodology or weighting strategy, therefore it is difficult to assess how representative the results are. There is no indication given of when the data were collected or where, which makes it difficult to assess the generalisability/ transferability of findings.\n", "spans"=>[{"start"=>0, "end"=>34, "type"=>"strong"}]}}]'
+'key_findings': '[{"type"=>"paragraph", "content"=>{"text"=>"Key findings to emerge were that:", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"With the exception of current accounts and overdrafts which are broadly in line, penetration rates of financial products are generally lower within the Facebook Generation than other adults.", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"For example, 93 per cent of 18-25 year olds have current accounts (compared with 95 per cent of all adults); 50 per cent have a saving account (compared with 65 per cent); and 59 per cent have a credit card (compared with 78 per cent).", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"The Facebook Generation increasingly sees financial services as a commodity and look to the more enticing brands.", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"Providers need to better capitalise on the trusted and increasingly influential communication and marketing channels used by young adults (i.e. new and social media) and encourage users to share positive experiences of their products and services", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"\tInstant application approval/refusal decisions and good value products (e.g. insurance cover) will be needed to satisfy the high service expectations of this generation. E.g. 42 per cent of this group switched motor insurance provider at last renewal compared to 34 per cent of all adults.", "spans"=>[]}}, {"type"=>"list-item", "content"=>{"text"=>"The most effective customer service strategies will include increased efforts to retain valuable customers – who are likely to remain renters for longer due to higher deposits required for mortgages – and engage using social media across all devices: 'With larger deposits required for mortgages, the Facebook Generation are more likely to rent property and to do so for longer. This will only add to the challenges of keeping track of customers and staying in touch with them.’ (Experian, 2011, p3).\n", "spans"=>[]}}]'
+'overview': '[{"type"=>"paragraph", "content"=>{"text"=>"This paper explores how young people can be effectively served and engaged by financial services, using quantitative analysis of YouGov data.", "spans"=>[]}}]'
+'quantitative': 'Yes'
+'qualitative': 'No'
+'context': '[{"type"=>"paragraph", "content"=>{"text"=>"This is a white paper exploring a generation of 18-25 year olds which has grown up with high exposure to, and early-age adopters of, smart devices and social media, who are assumed to be important to financial services providers if engaged effectively. They are termed the ‘Facebook Generation’. They are assumed to be a lucrative group for financial services – here measured primarily in relation to banking, saving and credit product holding – in the future if engaged effectively, and this involves building their trust today. The research explores how this might be achieved. ", "spans"=>[]}}]'
+'new': 'yes'
+'NEW_measured_outcomes': '[{'outcome'=> 'Financial_wellbeing'}]'
+'review_sections': '[{}]'
+'causality': ''
+'programme_delivery': '[{"type"=>"paragraph", "content"=>{"text"=>"sdsd", "spans"=>[]}}]'
+
+
+===================
+Extra Notes
+===================
+Quantitative and Qualitative values in Prismic have 'Yes', 'No' values which are not necessarily uniform.
+CMS does not support Boolean types in Blocks. Suggested route is to keep these as text, but to ensure the values are uniform. i.e. not 'Yes', 'YES'
