@@ -5,7 +5,7 @@ namespace :prismic do
   end
 
   desc 'Show information about each evidence hub field type. Example: rake prismic:fields[~/Downloads/fincap,insight]'
-  task :fields, [:dir, :evidence_type] do |t, args|
+  task :fields, [:dir, :evidence_type] => :environment do |t, args|
     Prismic::Fields.new(args[:dir], args[:evidence_type]).filter.print_table
   end
 
