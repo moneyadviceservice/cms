@@ -30,8 +30,18 @@ module Prismic
     def filter
       documents.each_with_index do |document, index|
         document.to_h.map do |key, value|
-          size = [value.try(:size), @filter[key].try(:size)].compact.max
-          @filter[key] = [value.class, size]
+          maximum_field_size = [
+            value.try(:size),
+            @filter[key].try(:size)
+          ].compact.max
+
+          field_type = if value == 'Yes' || value == 'No'
+                         'Boolean'
+                       else
+                         value.class
+                       end
+
+          @filter[key] = [field_type, maximum_field_size]
         end
       end
 
@@ -43,22 +53,26 @@ module Prismic
     end
 
     def print_table
-      @filter.each do |field, values|
-        @rows.push([field, values].flatten)
-      end
-
-      puts Terminal::Table.new(
-        headings: ['Field', 'Type', 'Size'],
-        rows: @rows
-      )
-
-      puts
+      puts "=" * 80
       puts "An example of #{evidence_type}"
+      puts "=" * 80
+
       documents.first.to_h.each do |field, value|
         puts "-" * 80
         puts "Field '#{field}'. Value: '#{value}'"
         puts "-" * 80
       end
+      puts
+
+      @filter.each do |field, values|
+        @rows.push([field, values].flatten)
+      end
+
+      puts Terminal::Table.new(
+        title: "#{evidence_type} Field Structure",
+        headings: ['Field', 'Type', 'Size'],
+        rows: @rows
+      )
     end
   end
 end
