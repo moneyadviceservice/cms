@@ -24,6 +24,7 @@ module Prismic
       @parser = Prismic::Parser.new(dir)
       @evidence_type = evidence_type
       @filter = {}
+      @example = {}
       @rows = []
     end
 
@@ -45,6 +46,12 @@ module Prismic
         end
       end
 
+      documents.each do |document|
+        document.to_h.map do |key, value|
+          @example[key] = value
+        end
+      end
+
       self
     end
 
@@ -57,12 +64,15 @@ module Prismic
       puts "An example of #{evidence_type}"
       puts "=" * 80
 
-      documents.first.to_h.each do |field, value|
+      @example.each do |field, value|
         puts "-" * 80
         puts "Field '#{field}'. Value: '#{value}'"
         puts "-" * 80
       end
+
       puts
+
+      puts "Number of fields: #{@filter.keys.size}"
 
       @filter.each do |field, values|
         @rows.push([field, values].flatten)
