@@ -1,0 +1,25 @@
+
++-----------------------------+------------------------+---------------|
+| Field                       | identifier             | CMS Format    |
++-----------------------------+------------------------+---------------|
+| client_groups               | client_groups          |Multiple Blocks|
+| year_of_publication         | year_of_publication    |Block -text    |
+| country_search_filter_group | country_of_delivery    |Multiple Blocks|
+| country_of_delivery         | countries              |Block -text    |
+| links_to_research           | links_to_research      |Block -text    |
+| contact_details             | contact_information    |Block -text    |
+| topics                      | topics                 |Multiple Blocks|
+| the_study                   | content                |Block -content |
+| points_to_consider          | content                |Block -content |
+| key_findings                | content                |Block -content |
+| overview                    | overview               |Block -text    |
+| quantitative                | quantitative?          |Block -text    |
+| qualitative                 | qualitative?           |Block -text    |
+| context                     | content                |Block -content |
++-----------------------------+------------------------+---------------|
+
+===================
+Extra Notes
+===================
+Quantitative and Qualitative values in Prismic have 'Yes', 'No' values which are not necessarily uniform.
+CMS does not support Boolean types in Blocks. Suggested route is to keep these as text, but to ensure the values are uniform. i.e. not 'Yes', 'YES'
