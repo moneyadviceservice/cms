@@ -42,7 +42,7 @@ module Prismic
                          value.class
                        end
 
-          @filter[key] = [field_type, maximum_field_size]
+          @filter[key] = [maximum_field_size, field_type]
         end
       end
 
@@ -75,12 +75,12 @@ module Prismic
       puts "Number of fields: #{@filter.keys.size}"
 
       @filter.each do |field, values|
-        @rows.push([field, values].flatten)
+        @rows.push([field, values, nil, nil, nil, nil].flatten)
       end
 
       puts Terminal::Table.new(
         title: "#{evidence_type} Field Structure",
-        headings: ['Field', 'Type', 'Size'],
+        headings: ['Field', 'Size', 'Current format', 'CMS Format', 'Mandatory?', 'Needs Migrating?', 'Needs Transforming?' ],
         rows: @rows
       )
     end
