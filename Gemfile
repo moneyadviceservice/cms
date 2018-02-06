@@ -40,6 +40,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
+  gem 'terminal-table'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'unicorn-rails'

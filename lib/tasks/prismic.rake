@@ -4,10 +4,62 @@ namespace :prismic do
     Prismic::Statistics.new(args[:dir]).call
   end
 
+  desc 'Show information about each evidence hub field type. Example: rake prismic:fields[~/Downloads/fincap,insight]'
+  task :fields, [:dir, :evidence_type] do |t, args|
+    Prismic::Fields.new(args[:dir], args[:evidence_type]).filter.print_table
+  end
+
   desc 'Import all Evidence Hub prismic pages given a directory. Example: rake prismic:hub_import[~/prismic_files]'
   task :hub_import, [:dir] => :environment do |t, args|
     ActiveRecord::Base.logger = Logger.new(STDOUT)
     Prismic::HubImport.new(args[:dir]).call
+  end
+end
+
+module Prismic
+  class Fields
+    attr_reader :parser, :evidence_type, :result
+
+    def initialize(dir, evidence_type)
+      @parser = Prismic::Parser.new(dir)
+      @evidence_type = evidence_type
+      @filter = {}
+      @rows = []
+    end
+
+    def filter
+      documents.each_with_index do |document, index|
+        document.to_h.map do |key, value|
+          size = [value.try(:size), @filter[key].try(:size)].compact.max
+          @filter[key] = [value.class, size]
+        end
+      end
+
+      self
+    end
+
+    def documents
+      @documents ||= @parser.send(@evidence_type)
+    end
+
+    def print_table
+      @filter.each do |field, values|
+        @rows.push([field, values].flatten)
+      end
+
+      puts Terminal::Table.new(
+        headings: ['Field', 'Type', 'Size'],
+        rows: @rows
+      )
+
+      puts
+      puts "An example of #{evidence_type}"
+      documents.first.to_h.each do |field, value|
+        puts "-" * 80
+        puts "Field '#{field}'. Value: '#{value}'"
+        puts "-" * 80
+      end
+    end
   end
 end
 
@@ -30,7 +82,7 @@ module Prismic
         )
       end
 
-      parser.evidence_hub_pages.each do |evidence_hub_page|
+      [parser.evidence_hub_pages.first].each do |evidence_hub_page|
         @site.pages.create do |cms_page|
           cms_page.label = evidence_hub_page.title
           cms_page.slug  = evidence_hub_page.title.parameterize
@@ -68,6 +120,18 @@ module Prismic
 
     def evidence_types
       pages.map { |page| page.evidence_type }
+    end
+
+    def insight
+      evidence_hub_pages.select { |page| page.evidence_type == 'Insight' }
+    end
+
+    def evaluation
+      evidence_hub_pages.select { |page| page.evidence_type == 'Evaluation' }
+    end
+
+    def review
+      evidence_hub_pages.select { |page| page.evidence_type == 'Review' }
     end
 
     def pages
