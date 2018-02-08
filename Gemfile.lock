@@ -348,7 +348,7 @@ GEM
     multi_test (0.1.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
-    mysql2 (0.3.16)
+    mysql2 (0.3.21)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -571,7 +571,7 @@ DEPENDENCIES
   legato (= 0.4.0)
   mailjet
   mastalk (= 0.9.0)
-  mysql2
+  mysql2 (~> 0.3.18)
   newrelic_rpm
   oauth2 (= 1.0.0)
   paper_trail
