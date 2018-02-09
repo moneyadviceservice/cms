@@ -13,7 +13,10 @@ The MAS CMS.
 
 ## Installation
 
-### Configuration
+The same source code is used by two applications: CMS and Fincap CMS.
+So the next section will explain the setup for each application.
+
+### CMS setup
 
 ```sh
 $ ./bin/setup
@@ -23,6 +26,16 @@ $ rails s
 The setup script will install required gems, bower modules and create the databases as well as seed some data to setup the CMS.
 
 Note: Make sure you've added all the required API keys for the app to work properly. Make sure you set the HOSTNAME, GA_API_EMAIL_ADDRESS, GA_PRIVATE_KEY_PATH variables in the `.env` file appropriately. The setup script above will set up the `.env` file  structure but you may need to set some keys seperately, particularly the Rackspace ones.
+
+### Fincap CMS setup
+
+```sh
+$ bundle install
+$ npm install
+$ bowndler install
+$ bundle exec rake db:create db:schema:load db:migrate fincap:setup
+$ rails s
+```
 
 ### Updating Dough
 
