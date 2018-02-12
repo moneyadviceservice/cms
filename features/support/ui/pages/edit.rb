@@ -42,5 +42,11 @@ module UI::Pages
         end
       end
     end
+
+    element :overview, '#blocks_attributes_1_content'
+    element :countries, '#blocks_attributes_2_content'
+    element :links_to_research, '#blocks_attributes_3_content'
+    element :contact_details, '#blocks_attributes_4_content'
+    element :year_of_publication, '#blocks_attributes_5_content'
   end
 end
