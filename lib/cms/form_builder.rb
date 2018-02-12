@@ -1,4 +1,5 @@
 class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
+
   def page_rich_text(tag, index)
     @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
         locals: {
@@ -41,7 +42,9 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
 
   # ACHTUNG, HACKY! - looks for the instance variable @blocks_attributes in the view to retrieve the current content
   blocks_attributes = @template.instance_variable_get('@blocks_attributes')
-  current_value = blocks_attributes.find { |block_attributes| block_attributes[:identifier] == tag.identifier.to_s }[:content]
+  current_value = Array(blocks_attributes).find do |block_attributes|
+    block_attributes[:identifier] == tag.identifier.to_s
+  end.try(:[], :content)
 
   case method
   when :file_field_tag
