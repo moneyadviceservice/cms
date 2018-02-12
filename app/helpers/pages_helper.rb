@@ -1,4 +1,8 @@
 module PagesHelper
+  def fields_from_layout(comfortable_mexican_sofa_tag)
+    Cms::LayoutField.map(comfortable_mexican_sofa_tag['default'])
+  end
+
   def tag_for_identifier(tags, identifier, cms_blocks, index)
     tag = tags.find { |t| t.identifier == identifier }
     cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, index)
