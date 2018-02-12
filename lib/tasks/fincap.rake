@@ -18,7 +18,13 @@ namespace :fincap do
       english_site.layouts.find_or_create_by(
         identifier: layout,
         label: layout.titleize,
-        content: '{{ cms:page:content:rich_text }}'
+        content:  <<-CONTENT
+          {{ cms:page:content:rich_text }}
+          {{ cms:page:overview }}
+          {{ cms:page:countries }}
+          {{ cms:page:links_to_research }}
+          {{ cms:page:contact_details }}
+        CONTENT
       )
     end
   end
