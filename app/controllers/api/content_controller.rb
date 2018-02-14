@@ -3,6 +3,10 @@ module API
     before_action :find_site, only: [:show, :preview, :published, :unpublished]
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
+    def index
+      render json: Comfy::Cms::Page.all
+    end
+
     def show
       page = if slug.present?
                current_site.pages
