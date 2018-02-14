@@ -355,4 +355,41 @@ RSpec.describe API::ContentController, type: :request do
       end
     end
   end
+
+  describe 'GET /:locale/pages/:page_type' do
+    let(:layout)  { create :layout, identifier: 'insight' }
+
+    let!(:page_1) { create(:page, site: site, layout: layout) }
+    let!(:page_2) { create(:page, site: site, layout: layout) }
+
+    let(:response_body) { JSON.load(response.body) }
+    let(:pages_url) { '/api/en/pages/insight.json' + search_params }
+
+    before { get pages_url }
+
+    context 'when no keyword' do
+      let(:search_params) { '' }
+      let(:page_type) {'insight'}
+
+      it 'returns all insight pages' do
+        expect(response_body.count).to eq 2
+      end
+    end
+    
+    context 'success' do
+      let(:search_params){ '?keyword=debt' }
+
+      it 'responds ok' do
+        expect(response_body).to include('debt')
+      end
+    end
+
+    context 'no results found for the search term' do
+      let(:search_params){ '?keyword=nosuchterm' }
+
+      xit 'responds with an error message' do
+        expect(response_body["message"]).to eq('Nothing with the term nosuchterm was found')
+      end
+    end
+  end
 end

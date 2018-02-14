@@ -39,6 +39,10 @@ FactoryGirl.define do
         page.reload
       end
     end
+
+    trait :insight_page do
+      sequence(:slug) { |n| "insight-page-#{n}" }
+    end
   end
 
   factory :child_page, class: Comfy::Cms::Page do

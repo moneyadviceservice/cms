@@ -1,14 +1,24 @@
 module API
   class ContentController < APIController
-    before_action :find_site, only: [:show, :preview, :published, :unpublished]
+    before_action :find_site, 
+      only: [:show, :preview, :published, :unpublished, :index]
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
+    def index
+      pages = current_site.pages
+        .published
+        .joins(:layout)
+        .where('comfy_cms_layouts.identifier' => page_type)
+        
+      render json: pages
+    end
+    
     def show
       page = if slug.present?
                current_site.pages
                  .published
-                 .joins(:layout)
-                 .find_by(slug: slug, 'comfy_cms_layouts.identifier' => page_type)
+                 .layout_identifier(page_type)
+                 .find_by(slug: slug)
              else
                current_site.pages.published.find_by(slug: params[:page_type])
              end
@@ -23,7 +33,10 @@ module API
     end
 
     def published
-      pages = current_site.pages.published.layout_identifier(params[:page_type]).includes(:site, :layout, :categories, :blocks)
+      pages = current_site.pages
+        .published
+        .layout_identifier(params[:page_type])
+        .includes(:site, :layout, :categories, :blocks)
 
       render json: pages, each_serializer: FeedPageSerializer
     end
@@ -41,6 +54,14 @@ module API
         render json: page, scope: scope
       else
         render json: { message: 'Page not found' }, status: 404
+      end
+    end
+
+    def render_pages(pages, search_term)
+      if pages.any?
+        render json: pages
+      else
+        render json: { message: "Nothing with the term #{search_term} was found" }
       end
     end
 
