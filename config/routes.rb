@@ -57,6 +57,10 @@ Rails.application.routes.draw do
   comfy_route :cms_admin, path: '/admin'
 
   namespace :api do
+    scope ":locale", locale: /en|cy/ do
+      resources :documents, only: :index
+    end
+
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
