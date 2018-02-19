@@ -33,7 +33,7 @@ Note: Make sure you've added all the required API keys for the app to work prope
 $ bundle install
 $ npm install
 $ bowndler install
-$ bundle exec rake db:create db:schema:load db:migrate fincap:setup
+$ bundle exec rake db:create db:schema:load db:migrate db:seed:fincap
 $ rails s
 ```
 

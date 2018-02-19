@@ -37,21 +37,22 @@ gem 'uglifier', '>= 1.3.0'
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'seedbank'
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
-  gem 'better_errors'
-  gem 'binding_of_caller'
   gem 'unicorn-rails'
 end
 
 group :test do
-  gem 'rspec_junit_formatter'
-  gem 'shoulda-matchers'
   gem 'cucumber-rails', require: false
-  gem 'site_prism'
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
+  gem 'rspec_junit_formatter'
+  gem 'shoulda-matchers'
+  gem 'site_prism'
   gem 'vcr'
   gem 'webmock'
 end
@@ -60,15 +61,15 @@ group :test, :development do
   # temporarily pin capybara, the following breaks Rake:
   # https://github.com/jnicklas/capybara/commit/385a7507f6525d9b2d1e23bef0bb2e6fe5ad0c97
   gem 'capybara', '2.4.1'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'faker'
+  gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
-  gem 'valid_attribute', require: false
-  gem 'dotenv-rails'
-  gem 'launchy'
   gem 'ruby-prof', require: false
+  gem 'valid_attribute', require: false
 end
 
 group :production do
