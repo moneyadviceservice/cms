@@ -9,7 +9,8 @@ module API
         .published
         .joins(:layout)
         .where('comfy_cms_layouts.identifier' => page_type)
-        
+        .where("content LIKE ?", "%#{params[:keyword]}%")
+
       render json: pages
     end
     
@@ -48,20 +49,11 @@ module API
     end
 
     private
-
     def render_page(page, scope: nil)
       if page
         render json: page, scope: scope
       else
         render json: { message: 'Page not found' }, status: 404
-      end
-    end
-
-    def render_pages(pages, search_term)
-      if pages.any?
-        render json: pages
-      else
-        render json: { message: "Nothing with the term #{search_term} was found" }
       end
     end
 
