@@ -20,6 +20,10 @@ english_site = Comfy::Cms::Site.find_or_create_by(
       {{ cms:page:country_of_delivery }}
       {{ cms:page:links_to_research }}
       {{ cms:page:contact_details }}
+      {{ cms:page:year_of_publication }}
+      {{ cms:page:topics:collection_check_boxes foo bar baz }}
+      {{ cms:page:client_groups }}
+      {{ cms:page:country_of_delivery }}
     CONTENT
   )
 end
@@ -30,6 +34,7 @@ english_site.pages.create!(
   label: 'Financial well-being: the employee view',
   slug:  'financial-well-being-the-employee-view',
   layout: layout,
+  state: 'published',
   blocks: [
     Comfy::Cms::Block.new(
       identifier: 'content',
@@ -73,6 +78,18 @@ english_site.pages.create!(
       identifier: 'countries',
       content: 'United Kingdom'
     ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Saving'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Financial Capability'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Over-indebted people'
+    )
   ]
 )
 
@@ -80,6 +97,7 @@ english_site.pages.create!(
   label: 'Moving forward together: peer support for people with problem debt',
   slug:  'moving-forward-together-peer-support-for-people-with-problem-debt',
   layout: layout,
+  state: 'published',
   blocks: [
     Comfy::Cms::Block.new(
       identifier: 'content',
@@ -130,5 +148,17 @@ english_site.pages.create!(
       identifier: 'countries',
       content: 'England'
     ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Credit Use and Debt'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Over-indebted people'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Working age (18 - 65)'
+    )
   ]
 )
