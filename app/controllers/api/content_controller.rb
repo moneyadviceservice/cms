@@ -1,14 +1,14 @@
 module API
   class ContentController < APIController
-    before_action :find_site, only: [:show, :preview, :published, :unpublished]
+    before_action :find_site
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
     def show
       page = if slug.present?
                current_site.pages
                  .published
-                 .joins(:layout)
-                 .find_by(slug: slug, 'comfy_cms_layouts.identifier' => page_type)
+                 .layout_identifier(page_type)
+                 .find_by(slug: slug)
              else
                current_site.pages.published.find_by(slug: params[:page_type])
              end
@@ -23,7 +23,10 @@ module API
     end
 
     def published
-      pages = current_site.pages.published.layout_identifier(params[:page_type]).includes(:site, :layout, :categories, :blocks)
+      pages = current_site.pages
+        .published
+        .layout_identifier(params[:page_type])
+        .includes(:site, :layout, :categories, :blocks)
 
       render json: pages, each_serializer: FeedPageSerializer
     end
@@ -35,7 +38,6 @@ module API
     end
 
     private
-
     def render_page(page, scope: nil)
       if page
         render json: page, scope: scope
