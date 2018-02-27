@@ -7,7 +7,7 @@ module API
 
       filter_documents
 
-      render json: @documents
+      render json: @documents, meta: { results: @documents.count }, root: 'documents'
     end
 
     private
