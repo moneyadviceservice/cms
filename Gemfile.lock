@@ -64,6 +64,8 @@ GEM
     algoliasearch (1.19.1)
       httpclient (~> 2.8.3)
       json (>= 1.5.1)
+    apipie-rails (0.5.6)
+      rails (>= 4.1)
     arel (5.0.1.20140414130214)
     ast (2.0.0)
     astrolabe (1.3.0)
@@ -555,6 +557,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   algoliasearch
+  apipie-rails (~> 0.5.6)
   autoprefixer-rails
   azure (= 0.7.7)
   better_errors
@@ -616,4 +619,4 @@ DEPENDENCIES
   word-to-markdown!
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

@@ -49,6 +49,7 @@ RSpec.describe API::DocumentsController, type: :request do
           expect(meta_data['results']).to eq 1
           expect(documents.count).to eq 1
         end
+      end
 
       context 'when the keyword is not found' do
         let(:params) { { document_type: 'insight', keyword: 'nosuchterm' } }
