@@ -132,7 +132,6 @@ RSpec.describe DocumentProvider do
     context 'when the search term is a phrase' do
       let!(:page_with_phrase) { create(:insight_page, site: site, layout: insight_layout) }
       let!(:page_without_phrase) { create(:page, site: site, layout: insight_layout) }
-
       let(:keyword) { 'Financial well being: the employee view' }
 
       it 'returns an array of documents which contain the phrase' do
@@ -228,6 +227,14 @@ RSpec.describe DocumentProvider do
           [page_with_3_filter_types_and_keyword, page_with_a_diff_filter_and_keyword]
         )
       end
+    end
+  end
+
+  describe 'when there are too many filters' do
+    let(:filters) { (1..27).to_a }
+    
+    it 'returns nothing' do
+      expect(subject).to be_nil
     end
   end
 end
