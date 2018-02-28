@@ -2,6 +2,7 @@ class DocumentProvider
   attr_reader :current_site, :document_type, :keyword, :filters
 
   BLOCKS_TO_SEARCH = %w(content overview)
+  FILTER_LIMIT = 26
 
   def initialize(current_site, document_type, keyword, filters)
     @current_site = current_site
@@ -11,6 +12,8 @@ class DocumentProvider
   end
 
   def retrieve
+    return if filters && filters.count > FILTER_LIMIT
+
     @documents = current_site.pages.published
 
     filter_by_document_type
