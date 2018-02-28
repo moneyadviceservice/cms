@@ -15,7 +15,11 @@ module API
         params[:blocks]
       ).retrieve
 
-      render json: documents, meta: { results: documents.size }, root: 'documents'
+      if documents
+        render json: documents, meta: { results: documents.size }, root: 'documents'
+      else
+        render json: { message: 'Bad request' }, status: 400
+      end
     end
   end
 end
