@@ -39,6 +39,27 @@ FactoryGirl.define do
         page.reload
       end
     end
+
+    factory :insight_page_about_debt do
+      site { create :site, identifier: 'test-documents'}
+      after(:create) do |page|
+        create :block, :debt_content, identifier: 'content', blockable: page
+      end
+    end
+
+    factory :insight_page_about_pensions do
+      site { create :site, identifier: 'test-documents'}
+      after(:create) do |page|
+        create :block, :pension_content, identifier: 'content', blockable: page
+      end
+    end
+
+    factory :insight_page_about_financial_wellbeing do
+      site { create :site, identifier: 'test-documents'}
+      after(:create) do |page|
+        create :block, :financial_wellbeing_content, identifier: 'content', blockable: page
+      end
+    end
   end
 
   factory :child_page, class: Comfy::Cms::Page do

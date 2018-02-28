@@ -16,11 +16,20 @@ module API
       params[:document_type]
     end
 
+    def keyword
+      params[:keyword]
+    end
+
     def filter_documents
       if document_type.present?
         @documents = @documents.joins(:layout)
           .where('comfy_cms_layouts.identifier' => document_type)
       end
+
+      if keyword.present?
+        @documents = @documents.with_content_like(keyword)
+      end
     end
+
   end
 end
