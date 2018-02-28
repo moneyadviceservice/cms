@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  apipie
+  
   devise_for :users, class_name: 'Comfy::Cms::User'
 
   resources :word_documents
