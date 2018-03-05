@@ -16,6 +16,8 @@ RSpec.describe API::DocumentsController, type: :request do
   let!(:insight_page4) { create(:insight_page_titled_annuity, insight_page_params) }
   let!(:insight_page5) { create(:insight_page_titled_annuity2, insight_page_params) }
   let!(:insight_page6) { create(:insight_page_about_annuity, insight_page_params) }
+  let!(:insight_page7) { create(:insight_page_with_overview_block, insight_page_params) }
+  let!(:insight_page8) { create(:insight_page_with_raw_cta_text_block, insight_page_params) }
   let!(:review_page1) { create(:page, site: site, layout: review_layout) }
 
   before do
@@ -30,16 +32,17 @@ RSpec.describe API::DocumentsController, type: :request do
       let(:params) { {} }
 
       it 'returns all documents' do
-        expect(meta_data['results']).to eq 7
-        expect(documents.count).to eq 7
+        expect(meta_data['results']).to eq 9
+        expect(documents.count).to eq 9
       end
     end
 
     context 'when documents of type insight are requested' do
       let(:params) { { document_type: 'insight' } }
+
       it 'returns all insight documents' do
-        expect(meta_data['results']).to eq 6
-        expect(documents.count).to eq 6
+        expect(meta_data['results']).to eq 8
+        expect(documents.count).to eq 8
       end
     end
   end
@@ -47,14 +50,31 @@ RSpec.describe API::DocumentsController, type: :request do
   describe 'keyword search' do
     context 'when the document_type is specified' do
       context 'when a keyword is provided' do
-        context 'and the keyword is found in the content' do
+        context 'and the keyword is found in a "content" block' do
           let(:params) { { document_type: 'insight', keyword: 'pension' } }
 
-          it 'returns an array of documents which contain the keyword' do
-            expect(meta_data['results']).to eq 1
+          it 'returns documents which contain the keyword' do
             expect(params[:keyword]).to be_in(
               documents.first["blocks"].first["content"]
             )
+          end
+        end
+
+        context 'and the keyword is found in an "overview" block' do
+          let(:params) { { document_type: 'insight', keyword: 'redundancy' } }
+
+          it 'returns documents which contain the keyword' do
+            expect(params[:keyword]).to be_in(
+              documents.first["blocks"].first["content"]
+            )
+          end
+        end
+
+        context 'and the keyword is found in a block that is not content or overview' do
+          let(:params) { { document_type: 'insight', keyword: 'random' } }
+
+          it 'does not return the document' do
+            expect(documents.count).to eq 0
           end
         end
 
