@@ -2,6 +2,8 @@ module API
   class DocumentsController < APIController
     before_action :find_site
 
+    BLOCKS_TO_SEARCH = %w[content overview]
+
     api :GET, '/:locale/documents'
     param :locale, String, required: true
     param :page_type, String, required: false
@@ -33,6 +35,7 @@ module API
       if keyword.present?
         @documents = @documents
           .joins(:blocks)
+          .where('comfy_cms_blocks.identifier' => BLOCKS_TO_SEARCH)
           .where('comfy_cms_pages.label LIKE ? OR comfy_cms_blocks.content LIKE ?', "%#{keyword}%", "%#{keyword}%")
       end
     end
