@@ -65,7 +65,7 @@ FactoryGirl.define do
     factory :insight_page_about_annuity do
       site { create :site, identifier: 'test-documents'}
       after(:create) do |page|
-        create :block, :annuity_content, identifier: 'content', blockable: page
+        create :block, :annuity_content, blockable: page
       end
     end
 
@@ -73,7 +73,7 @@ FactoryGirl.define do
       site { create :site, identifier: 'test-documents'}
       label 'annuity'
       after(:create) do |page|
-        create :block, identifier: 'raw_tile_1_heading', blockable: page
+        create :block, identifier: 'content', blockable: page
       end
     end
 
@@ -81,7 +81,23 @@ FactoryGirl.define do
       site { create :site, identifier: 'test-documents'}
       label 'Page about annuity stuff'
       after(:create) do |page|
-        create :block, identifier: 'raw_tile_1_heading', blockable: page
+        create :block, identifier: 'content', blockable: page
+      end
+    end
+
+    factory :insight_page_with_overview_block do
+      site { create :site, identifier: 'test-documents'}
+      label 'Page with overview block'
+      after(:create) do |page|
+        create :block, :redundancy_overview, blockable: page
+      end
+    end
+
+    factory :insight_page_with_raw_cta_text_block do
+      site { create :site, identifier: 'test-documents'}
+      label 'Page with block other than content or identifier'
+      after(:create) do |page|
+        create :block, :raw_cta_text_content, blockable: page
       end
     end
   end
