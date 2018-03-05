@@ -31,7 +31,9 @@ module API
       end
 
       if keyword.present?
-        @documents = @documents.with_content_like(keyword)
+        @documents = @documents
+          .joins(:blocks)
+          .where('comfy_cms_pages.label LIKE ? OR comfy_cms_blocks.content LIKE ?', "%#{keyword}%", "%#{keyword}%")
       end
     end
 

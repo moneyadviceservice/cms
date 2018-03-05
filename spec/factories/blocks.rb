@@ -15,5 +15,9 @@ FactoryGirl.define do
     trait :financial_wellbeing_content do
       content { 'Financial well being: the employee view' }
     end
+
+    trait :annuity_content do
+      content { 'What does annuity mean?' }
+    end
   end
 end
