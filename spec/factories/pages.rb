@@ -42,6 +42,7 @@ FactoryGirl.define do
 
     factory :insight_page_about_debt do
       site { create :site, identifier: 'test-documents'}
+      label 'Debt, stress and pay levels'
       after(:create) do |page|
         create :block, :debt_content, identifier: 'content', blockable: page
       end
@@ -58,6 +59,29 @@ FactoryGirl.define do
       site { create :site, identifier: 'test-documents'}
       after(:create) do |page|
         create :block, :financial_wellbeing_content, identifier: 'content', blockable: page
+      end
+    end
+
+    factory :insight_page_about_annuity do
+      site { create :site, identifier: 'test-documents'}
+      after(:create) do |page|
+        create :block, :annuity_content, identifier: 'content', blockable: page
+      end
+    end
+
+    factory :insight_page_titled_annuity do
+      site { create :site, identifier: 'test-documents'}
+      label 'annuity'
+      after(:create) do |page|
+        create :block, identifier: 'raw_tile_1_heading', blockable: page
+      end
+    end
+
+    factory :insight_page_titled_annuity2 do
+      site { create :site, identifier: 'test-documents'}
+      label 'Page about annuity stuff'
+      after(:create) do |page|
+        create :block, identifier: 'raw_tile_1_heading', blockable: page
       end
     end
   end
