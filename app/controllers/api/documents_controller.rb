@@ -2,6 +2,10 @@ module API
   class DocumentsController < APIController
     before_action :find_site
 
+    api :GET, '/:locale/documents'
+    param :locale, String, required: true
+    param :page_type, String, required: false
+    param :keyword, String, required: false
     def index
       @documents = current_site.pages.published
 

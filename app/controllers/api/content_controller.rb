@@ -3,6 +3,10 @@ module API
     before_action :find_site
     before_action :verify_page_type, only: :show, if: -> { slug.present? }
 
+    api :GET, '/:locale/:page_type/(*slug)'
+    param :locale, /[en|cy]/, required: true
+    param :page_type, String, required: true
+    param :slug, String, required: false
     def show
       page = if slug.present?
                current_site.pages
@@ -16,12 +20,18 @@ module API
       render_page(page)
     end
 
+    api :GET, '/preview/:locale/(*slug)'
+    param :locale, /[en|cy]/, required: true
+    param :slug, String, required: false
     def preview
       page = current_site.pages.find_by(slug: params[:slug])
 
       render_page(page, scope: 'preview')
     end
 
+    api :GET, '/:locale/:page_type/published'
+    param :locale, /[en|cy]/, required: true
+    param :page_type, String, required: true
     def published
       pages = current_site.pages
         .published
@@ -31,6 +41,9 @@ module API
       render json: pages, each_serializer: FeedPageSerializer
     end
 
+    api :GET, '/:locale/:page_type/unpublished'
+    param :locale, /[en|cy]/, required: true
+    param :page_type, String, required: true
     def unpublished
       pages = current_site.pages.unpublished.layout_identifier(params[:page_type])
 

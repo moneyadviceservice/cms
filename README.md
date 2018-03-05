@@ -104,6 +104,8 @@ This can easily be deployed to Heroku but the MAS organisation uses its own depl
 ### Technical Docs
 [CMS](https://github.com/moneyadviceservice/technical-docs/tree/master/cms)
 
+We use [apipie](https://github.com/Apipie/apipie-rails) to document the cms api. Once you've set up the project and started a server, you can view the docs by visiting `http://localhost:3000/apipie`
+
 ### Component Styleguide
 
 [The styleguide](http://0.0.0.0:3000/styleguide) lists all HTML/CSS components used within the CMS.

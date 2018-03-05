@@ -2,6 +2,7 @@ source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails'
 gem 'azure', '0.7.7'
 gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
