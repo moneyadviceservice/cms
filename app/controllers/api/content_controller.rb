@@ -5,7 +5,7 @@ module API
 
     api :GET, '/:locale/:page_type/(*slug)'
     param :locale, /[en|cy]/, required: true
-    param :page_type, String, required: true
+    param :page_type, String, required: false
     param :slug, String, required: false
     def show
       page = if slug.present?
