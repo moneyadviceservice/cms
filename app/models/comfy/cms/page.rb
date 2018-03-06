@@ -59,6 +59,10 @@ class Comfy::Cms::Page < ActiveRecord::Base
     joins(:layout).where(comfy_cms_layouts: { identifier: identifier.singularize })
   end)
 
+  scope :with_title_like, ->(phrase) {
+    where('comfy_cms_pages.label LIKE ?', "%#{phrase}%")
+  }
+
   def self.in_category(category_id)
     joins(
       'INNER JOIN comfy_cms_categorizations

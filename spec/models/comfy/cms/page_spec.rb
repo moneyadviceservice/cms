@@ -312,6 +312,33 @@ RSpec.describe Comfy::Cms::Page do
     end
   end
 
+  describe 'with_title_like scope' do
+    let!(:page1) { create(:page, label: label1) }
+    let!(:page2) { create(:page, label: label2) }
+    let(:label1) { 'Financial well being: the employee view' }
+    let(:label2) { 'Financial well being: the employer view' }
+
+    context 'when a search term has been provided' do
+      let(:results) { Comfy::Cms::Page.with_title_like(search_term) }
+      let(:search_term) { 'the employee view' }
+
+      it 'returns pages which have a title containing the search term' do
+        expect(results.first).to eq page1
+        expect(results.count).to eq 1
+      end
+    end
+
+    context 'when no search term has been provided' do
+      let(:results) { Comfy::Cms::Page.with_title_like(search_term) }
+      let(:search_term) { '' }
+
+      it 'returns pages which have a title containing the search term' do
+        expect(results).to eq [ page1, page2 ]
+        expect(results.count).to eq 2
+      end
+    end
+  end
+
   describe 'has ever been published' do
     let(:page) { create(:page) }
 
