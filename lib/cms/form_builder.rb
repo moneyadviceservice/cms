@@ -1,12 +1,19 @@
 class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   include ActionView::Helpers::FormTagHelper
 
-  def page_rich_text(tag, index)
-    @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
-        locals: {
-          index: index,
-          fieldname: field_name_for(tag)
-        })
+  def collection_check_boxes(tag, index)
+    content = ''
+    current_value = blocks_attributes.dig(index, 'content') || ''
+
+    tag.collection_params.each do |element|
+      checked = current_value.include?("#{element}\n")
+      content << check_box_tag("blocks_attributes[#{index}][content][]", element, checked, id: element.parameterize.underscore)
+      content << label_tag(element.parameterize.underscore, element)
+    end
+
+    content << hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+
+    content.html_safe
   end
 
   def page_image(tag, index)
@@ -35,6 +42,13 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     object
   end
 
+  def page_rich_text(tag, index)
+    @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
+        locals: {
+          index: index,
+          fieldname: field_name_for(tag)
+        })
+  end
 
   def page_text(tag, index)
     default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
@@ -53,29 +67,29 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   # attributes in forms.
   def default_tag_field(tag, index, method = :text_field_tag, options = {})
 
-  label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
-  content     = ''
-  current_value = blocks_attributes.dig(index, 'content') || ''
+    label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
+    content     = ''
+    current_value = blocks_attributes.dig(index, 'content') || ''
 
-  case method
-  when :file_field_tag
-    input_params = {:id => nil, value: current_value}
-    name = "blocks_attributes[#{index}][content]"
+    case method
+    when :file_field_tag
+      input_params = {:id => nil, value: current_value}
+      name = "blocks_attributes[#{index}][content]"
 
-    if options.delete(:multiple)
-      input_params.merge!(:multiple => true)
-      name << '[]'
+      if options.delete(:multiple)
+        input_params.merge!(:multiple => true)
+        name << '[]'
+      end
+
+      content << @template.send(method, name, input_params)
+      content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
+    else
+      options[:class] = 'form-control'
+      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
     end
+    content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+    content.prepend(@template.label_tag(label))
 
-    content << @template.send(method, name, input_params)
-    content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
-  else
-    options[:class] = 'form-control'
-    content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
+    content.html_safe
   end
-  content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
-  content.prepend(@template.label_tag(label))
-
-  content.html_safe
-end
 end
