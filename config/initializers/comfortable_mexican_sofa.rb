@@ -136,3 +136,4 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 
 require 'comfortable_mexican_sofa/extensions/tag'
 require 'comfortable_mexican_sofa/extensions/tags/page_image'
+require 'comfortable_mexican_sofa/extensions/tags/collection_check_boxes'
