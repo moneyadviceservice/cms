@@ -48,5 +48,18 @@ module UI::Pages
     element :links_to_research, '#blocks_attributes_3_content'
     element :contact_details, '#blocks_attributes_4_content'
     element :year_of_publication, '#blocks_attributes_5_content'
+
+    element :saving, 'input[value="Saving"]'
+    element :financial_capability, 'input[value="Financial Capability"]'
+    element :financial_education, 'input[value="Financial Education"]'
+    element :insurance_and_protection, 'input[value="Insurance and Protection"]'
+
+    element :united_kingdom, 'input[value="United Kingdom"]'
+    element :usa, 'input[value="USA"]'
+    element :scotland, 'input[value="Scotland"]'
+
+    element :parents_families, 'input[value="Parents / Families"]'
+    element :children, 'input[value="Children (3-11)"]'
+    element :young_people, 'input[value="Young People (12-16)"]'
   end
 end

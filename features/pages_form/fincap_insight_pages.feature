@@ -20,6 +20,15 @@ Feature: Building Insight Pages
       | links_to_research   | http://foo          |
       | contact_details     | call Chuck Norris   |
       | year_of_publication | 1066                |
+    And I check
+      | FIELD               | VALUE                |
+      | topics              | saving               |
+      | topics              | financial_capability |
+      | country_of_delivery | united_kingdom       |
+      | country_of_delivery | usa                  |
+      | client_groups       | parents_families     |
+      | client_groups       | children             |
+
     And I save and return to the homepage
     And when I click the "Fixing family finances" page
     Then I should see the fields filled with the content
@@ -29,3 +38,16 @@ Feature: Building Insight Pages
       | links_to_research   | http://foo          |
       | contact_details     | call Chuck Norris   |
       | year_of_publication | 1066                |
+    And I should see the checkbox fields with the value
+      | FIELD                    | VALUE     |
+      | saving                   | checked   |
+      | financial_capability     | checked   |
+      | financial_education      | unchecked |
+      | insurance_and_protection | unchecked |
+      | united_kingdom           | checked   |
+      | usa                      | checked   |
+      | scotland                 | unchecked |
+      | scotland                 | unchecked |
+      | parents_families         | checked   |
+      | children                 | checked   |
+      | young_people             | unchecked |
