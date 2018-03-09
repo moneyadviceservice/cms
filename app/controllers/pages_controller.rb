@@ -12,6 +12,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def new
+    @blocks_attributes = @page.blocks_attributes
   end
 
   def create

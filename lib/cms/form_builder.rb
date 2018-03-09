@@ -1,4 +1,5 @@
-class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
+class Cms::FormBuilder < ActionView::Helpers::FormBuilder
+  include ActionView::Helpers::FormTagHelper
 
   def page_rich_text(tag, index)
     @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
@@ -28,6 +29,22 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
     markup.html_safe
   end
 
+  private
+
+  def blocks_attributes
+    object
+  end
+
+
+  def page_text(tag, index)
+    default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
+  end
+
+  def field_name_for(tag)
+    tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
+  end
+
+
   # This is overriding comfy with an almost identical method, just that the
   # name attributes are different - "blocks_attributes[#{index}]" instead of
   # "#{fieldname}[blocks_attributes][#{index}]".
@@ -37,14 +54,8 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
   def default_tag_field(tag, index, method = :text_field_tag, options = {})
 
   label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
-  css_class   = tag.class.to_s.demodulize.underscore
   content     = ''
-
-  # ACHTUNG, HACKY! - looks for the instance variable @blocks_attributes in the view to retrieve the current content
-  blocks_attributes = @template.instance_variable_get('@blocks_attributes')
-  current_value = Array(blocks_attributes).find do |block_attributes|
-    block_attributes[:identifier] == tag.identifier.to_s
-  end.try(:[], :content)
+  current_value = blocks_attributes.dig(index, 'content') || ''
 
   case method
   when :file_field_tag
@@ -63,9 +74,8 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
     content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
   end
   content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+  content.prepend(@template.label_tag(label))
 
-  form_group :label => {:text => label} do
-    content.html_safe
-  end
+  content.html_safe
 end
 end
