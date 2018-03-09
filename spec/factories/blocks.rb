@@ -17,7 +17,18 @@ FactoryGirl.define do
     end
 
     trait :annuity_content do
+      identifier { 'content' }
       content { 'What does annuity mean?' }
+    end
+
+    trait :redundancy_overview do
+      identifier { 'overview' }
+      content { 'redundancy overview' }
+    end
+
+    trait :raw_cta_text_content do
+      identifier { 'raw_cta_text' }
+      content { 'random content' }
     end
   end
 end
