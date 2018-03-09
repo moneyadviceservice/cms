@@ -48,14 +48,13 @@ When(/^I edit the page "([^"]*)"$/) do |title|
   page.first(:link, title).click
 end
 
-When(/^I fill in$/) do |table|  # table is a Cucumber::Core::Ast::DataTable
+When(/^I fill in$/) do |table|
   table.rows.each do |row|
     edit_page.send(row[0]).set(row[1])
   end
 end
 
 When(/^I check$/) do |table|
-  # table is a Cucumber::Core::Ast::DataTable
   table.rows.each do |row|
     check(edit_page.send(row[1]).value)
   end
@@ -81,7 +80,6 @@ When(/^when I click the "([^"]*)" page$/) do |title|
 end
 
 Then(/^I should see the fields filled with the content$/) do |table|
-  # table is a Cucumber::Core::Ast::DataTable
   table.rows.each do |row|
     expect(edit_page.send(row[0]).value).to eq(row[1])
   end
