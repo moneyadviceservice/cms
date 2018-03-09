@@ -43,4 +43,29 @@ describe Cms::FormBuilder do
       expect(subject.page_image(tag, 0)).to match(/button.*Remove.*button/)
     end
   end
+
+  describe '#collection_check_boxes' do
+    let(:identifier) { 'topics' }
+    let(:page) { Comfy::Cms::Page.new }
+    let(:tag) do
+      ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new.tap do |pi|
+        pi.blockable = page
+        pi.identifier = identifier
+        pi.params = ['param1, param2']
+      end
+    end
+
+    it 'adds labels for each checkbox' do
+      expect(subject.collection_check_boxes(tag, 0)).to match(/label.*>param1<.*label/)
+      expect(subject.collection_check_boxes(tag, 0)).to match(/label.*>param2<.*label/)
+    end
+
+    it 'adds checkbox input' do
+      expect(subject.collection_check_boxes(tag, 0)).to match(/input.*checkbox/)
+    end
+
+    it 'adds hidden input for identifier' do
+      expect(subject.collection_check_boxes(tag, 0)).to match(/input.*hidden.*topics/)
+    end
+  end
 end
