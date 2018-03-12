@@ -16,7 +16,7 @@ RSpec.describe API::DocumentsController, type: :request do
   let!(:insight_page4) { create(:insight_page_titled_annuity, insight_page_params) }
   let!(:insight_page5) { create(:insight_page_titled_annuity2, insight_page_params) }
   let!(:insight_page6) { create(:insight_page_about_annuity, insight_page_params) }
-  let!(:insight_page7) { create(:insight_page_with_overview_block, insight_page_params) }
+  let!(:insight_page7) { create(:insight_page_with_lotsa_blocks, insight_page_params) }
   let!(:insight_page8) { create(:insight_page_with_raw_cta_text_block, insight_page_params) }
   let!(:review_page1) { create(:page, site: site, layout: review_layout) }
 
@@ -67,6 +67,7 @@ RSpec.describe API::DocumentsController, type: :request do
             expect(params[:keyword]).to be_in(
               documents.first["blocks"].first["content"]
             )
+            expect(documents.count).to eq 1
           end
         end
 

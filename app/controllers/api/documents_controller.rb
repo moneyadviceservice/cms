@@ -36,7 +36,7 @@ module API
         @documents = @documents
           .joins(:blocks)
           .where('comfy_cms_blocks.identifier' => BLOCKS_TO_SEARCH)
-          .where('comfy_cms_pages.label LIKE ? OR comfy_cms_blocks.content LIKE ?', "%#{keyword}%", "%#{keyword}%")
+          .where('comfy_cms_pages.label LIKE ? OR comfy_cms_blocks.content LIKE ?', "%#{keyword}%", "%#{keyword}%").uniq
       end
     end
 
