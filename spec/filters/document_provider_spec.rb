@@ -1,16 +1,12 @@
 RSpec.describe DocumentProvider do
-  subject { described_class.new(site, document_type, keyword)}
+  subject { described_class.new(site, document_type, keyword, filters)}
   let!(:site) do
     create(:site, path: 'en', locale: 'en', is_mirrored: true)
   end
 
   let(:document_type) { nil }
   let(:keyword) { nil }
-
-  # let(:response_body) { JSON.load(response.body) }
-  # let(:documents) { response_body['documents'] }
-  # let(:meta_data) { response_body['meta'] }
-  # let(:url) { '/api/en/documents' }
+  let(:filters) { nil }
 
   let(:insight_page_params) { {site: site, layout: insight_layout } }
   
