@@ -10,10 +10,12 @@ RSpec.describe API::DocumentsController, type: :request do
     it 'returns all documents' do
       expect(DocumentProvider)
         .to receive(:new)
-        .with(site, 'insight', 'insurance')
+        .with(site, 'insight', 'insurance', nil)
         .and_return(document_provider)
 
-      expect(document_provider).to receive(:retrieve).and_return(documents)
+      expect(document_provider)
+        .to receive(:retrieve)
+        .and_return(documents)
 
       get "/api/en/documents?document_type=insight&keyword=insurance"
     end
