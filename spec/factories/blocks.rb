@@ -26,6 +26,16 @@ FactoryGirl.define do
       content { 'redundancy overview' }
     end
 
+    trait :redundancy_content do
+      identifier { 'content' }
+      content { 'redundancy content' }
+    end
+
+    trait :redundancy_topic do
+      identifier { 'topic' }
+      content { 'redundancy topic' }
+    end
+
     trait :raw_cta_text_content do
       identifier { 'raw_cta_text' }
       content { 'random content' }

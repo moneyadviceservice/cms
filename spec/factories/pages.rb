@@ -85,11 +85,13 @@ FactoryGirl.define do
       end
     end
 
-    factory :insight_page_with_overview_block do
+    factory :insight_page_with_lotsa_blocks do
       site { create :site, identifier: 'test-documents'}
-      label 'Page with overview block'
+      label 'Redundancy overview'
       after(:create) do |page|
         create :block, :redundancy_overview, blockable: page
+        create :block, :redundancy_content, blockable: page
+        create :block, :redundancy_topic, blockable: page
       end
     end
 
