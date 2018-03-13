@@ -51,6 +51,7 @@ end
 
 group :test do
   gem 'aruba', '~> 0.14.5'
+  gem 'brakeman', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
