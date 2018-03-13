@@ -5,14 +5,17 @@ FactoryGirl.define do
     association :blockable, factory: :page
 
     trait :debt_content do
+      identifier { 'content' }
       content { 'debt' }
     end
 
     trait :pension_content do
+      identifier { 'content' }
       content { 'pension' }
     end
 
     trait :financial_wellbeing_content do
+      identifier { 'content' }
       content { 'Financial well being: the employee view' }
     end
 
@@ -39,6 +42,26 @@ FactoryGirl.define do
     trait :raw_cta_text_content do
       identifier { 'raw_cta_text' }
       content { 'random content' }
+    end
+
+    trait :working_age_client_group do
+      identifier { 'client_groups' }
+      content { 'Working age (18 - 65)' }
+    end
+
+    trait :young_adults_client_group do
+      identifier { 'client_groups' }
+      content { 'Young adults (17 - 24)' }
+    end
+
+    trait :saving_topic do
+      identifier { 'topic' }
+      content { 'Saving' }
+    end
+
+    trait :published_by_uk do
+      identifier { 'country_of_delivery' }
+      content { 'United Kingdom' }
     end
   end
 end
