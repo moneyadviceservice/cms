@@ -40,57 +40,62 @@ FactoryGirl.define do
       end
     end
 
-    factory :insight_page_about_debt do
+    factory :page_abt_debt_and_stress do
       site { create :site, identifier: 'test-documents'}
       label 'Debt, stress and pay levels'
       after(:create) do |page|
-        create :block, :debt_content, identifier: 'content', blockable: page
+        create :block, :debt_content, blockable: page
+        create :block, :working_age_client_group, blockable: page
+      end
+    end
+
+    factory :uk_study_about_work_and_stress do
+      site { create :site, identifier: 'test-documents'}
+      label 'Debt, stress and pay levels in the UK'
+      after(:create) do |page|
+        create :block, :debt_content, blockable: page
+        create :block, :working_age_client_group, blockable: page
+        create :block, :saving_topic, blockable: page
+        create :block, :published_by_uk, blockable: page
+
       end
     end
 
     factory :insight_page_about_pensions do
       site { create :site, identifier: 'test-documents'}
       after(:create) do |page|
-        create :block, :pension_content, identifier: 'content', blockable: page
+        create :block, :pension_content, blockable: page
       end
     end
 
-    factory :insight_page_about_financial_wellbeing do
+    factory :insight_page_titled_pensions do
+      site { create :site, identifier: 'test-documents'}
+      label 'pensions'
+      after(:create) do |page|
+        create :block, :debt_content, blockable: page
+      end
+    end
+
+    factory :insight_page do
       site { create :site, identifier: 'test-documents'}
       after(:create) do |page|
-        create :block, :financial_wellbeing_content, identifier: 'content', blockable: page
+        create :block, :financial_wellbeing_content, blockable: page
       end
     end
 
-    factory :insight_page_about_annuity do
+    factory :insight_page_titled_annuities do
       site { create :site, identifier: 'test-documents'}
-      after(:create) do |page|
-        create :block, :annuity_content, blockable: page
-      end
-    end
-
-    factory :insight_page_titled_annuity do
-      site { create :site, identifier: 'test-documents'}
-      label 'annuity'
-      after(:create) do |page|
-        create :block, identifier: 'content', blockable: page
-      end
-    end
-
-    factory :insight_page_titled_annuity2 do
-      site { create :site, identifier: 'test-documents'}
-      label 'Page about annuity stuff'
+      label 'Annuities'
       after(:create) do |page|
         create :block, identifier: 'content', blockable: page
       end
     end
 
-    factory :insight_page_with_lotsa_blocks do
+    factory :insight_page_with_overview_block do
       site { create :site, identifier: 'test-documents'}
-      label 'Redundancy overview'
+      label 'Overview'
       after(:create) do |page|
         create :block, :redundancy_overview, blockable: page
-        create :block, :redundancy_content, blockable: page
         create :block, :redundancy_topic, blockable: page
       end
     end
@@ -100,6 +105,14 @@ FactoryGirl.define do
       label 'Page with block other than content or identifier'
       after(:create) do |page|
         create :block, :raw_cta_text_content, blockable: page
+      end
+    end
+
+    factory :young_adults_page do
+      site { create :site, identifier: 'test-documents'}
+      label 'Debt about young adults and stress'
+      after(:create) do |page|
+        create :block, :young_adults_client_group, blockable: page
       end
     end
   end
