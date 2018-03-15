@@ -14,7 +14,7 @@ module API
 
     api :GET, '/:locale/categories/:id'
     param :locale, /[en|cy]/, required: true
-    param :id, :number, required: true
+    param :id, String, required: true
     def show
       @category = Comfy::Cms::Category.find_by(label: params[:id])
       render json: @category, scope: locale
