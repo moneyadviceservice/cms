@@ -27,6 +27,26 @@ FactoryGirl.define do
       identifier 'corporate'
     end
 
+    trait :news do
+      identifier 'news'
+    end
+
+    trait :action_plan do
+      identifier 'action_plan'
+    end
+
+    trait :universal_credit do
+      identifier 'universal_credit'
+    end
+
+    trait :home_page do
+      identifier 'home_page'
+    end
+
+    trait :footer do
+      identifier 'footer'
+    end
+
     trait :nested do
       label 'Nested Layout'
       identifier 'nested'

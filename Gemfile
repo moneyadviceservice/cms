@@ -2,6 +2,7 @@ source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
 
 gem 'active_model_serializers'
+gem 'algoliasearch'
 gem 'autoprefixer-rails'
 gem 'azure', '0.7.7'
 gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
@@ -16,8 +17,8 @@ gem 'fog'
 gem 'google-api-client', '0.7.1'
 gem 'httparty', '~> 0.13.7'
 gem 'jbuilder', '~> 2.0'
-# Used in comfy. pegging version fixes asset pipeline error.
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
+# Used in comfy. pegging version fixes asset pipeline error.
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'legato', '0.4.0'
@@ -35,7 +36,6 @@ gem 'reverse_markdown'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
-
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -69,6 +69,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'ruby-prof', require: false
+  gem 'terminal-table', require: false
   gem 'valid_attribute', require: false
 end
 

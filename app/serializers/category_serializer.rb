@@ -7,8 +7,6 @@ class CategorySerializer < ActiveModel::Serializer
   has_many :category_promos
   has_many :links, serializer: CategoryLinkSerializer
 
-  private
-
   def images
     {
       small: small_image_url,
