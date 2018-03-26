@@ -48,6 +48,7 @@ group :development do
 end
 
 group :test do
+  gem 'brakeman', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
