@@ -70,6 +70,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'ruby-prof', require: false
+  gem 'terminal-table', require: false
   gem 'valid_attribute', require: false
 end
 
