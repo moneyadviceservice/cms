@@ -4,11 +4,14 @@ ENV['RAILS_ROOT'] = File.expand_path('../../../', __FILE__)
 require 'cucumber/rails'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'aruba/cucumber'
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: true, inspector: true, window_size: [2048, 1536])
+  Capybara::Poltergeist::Driver.new(
+    app, js_errors: true, inspector: true, window_size: [2048, 1536]
+  )
 end
 
 Capybara.javascript_driver = :poltergeist

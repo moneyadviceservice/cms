@@ -1,3 +1,13 @@
+Given(/^I have the category$/) do |table|
+  category = build(:category)
+
+  table.rows.each do |row|
+    category.send("#{row[0]}=", row[1])
+  end
+
+  category.save!
+end
+
 Given(/^I have an article with(out)? categories$/) do |uncategorized|
   cms_site
   cms_layout
