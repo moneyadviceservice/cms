@@ -1,13 +1,17 @@
 module Indexers
   class Base
-    attr_reader :collection, :adapter, :index_name
+    attr_reader :collection, :adapter
+    INDEX_NAME = 'pages'.freeze
 
     def initialize(collection:, adapter:, adapter_namespace: Indexers::Adapter)
       @collection = collection
-      @index_name = "#{self.class.name.demodulize.downcase.pluralize}"
       @adapter = adapter_namespace.const_get(adapter.to_s.capitalize).new(
         index_name: index_name
       )
+    end
+
+    def index_name
+      INDEX_NAME
     end
 
     def index

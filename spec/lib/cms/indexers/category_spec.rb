@@ -1,5 +1,5 @@
 RSpec.describe Indexers::Category do
-  it_behaves_like 'an indexer', 'categories'
+  it_behaves_like 'an indexer', 'pages'
 
   subject(:category_indexer) do
     described_class.new(collection: collection, adapter: adapter)

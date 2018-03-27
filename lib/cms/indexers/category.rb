@@ -1,11 +1,11 @@
 module Indexers
   class Category < Base
-		LOCALES = %w[en cy]
+    LOCALES = %w(en cy)
 
     def objects
-    	collection.map do |category|
-    	  LOCALES.map { |locale| add_category(category, locale: locale) }
-    	end.flatten
+      collection.map do |category |
+        LOCALES.map { |locale| add_category(category, locale: locale)  }
+      end.flatten
     end
 
     private
