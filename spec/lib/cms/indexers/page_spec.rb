@@ -13,19 +13,23 @@ RSpec.describe Indexers::Page do
         create(:page,
                label: 'Financial well being',
                slug: 'financial-well-being',
-               meta_description: 'description',
+               meta_description: 'meta description',
                published_at: Time.zone.today,
-               layout: create(:layout, :article)
+               layout: create(:layout, :article),
+               blocks: [
+                 create(:block, processed_content: '<p>some content</p>')
+               ]
               )
       ]
     end
 
-    it 'returns objects to index' do
+    it 'index pages' do
       expect(subject.objects).to eq([
         {
           objectID: '/en/articles/financial-well-being',
           title: 'Financial well being',
-          description: 'description',
+          description: 'meta description',
+          content: '<p>some content</p>',
           published_at: Time.zone.today
         }
       ])
