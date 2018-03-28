@@ -1,3 +1,5 @@
+require 'terminal-table'
+
 module Indexers
   module Adapter
     class Local < Base
@@ -5,7 +7,6 @@ module Indexers
       STYLE = { width: 100 }
 
       def create_or_update(objects)
-        require 'terminal-table' # respect the Bundler development group
         @table = Terminal::Table.new(
           title: "Index: #{index_name} - #{objects.size} number of indices",
           headings: HEADINGS,

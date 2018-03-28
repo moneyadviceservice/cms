@@ -34,6 +34,7 @@ gem 'rails', '4.1.16'
 gem 'remotipart', '~> 1.2'
 gem 'reverse_markdown'
 gem 'sass-rails', '~> 4.0.3'
+gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 group :development do
@@ -69,7 +70,6 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.0'
   gem 'rubocop', require: false
   gem 'ruby-prof', require: false
-  gem 'terminal-table', require: false
   gem 'valid_attribute', require: false
 end
 
