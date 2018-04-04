@@ -15,7 +15,7 @@ module API
         params[:blocks]
       ).retrieve
 
-      render json: documents, meta: { results: documents.count }, root: 'documents'
+      render json: documents, meta: { results: documents.size }, root: 'documents'
     end
   end
 end
