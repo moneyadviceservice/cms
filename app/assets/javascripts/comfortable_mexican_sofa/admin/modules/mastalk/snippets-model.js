@@ -14,7 +14,10 @@ define([], function () {
     videoYoutube: '$~youtube_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
     videoBrightcove: '$~brightcove_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
     videoVimeo: '$~vimeo_video\r\nVIDEO_ID\r\nA title for the video\r\n~$',
-    costCalculator: '$~cost-calc\r\nCALCULATOR_ID\r\n~$'
+    costCalculator: '$~cost-calc\r\nCALCULATOR_ID\r\n~$',
+
+    // FinCap Specific
+    fincap_feedback: '$fincap_feedback\r\nEMAIL_ADDRESS\r\n$'
   };
 
   return {
