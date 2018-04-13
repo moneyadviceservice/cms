@@ -108,6 +108,9 @@ define([
     this.editorLib.editor.use(scribePluginMastalk('promoBlock'));
     this.editorLib.editor.use(scribePluginMastalk('costCalculator'));
 
+    // FinCap Specific
+    this.editorLib.editor.use(scribePluginMastalk('fincap_feedback'));
+
     this.setupMarkdownContentResize();
     this._initialisedSuccess(initialised);
   };
