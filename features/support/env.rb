@@ -4,6 +4,7 @@ ENV['RAILS_ROOT'] = File.expand_path('../../../', __FILE__)
 require 'cucumber/rails'
 require 'capybara/rails'
 require 'capybara/poltergeist'
+require 'aruba/cucumber'
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
@@ -19,3 +20,7 @@ Capybara.ignore_hidden_elements = false
 World(FactoryGirl::Syntax::Methods)
 
 DatabaseCleaner.strategy = :truncation
+
+Aruba.configure do |config|
+  config.command_runtime_environment = { 'INDEXERS_ADAPTER' => 'local' }
+end
