@@ -18,9 +18,5 @@ module Clockwork
   every(1.day, 'publish_scheduled_pages.job', at: '04:00') do
     ::PublishScheduledPagesTask.run
   end
-
-  every(1.day, 'index_database.job', at: '05:00') do
-    adapter = ENV.fetch('INDEXERS_ADAPTER')
-    ::IndexDatabaseTask.new(adapter).run
-  end
+  
 end
