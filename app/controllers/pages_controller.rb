@@ -72,13 +72,22 @@ class PagesController < Comfy::Admin::Cms::PagesController
     # First change state if needed. We do a non saving event so we can access
     # the dirty logging in the content registers.
     @page.update_state(params[:state_event]) if params[:state_event]
+    blocks_attributes = params[:blocks_attributes]
 
     # We need to look at the current state of the page to know if we're updating
     # current or alternate content. This may have changed due to the state event.
     if updating_alternate_content?
-      AlternatePageBlocksRegister.new(@page, author: current_user, new_blocks_attributes: params[:blocks_attributes]).save!
+      AlternatePageBlocksRegister.new(
+        @page,
+        author: current_user,
+        new_blocks_attributes: blocks_attributes
+      ).save!
     else
-      PageBlocksRegister.new(@page, author: current_user, new_blocks_attributes: params[:blocks_attributes]).save!
+      PageBlocksRegister.new(
+        @page,
+        author: current_user,
+        new_blocks_attributes: blocks_attributes
+      ).save!
     end
 
     # Now save any changes to the page on attributes other than content (assignment has been
