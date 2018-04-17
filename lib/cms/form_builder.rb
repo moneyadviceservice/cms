@@ -16,6 +16,17 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     content.html_safe
   end
 
+  def simple_component(tag, index)
+    default_tag_field(
+      tag,
+      index,
+      :text_area_tag,
+      placeholder: tag.params,
+      class: tag.identifier,
+      rows: 4
+    )
+  end
+
   def page_image(tag, index)
     markup = <<-eos
       <div class="form-group form-image"
@@ -84,8 +95,8 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
       content << @template.send(method, name, input_params)
       content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
     else
-      options[:class] = 'form-control'
-      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
+      options[:class] ||= 'form-control'
+      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.gsub(/\n/, ''), options)
     end
     content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
     content.prepend(@template.label_tag(label))
