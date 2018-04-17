@@ -18,6 +18,10 @@ Given(/^I have an insight page layout$/) do
       {{ cms:page:links_to_research }}
       {{ cms:page:contact_details }}
       {{ cms:page:year_of_publication }}
+      {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+      {{ cms:page:country_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+      {{ cms:page:data_type:collection_check_boxes/Quantitative, Qualitative }}
     CONTENT
   )
 end
@@ -44,9 +48,25 @@ When(/^I edit the page "([^"]*)"$/) do |title|
   page.first(:link, title).click
 end
 
-When(/^I fill in$/) do |table|  # table is a Cucumber::Core::Ast::DataTable
+When(/^I fill in$/) do |table|
   table.rows.each do |row|
     edit_page.send(row[0]).set(row[1])
+  end
+end
+
+When(/^I check$/) do |table|
+  table.rows.each do |row|
+    check(edit_page.send(row[1]).value)
+  end
+end
+
+Then(/^I should see the checkbox fields with the value$/) do |table|
+  table.rows.each do |row|
+    if row[1] == 'checked'
+      expect(edit_page.send(row[0])).to be_checked
+    else
+      expect(edit_page.send(row[0])).not_to be_checked
+    end
   end
 end
 
@@ -60,7 +80,6 @@ When(/^when I click the "([^"]*)" page$/) do |title|
 end
 
 Then(/^I should see the fields filled with the content$/) do |table|
-  # table is a Cucumber::Core::Ast::DataTable
   table.rows.each do |row|
     expect(edit_page.send(row[0]).value).to eq(row[1])
   end
