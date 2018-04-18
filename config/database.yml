@@ -27,7 +27,7 @@ production:
   encoding: utf8
   reconnect: true
   strict: false
-  url: <%= ENV["MAS_CMS_DATABASE_URL"] %>
+  url: <%= ENV["MAS_FINCAP_CMS_DATABASE_URL"] %>
 
 
 # We have this database configuration because we use the gem `js-routes` to allow us to access Rails routes from
