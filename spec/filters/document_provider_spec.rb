@@ -199,13 +199,13 @@ RSpec.describe DocumentProvider do
       let!(:page_with_3_filter_types_and_keyword) { create(:uk_study_about_work_and_stress, site: site, layout: insight_layout) }
       let!(:page_with_keyword) { create(:young_adults_page, site: site, layout: insight_layout) }
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
-      
+
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2, filter3] }
       let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
       let(:filter2) { {identifier: 'topic', value: 'Saving'} }
-      let(:filter3) { {identifier: 'country_of_delivery', value: 'United Kingdom'} }
-      
+      let(:filter3) { {identifier: 'countries_of_delivery', value: 'United Kingdom'} }
+
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(1)
         expect(subject).to match_array([page_with_3_filter_types_and_keyword])
@@ -216,12 +216,12 @@ RSpec.describe DocumentProvider do
       let!(:page_with_3_filter_types_and_keyword) { create(:page_abt_debt_and_stress, site: site, layout: insight_layout) }
       let!(:page_with_a_diff_filter_and_keyword) { create(:young_adults_page, site: site, layout: insight_layout) }
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
-      
+
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2] }
       let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
       let(:filter2) { {identifier: 'client_groups', value: 'Young adults (17 - 24)'} }
-      
+
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(2)
         expect(subject).to match_array(
