@@ -19,6 +19,6 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every :day, at: '5:00am' do
+every 4.days, at: '5:00am' do
   command "cd /srv/cms/ && source /etc/mas/environment && RAILS_ENV=production bundle exec rake search:index"
 end
