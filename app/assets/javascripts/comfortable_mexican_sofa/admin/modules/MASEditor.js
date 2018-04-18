@@ -110,6 +110,7 @@ define([
 
     // FinCap Specific
     this.editorLib.editor.use(scribePluginMastalk('fincap_feedback'));
+    this.editorLib.editor.use(scribePluginMastalk('fincap_primary_button'));
 
     this.setupMarkdownContentResize();
     this._initialisedSuccess(initialised);
