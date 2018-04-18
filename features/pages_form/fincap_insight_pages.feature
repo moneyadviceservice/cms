@@ -21,13 +21,13 @@ Feature: Building Insight Pages
       | contact_details     | call Chuck Norris   |
       | year_of_publication | 1066                |
     And I check
-      | FIELD               | VALUE                |
-      | topics              | saving               |
-      | topics              | financial_capability |
-      | country_of_delivery | united_kingdom       |
-      | country_of_delivery | usa                  |
-      | client_groups       | parents_families     |
-      | client_groups       | children             |
+      | FIELD                 | VALUE                |
+      | topics                | saving               |
+      | topics                | financial_capability |
+      | countries_of_delivery | united_kingdom       |
+      | countries_of_delivery | usa                  |
+      | client_groups         | parents_families     |
+      | client_groups         | children             |
 
     And I save and return to the homepage
     And when I click the "Fixing family finances" page
