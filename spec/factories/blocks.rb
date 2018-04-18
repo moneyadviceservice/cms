@@ -60,7 +60,7 @@ FactoryGirl.define do
     end
 
     trait :published_by_uk do
-      identifier { 'country_of_delivery' }
+      identifier { 'countries_of_delivery' }
       content { 'United Kingdom' }
     end
   end
