@@ -17,7 +17,8 @@ define([], function () {
     costCalculator: '$~cost-calc\r\nCALCULATOR_ID\r\n~$',
 
     // FinCap Specific
-    fincap_feedback: '$fincap_feedback\r\nEMAIL_ADDRESS\r\n$'
+    fincap_feedback: '$fincap_feedback\r\nEMAIL_ADDRESS\r\n$',
+    fincap_primary_button: '$~fincap_primary_button\r\n[LINK_TEXT](LINK_URL)\r\n~$'
   };
 
   return {

@@ -38,6 +38,8 @@
                 =button_tag('Cost Calculator', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'costCalculator', dough_snippetinserter_context: 'markdown-snippets'})
               %li.menu__item
                 =button_tag('FinCap - Feedback', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'fincap_feedback', dough_snippetinserter_context: 'markdown-snippets'})
+              %li.menu__item
+                =button_tag('FinCap - Primary Button', type: 'button', class: 'menu__action', data: { dough_snippetinserter_trigger: 'fincap_primary_button', dough_snippetinserter_context: 'markdown-snippets'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
     .toolbar__item-group.toolbar__item-group--html{data: {dough_maseditor_html_toolbar: true}}
@@ -99,6 +101,8 @@
                 =button_tag('Cost Calculator', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_costCalculator'})
               %li.menu__item
                 =button_tag('FinCap - Feedback', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_fincap_feedback'})
+              %li.menu__item
+                =button_tag('FinCap - Primary Button', type: 'button', class: 'menu__action', data: { 'command-name' => 'mastalk_fincap_primary_button'})
 
           .popover__pointer{:data => {dough_collapsable_pointer: true}}
 
