@@ -51,13 +51,21 @@ describe Cms::FormBuilder do
       ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new.tap do |pi|
         pi.blockable = page
         pi.identifier = identifier
-        pi.params = ['param1, param2']
+        pi.element = 'Saving'
+      end
+    end
+
+    let(:tag_2) do
+      ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new.tap do |pi|
+        pi.blockable = page
+        pi.identifier = identifier
+        pi.element = 'Pension'
       end
     end
 
     it 'adds labels for each checkbox' do
-      expect(subject.collection_check_boxes(tag, 0)).to match(/label.*>param1<.*label/)
-      expect(subject.collection_check_boxes(tag, 0)).to match(/label.*>param2<.*label/)
+      expect(subject.collection_check_boxes(tag, 0)).to match(/label.*>Saving<.*label/)
+      expect(subject.collection_check_boxes(tag_2, 0)).to match(/label.*>Pension<.*label/)
     end
 
     it 'adds checkbox input' do
