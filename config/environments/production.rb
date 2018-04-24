@@ -59,7 +59,7 @@ Rails.application.configure do
   config.action_controller.asset_host = if ENV.has_key?('MAS_CMS_PUBLIC_URL')
                                           ENV['MAS_CMS_PUBLIC_URL']
                                         else
-                                          ENV['MAS_CMS_URL']
+                                          ENV['FINCAP_CMS_URL']
                                         end
 
   # Precompile additional assets.
