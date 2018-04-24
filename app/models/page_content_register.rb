@@ -14,6 +14,7 @@ class PageContentRegister
   # If passed in via params, attributes can be a hash rather than array,
   # so this is just a custom reader to handle that.
   def new_blocks_attributes
+    return [] if @new_blocks_attributes.empty?
     blocks_attributes = if @new_blocks_attributes.is_a?(Hash)
                           @new_blocks_attributes.values
                         else
@@ -27,6 +28,27 @@ class PageContentRegister
     convert_content_to_html(blocks_attributes)
 
     blocks_attributes
+  end
+
+  # Create a revision with the existing blocks data and update the blocks with the new attributes
+  def update_blocks!
+    RevisionRegister.new(page, user: author, blocks_attributes: page.blocks_attributes).save!
+
+    assign_blocks
+    page.save!
+  end
+
+  def assign_blocks
+    non_collection_blocks = new_blocks_attributes.reject do |block|
+      block[:collection]
+    end
+    page.blocks_attributes = non_collection_blocks
+
+    BlocksCollection.new(
+      page: page,
+      non_collection_blocks: non_collection_blocks,
+      new_blocks_attributes: new_blocks_attributes
+    ).update_collections
   end
 
   private

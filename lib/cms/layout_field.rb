@@ -15,7 +15,22 @@
 #
 class Cms::LayoutField
   def self.map(collection)
-    collection.map { |tag| new(tag) }
+    # stags_size = collection.map { |tag| tag.respond_to?(:collection_params) ? tag.collection_params.size : nil }.compact.sum + collection.size
+
+    collection.map do |tag|
+      if tag.respond_to?(:collection_params)
+        tag.collection_params.map do |element|
+          collection_check_boxes = ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new.tap do |collection_check_boxes|
+            collection_check_boxes.identifier = tag.identifier
+            collection_check_boxes.element = element
+          end
+
+          new(collection_check_boxes)
+        end
+      else
+        new(tag)
+      end
+    end.flatten
   end
 
   attr_reader :tag
