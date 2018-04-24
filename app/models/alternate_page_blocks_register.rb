@@ -18,7 +18,7 @@ class AlternatePageBlocksRegister < PageContentRegister
         RevisionRegister.new(page, user: author, blocks_attributes: page.blocks_attributes).save_as_active_revision!
 
         # And then we assign the new attributes to the blocks
-        page.blocks_attributes = new_blocks_attributes
+        assign_blocks
 
         # If it has just transitioned from scheduled, scheduled_on should now be emptied too
         page.scheduled_on = nil if page.state_was == 'scheduled'
@@ -43,12 +43,4 @@ class AlternatePageBlocksRegister < PageContentRegister
     end
   end
 
-  private
-
-  # Create a revision with the existing blocks data and update the blocks with the new attributes
-  def update_blocks!
-    RevisionRegister.new(page, user: author, blocks_attributes: page.blocks_attributes).save!
-    page.blocks_attributes = new_blocks_attributes
-    page.save!
-  end
 end

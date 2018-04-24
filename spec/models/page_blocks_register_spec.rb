@@ -11,28 +11,32 @@ RSpec.describe PageBlocksRegister do
   let(:original_content) { 'original content' }
   let(:scheduled_on) { nil }
   let(:published_revision) { nil }
-  let(:page) { create(:page, site: site, state: state, scheduled_on: scheduled_on) }
-  let!(:block) { create(:block, blockable: page, content: original_content) }
   let(:state) { 'unsaved' }
   let(:author) { create(:user) }
 
-  subject(:page_block_register) { described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes) }
-
-  before do
-    if published_revision.present?
-      page.update_attribute(:active_revision, published_revision)
-    end
-
-    # Reload the page to make it see it's block
-    page.reload
+  subject(:page_block_register) do
+    described_class.new(
+      page,
+      author: author,
+      new_blocks_attributes: new_blocks_attributes
+    )
   end
 
   describe '#save!' do
+    let!(:block) { create(:block, blockable: page, content: original_content) }
+    let(:page) { create(:page, site: site, state: state, scheduled_on: scheduled_on) }
     let(:author) { create(:user) }
     let(:new_content) { 'new content' }
     let(:new_blocks_attributes) { [{ identifier: 'content', content: new_content }] }
 
     before do
+      if published_revision.present?
+        page.update_attribute(:active_revision, published_revision)
+      end
+
+      # Reload the page to make it see it's block
+      page.reload
+
       described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
       page.reload
       block.reload
@@ -181,4 +185,78 @@ RSpec.describe PageBlocksRegister do
     end
   end
 
+  describe '#create_initial_blocks!' do
+    let(:page) { build(:page) }
+
+    before do
+      page_block_register.create_initial_blocks!
+      page.reload
+    end
+
+    context 'when content blocks' do
+      context 'when block has content' do
+        let(:new_blocks_attributes) do
+          [
+            { :identifier => 'content', :content => 'block content' }
+          ]
+        end
+
+        it 'saved page to have a content block' do
+          expect(page.blocks.size).to be(1)
+          expect(page.blocks.first.identifier).to eq('content')
+          expect(page.blocks.first.content).to eq('block content')
+        end
+      end
+
+      context 'when block is empty' do
+        let(:new_blocks_attributes) do
+          [
+            { :identifier => 'content', :content => '' }
+          ]
+        end
+
+        it 'saved page to have a content block' do
+          expect(page.blocks.size).to be(1)
+          expect(page.blocks.first.identifier).to eq('content')
+          expect(page.blocks.first.content).to eq('')
+        end
+      end
+    end
+
+    context 'when non content blocks' do
+      context 'when blocks are empty' do
+        let(:new_blocks_attributes) do
+          [
+            { :identifier => 'content', :content => 'block content' },
+            { :identifier => 'topic', :content => '' },
+            { :identifier => 'client_groups', :content => '' },
+            { :identifier => 'data_types', :content => '' }
+          ]
+        end
+
+        it 'saved page to have a content block' do
+          expect(page.blocks.size).to be(1)
+          expect(page.blocks.first.identifier).to eq('content')
+          expect(page.blocks.first.content).to eq('block content')
+        end
+      end
+
+      context 'when blocks has content' do
+        let(:new_blocks_attributes) do
+          [
+            { :identifier => 'content', :content => 'block content' },
+            { :identifier => 'topic', :content => 'Pension' }
+          ]
+        end
+
+        it 'saved page to have a content block' do
+          expect(page.blocks.size).to be(2)
+          expect(page.blocks.first.identifier).to eq('content')
+          expect(page.blocks.first.content).to eq('block content')
+          expect(page.blocks.last.identifier).to eq('topic')
+          expect(page.blocks.last.content).to eq('Pension')
+        end
+      end
+    end
+  end
 end
