@@ -1,14 +1,5 @@
 Given(/^I have an insight page layout$/) do
-  english_site = Comfy::Cms::Site.find_or_create_by(
-    label: 'en',
-    identifier: 'money-advice-service-en',
-    hostname: 'localhost:3000',
-    path: 'en',
-    locale: 'en',
-    is_mirrored: true
-  )
-
-  english_site.layouts.find_or_create_by(
+  cms_site.layouts.find_or_create_by(
     identifier: 'insight',
     label: 'Insight',
     content:  <<-CONTENT
@@ -27,16 +18,7 @@ Given(/^I have an insight page layout$/) do
 end
 
 Given(/^I have an article page layout setup with components$/) do
-  english_site = Comfy::Cms::Site.find_or_create_by(
-    label: 'en',
-    identifier: 'money-advice-service-en',
-    hostname: 'localhost:3000',
-    path: 'en',
-    locale: 'en',
-    is_mirrored: true
-  )
-
-  english_site.layouts.find_or_create_by(
+  cms_site.layouts.find_or_create_by(
     identifier: 'article',
     label: 'Article',
     content:  <<-CONTENT
