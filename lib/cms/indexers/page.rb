@@ -16,6 +16,7 @@ module Indexers
           objectID: serializer.full_path,
           title: serializer.label,
           description: serializer.meta_description,
+          keywords: page.meta_keywords.to_s.split(', '),
           content: content_for(serializer),
           published_at: serializer.published_at
         }

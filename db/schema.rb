@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202130530) do
+ActiveRecord::Schema.define(version: 20180427145114) do
 
   create_table "category_promos", force: true do |t|
     t.string  "promo_type"
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20170202130530) do
     t.boolean  "suppress_from_links_recirculation",                  default: false
     t.datetime "published_at"
     t.boolean  "supports_amp",                                       default: true
+    t.string   "meta_keywords"
   end
 
   add_index "comfy_cms_pages", ["active_revision_id"], name: "index_comfy_cms_pages_on_active_revision_id", using: :btree
