@@ -61,5 +61,11 @@ module UI::Pages
     element :parents_families, 'input[value="Parents / Families"]'
     element :children, 'input[value="Children (3-11)"]'
     element :young_people, 'input[value="Young People (12-16)"]'
+
+    element :hero_image, '.component_hero_image'
+    element :hero_description, '.component_hero_description'
+    element :cta_links, '.component_cta_links'
+    element :download, '.component_download'
+    element :feedback, '.component_feedback'
   end
 end

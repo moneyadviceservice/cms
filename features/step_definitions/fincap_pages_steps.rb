@@ -1,14 +1,5 @@
 Given(/^I have an insight page layout$/) do
-  english_site = Comfy::Cms::Site.find_or_create_by(
-    label: 'en',
-    identifier: 'money-advice-service-en',
-    hostname: 'localhost:3000',
-    path: 'en',
-    locale: 'en',
-    is_mirrored: true
-  )
-
-  english_site.layouts.find_or_create_by(
+  cms_site.layouts.find_or_create_by(
     identifier: 'insight',
     label: 'Insight',
     content:  <<-CONTENT
@@ -22,6 +13,21 @@ Given(/^I have an insight page layout$/) do
       {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
       {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
       {{ cms:page:data_type:collection_check_boxes/Quantitative, Qualitative }}
+    CONTENT
+  )
+end
+
+Given(/^I have an article page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'article',
+    label: 'Article',
+    content:  <<-CONTENT
+      {{ cms:page:content:rich_text }}
+      {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+      {{ cms:page:hero_description:simple_component/Description }}
+      {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
     CONTENT
   )
 end
