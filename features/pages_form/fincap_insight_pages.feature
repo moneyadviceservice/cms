@@ -28,6 +28,7 @@ Feature: Building Insight Pages
       | countries_of_delivery | usa                  |
       | client_groups         | parents_families     |
       | client_groups         | children             |
+      | data_types            | qualitative          |
 
     And I save and return to the homepage
     And when I click the "Fixing family finances" page
@@ -51,3 +52,5 @@ Feature: Building Insight Pages
       | parents_families         | checked   |
       | children                 | checked   |
       | young_people             | unchecked |
+      | qualitative              | checked   |
+      | quantitative             | unchecked |
