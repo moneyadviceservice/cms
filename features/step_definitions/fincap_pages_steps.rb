@@ -12,7 +12,7 @@ Given(/^I have an insight page layout$/) do
       {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
       {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
       {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
-      {{ cms:page:data_type:collection_check_boxes/Quantitative, Qualitative }}
+      {{ cms:page:data_types:collection_check_boxes/Quantitative, Qualitative }}
     CONTENT
   )
 end
