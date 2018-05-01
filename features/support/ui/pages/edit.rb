@@ -62,6 +62,9 @@ module UI::Pages
     element :children, 'input[value="Children (3-11)"]'
     element :young_people, 'input[value="Young People (12-16)"]'
 
+    element :qualitative, 'input[value="Qualitative"]'
+    element :quantitative, 'input[value="Quantitative"]'
+
     element :hero_image, '.component_hero_image'
     element :hero_description, '.component_hero_description'
     element :cta_links, '.component_cta_links'
