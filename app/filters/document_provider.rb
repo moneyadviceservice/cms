@@ -12,7 +12,7 @@ class DocumentProvider
   end
 
   def retrieve
-    return if filters && filters.count > FILTER_LIMIT
+    return MAS::CMS::Errors::ClientError if filters && filters.count > FILTER_LIMIT
 
     @documents = current_site.pages.published
 

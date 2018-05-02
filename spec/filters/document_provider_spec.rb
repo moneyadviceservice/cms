@@ -234,7 +234,7 @@ RSpec.describe DocumentProvider do
     let(:filters) { (1..27).to_a }
     
     it 'returns nothing' do
-      expect(subject).to be_nil
+      expect(subject).to eq(MAS::CMS::Errors::ClientError)
     end
   end
 end
