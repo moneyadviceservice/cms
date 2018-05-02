@@ -1,4 +1,3 @@
-
 Comfy::Cms::User.create_with(password: 'password', role: 'admin').find_or_create_by!(email: 'user@test.com')
 
 english_site = Comfy::Cms::Site.find_or_create_by(
@@ -205,6 +204,10 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'client_groups',
       content: 'Over-indebted people'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'data_types',
+      content: 'Qualitative'
     )
   ]
 )
