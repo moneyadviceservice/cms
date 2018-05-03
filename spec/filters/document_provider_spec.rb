@@ -11,7 +11,6 @@ RSpec.describe DocumentProvider do
 
   let(:insight_layout) { create :layout, identifier: 'insight' }
   let(:review_layout)  { create :layout, identifier: 'review' }
-  let(:review_layout)  { create :layout, identifier: 'review' }
 
   describe 'no filtering' do
     let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout) }
@@ -25,14 +24,25 @@ RSpec.describe DocumentProvider do
   end
 
   describe 'filter_by_type' do
+    let(:article_layout)  { create :layout, :article }
+
     let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout) }
     let!(:review_page) { create(:page, site: site, layout: review_layout) }
+    let!(:article_page) { create(:page, site: site, layout: article_layout ) }
 
-    let(:document_type) { 'review' }
+    context 'when there is no document_type' do
+      it 'returns all evidence documents' do
+        expect(subject.size).to eq(2)
+        expect(subject).to match_array([insight_page, review_page])
+      end
+    end
 
-    it 'returns all documents of a given type' do
-      expect(subject.size).to eq(1)
-      expect(subject).to match_array([review_page])
+    context 'when there is a document_type' do
+      let(:document_type) { 'review' }
+      it 'returns all documents of the given type' do
+        expect(subject.size).to eq(1)
+        expect(subject).to match_array([review_page])
+      end
     end
   end
 
