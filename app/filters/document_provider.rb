@@ -1,6 +1,7 @@
 class DocumentProvider
   attr_reader :current_site, :document_type, :keyword, :filters
 
+  EVIDENCE_TYPES = %w(insight evaluation review)
   BLOCKS_TO_SEARCH = %w(content overview)
   FILTER_LIMIT = 26
 
@@ -24,10 +25,13 @@ class DocumentProvider
   private
 
   def filter_by_document_type
-    return @documents if document_type.blank?
-
-    @documents = @documents.joins(:layout)
-      .where('comfy_cms_layouts.identifier' => document_type)
+    if document_type.blank?
+      @documents = @documents.joins(:layout)
+        .where('comfy_cms_layouts.identifier' => EVIDENCE_TYPES)
+    else
+      @documents = @documents.joins(:layout)
+        .where('comfy_cms_layouts.identifier' => document_type)
+    end
   end
 
   def filter_by_keyword
