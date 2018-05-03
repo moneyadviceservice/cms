@@ -1,0 +1,69 @@
++------------------------------+------+----------------+------------+------------+------------------+---------------------+
+|                                               Evaluation Prismic Field Structure                                                |
++------------------------------+------+----------------+------------+------------+------------------+---------------------+
+| Field                        | Size | Current format | CMS Format | Mandatory? | Needs Migrating? | Needs Transforming? |
++------------------------------+------+----------------+------------+------------+------------------+---------------------+
+| type                         | 11   | String         |            |            | NO               |                     |
+| tags                         | 2    | Array          |            |            | YES              |                     |
+| lang                         | 5    | String         |            |            | NO               |                     |
+| grouplang                    | 16   | String         |            |            | NO               |                     |
+| title                        | 30   | String         |            |            | YES              |                     |
+| evidence_type                | 10   | String         | Layout     |            | YES              | into Layout table   |
+| new                          | 3    | String         |            |            | NO               |                     |
+| client_groups                | 2    | Array          | Block      |            | YES              |into Block table     |
+| year_of_publication          | 4    | String         | Block      |            | YES              |into Block table     |
+| country_search_filter_group  | 2    | Array          | Block      |            | YES              |into Block table     |
+| country_of_delivery          | 9    | String         | Block      |            | YES              |into Block table     |
+| links_to_research            | 2    | Array          | Block      |            | YES              |into Block table     |
+| contact_details              | 3    | Array          | Block      |            | YES              |into Block table     |
+| topics                       | 2    | Array          | Block      |            | YES              |into Block table     |
+| the_study                    | 2    | Array          | Block      |            | YES              |into Block table     |
+| costs                        | 2    | Array          | Block      |            | YES              |into Block table     |
+| points_to_consider           | 4    | Array          | Block      |            | YES              |into Block table     |
+| key_findings                 | 6    | Array          | Block      |            | YES              |into Block table     |
+| overview                     | 2    | Array          | Block      |            | YES              |into Block table     |
+| programme_theory             | 3    | Boolean        | Block      |            | YES              |into Block table     |
+| measured_outcomes_yes/no     | 3    | Boolean        | Block      |            | YES              |into Block table     |
+| causality                    | 2    | Boolean        | Block      |            | YES              |into Block table     |
+| process_evaluation           | 2    | Boolean        | Block      |            | YES              |into Block table     |
+| value_for_money              | 3    | Boolean        | Block      |            | YES              |into Block table     |
+| programme_delivery           | 2    | Array          | Block      |            | YES              |into Block table     |
+| NEW_measured_outcomes        | 5    | Array          | Block      |            | YES              |into Block table     |
+| description_of_the_programme | 3    | Array          | Block      |            | YES              |into Block table     |
+| what_are_the_outcomes        | 2    | Array          | Block      |            | YES              |into Block table     |
+| NEW_delivery_channel         | 2    | Array          |            |            | YES              |into Block table     |
+| NEW_what_are_the_costs       | 2    | Array          |            |            | YES              |into Block table     |
+| review_sections              | 2    | Array          |            |            |                  |                     |
+| quantitative                 | 3    | Boolean        |            |            |                  |                     |
+| qualitative                  | 3    | Boolean        |            |            |                  |                     |
+| context                      |      | NilClass       |            |            |                  |                     |
++------------------------------+------+----------------+------------+------------+------------------+---------------------+
+
++-----------------------------+------------------------+------------+--|
+|            Evaluation CMS Field Structure                            |
++-----------------------------+------------------------+---------------|
++-----------------------------+------------------------+---------------|
+| PRISMIC Field               | identifier             | CMS Format    |
++-----------------------------+------------------------+---------------|
+| client_groups               | client_groups          |Multiple Blocks|
+| topics                      | topics                 |Multiple Blocks|
+| country_search_filter_group | country_of_delivery    |Multiple Blocks|
+| measured_outcomes           | measured_outcomes      |Multiple Blocks|
+| data types                  | data_types             |Multiple Blocks|
+| programme_delivery          | programme_delivery     |Block -text    |
+| year_of_publication         | year_of_publication    |Block -text    |
+| country_of_delivery         | countries              |Block -text    |
+| links_to_research           | links_to_research      |Block -text    |
+| contact_details             | contact_information    |Block -text    |
+| overview                    | overview               |Block -text    |
+| NEW_delivery_channel        | activities_and_settings|Block -text    |
+| NEW_what_are_the_costs      | content                |Block -content |
+| description_of_theprogramme | content                |Block -content |
+| the_study                   | content                |Block -content |
+| what_are_the_outcomes       | content                |Block -content |
+| points_to_consider          | content                |Block -content |
+| key_findings                | content                |Block -content |
+| context                     | content                |Block -content |
++-----------------------------+------------------------+---------------|
+
+Data types will be: Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money.
