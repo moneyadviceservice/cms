@@ -32,6 +32,13 @@
           = render 'tags/shared/form',                         form: form
           = render 'form_meta_description',                    form: form
           = render 'form_meta_title',                          form: form
+          .form-group
+            .form__label-heading
+              = form.label :meta_keywords
+            .form__input-wrapper
+              = form.text_field :meta_keywords, class: 'form__input form__input--has-icon'
+              %span.form__hint
+                = Comfy::Cms::Page.human_attribute_name(:meta_keywords_description)
           = render 'form_additional_options',                  form: form
 
     = render partial: 'form_blocks'

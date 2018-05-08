@@ -2,6 +2,8 @@ en:
   activerecord:
     attributes:
       comfy/cms/page:
+        meta_keywords: Site search keywords
+        meta_keywords_description: Sentences separated by comma
         raw_heading: Heading
         raw_bullet_1: Bullet 1
         raw_bullet_2: Bullet 2
