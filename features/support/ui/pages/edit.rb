@@ -65,6 +65,10 @@ module UI::Pages
     element :qualitative, 'input[value="Qualitative"]'
     element :quantitative, 'input[value="Quantitative"]'
 
+    element :financial_wellbeing, 'input[value="Financial wellbeing"]'
+    element :financial_capability_mindset,
+            'input[value="Financial capability (mindset)"]'
+
     element :hero_image, '.component_hero_image'
     element :hero_description, '.component_hero_description'
     element :cta_links, '.component_cta_links'

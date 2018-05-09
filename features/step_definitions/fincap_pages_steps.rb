@@ -17,6 +17,29 @@ Given(/^I have an insight page layout$/) do
   )
 end
 
+Given(/^I have an evaluation page layout$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'evaluation',
+    label: 'Evaluation',
+    content: <<-CONTENT
+      {{ cms:page:content:rich_text }}
+      {{ cms:page:overview }}
+      {{ cms:page:countries }}
+      {{ cms:page:links_to_research }}
+      {{ cms:page:contact_information }}
+      {{ cms:page:year_of_publication }}
+      {{ cms:page:activities_and_setting }}
+      {{ cms:page:programme_delivery }}
+      {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+      {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+      {{ cms:page:data_types:collection_check_boxes/Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money }}
+      {{ cms:page:measured_outcomes:collection_check_boxes/Financial wellbeing, Financial behaviour, Financial capability (connection), Financial capability (mindset), Financial capability (Ability) }}
+    CONTENT
+  )
+end
+
+
 Given(/^I have an article page layout setup with components$/) do
   cms_site.layouts.find_or_create_by(
     identifier: 'article',
