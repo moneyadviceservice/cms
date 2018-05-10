@@ -170,6 +170,9 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'links_to_research',
+      processed_content: %{
+        <a href="https://www.cipd.co.uk/Images/financial-well-being-employee-view-report_tcm18-17439.pdf">Financial well-being: the employee view - full report</a>
+      },
       content: <<-CONTENT
         [Financial well-being: the employee view - full report](https://www.cipd.co.uk/Images/financial-well-being-employee-view-report_tcm18-17439.pdf)'
       CONTENT
@@ -244,6 +247,9 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'links_to_research',
+      processed_content: %{
+       <a href="https://masassets.blob.core.windows.net/cms/files/000/000/631/original/MAS_MovingForwardTogether_Report.pdf">Moving forward together: peer support for people with problem debt - full report</a>
+      },
       content: <<-CONTENT
       [Moving forward together: peer support for people with problem debt - full report](https://masassets.blob.core.windows.net/cms/files/000/000/631/original/MAS_MovingForwardTogether_Report.pdf)
       CONTENT
