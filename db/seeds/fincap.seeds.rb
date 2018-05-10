@@ -174,14 +174,14 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-        Context
+Context
 
-        The survey explores employees’ views on attitudes to finances.
-        Stress caused by pay levels, lack of financial awareness or absence of
-        employee benefits can affect work performance.
-        In addition, the perception that their contributions are not being
-        acknowledged can have an impact on employee self-esteem, health and
-        productivity.
+The survey explores employees’ views on attitudes to finances.
+Stress caused by pay levels, lack of financial awareness or absence of
+employee benefits can affect work performance.
+In addition, the perception that their contributions are not being
+acknowledged can have an impact on employee self-esteem, health and
+productivity.
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -199,6 +199,12 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
+      processed_content: %{
+        <p>
+          MASPD (in partnership with Company S.A)
+          T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
+        </p>
+      },
       content: <<-CONTENT
         MASPD (in partnership with Company S.A)
         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
@@ -244,21 +250,21 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-      Context
+Context
 
-      Research has found that there remains a real stigma around seeking advice
-      for debt, with many people feeling that doing so means that they have
-       ‘failed’, but that talking about debt problems is also cathartic.
-      This suggests there is potential value in peer-support for over-indebted
-      people, based on models in other fields such as weight loss.
+Research has found that there remains a real stigma around seeking advice
+for debt, with many people feeling that doing so means that they have
+ ‘failed’, but that talking about debt problems is also cathartic.
+This suggests there is potential value in peer-support for over-indebted
+people, based on models in other fields such as weight loss.
 
-      Peer support is usually intended to encourage behaviour change and is
-      provided by peer mentors (those who have led or given support within
-      peer support programmes).
+Peer support is usually intended to encourage behaviour change and is
+provided by peer mentors (those who have led or given support within
+peer support programmes).
 
-      Such innovation, however, needs an evidence base, so research was needed
-      to explore the peer-support landscape and establish how it helps people
-      to resolve their difficulties and change their behaviour.
+Such innovation, however, needs an evidence base, so research was needed
+to explore the peer-support landscape and establish how it helps people
+to resolve their difficulties and change their behaviour.
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -276,6 +282,7 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
+      processed_content: '<p>peersupport@moneyadviceservice.org.uk</p>',
       content: <<-CONTENT
         peersupport@moneyadviceservice.org.uk
       CONTENT
@@ -317,14 +324,14 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-      The trackers are all available as free smartphone apps (although at the
-      time of writing, Toshl is discontinued). Overall user numbers of the apps
-      are not given. However, 797 customers entered into the project (by
-      completing a first questionnaire and downloading an app) from across
-      the UK between July and November 2016.
+The trackers are all available as free smartphone apps (although at the
+time of writing, Toshl is discontinued). Overall user numbers of the apps
+are not given. However, 797 customers entered into the project (by
+completing a first questionnaire and downloading an app) from across
+the UK between July and November 2016.
 
-      The intervention was undertaken in participants’ own time as part their
-      daily lives.
+The intervention was undertaken in participants’ own time as part their
+daily lives.
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -381,6 +388,10 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
+      processed_content: %{
+      <p>MASPD (in partnership with Company S.A)
+         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234</p>
+      },
       content: <<-CONTENT
         MASPD (in partnership with Company S.A)
         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
@@ -397,3 +408,8 @@ english_site.pages.create!(
   ]
 )
 
+Comfy::Cms::Block.all.each do |block|
+  block.update(
+    processed_content: Mastalk::Document.new(block.content.strip).to_html
+  )
+end
