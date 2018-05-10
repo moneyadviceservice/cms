@@ -369,6 +369,10 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'links_to_research',
+      processed_content: %{
+        <a href='https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf'>Looking after the pennies - full report</a>
+        <a href='https://fincap-two.cdn.prismic.io/fincap-two%2F0efeee0b-252a-4b13-b7f5-d05e66bdc6aa_final+report+-+royal+london+fincap.pptx'>Follow-up report</a>
+      },
       content: <<-CONTENT
       [Looking after the pennies - full report](https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf)
 
@@ -377,7 +381,10 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
-      content: 'MASPD (in partnership with Company S.A)'
+      content: <<-CONTENT
+        MASPD (in partnership with Company S.A)
+        T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
+      CONTENT
     ),
     Comfy::Cms::Block.new(
       identifier: 'measured_outcomes',
