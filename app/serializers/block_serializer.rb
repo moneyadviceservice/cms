@@ -2,9 +2,14 @@ require 'active_model_serializers'
 
 class BlockSerializer < ActiveModel::Serializer
   attributes :identifier, :content, :created_at, :updated_at
+  CONTENT_IDENTIFIER = 'content'
 
   def content
-    block = BlocksRetriever.new(object, scope).retrieve || return
+    block = if object.identifier == CONTENT_IDENTIFIER
+              BlocksRetriever.new(object, scope).retrieve || return
+            else
+              object
+            end
 
     if block[:processed_content].present?
       Rails.logger.info("Cache HIT for #{page.slug}")
