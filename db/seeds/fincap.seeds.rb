@@ -48,6 +48,23 @@ evaluation_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+review_layout = english_site.layouts.find_or_create_by(
+  identifier: 'review',
+  label: 'Review',
+  content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:countries }}
+    {{ cms:page:links_to_research }}
+    {{ cms:page:contact_information }}
+    {{ cms:page:year_of_publication }}
+    {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+    {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+    {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+    {{ cms:page:data_types:collection_check_boxes/Literature review, Systematic review }}
+  CONTENT
+)
+
 article_layout = english_site.layouts.find_or_create_by(
   identifier: 'article',
   label: 'Article',
@@ -404,6 +421,85 @@ daily lives.
     Comfy::Cms::Block.new(
       identifier: 'measured_outcomes',
       content: 'Financial capability (Ability)'
+    )
+  ]
+)
+
+english_site.pages.create!(
+  label: 'Raising household saving',
+  slug: 'raising-household-saving',
+  layout: review_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+Context
+
+ There is continuing concern in the UK and internationally that many individuals are making insufficient savings, especially for retirement. This has long been a key issue in UK policy discussions – demonstrated by the continual modifications to the retirement pension system throughout the 21st century (and before).
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'year_of_publication',
+      content: '2012'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'links_to_research',
+      content: <<-CONTENT
+[Raising household saving - full report](https://www.britac.ac.uk/sites/default/files/BRI1089_household_saving_report_02.12_WEB_FINAL.pdf)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'contact_information',
+      content: <<-CONTENT
+John Smith, John Smith
+
+Institute for Studies
+
+https://www.company-name.org.uk/
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'overview',
+      content: <<-CONTENT
+Based on an analysis of international evidence, this report examines in detail what is known – and what is not known – about the effectiveness of different sorts of interventions designed to raise household savings.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'countries',
+      content: 'International review'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Saving'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Pensions and Retirement Planning'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Financial Education'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Children (3 - 11)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Young people (12 - 16)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Parents / families'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Young adults (17 - 24)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'data_types',
+      content: 'Systematic review'
     )
   ]
 )
