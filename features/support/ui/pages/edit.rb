@@ -69,6 +69,9 @@ module UI::Pages
     element :financial_capability_mindset,
             'input[value="Financial capability (mindset)"]'
 
+    element :literature_review, 'input[value="Literature review"]'
+    element :systematic_review, 'input[value="Systematic review"]'
+
     element :hero_image, '.component_hero_image'
     element :hero_description, '.component_hero_description'
     element :cta_links, '.component_cta_links'
