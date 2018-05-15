@@ -18,7 +18,7 @@ english_site = Comfy::Cms::Site.find_or_create_by(
       {{ cms:page:overview }}
       {{ cms:page:countries }}
       {{ cms:page:links_to_research }}
-      {{ cms:page:contact_details }}
+      {{ cms:page:contact_information }}
       {{ cms:page:year_of_publication }}
       {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
       {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
@@ -27,6 +27,26 @@ english_site = Comfy::Cms::Site.find_or_create_by(
     CONTENT
   )
 end
+
+evaluation_layout = english_site.layouts.find_or_create_by(
+  identifier: 'evaluation',
+  label: 'Evaluation',
+  content: <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:countries }}
+    {{ cms:page:links_to_research }}
+    {{ cms:page:contact_information }}
+    {{ cms:page:year_of_publication }}
+    {{ cms:page:activities_and_setting }}
+    {{ cms:page:programme_delivery }}
+    {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+    {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+    {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+    {{ cms:page:data_types:collection_check_boxes/Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money }}
+    {{ cms:page:measured_outcomes:collection_check_boxes/Financial wellbeing, Financial behaviour, Financial capability (connection), Financial capability (mindset), Financial capability (Ability) }}
+  CONTENT
+)
 
 article_layout = english_site.layouts.find_or_create_by(
   identifier: 'article',
@@ -154,14 +174,14 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-        Context
+Context
 
-        The survey explores employees’ views on attitudes to finances.
-        Stress caused by pay levels, lack of financial awareness or absence of
-        employee benefits can affect work performance.
-        In addition, the perception that their contributions are not being
-        acknowledged can have an impact on employee self-esteem, health and
-        productivity.
+The survey explores employees’ views on attitudes to finances.
+Stress caused by pay levels, lack of financial awareness or absence of
+employee benefits can affect work performance.
+In addition, the perception that their contributions are not being
+acknowledged can have an impact on employee self-esteem, health and
+productivity.
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -179,6 +199,12 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
+      processed_content: %{
+        <p>
+          MASPD (in partnership with Company S.A)
+          T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
+        </p>
+      },
       content: <<-CONTENT
         MASPD (in partnership with Company S.A)
         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
@@ -224,21 +250,21 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-      Context
+Context
 
-      Research has found that there remains a real stigma around seeking advice
-      for debt, with many people feeling that doing so means that they have
-       ‘failed’, but that talking about debt problems is also cathartic.
-      This suggests there is potential value in peer-support for over-indebted
-      people, based on models in other fields such as weight loss.
+Research has found that there remains a real stigma around seeking advice
+for debt, with many people feeling that doing so means that they have
+ ‘failed’, but that talking about debt problems is also cathartic.
+This suggests there is potential value in peer-support for over-indebted
+people, based on models in other fields such as weight loss.
 
-      Peer support is usually intended to encourage behaviour change and is
-      provided by peer mentors (those who have led or given support within
-      peer support programmes).
+Peer support is usually intended to encourage behaviour change and is
+provided by peer mentors (those who have led or given support within
+peer support programmes).
 
-      Such innovation, however, needs an evidence base, so research was needed
-      to explore the peer-support landscape and establish how it helps people
-      to resolve their difficulties and change their behaviour.
+Such innovation, however, needs an evidence base, so research was needed
+to explore the peer-support landscape and establish how it helps people
+to resolve their difficulties and change their behaviour.
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -256,6 +282,7 @@ english_site.pages.create!(
     ),
     Comfy::Cms::Block.new(
       identifier: 'contact_information',
+      processed_content: '<p>peersupport@moneyadviceservice.org.uk</p>',
       content: <<-CONTENT
         peersupport@moneyadviceservice.org.uk
       CONTENT
@@ -287,3 +314,102 @@ english_site.pages.create!(
     )
   ]
 )
+
+english_site.pages.create!(
+  label: 'Looking after the pennies',
+  slug: 'looking-after-the-pennies',
+  layout: evaluation_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+The trackers are all available as free smartphone apps (although at the
+time of writing, Toshl is discontinued). Overall user numbers of the apps
+are not given. However, 797 customers entered into the project (by
+completing a first questionnaire and downloading an app) from across
+the UK between July and November 2016.
+
+The intervention was undertaken in participants’ own time as part their
+daily lives.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'overview',
+      content: <<-CONTENT
+        An evaluation, commissioned by Royal London, of the impacts of using
+        simple budgeting tools on customers’ money management attitudes and
+        behaviours.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Working age (18 - 65)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Older people (65+)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Budgeting and keeping track'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'activities_and_setting',
+      content: 'Comparison of budgeting apps vs. pen and paper methods'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'programme_delivery',
+      content: 'Money Advice'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'countries',
+      content: 'United Kingdom'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'year_of_publication',
+      content: '2017'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'data_types',
+      content: 'Measured Outcomes'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'links_to_research',
+      processed_content: %{
+        <a href='https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf'>Looking after the pennies - full report</a>
+        <a href='https://fincap-two.cdn.prismic.io/fincap-two%2F0efeee0b-252a-4b13-b7f5-d05e66bdc6aa_final+report+-+royal+london+fincap.pptx'>Follow-up report</a>
+      },
+      content: <<-CONTENT
+      [Looking after the pennies - full report](https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf)
+
+      [Follow-up report](https://fincap-two.cdn.prismic.io/fincap-two%2F0efeee0b-252a-4b13-b7f5-d05e66bdc6aa_final+report+-+royal+london+fincap.pptx)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'contact_information',
+      processed_content: %{
+      <p>MASPD (in partnership with Company S.A)
+         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234</p>
+      },
+      content: <<-CONTENT
+        MASPD (in partnership with Company S.A)
+        T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'measured_outcomes',
+      content: 'Financial capability (Mindset)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'measured_outcomes',
+      content: 'Financial capability (Ability)'
+    )
+  ]
+)
+
+Comfy::Cms::Block.all.each do |block|
+  block.update(
+    processed_content: Mastalk::Document.new(block.content.strip).to_html
+  )
+end
