@@ -1,0 +1,25 @@
+<% if tag.field_index.zero? %>
+  <h2><%= tag.identifier.titleize %></h2>
+<% end %>
+
+<div class='form-group'>
+  <div class='form__input-wrapper'>
+    <%= check_box_tag(
+      "blocks_attributes[#{index}][content]",
+      element,
+      checked,
+      id: element.parameterize.underscore)
+    %>
+    <%= label_tag(element.parameterize.underscore, element) %>
+    <%= hidden_field_tag(
+      "blocks_attributes[#{index}][identifier]",
+      tag.identifier,
+      id: nil)
+    %>
+    <%= hidden_field_tag(
+      "blocks_attributes[#{index}][collection]",
+      true,
+      id: nil)
+    %>
+  </div>
+</div>
