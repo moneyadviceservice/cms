@@ -54,3 +54,32 @@ Feature: Building Insight Pages
       | young_people             | unchecked |
       | qualitative              | checked   |
       | quantitative             | unchecked |
+
+  Scenario: Updating Topics
+    Given I am on the homepage
+    And I click on "Create new page"
+    And I select "Insight" on the creation page
+    And I create a page "Fixing family finances"
+    When I edit the page "Fixing family finances"
+    And I check
+      | FIELD                 | VALUE                |
+      | topics                | saving               |
+      | topics                | financial_capability |
+    And I save and return to the homepage
+    And when I click the "Fixing family finances" page
+    And I uncheck
+      | FIELD                 | VALUE                |
+      | topics                | saving               |
+    And I check
+      | FIELD                 | VALUE                    |
+      | topics                | insurance_and_protection |
+    And I save and return to the homepage
+    And when I click the "Fixing family finances" page
+    And I should see the checkbox fields with the value
+      | FIELD                    | VALUE     |
+      | saving                   | unchecked |
+      | financial_capability     | checked   |
+      | financial_education      | unchecked |
+      | insurance_and_protection | checked   |
+
+

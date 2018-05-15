@@ -66,6 +66,12 @@ When(/^I check$/) do |table|
   end
 end
 
+When(/^I uncheck$/) do |table|
+  table.rows.each do |row|
+    uncheck(edit_page.send(row[1]).value)
+  end
+end
+
 Then(/^I should see the checkbox fields with the value$/) do |table|
   table.rows.each do |row|
     if row[1] == 'checked'
