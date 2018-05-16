@@ -72,20 +72,19 @@ class PageBlocksRegister < PageContentRegister
     end
   end
 
-  private
   # Populate the blocks_attributes for the first time to create the initial block
   def create_initial_blocks!
-    page.blocks_attributes = new_blocks_attributes
+    blocks_attributes = new_blocks_attributes.map do |block|
+      next if block[:identifier] != 'content' && block[:content].blank?
+
+      block
+    end.compact
+
+    page.blocks_attributes = blocks_attributes
     page.save!
   end
 
-  # Create a revision with the existing blocks data and update the blocks with the new attributes
-  def update_blocks!
-    RevisionRegister.new(page, user: author, blocks_attributes: page.blocks_attributes).save!
-    page.blocks_attributes = new_blocks_attributes
-    page.save!
-  end
-
+  private
   # Create a new revision with the new blocks_attributes and set it as the active revision
   def create_active_revision!
     RevisionRegister.new(page, user: author, blocks_attributes: new_blocks_attributes).save_as_active_revision!

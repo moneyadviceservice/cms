@@ -2,18 +2,22 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   include ActionView::Helpers::FormTagHelper
 
   def collection_check_boxes(tag, index)
-    content = ''
-    current_value = blocks_attributes.dig(index, 'content') || ''
+    current_values = blocks_attributes.select do |block|
+      block['identifier'] == tag.identifier
+    end.map { |block| block['content'] }
 
-    tag.collection_params.each do |element|
-      checked = current_value.include?("#{element}\n")
-      content << check_box_tag("blocks_attributes[#{index}][content][]", element, checked, id: element.parameterize.underscore)
-      content << label_tag(element.parameterize.underscore, element)
-    end
+    element = tag.element
+    checked = tag.element.in?(current_values)
 
-    content << hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
-
-    content.html_safe
+    @template.render(
+      template: 'collection_check_boxes/show',
+      locals: {
+        tag: tag,
+        index: index,
+        element: element,
+        checked: checked
+      }
+    )
   end
 
   def simple_component(tag, index)
@@ -80,6 +84,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
     label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
     content     = ''
+
     current_value = blocks_attributes.dig(index, 'content') || ''
 
     case method

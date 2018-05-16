@@ -1,5 +1,6 @@
 class ComfortableMexicanSofa::Tag::CollectionCheckBoxes
   include ComfortableMexicanSofa::Tag
+  attr_accessor :element, :field_index
 
   def self.regex_tag_signature(identifier = nil)
     identifier ||= IDENTIFIER_REGEX
