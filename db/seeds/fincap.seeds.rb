@@ -22,7 +22,7 @@ english_site = Comfy::Cms::Site.find_or_create_by(
       {{ cms:page:year_of_publication }}
       {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
       {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
-      {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
       {{ cms:page:data_types:collection_check_boxes/Quantitative, Qualitative }}
     CONTENT
   )
@@ -42,7 +42,7 @@ evaluation_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:programme_delivery }}
     {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
     {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
-    {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
     {{ cms:page:data_types:collection_check_boxes/Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money }}
     {{ cms:page:measured_outcomes:collection_check_boxes/Financial wellbeing, Financial behaviour, Financial capability (connection), Financial capability (mindset), Financial capability (Ability) }}
   CONTENT
@@ -60,7 +60,7 @@ review_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:year_of_publication }}
     {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
     {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
-    {{ cms:page:client_groups:collection_check_boxes/Children (3-11), Young People (12-16), Parents / Families, Young Adults (17-24), Working Age (18-65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
     {{ cms:page:data_types:collection_check_boxes/Literature review, Systematic review }}
   CONTENT
 )
@@ -202,8 +202,16 @@ productivity.
       CONTENT
     ),
     Comfy::Cms::Block.new(
-      identifier: 'year_of_publication',
-      content: '2015'
+      identifier: 'overview',
+      content: <<-CONTENT
+        The survey explores employees’ views on attitudes to finances.
+        Stress caused by pay levels, lack of financial awareness or absence of
+        employee benefits can affect work performance.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'countries',
+      content: 'United Kingdom'
     ),
     Comfy::Cms::Block.new(
       identifier: 'links_to_research',
@@ -226,18 +234,6 @@ productivity.
         MASPD (in partnership with Company S.A)
         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
       CONTENT
-    ),
-    Comfy::Cms::Block.new(
-      identifier: 'overview',
-      content: <<-CONTENT
-        The survey explores employees’ views on attitudes to finances.
-        Stress caused by pay levels, lack of financial awareness or absence of
-        employee benefits can affect work performance.
-      CONTENT
-    ),
-    Comfy::Cms::Block.new(
-      identifier: 'countries',
-      content: 'United Kingdom'
     ),
     Comfy::Cms::Block.new(
       identifier: 'topics',
