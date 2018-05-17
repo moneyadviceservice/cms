@@ -84,8 +84,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
     label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
     content     = ''
-
-    current_value = blocks_attributes.dig(index, 'content') || ''
+    current_value = find_current_value_for_field(tag)
 
     case method
     when :file_field_tag
@@ -107,5 +106,17 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     content.prepend(@template.label_tag(label))
 
     content.html_safe
+  end
+
+  def find_current_value_for_field(tag)
+    current_field = blocks_attributes.find do |block_attributes|
+      block_attributes[:identifier] == tag.identifier.to_s
+    end
+
+    if current_field.present?
+      current_field[:content]
+    else
+      ''
+    end
   end
 end

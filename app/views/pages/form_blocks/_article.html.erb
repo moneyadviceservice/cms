@@ -1,5 +1,0 @@
-<div>
-  <% fields_from_layout(namespace).each_with_index do |layout_field, index| %>
-    <%= layout_field.input_tag_for(form_builder: cms_blocks, index: index) %>
-  <% end %>
-</div>
