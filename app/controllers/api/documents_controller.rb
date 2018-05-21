@@ -4,6 +4,7 @@ module API
     PER_PAGE = 20
 
     before_action :find_site
+    before_action API::AuthenticationFilter
 
     api :GET, '/:locale/documents'
     param :locale, String, required: true
