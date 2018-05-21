@@ -236,6 +236,10 @@ productivity.
       CONTENT
     ),
     Comfy::Cms::Block.new(
+      identifier: 'year_of_publication',
+      content: '2015'
+    ),
+    Comfy::Cms::Block.new(
       identifier: 'topics',
       content: 'Saving'
     ),
