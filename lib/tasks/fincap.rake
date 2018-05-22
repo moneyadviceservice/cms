@@ -82,5 +82,19 @@ namespace :fincap do
         {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
       CONTENT
     )
+
+    english_site.layouts.find_or_create_by(
+      identifier: 'thematic-review',
+      label: 'Thematic Review',
+      content:  <<-CONTENT
+        {{ cms:page:content:rich_text }}
+        {{ cms:page:overview }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Description }}
+        {{ cms:page:cta_links:simple_component/[Text Link](/en/evidence_hub?tag=something) }}
+        {{ cms:page:download:simple_component/[Text Link](link) }}
+        {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+      CONTENT
+    )
   end
 end
