@@ -78,6 +78,20 @@ article_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+thematic_review_layout = english_site.layouts.find_or_create_by(
+  identifier: 'thematic-review',
+  label: 'Thematic Review',
+  content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:cta_links:simple_component/[Text Link](/en/evidence_hub?tag=something) }}
+    {{ cms:page:download:simple_component/[Text Link](link) }}
+    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+  CONTENT
+)
+
 layout = Comfy::Cms::Layout.find_by(identifier: 'insight')
 
 english_site.pages.create!(
@@ -425,7 +439,7 @@ daily lives.
   ]
 )
 
-english_site.pages.create!(
+review_page = english_site.pages.create!(
   label: 'Raising household saving',
   slug: 'raising-household-saving',
   layout: review_layout,
@@ -500,6 +514,57 @@ Based on an analysis of international evidence, this report examines in detail w
     Comfy::Cms::Block.new(
       identifier: 'data_types',
       content: 'Systematic review'
+    )
+  ]
+)
+
+review_page.keywords << Tag.new(
+  value: 'how-can-we-improve-the-financial-capability-of-young-adults'
+)
+
+english_site.pages.create!(
+  label: 'How can we improve the financial capability of young adults?',
+  slug: 'how-can-we-improve-the-financial-capability-of-young-adults',
+  state: 'published',
+  layout: thematic_review_layout,
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: 'Some content'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'overview',
+      content: 'Some overview'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_description',
+      content: 'Financial capability across the UK'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_cta_links',
+      content: <<-CONTENT
+        [Evidence Hub](/general_info)
+        [Evaluation Toolkit](/common-evaluation-toolkit)
+        [The Steering Groups](/steering-groups)
+        [2015 Financial Capability Survey](/financial-capability-survey)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_download',
+      content: <<-CONTENT
+      [UK Strategy](/financial+capability+strategy.pdf)
+      [UK Detailed Strategy](/detailed-strategy.pdf)
+      [Key statistics on Financial Capability](/key-statistics.pdf)
+      [Financial Capability Progress Report 2017](/fincap+progress+report+2017.pdf)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_feedback',
+      content: 'email@moneyadviceservice.org.uk'
     )
   ]
 )
