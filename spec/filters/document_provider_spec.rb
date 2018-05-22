@@ -1,5 +1,13 @@
 RSpec.describe DocumentProvider do
-  subject { described_class.new(site, document_type, keyword, filters).retrieve }
+  subject do
+    described_class.new(
+      current_site: site,
+      document_type: document_type,
+      keyword: keyword,
+      blocks: filters,
+      tag: tag
+    ).retrieve
+  end
 
   let!(:site) do
     create(:site, path: 'en', locale: 'en', is_mirrored: true)
@@ -8,6 +16,7 @@ RSpec.describe DocumentProvider do
   let(:document_type) { nil }
   let(:keyword) { nil }
   let(:filters) { nil }
+  let(:tag) { nil }
 
   let(:insight_layout) { create :layout, identifier: 'insight' }
   let(:review_layout)  { create :layout, identifier: 'review' }
@@ -232,7 +241,7 @@ RSpec.describe DocumentProvider do
 
   describe 'when there are too many filters' do
     let(:filters) { (1..27).to_a }
-    
+
     it 'returns nothing' do
       expect(subject).to be_nil
     end
