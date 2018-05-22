@@ -8,9 +8,10 @@ module API
 
     api :GET, '/:locale/documents'
     param :locale, String, required: true
-    param :page_type, String, required: false
+    param :document_type, Array, required: false
     param :keyword, String, required: false
     param :blocks, Array, required: false
+    param :tag, String, required: false
     def index
       if documents
         render json: paginated_documents, meta: meta_data, root: 'documents'
@@ -23,10 +24,12 @@ module API
 
     def documents
       @documents ||= DocumentProvider.new(
-        current_site,
-        params[:document_type],
-        params[:keyword],
-        params[:blocks]
+        params.permit(
+          :keyword,
+          :tag,
+          document_type: [],
+          blocks: [:identifier, :value]
+        ).merge(current_site: current_site)
       ).retrieve
     end
 

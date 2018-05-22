@@ -11,6 +11,12 @@ RSpec.describe API::DocumentsController, type: :request do
         )
     }
   end
+  let(:response_body) do
+    JSON.parse(response.body)
+  end
+  subject(:documents) do
+    response_body['documents']
+  end
 
   describe 'GET /:locale/documents' do
     context 'when requesting all documents' do
@@ -26,12 +32,6 @@ RSpec.describe API::DocumentsController, type: :request do
       end
       let!(:uk_study_about_work_and_stress) do
         create(:uk_study_about_work_and_stress, site: site)
-      end
-      let(:response_body) do
-        JSON.parse(response.body)
-      end
-      subject(:documents) do
-        response_body['documents']
       end
 
       before do
@@ -75,13 +75,81 @@ RSpec.describe API::DocumentsController, type: :request do
       end
     end
 
+    context 'when searching by page type' do
+      let!(:english_article) do
+        create(:english_article, site: site)
+      end
+      let!(:review_article) do
+        create(
+          :page,
+          site: site,
+          label: 'review label',
+          layout: create(:layout, identifier: 'review')
+        )
+      end
+
+      before do
+        get '/api/en/documents', { document_type: ['review'] }, headers
+      end
+
+      it 'excludes other documents not within the page type' do
+        expect(documents.size).to be(1)
+      end
+
+      it 'returns documents only of the requested page type' do
+        expect(documents.first).to include(
+          'label' => 'review label',
+          'layout_identifier' => 'review'
+        )
+      end
+    end
+
+    context 'when searching by tag' do
+      let!(:page_with_tag) do
+        create(
+          :page_with_tag,
+          label: 'Page with tag',
+          site: site,
+          tag_name: 'pensions',
+        )
+      end
+      let!(:page_without_tag) do
+        create(:page, site: site)
+      end
+      let!(:page_with_a_different_tag) do
+        create(:page_with_tag, site: site, tag_name: 'sorry-not-a-pensions')
+      end
+
+      context 'when searching by a tag' do
+        before do
+          get '/api/en/documents', { tag: 'pensions' }, headers
+        end
+
+        it 'returns page with the same tag' do
+          expect(documents.size).to be(1)
+          expect(documents.first).to include(
+            'label' => 'Page with tag'
+          )
+        end
+      end
+
+      context 'when search a non existent tag' do
+        before do
+          get '/api/en/documents', { tag: 'non-existent' }, headers
+        end
+
+        it 'returns empty documents' do
+          expect(documents.size).to be_zero
+        end
+      end
+    end
+
     context 'bad request' do
       let(:document_provider) { double }
 
       it 'returns a 400 status code' do
         allow(DocumentProvider)
           .to receive(:new)
-          .with(site, nil, nil, nil)
           .and_return(document_provider)
 
         allow(document_provider)

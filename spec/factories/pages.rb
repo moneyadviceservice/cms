@@ -19,6 +19,17 @@ FactoryGirl.define do
       layout_content_c
     )
 
+    transient do
+      tag_name 'tag'
+    end
+
+    factory :page_with_tag do
+      after(:create) do |page, evaluator|
+        page.keywords << create(:tag, value: evaluator.tag_name)
+        page.reload
+      end
+    end
+
     factory :english_article do
       site { create :site, label: 'en' }
       layout { create :layout, identifier: 'article' }
