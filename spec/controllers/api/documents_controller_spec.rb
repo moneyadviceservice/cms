@@ -3,10 +3,19 @@ RSpec.describe API::DocumentsController, type: :request do
     create(:site, path: 'en', locale: 'en', is_mirrored: true)
   end
 
+  let(:headers) do
+    {
+      'HTTP_AUTHORIZATION' =>
+        ActionController::HttpAuthentication::Token.encode_credentials(
+          'mytoken'
+        )
+    }
+  end
+
   describe 'GET /:locale/documents' do
     context 'when requesting all documents' do
       it 'returns all documents' do
-        get '/api/en/documents'
+        get '/api/en/documents', {}, headers
         expect(response.status).to be(200)
       end
     end
@@ -26,7 +35,7 @@ RSpec.describe API::DocumentsController, type: :request do
       end
 
       before do
-        get '/api/en/documents', page: page, per_page: 1
+        get '/api/en/documents', { page: page, per_page: 1 }, headers
       end
 
       context 'requesting first page' do
@@ -79,7 +88,7 @@ RSpec.describe API::DocumentsController, type: :request do
           .to receive(:retrieve)
           .and_return(nil)
 
-        get "/api/en/documents"
+        get '/api/en/documents', {}, headers
 
         expect(response.status).to eq 400
       end
