@@ -120,7 +120,7 @@ RSpec.describe API::DocumentsController, type: :request do
         create(:page_with_tag, site: site, tag_name: 'sorry-not-a-pensions')
       end
 
-      context 'when searching by a tag' do
+      context 'when searching an existent tag' do
         before do
           get '/api/en/documents', { tag: 'pensions' }, headers
         end

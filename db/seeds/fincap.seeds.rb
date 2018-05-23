@@ -79,7 +79,7 @@ article_layout = english_site.layouts.find_or_create_by(
 )
 
 thematic_review_layout = english_site.layouts.find_or_create_by(
-  identifier: 'thematic-review',
+  identifier: 'thematic_review',
   label: 'Thematic Review',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
@@ -530,7 +530,7 @@ english_site.pages.create!(
   blocks: [
     Comfy::Cms::Block.new(
       identifier: 'content',
-      content: 'Some content'
+      content: 'Thematic Review content'
     ),
     Comfy::Cms::Block.new(
       identifier: 'overview',
@@ -547,19 +547,14 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'component_cta_links',
       content: <<-CONTENT
-        [Evidence Hub](/general_info)
-        [Evaluation Toolkit](/common-evaluation-toolkit)
-        [The Steering Groups](/steering-groups)
-        [2015 Financial Capability Survey](/financial-capability-survey)
+        [Evidence Summaries Associated with this Thematic Review](/en/evidence_hub?tag=how-can-we-improve-the-financial-capability-of-young-adults)
+        [All Evidence Summaries](/en/evidence_hub)
       CONTENT
     ),
     Comfy::Cms::Block.new(
       identifier: 'component_download',
       content: <<-CONTENT
-      [UK Strategy](/financial+capability+strategy.pdf)
-      [UK Detailed Strategy](/detailed-strategy.pdf)
-      [Key statistics on Financial Capability](/key-statistics.pdf)
-      [Financial Capability Progress Report 2017](/fincap+progress+report+2017.pdf)
+      [Young Adults Thematic review](/financial+capability+strategy.pdf)
       CONTENT
     ),
     Comfy::Cms::Block.new(
