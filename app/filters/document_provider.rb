@@ -1,14 +1,15 @@
 class DocumentProvider
-  attr_reader :current_site, :document_type, :keyword, :filters
+  attr_reader :current_site, :document_type, :keyword, :filters, :tag
 
   BLOCKS_TO_SEARCH = %w(content overview)
   FILTER_LIMIT = 26
 
-  def initialize(current_site, document_type, keyword, filters)
-    @current_site = current_site
-    @document_type = document_type
-    @keyword = keyword
-    @filters = filters
+  def initialize(params = {})
+    @current_site = params[:current_site]
+    @document_type = params[:document_type]
+    @keyword = params[:keyword]
+    @filters = params[:blocks]
+    @tag = params[:tag]
   end
 
   def retrieve
@@ -18,6 +19,7 @@ class DocumentProvider
 
     filter_by_document_type
     filter_by_keyword
+    filter_by_tag
     filter_documents
   end
 
@@ -40,6 +42,13 @@ class DocumentProvider
           (comfy_cms_blocks.content LIKE ? AND comfy_cms_blocks.identifier IN (?))',
           "%#{keyword}%", "%#{keyword}%", BLOCKS_TO_SEARCH
       ).uniq
+  end
+
+  def filter_by_tag
+    return @documents if tag.blank?
+
+    @documents = @documents
+      .joins(:keywords).where('tags.value = ?', tag)
   end
 
   def filter_documents
