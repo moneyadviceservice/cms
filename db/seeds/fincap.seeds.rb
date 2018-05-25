@@ -346,7 +346,7 @@ to resolve their difficulties and change their behaviour.
   ]
 )
 
-english_site.pages.create!(
+evaluation_page = english_site.pages.create!(
   label: 'Looking after the pennies',
   slug: 'looking-after-the-pennies',
   layout: evaluation_layout,
@@ -439,6 +439,12 @@ daily lives.
   ]
 )
 
+tag = Tag.create(
+  value: 'how-can-we-improve-the-financial-capability-of-young-adults'
+)
+
+evaluation_page.keywords << tag
+
 review_page = english_site.pages.create!(
   label: 'Raising household saving',
   slug: 'raising-household-saving',
@@ -518,9 +524,7 @@ Based on an analysis of international evidence, this report examines in detail w
   ]
 )
 
-review_page.keywords << Tag.new(
-  value: 'how-can-we-improve-the-financial-capability-of-young-adults'
-)
+review_page.keywords << tag
 
 english_site.pages.create!(
   label: 'How can we improve the financial capability of young adults?',
