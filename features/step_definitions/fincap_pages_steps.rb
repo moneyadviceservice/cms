@@ -73,6 +73,16 @@ Given(/^I have an article page layout setup with components$/) do
   )
 end
 
+Given(/^I have an thematic reviews landing page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'thematic-reviews-landing-page',
+    label: 'Thematic Reviews Landing Page',
+    content:  <<-CONTENT
+      {{ cms:page:content:rich_text }}
+    CONTENT
+  )
+end
+
 Given(/^I am on the homepage$/) do
   home_page.load
 end
