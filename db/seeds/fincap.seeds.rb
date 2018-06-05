@@ -92,6 +92,14 @@ thematic_review_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+thematic_reviews_landing_page_layout = english_site.layouts.find_or_create_by(
+  identifier: 'thematic_reviews_landing_page',
+  label: 'Thematic Reviews Landing Page',
+  content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+  CONTENT
+)
+
 layout = Comfy::Cms::Layout.find_by(identifier: 'insight')
 
 english_site.pages.create!(
@@ -564,6 +572,35 @@ english_site.pages.create!(
     Comfy::Cms::Block.new(
       identifier: 'component_feedback',
       content: 'email@moneyadviceservice.org.uk'
+    )
+  ]
+)
+
+english_site.pages.create!(
+  label: 'Thematic Reviews',
+  slug: 'thematic_reviews',
+  layout: thematic_reviews_landing_page_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+        Thematic Reviews are short overviews of key findings from multiple UK-based
+        research and ealuation reports on a particular topic. Each review will vary
+        depending on the available information, and will aim to include:
+
+        *   Headlines about context, landscape and needs
+        *   An introduction to evidence about what works well - and less well - to improve people's financial capability
+        *   Areas where further investigation is needed
+        *   Links to specific studies summarised elsewhere on the Hub
+
+        We hope our Thematic Reviews provide a useful overview to help you get a quick understanding on a particular topic,
+        or to act as a 'way in' to more detailed information contained in specific [Evidence Summaries](/evidence_hub_search).
+
+        Please contact us at [whatworks@fincap.org.uk](mailto:whatworks@fincap.org.uk) if you have any feedback,
+        including suggestions for research that you think should be covered
+        in future updates.
+      CONTENT
     )
   ]
 )
