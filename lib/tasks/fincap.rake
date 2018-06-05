@@ -96,5 +96,13 @@ namespace :fincap do
         {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
       CONTENT
     )
+
+    english_site.layouts.find_or_create_by(
+      identifier: 'thematic-reviews-landing-page',
+      label: 'Thematic Reviews Landing Page',
+      content:  <<-CONTENT
+        {{ cms:page:content:rich_text }}
+      CONTENT
+    )
   end
 end
