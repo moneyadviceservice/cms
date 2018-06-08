@@ -1,0 +1,49 @@
+.article-components {
+  @include column(4);
+}
+
+.article-component {
+  @include clearfix;
+
+  margin-bottom: $baseline-unit*2;
+
+  textarea,
+  label,
+  .article-component--remove {
+    @include column(12);
+  }
+
+  textarea,
+  .article-component--remove {
+    display: none;
+  }
+
+  .remove--icon {
+    color: $color-icon-remove;
+    margin-right: $baseline-unit/2;
+  }
+
+  .article-component--add {
+    margin-left: $baseline-unit;
+
+    .button__text {
+      padding: $baseline-unit 10px;
+    }
+  }
+
+  &.is-active {
+    background: $color-panel-content-form-background;
+
+    textarea {
+      display: inline;
+    }
+
+    .article-component--remove {
+      display: block;
+    }
+
+    .article-component--add {
+      display: none;
+    }
+  }
+}
