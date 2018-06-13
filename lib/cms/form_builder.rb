@@ -69,10 +69,17 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
   end
 
+  def page_string(tag, index)
+    default_tag_field(tag, index)
+  end
+
+  def field_string(tag, index)
+    default_tag_field(tag, index)
+  end
+
   def field_name_for(tag)
     tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
   end
-
 
   # This is overriding comfy with an almost identical method, just that the
   # name attributes are different - "blocks_attributes[#{index}]" instead of
