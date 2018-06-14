@@ -77,5 +77,15 @@ module UI::Pages
     element :cta_links, '.component_cta_links'
     element :download, '.component_download'
     element :feedback, '.component_feedback'
+
+    # MAS HOMEPAGE
+    element :raw_hero_image, '#blocks_attributes_1_content'
+    element :raw_heading, '#blocks_attributes_0_content'
+    element :raw_tool_1_heading, '#blocks_attributes_27_content'
+    element :raw_tool_1_url, '#blocks_attributes_28_content'
+
+    # MAS FOOTER
+    element :raw_web_chat_heading, '#blocks_attributes_0_content'
+    element :raw_contact_heading, '#blocks_attributes_5_content'
   end
 end
