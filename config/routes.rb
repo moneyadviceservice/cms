@@ -64,6 +64,7 @@ Rails.application.routes.draw do
     end
 
     get '/:locale/thematic_reviews' => 'documents#index'
+    get '/:locale/thematic_reviews_landing_pages' => 'documents#index'
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
