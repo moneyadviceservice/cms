@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       resources :documents, only: :index
     end
 
+    get '/:locale/thematic_reviews' => 'documents#index'
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'
