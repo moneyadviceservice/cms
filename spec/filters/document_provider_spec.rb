@@ -239,6 +239,16 @@ RSpec.describe DocumentProvider do
     end
   end
 
+  describe 'ordering search results' do
+    let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout, created_at: Date.today) }
+    let!(:review_page) { create(:page, site: site, layout: review_layout, created_at: Date.yesterday) }
+
+    it 'pages in descending order of creation date' do
+      expect(subject.size).to eq(2)
+      expect(subject.first).to eq(insight_page)
+    end
+  end
+
   describe 'when there are too many filters' do
     let(:filters) { (1..27).to_a }
 
