@@ -97,6 +97,8 @@ thematic_reviews_landing_page_layout = english_site.layouts.find_or_create_by(
   label: 'Thematic Reviews Landing Page',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Thematic Reviews }}
   CONTENT
 )
 

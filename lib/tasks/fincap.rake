@@ -102,6 +102,8 @@ namespace :fincap do
       label: 'Thematic Reviews Landing Page',
       content:  <<-CONTENT
         {{ cms:page:content:rich_text }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Thematic Reviews }}
       CONTENT
     )
   end
