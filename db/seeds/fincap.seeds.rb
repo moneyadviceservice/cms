@@ -102,15 +102,32 @@ thematic_reviews_landing_page_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
-news_layout = english_site.layouts.find_or_create_by(
-  identifier: 'news',
-  label: 'News',
+lifestage_layout = english_site.layouts.find_or_create_by(
+  identifier: 'lifestage',
+  label: ' Lifestage',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:order_by_date }}
-    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:strategy_title }}
+    {{ cms:page:strategy_overview }}
+    {{ cms:page:strategy_link }}
+    {{ cms:page:steering_group_title }}
+    {{ cms:page:steering_group_links }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
 )
 
@@ -667,35 +684,19 @@ in future updates.
   ]
 )
 
-news_page = english_site.pages.create!(
-  label: 'Press Release: A new way to pay!',
-  slug: 'press-release-a-new-way-to-pay',
-  layout: news_layout,
+english_site.pages.create!(
+  label: 'Young Adults',
+  slug: 'young-adults',
+  layout: lifestage_layout,
   state: 'published',
   blocks: [
     Comfy::Cms::Block.new(
       identifier: 'content',
       content: <<-CONTENT
-The way in which payments are made in the UK is set to undergo the most radical
-change since the 1960s. This follows the [launch of a new strategy](https://www.paymentsforum.uk/final-strategy) to give people
-greater control over how they manage their day-to-day finances and help stamp
-out financial fraud.
-
-In the first industry-wide initiative of its kind, the Payments Strategy Forum,
-whose members include consumer groups, businesses, fintechs, UK banks and
-building societies, today recommends a new way of making payments that promises
-greater protection and security for consumers and businesses.(2)
-
-The Strategy gives: 
-*   More control and assurance for consumers over how they manage their finances 
-*   Safer and more secure banking 
-*   Opportunities for new banks and Fintechs to compete and offer innovative services that meet the needs of tomorrow’s users
-
-Notes to editors 
-
-1.  Source: The Payment Systems Regulator 
-2.  The Payments Strategy Forum (the Forum) was announced by the Payment Systems Regulator (PSR) in its 
-Policy Statement published in March 2015.
+Young adults are those who have left compulsory education or other statutory settings, 
+such as care. They are transitioning towards independent living and financial 
+independence, beginning between the ages of 16 to 18 and continuing to their mid-20s.
+>>>>>>> 9a50f91... Feature test for lifestage page type
       CONTENT
     ),
     Comfy::Cms::Block.new(
@@ -704,26 +705,92 @@ Policy Statement published in March 2015.
     ),
     Comfy::Cms::Block.new(
       identifier: 'component_hero_description',
-      content: 'New strategy launched to make UK payments fit for the 21st Century'
+      content: 'Research suggests that young adults typically display lower levels of financial capability than older age groups.'
     ),
     Comfy::Cms::Block.new(
-      identifier: 'component_cta_links',
+      identifier: 'teaser_section_title',
+      content: 'Financial capability in action'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser1_title',
+      content: 'Some title to tease you'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser1_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser1_text',
+      content: 'Loads of content to make you read more'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser1_link',
+      content: '[teaser1 link text](/financial+capability+strategy.pdf)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser2_title',
+      content: 'Another title to entice you'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser2_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser2_text',
+      content: 'A bunch of well written content to make you click'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser2_link',
+      content: '[Read more](/financial+capability+strategy.pdf)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser3_title',
+      content: 'Teasing title'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser3_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser3_text',
+      content: 'You want to read this, you need to read this'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'teaser3_link',
+      content: '[Click here](/financial+capability+strategy.pdf)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'strategy_title',
+      content: 'Strategy extract'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'strategy_overview',
+      content: 'Adult financial capability is a direct resul'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'strategy_link',
+      content: '[Link to strategy](/financial+capability+strategy.pdf)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'steering_group_title',
+      content: 'Steering group'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'steering_group_links',
       content: <<-CONTENT
-        [Evidence Hub](/general_info)
-        [Evaluation Toolkit](/common-evaluation-toolkit)
-        [The Steering Groups](/steering-groups)
-        [2015 Financial Capability Survey](/financial-capability-survey)
+        [Steering group members](/financial+capability+strategy.pdf)
+        [Steering group updates](/financial+capability+strategy.pdf)
+        [Action plans](/financial+capability+strategy.pdf)
       CONTENT
     ),
     Comfy::Cms::Block.new(
-      identifier: 'order_by_date',
-      content: DateTime.new(2018, 7, 26)
-    )
+      identifier: 'component_download',
+      content: <<-CONTENT
+      [Young Adults download](/financial+capability+strategy.pdf)
+      CONTENT
+    ),
   ]
 )
-[mobile_payments_tag, secure_payments_tag].each do |tag|
-  news_page.keywords << tag
-end
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

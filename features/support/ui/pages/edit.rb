@@ -71,7 +71,8 @@ module UI::Pages
 
     element :literature_review, 'input[value="Literature review"]'
     element :systematic_review, 'input[value="Systematic review"]'
-
+    
+    #REUSABLE COMPONENTS
     element :hero_image, '.component_hero_image'
     element :hero_description, '.component_hero_description'
     element :cta_links, '.component_cta_links'
@@ -80,7 +81,27 @@ module UI::Pages
 
     # news Page
     element :order_by_date, '#blocks_attributes_3_content'
-    
+
+    #Lifestage page
+    element :teaser_section_title, '#blocks_attributes_3_content'
+    element :teaser1_title, '#blocks_attributes_4_content'
+    element :teaser1_image, '#blocks_attributes_5_content'
+    element :teaser1_text, '#blocks_attributes_6_content'
+    element :teaser1_link, '#blocks_attributes_7_content'
+    element :teaser2_title, '#blocks_attributes_8_content'
+    element :teaser2_image, '#blocks_attributes_9_content'
+    element :teaser2_text, '#blocks_attributes_10_content'
+    element :teaser2_link, '#blocks_attributes_11_content'
+    element :teaser3_title, '#blocks_attributes_12_content'
+    element :teaser3_image, '#blocks_attributes_13_content'
+    element :teaser3_text, '#blocks_attributes_14_content'
+    element :teaser3_link, '#blocks_attributes_15_content'
+    element :strategy_title, '#blocks_attributes_16_content'
+    element :strategy_overview, '#blocks_attributes_17_content'
+    element :strategy_link, '#blocks_attributes_18_content'
+    element :steering_group_list_title, '#blocks_attributes_19_content'
+    element :steering_group_links, '#blocks_attributes_20_content'
+
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'
     element :raw_heading, '#blocks_attributes_0_content'
