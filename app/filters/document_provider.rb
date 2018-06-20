@@ -21,6 +21,7 @@ class DocumentProvider
     filter_by_keyword
     filter_by_tag
     filter_documents
+    order_documents
   end
 
   private
@@ -76,5 +77,9 @@ class DocumentProvider
       end
       acc
     end
+  end
+
+  def order_documents
+    @documents = @documents.order('created_at DESC')
   end
 end
