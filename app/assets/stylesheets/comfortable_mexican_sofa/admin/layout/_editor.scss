@@ -3,7 +3,9 @@
 // Styleguide Editor
 
 .l-editor {
-  margin-bottom: $baseline-unit*20;
+  p {
+    margin-top: 0;
+  }
 }
 
 .inline_checkboxes {

@@ -8,6 +8,12 @@ module PagesHelper
     cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, index)
   end
 
+  def content_field(tags, cms_blocks)
+    tag = tags.find { |t| t.identifier == 'content' }
+    tag_index = tags.index { |t| t.identifier == 'content' }
+    cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, tag_index)
+  end
+
   def page_form_component(condition, default: [], optional: [], display: true)
     return {} unless display
     { dough_component: components(condition, default, optional).join(' ') }
