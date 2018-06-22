@@ -35,6 +35,7 @@ requirejs.config({
     'mutationobserver-shim': bowerPath + 'mas-cms-editor/src/app/shims/mutationobserver.min',
 
     // Application modules
+    'ArticleComponents': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ArticleComponents',
     'URLToggler': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/URLToggler',
     'MASEditor': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/MASEditor',
     'ElementHider': 'app/assets/javascripts/comfortable_mexican_sofa/admin/modules/ElementHider',
