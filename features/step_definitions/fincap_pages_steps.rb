@@ -114,6 +114,20 @@ Given(/^I have a lifestage page layout setup with components$/) do
   )
 end
 
+Given(/^I have a news page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'news',
+    label: 'News',
+    content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:field:order_by_date:datetime }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+  CONTENT
+  )
+end
+
 Given(/^I am on the homepage$/) do
   home_page.load
 end
