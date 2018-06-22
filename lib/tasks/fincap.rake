@@ -106,5 +106,19 @@ namespace :fincap do
         {{ cms:page:hero_description:simple_component/Thematic Reviews }}
       CONTENT
     )
+
+    english_site.layouts.find_or_create_by(
+      identifier: 'news',
+      label: 'News',
+      content:  <<-CONTENT
+        {{ cms:page:content:rich_text }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Description }}
+        {{ cms:page:publication_date }}
+        {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+        {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+      CONTENT
+    )
   end
 end

@@ -78,6 +78,9 @@ module UI::Pages
     element :download, '.component_download'
     element :feedback, '.component_feedback'
 
+    # news Page
+    element :publication_date, '#blocks_attributes_3_content'
+    
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'
     element :raw_heading, '#blocks_attributes_0_content'

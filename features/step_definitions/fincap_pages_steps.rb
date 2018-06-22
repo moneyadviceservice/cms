@@ -83,6 +83,23 @@ Given(/^I have an thematic reviews landing page layout setup with components$/) 
   )
 end
 
+Given(/^I have a news page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'news',
+    label: 'News',
+    content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:publication_date }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+    {{ cms:page:tags:simple_component/enter as comma separated list e.g. first-tag, second-tag }}
+  CONTENT
+  )
+end
+
 Given(/^I am on the homepage$/) do
   home_page.load
 end
