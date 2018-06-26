@@ -93,9 +93,6 @@ Given(/^I have a news page layout setup with components$/) do
     {{ cms:page:hero_description:simple_component/Description }}
     {{ cms:page:publication_date }}
     {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
-    {{ cms:page:tags:simple_component/enter as comma separated list e.g. first-tag, second-tag }}
   CONTENT
   )
 end

@@ -111,8 +111,6 @@ news_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:hero_description:simple_component/Description }}
     {{ cms:page:publication_date }}
     {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
   CONTENT
 )
 
@@ -716,19 +714,6 @@ Policy Statement published in March 2015.
         [The Steering Groups](/steering-groups)
         [2015 Financial Capability Survey](/financial-capability-survey)
       CONTENT
-    ),
-    Comfy::Cms::Block.new(
-      identifier: 'component_download',
-      content: <<-CONTENT
-      [UK Strategy](/financial+capability+strategy.pdf)
-      [UK Detailed Strategy](/detailed-strategy.pdf)
-      [Key statistics on Financial Capability](/key-statistics.pdf)
-      [Financial Capability Progress Report 2017](/fincap+progress+report+2017.pdf)
-      CONTENT
-    ),
-    Comfy::Cms::Block.new(
-      identifier: 'component_feedback',
-      content: 'email@moneyadviceservice.org.uk'
     ),
     Comfy::Cms::Block.new(
       identifier: 'publication_date',

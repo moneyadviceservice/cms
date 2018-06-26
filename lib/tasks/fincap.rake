@@ -116,8 +116,6 @@ namespace :fincap do
         {{ cms:page:hero_description:simple_component/Description }}
         {{ cms:page:publication_date }}
         {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-        {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
       CONTENT
     )
   end

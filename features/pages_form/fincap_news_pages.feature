@@ -18,8 +18,6 @@ Feature: Building News Pages
       | hero_image       | /assets/styleguide/hero-sample.jpg |
       | hero_description | Press release: A new way to pay!   |
       | cta_links        | [Test](/test)                      |
-      | download         | [File](a-file)                     |
-      | feedback         | email@moneyadviceservice.org.uk    |
       | publication_date | Tuesday 29 November 2016           |
     And I save and return to the homepage
     And when I click the "Press release: A new way to pay!" page
@@ -28,6 +26,4 @@ Feature: Building News Pages
       | hero_image       | /assets/styleguide/hero-sample.jpg |
       | hero_description | Press release: A new way to pay!   |
       | cta_links        | [Test](/test)                      |
-      | download         | [File](a-file)                     |
-      | feedback         | email@moneyadviceservice.org.uk    |
       | publication_date | Tuesday 29 November 2016           |
