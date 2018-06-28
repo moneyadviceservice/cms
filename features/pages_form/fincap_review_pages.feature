@@ -1,6 +1,6 @@
 Feature: Building Review Pages
   As an Editor
-  In order to the build an Insights Page
+  In order to the build a Review Page
   I want to be able to fill out all the text fields on the form
 
   Background:

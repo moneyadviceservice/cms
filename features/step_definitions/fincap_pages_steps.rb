@@ -91,7 +91,7 @@ Given(/^I have a news page layout setup with components$/) do
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:publication_date }}
+    {{ cms:page:order_by_date }}
     {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
   )
@@ -137,14 +137,8 @@ When(/^I uncheck$/) do |table|
   end
 end
 
-Then(/^I should see the checkbox fields with the value$/) do |table|
-  table.rows.each do |row|
-    if row[1] == 'checked'
-      expect(edit_page.send(row[0])).to be_checked
-    else
-      expect(edit_page.send(row[0])).not_to be_checked
-    end
-  end
+When(/^I enter an order_by date of "([^"]*)"$/) do |date_string|
+  edit_page.order_by_date.set(date_string.to_datetime)
 end
 
 When(/^I save and return to the homepage$/) do
@@ -157,7 +151,24 @@ When(/^when I click the "([^"]*)" page$/) do |title|
 end
 
 Then(/^I should see the fields filled with the content$/) do |table|
+  # binding.pry
   table.rows.each do |row|
     expect(edit_page.send(row[0]).value).to eq(row[1])
   end
+end
+
+Then(/^I should see the checkbox fields with the value$/) do |table|
+  table.rows.each do |row|
+    if row[1] == 'checked'
+      expect(edit_page.send(row[0])).to be_checked
+    else
+      expect(edit_page.send(row[0])).not_to be_checked
+    end
+  end
+end
+
+Then(/^I should see an order_by date of "([^"]*)"$/) do |date_string|
+  expect(edit_page.order_by_date.text).to eq(
+    date_string.to_datetime
+  )
 end

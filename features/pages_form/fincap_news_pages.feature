@@ -18,7 +18,7 @@ Feature: Building News Pages
       | hero_image       | /assets/styleguide/hero-sample.jpg |
       | hero_description | Press release: A new way to pay!   |
       | cta_links        | [Test](/test)                      |
-      | publication_date | Tuesday 29 November 2016           |
+    And I enter an order_by date of "29 November 2016"
     And I save and return to the homepage
     And when I click the "Press release: A new way to pay!" page
     Then I should see the fields filled with the content
@@ -26,4 +26,4 @@ Feature: Building News Pages
       | hero_image       | /assets/styleguide/hero-sample.jpg |
       | hero_description | Press release: A new way to pay!   |
       | cta_links        | [Test](/test)                      |
-      | publication_date | Tuesday 29 November 2016           |
+    And I should see an order_by date of "29 November 2016"

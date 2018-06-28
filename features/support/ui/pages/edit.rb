@@ -79,7 +79,7 @@ module UI::Pages
     element :feedback, '.component_feedback'
 
     # news Page
-    element :publication_date, '#blocks_attributes_3_content'
+    element :order_by_date, '#blocks_attributes_3_content'
     
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'

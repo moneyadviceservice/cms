@@ -109,7 +109,7 @@ news_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:publication_date }}
+    {{ cms:page:order_by_date }}
     {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
 )
@@ -716,8 +716,8 @@ Policy Statement published in March 2015.
       CONTENT
     ),
     Comfy::Cms::Block.new(
-      identifier: 'publication_date',
-      content: 'Tuesday 29 November 2016'
+      identifier: 'order_by_date',
+      content: DateTime.new(2018, 7, 26)
     )
   ]
 )

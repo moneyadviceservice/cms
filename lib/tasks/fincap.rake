@@ -114,7 +114,7 @@ namespace :fincap do
         {{ cms:page:content:rich_text }}
         {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
         {{ cms:page:hero_description:simple_component/Description }}
-        {{ cms:page:publication_date }}
+        {{ cms:page:order_by_date }}
         {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
       CONTENT
     )
