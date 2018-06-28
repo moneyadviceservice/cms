@@ -842,10 +842,7 @@ Policy Statement published in March 2015.
     Comfy::Cms::Block.new(
       identifier: 'component_cta_links',
       content: <<-CONTENT
-        [Evidence Hub](/general_info)
-        [Evaluation Toolkit](/common-evaluation-toolkit)
-        [The Steering Groups](/steering-groups)
-        [2015 Financial Capability Survey](/financial-capability-survey)
+        [Latest News](/news)
       CONTENT
     ),
     Comfy::Cms::Block.new(
