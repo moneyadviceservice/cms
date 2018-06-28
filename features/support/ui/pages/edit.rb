@@ -101,7 +101,7 @@ module UI::Pages
 
     # news Page
     element :order_by_date, '#blocks_attributes_3_content'
- 
+
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'
     element :raw_heading, '#blocks_attributes_0_content'
