@@ -114,6 +114,21 @@ Given(/^I have a lifestage page layout setup with components$/) do
   )
 end
 
+Given(/^I have a latest news page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'latest-news',
+    label: 'Latest News Page',
+    content:  <<-CONTENT
+      {{ cms:page:content:rich_text }}
+      {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+      {{ cms:page:hero_description:simple_component/Description }}
+      {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+    CONTENT
+  )
+end
+
 Given(/^I am on the homepage$/) do
   home_page.load
 end
