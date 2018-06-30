@@ -79,7 +79,7 @@ article_layout = english_site.layouts.find_or_create_by(
 )
 
 latest_news_layout = english_site.layouts.find_or_create_by(
-  identifier: 'news',
+  identifier: 'latest_news',
   label: 'Latest News',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
@@ -88,6 +88,18 @@ latest_news_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
     {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
     {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+  CONTENT
+)
+
+news_layout = english_site.layouts.find_or_create_by(
+  identifier: 'news',
+  label: 'News',
+  content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:order_by_date }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
 )
 
@@ -494,6 +506,7 @@ daily lives.
 tag = Tag.create(
   value: 'how-can-we-improve-the-financial-capability-of-young-adults'
 )
+
 mobile_payments_tag = Tag.create(value: 'mobile-payments')
 secure_payments_tag = Tag.create(value: 'secure-payments')
 
@@ -848,6 +861,60 @@ independence, beginning between the ages of 16 to 18 and continuing to their mid
     ),
   ]
 )
+
+news_page = english_site.pages.create!(
+  label: 'Press Release: A new way to pay!',
+  slug: 'press-release-a-new-way-to-pay',
+  layout: news_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+The way in which payments are made in the UK is set to undergo the most radical
+change since the 1960s. This follows the [launch of a new strategy](https://www.paymentsforum.uk/final-strategy) to give people
+greater control over how they manage their day-to-day finances and help stamp
+out financial fraud.
+In the first industry-wide initiative of its kind, the Payments Strategy Forum,
+whose members include consumer groups, businesses, fintechs, UK banks and
+building societies, today recommends a new way of making payments that promises
+greater protection and security for consumers and businesses.(2)
+The Strategy gives: 
+*   More control and assurance for consumers over how they manage their finances 
+*   Safer and more secure banking 
+*   Opportunities for new banks and Fintechs to compete and offer innovative services that meet the needs of tomorrow’s users
+Notes to editors 
+1.  Source: The Payment Systems Regulator 
+2.  The Payments Strategy Forum (the Forum) was announced by the Payment Systems Regulator (PSR) in its 
+Policy Statement published in March 2015.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_description',
+      content: 'New strategy launched to make UK payments fit for the 21st Century'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_cta_links',
+      content: <<-CONTENT
+        [Evidence Hub](/general_info)
+        [Evaluation Toolkit](/common-evaluation-toolkit)
+        [The Steering Groups](/steering-groups)
+        [2015 Financial Capability Survey](/financial-capability-survey)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'order_by_date',
+      content: DateTime.new(2018, 7, 26)
+    )
+  ]
+)
+[mobile_payments_tag, secure_payments_tag].each do |tag|
+  news_page.keywords << tag
+end
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

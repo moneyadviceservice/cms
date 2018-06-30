@@ -114,9 +114,23 @@ Given(/^I have a lifestage page layout setup with components$/) do
   )
 end
 
+Given(/^I have a news page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'news',
+    label: 'News',
+    content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:order_by_date }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+  CONTENT
+  )
+end
+
 Given(/^I have a latest news page layout setup with components$/) do
   cms_site.layouts.find_or_create_by(
-    identifier: 'latest-news',
+    identifier: 'latest_news',
     label: 'Latest News Page',
     content:  <<-CONTENT
       {{ cms:page:content:rich_text }}
@@ -183,7 +197,6 @@ When(/^when I click the "([^"]*)" page$/) do |title|
 end
 
 Then(/^I should see the fields filled with the content$/) do |table|
-  # binding.pry
   table.rows.each do |row|
     expect(edit_page.send(row[0]).value).to eq(row[1])
   end
