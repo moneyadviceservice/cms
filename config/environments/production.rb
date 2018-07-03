@@ -57,7 +57,7 @@ Rails.application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   config.action_controller.asset_host = if ENV.has_key?('MAS_CMS_PUBLIC_URL')
-                                          ENV['MAS_CMS_PUBLIC_URL']
+#this needs to change                                          ENV['MAS_CMS_PUBLIC_URL']
                                         else
                                           ENV['MAS_CMS_URL']
                                         end
