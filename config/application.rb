@@ -11,6 +11,7 @@ module Cms
     require_relative '../lib/cms'
     require_relative '../lib/rack/redirect_middleware'
     require_relative '../config/initializers/features'
+    require_relative '../config/initializers/domain'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
