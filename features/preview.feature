@@ -15,6 +15,6 @@ Feature: Preview
     Then I should be able to preview it in a new window
 
   Scenario: Preview unpublished article
-    Given I have an articles with unpublished changes
+    Given I have an article with unpublished changes
     When I view the live published article
     Then I should see the published Article content

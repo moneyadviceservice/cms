@@ -3,9 +3,13 @@
 module ComfortableMexicanSofa
   module Extensions
     module Tag
+      MAS_CMS_BLOCKS = %w(page field collection simple image datetime).freeze
+      
       # rubocop:disable Style/PredicateName
       def is_cms_block?
-        %w(page field collection simple image).member?(self.class.to_s.demodulize.underscore.split(/_/).first)
+        MAS_CMS_BLOCKS.member?(
+          self.class.to_s.demodulize.underscore.split(/_/).first
+        )
       end
     end
   end
