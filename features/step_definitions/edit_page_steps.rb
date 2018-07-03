@@ -19,7 +19,7 @@ Then(/^I should not be able to see live draft article$/) do
   expect(JSON.load(live_page.text).symbolize_keys).to eq(message: 'Page not found')
 end
 
-Given(/^I have an articles with unpublished changes$/) do
+Given(/^I have an article with unpublished changes$/) do
   load_page_in_editor(site: cms_site, page: build_cms_new_draft_page).slug
   edit_page.content.set("New Published Content")
   edit_page.publish.click
