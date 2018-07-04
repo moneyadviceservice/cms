@@ -56,10 +56,10 @@ Rails.application.configure do
   config.cache_store = :memory_store, { size: 8.megabytes }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = if ENV.has_key?('MAS_CMS_PUBLIC_URL')
-#this needs to change                                          ENV['MAS_CMS_PUBLIC_URL']
+  config.action_controller.asset_host = if Domain.config.cms_public_url
+                                          Domain.config.cms_public_url
                                         else
-                                          ENV['MAS_CMS_URL']
+                                          Domain.config.cms_url
                                         end
 
   # Precompile additional assets.
