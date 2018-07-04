@@ -143,6 +143,17 @@ news_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+latest_news_layout = english_site.layouts.find_or_create_by(
+  identifier: 'latest_news',
+  label: 'Latest News',
+  content:  <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+  CONTENT
+)
+
 layout = Comfy::Cms::Layout.find_by(identifier: 'insight')
 
 english_site.pages.create!(
@@ -691,6 +702,40 @@ or to act as a 'way in' to more detailed information contained in specific [Evid
 Please contact us at [whatworks@fincap.org.uk](mailto:whatworks@fincap.org.uk) if you have any feedback,
 including suggestions for research that you think should be covered
 in future updates.
+      CONTENT
+    )
+  ]
+)
+
+english_site.pages.create!(
+  label: 'Latest News',
+  slug: 'news',
+  layout: latest_news_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+Here you will find all the latest news and press releases relating to the Financial Capability Strategy for the UK.
+
+Our research enables us to give people the best advice on understanding financial matters and making choices when managing money. Visit our corporate site for all our latest [Research Reports](https://www.moneyadviceservice.org.uk/en/corporate/research).
+
+Or, for a wide range of evaluation evidence, insight and market research don't forget to visit the new and improved Financial Capability [Evidence Hub](http://www.fincap.org.uk/evidence_hub).
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_description',
+      content: 'Research suggests that young adults typically display lower levels of financial capability than older age groups.'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_cta_links',
+      content: <<-CONTENT
+        [Evidence Summaries Associated with this Thematic Review](/en/evidence_hub?tag=how-can-we-improve-the-financial-capability-of-young-adults)
+        [All Evidence Summaries](/en/evidence_hub)
       CONTENT
     )
   ]
