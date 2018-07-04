@@ -1,7 +1,7 @@
 development:
   adapter: mysql2
   username: root
-  database: <%= ENV['APP_NAME'] %>_cms_development
+  database: <%= Domain.config.dev_db_name %>
   pool: 5
   timeout: 5000
   encoding: utf8
@@ -27,7 +27,7 @@ production:
   encoding: utf8
   reconnect: true
   strict: false
-  url: <%= ENV["MAS_CMS_DATABASE_URL"] %>
+  url: <%= Domain.config.prod_db_url %>
 
 
 # We have this database configuration because we use the gem `js-routes` to allow us to access Rails routes from
