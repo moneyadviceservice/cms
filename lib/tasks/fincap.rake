@@ -147,5 +147,16 @@ namespace :fincap do
         {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
       CONTENT
     )
+
+    english_site.layouts.find_or_create_by(
+      identifier: 'latest_news',
+      label: 'Latest News',
+      content:  <<-CONTENT
+        {{ cms:page:content:rich_text }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Description }}
+        {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      CONTENT
+    )
   end
 end
