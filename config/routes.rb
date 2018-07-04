@@ -63,6 +63,8 @@ Rails.application.routes.draw do
       resources :documents, only: :index
     end
 
+    get '/:locale/latest_news' => 'documents#index'
+    get '/:locale/news' => 'documents#index'
     get '/:locale/thematic_reviews' => 'documents#index'
     get '/:locale/thematic_reviews_landing_pages' => 'documents#index'
     get '/:locale/categories(.:format)' => 'category_contents#index'
