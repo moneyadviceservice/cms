@@ -94,7 +94,7 @@ RSpec.describe DocumentProvider do
           end
         end
 
-         context 'and the keyword is found in a "content" block' do
+        context 'and the keyword is found in a "content" block' do
           let!(:page_with_keyword) { create(:insight_page_with_overview_block, site: site, layout: insight_layout) }
           let!(:page_without_keyword) { create(:page, site: site, layout: insight_layout) }
           let(:keyword) { 'redundancy' }
@@ -102,6 +102,17 @@ RSpec.describe DocumentProvider do
           it 'returns only those documents' do
             expect(subject.size).to eq(1)
             expect(subject).to match_array([page_with_keyword])
+          end
+        end
+
+        context 'and the keyword is found in an "order_by_date" block' do
+          let!(:page_with_order_by_date_block) { create(:page_with_order_by_date_block, site: site, layout: insight_layout) }
+          let!(:page_without_keyword) { create(:page, site: site, layout: insight_layout) }
+          let(:keyword) { '2017' }
+
+          it 'returns only those documents' do
+            expect(subject.size).to eq(1)
+            expect(subject).to match_array([page_with_order_by_date_block])
           end
         end
 
