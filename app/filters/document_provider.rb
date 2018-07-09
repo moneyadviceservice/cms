@@ -1,7 +1,7 @@
 class DocumentProvider
   attr_reader :current_site, :document_type, :keyword, :filters, :tag
 
-  BLOCKS_TO_SEARCH = %w(content overview)
+  BLOCKS_TO_SEARCH = %w(content overview order_by_date)
   FILTER_LIMIT = 26
 
   def initialize(params = {})
