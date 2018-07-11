@@ -111,6 +111,14 @@ FactoryGirl.define do
       end
     end
 
+    factory :page_with_order_by_date_block do
+      site { create :site, identifier: 'test-documents'}
+      label 'Some label'
+      after(:create) do |page|
+        create :block, :order_by_date, blockable: page
+      end
+    end
+
     factory :insight_page_with_raw_cta_text_block do
       site { create :site, identifier: 'test-documents'}
       label 'Page with block other than content or identifier'

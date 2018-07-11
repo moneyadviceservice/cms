@@ -63,5 +63,10 @@ FactoryGirl.define do
       identifier { 'countries_of_delivery' }
       content { 'United Kingdom' }
     end
+
+    trait :order_by_date do
+      identifier { 'order_by_date' }
+      content { '15th March 2017' }
+    end
   end
 end
