@@ -51,10 +51,10 @@ Domain.configure do |config|
     config.cms_public_url        ||= ENV['FINCAP_CMS_PUBLIC_URL']
     config.cms_url               ||= ENV['FINCAP_CMS_URL']
     config.cms_api_token         ||= ENV['FINCAP_CMS_API_TOKEN']
-    config.prod_db_url           ||= ENV['FINCAP_CMS_DATABASE_URL']
-    config.dev_db_name           ||= 'fincap_cms_development'
-    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_KEY'],
-    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_CONTAINER'],
+    config.prod_db_url           ||= ENV['MAS_FINCAP_CMS_DATABASE_URL']
+    config.dev_db_name           ||= 'cms_fincap_development'
+    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_KEY']
+    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_CONTAINER']
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_NAME']
   else
     config.public_website_domain ||= ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
@@ -63,9 +63,9 @@ Domain.configure do |config|
     config.cms_url               ||= ENV['MAS_CMS_URL']
     config.cms_api_token         ||= ENV['MAS_CMS_API_TOKEN']
     config.prod_db_url           ||= ENV['MAS_CMS_DATABASE_URL']
-    config.dev_db_name           ||= 'mas_cms_development'
-    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
-    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER'],
+    config.dev_db_name           ||= 'cms_mas_development'
+    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY']
+    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER']
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
   end
 end
