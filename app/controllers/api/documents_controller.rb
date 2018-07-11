@@ -28,7 +28,7 @@ module API
           :keyword,
           :tag,
           document_type: [],
-          blocks: [:identifier, :value]
+          blocks: [:identifier, :value, value: []]
         ).merge(current_site: current_site)
       ).retrieve
     end
