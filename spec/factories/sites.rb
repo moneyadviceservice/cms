@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :site, class: Comfy::Cms::Site do
     label 'en'
     sequence(:identifier) { |i| "identifier-#{i}" }

@@ -17,7 +17,7 @@ Capybara.default_wait_time = 20
 
 Capybara.ignore_hidden_elements = false
 
-World(FactoryGirl::Syntax::Methods)
+World(FactoryBot::Syntax::Methods)
 
 DatabaseCleaner.strategy = :truncation
 

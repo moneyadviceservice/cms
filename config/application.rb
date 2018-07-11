@@ -27,6 +27,8 @@ module Cms
 
     config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css rsvp/rsvp.js)
 
+    config.active_record.raise_in_transactional_callbacks = true
+
     config.middleware.use Rack::RedirectMiddleware::Responder
   end
 end

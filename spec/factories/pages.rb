@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :page, class: Comfy::Cms::Page do
     site
     layout

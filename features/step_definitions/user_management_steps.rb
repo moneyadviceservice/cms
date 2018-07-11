@@ -46,7 +46,7 @@ Then(/^the new user should not be able to log in$/) do
 end
 
 Given(/^I am (?:a normal|not an admin) user$/) do
-  @current_user = FactoryGirl.create(:user,
+  @current_user = FactoryBot.create(:user,
                                      role: Comfy::Cms::User.roles[:user],
                                      email: 'test@tester.com',
                                      password: 'password',
@@ -55,7 +55,7 @@ Given(/^I am (?:a normal|not an admin) user$/) do
 end
 
 Given(/^I am an admin user$/) do
-  @current_user = FactoryGirl.create(:user,
+  @current_user = FactoryBot.create(:user,
                                      role: Comfy::Cms::User.roles[:admin],
                                      email: 'test@tester.com',
                                      password: 'password',
@@ -64,7 +64,7 @@ Given(/^I am an admin user$/) do
 end
 
 Given(/^I am an editor user$/) do
-  @current_user = FactoryGirl.create(:user,
+  @current_user = FactoryBot.create(:user,
                                      role: Comfy::Cms::User.roles[:editor],
                                      email: 'test@tester.com',
                                      password: 'password',

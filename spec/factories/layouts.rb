@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :layout, class: Comfy::Cms::Layout do
     site
     label 'Default Layout'

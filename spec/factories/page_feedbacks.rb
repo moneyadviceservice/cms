@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :page_feedback do
     page
     liked true

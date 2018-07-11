@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :file, class: Comfy::Cms::File do
     site
     label 'Default File'

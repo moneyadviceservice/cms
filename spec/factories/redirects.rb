@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :redirect, class: Redirect do
     source '/en/foo'
     destination '/en/bar'

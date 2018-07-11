@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :user, class: Comfy::Cms::User do
     email    { Faker::Internet.email }
     name     { Faker::Name.name }

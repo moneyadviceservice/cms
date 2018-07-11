@@ -65,7 +65,7 @@ group :test, :development do
   # https://github.com/jnicklas/capybara/commit/385a7507f6525d9b2d1e23bef0bb2e6fe5ad0c97
   gem 'capybara', '2.4.1'
   gem 'dotenv-rails'
-  gem 'factory_girl_rails', '~> 4.0'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'launchy'
   gem 'pry-rails'

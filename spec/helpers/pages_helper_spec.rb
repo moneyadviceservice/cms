@@ -62,10 +62,10 @@ describe PagesHelper do
   end
 
   describe '#display_additional_button_menu?' do
-    let(:page) { FactoryGirl.build(:page) }
+    let(:page) { FactoryBot.build(:page) }
 
     context 'user is an editor' do
-      let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:editor]) }
+      let(:user) { FactoryBot.build(:user, role: Comfy::Cms::User.roles[:editor]) }
 
       it 'returns false' do
         expect(helper.display_additional_button_menu?(page, user)).to be(false)
@@ -73,7 +73,7 @@ describe PagesHelper do
     end
 
     context 'user is not an editor' do
-      let(:user) { FactoryGirl.build(:user, role: Comfy::Cms::User.roles[:user]) }
+      let(:user) { FactoryBot.build(:user, role: Comfy::Cms::User.roles[:user]) }
 
       context 'and the page is in the state "unsaved"' do
         before { allow(page).to receive(:unsaved?) { true } }
@@ -106,22 +106,22 @@ describe PagesHelper do
   end
 
   describe '#display_metadata_form_fields?' do
-    let(:page) { FactoryGirl.build(:page, layout: layout) }
+    let(:page) { FactoryBot.build(:page, layout: layout) }
 
     context 'page layout is not a footer or home page' do
-      let(:layout) { FactoryGirl.build(:layout, identifier: 'article') }
+      let(:layout) { FactoryBot.build(:layout, identifier: 'article') }
 
       it { expect(helper.display_metadata_form_fields?(page)).to be(true) }
     end
 
     context 'page layout is a footer' do
-      let(:layout) { FactoryGirl.build(:layout, identifier: 'footer') }
+      let(:layout) { FactoryBot.build(:layout, identifier: 'footer') }
 
       it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
     end
 
     context 'page layout is a home page' do
-      let(:layout) { FactoryGirl.build(:layout, identifier: 'home_page') }
+      let(:layout) { FactoryBot.build(:layout, identifier: 'home_page') }
 
       it { expect(helper.display_metadata_form_fields?(page)).to be(false) }
     end

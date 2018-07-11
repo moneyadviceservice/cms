@@ -36,7 +36,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
     flash[:success] = I18n.t('comfy.admin.cms.pages.updated')
 
     if current_user.editor?
-      RevisionMailer.external_editor_change(user: current_user, page: @page).deliver
+      RevisionMailer.external_editor_change(user: current_user, page: @page).deliver_now
     end
 
     if updating_alternate_content?

@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :clump do
     name_en { Faker::Lorem.sentence }
     name_cy { Faker::Lorem.sentence }
