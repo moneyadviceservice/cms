@@ -275,4 +275,22 @@ describe PageSerializer do
     end
 
   end
+
+  describe '#tags' do
+    context 'when article has keywords' do
+      before { allow(article).to receive(:keywords).and_return(tags) }
+
+      let(:tags){ [build(:tag, value: 'mobile_payments')] }
+
+      it 'returns array of keyword values' do
+        expect(subject.tags).to eql(%w[mobile_payments])
+      end
+    end
+
+    context 'when article has no keywords' do
+      it 'returns an empty array' do
+        expect(subject.tags).to eql([])
+      end
+    end
+  end
 end
