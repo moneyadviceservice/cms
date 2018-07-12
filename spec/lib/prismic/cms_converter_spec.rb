@@ -63,7 +63,7 @@ RSpec.describe Prismic::CmsConverter do
         it 'wrap text with unordered list tag' do
           expect(convert).to eq(
             Prismic::CmsDocument.new(
-							content: "<ul>Relate to people's financial capability</li><li>Make a positive contribution to evidence hub, given what is on there already</ul>"
+							content: "<ul><li>Relate to people's financial capability</li><li>Make a positive contribution to evidence hub, given what is on there already</li></ul>"
             )
           )
         end
