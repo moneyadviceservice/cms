@@ -741,7 +741,7 @@ Or, for a wide range of evaluation evidence, insight and market research don't f
   ]
 )
 
-english_site.pages.create!(
+lifestage_page = english_site.pages.create!(
   label: 'Young Adults',
   slug: 'young-adults',
   layout: lifestage_layout,
@@ -899,6 +899,8 @@ Policy Statement published in March 2015.
 [mobile_payments_tag, secure_payments_tag].each do |tag|
   news_page.keywords << tag
 end
+
+lifestage_page.keywords << mobile_payments_tag
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

@@ -11,7 +11,7 @@ module API
     param :document_type, Array, required: false
     param :keyword, String, required: false
     param :blocks, Array, required: false
-    param :tag, String, required: false
+    param :tag, [Array, String], required: false
     def index
       if documents
         render json: paginated_documents, meta: meta_data, root: 'documents'
@@ -26,7 +26,7 @@ module API
       @documents ||= DocumentProvider.new(
         params.permit(
           :keyword,
-          :tag,
+          :tag, tag: [],
           document_type: [],
           blocks: [:identifier, :value, value: []]
         ).merge(current_site: current_site)
