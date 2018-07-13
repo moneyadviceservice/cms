@@ -15,7 +15,8 @@ module Prismic
     }.stringify_keys.freeze
 
     PRISMIC_FORMAT = {
-      strong: 'strong'
+      strong: 'strong',
+      em: 'em'
     }.stringify_keys.freeze
     attr_accessor :document_fragment, :fragment_type, :text, :text_format
     include ActiveModel::Model
@@ -42,8 +43,7 @@ module Prismic
 
       convert_special_formats(
         text: text,
-        text_format: text_format,
-        document_fragment: document_fragment
+        text_format: text_format
       )
 
       document_fragment.to_html
@@ -59,7 +59,7 @@ module Prismic
     #
     #  ["strong", "hyperlink", "em", "label"]
     #
-    def convert_special_formats(text:, text_format:, document_fragment:)
+    def convert_special_formats(text:, text_format:)
       text_format.each do |format|
         start_at = format['start']
         end_at = format['end']
@@ -67,9 +67,15 @@ module Prismic
         content = text[start_at, end_at]
 
         if html_tag_format
-          fragment_text.first.replace(
-            text.gsub(content, "<#{html_tag_format}>#{content}</#{html_tag_format}>")
-          )
+          if fragment_text.size > 1
+            fragment_text.find { |f| f.text.include?(content) }.replace(
+              content.gsub(content, "<#{html_tag_format}>#{content}</#{html_tag_format}>")
+            )
+          else
+            fragment_text.find { |f| f.text.include?(content) }.replace(
+              text.gsub(content, "<#{html_tag_format}>#{content}</#{html_tag_format}>")
+            )
+          end
         end
       end
     end

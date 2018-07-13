@@ -37,6 +37,86 @@ RSpec.describe Prismic::CmsConverter do
     end
 
     context 'when attributes have content' do
+      context 'when attributes have emphasis text' do
+        let(:row) do
+          {
+            content: [
+              {
+                "type"=>"paragraph",
+                "content"=> {
+                  "text"=> "Caroline Rookes, Chief Executive of the Money Advice Service, said: “Pension provision has changed significantly over recent years and it is more important than ever that individuals make good decisions so their money lasts for the full length of their retirement. We know that online banking has empowered people to engage with their money more regularly. We hope that being able to keep track of their pension savings in a single digital place will ensure that people are fully informed and can make decisions about their future savings in a similar way. ",
+                  "spans"=> [
+                    {
+                      "start"=>0,
+                      "end"=>67,
+                      "type"=>"strong"
+                    },
+                    {
+                      "start"=>68,
+                      "end"=>557,
+                      "type"=>"em"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        end
+
+        it 'converts to emphasied html tag' do
+          expect(convert).to eq(
+            Prismic::CmsDocument.new(
+              content: '<p><strong>Caroline Rookes, Chief Executive of the Money Advice Service, said:</strong><em>“Pension provision has changed significantly over recent years and it is more important than ever that individuals make good decisions so their money lasts for the full length of their retirement. We know that online banking has empowered people to engage with their money more regularly. We hope that being able to keep track of their pension savings in a single digital place will ensure that people are fully informed and can make decisions about their future savings in a similar way. </em></p>'
+            )
+          )
+        end
+      end
+
+      context 'when attributes have ordered lists' do
+        let(:row) do
+          {
+            content: [
+ 							{
+              	'type'=>'paragraph',
+                'content'=>{
+                  'text'=>'The Strategy is built around two key concepts:',
+                  'spans'=>[{'start'=>0, 'end'=>46, 'type'=>'strong'}]
+                }
+              },
+ 							{
+                'type'=>'o-list-item',
+                'content'=> {
+                  'text'=>'Collective impact and cross-sector co-ordination rather than isolated interventions.',
+                  'spans'=>[]
+                }
+              },
+ 							{
+                'type'=>'o-list-item',
+ 							  'content'=> {
+                  'text'=> 'Testing and learning to determine what works in order to deliver evidence-based interventions: resources will be steered towards activities on the basis of what is proven to work.',
+ 							   'spans'=>[]
+                }
+              },
+ 							{
+                'type'=>'paragraph',
+ 							 'content'=> {
+                  'text'=>'Overall progress will be monitored by a Financial Capability Survey and ongoing evaluation of specific interventions.',
+                  'spans'=>[]
+                }
+              }
+            ]
+          }
+        end
+
+        it 'wrap text with ordered list tag' do
+          expect(convert).to eq(
+            Prismic::CmsDocument.new(
+              content: '<p><strong>The Strategy is built around two key concepts:</strong></p><ol><li>Collective impact and cross-sector co-ordination rather than isolated interventions.</li><li>Testing and learning to determine what works in order to deliver evidence-based interventions: resources will be steered towards activities on the basis of what is proven to work.</li></ol><p>Overall progress will be monitored by a Financial Capability Survey and ongoing evaluation of specific interventions.</p>'
+            )
+          )
+        end
+      end
+
       context 'when attributes have lists' do
         let(:row) do
           {
