@@ -1,18 +1,18 @@
-Feature: Building Lifestage Page
+Feature: Building Regional Strategy Page
   As an Editor
-  In order to the build a Lifestage Page
+  In order to the build a Regional Strategy Page
   I want to be able to fill out all the fields on the form
 
   Background:
-    Given I have a lifestage page layout setup with components
+    Given I have a regional strategy page layout setup with components
     And I am logged in
 
-  Scenario: Creating a Lifestage Page
+  Scenario: Creating a Regional Strategy Page
     Given I am on the homepage
     And I click on "Create new page"
-    And I select "Lifestage" on the creation page
-    And I create a page "Lifestage Page"
-    When I edit the page "Lifestage Page"
+    And I select "Regional Strategy" on the creation page
+    And I create a page "Regional Strategy Page"
+    When I edit the page "Regional Strategy Page"
     And I fill in
       | FIELD                     | VALUE                                         |
       | content                   | Out of compulsory education or other statutory|
@@ -32,13 +32,13 @@ Feature: Building Lifestage Page
       | teaser3_text              | Officiem im volest pratur, antetum quos laure |
       | teaser3_link              | [Test3](/test3)                               |
       | strategy_title            | Strategy extract                              |
-      | strategy_overview         | Adult financial capability is a direct result |
+      | strategy_text             | Adult financial capability is a direct result |
       | strategy_link             | [Test4](/test4)                               |
       | steering_group_list_title | Steering group                                |
       | steering_group_links      | [Test5](/test5)                               |
       | download                  | [File](a-file)                                |
     And I save and return to the homepage
-    And when I click the "Lifestage Page" page
+    And when I click the "Regional Strategy Page" page
     Then I should see the fields filled with the content
       | FIELD                     | VALUE                                         |
       | content                   | Out of compulsory education or other statutory|
@@ -58,7 +58,7 @@ Feature: Building Lifestage Page
       | teaser3_text              | Officiem im volest pratur, antetum quos laure |
       | teaser3_link              | [Test3](/test3)                               |
       | strategy_title            | Strategy extract                              |
-      | strategy_overview         | Adult financial capability is a direct result |
+      | strategy_text             | Adult financial capability is a direct result |
       | strategy_link             | [Test4](/test4)                               |
       | steering_group_list_title | Steering group                                |
       | steering_group_links      | [Test5](/test5)                               |

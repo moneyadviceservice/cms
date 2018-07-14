@@ -99,8 +99,11 @@ module UI::Pages
     element :steering_group_list_title, '#blocks_attributes_19_content'
     element :steering_group_links, '#blocks_attributes_20_content'
 
-    # news Page
+    # News Page
     element :order_by_date, '#blocks_attributes_3_content'
+
+    # Regional Strategy Page
+    element :strategy_text, '#blocks_attributes_17_content'
 
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'
