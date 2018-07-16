@@ -14,7 +14,6 @@ module Prismic
     end
 
     def to_cms
-      puts "Converting #{self.title}"
       ::Prismic::CmsConverter.new(self).convert
     end
   end

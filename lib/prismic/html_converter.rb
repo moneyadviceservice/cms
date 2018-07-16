@@ -37,12 +37,7 @@ module Prismic
     end
 
     def to_tag(fragment)
-      TagConverter.new(
-        document_fragment: fragment.document,
-        fragment_type: fragment.field_type,
-        text: fragment.text,
-        text_format: fragment.format
-      ).to_html
+      TagConverter.new(fragment: fragment).to_html
     end
 
     private
