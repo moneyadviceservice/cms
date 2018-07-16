@@ -1,4 +1,13 @@
 namespace :prismic do
+  desc 'Migrate all prismic documents to fincap. Example rake prismic:migrate[~/prismic_files]'
+  task :migrate, [:dir] => :environment do |t, args|
+    documents = Prismic::Document.all(args[:dir])
+    converted_documents = documents.map(&:to_cms)
+
+    puts "Migrating '#{documents.size}' documents."
+#    puts converted_documents
+  end
+
   desc 'Show statistics for Prismic pages given a directory. Example: rake prismic:statistics[~/prismic_files]'
   task :statistics, [:dir] => :environment do |t, args|
     Prismic::Statistics.new(args[:dir]).call
@@ -7,12 +16,6 @@ namespace :prismic do
   desc 'Show information about each evidence hub field type. Example: rake prismic:fields[~/Downloads/fincap,insight]'
   task :fields, [:dir, :evidence_type] => :environment do |t, args|
     Prismic::Fields.new(args[:dir], args[:evidence_type]).filter.print_table
-  end
-
-  desc 'Import all Evidence Hub prismic pages given a directory. Example: rake prismic:hub_import[~/prismic_files]'
-  task :hub_import, [:dir] => :environment do |t, args|
-    ActiveRecord::Base.logger = Logger.new(STDOUT)
-    Prismic::HubImport.new(args[:dir]).call
   end
 end
 
