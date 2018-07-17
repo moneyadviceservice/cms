@@ -25,7 +25,9 @@ module Domain
                     :azure_access_key,
                     :azure_container,
                     :azure_account_name,
-                    :cms_public_url
+                    :cms_public_url,
+                    :algolia_app_id,
+                    :algolia_api_key
 
       def initialize
         @public_website_domain = nil
@@ -38,6 +40,8 @@ module Domain
         @azure_access_key = nil
         @azure_container = nil
         @azure_account_name = nil
+        @algolia_app_id = nil
+        @algolia_api_key = nil
       end
     end
   end
