@@ -56,6 +56,8 @@ Domain.configure do |config|
     config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_KEY']
     config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_CONTAINER']
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_NAME']
+    config.algolia_app_id        ||= ENV['FINCAP_ALGOLIA_APP_ID']
+    config.algolia_api_key       ||= ENV['FINCAP_ALGOLIA_API_KEY']
   else
     config.public_website_domain ||= ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
     config.public_website_url    ||= ENV['MAS_PUBLIC_WEBSITE_URL']
@@ -67,5 +69,7 @@ Domain.configure do |config|
     config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY']
     config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER']
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
+    config.algolia_app_id        ||= ENV['ALGOLIA_APP_ID']
+    config.algolia_api_key       ||= ENV['ALGOLIA_API_KEY']
   end
 end
