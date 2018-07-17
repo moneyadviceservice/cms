@@ -158,5 +158,34 @@ namespace :fincap do
         {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
       CONTENT
     )
+
+    regional_strategy_layout = english_site.layouts.find_or_create_by(
+      identifier: 'regional_strategy',
+      label: 'Regional Strategy',
+      content: <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:strategy_title }}
+    {{ cms:page:strategy_text }}
+    {{ cms:page:strategy_link }}
+    {{ cms:page:forum_title}}
+    {{ cms:page:forum_links}}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+  CONTENT
+    )
   end
 end
