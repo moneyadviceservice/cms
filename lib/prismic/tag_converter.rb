@@ -16,7 +16,8 @@ module Prismic
 
     PRISMIC_FORMAT = {
       strong: 'strong',
-      em: 'em'
+      em: 'em',
+      hyperlink: '<a href="%{link}">%{text}</a>'
     }.stringify_keys.freeze
     attr_accessor :fragment
     delegate :field_type, :text, :text_format, to: :fragment
@@ -65,18 +66,36 @@ module Prismic
         next if html_tag_format.blank?
 
         if html[start_at..end_at] == content
-          html[start_at..end_at] = "<#{html_tag_format}>#{content}</#{html_tag_format}>"
+          html[start_at..end_at] = format_content(
+            content: content,
+            tag: html_tag_format,
+            format: format
+          )
         else
           new_start_at = html.index(content)
           new_end_at = new_start_at + (end_at - start_at) - 1
           new_content = html[new_start_at..new_end_at]
 
-          html[new_start_at..new_end_at] =
-            "<#{html_tag_format}>#{new_content}</#{html_tag_format}>"
+          html[new_start_at..new_end_at] = format_content(
+            content: new_content,
+            tag: html_tag_format,
+            format: format
+          )
         end
       end
 
       html
+    end
+
+    def format_content(content:, tag:, format:)
+      if tag.include?("<a")
+        tag % {
+          link: format['data']['url'],
+          text: content
+        }
+      else
+        "<#{tag}>#{content}</#{tag}>"
+      end
     end
   end
 end

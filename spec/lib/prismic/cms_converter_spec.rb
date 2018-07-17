@@ -102,7 +102,7 @@ RSpec.describe Prismic::CmsConverter do
 				it '' do
           expect(convert).to eq(
             Prismic::CmsDocument.new(
-              content: '<p><strong>• To view the Money Advice Service Financial Capability Technical report*, please click </strong><a href="https://fincap-two.cdn.prismic.io/fincap-two%2F5bdea584-c07c-4173-95ab-af8e6dcdafe9_mas_fincap_technical_report.pdf" target="_blank">here</a>'
+              content: "<p><strong>•\tTo view the Money Advice Service Financial Capability UK Survey report, please click </strong><a href=\"https://prismic-io.s3.amazonaws.com/fincap-two%2Fd08746d1-e667-4c9e-84ad-8539ce5c62e0_mas_fincap_uk_survey_2015_aw.pdf\"><strong>here</strong></a></p>"
             )
           )
         end
