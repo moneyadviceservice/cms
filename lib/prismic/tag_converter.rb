@@ -60,7 +60,7 @@ module Prismic
 
     private
 
-    # Prismic formats. The "spans" node has this possible values:
+    # The "spans" node can have the following possible values:
     #
     #  ["strong", "hyperlink", "em"]
     #

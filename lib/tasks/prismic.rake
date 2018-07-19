@@ -9,12 +9,13 @@ namespace :prismic do
       begin
         converted_document.migrate
         print '.'
-      rescue NameError
+      rescue StandardError, NotImplementedError => exception
         print 'F'
-        errors << "Prismic::Migrator::#{converted_document.type.classify} is not defined. Skipping"
+        errors << exception.message
       end
     end
 
+    puts
     puts errors.uniq.sort if errors.present?
   end
 

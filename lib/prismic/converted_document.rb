@@ -15,6 +15,10 @@ module Prismic
       strip_tags(title).to_s
     end
 
+    def slug
+      formatted_title.parameterize
+    end
+
     def filename
       formatted_title[0..30].gsub(/\//, '').parameterize
     end

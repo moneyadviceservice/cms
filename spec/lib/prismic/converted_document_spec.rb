@@ -8,7 +8,7 @@ RSpec.describe Prismic::ConvertedDocument do
       { title: '<h1>Some title</h1>' }
     end
 
-    it 'strip tags' do
+    it 'strips tags' do
       expect(converted_document.formatted_title).to eq('Some title')
     end
   end
