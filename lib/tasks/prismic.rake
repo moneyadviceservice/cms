@@ -3,6 +3,19 @@ namespace :prismic do
   task :migrate, [:dir] => :environment do |t, args|
     documents = Prismic::Document.all(args[:dir])
     converted_documents = documents.map(&:to_cms)
+    errors = []
+
+    converted_documents.map do |converted_document|
+      begin
+        converted_document.migrate
+        print '.'
+      rescue NameError
+        print 'F'
+        errors << "Prismic::Migrator::#{converted_document.type.classify} is not defined. Skipping"
+      end
+    end
+
+    puts errors.uniq.sort if errors.present?
   end
 
   desc 'Show statistics for Prismic pages given a directory. Example: rake prismic:statistics[~/prismic_files]'
