@@ -1,10 +1,4 @@
 module Prismic
-  class ConvertedDocument < OpenStruct
-    def migrate
-      "Prismic::Migrator::#{type.classify}".constantize.new(self).migrate
-    end
-  end
-
   class CmsConverter
     attr_reader :document, :converted_data
 

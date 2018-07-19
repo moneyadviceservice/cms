@@ -18,6 +18,32 @@ namespace :prismic do
     puts errors.uniq.sort if errors.present?
   end
 
+  desc 'Convert into html files'
+  task :convert_to_html, [:dir] => :environment do |t, args|
+    documents = Prismic::Document.all(args[:dir])
+    converted_documents = documents.map(&:to_cms)
+
+    converted_documents.each do |converted_document|
+      template = %{
+        <html>
+          <head><title><%= formatted_title %></title></head>
+          <body>
+            <% attributes.each do |attribute| %>
+              <h2>Attribute "<%= attribute %>"</h2>
+              <h3>Value</h3>
+              <%= self.send(attribute) %>
+            <% end %>
+          </body>
+        </html>
+      }
+      view = ERB.new(template)
+
+      File.open("tmp/#{converted_document.filename}.html", 'w') do |f|
+        f.puts(view.result(converted_document.get_binding))
+      end
+    end
+  end
+
   desc 'Show statistics for Prismic pages given a directory. Example: rake prismic:statistics[~/prismic_files]'
   task :statistics, [:dir] => :environment do |t, args|
     Prismic::Statistics.new(args[:dir]).call
