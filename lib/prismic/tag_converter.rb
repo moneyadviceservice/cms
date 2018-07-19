@@ -9,7 +9,6 @@ module Prismic
       heading5: 'h5',
       heading6: 'h6',
       :'list-item' => 'li',
-      embed: '',
       image: '',
       :'o-list-item' => 'li'
     }.stringify_keys.freeze
@@ -20,7 +19,7 @@ module Prismic
       hyperlink: '<a href="%{link}">%{text}</a>'
     }.stringify_keys.freeze
     attr_accessor :fragment
-    delegate :field_type, :text, :text_format, to: :fragment
+    delegate :original_fragment, :field_type, :text, :text_format, to: :fragment
     include ActiveModel::Model
 
     # Transform Prismic fields into html tags. The possible values:
@@ -41,7 +40,12 @@ module Prismic
     def to_html
       result = convert_special_formats
 
-      "<#{html_tag}>#{result}</#{html_tag}>"
+      if field_type == 'embed'
+        original_fragment['data']['html']
+      elsif field_type == 'image'
+      else
+        "<#{html_tag}>#{result}</#{html_tag}>"
+      end
     end
 
     def html_tag
@@ -89,8 +93,10 @@ module Prismic
 
     def format_content(content:, tag:, format:)
       if tag.include?("<a")
+        link = format['data']['url']
+
         tag % {
-          link: format['data']['url'],
+          link: link,
           text: content
         }
       else
