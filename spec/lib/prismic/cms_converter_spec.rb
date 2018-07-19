@@ -123,7 +123,7 @@ RSpec.describe Prismic::CmsConverter do
                   },
                   'width' => 2624,
                   'height' => 2624,
-                  'url' => 'https://prismic-io.s3.amazonaws.com/fincap-two/981f9fff7abfca68edf52ba7915e1d90cb70dc27_the-pensions-dashboard.png',
+                  'url' => 'https://fincap-two.cdn.prismic.io/fincap-two/981f9fff7abfca68edf52ba7915e1d90cb70dc27_the-pensions-dashboard.png',
                   'edit' => {
                     'background' => 'transparent',
                     'zoom' => 1.0,
@@ -138,6 +138,14 @@ RSpec.describe Prismic::CmsConverter do
               }
             ]
           }
+        end
+
+        it 'converts to image html tag' do
+          expect(convert).to eq(
+            Prismic::CmsDocument.new(
+              content: '<img src="https://fincap-two.cdn.prismic.io/fincap-two/981f9fff7abfca68edf52ba7915e1d90cb70dc27_the-pensions-dashboard.png" width="2624" height="2624" />'
+            )
+          )
         end
       end
 
