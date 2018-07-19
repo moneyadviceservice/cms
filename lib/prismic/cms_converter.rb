@@ -1,5 +1,8 @@
 module Prismic
-  class CmsDocument < OpenStruct
+  class ConvertedDocument < OpenStruct
+    def migrate
+      "Prismic::Migrator::#{type.classify}".constantize.new(self).migrate
+    end
   end
 
   class CmsConverter
@@ -21,7 +24,7 @@ module Prismic
         end
       end
 
-      CmsDocument.new(converted_data)
+      ConvertedDocument.new(converted_data)
     end
   end
 end
