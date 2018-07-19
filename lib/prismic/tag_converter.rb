@@ -9,7 +9,7 @@ module Prismic
       heading5: 'h5',
       heading6: 'h6',
       :'list-item' => 'li',
-      image: '',
+      image: '<img src="%{src}" width="%{width}" height="%{height}" />',
       :'o-list-item' => 'li'
     }.stringify_keys.freeze
 
@@ -43,6 +43,12 @@ module Prismic
       if field_type == 'embed'
         original_fragment['data']['html']
       elsif field_type == 'image'
+        image = original_fragment['data']['origin']
+        html_tag % {
+          src: original_fragment['data']['url'],
+          width: image['width'],
+          height: image['height']
+        }
       else
         "<#{html_tag}>#{result}</#{html_tag}>"
       end
@@ -76,7 +82,7 @@ module Prismic
             format: format
           )
         else
-          new_start_at = html.index(content)
+          new_start_at = html.index(content) || start_at
           new_end_at = new_start_at + (end_at - start_at) - 1
           new_content = html[new_start_at..new_end_at]
 
