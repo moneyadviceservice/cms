@@ -3,9 +3,6 @@ namespace :prismic do
   task :migrate, [:dir] => :environment do |t, args|
     documents = Prismic::Document.all(args[:dir])
     converted_documents = documents.map(&:to_cms)
-
-    puts "Migrating '#{documents.size}' documents."
-#    puts converted_documents
   end
 
   desc 'Show statistics for Prismic pages given a directory. Example: rake prismic:statistics[~/prismic_files]'
