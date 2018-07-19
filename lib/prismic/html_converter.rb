@@ -1,6 +1,6 @@
 module Prismic
   class HTMLConverter
-    LIST_ITENS = ['list-item', 'o-list-item']
+    LIST_ITEMS = ['list-item', 'o-list-item']
     HTML_LIST = {
       'list-item' => 'ul',
       'o-list-item' => 'ol'
@@ -12,8 +12,8 @@ module Prismic
       ordered_fragments = []
 
       fragments.each_with_index do |fragment, index|
-        if fragment.field_type.in?(LIST_ITENS)
-          if index.zero? || !fragments[index - 1].field_type.in?(LIST_ITENS)
+        if fragment.field_type.in?(LIST_ITEMS)
+          if index.zero? || !fragments[index - 1].field_type.in?(LIST_ITEMS)
             ordered_fragments << map_html_list(fragments, fragment, index)
           end
         else
@@ -56,7 +56,7 @@ module Prismic
       list = []
       i = index
 
-      while fragments[i] && fragments[i].field_type.in?(LIST_ITENS)
+      while fragments[i] && fragments[i].field_type.in?(LIST_ITEMS)
         list << fragments[i]
         i += 1
       end

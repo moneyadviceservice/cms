@@ -5,7 +5,7 @@ RSpec.describe Prismic::CmsConverter do
   describe '#convert' do
     subject(:convert) { cms_converter.convert }
 
-    context 'when attributes does not have content' do
+    context 'when attributes do not have content' do
       let(:row) do
         {
           type: 'article',
@@ -20,7 +20,7 @@ RSpec.describe Prismic::CmsConverter do
       end
     end
 
-    context 'when attributes does not have any types mapped by prismic' do
+    context 'when attributes do not have any types mapped by prismic' do
       let(:row) do
         {
           content: [
@@ -69,7 +69,7 @@ RSpec.describe Prismic::CmsConverter do
         end
       end
 
-      context 'when attributes have embed videos' do
+      context 'when attributes have embedded videos' do
         let(:row) do
           {
             content: [
@@ -379,8 +379,9 @@ RSpec.describe Prismic::CmsConverter do
             content: [
               {
                 'type' => 'paragraph',
-                'content' =>                         { 'text' =>                           'Four out of 10 adults are not in control of their finances – new strategy launched to improve UK’s financial capability',
-                                                       'spans' => []
+                'content' => {
+                  'text' =>'Four out of 10 adults are not in control of their finances – new strategy launched to improve UK’s financial capability',
+                   'spans' => []
                   }
               },
               {
@@ -455,7 +456,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'wrap text with paragraph tag and format with bold text' do
+        it 'wraps text with paragraph tag and format with bold text' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               content: '<p><strong>Monday 25th September 2016</strong></p>',
@@ -487,7 +488,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'wrap text with paragraph html tags' do
+        it 'wraps text with paragraph html tags' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               content: '<p>Audio clip available for use on radio.</p><p>The need to improve financial education.</p>',
@@ -517,7 +518,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'convert to strong tags' do
+        it 'converts to strong tags' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               content: "<p>* Fair Funerals looked at 100 independent companies and 100 branches of Co-op Funeralcare and Dignity Funerals (the two largest UK funeral providers) in mystery shopping which checked for affordability and transparency. At the time of conducting the mystery shopping, neither Dignity not Co-op Funeralcare had online prices for any of their branches. \n\n<strong>Ends \\\\</strong>\n<strong>\nNotes to editors</strong>\nFor more information and to arrange interviews with case studies and the Fair Funerals team, please call 020 8983 5059 or email heatherkennedy@qsa.org.uk \n\n<strong>About Quaker Social Action</strong>\nQuaker Social Action exists to resource, enable and equip people living on a low income in east London. Our projects work towards our vision of 'a just world where people put people first', recognising the people we work with as agents of change not objects of charity. We work to tackle social exclusion, seeing poverty as not just material but also social. Our work is practical, relating to the everyday needs of the people we work with to make a tangible difference to their lives.\n<strong>\nAbout the Fair Funerals campaign</strong>\nQuaker Social Action launched the Fair Funerals campaign in 2014 to tackle the underlying causes of funeral poverty. It does this by:\n•\tEducating people about their choices so they can avoid funeral poverty\n•\tInfluencing government to do more for people in funeral poverty\n•\tWorking with the funeral industry to do moror people in funeral poverty\nVisit us here: http://fairfuneralscampaign.org.uk/</p>",
@@ -542,7 +543,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'wrap text with heading one html tag' do
+        it 'wraps text with heading one html tag' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               title: "<h1>The Money Charity's Financial Education Report</h1>",
@@ -552,7 +553,7 @@ RSpec.describe Prismic::CmsConverter do
         end
       end
 
-      context 'when attribute has lot of content' do
+      context 'when attribute has a lot of content' do
         let(:row) do
           {
             content: [
@@ -567,7 +568,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'transform into html' do
+        it 'transforms into html' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               content: "<p>Photographs from the West Lothian Credit Union visit are available to download at: https://www.flickr.com/photos/scottishgovernment/ \n\nThe projects receiving funding are:\nEast Renfrewshire Credit Union\t\nEast Renfrewshire\t\n£20,000\n\nBlackburn, Seafield and District Credit Union\t\nWest Lothian\t\n£20,000\n\nSovereign Credit Union\t\nAyrshire, Arran, Dumfries & Galloway\t\n£20,000\n\nStirling Credit Union\t\nStirling\t\n£20,000\n\nWest Lothian Credit Union\t\nWest Lothian\t\n£20,000\n\nFalkirk District Credit Union\t\nFalkirk\t\n£20,000\n\nYoker Credit Union\t\nGlasgow\t\n£20,000\n\nSolway Credit Union\t\nDumfries and Galloway\t\n£12,000\n\nNorth East Credit Union\t\nAberdeen\t\n£20,000\n\nBCD Credit Union\t\nGlasgow\t\n£20,000\n\n<strong>Total \t \t£192,000 </strong></p>",
@@ -592,7 +593,7 @@ RSpec.describe Prismic::CmsConverter do
           }
         end
 
-        it 'wrap text with heading one html tag' do
+        it 'wraps text with heading one html tag' do
           expect(convert).to eq(
             Prismic::ConvertedDocument.new(
               title: "<h5>The Money Charity's Financial Education Report</h5>",
