@@ -1,4 +1,50 @@
 namespace :prismic do
+  desc 'Migrate all prismic documents to fincap. Example rake prismic:migrate[~/prismic_files]'
+  task :migrate, [:dir] => :environment do |t, args|
+    documents = Prismic::Document.all(args[:dir])
+    converted_documents = documents.map(&:to_cms)
+    errors = []
+
+    converted_documents.map do |converted_document|
+      begin
+        converted_document.migrate
+        print '.'
+      rescue StandardError, NotImplementedError => exception
+        print 'F'
+        errors << exception.message
+      end
+    end
+
+    puts
+    puts errors.uniq.sort if errors.present?
+  end
+
+  desc 'Convert into html files'
+  task :convert_to_html, [:dir] => :environment do |t, args|
+    documents = Prismic::Document.all(args[:dir])
+    converted_documents = documents.map(&:to_cms)
+
+    converted_documents.each do |converted_document|
+      template = %{
+        <html>
+          <head><title><%= formatted_title %></title></head>
+          <body>
+            <% attributes.each do |attribute| %>
+              <h2>Attribute "<%= attribute %>"</h2>
+              <h3>Value</h3>
+              <%= self.send(attribute) %>
+            <% end %>
+          </body>
+        </html>
+      }
+      view = ERB.new(template)
+
+      File.open("tmp/#{converted_document.filename}.html", 'w') do |f|
+        f.puts(view.result(converted_document.get_binding))
+      end
+    end
+  end
+
   desc 'Show statistics for Prismic pages given a directory. Example: rake prismic:statistics[~/prismic_files]'
   task :statistics, [:dir] => :environment do |t, args|
     Prismic::Statistics.new(args[:dir]).call
@@ -7,12 +53,6 @@ namespace :prismic do
   desc 'Show information about each evidence hub field type. Example: rake prismic:fields[~/Downloads/fincap,insight]'
   task :fields, [:dir, :evidence_type] => :environment do |t, args|
     Prismic::Fields.new(args[:dir], args[:evidence_type]).filter.print_table
-  end
-
-  desc 'Import all Evidence Hub prismic pages given a directory. Example: rake prismic:hub_import[~/prismic_files]'
-  task :hub_import, [:dir] => :environment do |t, args|
-    ActiveRecord::Base.logger = Logger.new(STDOUT)
-    Prismic::HubImport.new(args[:dir]).call
   end
 end
 
