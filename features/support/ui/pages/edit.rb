@@ -79,6 +79,12 @@ module UI::Pages
     element :download, '.component_download'
     element :feedback, '.component_feedback'
 
+    #Homepage
+    element :horizontal_teaser_title, '#blocks_attributes_16_content'
+    element :horizontal_teaser_image, '#blocks_attributes_17_content'
+    element :horizontal_teaser_text, '#blocks_attributes_18_content'
+    element :horizontal_teaser_link, '#blocks_attributes_19_content'
+
     #Lifestage page
     element :teaser_section_title, '#blocks_attributes_3_content'
     element :teaser1_title, '#blocks_attributes_4_content'
