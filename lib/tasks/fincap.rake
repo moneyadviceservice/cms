@@ -84,7 +84,7 @@ namespace :fincap do
     )
 
     english_site.layouts.find_or_create_by(
-      identifier: 'thematic-review',
+      identifier: 'thematic_review',
       label: 'Thematic Review',
       content:  <<-CONTENT
         {{ cms:page:content:rich_text }}
@@ -98,7 +98,7 @@ namespace :fincap do
     )
 
     english_site.layouts.find_or_create_by(
-      identifier: 'thematic-reviews-landing-page',
+      identifier: 'thematic_reviews_landing_page',
       label: 'Thematic Reviews Landing Page',
       content:  <<-CONTENT
         {{ cms:page:content:rich_text }}
