@@ -1,6 +1,6 @@
 module API
   class AuthenticationFilter
-    MAS_CMS_API_TOKEN = ENV.fetch('MAS_CMS_API_TOKEN')
+    MAS_CMS_API_TOKEN = Domain.config.cms_api_token
 
     def self.before(controller)
       authenticate?(controller)
