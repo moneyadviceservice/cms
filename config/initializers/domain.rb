@@ -16,7 +16,8 @@ module Domain
       alias :config :configuration
 
     class Configuration
-      attr_accessor :algolia_app_id,
+      attr_accessor :app_name,
+                    :algolia_app_id,
                     :algolia_api_key,
                     :azure_access_key,
                     :azure_account_name,
@@ -50,6 +51,7 @@ end
 Domain.configure do |config|
   fail "Please set ENV['APP_NAME']" unless Rails.env.production? || ENV['APP_NAME']
   if ENV['APP_NAME'] == 'FINCAP' || ENV['PWD'] == '/srv/fincap-cms'
+    config.app_name              ||= 'FINCAP'
     config.public_website_domain ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
     config.public_website_url    ||= ENV['FINCAP_PUBLIC_WEBSITE_URL']
     config.cms_public_url        ||= ENV['FINCAP_CMS_PUBLIC_URL']
@@ -63,6 +65,7 @@ Domain.configure do |config|
     config.algolia_app_id        ||= ENV['FINCAP_ALGOLIA_APP_ID']
     config.algolia_api_key       ||= ENV['FINCAP_ALGOLIA_API_KEY']
   else
+    config.app_name              ||= 'MAS'
     config.public_website_domain ||= ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
     config.public_website_url    ||= ENV['MAS_PUBLIC_WEBSITE_URL']
     config.cms_public_url        ||= ENV['MAS_CMS_PUBLIC_URL']
@@ -77,3 +80,7 @@ Domain.configure do |config|
     config.algolia_api_key       ||= ENV['ALGOLIA_API_KEY']
   end
 end
+
+puts("=" * 80)
+puts("Running '#{Domain.config.app_name}' CMS.")
+puts("=" * 80)
