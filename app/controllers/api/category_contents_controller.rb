@@ -5,11 +5,16 @@ module API
     skip_before_action :load_cms_page
     around_filter :validate_locale
 
+    api :GET, '/:locale/categories'
+    param :locale, /[en|cy]/, required: true
     def index
       @primary_navigation, @secondary_navigation = Comfy::Cms::Category.navigation_categories
       render json: @primary_navigation, scope: locale
     end
 
+    api :GET, '/:locale/categories/:id'
+    param :locale, /[en|cy]/, required: true
+    param :id, String, required: true
     def show
       @category = Comfy::Cms::Category.find_by(label: params[:id])
       render json: @category, scope: locale

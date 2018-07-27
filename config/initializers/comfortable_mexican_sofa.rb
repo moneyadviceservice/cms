@@ -3,7 +3,7 @@
 ComfortableMexicanSofa.configure do |config|
   # TODO Change this stuff to use config_for gem unless updating Rails to 4.2
 
-  config.preview_domain = ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
+  config.preview_domain = Domain.config.public_website_domain
   # Title of the admin area
   #   config.cms_title = 'ComfortableMexicanSofa CMS Engine'
 
@@ -31,9 +31,9 @@ ComfortableMexicanSofa.configure do |config|
   if Rails.env.production?
     config.upload_file_options = {
       azure_credentials: {
-        access_key: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY'],
-        container: ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER'],
-        storage_account_name: ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
+        access_key: Domain.config.azure_access_key,
+        container: Domain.config.azure_container,
+        storage_account_name: Domain.config.azure_account_name
       },
       path: ':attachment/:id_partition/:style/:filename',
       storage: 'azure',
@@ -136,3 +136,5 @@ ComfortableMexicanSofa::HttpAuth.password = 'password'
 
 require 'comfortable_mexican_sofa/extensions/tag'
 require 'comfortable_mexican_sofa/extensions/tags/page_image'
+require 'comfortable_mexican_sofa/extensions/tags/collection_check_boxes'
+require 'comfortable_mexican_sofa/extensions/tags/simple_component'

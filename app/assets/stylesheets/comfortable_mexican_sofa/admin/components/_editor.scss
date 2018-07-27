@@ -7,6 +7,10 @@
 
   &.is-active {
     @extend %is-active;
+
+    .article-editor & {
+      @include column(8);
+    }
   }
 }
 

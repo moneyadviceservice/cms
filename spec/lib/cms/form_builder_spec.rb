@@ -7,7 +7,7 @@ describe Cms::FormBuilder do
   before { template.instance_variable_set('@blocks_attributes', [block_attributes]) }
 
   subject do
-    described_class.new(:model, Object.new, template, {})
+    described_class.new(:model, [block_attributes], template, {})
   end
 
   describe '#page_image' do

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  apipie
+  
   devise_for :users, class_name: 'Comfy::Cms::User'
 
   resources :word_documents
@@ -57,6 +59,14 @@ Rails.application.routes.draw do
   comfy_route :cms_admin, path: '/admin'
 
   namespace :api do
+    scope ":locale", locale: /en|cy/ do
+      resources :documents, only: :index
+    end
+
+    get '/:locale/latest_news' => 'documents#index'
+    get '/:locale/news' => 'documents#index'
+    get '/:locale/thematic_reviews' => 'documents#index'
+    get '/:locale/thematic_reviews_landing_pages' => 'documents#index'
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview', as: 'preview_content'

@@ -12,7 +12,7 @@
         = t('.no_tags').html_safe
 
     - else
-      = fields_for :blocks, nil, :builder => Cms::FormBuilder, :layout => :horizontal do |cms_blocks|
+      = fields_for :blocks, @blocks_attributes, :builder => Cms::FormBuilder, :layout => :horizontal do |cms_blocks|
 
         - if namespace.size > 1
           - namespace.each_with_index do |(name, tags), index|

@@ -15,6 +15,15 @@ GIT
       sass-rails (~> 4.0.0)
 
 GIT
+  remote: https://github.com/moneyadviceservice/mastalk.git
+  revision: e14079b745595b3389f3a1a1090ae89e62cb34b5
+  branch: fincap
+  specs:
+    mastalk (0.9.1)
+      htmlentities (~> 4.3.2, >= 4.3.2)
+      kramdown (~> 1.13, >= 1.13)
+
+GIT
   remote: https://github.com/moneyadviceservice/word-to-markdown.git
   revision: 6906e9caa3df2e53a3f88a06cc3f9067d554648d
   specs:
@@ -42,8 +51,9 @@ GEM
       activesupport (= 4.1.16)
       builder (~> 3.1)
       erubis (~> 2.7.0)
-    active_link_to (1.0.3)
+    active_link_to (1.0.5)
       actionpack
+      addressable
     active_model_serializers (0.9.0)
       activemodel (>= 3.2)
     activemodel (4.1.16)
@@ -64,6 +74,8 @@ GEM
     algoliasearch (1.19.1)
       httpclient (~> 2.8.3)
       json (>= 1.5.1)
+    apipie-rails (0.5.6)
+      rails (>= 4.1)
     arel (5.0.1.20140414130214)
     aruba (0.14.5)
       childprocess (>= 0.6.3, < 0.10.0)
@@ -104,6 +116,7 @@ GEM
     bootstrap-sass (3.1.1.1)
       sass (~> 3.2)
     bootstrap_form (2.1.1)
+    brakeman (4.2.0)
     bugsnag (2.8.12)
       json (~> 1.7, >= 1.7.7)
     builder (3.2.2)
@@ -116,16 +129,15 @@ GEM
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.2.0)
     cliver (0.3.2)
     clockwork (1.1.0)
       activesupport
       tzinfo
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
-    codemirror-rails (5.11)
-      railties (>= 3.0, < 5)
+    codemirror-rails (5.16.0)
+      railties (>= 3.0, < 6.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -134,7 +146,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    comfortable_mexican_sofa (2.0.1.79.79)
+    comfortable_mexican_sofa (2.0.1.87.87)
       active_link_to (>= 1.0.0)
       bootstrap-sass (~> 3.1.0)
       bootstrap_form (~> 2.1.1)
@@ -302,20 +314,21 @@ GEM
       retriable (>= 1.4)
       signet (>= 0.5.0)
       uuidtools (>= 2.1.0)
-    haml (4.0.7)
+    haml (5.0.4)
+      temple (>= 0.8.0)
       tilt
-    haml-rails (0.9.0)
+    haml-rails (1.0.0)
       actionpack (>= 4.0.1)
       activesupport (>= 4.0.1)
-      haml (>= 4.0.6, < 5.0)
+      haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
     hashie (3.4.3)
     hike (1.2.3)
-    html2haml (2.0.0)
+    html2haml (2.2.0)
       erubis (~> 2.7.0)
-      haml (~> 4.0.0)
-      nokogiri (~> 1.6.0)
+      haml (>= 4.0, < 6)
+      nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     htmlentities (4.3.4)
     http-cookie (1.0.2)
@@ -337,9 +350,18 @@ GEM
       railties (>= 3.2.16)
     json (1.8.3)
     jwt (1.2.0)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    kaminari (1.1.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.1.1)
+      kaminari-activerecord (= 1.1.1)
+      kaminari-core (= 1.1.1)
+    kaminari-actionview (1.1.1)
+      actionview
+      kaminari-core (= 1.1.1)
+    kaminari-activerecord (1.1.1)
+      activerecord
+      kaminari-core (= 1.1.1)
+    kaminari-core (1.1.1)
     kgio (2.9.2)
     kramdown (1.13)
     launchy (2.4.2)
@@ -352,9 +374,6 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mastalk (0.9.0)
-      htmlentities (~> 4.3.2, >= 4.3.2)
-      kramdown (~> 1.13, >= 1.13)
     method_source (0.8.2)
     mime-types (2.99.3)
     mimemagic (0.3.0)
@@ -384,7 +403,7 @@ GEM
     paper_trail (3.0.8)
       activerecord (>= 3.0, < 5.0)
       activesupport (>= 3.0, < 5.0)
-    paperclip (4.3.6)
+    paperclip (4.3.7)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       cocaine (~> 0.5.5)
@@ -428,8 +447,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.16)
       sprockets-rails (~> 2.0)
-    rails-i18n (4.0.5)
-      i18n (~> 0.6)
+    rails-i18n (4.0.9)
+      i18n (~> 0.7)
       railties (~> 4.0)
     railties (4.1.16)
       actionpack (= 4.1.16)
@@ -481,8 +500,8 @@ GEM
       ruby-progressbar (~> 1.4)
     ruby-prof (0.16.2)
     ruby-progressbar (1.6.0)
-    ruby_parser (3.8.1)
-      sexp_processor (~> 4.1)
+    ruby_parser (3.11.0)
+      sexp_processor (~> 4.9)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -491,7 +510,7 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     seedbank (0.4.0)
-    sexp_processor (4.7.0)
+    sexp_processor (4.11.0)
     shoulda-matchers (3.0.0)
       activesupport (>= 4.0.0)
     signet (0.6.0)
@@ -520,14 +539,15 @@ GEM
       sprockets (>= 2.8, < 4.0)
     syslog-logger (1.6.8)
     systemu (2.6.5)
+    temple (0.8.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     thor (0.19.4)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    tinymce-rails (4.3.8)
+    tinymce-rails (4.7.12)
       railties (>= 3.1.1)
-    transitions (1.0.1)
+    transitions (1.2.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -566,17 +586,19 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   algoliasearch
+  apipie-rails (~> 0.5.6)
   aruba (~> 0.14.5)
   autoprefixer-rails
   azure (= 0.7.7)
   better_errors
   binding_of_caller
   bowndler!
+  brakeman
   bugsnag
   capybara (= 2.4.1)
   clockwork
   coffee-rails (~> 4.0.0)
-  comfortable_mexican_sofa (= 2.0.1.79.79)!
+  comfortable_mexican_sofa (= 2.0.1.87.87)!
   cucumber-rails
   database_cleaner
   devise
@@ -594,7 +616,7 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk (= 0.9.0)
+  mastalk!
   mysql2 (~> 0.3.18)
   newrelic_rpm
   oauth2 (= 1.0.0)
@@ -628,4 +650,4 @@ DEPENDENCIES
   word-to-markdown!
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

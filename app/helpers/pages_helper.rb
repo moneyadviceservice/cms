@@ -1,7 +1,17 @@
 module PagesHelper
+  def fields_from_layout(comfortable_mexican_sofa_tag)
+    Cms::LayoutField.map(comfortable_mexican_sofa_tag['default'])
+  end
+
   def tag_for_identifier(tags, identifier, cms_blocks, index)
     tag = tags.find { |t| t.identifier == identifier }
     cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, index)
+  end
+
+  def content_field(tags, cms_blocks)
+    tag = tags.find { |t| t.identifier == 'content' }
+    tag_index = tags.index { |t| t.identifier == 'content' }
+    cms_blocks.send(tag.class.to_s.demodulize.underscore, tag, tag_index)
   end
 
   def page_form_component(condition, default: [], optional: [], display: true)

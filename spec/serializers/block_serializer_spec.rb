@@ -17,6 +17,39 @@ describe BlockSerializer do
     end
   end
 
+  context 'when a collection is the identifier' do
+    let(:page) { create(:page, state: 'published') }
+
+    let!(:topics_saving) do
+      create(:block, identifier: 'topics', content: 'Saving', blockable: page)
+    end
+    let!(:topics_pension) do
+      create(:block, identifier: 'topics', content: 'Pension', blockable: page)
+    end
+
+    before { page.reload }
+
+    context 'when requesting first element' do
+      subject(:content) do
+        described_class.new(topics_saving).content
+      end
+
+      it 'returns first element from the collection' do
+        expect(content).to eq("<p>Saving</p>\n")
+      end
+    end
+
+    context 'when requesting second element' do
+      subject(:content) do
+        described_class.new(topics_pension).content
+      end
+
+      it 'returns second element from the collection' do
+        expect(content).to eq("<p>Pension</p>\n")
+      end
+    end
+  end
+
   context 'when "content" is the identifier' do
     let(:scheduled_on) { nil }
     let(:published_revision) { nil }

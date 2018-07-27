@@ -1,10 +1,34 @@
-class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
-  def page_rich_text(tag, index)
-    @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
-        locals: {
-          index: index,
-          fieldname: field_name_for(tag)
-        })
+class Cms::FormBuilder < ActionView::Helpers::FormBuilder
+  include ActionView::Helpers::FormTagHelper
+
+  def collection_check_boxes(tag, index)
+    current_values = blocks_attributes.select do |block|
+      block['identifier'] == tag.identifier
+    end.map { |block| block['content'] }
+
+    element = tag.element
+    checked = tag.element.in?(current_values)
+
+    @template.render(
+      template: 'collection_check_boxes/show',
+      locals: {
+        tag: tag,
+        index: index,
+        element: element,
+        checked: checked
+      }
+    )
+  end
+
+  def simple_component(tag, index)
+    default_tag_field(
+      tag,
+      index,
+      :text_area_tag,
+      placeholder: tag.params,
+      class: tag.identifier,
+      rows: 4
+    )
   end
 
   def page_image(tag, index)
@@ -27,6 +51,45 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
     markup.html_safe
   end
 
+  private
+
+  def blocks_attributes
+    object
+  end
+
+  def page_rich_text(tag, index)
+    @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
+        locals: {
+          index: index,
+          fieldname: field_name_for(tag)
+        })
+  end
+
+  def page_text(tag, index)
+    default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
+  end
+
+  def page_string(tag, index)
+    default_tag_field(tag, index)
+  end
+
+  def field_date_time(tag, index)
+    default_tag_field(
+      tag,
+      index,
+      :date_field_tag,
+      data: { 'cms-datetime' => true }
+    )
+  end
+
+  def field_string(tag, index)
+    default_tag_field(tag, index)
+  end
+
+  def field_name_for(tag)
+    tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
+  end
+
   # This is overriding comfy with an almost identical method, just that the
   # name attributes are different - "blocks_attributes[#{index}]" instead of
   # "#{fieldname}[blocks_attributes][#{index}]".
@@ -34,35 +97,41 @@ class Cms::FormBuilder < ComfortableMexicanSofa::FormBuilder
   # This is because we handle the block attributes independently from the page
   # attributes in forms.
   def default_tag_field(tag, index, method = :text_field_tag, options = {})
+    label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
+    content     = ''
+    current_value = find_current_value_for_field(tag)
 
-  label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
-  css_class   = tag.class.to_s.demodulize.underscore
-  content     = ''
+    case method
+    when :file_field_tag
+      input_params = {:id => nil, value: current_value}
+      name = "blocks_attributes[#{index}][content]"
 
-  # ACHTUNG, HACKY! - looks for the instance variable @blocks_attributes in the view to retrieve the current content
-  blocks_attributes = @template.instance_variable_get('@blocks_attributes')
-  current_value = blocks_attributes.find { |block_attributes| block_attributes[:identifier] == tag.identifier.to_s }[:content]
+      if options.delete(:multiple)
+        input_params.merge!(:multiple => true)
+        name << '[]'
+      end
 
-  case method
-  when :file_field_tag
-    input_params = {:id => nil, value: current_value}
-    name = "blocks_attributes[#{index}][content]"
-
-    if options.delete(:multiple)
-      input_params.merge!(:multiple => true)
-      name << '[]'
+      content << @template.send(method, name, input_params)
+      content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
+    else
+      options[:class] ||= 'form-control'
+      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.gsub(/\n/, ''), options)
     end
+    content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+    content.prepend(@template.label_tag(label))
 
-    content << @template.send(method, name, input_params)
-    content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
-  else
-    options[:class] = 'form-control'
-    content << @template.send(method, "blocks_attributes[#{index}][content]", current_value, options)
-  end
-  content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
-
-  form_group :label => {:text => label} do
     content.html_safe
   end
-end
+
+  def find_current_value_for_field(tag)
+    current_field = blocks_attributes.find do |block_attributes|
+      block_attributes[:identifier] == tag.identifier.to_s
+    end
+
+    if current_field.present?
+      current_field[:content]
+    else
+      ''
+    end
+  end
 end

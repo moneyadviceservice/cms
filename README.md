@@ -20,21 +20,24 @@ So the next section will explain the setup for each application.
 
 ```sh
 $ ./bin/setup
-$ rails s
 ```
 
 The setup script will install required gems, bower modules and create the databases as well as seed some data to setup the CMS.
 
 Note: Make sure you've added all the required API keys for the app to work properly. Make sure you set the HOSTNAME, GA_API_EMAIL_ADDRESS, GA_PRIVATE_KEY_PATH variables in the `.env` file appropriately. The setup script above will set up the `.env` file  structure but you may need to set some keys seperately, particularly the Rackspace ones.
 
-### Fincap CMS setup
+The setup script will create *three* databases: `cms_test`, `cms_mas_development`, `cms_fincap_development`
+The two development databases are for the two different applications we run from this repository: MAS CMS and Fincap CMS
 
+### Running application locally
+
+You can run either application separately by passing the APP_NAME environment variable when running the command
 ```sh
-$ bundle install
-$ npm install
-$ bowndler install
-$ bundle exec rake db:create db:schema:load db:migrate db:seed:fincap
-$ rails s
+$ APP_NAME='FINCAP' rails s
+```
+or
+```sh
+$ APP_NAME='MAS' rails s
 ```
 
 ### Updating Dough
@@ -48,16 +51,20 @@ bowndler update
 
 ## Testing
 
+The tests(and code) are agnostic to the applications(MAS & Fincap) however the current implementation
+still requires you to pass an APP_NAME when running the tests just so everything can boot up.
+It will not matter which APP_NAME you pass through here.
+
 Run unit specs with:
 
 ```sh
-$ bundle exec rspec
+$ APP_NAME='MAS' bundle exec rspec
 ```
 
 Run feature specs with:
 
 ```sh
-$ bundle exec cucumber
+$ APP_NAME='MAS' bundle exec cucumber
 ```
 
 For JavaScript tests we use:
@@ -103,6 +110,8 @@ This can easily be deployed to Heroku but the MAS organisation uses its own depl
 
 ### Technical Docs
 [CMS](https://github.com/moneyadviceservice/technical-docs/tree/master/cms)
+
+We use [apipie](https://github.com/Apipie/apipie-rails) to document the cms api. Once you've set up the project and started a server, you can view the docs by visiting `http://localhost:3000/apipie`
 
 ### Component Styleguide
 

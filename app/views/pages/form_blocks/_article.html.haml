@@ -1,0 +1,8 @@
+%div{ class: "article-editor"}
+  = content_field(namespace['default'], cms_blocks)
+
+%div{ class: "article-components", data: { dough_component: 'ArticleComponents' }}
+  - fields_from_layout(namespace).each_with_index do |layout_field, index|
+    - next if layout_field.tag.identifier == 'content'
+    %div{class: "article-component", data: { dough_article_component: true }}
+      = layout_field.input_tag_for(form_builder: cms_blocks, index: index)

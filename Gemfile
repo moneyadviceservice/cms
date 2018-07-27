@@ -3,13 +3,14 @@ source 'https://rubygems.org'
 
 gem 'active_model_serializers'
 gem 'algoliasearch'
+gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails'
 gem 'azure', '0.7.7'
 gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.0.1.79.79', source: 'http://gems.dev.mas.local'
+gem 'comfortable_mexican_sofa', '2.0.1.87.87', source: 'http://gems.dev.mas.local'
 gem 'devise'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
@@ -23,7 +24,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
 gem 'legato', '0.4.0'
 gem 'mailjet'
-gem 'mastalk', '0.9.0'
+gem 'mastalk', git: 'https://github.com/moneyadviceservice/mastalk.git', branch: 'fincap'
 gem 'mysql2', '~> 0.3.18'
 gem 'newrelic_rpm'
 gem 'oauth2', '1.0.0'
@@ -50,6 +51,7 @@ end
 
 group :test do
   gem 'aruba', '~> 0.14.5'
+  gem 'brakeman', require: false
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
