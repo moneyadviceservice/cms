@@ -5,9 +5,6 @@ set -e
 export PATH=./bin:$PATH
 export RAILS_ENV=test
 export BUNDLE_WITHOUT=development
-# the app is irrelevant for testing as the code should be agnostic,
-# this is just to load in some environment variables
-export APP_NAME=FINCAP
 
 CORES=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 BUNDLE_JOBS=$((CORES-1))
