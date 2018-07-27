@@ -31,7 +31,11 @@ RSpec.describe Prismic::CmsConverter do
 
       it 'ignores attributes' do
         expect(convert).to eq(
-          Prismic::ConvertedDocument.new(content: '', content_markdown: '')
+          Prismic::ConvertedDocument.new(
+            content: [
+              { some_field: 'foo', link: { title: 'foo', media: 'link' } }
+            ]
+          )
         )
       end
     end

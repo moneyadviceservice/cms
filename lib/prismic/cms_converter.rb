@@ -9,7 +9,7 @@ module Prismic
 
     def convert
       document.row.each do |attribute, content|
-        if content.is_a?(Array) && content.first.is_a?(Hash)
+        if content.is_a?(Array) && content.first.is_a?(Hash) && content.first['type'].present?
           html = HTMLConverter.new(content).to_html
           converted_data[attribute] = html
           converted_data["#{attribute}_markdown"] = ReverseMarkdown.convert(html)
