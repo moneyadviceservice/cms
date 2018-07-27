@@ -7,7 +7,6 @@ RSpec.describe Prismic::Migrator::Insight do
     let!(:layout) { create(:layout, identifier: 'insight', site: site) }
 
     context 'when document has all fields for content' do
-
       let(:document) do
         double(
           'Prismic::ConvertedDocument',
