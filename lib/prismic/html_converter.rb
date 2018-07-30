@@ -52,7 +52,7 @@ module Prismic
       end.compact
     end
 
-    def map_html_list(fragments, fragment, index)
+    def map_html_list(fragments, _fragment, index)
       list = []
       i = index
 

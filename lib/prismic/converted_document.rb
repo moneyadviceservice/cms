@@ -28,7 +28,15 @@ module Prismic
     end
 
     def migrate
-      "Prismic::Migrator::#{type.classify}".constantize.new(self).migrate
+      klass_name = if evidence_type.present?
+                     evidence_type
+                   else
+                     type
+                   end
+
+      klass = "Prismic::Migrator::#{klass_name.classify}".constantize
+
+      klass.new(self).migrate
     end
   end
 end

@@ -4,19 +4,32 @@ namespace :prismic do
     documents = Prismic::Document.all(args[:dir])
     converted_documents = documents.map(&:to_cms)
     errors = []
+    skipped = []
+    passed = []
 
     converted_documents.map do |converted_document|
       begin
         converted_document.migrate
-        print '.'
+        print "\e[32m.\e[0m"
+        passed << converted_document
       rescue StandardError, NotImplementedError => exception
-        print 'F'
-        errors << exception.message
+        if exception.message.include?('uninitialized constant') || exception.message.include?('wrong constant name')
+          print "\e[34mS\e[0m"
+          skipped << converted_document
+        else
+          print "\e[31mF\e[0m"
+          errors << "Failed migration from document with title: '#{converted_document.formatted_title}' and with type: '#{converted_document.type}' with slug: '#{converted_document.slug}'. Exception: #{exception.message}"
+        end
       end
     end
 
     puts
-    puts errors.uniq.sort if errors.present?
+    puts "#{converted_documents.size} documents. #{passed.size} passed, #{skipped.size} skipped, #{errors.size} errors"
+
+    if errors.present?
+      puts
+      puts errors
+    end
   end
 
   desc 'Convert into html files'
