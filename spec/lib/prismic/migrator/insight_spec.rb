@@ -25,9 +25,9 @@ RSpec.describe Prismic::Migrator::Insight do
           contact_details_markdown: 'Europe Economics\n\nChancery House\n\n53-64 Chancery Lane\n\nLondon, WC2A IQA.\n\n',
           contact_details: '<p>Europe Economics</p><p>Chancery House</p><p>53-64 Chancery Lane</p><p>London, WC2A IQA.</p>',
           year_of_publication: '2018',
-          topics: [{'topic' => 'Financial Capability'}],
-          country_search_filter_group: [{"country_search_filter"=>"01England"}],
-          client_groups: [{"client_group"=>"Working age (18 - 65)"}, {"client_group"=>"Over-indebted people"}],
+          topics: [{ 'topic' => 'Financial Capability' }],
+          country_search_filter_group: [{ 'country_search_filter' => '01England' }],
+          client_groups: [{ 'client_group' => 'Working age (18 - 65)' }, { 'client_group' => 'Over-indebted people' }],
           qualitative: 'Yes',
           quantitative: nil
         )
@@ -41,7 +41,7 @@ RSpec.describe Prismic::Migrator::Insight do
         block = migrated_page.blocks.find_by(identifier: 'content')
         expect(block).to_not be_nil
         expect(block.processed_content).to eq(
-          %{<ol><li><a href="#context">Context</a></li><li><a href="#the-study">The study</a></li><li><a href="#key-findings">Key findings</a></li><li><a href="#points">Points to consider</a></li></ol><h2 id="context">Context</h2><p>Some context</p><h2 id="the-study">The study</h2><p>Some study</p><h2 id="key-findings">Key findings</h2><p>Some key findings</p><h2 id="points">Points to consider</h2><p>Some points to consider</p><h2>Full report</h2><p><a href=\"https://www.moneyadviceservice.org.uk/en/corporate/economicimpactdebtadvice\">The economic impact of debt advice - full report </a></p>}
+          %(<ol><li><a href="#context">Context</a></li><li><a href="#the-study">The study</a></li><li><a href="#key-findings">Key findings</a></li><li><a href="#points">Points to consider</a></li></ol><h2 id="context">Context</h2><p>Some context</p><h2 id="the-study">The study</h2><p>Some study</p><h2 id="key-findings">Key findings</h2><p>Some key findings</p><h2 id="points">Points to consider</h2><p>Some points to consider</p><h2>Full report</h2><p><a href="https://www.moneyadviceservice.org.uk/en/corporate/economicimpactdebtadvice">The economic impact of debt advice - full report </a></p>)
         )
       end
 
@@ -85,9 +85,9 @@ RSpec.describe Prismic::Migrator::Insight do
           contact_details_markdown: 'Europe Economics\n\nChancery House\n\n53-64 Chancery Lane\n\nLondon, WC2A IQA.\n\n',
           contact_details: '<p>Europe Economics</p><p>Chancery House</p><p>53-64 Chancery Lane</p><p>London, WC2A IQA.</p>',
           year_of_publication: '2018',
-          topics: [{'topic' => 'Financial Capability'}],
-          country_search_filter_group: [{"country_search_filter"=>"01England"}],
-          client_groups: [{"client_group"=>"Working age (18 - 65)"}, {"client_group"=>"Over-indebted people"}],
+          topics: [{ 'topic' => 'Financial Capability' }],
+          country_search_filter_group: [{ 'country_search_filter' => '01England' }],
+          client_groups: [{ 'client_group' => 'Working age (18 - 65)' }, { 'client_group' => 'Over-indebted people' }],
           qualitative: 'Yes',
           quantitative: nil
         )
@@ -97,7 +97,7 @@ RSpec.describe Prismic::Migrator::Insight do
         block = migrated_page.blocks.find_by(identifier: 'content')
         expect(block).to_not be_nil
         expect(block.processed_content).to eq(
-          %{<ol><li><a href="#context">Context</a></li><li><a href="#key-findings">Key findings</a></li><li><a href="#points">Points to consider</a></li></ol><h2 id="context">Context</h2><p>Some context</p><h2 id="key-findings">Key findings</h2><p>Some key findings</p><h2 id="points">Points to consider</h2><p>Some points to consider</p><h2>Full report</h2><p><a href=\"https://www.moneyadviceservice.org.uk/en/corporate/economicimpactdebtadvice\">The economic impact of debt advice - full report </a></p>}
+          %(<ol><li><a href="#context">Context</a></li><li><a href="#key-findings">Key findings</a></li><li><a href="#points">Points to consider</a></li></ol><h2 id="context">Context</h2><p>Some context</p><h2 id="key-findings">Key findings</h2><p>Some key findings</p><h2 id="points">Points to consider</h2><p>Some points to consider</p><h2>Full report</h2><p><a href="https://www.moneyadviceservice.org.uk/en/corporate/economicimpactdebtadvice">The economic impact of debt advice - full report </a></p>)
         )
       end
     end

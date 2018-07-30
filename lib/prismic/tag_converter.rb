@@ -98,7 +98,7 @@ module Prismic
     end
 
     def format_content(content:, tag:, format:)
-      if tag.include?("<a")
+      if tag.include?('<a')
         link = format['data']['url']
 
         tag % {

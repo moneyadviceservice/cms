@@ -384,9 +384,9 @@ RSpec.describe Prismic::CmsConverter do
               {
                 'type' => 'paragraph',
                 'content' => {
-                  'text' =>'Four out of 10 adults are not in control of their finances – new strategy launched to improve UK’s financial capability',
-                   'spans' => []
-                  }
+                  'text' => 'Four out of 10 adults are not in control of their finances – new strategy launched to improve UK’s financial capability',
+                  'spans' => []
+                }
               },
               {
                 'type' => 'list-item',

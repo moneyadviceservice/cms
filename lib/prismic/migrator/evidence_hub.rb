@@ -18,7 +18,7 @@ module Prismic
           country_value = country.gsub(/\d/, '')
 
           Comfy::Cms::Block.new(
-            identifier: 'country_of_delivery',
+            identifier: 'countries_of_delivery',
             content: country_value,
             processed_content: Mastalk::Document.new(country_value).to_html
           )
@@ -68,7 +68,7 @@ module Prismic
       end
 
       def content_headers
-        raise NotImplementedError
+        fail NotImplementedError
       end
     end
   end
