@@ -115,7 +115,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
       content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
     else
       options[:class] ||= 'form-control'
-      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.gsub(/\n/, ''), options)
+      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.to_s.gsub(/\n/, ''), options)
     end
     content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
     content.prepend(@template.label_tag(label))
