@@ -31,13 +31,12 @@ homepage_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:horizontal_teaser_image }}
     {{ cms:page:horizontal_teaser_text }}
     {{ cms:page:horizontal_teaser_link }}
-    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
 )
 
 homepage_page = english_site.pages.create!(
   label: 'Financial Capability',
-  slug: 'homepage',
+  slug: 'root',
   layout: homepage_layout,
 
   state: 'published',
@@ -79,7 +78,7 @@ Capability Strategy.
     ),
     Comfy::Cms::Block.new(
       identifier: 'teaser1_link',
-      content: '[teaser1 link text](/financial+capability+strategy.pdf)'
+      content: '[Read more](/financial+capability+strategy.pdf)'
     ),
     Comfy::Cms::Block.new(
       identifier: 'teaser2_title',
@@ -95,7 +94,7 @@ Capability Strategy.
     ),
     Comfy::Cms::Block.new(
       identifier: 'teaser2_link',
-      content: '[Read more](/financial+capability+strategy.pdf)'
+      content: '[Call to action](/financial+capability+strategy.pdf)'
     ),
     Comfy::Cms::Block.new(
       identifier: 'teaser3_title',
@@ -111,7 +110,7 @@ Capability Strategy.
     ),
     Comfy::Cms::Block.new(
       identifier: 'teaser3_link',
-      content: '[Click here](/financial+capability+strategy.pdf)'
+      content: '[Get involved](/financial+capability+strategy.pdf)'
     ),
     Comfy::Cms::Block.new(
       identifier: 'horizontal_teaser_title',

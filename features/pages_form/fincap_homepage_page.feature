@@ -35,7 +35,6 @@ Feature: Building Homepage Page
       | horizontal_teaser_image   | /assets/styleguide/hero-sample.jpg            |
       | horizontal_teaser_text    | Officiem im volest pratur, antetum quos laure |
       | horizontal_teaser_link    | [Teaser link](/path-to-link)                  |
-      | download                  | [File](a-file)                                |
     And I save and return to the homepage
     And when I click the "Homepage Page" page
     Then I should see the fields filled with the content
@@ -60,4 +59,3 @@ Feature: Building Homepage Page
       | horizontal_teaser_image   | /assets/styleguide/hero-sample.jpg            |
       | horizontal_teaser_text    | Officiem im volest pratur, antetum quos laure |
       | horizontal_teaser_link    | [Teaser link](/path-to-link)                  |
-      | download                  | [File](a-file)                                |
