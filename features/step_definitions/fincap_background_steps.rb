@@ -95,7 +95,7 @@ Given(/^I have a lifestage page layout setup with components$/) do
       {{ cms:page:content:rich_text }}
       {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
       {{ cms:page:hero_description:simple_component/Description }}
-      {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+      {{ cms:page:teaser_section_title }}
       {{ cms:page:teaser1_title }}
       {{ cms:page:teaser1_image }}
       {{ cms:page:teaser1_text }}
@@ -153,7 +153,7 @@ Given(/^I have a regional strategy page layout setup with components$/) do
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser_section_title }}
     {{ cms:page:teaser1_title }}
     {{ cms:page:teaser1_image }}
     {{ cms:page:teaser1_text }}
@@ -184,7 +184,7 @@ Given(/^I have a homepage page layout setup with components$/) do
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser_section_title }}
     {{ cms:page:teaser1_title }}
     {{ cms:page:teaser1_image }}
     {{ cms:page:teaser1_text }}

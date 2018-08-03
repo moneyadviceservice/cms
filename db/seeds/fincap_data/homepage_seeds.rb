@@ -14,7 +14,7 @@ homepage_layout = english_site.layouts.find_or_create_by(
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
     {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser_section_title }}
     {{ cms:page:teaser1_title }}
     {{ cms:page:teaser1_image }}
     {{ cms:page:teaser1_text }}
@@ -37,7 +37,7 @@ homepage_layout = english_site.layouts.find_or_create_by(
 
 homepage_page = english_site.pages.create!(
   label: 'Financial Capability',
-  slug: 'homepage',
+  slug: 'root',
   layout: homepage_layout,
 
   state: 'published',
