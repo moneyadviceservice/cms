@@ -201,7 +201,6 @@ Given(/^I have a homepage page layout setup with components$/) do
     {{ cms:page:horizontal_teaser_image }}
     {{ cms:page:horizontal_teaser_text }}
     {{ cms:page:horizontal_teaser_link }}
-    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
   CONTENT
   )
 end
