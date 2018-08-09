@@ -70,3 +70,20 @@ Feature: Publish
     When I populate the editor with the text "new content"
     And I press the button "Update Live Article"
     Then I should the flash message "Insufficient permissions to change"
+
+  Scenario: External editor can edit and preserve articles with nested content
+    Given I am an editor user
+    And I am working on a new draft article
+    When I populate the editor with the markdown
+      """
+      *    Nested list:
+          *    one
+          *    two
+      """
+    And I press the button "Save Changes to Draft"
+    Then I should see the markdown in the editor
+      """
+      *    Nested list:
+          *    one
+          *    two
+      """
