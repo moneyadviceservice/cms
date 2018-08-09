@@ -82,7 +82,6 @@ define([
 
   MASEditorProto.init = function(initialised) {
     this._cacheComponentElements();
-    this._stripEditorWhitespace();
     this.enableToolbar('html');
 
     this.editorLib = new Editor(
@@ -133,12 +132,6 @@ define([
       'html': this.$htmlToolbar,
       'markdown': this.$markdownToolbar
     };
-  };
-
-  MASEditorProto._stripEditorWhitespace = function() {
-    this.markdownContent.value = this.markdownContent.value.split('\n').map(function(e) {
-      return e.trim();
-    }).join('\n');
   };
 
   /**
