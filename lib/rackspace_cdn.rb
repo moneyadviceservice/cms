@@ -17,7 +17,7 @@ class RackSpaceCDN
   #
   def upload(files)
     files.each do |file|
-      puts "Uploading '#{file.filename}'"
+      Rails.logger.info("Uploading '#{file.filename}'")
 
       begin
         Timeout.timeout(30) do
@@ -28,14 +28,14 @@ class RackSpaceCDN
           )
         end
       rescue StandardError
-        puts "Failed to upload: #{file.filename}"
+        Rails.logger.info("Failed to upload: #{file.filename}")
         File.open('failed.txt', 'a') { |f| f.write("#{file.filename}\n") }
       end
     end
   end
 
   def list_files
-    bucket.files.each { |file| puts file.key }
+    bucket.files.each { |file| Rails.logger.info(file.key) }
   end
 
   def bucket

@@ -47,7 +47,7 @@ module PageLink
     end
 
     def fetch_page(pages, page_index)
-      return nil if page_index < 0 || page_index >= pages.length
+      return nil if page_index.negative? || page_index >= pages.length
 
       pages[page_index]
     end

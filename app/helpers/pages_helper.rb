@@ -65,12 +65,10 @@ module PagesHelper
   def scheduled_time(page)
     if page.scheduled_on.today?
       page.scheduled_on.strftime('%H:%M today')
+    elsif page.scheduled_on.year == Time.zone.today.year
+      page.scheduled_on.strftime('%H:%M %a %-d %b')
     else
-      if page.scheduled_on.year == Date.today.year
-        page.scheduled_on.strftime('%H:%M %a %-d %b')
-      else
-        page.scheduled_on.strftime('%H:%M %a %-d %b %Y')
-      end
+      page.scheduled_on.strftime('%H:%M %a %-d %b %Y')
     end
   end
 

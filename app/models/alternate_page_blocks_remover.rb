@@ -23,11 +23,17 @@ class AlternatePageBlocksRemover
       # copy the blocks' attributes from the active revision
       # to the actual blocks and publish that content.
       page.publish
-      PageBlocksRegister.new(page, author: remover, new_blocks_attributes: page.active_revision.data[:blocks_attributes]).save!
+      PageBlocksRegister.new(
+        page,
+        author: remover,
+        new_blocks_attributes: page.active_revision.data[:blocks_attributes]
+      ).save!
 
     # Anything else can't be removed. Scheduled articles must be unscheduled (returned to draft) to be removed.
     else
-      raise Error.new('Only pages in a state of published_being_edited have alternate content that can be removed')
+      raise Error.new(
+        'Only pages in a state of published_being_edited have alternate content that can be removed'
+      )
     end
   end
 end

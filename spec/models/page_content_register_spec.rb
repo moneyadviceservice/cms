@@ -273,7 +273,7 @@ describe PageContentRegister do
     end
 
     context 'when adding new blocks' do
-      let (:new_blocks_attributes) do
+      let(:new_blocks_attributes) do
         [
           { identifier: 'content', content: 'new block content' },
           { identifier: 'topics', content: 'Pensions', collection: true },

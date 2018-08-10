@@ -1,16 +1,28 @@
 require 'csv'
 
 class CategoryImport
+  PARENT_CATEGORIES = %w[
+    saving-and-investing homes-and-mortgages insurance tools-and-calculators calculators
+    comparison-tables letter-templates order-forms free-printed-guides videos news
+    Partners partners-universal-credit-banks partners-banks-universal-credit
+    frontline-guide-test partners-uc-banks our-debt-work interactive-timelines
+    partners-uc-landlords resources-for-professionals-working-with-young-people-and-parents
+    resources-for-professionals-supporting-young-people resources-for-professionals-supporting-parents
+    research-and-toolkits-on-young-people-and-money benefits care-and-disability debt-and-borrowing
+    budgeting-and-managing-money births-deaths-and-family cars-and-travel
+    work-pensions-and-retirement
+  ].freeze
+
   def import!
     create_parent_categories
 
-    CSV.open("#{Rails.root}/lib/cms/categories.csv", headers: true).each do |category|
+    CSV.open(Rails.join('lib', 'cms', 'categories.csv'), headers: true).each do |category|
       begin
-        puts "Migrating #{category['public_id']}"
+        Rails.logger.info("Migrating #{category['public_id']}")
         c = Comfy::Cms::Category.find_by!(label: category['public_id'])
         c.update!(attributes_for(category))
       rescue ActiveRecord::RecordNotFound
-        puts "Can not find category #{category['public_id']}"
+        Rails.logger.info("Can not find category #{category['public_id']}")
       end
     end
   end
@@ -32,17 +44,7 @@ class CategoryImport
   end
 
   def create_parent_categories
-    %w[
-      saving-and-investing homes-and-mortgages insurance tools-and-calculators calculators
-      comparison-tables letter-templates order-forms free-printed-guides videos news
-      Partners partners-universal-credit-banks partners-banks-universal-credit
-      frontline-guide-test partners-uc-banks our-debt-work interactive-timelines
-      partners-uc-landlords resources-for-professionals-working-with-young-people-and-parents
-      resources-for-professionals-supporting-young-people resources-for-professionals-supporting-parents
-      research-and-toolkits-on-young-people-and-money benefits care-and-disability debt-and-borrowing
-      budgeting-and-managing-money births-deaths-and-family cars-and-travel
-      work-pensions-and-retirement
-    ].each do |label|
+    PARENT_CATEGORIES.each do |label|
       category = Comfy::Cms::Category.find_or_initialize_by(label: label,
                                                             site_id: 1,
                                                             categorized_type: 'Comfy::Cms::Page')
@@ -57,10 +59,10 @@ class CategoryImport
   end
 
   def label_for(old_parent_id)
-    CSV.open("#{Rails.root}/lib/cms/categories.csv", headers: true).find do |category|
+    CSV.open(Rails.join('lib', 'cms', 'categories.csv'), headers: true).find do |category|
       category['id'] == old_parent_id
     end['public_id']
   rescue StandardError
-    puts "#{old_parent_id} could not be found"
+    Rails.logger.info("#{old_parent_id} could not be found")
   end
 end

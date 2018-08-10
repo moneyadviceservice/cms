@@ -5,7 +5,7 @@ RSpec.describe ActivityLogPresenter do
 
   describe '#header' do
     let(:object) do
-      ActivityLog.new(author: 'Luke', created_at: Time.new(2014, 8, 1, 14, 45))
+      ActivityLog.new(author: 'Luke', created_at: Time.new(2014, 8, 1, 14, 45).in_time_zone)
     end
 
     it 'returns the author and the created at formated' do

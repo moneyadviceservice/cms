@@ -1,4 +1,4 @@
-require Rails.root.join('lib/cms/update_page_views_task')
+require Rails.root.join('lib', 'cms', 'update_page_views_task.rb')
 
 RSpec.describe UpdatePageViewsTask do
   describe 'run' do

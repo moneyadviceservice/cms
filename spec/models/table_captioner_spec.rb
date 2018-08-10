@@ -21,7 +21,7 @@ describe TableCaptioner do
       end
 
       it 'removes the paragraph and inserts the contents of it as a caption tag' do
-        #  Include newlines due to Nokogiri's formatted output
+        # Include newlines due to Nokogiri's formatted output
         expected_response = "<table>\n<caption>#{caption}</caption>\n<tr><td></td></tr>\n</table>"
         expect(subject.call).to eql(expected_response)
       end

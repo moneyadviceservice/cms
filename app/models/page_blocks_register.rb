@@ -4,7 +4,7 @@
 # Single version articles:
 # - an unsaved, draft or published article
 # - a scheduled article that's not live yet
-#  - a scheduled article that's gone live
+# - a scheduled article that's gone live
 # - a published article with a scheduled update that's now gone live
 #
 # Dual version articles:
@@ -21,7 +21,7 @@
 #      the article has gone back to having only a single version, the live update.
 #
 class PageBlocksRegister < PageContentRegister
-  def save!
+  def save! # rubocop:disable Metrics/MethodLength
     # If a page is has not been saved before, we always want to put the
     # new data straight into the first blocks.
     if page.new_record?

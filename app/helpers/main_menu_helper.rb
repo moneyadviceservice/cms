@@ -22,17 +22,21 @@ module MainMenuHelper
       MenuLink.new(
         name:     t('comfy.admin.cms.base.admin'),
         path:     '#',
-        sublinks: [
-          MenuLink.new(name: t('comfy.admin.cms.base.users'),    path: users_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.tags'),     path: tags_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.categories'), path: categories_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.clumps'), path: clumps_path),
-          MenuLink.new(name: t('comfy.admin.cms.base.redirects'), path: redirects_path),
-          MenuLink.new(
-            name: t('comfy.admin.cms.base.page_feedbacks'),
-            path: site_page_feedbacks_path(site)
-          )
-        ]
+        sublinks: admin_sublinks(site)
+      )
+    ]
+  end
+
+  def admin_sublinks(site)
+    [
+      MenuLink.new(name: t('comfy.admin.cms.base.users'),    path: users_path),
+      MenuLink.new(name: t('comfy.admin.cms.base.tags'),     path: tags_path),
+      MenuLink.new(name: t('comfy.admin.cms.base.categories'), path: categories_path),
+      MenuLink.new(name: t('comfy.admin.cms.base.clumps'), path: clumps_path),
+      MenuLink.new(name: t('comfy.admin.cms.base.redirects'), path: redirects_path),
+      MenuLink.new(
+        name: t('comfy.admin.cms.base.page_feedbacks'),
+        path: site_page_feedbacks_path(site)
       )
     ]
   end

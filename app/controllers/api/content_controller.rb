@@ -61,7 +61,9 @@ module API
     end
 
     def verify_page_type
-      render json: { message: %(Page type "#{page_type}" not supported) }, status: :bad_request unless page_type_supported?
+      return if page_type_supported?
+
+      render json: { message: %(Page type "#{page_type}" not supported) }, status: :bad_request
     end
 
     def page_type_supported?

@@ -23,8 +23,8 @@ class RedirectImporter
       end
     end
 
-    puts '====== ERRORS ====='
-    puts "#{error_count} out of #{total}"
+    Rails.logger.info('====== ERRORS =====')
+    Rails.logger.info("#{error_count} out of #{total}")
   end
 
   private
@@ -42,10 +42,9 @@ class RedirectImporter
   end
 
   def output_fail(source, destination, redirect)
-    puts
-    puts '===== FAILED ====='
-    puts source
-    puts destination
-    puts redirect.errors.full_messages
+    Rails.logger.info('===== FAILED =====')
+    Rails.logger.info(source)
+    Rails.logger.info(destination)
+    Rails.logger.info(redirect.errors.full_messages)
   end
 end

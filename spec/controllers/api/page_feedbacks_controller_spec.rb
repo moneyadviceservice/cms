@@ -59,7 +59,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
       end
 
       it 'returns JSON in response body' do
-        expect(JSON.load(response.body)).to include(
+        expect(JSON.parse(response.body)).to include(
           'liked'      => true,
           'session_id' => '5cfe12kc'
         )
@@ -101,7 +101,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
       end
 
       it 'returns inexistent site' do
-        expect(JSON.load(response.body)).to include(
+        expect(JSON.parse(response.body)).to include(
           'message' => 'Site "pt-br" not found'
         )
       end
@@ -121,7 +121,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
       end
 
       it 'returns message about inexistent page' do
-        expect(JSON.load(response.body)).to include(
+        expect(JSON.parse(response.body)).to include(
           'message' => 'Page "inexistent" not found'
         )
       end
@@ -141,7 +141,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
       end
 
       it 'returns error message in response body' do
-        expect(JSON.load(response.body)).to include(
+        expect(JSON.parse(response.body)).to include(
           'errors' => ["Session can't be blank"]
         )
       end
@@ -173,7 +173,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
         end
 
         it 'returns page feedback' do
-          expect(JSON.load(response.body)).to include(
+          expect(JSON.parse(response.body)).to include(
             'liked'     => true,
             'comment'   => 'Terrible article!',
             'shared_on' => 'Facebook'
@@ -199,7 +199,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
         end
 
         it 'includes message node' do
-          expect(JSON.load(response.body)).to include(
+          expect(JSON.parse(response.body)).to include(
             'message' => []
           )
         end
@@ -216,7 +216,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
       end
 
       it 'returns error message' do
-        expect(JSON.load(response.body)).to include(
+        expect(JSON.parse(response.body)).to include(
           'message' => %(Page feedback "#{page.slug}" not found)
         )
       end

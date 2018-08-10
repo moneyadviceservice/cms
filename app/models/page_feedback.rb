@@ -8,7 +8,7 @@ class PageFeedback < ActiveRecord::Base
 
   delegate :slug, to: :page, prefix: true
 
-  def self.to_csv(_ = {})
+  def self.to_csv(_options = {})
     csv_columns = ['page_slug', column_names].flatten
 
     CSV.generate do |csv|

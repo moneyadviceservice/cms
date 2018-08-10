@@ -5,7 +5,7 @@ describe InternalLink do
   describe '.call' do
     context 'when internal links menu is missing' do
       let(:source) do
-        s = <<~EOF
+        <<~SOURCE
           <h1>Page Title</h1>
           <p>some description</p>
           <h2>Section 1, and this</h2>
@@ -14,12 +14,11 @@ describe InternalLink do
           <p>some text</p>
           <h2>Tip 1 – Section 3</h2>
           <p>some text</p>
-        EOF
-        s
+        SOURCE
       end
 
       let(:generated_output) do
-        s = <<~EOF
+        <<~SOURCE
           <h1>Page Title</h1>
           <p>some description</p>
           <ul>
@@ -33,8 +32,7 @@ describe InternalLink do
           <p>some text</p>
           <h2 id="tip-1--section-3">Tip 1 – Section 3</h2>
           <p>some text</p>
-        EOF
-        s
+        SOURCE
       end
 
       it 'generates internal links menu' do
@@ -44,7 +42,7 @@ describe InternalLink do
 
     context 'when internal links menu was manually entered' do
       let(:source) do
-        s = <<~EOF
+        <<~SOURCE
           <h1>Page Title</h1>
           <p>some description</p>
           <ul>
@@ -58,8 +56,7 @@ describe InternalLink do
           <p>some text</p>
           <h2 id="section-3">Section 3</h2>
           <p>some text</p>
-        EOF
-        s
+        SOURCE
       end
 
       it 'does nothing' do
@@ -71,7 +68,7 @@ describe InternalLink do
   describe 'Punctuation marks' do
     context 'are removed in tag id' do
       let(:source) do
-        s = <<~EOF
+        <<~SOURCE
           <h1>Page Title</h1>
           <p>some description</p>
           <h2>'Section 1', and this</h2>
@@ -80,12 +77,11 @@ describe InternalLink do
           <p>some text</p>
           <h2>{Section 3} "double quotes"</h2>
           <p>some text</p>
-        EOF
-        s
+        SOURCE
       end
 
       let(:generated_output) do
-        s = <<~EOF
+        <<~SOURCE
           <h1>Page Title</h1>
           <p>some description</p>
           <ul>
@@ -99,8 +95,7 @@ describe InternalLink do
           <p>some text</p>
           <h2 id="section-3-double-quotes">{Section 3} "double quotes"</h2>
           <p>some text</p>
-        EOF
-        s
+        SOURCE
       end
       it 'does nothing' do
         expect(subject).to eq generated_output

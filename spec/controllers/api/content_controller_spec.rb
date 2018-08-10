@@ -5,7 +5,7 @@ RSpec.describe API::ContentController, type: :request do
   let!(:welsh) do
     create(:site, :welsh, is_mirrored: true, path: 'cy', locale: 'cy')
   end
-  let(:response_body) { JSON.load(response.body).symbolize_keys }
+  let(:response_body) { JSON.parse(response.body).symbolize_keys }
 
   before do
     allow_any_instance_of(PageSerializer)
@@ -15,7 +15,7 @@ RSpec.describe API::ContentController, type: :request do
   describe 'GET /:locale/videos/published.json' do
     let!(:video_layout) { create(:layout, :video, site: site) }
     let!(:article_layout) { create(:layout, :article, site: site) }
-    let(:response_body) { JSON.load(response.body) }
+    let(:response_body) { JSON.parse(response.body) }
 
     context 'when no published videos' do
       it 'returns an empty array' do
@@ -70,7 +70,7 @@ RSpec.describe API::ContentController, type: :request do
 
   describe 'GET /:locale/articles/published.json' do
     let!(:article_layout) { create(:layout, :article, site: site) }
-    let(:response_body) { JSON.load(response.body) }
+    let(:response_body) { JSON.parse(response.body) }
 
     context 'when no published articles' do
       it 'returns an empty array' do
@@ -118,7 +118,7 @@ RSpec.describe API::ContentController, type: :request do
 
   describe 'GET /:locale/articles/unpublished.json' do
     let!(:article_layout) { create(:layout, :article, site: site) }
-    let(:response_body) { JSON.load(response.body) }
+    let(:response_body) { JSON.parse(response.body) }
 
     context 'when no unpublished articles' do
       let(:video_layout) { create(:layout, :video, site: site) }

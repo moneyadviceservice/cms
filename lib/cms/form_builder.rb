@@ -32,7 +32,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def page_image(tag, index)
-    markup = <<-eos
+    markup = <<-MD
       <div class="form-group form-image"
            data-dough-component="FormImage"
            data-dough-form-image-identifier="home-edit-field-#{index}">
@@ -46,7 +46,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
       <button class="button--action form-image__button--remove"
               type="button"><span class="button__text">Remove</span></button>
       </div>
-    eos
+    MD
 
     markup.html_safe
   end
@@ -96,6 +96,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   #
   # This is because we handle the block attributes independently from the page
   # attributes in forms.
+  # rubocop:disable Metrics/MethodLength, Metrics/LineLength
   def default_tag_field(tag, index, method = :text_field_tag, options = {})
     label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
     content     = ''
@@ -122,6 +123,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
     content.html_safe
   end
+  # rubocop:enable Metrics/MethodLength, Metrics/LineLength
 
   def find_current_value_for_field(tag)
     current_field = blocks_attributes.find do |block_attributes|

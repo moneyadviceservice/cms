@@ -51,7 +51,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
   scope :scheduled_today, (lambda do
     where(
       arel_table[:state].eq('scheduled')
-      .and(arel_table[:scheduled_on].lt(Time.now.end_of_day))
+      .and(arel_table[:scheduled_on].lt(Time.current.end_of_day))
     )
   end)
 

@@ -1,5 +1,5 @@
 RSpec.describe LinksController do
-  let(:response_body) { JSON.load(response.body).symbolize_keys }
+  let(:response_body) { JSON.parse(response.body).symbolize_keys }
 
   describe 'GET /links/:url' do
     let(:linkable_object) { LinkableObject.new(object, url) }

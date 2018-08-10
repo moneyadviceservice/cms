@@ -8,7 +8,7 @@ class AlternatePageBlocksRegister < PageContentRegister
   class Error < StandardError
   end
 
-  def save!
+  def save! # rubocop:disable Metrics/MethodLength
     if page.published_being_edited?
 
       # If the page has just transitioned to published_being_edited we need to do some juggling of data.
@@ -39,7 +39,10 @@ class AlternatePageBlocksRegister < PageContentRegister
 
     # Anything else doesn't have alternate blocks
     else
-      raise Error.new('Only pages in a state of published_being_edited, or scheduled with an active revision and with scheduled_on in the future can have alternate blocks')
+      raise Error.new(
+        'Only pages in a state of published_being_edited, ' \
+        'or scheduled with an active revision and with scheduled_on in the future can have alternate blocks'
+      )
     end
   end
 end

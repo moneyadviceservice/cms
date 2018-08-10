@@ -20,7 +20,7 @@ module Indexers
           @table.add_separator
         end
 
-        puts @table
+        Rails.logger.info(@table)
       end
     end
   end

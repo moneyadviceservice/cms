@@ -1,4 +1,4 @@
-require Rails.root.join('lib/cms/index_database_task')
+require Rails.root.join('lib', 'cms', 'index_database_task.rb')
 
 RSpec.describe IndexDatabaseTask do
   subject(:task) do
