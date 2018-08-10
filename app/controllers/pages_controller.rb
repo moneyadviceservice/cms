@@ -29,7 +29,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
                            AlternatePageBlocksRetriever.new(@page).blocks_attributes
                          else
                            PageBlocksRetriever.new(@page).blocks_attributes
-    end
+                         end
   end
 
   def update

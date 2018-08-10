@@ -37,8 +37,10 @@ gem 'reverse_markdown'
 gem 'sass-rails', '~> 4.0.3'
 gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn-rails'
 gem 'whenever', require: false
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -46,7 +48,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
-  gem 'unicorn-rails'
 end
 
 group :test do
@@ -79,5 +80,4 @@ end
 
 group :production do
   gem 'syslog-logger'
-  gem 'unicorn-rails'
 end
