@@ -21,3 +21,5 @@ AllCops:
   - 'vendor/**/*'
   - 'spec/models/word_document_spec.rb'
   - 'lib/cms/link_type/*.rb'
+  - 'lib/prismic/**/*'
+  - 'spec/lib/prismic/**/*'
