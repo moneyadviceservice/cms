@@ -16,6 +16,7 @@ module PagesHelper
 
   def page_form_component(condition, default: [], optional: [], display: true)
     return {} unless display
+
     { dough_component: components(condition, default, optional).join(' ') }
   end
 
@@ -42,7 +43,7 @@ module PagesHelper
   end
 
   def display_metadata_form_fields?(page)
-    !page.layout.identifier.in?(%w(home_page footer))
+    !page.layout.identifier.in?(%w[home_page footer])
   end
 
   def activity_log(page)

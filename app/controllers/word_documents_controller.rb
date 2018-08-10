@@ -1,5 +1,5 @@
 class WordDocumentsController < Comfy::Admin::Cms::PagesController
-  ACCEPTED_CONTENT_TYPES = [Rack::Mime.mime_type('.docx')]
+  ACCEPTED_CONTENT_TYPES = [Rack::Mime.mime_type('.docx')].freeze
 
   def create
     @doc = WordDocument.new(document_params)

@@ -93,20 +93,20 @@ module Prismic
       def data_types
         {
           programme_theory: 'Programme Theory',
-          :'measured_outcomes_yes/no' => 'Measured Outcomes',
+          'measured_outcomes_yes/no': 'Measured Outcomes',
           causality: 'Causality',
           process_evaluation: 'Process Evaluation',
           value_for_money: 'Value for money'
         }.map do |prismic_field, cms_value|
           prismic_value = document.send(prismic_field)
 
-          if prismic_value == 'Yes'
-            Comfy::Cms::Block.new(
-              identifier: 'data_types',
-              content: cms_value,
-              processed_content: Mastalk::Document.new(cms_value).to_html
-            )
-          end
+          next unless prismic_value == 'Yes'
+
+          Comfy::Cms::Block.new(
+            identifier: 'data_types',
+            content: cms_value,
+            processed_content: Mastalk::Document.new(cms_value).to_html
+          )
         end.compact
       end
 

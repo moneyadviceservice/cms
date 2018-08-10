@@ -16,7 +16,7 @@ module API
       if documents
         render json: paginated_documents, meta: meta_data, root: 'documents'
       else
-        render json: { message: 'Bad request' }, status: 400
+        render json: { message: 'Bad request' }, status: :bad_request
       end
     end
 
@@ -27,8 +27,8 @@ module API
         params.permit(
           :keyword,
           :tag, tag: [],
-          document_type: [],
-          blocks: [:identifier, :value, value: []]
+                document_type: [],
+                blocks: [:identifier, :value, value: []]
         ).merge(current_site: current_site)
       ).retrieve
     end

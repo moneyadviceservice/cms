@@ -25,7 +25,7 @@ describe ComfortableMexicanSofa::Tag::CollectionCheckBoxes do
       let (:tag_signature) { '{{ cms:page:test:collection_check_boxes/param1, param2 }}' }
 
       it 'returns array of params' do
-        expect(subject).to eq ['param1', 'param2']
+        expect(subject).to eq %w[param1 param2]
       end
     end
   end

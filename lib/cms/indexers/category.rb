@@ -1,10 +1,10 @@
 module Indexers
   class Category < Base
-    LOCALES = %w(en cy)
+    LOCALES = %w[en cy].freeze
 
     def objects
-      collection.map do |category |
-        LOCALES.map { |locale| add_category(category, locale: locale)  }
+      collection.map do |category|
+        LOCALES.map { |locale| add_category(category, locale: locale) }
       end.flatten
     end
 

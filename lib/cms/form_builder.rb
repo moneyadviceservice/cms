@@ -59,14 +59,14 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
   def page_rich_text(tag, index)
     @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
-        locals: {
-          index: index,
-          fieldname: field_name_for(tag)
-        })
+                     locals: {
+                       index: index,
+                       fieldname: field_name_for(tag)
+                     })
   end
 
   def page_text(tag, index)
-    default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
+    default_tag_field(tag, index, :text_area_tag, data: { 'cms-cm-mode' => 'text/html' })
   end
 
   def page_string(tag, index)
@@ -87,7 +87,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def field_name_for(tag)
-    tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
+    tag.blockable.class.name.demodulize.underscore.gsub(/\//, '_')
   end
 
   # This is overriding comfy with an almost identical method, just that the
@@ -103,21 +103,21 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
     case method
     when :file_field_tag
-      input_params = {:id => nil, value: current_value}
+      input_params = { id: nil, value: current_value }
       name = "blocks_attributes[#{index}][content]"
 
       if options.delete(:multiple)
-        input_params.merge!(:multiple => true)
+        input_params[:multiple] = true
         name << '[]'
       end
 
       content << @template.send(method, name, input_params)
-      content << @template.render(:partial => 'comfy/admin/cms/files/page_form', :object => tag.block)
+      content << @template.render(partial: 'comfy/admin/cms/files/page_form', object: tag.block)
     else
       options[:class] ||= 'form-control'
-      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.to_s.gsub(/\n/, ''), options)
+      content << @template.send(method, "blocks_attributes[#{index}][content]", current_value.to_s.delete("\n"), options)
     end
-    content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, :id => nil)
+    content << @template.hidden_field_tag("blocks_attributes[#{index}][identifier]", tag.identifier, id: nil)
     content.prepend(@template.label_tag(label))
 
     content.html_safe

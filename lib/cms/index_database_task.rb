@@ -2,7 +2,7 @@ class IndexDatabaseTask
   attr_reader :adapter, :category_indexer, :page_indexer
 
   PAGES_BATCH_SIZE = 500
-  EXCLUDED_PAGES = %w(news action_plan universal_credit home_page footer)
+  EXCLUDED_PAGES = %w[news action_plan universal_credit home_page footer].freeze
 
   def initialize(
     adapter,
@@ -28,7 +28,7 @@ class IndexDatabaseTask
 
   def index_pages
     pages
-    .find_in_batches(batch_size: PAGES_BATCH_SIZE) do |pages_collection|
+      .find_in_batches(batch_size: PAGES_BATCH_SIZE) do |pages_collection|
       page_indexer.new(
         collection: pages_collection,
         adapter: adapter

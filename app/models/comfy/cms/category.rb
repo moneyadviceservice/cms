@@ -5,8 +5,8 @@ class Comfy::Cms::Category < ActiveRecord::Base
   accepts_nested_attributes_for :links, reject_if: ->(link) { link[:text].blank? },
                                         allow_destroy: true
 
-  validates_presence_of :label, :title_en, :title_cy
-  validates_uniqueness_of :label, :title_en, :title_cy, scope: :site_id
+  validates :label, :title_en, :title_cy, presence: true
+  validates :label, :title_en, :title_cy, uniqueness: { scope: :site_id }
 
   belongs_to :small_image, class_name: 'Comfy::Cms::File'
   belongs_to :large_image, class_name: 'Comfy::Cms::File'
@@ -44,16 +44,16 @@ class Comfy::Cms::Category < ActiveRecord::Base
   end
 
   def clump_id=(new_clump_id)
-    if new_clump_id.blank?
-      self.clump = nil
-    else
-      self.clump = Clump.find(new_clump_id)
-    end
+    self.clump = if new_clump_id.blank?
+                   nil
+                 else
+                   Clump.find(new_clump_id)
+                 end
   end
 
   def find_children(legacy: false)
     column_name = legacy ? :legacy_parent_id : :parent_id
-    self.class.where(column_name  => id).reorder(:ordinal)
+    self.class.where(column_name => id).reorder(:ordinal)
   end
 
   private

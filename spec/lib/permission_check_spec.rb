@@ -153,6 +153,5 @@ RSpec.describe PermissionCheck do
         end
       end
     end
-
   end
 end

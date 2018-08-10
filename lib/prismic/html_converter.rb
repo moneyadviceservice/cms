@@ -1,10 +1,10 @@
 module Prismic
   class HTMLConverter
-    LIST_ITEMS = ['list-item', 'o-list-item']
+    LIST_ITEMS = ['list-item', 'o-list-item'].freeze
     HTML_LIST = {
       'list-item' => 'ul',
       'o-list-item' => 'ol'
-    }
+    }.freeze
     attr_reader :content
 
     def initialize(content)
@@ -56,7 +56,7 @@ module Prismic
       list = []
       i = index
 
-      while fragments[i] && fragments[i].field_type.in?(LIST_ITEMS)
+      while fragments[i]&.field_type&.in?(LIST_ITEMS)
         list << fragments[i]
         i += 1
       end

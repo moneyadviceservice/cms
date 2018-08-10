@@ -6,9 +6,9 @@ class Tag < ActiveRecord::Base
   # -- Callbacks ------------------------------------------------------------
 
   # -- Validations ----------------------------------------------------------
-  validates_presence_of :value
-  validates_uniqueness_of :value
-  validates_format_of :value, with: /\A[\-a-z0-9 ]+\z/i
+  validates :value, presence: true
+  validates :value, uniqueness: true
+  validates :value, format: { with: /\A[\-a-z0-9 ]+\z/i }
 
   # -- Scopes ---------------------------------------------------------------
   scope :valued,      ->(value) { where(value: value.is_a?(Hash) ? value[:value] : value) }

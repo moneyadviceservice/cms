@@ -11,14 +11,14 @@ RSpec.describe CategoriesController, type: :controller do
   let(:sub_category_2) { create(:category, ordinal: 2, label: 'Sub Category 2', parent_id: category.id) }
   let(:params) do
     {
-      'site_id' => "#{site.id}",
-      'id' => "#{category.id}",
+      'site_id' => site.id.to_s,
+      'id' => category.id.to_s,
       'list_order_sub_categories' => "#{sub_category_2.id}, #{sub_category_1.id}",
       'comfy_cms_category' => {
         'title_en' => 'Debt and borrowing',
         'third_level_navigation' => '1',
         'links_attributes' => {
-          '0' => { 'id' => "#{category.links.first.id}", '_destroy' => '1' }
+          '0' => { 'id' => category.links.first.id.to_s, '_destroy' => '1' }
         },
         'category_promos_attributes' => {
           '0' => {
@@ -63,7 +63,7 @@ RSpec.describe CategoriesController, type: :controller do
     let(:params) do
       {
         'comfy_cms_category' => {
-          'site_id' => "#{site.id}",
+          'site_id' => site.id.to_s,
           'label' => 'debt-and-borrowing',
           'title_en' => 'Debt and borrowing',
           'title_cy' => 'Welsh Debt and borrowing',

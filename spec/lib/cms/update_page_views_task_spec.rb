@@ -1,9 +1,7 @@
 require Rails.root.join('lib/cms/update_page_views_task')
 
 RSpec.describe UpdatePageViewsTask do
-
   describe 'run' do
-
     it 'updates each english article with google analytics results' do
       google_analytics_results = double('analytics results')
       first_article = Comfy::Cms::Page.new
@@ -23,7 +21,5 @@ RSpec.describe UpdatePageViewsTask do
 
       UpdatePageViewsTask.run
     end
-
   end
-
 end

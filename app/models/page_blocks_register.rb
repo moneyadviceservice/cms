@@ -1,11 +1,10 @@
-# coding: utf-8
 # This class wraps logic for updating the "current" blocks_attributes of a page, taking into account
 # situations where it might have an "alternate" version.
 #
 # Single version articles:
 # - an unsaved, draft or published article
 # - a scheduled article that's not live yet
-# - a scheduled article that's gone live
+#  - a scheduled article that's gone live
 # - a published article with a scheduled update that's now gone live
 #
 # Dual version articles:
@@ -85,6 +84,7 @@ class PageBlocksRegister < PageContentRegister
   end
 
   private
+
   # Create a new revision with the new blocks_attributes and set it as the active revision
   def create_active_revision!
     RevisionRegister.new(page, user: author, blocks_attributes: new_blocks_attributes).save_as_active_revision!

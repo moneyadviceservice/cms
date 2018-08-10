@@ -1,7 +1,7 @@
 class DocumentProvider
   attr_reader :current_site, :document_type, :keyword, :filters, :tag
 
-  BLOCKS_TO_SEARCH = %w(content overview order_by_date)
+  BLOCKS_TO_SEARCH = %w[content overview order_by_date].freeze
   FILTER_LIMIT = 26
 
   def initialize(params = {})
@@ -30,26 +30,26 @@ class DocumentProvider
     return @documents if document_type.blank?
 
     @documents = @documents.joins(:layout)
-      .where('comfy_cms_layouts.identifier' => document_type)
+                           .where('comfy_cms_layouts.identifier' => document_type)
   end
 
   def filter_by_keyword
     return @documents if keyword.blank?
 
     @documents = @documents
-      .joins(:blocks)
-      .where(
-        'comfy_cms_pages.label LIKE ? OR
-          (comfy_cms_blocks.content LIKE ? AND comfy_cms_blocks.identifier IN (?))',
-          "%#{keyword}%", "%#{keyword}%", BLOCKS_TO_SEARCH
-      ).uniq
+                 .joins(:blocks)
+                 .where(
+                   'comfy_cms_pages.label LIKE ? OR
+                     (comfy_cms_blocks.content LIKE ? AND comfy_cms_blocks.identifier IN (?))',
+                   "%#{keyword}%", "%#{keyword}%", BLOCKS_TO_SEARCH
+                 ).uniq
   end
 
   def filter_by_tag
     return @documents if tag.blank?
 
     @documents = @documents
-      .joins(:keywords).where('tags.value = ?', tag)
+                 .joins(:keywords).where('tags.value = ?', tag)
   end
 
   def filter_documents
@@ -57,25 +57,24 @@ class DocumentProvider
 
     filters_to_hash.each do |filter, value|
       @documents = Comfy::Cms::Page
-        .unscoped
-        .select("pages.*").from("(#{@documents.to_sql}) as pages")
-        .joins("INNER JOIN comfy_cms_blocks ON comfy_cms_blocks.blockable_id = pages.id AND
+                   .unscoped
+                   .select('pages.*').from("(#{@documents.to_sql}) as pages")
+                   .joins("INNER JOIN comfy_cms_blocks ON comfy_cms_blocks.blockable_id = pages.id AND
           comfy_cms_blocks.blockable_type = 'Comfy::Cms::Page'")
-        .where('comfy_cms_blocks.identifier' => filter)
-        .where('comfy_cms_blocks.content' => value)
+                   .where('comfy_cms_blocks.identifier' => filter)
+                   .where('comfy_cms_blocks.content' => value)
     end
 
     @documents
   end
 
   def filters_to_hash
-    filters.reduce({}) do |acc, filter|
+    filters.each_with_object({}) do |filter, acc|
       if acc[filter[:identifier]]
         acc[filter[:identifier]] << filter[:value]
       else
         acc[filter[:identifier]] = [filter[:value]]
       end
-      acc
     end
   end
 

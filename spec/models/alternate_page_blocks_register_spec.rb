@@ -16,9 +16,7 @@ RSpec.describe AlternatePageBlocksRegister do
   let!(:block) { create(:block, blockable: page, content: original_content) }
 
   before do
-    if published_revision.present?
-      page.update_attribute(:active_revision, published_revision)
-    end
+    page.update_attribute(:active_revision, published_revision) if published_revision.present?
 
     # Reload the page to make it see it's block
     page.reload
@@ -41,9 +39,9 @@ RSpec.describe AlternatePageBlocksRegister do
       let(:state) { 'unsaved' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -51,9 +49,9 @@ RSpec.describe AlternatePageBlocksRegister do
       let(:state) { 'draft' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -61,9 +59,9 @@ RSpec.describe AlternatePageBlocksRegister do
       let(:state) { 'published' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -172,9 +170,9 @@ RSpec.describe AlternatePageBlocksRegister do
 
         context 'with no active revision' do
           it 'raises an exception' do
-            expect {
+            expect do
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            end.to raise_exception
           end
         end
 
@@ -182,9 +180,9 @@ RSpec.describe AlternatePageBlocksRegister do
           let(:published_revision) { create(:revision, record: page) }
 
           it 'raises an exception' do
-            expect {
+            expect do
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            end.to raise_exception
           end
         end
       end
@@ -194,9 +192,9 @@ RSpec.describe AlternatePageBlocksRegister do
 
         context 'with no active revision' do
           it 'raises an exception' do
-            expect {
+            expect do
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            end.to raise_exception
           end
         end
 
@@ -228,11 +226,10 @@ RSpec.describe AlternatePageBlocksRegister do
       let(:state) { 'unpublished' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
   end
-
 end

@@ -1,16 +1,15 @@
 class TagsController < Comfy::Admin::Cms::BaseController
-  respond_to :js, only: [:create, :starting_by, :delete_from_value]
+  respond_to :js, only: %i[create starting_by delete_from_value]
 
   # Filters
   before_action :check_admin
   before_action :build_tag_from_params, only: [:create]
   before_action :find_tag_from_params,  only: [:delete_from_value]
 
-  def index
-  end
+  def index; end
 
   def create
-    render js: "#{@tag.save}"
+    render js: @tag.save.to_s
   end
 
   # Tags starting by a given prefix.
@@ -20,8 +19,8 @@ class TagsController < Comfy::Admin::Cms::BaseController
   end
 
   def delete_from_value
-    @tag.destroy if @tag
-    render js: "#{@tag.present? && @tag.destroyed?}"
+    @tag&.destroy
+    render js: (@tag.present? && @tag.destroyed?).to_s
   end
 
   private

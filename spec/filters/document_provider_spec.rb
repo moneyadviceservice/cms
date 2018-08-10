@@ -165,7 +165,7 @@ RSpec.describe DocumentProvider do
     context 'when there is only one value for the filter type' do
       let!(:page_with_filter_type) { create(:page_abt_debt_and_stress, site: site, layout: insight_layout) }
       let!(:page_without_filter_type) { create(:page, site: site, layout: insight_layout) }
-      let(:filters) { [{identifier: 'client_groups', value: 'Working age (18 - 65)'}] }
+      let(:filters) { [{ identifier: 'client_groups', value: 'Working age (18 - 65)' }] }
 
       it 'returns only documents that meet the filter type' do
         expect(subject.size).to eq(1)
@@ -188,7 +188,7 @@ RSpec.describe DocumentProvider do
             identifier: 'client_groups',
             value: 'Young adults (17 - 24)'
           }
-       ]
+        ]
       end
 
       it 'returns only documents that meet the filter type' do
@@ -205,7 +205,7 @@ RSpec.describe DocumentProvider do
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
 
       let(:keyword) { 'debt' }
-      let(:filters) { [{identifier: 'client_groups', value: 'Working age (18 - 65)'}] }
+      let(:filters) { [{ identifier: 'client_groups', value: 'Working age (18 - 65)' }] }
 
       it 'returns only documents that have the keyword and meet the filter type' do
         expect(subject.size).to eq(1)
@@ -221,9 +221,9 @@ RSpec.describe DocumentProvider do
 
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2, filter3] }
-      let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
-      let(:filter2) { {identifier: 'topic', value: 'Saving'} }
-      let(:filter3) { {identifier: 'countries_of_delivery', value: 'United Kingdom'} }
+      let(:filter1) { { identifier: 'client_groups', value: 'Working age (18 - 65)' } }
+      let(:filter2) { { identifier: 'topic', value: 'Saving' } }
+      let(:filter3) { { identifier: 'countries_of_delivery', value: 'United Kingdom' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(1)
@@ -238,8 +238,8 @@ RSpec.describe DocumentProvider do
 
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2] }
-      let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
-      let(:filter2) { {identifier: 'client_groups', value: 'Young adults (17 - 24)'} }
+      let(:filter1) { { identifier: 'client_groups', value: 'Working age (18 - 65)' } }
+      let(:filter2) { { identifier: 'client_groups', value: 'Young adults (17 - 24)' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(2)

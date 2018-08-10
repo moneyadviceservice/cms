@@ -15,15 +15,14 @@ class PageContentRegister
   # so this is just a custom reader to handle that.
   def new_blocks_attributes
     return [] if @new_blocks_attributes.empty?
+
     blocks_attributes = if @new_blocks_attributes.is_a?(Hash)
                           @new_blocks_attributes.values
                         else
                           @new_blocks_attributes
                         end
 
-    if home_page? || footer?
-      return blocks_attributes + include_srcset_block(blk_attrs: blocks_attributes)
-    end
+    return blocks_attributes + include_srcset_block(blk_attrs: blocks_attributes) if home_page? || footer?
 
     convert_content_to_html(blocks_attributes)
 
@@ -71,7 +70,7 @@ class PageContentRegister
   end
 
   def home_page?
-     layout_identifier == 'home_page'
+    layout_identifier == 'home_page'
   end
 
   def footer?

@@ -1,5 +1,5 @@
 RSpec.describe Prismic::Migrator::Evaluation do
-  subject(:evaluation) { described_class.new(document)  }
+  subject(:evaluation) { described_class.new(document) }
 
   describe '#migrate' do
     subject(:migrated_page) { evaluation.migrate }
@@ -32,7 +32,7 @@ RSpec.describe Prismic::Migrator::Evaluation do
         NEW_delivery_channel: '<p>Workshops, group training / one-to-one advice</p>',
         NEW_delivery_channel_markdown: '',
         programme_theory: 'Yes',
-        :'measured_outcomes_yes/no' => 'Yes',
+        'measured_outcomes_yes/no': 'Yes',
         causality: 'Yes',
         process_evaluation: 'No',
         value_for_money: 'No',

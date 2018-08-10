@@ -1,5 +1,5 @@
 class VersionsController < ApplicationController
   def show
-    render file: File.expand_path('../../../public/version', __FILE__), layout: false
+    render file: File.expand_path('../../public/version', __dir__), layout: false
   end
 end

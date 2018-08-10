@@ -27,7 +27,7 @@ class RackSpaceCDN
             public: true
           )
         end
-      rescue
+      rescue StandardError
         puts "Failed to upload: #{file.filename}"
         File.open('failed.txt', 'a') { |f| f.write("#{file.filename}\n") }
       end

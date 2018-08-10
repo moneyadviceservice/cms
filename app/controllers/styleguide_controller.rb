@@ -1,4 +1,3 @@
 class StyleguideController < ApplicationController
-  def index
-  end
+  def index; end
 end

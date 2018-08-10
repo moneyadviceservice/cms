@@ -2,7 +2,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   helper 'page_blocks'
 
   before_action :check_permissions
-  before_action :check_alternate_available, only: [:edit, :update, :destroy]
+  before_action :check_alternate_available, only: %i[edit update destroy]
   before_action :check_can_destroy, only: :destroy
 
   def index
@@ -26,9 +26,9 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def edit
     @blocks_attributes = if params[:alternate]
-      AlternatePageBlocksRetriever.new(@page).blocks_attributes
-    else
-      PageBlocksRetriever.new(@page).blocks_attributes
+                           AlternatePageBlocksRetriever.new(@page).blocks_attributes
+                         else
+                           PageBlocksRetriever.new(@page).blocks_attributes
     end
   end
 
@@ -36,9 +36,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
     save_page
     flash[:success] = I18n.t('comfy.admin.cms.pages.updated')
 
-    if current_user.editor?
-      RevisionMailer.external_editor_change(user: current_user, page: @page).deliver
-    end
+    RevisionMailer.external_editor_change(user: current_user, page: @page).deliver if current_user.editor?
 
     if updating_alternate_content?
       redirect_to action: :edit, id: @page, alternate: true
@@ -58,7 +56,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
       AlternatePageBlocksRemover.new(@page, remover: current_user).remove!
       flash[:success] = "Draft update for #{@page.layout.label.downcase} removed"
     end
-    redirect_to :action => :index
+    redirect_to action: :index
   end
 
   protected
@@ -118,7 +116,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def check_alternate_available
-    if params[:alternate] && !AlternatePageBlocksRetriever.new(@page).blocks_attributes.present?
+    if params[:alternate] && AlternatePageBlocksRetriever.new(@page).blocks_attributes.blank?
       flash[:danger] = 'Alternate content is not currently available for this page'
       redirect_to action: :edit, id: @page
     end

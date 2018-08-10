@@ -200,7 +200,7 @@ RSpec.describe PagePresenter do
       let(:category) { create :category }
 
       it 'returns the category' do
-        expect(subject.category_list).to eql("#{category.label}")
+        expect(subject.category_list).to eql(category.label.to_s)
       end
     end
 

@@ -9,7 +9,7 @@ module Publify
         verify: MAS.env.production?
       )
       JSON.parse(response.body).first(limit)
-    rescue => e
+    rescue StandardError => e
       Rails.logger.error(e.message)
       []
     end

@@ -68,7 +68,7 @@ module Prismic
       end
 
       def content_headers
-        fail NotImplementedError
+        raise NotImplementedError
       end
     end
   end

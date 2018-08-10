@@ -30,7 +30,7 @@ RSpec.describe API::PageFeedbacksController, type: :controller do
 
       it 'add www-authenticate header' do
         expect(response.headers).to include(
-          'WWW-Authenticate' => "Token realm=\"Application\""
+          'WWW-Authenticate' => 'Token realm="Application"'
         )
       end
     end

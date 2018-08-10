@@ -1,5 +1,5 @@
 class Redirect < ActiveRecord::Base
-  REDIRECT_TYPES = %w( permanent temporary )
+  REDIRECT_TYPES = %w[permanent temporary].freeze
 
   default_scope { where(active: true) }
 
@@ -39,9 +39,9 @@ class Redirect < ActiveRecord::Base
   private
 
   def source_allows_certain_extensions
-    return unless source.present?
-    return if source.match(/(\.html|\.pdf|\.aspx)\z/)
-    return unless source.match(/(\..*)\z/)
+    return if source.blank?
+    return if source =~ /(\.html|\.pdf|\.aspx)\z/
+    return unless source =~ /(\..*)\z/
 
     errors.add(:source, :invalid_extension)
   end
@@ -65,7 +65,7 @@ class Redirect < ActiveRecord::Base
   end
 
   def destination_does_not_match_existing_source
-    return unless destination.present?
+    return if destination.blank?
     return unless Redirect.where.not(id: id).exists?(source: destination.split('?').first)
 
     errors.add(:destination, :matches_an_existing_source)

@@ -182,8 +182,7 @@ RSpec.describe Prismic::CmsConverter do
                           'title' => 'MAS_FinCap_UK_Survey_2015_AW.PDF',
                           'image' => nil
                         }
-                      }
-                    },
+                      } },
                     { 'start' => 87, 'end' => 91, 'type' => 'strong' }
                   ]
                 }
@@ -553,7 +552,7 @@ RSpec.describe Prismic::CmsConverter do
               title: "<h1>The Money Charity's Financial Education Report</h1>",
               title_markdown: "# The Money Charity's Financial Education Report\n"
             )
-         )
+          )
         end
       end
 
