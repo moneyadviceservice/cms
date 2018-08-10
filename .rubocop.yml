@@ -1,31 +1,8 @@
-Documentation:
-  Enabled: false
+inherit_from:
+  - https://raw.githubusercontent.com/moneyadviceservice/mas-standards/master/.rubocop.yml
+
 Metrics/LineLength:
   Max: 120
-Metrics/MethodLength:
-  Max: 15
-Style/ClassAndModuleChildren:
-  Enabled: false
-Style/CollectionMethods:
-  Enabled: false
-Style/DotPosition:
-  EnforcedStyle: leading
-Style/FormatString:
-  Enabled: false
-Style/AndOr:
-  EnforcedStyle: conditionals
-Style/Not:
-  Enabled: false
-Style/DoubleNegation:
-  Enabled: false
-Style/RaiseArgs:
-  Enabled: false
-Style/RegexpLiteral:
-  Enabled: false
-Style/StringLiterals:
-  EnforcedStyle: single_quotes
-Lint/ShadowingOuterLocalVariable:
-  Enabled: false
 AllCops:
   Exclude:
   - 'app/helpers/application_helper.rb'
