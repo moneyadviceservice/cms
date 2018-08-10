@@ -33,5 +33,7 @@ class BlocksRetriever
     block.blockable
   end
 
-  delegate :identifier, to: :block
+  def identifier
+    block.identifier
+  end
 end
