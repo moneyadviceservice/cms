@@ -1,9 +1,5 @@
-def latest_revision(page)
-  page.reload.revisions.order('id').last
-end
-
-def latest_revision_attributes(page)
-  latest_revision(page).data[:blocks_attributes]
+RSpec.configure do |config|
+  config.include PageRevisionHelpers
 end
 
 RSpec.describe AlternatePageBlocksRegister do

@@ -1,9 +1,5 @@
-def latest_revision(page)
-  page.revisions.order('id').last
-end
-
-def latest_revision_content(page)
-  latest_revision(page).data[:blocks_attributes].find { |a| a[:identifier] == 'content' }[:content]
+RSpec.configure do |config|
+  config.include PageRevisionHelpers
 end
 
 RSpec.describe PageBlocksRegister do
