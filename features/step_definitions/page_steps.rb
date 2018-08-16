@@ -1,14 +1,11 @@
 When(/^I populate the editor with the text "(.*?)"$/) do |text|
-  # Wait 'til we see the editor's contenteditable box
-  10.times do
-    sleep 1
+  wait_for_editor
+  fill_editor_with(text)
+end
 
-    # Wait an extra second after we see the editor element,
-    # it's not ready as soon as we see it.
-    sleep 1 && break if page.find('#t-editor').present?
-  end
-
-  fill_content_editable('#t-editor', with: text, clear_first: true)
+When(/^I populate the editor with the markdown$/) do |text|
+  wait_for_editor
+  fill_editor_with(text, mode: :advanced)
 end
 
 When(/^I press the button "(.*?)"$/) do |button_text|
@@ -18,7 +15,13 @@ When(/^I press the button "(.*?)"$/) do |button_text|
 end
 
 Then(/^I should see the text "(.*?)" in the editor$/) do |text|
+  wait_for_editor
   expect(page).to have_content(text)
+end
+
+Then(/^I should see the markdown in the editor$/) do |text|
+  wait_for_editor
+  expect(edit_page.content.value).to eq(text)
 end
 
 Then(/^I should see the button "(.*?)"$/) do |button_text|

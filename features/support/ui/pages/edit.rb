@@ -8,6 +8,9 @@ module UI::Pages
 
     section :header, UI::Sections::Header, '.page-header'
 
+    element :editor_default, '#t-editor'
+    element :edit_in_markdown, '#edit-mode_markdown'
+
     element :preview, '#preview'
     element :content, '.editor--markdown textarea'
     element :page_name, '#page_label'
@@ -71,7 +74,7 @@ module UI::Pages
 
     element :literature_review, 'input[value="Literature review"]'
     element :systematic_review, 'input[value="Systematic review"]'
-    
+
     #REUSABLE COMPONENTS
     element :hero_image, '.component_hero_image'
     element :hero_description, '.component_hero_description'
