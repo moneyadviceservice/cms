@@ -159,7 +159,7 @@ namespace :fincap do
       CONTENT
     )
 
-    regional_strategy_layout = english_site.layouts.find_or_create_by(
+    english_site.layouts.find_or_create_by(
       identifier: 'regional_strategy',
       label: 'Regional Strategy',
       content: <<-CONTENT
@@ -188,7 +188,34 @@ namespace :fincap do
   CONTENT
     )
 
-    homepage_layout = english_site.layouts.find_or_create_by(
+    english_site.layouts.find_or_create_by(
+      identifier: 'uk_strategy',
+      label: 'UK Strategy',
+      content: <<-CONTENT
+        {{ cms:page:content:rich_text }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Description }}
+        {{ cms:page:teaser_section_title }}
+        {{ cms:page:teaser1_title }}
+        {{ cms:page:teaser1_image }}
+        {{ cms:page:teaser1_text }}
+        {{ cms:page:teaser1_link }}
+        {{ cms:page:teaser2_title }}
+        {{ cms:page:teaser2_image }}
+        {{ cms:page:teaser2_text }}
+        {{ cms:page:teaser2_link }}
+        {{ cms:page:teaser3_title }}
+        {{ cms:page:teaser3_image }}
+        {{ cms:page:teaser3_text }}
+        {{ cms:page:teaser3_link }}
+        {{ cms:page:regional_strategy_title }}
+        {{ cms:page:regional_strategy_text }}
+        {{ cms:page:regional_strategy_link }}
+        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      CONTENT
+    )
+
+    english_site.layouts.find_or_create_by(
       identifier: 'homepage',
       label: 'Homepage',
       content: <<-CONTENT
