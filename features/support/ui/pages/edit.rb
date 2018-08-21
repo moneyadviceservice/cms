@@ -114,6 +114,11 @@ module UI::Pages
     # Regional Strategy Page
     element :strategy_text, '#blocks_attributes_17_content'
 
+    # UK Strategy Page
+    element :regional_strategy_title, '#blocks_attributes_16_content'
+    element :regional_strategy_text, '#blocks_attributes_17_content'
+    element :regional_strategy_link, '#blocks_attributes_18_content'
+
     # MAS HOMEPAGE
     element :raw_hero_image, '#blocks_attributes_1_content'
     element :raw_heading, '#blocks_attributes_0_content'

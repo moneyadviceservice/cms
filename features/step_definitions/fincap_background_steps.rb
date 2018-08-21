@@ -204,3 +204,32 @@ Given(/^I have a homepage page layout setup with components$/) do
   CONTENT
   )
 end
+
+Given(/^I have a uk strategy page layout setup with components$/) do
+  cms_site.layouts.find_or_create_by(
+    identifier: 'uk-strategy',
+    label: 'UK Strategy',
+    content: <<-CONTENT
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title:simple_component/Financial capability in action }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:regional_strategy_title }}
+    {{ cms:page:regional_strategy_text }}
+    {{ cms:page:regional_strategy_link }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+  CONTENT
+  )
+end
