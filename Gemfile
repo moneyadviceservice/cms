@@ -46,7 +46,6 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
-  gem 'unicorn-rails'
 end
 
 group :test do
@@ -77,7 +76,10 @@ group :test, :development do
   gem 'valid_attribute', require: false
 end
 
+group :development, :production do
+  gem 'unicorn-rails'
+end
+
 group :production do
   gem 'syslog-logger'
-  gem 'unicorn-rails'
 end
