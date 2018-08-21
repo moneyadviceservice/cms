@@ -16,6 +16,16 @@ The MAS CMS.
 The same source code is used by two applications: CMS and Fincap CMS.
 So the next section will explain the setup for each application.
 
+### Environment setup (Mac OsX)
+
+MySql needs to be installed and linked. 
+Make sure Homebrew is installed.
+
+```
+brew install mysql55
+brew link mysql55 --force
+```
+
 ### CMS setup
 
 ```sh
