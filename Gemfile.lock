@@ -15,15 +15,6 @@ GIT
       sass-rails (~> 4.0.0)
 
 GIT
-  remote: https://github.com/moneyadviceservice/mastalk.git
-  revision: e14079b745595b3389f3a1a1090ae89e62cb34b5
-  branch: fincap
-  specs:
-    mastalk (0.9.1)
-      htmlentities (~> 4.3.2, >= 4.3.2)
-      kramdown (~> 1.13, >= 1.13)
-
-GIT
   remote: https://github.com/moneyadviceservice/word-to-markdown.git
   revision: 6906e9caa3df2e53a3f88a06cc3f9067d554648d
   specs:
@@ -374,6 +365,9 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
+    mastalk (0.9.1)
+      htmlentities (~> 4.3.2, >= 4.3.2)
+      kramdown (~> 1.13, >= 1.13)
     method_source (0.8.2)
     mime-types (2.99.3)
     mimemagic (0.3.0)
@@ -616,7 +610,7 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk!
+  mastalk (= 0.9.1)
   mysql2 (~> 0.3.18)
   newrelic_rpm
   oauth2 (= 1.0.0)
