@@ -28,7 +28,8 @@ module Domain
                     :dev_db_name,
                     :prod_db_url,
                     :public_website_domain,
-                    :public_website_url
+                    :public_website_url,
+                    :redirect_domain
 
       def initialize
         @algolia_app_id = nil
@@ -43,6 +44,7 @@ module Domain
         @prod_db_url = nil
         @public_website_domain = nil
         @public_website_url = nil
+        @redirect_domain = nil
       end
     end
   end
@@ -64,6 +66,7 @@ Domain.configure do |config|
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_NAME']
     config.algolia_app_id        ||= ENV['FINCAP_ALGOLIA_APP_ID']
     config.algolia_api_key       ||= ENV['FINCAP_ALGOLIA_API_KEY']
+    config.redirect_domain       ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
   else
     config.app_name              ||= 'MAS'
     config.public_website_domain ||= ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
@@ -78,6 +81,7 @@ Domain.configure do |config|
     config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
     config.algolia_app_id        ||= ENV['ALGOLIA_APP_ID']
     config.algolia_api_key       ||= ENV['ALGOLIA_API_KEY']
+    config.redirect_domain       ||= ENV['FARADAY_HOST']
   end
 end
 
