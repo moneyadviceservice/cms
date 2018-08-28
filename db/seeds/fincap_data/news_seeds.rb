@@ -57,8 +57,7 @@ Or, for a wide range of evaluation evidence, insight and market research don't f
     Comfy::Cms::Block.new(
       identifier: 'component_cta_links',
       content: <<-CONTENT
-        [Evidence Summaries Associated with this Thematic Review](/en/evidence_hub?tag=how-can-we-improve-the-financial-capability-of-young-adults)
-        [All Evidence Summaries](/en/evidence_hub)
+      [All news](/en/news)[2018](/en/news?year=2018)[2017](/en/news?year=2017)[2016](/en/news?year=2016)[2015](/en/news?year=2015)[2014](/en/news?year=2014)
       CONTENT
     )
   ]
@@ -81,13 +80,13 @@ In the first industry-wide initiative of its kind, the Payments Strategy Forum,
 whose members include consumer groups, businesses, fintechs, UK banks and
 building societies, today recommends a new way of making payments that promises
 greater protection and security for consumers and businesses.(2)
-The Strategy gives: 
-*   More control and assurance for consumers over how they manage their finances 
-*   Safer and more secure banking 
+The Strategy gives:
+*   More control and assurance for consumers over how they manage their finances
+*   Safer and more secure banking
 *   Opportunities for new banks and Fintechs to compete and offer innovative services that meet the needs of tomorrow’s users
-Notes to editors 
-1.  Source: The Payment Systems Regulator 
-2.  The Payments Strategy Forum (the Forum) was announced by the Payment Systems Regulator (PSR) in its 
+Notes to editors
+1.  Source: The Payment Systems Regulator
+2.  The Payments Strategy Forum (the Forum) was announced by the Payment Systems Regulator (PSR) in its
 Policy Statement published in March 2015.
       CONTENT
     ),
@@ -111,6 +110,80 @@ Policy Statement published in March 2015.
     )
   ]
 )
+
+(1..10).each do |number|
+  year = 2018
+  month = 12 - number
+  day = 20 - number
+
+  news = english_site.pages.find_or_initialize_by(
+    label: "News #{number}",
+    slug: "news-#{number}",
+    layout: news_layout,
+    state: 'published'
+  )
+  news.blocks = [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+        A great news!
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_image',
+      content: '/assets/styleguide/hero-sample.jpg'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_hero_description',
+      content: 'New strategy launched to make UK payments fit for the 21st Century'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'component_cta_links',
+      content: <<-CONTENT
+        [Latest News](/news)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'order_by_date',
+      content: DateTime.new(year, month, day)
+    )
+  ]
+  news.save!
+end
+
+news = english_site.pages.find_or_initialize_by(
+  label: 'Scottish Financial Education Week',
+  slug: 'scottish-financial-education-week',
+  layout: news_layout,
+  state: 'published'
+)
+news.blocks = [
+  Comfy::Cms::Block.new(
+    identifier: 'content',
+    content: <<-CONTENT
+      A great news!
+    CONTENT
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_hero_image',
+    content: '/assets/styleguide/hero-sample.jpg'
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_hero_description',
+    content: 'New strategy launched to make UK payments fit for the 21st Century'
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_cta_links',
+    content: <<-CONTENT
+      [Latest News](/news)
+    CONTENT
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'order_by_date',
+    content: DateTime.new(2017, 3, 15)
+  )
+]
+news.save!
 
 mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
 secure_payments_tag = Tag.find_or_create_by(value: 'secure-payments')
