@@ -15,12 +15,16 @@ module Rack
         if redirect
           [
             redirect.status_code,
-            { 'Location' => "#{ENV['FARADAY_X_FORWARDED_PROTO']}://#{ENV['FARADAY_HOST']}#{redirect.destination}" },
+            { 'Location' => "#{redirect_domain}#{redirect.destination}" },
             ['']
           ]
         else
           @app.call(env)
         end
+      end
+
+      def redirect_domain
+        "#{ENV['FARADAY_X_FORWARDED_PROTO']}://#{Domain.config.redirect_domain}"
       end
     end
   end
