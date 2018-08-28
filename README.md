@@ -18,7 +18,7 @@ So the next section will explain the setup for each application.
 
 ### Environment setup (Mac OsX)
 
-MySql needs to be installed and linked. 
+MySql needs to be installed and linked.
 Make sure Homebrew is installed.
 
 ```
@@ -48,6 +48,17 @@ $ APP_NAME='FINCAP' rails s
 or
 ```sh
 $ APP_NAME='MAS' rails s
+```
+
+####
+
+To reseed the database to the initial state:
+```sh
+$ APP_NAME='FINCAP' bundle exec rake db:drop db:create db:schema:load db:migrate db:seed:fincap
+```
+
+```sh
+$ APP_NAME='MAS' bundle exec rake db:drop db:create db:schema:load db:migrate db:seed:cms
 ```
 
 ### Updating Dough
