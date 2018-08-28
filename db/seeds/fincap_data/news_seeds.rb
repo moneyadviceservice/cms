@@ -151,6 +151,40 @@ Policy Statement published in March 2015.
   news.save!
 end
 
+news = english_site.pages.find_or_initialize_by(
+  label: 'Scottish Financial Education Week',
+  slug: 'scottish-financial-education-week',
+  layout: news_layout,
+  state: 'published'
+)
+news.blocks = [
+  Comfy::Cms::Block.new(
+    identifier: 'content',
+    content: <<-CONTENT
+      A great news!
+    CONTENT
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_hero_image',
+    content: '/assets/styleguide/hero-sample.jpg'
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_hero_description',
+    content: 'New strategy launched to make UK payments fit for the 21st Century'
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'component_cta_links',
+    content: <<-CONTENT
+      [Latest News](/news)
+    CONTENT
+  ),
+  Comfy::Cms::Block.new(
+    identifier: 'order_by_date',
+    content: DateTime.new(2017, 3, 15)
+  )
+]
+news.save!
+
 mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
 secure_payments_tag = Tag.find_or_create_by(value: 'secure-payments')
 
