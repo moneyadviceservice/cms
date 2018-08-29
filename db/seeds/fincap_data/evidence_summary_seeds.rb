@@ -61,9 +61,12 @@ review_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+common_dummy_description = 'This is an example description about a specific evidence summary.'
+
 english_site.pages.create!(
   label: 'Financial well-being: the employee view',
   slug:  'financial-well-being-the-employee-view',
+  meta_description: common_dummy_description,
   layout: insight_layout,
   state: 'published',
   blocks: [
@@ -140,6 +143,7 @@ productivity.
 english_site.pages.create!(
   label: 'Moving forward together: peer support for people with problem debt',
   slug:  'moving-forward-together-peer-support-for-people-with-problem-debt',
+  meta_description: common_dummy_description,
   layout: insight_layout,
   state: 'published',
   blocks: [
@@ -214,6 +218,7 @@ to resolve their difficulties and change their behaviour.
 evaluation_page = english_site.pages.create!(
   label: 'Looking after the pennies',
   slug: 'looking-after-the-pennies',
+  meta_description: common_dummy_description,
   layout: evaluation_layout,
   state: 'published',
   blocks: [
@@ -307,6 +312,7 @@ daily lives.
 review_page = english_site.pages.create!(
   label: 'Raising household saving',
   slug: 'raising-household-saving',
+  meta_description: common_dummy_description,
   layout: review_layout,
   state: 'published',
   blocks: [
