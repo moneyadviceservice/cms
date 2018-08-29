@@ -54,6 +54,7 @@ lifestage_pages = []
 ].each do |stage|
   english_site.pages.create!(
     label: stage,
+    meta_description: 'This is an example paragraph containing a description about a specific lifestage.',
     slug: stage.gsub(' ', '_').downcase,
     layout: lifestage_layout,
 
