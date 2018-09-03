@@ -6,6 +6,10 @@ module Indexers
       HEADINGS = %w(Field Value)
       STYLE = { width: 100 }
 
+      def remove_index
+        "Removing index #{index_name}"
+      end
+
       def create_or_update(objects)
         @table = Terminal::Table.new(
           title: "Index: #{index_name} - #{objects.size} number of indices",

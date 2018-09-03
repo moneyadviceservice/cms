@@ -15,6 +15,7 @@ module Indexers
     end
 
     def index
+      adapter.remove_index
       adapter.create_or_update(objects)
     end
 
