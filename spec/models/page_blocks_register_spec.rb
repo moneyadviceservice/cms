@@ -30,9 +30,7 @@ RSpec.describe PageBlocksRegister do
     let(:new_blocks_attributes) { [{ identifier: 'content', content: new_content }] }
 
     before do
-      if published_revision.present?
-        page.update_attribute(:active_revision, published_revision)
-      end
+      page.update_attribute(:active_revision, published_revision) if published_revision.present?
 
       # Reload the page to make it see it's block
       page.reload
@@ -197,7 +195,7 @@ RSpec.describe PageBlocksRegister do
       context 'when block has content' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'content', :content => 'block content' }
+            { identifier: 'content', content: 'block content' }
           ]
         end
 
@@ -211,7 +209,7 @@ RSpec.describe PageBlocksRegister do
       context 'when block is empty' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'content', :content => '' }
+            { identifier: 'content', content: '' }
           ]
         end
 
@@ -227,10 +225,10 @@ RSpec.describe PageBlocksRegister do
       context 'when blocks are empty' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'content', :content => 'block content' },
-            { :identifier => 'topic', :content => '' },
-            { :identifier => 'client_groups', :content => '' },
-            { :identifier => 'data_types', :content => '' }
+            { identifier: 'content', content: 'block content' },
+            { identifier: 'topic', content: '' },
+            { identifier: 'client_groups', content: '' },
+            { identifier: 'data_types', content: '' }
           ]
         end
 
@@ -244,8 +242,8 @@ RSpec.describe PageBlocksRegister do
       context 'when blocks has content' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'content', :content => 'block content' },
-            { :identifier => 'topic', :content => 'Pension' }
+            { identifier: 'content', content: 'block content' },
+            { identifier: 'topic', content: 'Pension' }
           ]
         end
 

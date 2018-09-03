@@ -7,19 +7,23 @@ describe ExternalLink do
       let(:source) { '<a href="#test" target="_blank">foo</a>' }
 
       context 'for english' do
-        let(:appended_link) { '<a href="#test" target="_blank">foo</a><span class="visually-hidden">opens in new window</span>' }
+        let(:appended_link) do
+          '<a href="#test" target="_blank">foo</a><span class="visually-hidden">opens in new window</span>'
+        end
 
-        it 'append visually hidden tag' do
-          expect(subject).to eql appended_link
+        it 'appends visually hidden tag' do
+          is_expected.to eq(appended_link)
         end
       end
 
       context 'for welsh' do
         let(:locale) { 'cy' }
-        let(:appended_link) { '<a href="#test" target="_blank">foo</a><span class="visually-hidden">yn agor mewn ffenestr newydd</span>' }
+        let(:appended_link) do
+          '<a href="#test" target="_blank">foo</a><span class="visually-hidden">yn agor mewn ffenestr newydd</span>'
+        end
 
-        it 'append visually hidden tag' do
-          expect(subject).to eql appended_link
+        it 'appends visually hidden tag' do
+          is_expected.to eq(appended_link)
         end
       end
     end

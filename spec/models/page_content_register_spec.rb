@@ -20,17 +20,16 @@ describe PageContentRegister do
       [{ content: 'super awesome content' }]
     end
 
-
     context 'when page is an article' do
       let(:layout) { double(identifier: 'article') }
 
       it 'converts content to html as processed content' do
         expect(subject).to eq([
-          {
-            content: 'super awesome content',
-            processed_content: "<p>super awesome content</p>\n"
-          }
-        ])
+                                {
+                                  content: 'super awesome content',
+                                  processed_content: "<p>super awesome content</p>\n"
+                                }
+                              ])
       end
     end
 
@@ -103,7 +102,6 @@ describe PageContentRegister do
       create(:block, identifier: 'client_groups', content: 'Young People', blockable: page)
     end
 
-
     before(:each) do
       page.reload
       page_content_register.update_blocks!
@@ -115,8 +113,8 @@ describe PageContentRegister do
         context 'no content' do
           let(:new_blocks_attributes) do
             [
-              { :identifier => 'content', :content => '' },
-              { :identifier => 'year_of_publication', :content => '' },
+              { identifier: 'content', content: '' },
+              { identifier: 'year_of_publication', content: '' }
             ]
           end
 
@@ -130,8 +128,8 @@ describe PageContentRegister do
         context 'adding content' do
           let(:new_blocks_attributes) do
             [
-              { :identifier => 'content', :content => 'new content' },
-              { :identifier => 'year_of_publication', :content => '2010' },
+              { identifier: 'content', content: 'new content' },
+              { identifier: 'year_of_publication', content: '2010' }
             ]
           end
 
@@ -154,13 +152,13 @@ describe PageContentRegister do
         context 'updating with new content' do
           let(:new_blocks_attributes) do
             [
-              { :identifier => 'content', :content => 'new block content' },
-              { :identifier => 'year_of_publication', :content => '2011' },
+              { identifier: 'content', content: 'new block content' },
+              { identifier: 'year_of_publication', content: '2011' }
             ]
           end
 
           it 'updates the same blocks' do
-            expect(page.blocks.map(&:content)).to eq ["new block content", '2011']
+            expect(page.blocks.map(&:content)).to eq ['new block content', '2011']
             expect(page.blocks.size).to be(2)
           end
         end
@@ -168,8 +166,8 @@ describe PageContentRegister do
         context 'deleting content' do
           let(:new_blocks_attributes) do
             [
-              { :identifier => 'content', :content => '' },
-              { :identifier => 'year_of_publication', :content => '' },
+              { identifier: 'content', content: '' },
+              { identifier: 'year_of_publication', content: '' }
             ]
           end
 
@@ -182,12 +180,11 @@ describe PageContentRegister do
     end
 
     context 'multiple blocks (collections)' do
-
       context 'when no content in new_blocks_attributes' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'topics', collection: true },
-            { :identifier => 'client_groups', :content => '', collection: true }
+            { identifier: 'topics', collection: true },
+            { identifier: 'client_groups', content: '', collection: true }
           ]
         end
 
@@ -199,13 +196,13 @@ describe PageContentRegister do
       context 'adding new blocks' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'topics', :content => 'Saving', collection: true },
-            { :identifier => 'client_groups', :content => 'Young People', collection: true }
+            { identifier: 'topics', content: 'Saving', collection: true },
+            { identifier: 'client_groups', content: 'Young People', collection: true }
           ]
         end
 
         it 'creates new block' do
-          expect(page.blocks.map(&:content)).to eq ["Saving", 'Young People']
+          expect(page.blocks.map(&:content)).to eq ['Saving', 'Young People']
           expect(page.blocks.size).to be(2)
         end
       end
@@ -213,29 +210,29 @@ describe PageContentRegister do
       context 'adding multiple blocks of same identifier' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'client_groups', :content => 'Young People', collection: true },
-            { :identifier => 'client_groups', :content => 'Pensioners', collection: true }
+            { identifier: 'client_groups', content: 'Young People', collection: true },
+            { identifier: 'client_groups', content: 'Pensioners', collection: true }
           ]
         end
 
         it 'saves all blocks' do
-          expect(page.blocks.map(&:content)).to eq ["Young People", "Pensioners"]
-          expect(page.blocks.map(&:identifier)).to eq ["client_groups", "client_groups"]
+          expect(page.blocks.map(&:content)).to eq ['Young People', 'Pensioners']
+          expect(page.blocks.map(&:identifier)).to eq %w[client_groups client_groups]
         end
       end
 
       context 'removing content' do
         let(:new_blocks_attributes) do
           [
-            { :identifier => 'topics', :content => 'Saving', collection: true },
-            { :identifier => 'client_groups', collection: true },
-            { :identifier => 'client_groups', :content => '', collection: true }
+            { identifier: 'topics', content: 'Saving', collection: true },
+            { identifier: 'client_groups', collection: true },
+            { identifier: 'client_groups', content: '', collection: true }
           ]
         end
 
         it 'deletes empty block' do
-          expect(page.blocks.map(&:content)).to eq ["Saving"]
-          expect(page.blocks.map(&:identifier)).to eq ["topics"]
+          expect(page.blocks.map(&:content)).to eq ['Saving']
+          expect(page.blocks.map(&:identifier)).to eq ['topics']
         end
       end
     end
@@ -243,10 +240,10 @@ describe PageContentRegister do
     context 'when updating the same blocks with same info' do
       let(:new_blocks_attributes) do
         [
-          { :identifier => 'content', :content => 'block content' },
-          { :identifier => 'year_of_publication', :content => '2010' },
-          { :identifier => 'topics', :content => 'Saving', collection: true },
-          { :identifier => 'client_groups', :content => 'Young People', collection: true }
+          { identifier: 'content', content: 'block content' },
+          { identifier: 'year_of_publication', content: '2010' },
+          { identifier: 'topics', content: 'Saving', collection: true },
+          { identifier: 'client_groups', content: 'Young People', collection: true }
         ]
       end
 
@@ -262,61 +259,61 @@ describe PageContentRegister do
     context 'when updating the same single blocks with different info' do
       let(:new_blocks_attributes) do
         [
-          { :identifier => 'content', :content => 'new block content' },
-          { :identifier => 'year_of_publication', :content => '2011' },
-          { :identifier => 'topics', :content => 'Pensions', collection: true },
-          { :identifier => 'client_groups', :content => 'Old People', collection: true }
+          { identifier: 'content', content: 'new block content' },
+          { identifier: 'year_of_publication', content: '2011' },
+          { identifier: 'topics', content: 'Pensions', collection: true },
+          { identifier: 'client_groups', content: 'Old People', collection: true }
         ]
       end
 
       it 'updates the same block identifiers' do
         expect(page.blocks.size).to be(4)
-        expect(page.blocks.map(&:content)).to eq ["new block content", '2011', "Pensions", "Old People"]
+        expect(page.blocks.map(&:content)).to eq ['new block content', '2011', 'Pensions', 'Old People']
       end
     end
 
     context 'when adding new blocks' do
-      let (:new_blocks_attributes) do
+      let(:new_blocks_attributes) do
         [
-          { :identifier => 'content', :content => 'new block content' },
-          { :identifier => 'topics', :content => 'Pensions', collection: true },
-          { :identifier => 'client_groups', :content => 'Old People', collection: true },
-          { :identifier => 'new_block', :content => 'New block' }
+          { identifier: 'content', content: 'new block content' },
+          { identifier: 'topics', content: 'Pensions', collection: true },
+          { identifier: 'client_groups', content: 'Old People', collection: true },
+          { identifier: 'new_block', content: 'New block' }
         ]
       end
 
       it 'updates the same block identifiers' do
         expect(page.blocks.size).to be(4)
-        expect(page.blocks.map(&:content)).to eq ["new block content", "New block", "Pensions", "Old People"]
+        expect(page.blocks.map(&:content)).to eq ['new block content', 'New block', 'Pensions', 'Old People']
       end
     end
 
     context 'when passing same identifier multiple times' do
       let(:new_blocks_attributes) do
         [
-          { :identifier => 'content', :content => 'new block content' },
-          { :identifier => 'topics', :content => 'Saving', collection: true },
-          { :identifier => 'client_groups', :content => 'Young People', collection: true },
-          { :identifier => 'client_groups', :content => 'Pensioners', collection: true }
+          { identifier: 'content', content: 'new block content' },
+          { identifier: 'topics', content: 'Saving', collection: true },
+          { identifier: 'client_groups', content: 'Young People', collection: true },
+          { identifier: 'client_groups', content: 'Pensioners', collection: true }
         ]
       end
 
       it 'do not overwrite the blocks with same identifier' do
-        expect(page.blocks.map(&:content)).to eq ["new block content", "Saving", "Young People", "Pensioners"]
-        expect(page.blocks.map(&:identifier)).to eq ["content", "topics", "client_groups", "client_groups"]
+        expect(page.blocks.map(&:content)).to eq ['new block content', 'Saving', 'Young People', 'Pensioners']
+        expect(page.blocks.map(&:identifier)).to eq %w[content topics client_groups client_groups]
       end
     end
 
     context 'removing blocks' do
       let(:new_blocks_attributes) do
         [
-          { :identifier => 'content', :content => 'new block content' },
-          { :identifier => 'topics', :content => '', collection: true },
+          { identifier: 'content', content: 'new block content' },
+          { identifier: 'topics', content: '', collection: true }
         ]
       end
 
       it 'the blocks are removed from the database' do
-        expect(page.blocks.map(&:content)).to eq ["new block content"]
+        expect(page.blocks.map(&:content)).to eq ['new block content']
       end
     end
   end

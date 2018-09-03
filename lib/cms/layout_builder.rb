@@ -29,7 +29,7 @@ module Cms
       )
 
       welsh_layout = cy_site.layouts.find_by(identifier: identifier)
-      welsh_layout.update_attributes!(content: content)
+      welsh_layout.update!(content: content)
     end
 
     def self.english_site
@@ -40,7 +40,7 @@ module Cms
       Comfy::Cms::Site.find_by(label: 'cy')
     end
 
-    def self.footer_content # rubocop:disable Metrics/MethodLength
+    def self.footer_content
       <<-CONTENT
         {{ cms:page:raw_web_chat_heading:string }}
         {{ cms:page:raw_web_chat_additional_one:string }}
@@ -58,7 +58,7 @@ module Cms
       CONTENT
     end
 
-    def self.home_page_content # rubocop:disable Metrics/MethodLength
+    def self.home_page_content
       <<-CONTENT
         {{ cms:page:raw_heading:string }}
         {{ cms:page:raw_hero_image:image }}

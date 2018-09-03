@@ -15,7 +15,7 @@ RSpec.describe Comfy::Cms::Category do
     end
 
     it 'orders the partions in the correct ordinal' do
-      left, _ = subject.navigation_categories
+      left, = subject.navigation_categories
       expect(left).to eq([navigation_category, navigation_category_position_2])
     end
   end
@@ -35,11 +35,11 @@ RSpec.describe Comfy::Cms::Category do
     end
 
     it 'returns all the parents of the category' do
-      expect(category_grandchild.parents.map(&:label)).to eq(%w(category category_child))
+      expect(category_grandchild.parents.map(&:label)).to eq(%w[category category_child])
     end
 
     it 'returns the direct child categories' do
-      expect(category.child_categories.map(&:label)).to eq(%w(category_child category_child_2))
+      expect(category.child_categories.map(&:label)).to eq(%w[category_child category_child_2])
     end
 
     it { expect(described_class.new).to belong_to(:small_image) }
@@ -69,7 +69,6 @@ RSpec.describe Comfy::Cms::Category do
     let(:clump) { create(:clump) }
 
     context 'assigning a new clump' do
-
       it 'associates the clump (through a clumping)' do
         subject.clump_id = clump.id
         expect(subject.reload.clump).to eq(clump)

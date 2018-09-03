@@ -4,6 +4,7 @@
 .sass-cache
 capybara-*.html
 .rspec
+.rubocop-*
 .rvmrc
 /.bundle
 /node_modules

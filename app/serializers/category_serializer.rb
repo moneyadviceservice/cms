@@ -16,11 +16,13 @@ class CategorySerializer < ActiveModel::Serializer
 
   def small_image_url
     return unless small_image?
+
     asset_url_for(:small_image)
   end
 
   def large_image_url
     return unless large_image?
+
     asset_url_for(:large_image)
   end
 
@@ -72,13 +74,12 @@ class CategorySerializer < ActiveModel::Serializer
   end
 
   def parent_id
-    return '' unless object.parent_id.present?
+    return '' if object.parent_id.blank?
+
     Comfy::Cms::Category.find(object.parent_id).label
   end
 
-  def third_level_navigation
-    object.third_level_navigation
-  end
+  delegate :third_level_navigation, to: :object
 
   def small_image?
     object.small_image

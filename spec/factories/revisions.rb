@@ -5,12 +5,12 @@ FactoryGirl.define do
     end
 
     association :record, factory: :page
-    data {
+    data do
       {
         blocks_attributes: [
           { identifier: 'content', content: content }
         ]
       }
-    }
+    end
   end
 end

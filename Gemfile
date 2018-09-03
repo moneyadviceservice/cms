@@ -37,8 +37,10 @@ gem 'reverse_markdown'
 gem 'sass-rails', '~> 4.0.3'
 gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
+gem 'unicorn-rails'
 gem 'whenever', require: false
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -71,7 +73,7 @@ group :test, :development do
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.58.2', require: false
   gem 'ruby-prof', require: false
   gem 'valid_attribute', require: false
 end

@@ -19,7 +19,7 @@ module Indexers
     end
 
     def objects
-      fail(NotImplementedError)
+      raise(NotImplementedError)
     end
   end
 end

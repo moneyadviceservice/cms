@@ -1,11 +1,11 @@
 - if params[:alternate]
-  - if has_alternate_content?(@page)
+  - if alternate_content?(@page)
     = button_tag type: :submit, data: { dough_dialog_trigger: :scheduler, dough_component: 'Dialog Scheduler' }, class: "button--action t-schedule" do
       %span.button__text
         Save Changes to Scheduled Update
 
 - else
-  - if has_alternate_content?(@page)
+  - if alternate_content?(@page)
     = button_tag type: :submit, class: "button--action t-schedule" do
       %span.button__text
         Update Live Article

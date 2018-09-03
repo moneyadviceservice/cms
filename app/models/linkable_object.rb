@@ -11,7 +11,7 @@ class LinkableObject
     paths = Comfy::Cms::Site.pluck(:path).reject(&:blank?)
     slug = url.sub(/#{paths.join('|')}/, '').sub('articles', '').squeeze('/').gsub(/\A\//, '')
 
-    Comfy::Cms::Page.where(slug: slug).take
+    Comfy::Cms::Page.find_by(slug: slug)
   end
 
   def self.find_file(url)

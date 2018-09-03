@@ -46,12 +46,12 @@ RSpec.describe API::DocumentsController, type: :request do
         end
 
         it 'returns meta information' do
-          expect(response_body['meta'].symbolize_keys).to eq({
+          expect(response_body['meta'].symbolize_keys).to eq(
             results: 2,
             per_page: 1,
             page: 1,
             total_pages: 2
-          })
+          )
         end
       end
 
@@ -65,12 +65,12 @@ RSpec.describe API::DocumentsController, type: :request do
         end
 
         it 'returns meta information' do
-          expect(response_body['meta'].symbolize_keys).to eq({
+          expect(response_body['meta'].symbolize_keys).to eq(
             results: 2,
             per_page: 1,
             page: 2,
             total_pages: 2
-          })
+          )
         end
       end
     end
@@ -110,7 +110,7 @@ RSpec.describe API::DocumentsController, type: :request do
           :page_with_tag,
           label: 'Page with tag',
           site: site,
-          tag_name: 'pensions',
+          tag_name: 'pensions'
         )
       end
       let!(:page_without_tag) do

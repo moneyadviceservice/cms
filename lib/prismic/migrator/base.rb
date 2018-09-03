@@ -25,11 +25,11 @@ module Prismic
       end
 
       def layout_identifier
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       def blocks
-        fail NotImplementedError
+        raise NotImplementedError
       end
 
       def site

@@ -12,9 +12,9 @@ describe Redirect do
       described_class.new(valid_attributes)
     end
 
-    it { is_expected.to validate_presence_of(:source)  }
-    it { is_expected.to validate_presence_of(:destination)  }
-    it { is_expected.to validate_presence_of(:redirect_type)  }
+    it { is_expected.to validate_presence_of(:source) }
+    it { is_expected.to validate_presence_of(:destination) }
+    it { is_expected.to validate_presence_of(:redirect_type) }
 
     it { is_expected.to validate_uniqueness_of(:source).scoped_to(:active) }
 
@@ -119,12 +119,12 @@ describe Redirect do
         end
 
         it 'can only end in allowed extensions' do
-          %w(html pdf aspx).each do |allowed|
+          %w[html pdf aspx].each do |allowed|
             subject.source = "/en/foo.#{allowed}"
             expect(subject).to be_valid
           end
 
-          %w(jpg png json).each do |not_allowed|
+          %w[jpg png json].each do |not_allowed|
             subject.source = "/en/foo.#{not_allowed}"
             expect(subject).to_not be_valid
           end

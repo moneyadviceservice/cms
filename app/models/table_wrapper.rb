@@ -3,7 +3,7 @@ require 'nokogiri'
 class TableWrapper
   attr_reader :source
 
-  def initialize(_, source)
+  def initialize(_locale, source)
     @source = source
   end
 

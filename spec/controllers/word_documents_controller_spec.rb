@@ -2,7 +2,7 @@ RSpec.describe WordDocumentsController, type: :controller do
   include_context 'cms'
 
   describe 'create' do
-    let(:filepath) { Rails.root.join('spec/fixtures/structured_doc.docx') }
+    let(:filepath) { Rails.root.join('spec', 'fixtures', 'structured_doc.docx') }
     let(:content_type) { Rack::Mime.mime_type(File.extname(filepath)) }
     let(:document) { Rack::Test::UploadedFile.new(filepath, content_type) }
 

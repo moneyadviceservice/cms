@@ -1,6 +1,6 @@
 class UsersController < Comfy::Admin::Cms::BaseController
-  before_action :check_admin, except: [:edit, :update]
-  before_action :check_user, only: [:edit, :update]
+  before_action :check_admin, except: %i[edit update]
+  before_action :check_user, only: %i[edit update]
 
   def index
     @users = Comfy::Cms::User.all
@@ -25,7 +25,7 @@ class UsersController < Comfy::Admin::Cms::BaseController
 
   def update
     @user = Comfy::Cms::User.find(params[:id])
-    @user.update_attributes!(user_params.reject { |_, k| k.blank? })
+    @user.update!(user_params.reject { |_, k| k.blank? })
     redirect_to action: :index
   rescue ActiveRecord::RecordInvalid
     flash.now[:danger] = "Failed to update #{@user.errors.full_messages}"
@@ -47,13 +47,14 @@ class UsersController < Comfy::Admin::Cms::BaseController
   end
 
   def allowed_param_names
-    allowed = [:email, :password, :name]
+    allowed = %i[email password name]
     allowed << :role if current_user.admin?
     allowed
   end
 
   def check_user
     return if current_user.admin?
+
     redirect_to :root unless current_user.to_param == params[:id]
   end
 end

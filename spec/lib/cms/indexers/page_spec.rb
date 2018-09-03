@@ -20,8 +20,7 @@ RSpec.describe Indexers::Page do
                  layout: create(:layout, :article),
                  blocks: [
                    create(:block, processed_content: '<p>some content</p>')
-                 ]
-                )
+                 ])
         ]
       end
 
@@ -52,8 +51,7 @@ RSpec.describe Indexers::Page do
                  layout: create(:layout, :article),
                  blocks: [
                    create(:block, processed_content: '<p>some content</p>')
-                 ]
-                )
+                 ])
         ]
       end
 

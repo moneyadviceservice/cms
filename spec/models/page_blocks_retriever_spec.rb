@@ -6,9 +6,7 @@ RSpec.describe PageBlocksRetriever do
     let(:page) { create(:page, site: site, state: state, scheduled_on: scheduled_on) }
 
     before do
-      if published_revision.present?
-        page.update_attribute(:active_revision, published_revision)
-      end
+      page.update_attribute(:active_revision, published_revision) if published_revision.present?
 
       # Reload the page to make it see it's block
       page.reload
@@ -84,9 +82,7 @@ RSpec.describe PageBlocksRetriever do
       allow(retriever).to receive(:return_page_blocks_attributes) { blocks_attributes }
       allow(retriever).to receive(:return_active_revision_blocks_attributes) { active_revision_blocks_attributes }
 
-      if published_revision.present?
-        page.update_attribute(:active_revision, published_revision)
-      end
+      page.update_attribute(:active_revision, published_revision) if published_revision.present?
     end
 
     subject { retriever.blocks_attributes }

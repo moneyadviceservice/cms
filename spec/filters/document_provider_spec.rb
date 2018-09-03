@@ -106,7 +106,9 @@ RSpec.describe DocumentProvider do
         end
 
         context 'and the keyword is found in an "order_by_date" block' do
-          let!(:page_with_order_by_date_block) { create(:page_with_order_by_date_block, site: site, layout: insight_layout) }
+          let!(:page_with_order_by_date_block) do
+            create(:page_with_order_by_date_block, site: site, layout: insight_layout)
+          end
           let!(:page_without_keyword) { create(:page, site: site, layout: insight_layout) }
           let(:keyword) { '2017' }
 
@@ -165,7 +167,7 @@ RSpec.describe DocumentProvider do
     context 'when there is only one value for the filter type' do
       let!(:page_with_filter_type) { create(:page_abt_debt_and_stress, site: site, layout: insight_layout) }
       let!(:page_without_filter_type) { create(:page, site: site, layout: insight_layout) }
-      let(:filters) { [{identifier: 'client_groups', value: 'Working age (18 - 65)'}] }
+      let(:filters) { [{ identifier: 'client_groups', value: 'Working age (18 - 65)' }] }
 
       it 'returns only documents that meet the filter type' do
         expect(subject.size).to eq(1)
@@ -188,7 +190,7 @@ RSpec.describe DocumentProvider do
             identifier: 'client_groups',
             value: 'Young adults (17 - 24)'
           }
-       ]
+        ]
       end
 
       it 'returns only documents that meet the filter type' do
@@ -205,7 +207,7 @@ RSpec.describe DocumentProvider do
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
 
       let(:keyword) { 'debt' }
-      let(:filters) { [{identifier: 'client_groups', value: 'Working age (18 - 65)'}] }
+      let(:filters) { [{ identifier: 'client_groups', value: 'Working age (18 - 65)' }] }
 
       it 'returns only documents that have the keyword and meet the filter type' do
         expect(subject.size).to eq(1)
@@ -215,15 +217,17 @@ RSpec.describe DocumentProvider do
 
     context 'when there are multiple filters of different types' do
       let!(:page_with_filter_type_and_keyword) { create(:page_abt_debt_and_stress, site: site, layout: insight_layout) }
-      let!(:page_with_3_filter_types_and_keyword) { create(:uk_study_about_work_and_stress, site: site, layout: insight_layout) }
+      let!(:page_with_3_filter_types_and_keyword) do
+        create(:uk_study_about_work_and_stress, site: site, layout: insight_layout)
+      end
       let!(:page_with_keyword) { create(:young_adults_page, site: site, layout: insight_layout) }
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
 
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2, filter3] }
-      let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
-      let(:filter2) { {identifier: 'topic', value: 'Saving'} }
-      let(:filter3) { {identifier: 'countries_of_delivery', value: 'United Kingdom'} }
+      let(:filter1) { { identifier: 'client_groups', value: 'Working age (18 - 65)' } }
+      let(:filter2) { { identifier: 'topic', value: 'Saving' } }
+      let(:filter3) { { identifier: 'countries_of_delivery', value: 'United Kingdom' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(1)
@@ -232,14 +236,16 @@ RSpec.describe DocumentProvider do
     end
 
     context 'when there are multiple filters of the same type' do
-      let!(:page_with_3_filter_types_and_keyword) { create(:page_abt_debt_and_stress, site: site, layout: insight_layout) }
+      let!(:page_with_3_filter_types_and_keyword) do
+        create(:page_abt_debt_and_stress, site: site, layout: insight_layout)
+      end
       let!(:page_with_a_diff_filter_and_keyword) { create(:young_adults_page, site: site, layout: insight_layout) }
       let!(:page_without_anything) { create(:page, site: site, layout: insight_layout) }
 
       let(:keyword) { 'stress' }
       let(:filters) { [filter1, filter2] }
-      let(:filter1) { {identifier: 'client_groups', value: 'Working age (18 - 65)'} }
-      let(:filter2) { {identifier: 'client_groups', value: 'Young adults (17 - 24)'} }
+      let(:filter1) { { identifier: 'client_groups', value: 'Working age (18 - 65)' } }
+      let(:filter2) { { identifier: 'client_groups', value: 'Young adults (17 - 24)' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
         expect(subject.size).to eq(2)
@@ -251,8 +257,8 @@ RSpec.describe DocumentProvider do
   end
 
   describe 'ordering search results' do
-    let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout, created_at: Date.today) }
-    let!(:review_page) { create(:page, site: site, layout: review_layout, created_at: Date.yesterday) }
+    let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout, created_at: Time.zone.today) }
+    let!(:review_page) { create(:page, site: site, layout: review_layout, created_at: Time.zone.yesterday) }
 
     it 'pages in descending order of creation date' do
       expect(subject.size).to eq(2)

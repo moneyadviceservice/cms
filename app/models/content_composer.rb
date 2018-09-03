@@ -15,9 +15,7 @@ class ContentComposer
     end
   end
 
-  def to_s
-    content.to_s
-  end
+  delegate :to_s, to: :content
 
   def post_processors
     [TableWrapper, TableCaptioner, ExternalLink, InternalLink]

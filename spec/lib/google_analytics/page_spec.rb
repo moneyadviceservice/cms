@@ -8,7 +8,7 @@ module GoogleAnalytics
           OpenStruct.new(pagePath: '/en/articles/help-with-debt', pageviews: '270'),
           OpenStruct.new(pagePath: '/en/articles/how-to-save-money', pageviews: '180'),
           OpenStruct.new(pagePath: '/en/articles/a-new-advice-article/preview', pageviews: '80'),
-          OpenStruct.new(pagePath:  "/en/articles/{\"title\":\"Win Money\",\"desc\":\"Online casinoPlay now\"}&cost=0",
+          OpenStruct.new(pagePath:  '/en/articles/{"title":"Win Money","desc":"Online casinoPlay now"}&cost=0',
                          pageviews: '80'),
           OpenStruct.new(pagePath: '/en/news/ignore-news', pageviews: '70'),
           OpenStruct.new(pagePath: '/en/tools/ignore-tools', pageviews: '60'),

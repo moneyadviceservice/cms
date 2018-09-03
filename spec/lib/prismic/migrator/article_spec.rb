@@ -1,5 +1,5 @@
 RSpec.describe Prismic::Migrator::Article do
-  subject(:article) { described_class.new(document)  }
+  subject(:article) { described_class.new(document) }
 
   describe '#migrate' do
     subject(:migrated_page) { article.migrate }

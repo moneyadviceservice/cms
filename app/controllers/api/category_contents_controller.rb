@@ -1,9 +1,9 @@
 module API
-  class InvalidLocale < Exception;  end
+  class InvalidLocale < RuntimeError; end
 
   class CategoryContentsController < ApplicationController
     skip_before_action :load_cms_page
-    around_filter :validate_locale
+    around_action :validate_locale
 
     api :GET, '/:locale/categories'
     param :locale, /[en|cy]/, required: true
@@ -23,7 +23,7 @@ module API
     private
 
     def locale
-      fail InvalidLocale.new unless params[:locale].in?(accepted_locales)
+      raise InvalidLocale.new unless params[:locale].in?(accepted_locales)
 
       params[:locale]
     end
@@ -33,7 +33,7 @@ module API
     rescue InvalidLocale
       render json: {
         error: "Unaccepted locale (must be #{accepted_locales.join(' ')})"
-      }, status: 400
+      }, status: :bad_request
     end
 
     def accepted_locales

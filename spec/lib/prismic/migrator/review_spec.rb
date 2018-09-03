@@ -1,5 +1,5 @@
 RSpec.describe Prismic::Migrator::Review do
-  subject(:review) { described_class.new(document)  }
+  subject(:review) { described_class.new(document) }
 
   describe '#migrate' do
     subject(:migrated_page) { review.migrate }
@@ -19,16 +19,16 @@ RSpec.describe Prismic::Migrator::Review do
         contact_details: '<p>OECD Publishing</p>',
         contact_details_markdown: '',
         year_of_publication: '2016',
-        topics: [{"topic"=>"Pensions and Retirement Planning"}],
+        topics: [{ 'topic' => 'Pensions and Retirement Planning' }],
         country_search_filter_group: [
-          {"country_search_filter"=>"0United Kingdom"},
-          {"country_search_filter"=>"1United States"},
-          {"country_search_filter"=>"2Other"}
+          { 'country_search_filter' => '0United Kingdom' },
+          { 'country_search_filter' => '1United States' },
+          { 'country_search_filter' => '2Other' }
         ],
         client_groups: [
-          {"client_group"=>"Young adults (17 - 24)"},
-          {"client_group"=>"Working age (18 - 65)"},
-          {"client_group"=>"Older people (65+)"}
+          { 'client_group' => 'Young adults (17 - 24)' },
+          { 'client_group' => 'Working age (18 - 65)' },
+          { 'client_group' => 'Older people (65+)' }
         ],
         review_type: 'Systematic review',
         review_sections: [
@@ -94,7 +94,7 @@ RSpec.describe Prismic::Migrator::Review do
       block = migrated_page.blocks.find_by(identifier: 'content')
       expect(block).to_not be_nil
       expect(block.processed_content).to eq(
-        "<ol><li><a href=\"#context\">Context</a></li><li><a href=\"#the-study\">The study</a></li><li><a href=\"#key-findings\">Key findings</a></li><li><a href=\"#recommendations\">Recommendations</a></li></ol><h2 id=\"context\">Context</h2><p><strong>Some contex</strong>t</p><h2 id=\"the-study\">The study</h2><p>Some study</p><h2 id=\"key-findings\">Key findings</h2><p>Some findings</p><h2 id=\"recommendations\">Recommendations</h2><p>Some recommendations</p><h2>Full report</h2><p><a href=\"http://www.keepeek.com/Digital-Asset-Management/oecd/finance-and-investment/oecd-pensions-outlook-2016/the-role-of-financial-education-in-supporting-decision-making-for-retirement_pens_outlook-2016-8-en#.WJyHElWLSUk#page1\">The role of financial education in decision-making for retirement - full report</a></p>"
+        '<ol><li><a href="#context">Context</a></li><li><a href="#the-study">The study</a></li><li><a href="#key-findings">Key findings</a></li><li><a href="#recommendations">Recommendations</a></li></ol><h2 id="context">Context</h2><p><strong>Some contex</strong>t</p><h2 id="the-study">The study</h2><p>Some study</p><h2 id="key-findings">Key findings</h2><p>Some findings</p><h2 id="recommendations">Recommendations</h2><p>Some recommendations</p><h2>Full report</h2><p><a href="http://www.keepeek.com/Digital-Asset-Management/oecd/finance-and-investment/oecd-pensions-outlook-2016/the-role-of-financial-education-in-supporting-decision-making-for-retirement_pens_outlook-2016-8-en#.WJyHElWLSUk#page1">The role of financial education in decision-making for retirement - full report</a></p>'
       )
     end
 

@@ -1,5 +1,4 @@
 class Clumping < ActiveRecord::Base
-
   belongs_to :clump
   belongs_to :category, class_name: 'Comfy::Cms::Category'
 
@@ -12,5 +11,4 @@ class Clumping < ActiveRecord::Base
   def set_default_ordinal
     self.ordinal ||= clump.clumpings.count
   end
-
 end

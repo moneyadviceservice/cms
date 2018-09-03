@@ -6,8 +6,8 @@ class Tagging < ActiveRecord::Base
   # -- Callbacks ------------------------------------------------------------
 
   # -- Validations ----------------------------------------------------------
-  validates_presence_of :tag_id, :taggable_id,  :taggable_type
-  validates_uniqueness_of :tag_id, scope: [:taggable_id, :taggable_type]
+  validates :tag_id, :taggable_id, :taggable_type, presence: true
+  validates :tag_id, uniqueness: { scope: %i[taggable_id taggable_type] }
 
   # -- Scopes ---------------------------------------------------------------
 

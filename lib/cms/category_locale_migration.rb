@@ -1,7 +1,7 @@
 class CategoryLocaleMigration
   def call
     welsh_categorizations.each do |welsh_cat|
-      welsh_cat.update_attributes!(category_id: english_category_for(welsh_cat))
+      welsh_cat.update!(category_id: english_category_for(welsh_cat))
     end
   end
 

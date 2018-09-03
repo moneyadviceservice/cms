@@ -3,7 +3,7 @@ describe ComfortableMexicanSofa::Tag::SimpleComponent do
     subject { tag_signature.match(described_class.regex_tag_signature('test')) }
 
     context 'when a simple component tag' do
-      let (:tag_signature) { '{{ cms:page:test:simple_component/param1, param2 }}' }
+      let(:tag_signature) { '{{ cms:page:test:simple_component/param1, param2 }}' }
 
       it 'matches' do
         expect(subject).to be_truthy
@@ -11,7 +11,7 @@ describe ComfortableMexicanSofa::Tag::SimpleComponent do
     end
 
     context 'when not an simple component tag' do
-      let (:tag_signature) { '{{ cms:page:test:string }}' }
+      let(:tag_signature) { '{{ cms:page:test:string }}' }
 
       it 'does not match' do
         expect(subject).to be_falsey
@@ -20,11 +20,11 @@ describe ComfortableMexicanSofa::Tag::SimpleComponent do
   end
 
   describe '#identifier' do
-    let (:tag) { described_class.initialize_tag(nil, tag_signature) }
+    let(:tag) { described_class.initialize_tag(nil, tag_signature) }
     subject { tag.identifier }
 
     context 'when valid arguments' do
-      let (:tag_signature) do
+      let(:tag_signature) do
         '{{ cms:page:hero_image:simple_component//image.jpg }}'
       end
 

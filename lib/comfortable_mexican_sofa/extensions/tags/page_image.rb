@@ -6,7 +6,5 @@ class ComfortableMexicanSofa::Tag::PageImage
     /\{\{\s*cms:page:(#{identifier}):?(?:image)?\s*\}\}/
   end
 
-  def content
-    block.content
-  end
+  delegate :content, to: :block
 end

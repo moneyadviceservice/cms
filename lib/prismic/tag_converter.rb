@@ -1,5 +1,6 @@
 module Prismic
   class TagConverter
+    include ActiveModel::Model
     PRISMIC_FIELD = {
       paragraph: 'p',
       heading1: 'h1',
@@ -8,9 +9,9 @@ module Prismic
       heading4: 'h4',
       heading5: 'h5',
       heading6: 'h6',
-      :'list-item' => 'li',
+      'list-item': 'li',
       image: '<img src="%{src}" width="%{width}" height="%{height}" />',
-      :'o-list-item' => 'li'
+      'o-list-item': 'li'
     }.stringify_keys.freeze
 
     PRISMIC_FORMAT = {
@@ -20,7 +21,6 @@ module Prismic
     }.stringify_keys.freeze
     attr_accessor :fragment
     delegate :original_fragment, :field_type, :text, :text_format, to: :fragment
-    include ActiveModel::Model
 
     # Transform Prismic fields into html tags. The possible values:
     #  [

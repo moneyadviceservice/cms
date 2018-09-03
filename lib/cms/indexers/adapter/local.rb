@@ -3,8 +3,8 @@ require 'terminal-table'
 module Indexers
   module Adapter
     class Local < Base
-      HEADINGS = %w(Field Value)
-      STYLE = { width: 100 }
+      HEADINGS = %w[Field Value].freeze
+      STYLE = { width: 100 }.freeze
 
       def create_or_update(objects)
         @table = Terminal::Table.new(
@@ -20,7 +20,7 @@ module Indexers
           @table.add_separator
         end
 
-        puts @table
+        Rails.logger.info(@table)
       end
     end
   end

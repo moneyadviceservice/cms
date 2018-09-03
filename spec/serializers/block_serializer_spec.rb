@@ -61,9 +61,7 @@ describe BlockSerializer do
     let(:block) { create(:block, identifier: 'content', blockable: page, content: block_content) }
 
     before do
-      if published_revision.present?
-        page.update_attribute(:active_revision, published_revision)
-      end
+      page.update_attribute(:active_revision, published_revision) if published_revision.present?
 
       # Reload the page to make it see it's block
       page.reload

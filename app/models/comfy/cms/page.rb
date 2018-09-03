@@ -10,7 +10,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
            dependent: :destroy
 
   delegate :identifier, to: :layout, allow_nil: true
-  alias_method :translations, :mirrors
+  alias translations mirrors
 
   scope :ignore_suppressed, -> { where(suppress_from_links_recirculation: false) }
 
@@ -22,11 +22,11 @@ class Comfy::Cms::Page < ActiveRecord::Base
       .limit(number_of_items)
   end)
 
-  scope :in_locale, -> (locale) { joins(:site).where('comfy_cms_sites.label' => locale) }
+  scope :in_locale, ->(locale) { joins(:site).where('comfy_cms_sites.label' => locale) }
 
-  scope :with_tags, -> (tags) { joins(:taggings).where('taggings.tag_id' => tags.map(&:id)) }
+  scope :with_tags, ->(tags) { joins(:taggings).where('taggings.tag_id' => tags.map(&:id)) }
 
-  scope :remove_self_from_results, -> (page) { where.not(id: page.id) }
+  scope :remove_self_from_results, ->(page) { where.not(id: page.id) }
 
   scope :sort_by_tag_similarity, (lambda do |keywords|
     with_tags(keywords)
@@ -51,7 +51,7 @@ class Comfy::Cms::Page < ActiveRecord::Base
   scope :scheduled_today, (lambda do
     where(
       arel_table[:state].eq('scheduled')
-      .and(arel_table[:scheduled_on].lt(Time.now.end_of_day))
+      .and(arel_table[:scheduled_on].lt(Time.current.end_of_day))
     )
   end)
 

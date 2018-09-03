@@ -3,7 +3,7 @@ require 'nokogiri'
 class TableCaptioner
   attr_reader :source
 
-  def initialize(_, source)
+  def initialize(_locale, source)
     @source = source
   end
 
@@ -16,11 +16,11 @@ class TableCaptioner
 
   def process!
     table_nodes.each do |node|
-      if (next_element = node.next_element || node.parent.next_element)
-        if next_element.name == 'p' && next_element.attributes['class'].try(:value) == 'caption'
-          node.children.before("<caption>#{next_element.text.strip}</caption>")
-          next_element.remove
-        end
+      next unless (next_element = node.next_element || node.parent.next_element)
+
+      if next_element.name == 'p' && next_element.attributes['class'].try(:value) == 'caption'
+        node.children.before("<caption>#{next_element.text.strip}</caption>")
+        next_element.remove
       end
     end
   end

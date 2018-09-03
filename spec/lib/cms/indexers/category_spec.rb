@@ -15,26 +15,25 @@ RSpec.describe Indexers::Category do
                title_en: 'Work and redundancy',
                title_cy: 'Gwaith a diweithdra',
                description_en: 'Advice on understanding your employment rights',
-               description_cy: 'Cyngor ar ddeall eich hawliau'
-              )
+               description_cy: 'Cyngor ar ddeall eich hawliau')
       ]
     end
 
     it 'returns categories in welsh and english to index' do
       expect(subject.objects).to eq([
-        {
-          objectID: '/en/categories/work-and-redundancy',
-          title: 'Work and redundancy',
-          description: 'Advice on understanding your employment rights',
-          links: []
-        },
-        {
-          objectID: '/cy/categories/work-and-redundancy',
-          title: 'Gwaith a diweithdra',
-          description: 'Cyngor ar ddeall eich hawliau',
-          links: []
-        }
-      ])
+                                      {
+                                        objectID: '/en/categories/work-and-redundancy',
+                                        title: 'Work and redundancy',
+                                        description: 'Advice on understanding your employment rights',
+                                        links: []
+                                      },
+                                      {
+                                        objectID: '/cy/categories/work-and-redundancy',
+                                        title: 'Gwaith a diweithdra',
+                                        description: 'Cyngor ar ddeall eich hawliau',
+                                        links: []
+                                      }
+                                    ])
     end
   end
 end

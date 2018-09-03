@@ -9,7 +9,7 @@ class UpdatePageViewsTask
       begin
         logger.info("Updating article: #{article.id} : #{article.slug}")
         article.update_page_views(google_analytics_results)
-      rescue
+      rescue StandardError
         logger.error("Could not update article: #{article.id} : #{article.slug} : (#{$ERROR_INFO.message})")
       end
     end

@@ -1,10 +1,9 @@
-# coding: utf-8
 require 'nokogiri'
 
 class InternalLink
   attr_reader :source, :doc, :sections, :internal_links_menu, :excluded_characters
 
-  def initialize(_, source)
+  def initialize(_locale, source)
     @excluded_characters = ',?!.:;–"\'()[]{}“”‘’‛‟,‚„"′″´˝^°¸˛¨`˙˚ªº…&_¯§#⁊¶†‡@%‰‱¦|/\ˉˆ˘ˇˇ~*❛❜❝❞'
     @source              = source
     @doc                 = Nokogiri::HTML.fragment(source)
@@ -14,7 +13,7 @@ class InternalLink
   end
 
   def call
-    @sections.before(internal_links) if sections.present? && !internal_links_menu.present?
+    @sections.before(internal_links) if sections.present? && internal_links_menu.blank?
     doc.to_s
   end
 
@@ -46,10 +45,10 @@ class InternalLink
     ->(node) { ['<li><a href="#', parse_id(node.content), '">', node.content, '</a></li>'].join }
   end
 
-  def parse_id(s)
-    s.downcase
-      .delete(excluded_characters) # deletes punctuation marks and emdash (\u2013)
-      .tr(' ', '-')                # replaces spaces with dash
+  def parse_id(string)
+    string.downcase
+          .delete(excluded_characters) # deletes punctuation marks and emdash (\u2013)
+          .tr(' ', '-')                # replaces spaces with dash
   end
 
   def existing_menu_selector(node)

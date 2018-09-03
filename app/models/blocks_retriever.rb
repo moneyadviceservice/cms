@@ -16,8 +16,8 @@ class BlocksRetriever
       else
         blocks_retriever.block(identifier)
       end
-    else
-      blocks_retriever.block(identifier) if blocks_retriever.live?
+    elsif blocks_retriever.live?
+      blocks_retriever.block(identifier)
     end
   end
 

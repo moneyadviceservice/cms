@@ -1,6 +1,6 @@
 class RevisionMailer < ActionMailer::Base
-  TO_ADDRESS = 'welsh.editors@moneyadviceservice.org.uk'
-  SUBJECT    = 'Content updated by External Editor'
+  TO_ADDRESS = 'welsh.editors@moneyadviceservice.org.uk'.freeze
+  SUBJECT    = 'Content updated by External Editor'.freeze
 
   default from: ENV['MAILJET_DEFAULT_FROM_ADDRESS']
 

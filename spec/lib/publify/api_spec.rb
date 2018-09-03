@@ -1,7 +1,5 @@
 describe Publify::API do
-
   describe 'latest links' do
-
     before do
       ENV['MAS_BLOG_URL'] = 'http://example.com:4000'
     end
@@ -12,18 +10,18 @@ describe Publify::API do
 
       before do
         allow(HTTParty).to receive(:get).with(
-                             'http://example.com:4000/articles.json',
-                             timeout: 2,
-                             verify: false
-                           ).and_return(response)
+          'http://example.com:4000/articles.json',
+          timeout: 2,
+          verify: false
+        ).and_return(response)
       end
 
       it 'connects to the specified server' do
         expect(HTTParty).to receive(:get).with(
-                              'http://example.com:4000/articles.json',
-                              timeout: 2,
-                              verify: false
-                            )
+          'http://example.com:4000/articles.json',
+          timeout: 2,
+          verify: false
+        )
         described_class.latest_links(2)
       end
 
@@ -41,11 +39,9 @@ describe Publify::API do
         result = described_class.latest_links(1)
         expect(result.length).to eq(1)
       end
-
     end
 
     context 'when there has been an exception' do
-
       it 'gracefully returns an empty array' do
         allow(HTTParty).to receive(:get).and_raise('Failed to reach Publify')
         expect(described_class.latest_links(2)).to be_empty
@@ -57,9 +53,6 @@ describe Publify::API do
 
         described_class.latest_links(2)
       end
-
     end
-
   end
-
 end

@@ -1,5 +1,5 @@
 class CategoriesController < Comfy::Admin::Cms::BaseController
-  before_action :find_category, only: [:show, :update, :destroy]
+  before_action :find_category, only: %i[show update destroy]
 
   def index
     @primary_navigation, @secondary_navigation = Comfy::Cms::Category.navigation_categories
@@ -11,8 +11,8 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
     @categories = Comfy::Cms::Category.where(site_id: 1).reorder(:label)
     @english_pages, @welsh_pages =
       Comfy::Cms::Page
-        .in_category(@category.id)
-        .partition { |p| p.site == english_site }
+      .in_category(@category.id)
+      .partition { |p| p.site == english_site }
   end
 
   def update
@@ -50,8 +50,8 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
       :label, :parent_id, :clump_id, :title_en, :title_cy, :description_en,
       :description_cy, :ordinal, :navigation, :third_level_navigation,
       :site_id, :categorized_type, :large_image_id, :small_image_id,
-      links_attributes: [:text, :url, :locale, :id, :_destroy],
-      category_promos_attributes: [:promo_type, :title, :description, :locale, :id, :_destroy, :url]
+      links_attributes: %i[text url locale id _destroy],
+      category_promos_attributes: %i[promo_type title description locale id _destroy url]
     )
   end
 

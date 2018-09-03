@@ -16,9 +16,7 @@ RSpec.describe AlternatePageBlocksRemover do
   let!(:block) { create(:block, blockable: page, content: original_content) }
 
   before do
-    if published_revision.present?
-      page.update_attribute(:active_revision, published_revision)
-    end
+    page.update_attribute(:active_revision, published_revision) if published_revision.present?
 
     # Reload the page to make it see it's block
     page.reload
@@ -31,9 +29,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'unsaved' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -41,9 +39,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'draft' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -51,9 +49,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'published' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -70,8 +68,7 @@ RSpec.describe AlternatePageBlocksRemover do
                      processed_content: "<p>some content</p>\n"
                    }
                  ]
-               }
-              )
+               })
       end
 
       before do
@@ -101,9 +98,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'scheduled' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -111,11 +108,10 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'unpublished' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
   end
-
 end

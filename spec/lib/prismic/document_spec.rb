@@ -21,7 +21,7 @@ RSpec.describe Prismic::Document do
     end
 
     it 'returns attribute names from args' do
-      expect(attributes).to match_array([:title, :content])
+      expect(attributes).to match_array(%i[title content])
     end
   end
 end

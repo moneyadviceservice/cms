@@ -23,7 +23,7 @@ RSpec.describe 'documents endpoint', type: :request do
 
     context 'when filters is greater than maximum number allowed' do
       let(:blocks) do
-        27.times.map { { identifier: 'bar', value: 'bar' } }
+        Array.new(27) {{ identifier: 'bar', value: 'bar' }}
       end
 
       it 'returns bad request' do

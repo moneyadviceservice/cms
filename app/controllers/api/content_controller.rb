@@ -10,9 +10,9 @@ module API
     def show
       page = if slug.present?
                current_site.pages
-                 .published
-                 .layout_identifier(page_type)
-                 .find_by(slug: slug)
+                           .published
+                           .layout_identifier(page_type)
+                           .find_by(slug: slug)
              else
                current_site.pages.published.find_by(slug: params[:page_type])
              end
@@ -34,9 +34,9 @@ module API
     param :page_type, String, required: true
     def published
       pages = current_site.pages
-        .published
-        .layout_identifier(params[:page_type])
-        .includes(:site, :layout, :categories, :blocks)
+                          .published
+                          .layout_identifier(params[:page_type])
+                          .includes(:site, :layout, :categories, :blocks)
 
       render json: pages, each_serializer: FeedPageSerializer
     end
@@ -51,16 +51,19 @@ module API
     end
 
     private
+
     def render_page(page, scope: nil)
       if page
         render json: page, scope: scope
       else
-        render json: { message: 'Page not found' }, status: 404
+        render json: { message: 'Page not found' }, status: :not_found
       end
     end
 
     def verify_page_type
-      render json: { message: %(Page type "#{page_type}" not supported) }, status: 400 unless page_type_supported?
+      return if page_type_supported?
+
+      render json: { message: %(Page type "#{page_type}" not supported) }, status: :bad_request
     end
 
     def page_type_supported?

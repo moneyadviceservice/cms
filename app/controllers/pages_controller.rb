@@ -2,7 +2,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
   helper 'page_blocks'
 
   before_action :check_permissions
-  before_action :check_alternate_available, only: [:edit, :update, :destroy]
+  before_action :check_alternate_available, only: %i[edit update destroy]
   before_action :check_can_destroy, only: :destroy
 
   def index
@@ -26,19 +26,17 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def edit
     @blocks_attributes = if params[:alternate]
-      AlternatePageBlocksRetriever.new(@page).blocks_attributes
-    else
-      PageBlocksRetriever.new(@page).blocks_attributes
-    end
+                           AlternatePageBlocksRetriever.new(@page).blocks_attributes
+                         else
+                           PageBlocksRetriever.new(@page).blocks_attributes
+                         end
   end
 
   def update
     save_page
     flash[:success] = I18n.t('comfy.admin.cms.pages.updated')
 
-    if current_user.editor?
-      RevisionMailer.external_editor_change(user: current_user, page: @page).deliver
-    end
+    RevisionMailer.external_editor_change(user: current_user, page: @page).deliver if current_user.editor?
 
     if updating_alternate_content?
       redirect_to action: :edit, id: @page, alternate: true
@@ -58,7 +56,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
       AlternatePageBlocksRemover.new(@page, remover: current_user).remove!
       flash[:success] = "Draft update for #{@page.layout.label.downcase} removed"
     end
-    redirect_to :action => :index
+    redirect_to action: :index
   end
 
   protected
@@ -76,18 +74,11 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
     # We need to look at the current state of the page to know if we're updating
     # current or alternate content. This may have changed due to the state event.
+    args = { author: current_user, new_blocks_attributes: blocks_attributes }
     if updating_alternate_content?
-      AlternatePageBlocksRegister.new(
-        @page,
-        author: current_user,
-        new_blocks_attributes: blocks_attributes
-      ).save!
+      AlternatePageBlocksRegister.new(@page, args).save!
     else
-      PageBlocksRegister.new(
-        @page,
-        author: current_user,
-        new_blocks_attributes: blocks_attributes
-      ).save!
+      PageBlocksRegister.new(@page, args).save!
     end
 
     # Now save any changes to the page on attributes other than content (assignment has been
@@ -111,21 +102,22 @@ class PagesController < Comfy::Admin::Cms::PagesController
   end
 
   def check_permissions
-    if PermissionCheck.new(current_user, @page, action_name, params[:state_event]).fail?
-      flash[:danger] = 'Insufficient permissions to change'
-      redirect_to comfy_admin_cms_site_pages_path(params[:site_id])
-    end
+    return unless PermissionCheck.new(current_user, @page, action_name, params[:state_event]).fail?
+
+    flash[:danger] = 'Insufficient permissions to change'
+    redirect_to comfy_admin_cms_site_pages_path(params[:site_id])
   end
 
   def check_alternate_available
-    if params[:alternate] && !AlternatePageBlocksRetriever.new(@page).blocks_attributes.present?
+    if params[:alternate] && AlternatePageBlocksRetriever.new(@page).blocks_attributes.blank?
       flash[:danger] = 'Alternate content is not currently available for this page'
       redirect_to action: :edit, id: @page
     end
   end
 
   def check_can_destroy
-    unless @page.draft? || @page.published_being_edited? || (@page.scheduled? && @page.active_revision.present? && @page.scheduled_on > Time.current)
+    unless @page.draft? || @page.published_being_edited? ||
+           (@page.scheduled? && @page.active_revision.present? && @page.scheduled_on > Time.current)
       flash[:danger] = 'You cannot delete a page in this state'
       redirect_to action: :edit, id: @page
     end

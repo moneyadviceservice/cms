@@ -5,12 +5,11 @@
 # - update pages in published_being_edited state
 # - update pages in scheduled state that are not live yet (published_on is in the future)
 class PermissionCheck
-
   attr_accessor :user, :page, :action, :event
 
-  FORBIDDEN_ACTIONS = %w(destroy)
-  ALLOWED_EDITOR_STATE_EVENTS = %w(create_initial_draft create_new_draft)
-  ALLOWED_EDITOR_UPDATE_STATES = %w(draft published_being_edited scheduled)
+  FORBIDDEN_ACTIONS = %w[destroy].freeze
+  ALLOWED_EDITOR_STATE_EVENTS = %w[create_initial_draft create_new_draft].freeze
+  ALLOWED_EDITOR_UPDATE_STATES = %w[draft published_being_edited scheduled].freeze
 
   def initialize(user, page, action, event = nil)
     @user = user
@@ -66,5 +65,4 @@ class PermissionCheck
   def updating_is_permitted?
     ALLOWED_EDITOR_UPDATE_STATES.include?(page.state) && (!page_scheduled? || !scheduled_page_is_live?)
   end
-
 end

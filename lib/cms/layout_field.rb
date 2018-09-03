@@ -15,15 +15,13 @@
 #
 class Cms::LayoutField
   def self.map(collection)
-    # stags_size = collection.map { |tag| tag.respond_to?(:collection_params) ? tag.collection_params.size : nil }.compact.sum + collection.size
     collection.map do |tag|
       if tag.respond_to?(:collection_params)
         tag.collection_params.each_with_index.map do |element, index|
-          collection_check_boxes = ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new.tap do |collection_check_boxes|
-            collection_check_boxes.identifier = tag.identifier
-            collection_check_boxes.element = element
-            collection_check_boxes.field_index = index
-          end
+          collection_check_boxes = ComfortableMexicanSofa::Tag::CollectionCheckBoxes.new
+          collection_check_boxes.identifier = tag.identifier
+          collection_check_boxes.element = element
+          collection_check_boxes.field_index = index
 
           new(collection_check_boxes)
         end

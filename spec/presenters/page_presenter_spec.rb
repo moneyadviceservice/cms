@@ -140,7 +140,7 @@ RSpec.describe PagePresenter do
   end
 
   describe '#last_update' do
-    let(:object) { double(updated_at: Time.new(2014, 8, 1, 14, 45)) }
+    let(:object) { double(updated_at: Time.new(2014, 8, 1, 14, 45).in_time_zone) }
 
     it 'returns the author and the created at formated' do
       expect(presenter.last_update).to eq('01/08/2014, 14:45')
@@ -200,7 +200,7 @@ RSpec.describe PagePresenter do
       let(:category) { create :category }
 
       it 'returns the category' do
-        expect(subject.category_list).to eql("#{category.label}")
+        expect(subject.category_list).to eql(category.label.to_s)
       end
     end
 

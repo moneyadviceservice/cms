@@ -2,7 +2,7 @@ require 'active_model_serializers'
 
 class BlockSerializer < ActiveModel::Serializer
   attributes :identifier, :content, :created_at, :updated_at
-  CONTENT_IDENTIFIER = 'content'
+  CONTENT_IDENTIFIER = 'content'.freeze
 
   def content
     block = if object.identifier == CONTENT_IDENTIFIER

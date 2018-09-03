@@ -28,7 +28,7 @@ RSpec.describe ClumpsController, type: :controller do
       before { params[:clump][:name_en] = '' }
 
       it 'does not create the new record' do
-        expect { post :create, params }.not_to change { Clump.count }
+        expect { post :create, params }.not_to change(Clump, :count)
       end
 
       it 'renders the new template' do

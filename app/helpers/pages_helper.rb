@@ -16,6 +16,7 @@ module PagesHelper
 
   def page_form_component(condition, default: [], optional: [], display: true)
     return {} unless display
+
     { dough_component: components(condition, default, optional).join(' ') }
   end
 
@@ -42,7 +43,7 @@ module PagesHelper
   end
 
   def display_metadata_form_fields?(page)
-    !page.layout.identifier.in?(%w(home_page footer))
+    !page.layout.identifier.in?(%w[home_page footer])
   end
 
   def activity_log(page)
@@ -64,12 +65,10 @@ module PagesHelper
   def scheduled_time(page)
     if page.scheduled_on.today?
       page.scheduled_on.strftime('%H:%M today')
+    elsif page.scheduled_on.year == Time.zone.today.year
+      page.scheduled_on.strftime('%H:%M %a %-d %b')
     else
-      if page.scheduled_on.year == Date.today.year
-        page.scheduled_on.strftime('%H:%M %a %-d %b')
-      else
-        page.scheduled_on.strftime('%H:%M %a %-d %b %Y')
-      end
+      page.scheduled_on.strftime('%H:%M %a %-d %b %Y')
     end
   end
 

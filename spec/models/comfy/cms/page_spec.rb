@@ -145,7 +145,6 @@ RSpec.describe Comfy::Cms::Page do
       it 'order by most matching tags' do
         expect(animals_article.related_links(2)).to eq([not_suppressed_match_article])
       end
-
     end
 
     context 'page_view ordering matches' do
@@ -198,7 +197,6 @@ RSpec.describe Comfy::Cms::Page do
         expect(animals_article.related_links(1)).to eq([related_popular_article])
       end
     end
-
   end
 
   describe 'all_english_articles' do
@@ -225,7 +223,6 @@ RSpec.describe Comfy::Cms::Page do
 
       expect(Comfy::Cms::Page.all_english_articles.all).to eq([article_page])
     end
-
   end
 
   describe '#update_page_views' do
@@ -254,9 +251,9 @@ RSpec.describe Comfy::Cms::Page do
   describe '.scheduled_today' do
     context 'pages scheduled in the past, present and future' do
       it 'includes only pages scheduled for today' do
-        page_one = create :page, state: :scheduled, scheduled_on: Time.now.end_of_day - 2.hours
-        page_two = create :page, state: :scheduled, scheduled_on: Time.now
-        create :page, state: :scheduled, scheduled_on: Time.now.end_of_day + 1.day
+        page_one = create :page, state: :scheduled, scheduled_on: Time.current.end_of_day - 2.hours
+        page_two = create :page, state: :scheduled, scheduled_on: Time.current
+        create :page, state: :scheduled, scheduled_on: Time.current.end_of_day + 1.day
         create :page
         create :page
         create :page
@@ -270,7 +267,6 @@ RSpec.describe Comfy::Cms::Page do
   end
 
   describe '#most_popular scope' do
-
     it 'has the three most popular articles' do
       create :page, page_views: 100, position: 1
       create :page, page_views: 5,   position: 2
@@ -376,10 +372,10 @@ RSpec.describe Comfy::Cms::Page do
       it 'leaves published_at stamp' do
         subject.create_initial_draft
         subject.publish
-        expect {
+        expect do
           subject.create_new_draft
           subject.schedule
-        }.to_not change(subject, :published_at)
+        end.to_not change(subject, :published_at)
       end
     end
 
