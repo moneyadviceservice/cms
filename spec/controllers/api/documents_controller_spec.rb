@@ -46,12 +46,10 @@ RSpec.describe API::DocumentsController, type: :request do
         end
 
         it 'returns meta information' do
-          expect(response_body['meta'].symbolize_keys).to eq({
-            results: 2,
-            per_page: 1,
-            page: 1,
-            total_pages: 2
-          })
+          expect(response_body['meta'].symbolize_keys).to eq(results: 2,
+                                                             per_page: 1,
+                                                             page: 1,
+                                                             total_pages: 2)
         end
       end
 
@@ -65,12 +63,10 @@ RSpec.describe API::DocumentsController, type: :request do
         end
 
         it 'returns meta information' do
-          expect(response_body['meta'].symbolize_keys).to eq({
-            results: 2,
-            per_page: 1,
-            page: 2,
-            total_pages: 2
-          })
+          expect(response_body['meta'].symbolize_keys).to eq(results: 2,
+                                                             per_page: 1,
+                                                             page: 2,
+                                                             total_pages: 2)
         end
       end
     end
@@ -110,7 +106,7 @@ RSpec.describe API::DocumentsController, type: :request do
           :page_with_tag,
           label: 'Page with tag',
           site: site,
-          tag_name: 'pensions',
+          tag_name: 'pensions'
         )
       end
       let!(:page_without_tag) do
@@ -141,6 +137,38 @@ RSpec.describe API::DocumentsController, type: :request do
         it 'returns empty documents' do
           expect(documents.size).to be_zero
         end
+      end
+    end
+
+    context 'when ordering documents by "order_by_date"' do
+      let!(:news_page1) do
+        create(
+          :page_with_order_by_date_block,
+          site: site,
+          created_at: Date.today,
+          order_by_date: '2017-03-15'
+        )
+      end
+      let!(:news_page2) do
+        create(
+          :page_with_order_by_date_block,
+          site: site,
+          created_at: Date.yesterday,
+          order_by_date: '2017-03-16'
+        )
+      end
+
+      before do
+        get '/api/en/documents', { order_by_date: 'true' }, headers
+      end
+
+      it 'returns documents ordered by "order_by_date"', :aggregate_failures do
+        expect(documents[0]['blocks']).to include(
+          hash_including('identifier' => 'order_by_date', 'content' => "<p>2017-03-16</p>\n")
+        )
+        expect(documents[1]['blocks']).to include(
+          hash_including('identifier' => 'order_by_date', 'content' => "<p>2017-03-15</p>\n")
+        )
       end
     end
 

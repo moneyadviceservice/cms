@@ -66,7 +66,7 @@ FactoryGirl.define do
 
     trait :order_by_date do
       identifier { 'order_by_date' }
-      content { '15th March 2017' }
+      content { '2017-03-15' }
     end
   end
 end

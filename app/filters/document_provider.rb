@@ -1,7 +1,7 @@
 class DocumentProvider
-  attr_reader :current_site, :document_type, :keyword, :filters, :tag
+  attr_reader :current_site, :document_type, :keyword, :filters, :tag, :order_by_date
 
-  BLOCKS_TO_SEARCH = %w(content overview order_by_date)
+  BLOCKS_TO_SEARCH = %w(content overview order_by_date).freeze
   FILTER_LIMIT = 26
 
   def initialize(params = {})
@@ -10,6 +10,7 @@ class DocumentProvider
     @keyword = params[:keyword]
     @filters = params[:blocks]
     @tag = params[:tag]
+    @order_by_date = params[:order_by_date]
   end
 
   def retrieve
@@ -41,7 +42,7 @@ class DocumentProvider
       .where(
         'comfy_cms_pages.label LIKE ? OR
           (comfy_cms_blocks.content LIKE ? AND comfy_cms_blocks.identifier IN (?))',
-          "%#{keyword}%", "%#{keyword}%", BLOCKS_TO_SEARCH
+        "%#{keyword}%", "%#{keyword}%", BLOCKS_TO_SEARCH
       ).uniq
   end
 
@@ -58,7 +59,7 @@ class DocumentProvider
     filters_to_hash.each do |filter, value|
       @documents = Comfy::Cms::Page
         .unscoped
-        .select("pages.*").from("(#{@documents.to_sql}) as pages")
+        .select('pages.*').from("(#{@documents.to_sql}) as pages")
         .joins("INNER JOIN comfy_cms_blocks ON comfy_cms_blocks.blockable_id = pages.id AND
           comfy_cms_blocks.blockable_type = 'Comfy::Cms::Page'")
         .where('comfy_cms_blocks.identifier' => filter)
@@ -69,17 +70,23 @@ class DocumentProvider
   end
 
   def filters_to_hash
-    filters.reduce({}) do |acc, filter|
+    filters.each_with_object({}) do |filter, acc|
       if acc[filter[:identifier]]
         acc[filter[:identifier]] << filter[:value]
       else
         acc[filter[:identifier]] = [filter[:value]]
       end
-      acc
     end
   end
 
   def order_documents
-    @documents = @documents.order('created_at DESC')
+    if order_by_date == 'true'
+      @documents.joins(:blocks)
+                .where("comfy_cms_blocks.identifier = 'order_by_date'")
+                .select("comfy_cms_pages.*, STR_TO_DATE(comfy_cms_blocks.content, '%Y-%m-%d') AS order_by_date")
+                .reorder('order_by_date DESC')
+    else
+      @documents = @documents.order('created_at DESC')
+    end
   end
 end
