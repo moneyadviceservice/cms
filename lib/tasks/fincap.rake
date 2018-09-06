@@ -306,7 +306,10 @@ namespace :fincap do
     )
     puts 'Resetting blocks identifiers...'
     blocks = Comfy::Cms::Block.where(identifier: 'component_teaser_section_title')
+    blocks_size = blocks.count
+    puts '=' * 120
+    puts "Updating #{blocks_size} blocks with identifier component_teaser_section_title"
+    puts '=' * 120
     blocks.update_all(identifier: 'teaser_section_title')
-    puts "Successfully updated #{blocks.count} blocks"
   end
 end
