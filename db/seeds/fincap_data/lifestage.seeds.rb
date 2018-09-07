@@ -55,7 +55,7 @@ lifestage_pages = []
   english_site.pages.create!(
     label: stage,
     meta_description: 'This is an example paragraph containing a description about a specific lifestage.',
-    slug: stage.gsub(' ', '_').downcase,
+    slug: stage.gsub(' ', '-').downcase,
     layout: lifestage_layout,
 
     state: 'published',
