@@ -215,11 +215,17 @@ to resolve their difficulties and change their behaviour.
   ]
 )
 
+tag = Tag.find_or_create_by(
+  value: 'how-can-we-improve-the-financial-capability-of-young-adults'
+)
+
 evaluation_page = english_site.pages.create!(
   label: 'Looking after the pennies',
   slug: 'looking-after-the-pennies',
   meta_description: common_dummy_description,
   layout: evaluation_layout,
+  keywords: [tag],
+
   state: 'published',
   blocks: [
     Comfy::Cms::Block.new(
@@ -314,6 +320,8 @@ review_page = english_site.pages.create!(
   slug: 'raising-household-saving',
   meta_description: common_dummy_description,
   layout: review_layout,
+  keywords: [tag],
+
   state: 'published',
   blocks: [
     Comfy::Cms::Block.new(
@@ -388,13 +396,6 @@ Based on an analysis of international evidence, this report examines in detail w
     )
   ]
 )
-
-tag = Tag.find_or_create_by(
-  value: 'how-can-we-improve-the-financial-capability-of-young-adults'
-)
-
-evaluation_page.keywords << tag
-review_page.keywords << tag
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

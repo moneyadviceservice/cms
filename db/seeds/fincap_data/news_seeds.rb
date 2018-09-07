@@ -63,11 +63,16 @@ Or, for a wide range of evaluation evidence, insight and market research don't f
   ]
 )
 
+mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
+secure_payments_tag = Tag.find_or_create_by(value: 'secure-payments')
+
 news_page = english_site.pages.create!(
   label: 'Press Release: A new way to pay!',
   slug: 'press-release-a-new-way-to-pay',
   layout: news_layout,
   state: 'published',
+  keywords: [mobile_payments_tag, secure_payments_tag],
+
   blocks: [
     Comfy::Cms::Block.new(
       identifier: 'content',
@@ -184,13 +189,6 @@ news.blocks = [
   )
 ]
 news.save!
-
-mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
-secure_payments_tag = Tag.find_or_create_by(value: 'secure-payments')
-
-[mobile_payments_tag, secure_payments_tag].each do |tag|
-  news_page.keywords << tag
-end
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

@@ -9,7 +9,7 @@ english_site = Comfy::Cms::Site.find_or_create_by(
 
 lifestage_layout = english_site.layouts.find_or_create_by(
   identifier: 'lifestage',
-  label: ' Lifestage',
+  label: 'Lifestage',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
@@ -36,7 +36,7 @@ lifestage_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
-lifestage_pages = []
+mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
 
 [
   'Young Adults',
@@ -57,6 +57,7 @@ lifestage_pages = []
     meta_description: 'This is an example paragraph containing a description about a specific lifestage.',
     slug: stage.gsub(' ', '-').downcase,
     layout: lifestage_layout,
+    keywords: [mobile_payments_tag],
 
     state: 'published',
     blocks: [
@@ -159,9 +160,6 @@ lifestage_pages = []
     ]
   )
 end
-
-mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
-lifestage_pages.each { |page| page.keywords << mobile_payments_tag }
 
 Comfy::Cms::Block.all.each do |block|
   block.update(
