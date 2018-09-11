@@ -7,28 +7,9 @@ english_site = Comfy::Cms::Site.find_or_create_by(
   is_mirrored: true
 )
 
-news_layout = english_site.layouts.find_or_create_by(
-  identifier: 'news',
-  label: 'News',
-  content:  <<-CONTENT
-    {{ cms:page:content:rich_text }}
-    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-    {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:field:order_by_date:datetime }}
-    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-  CONTENT
-)
-
-latest_news_layout = english_site.layouts.find_or_create_by(
-  identifier: 'latest_news',
-  label: 'Latest News',
-  content:  <<-CONTENT
-    {{ cms:page:content:rich_text }}
-    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-    {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-  CONTENT
-)
+layouts = YAML::load_file("#{Rails.root}/config/fincap_layouts.yml")
+news_layout =  english_site.layouts.find_or_create_by(layouts[:news])
+latest_news_layout = english_site.layouts.find_or_create_by(layouts[:latest_news])
 
 english_site.pages.create!(
   label: 'Latest News',

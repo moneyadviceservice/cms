@@ -7,32 +7,8 @@ english_site = Comfy::Cms::Site.find_or_create_by(
   is_mirrored: true
 )
 
-homepage_layout = english_site.layouts.find_or_create_by(
-  identifier: 'homepage',
-  label: 'Homepage',
-  content: <<-CONTENT
-    {{ cms:page:content:rich_text }}
-    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-    {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:teaser_section_title }}
-    {{ cms:page:teaser1_title }}
-    {{ cms:page:teaser1_image }}
-    {{ cms:page:teaser1_text }}
-    {{ cms:page:teaser1_link }}
-    {{ cms:page:teaser2_title }}
-    {{ cms:page:teaser2_image }}
-    {{ cms:page:teaser2_text }}
-    {{ cms:page:teaser2_link }}
-    {{ cms:page:teaser3_title }}
-    {{ cms:page:teaser3_image }}
-    {{ cms:page:teaser3_text }}
-    {{ cms:page:teaser3_link }}
-    {{ cms:page:horizontal_teaser_title }}
-    {{ cms:page:horizontal_teaser_image }}
-    {{ cms:page:horizontal_teaser_text }}
-    {{ cms:page:horizontal_teaser_link }}
-  CONTENT
-)
+layouts = YAML::load_file("#{Rails.root}/config/fincap_layouts.yml")
+homepage_layout = english_site.layouts.find_or_create_by(layouts[:homepage])
 
 homepage_page = english_site.pages.create!(
   label: 'Financial Capability',

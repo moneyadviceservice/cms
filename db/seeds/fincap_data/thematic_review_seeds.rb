@@ -7,29 +7,9 @@ english_site = Comfy::Cms::Site.find_or_create_by(
   is_mirrored: true
 )
 
-thematic_review_layout = english_site.layouts.find_or_create_by(
-  identifier: 'thematic_review',
-  label: 'Thematic Review',
-  content:  <<-CONTENT
-    {{ cms:page:content:rich_text }}
-    {{ cms:page:overview }}
-    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-    {{ cms:page:hero_description:simple_component/Description }}
-    {{ cms:page:cta_links:simple_component/[Text Link](/en/evidence_hub?tag=something) }}
-    {{ cms:page:download:simple_component/[Text Link](link) }}
-    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
-  CONTENT
-)
-
-thematic_reviews_landing_page_layout = english_site.layouts.find_or_create_by(
-  identifier: 'thematic_reviews_landing_page',
-  label: 'Thematic Reviews Landing Page',
-  content:  <<-CONTENT
-    {{ cms:page:content:rich_text }}
-    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-    {{ cms:page:hero_description:simple_component/Thematic Reviews }}
-  CONTENT
-)
+layouts = YAML::load_file("#{Rails.root}/config/fincap_layouts.yml")
+thematic_review_layout = english_site.layouts.find_or_create_by(layouts[:thematic_review])
+thematic_reviews_landing_page_layout = english_site.layouts.find_or_create_by(layouts[:thematic_reviews_landing_page])
 
 english_site.pages.create!(
   label: 'How can we improve the financial capability of young adults?',
