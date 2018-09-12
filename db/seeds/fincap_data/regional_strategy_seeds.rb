@@ -36,10 +36,13 @@ regional_strategy_layout = english_site.layouts.find_or_create_by(
   CONTENT
 )
 
+mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
+
 regional_strategy_page = english_site.pages.create!(
   label: 'Wales',
   slug: 'wales',
   layout: regional_strategy_layout,
+  keywords: [mobile_payments_tag],
 
   state: 'published',
   blocks: [
@@ -145,9 +148,6 @@ equivalent to 23 per cent of the population.
     )
   ]
 )
-
-mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
-regional_strategy_page.keywords << mobile_payments_tag
 
 Comfy::Cms::Block.all.each do |block|
   block.update(

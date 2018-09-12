@@ -13,4 +13,5 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'API'
   inflect.uncountable 'corporate'
+  inflect.irregular 'what_works', 'what_works'
 end

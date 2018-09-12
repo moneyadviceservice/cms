@@ -109,7 +109,36 @@ namespace :fincap do
 
     english_site.layouts.find_or_create_by(
       identifier: 'lifestage',
-      label: ' Lifestage',
+      label: 'Lifestage',
+      content:  <<-CONTENT
+        {{ cms:page:content:rich_text }}
+        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+        {{ cms:page:hero_description:simple_component/Description }}
+        {{ cms:page:teaser_section_title }}
+        {{ cms:page:teaser1_title }}
+        {{ cms:page:teaser1_image }}
+        {{ cms:page:teaser1_text }}
+        {{ cms:page:teaser1_link }}
+        {{ cms:page:teaser2_title }}
+        {{ cms:page:teaser2_image }}
+        {{ cms:page:teaser2_text }}
+        {{ cms:page:teaser2_link }}
+        {{ cms:page:teaser3_title }}
+        {{ cms:page:teaser3_image }}
+        {{ cms:page:teaser3_text }}
+        {{ cms:page:teaser3_link }}
+        {{ cms:page:strategy_title }}
+        {{ cms:page:strategy_overview }}
+        {{ cms:page:strategy_link }}
+        {{ cms:page:steering_group_title }}
+        {{ cms:page:steering_group_links }}
+        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+      CONTENT
+    )
+
+    english_site.layouts.find_or_create_by(
+      identifier: 'what_works',
+      label: 'What Works',
       content:  <<-CONTENT
         {{ cms:page:content:rich_text }}
         {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
