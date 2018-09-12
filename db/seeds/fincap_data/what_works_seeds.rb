@@ -7,9 +7,9 @@ english_site = Comfy::Cms::Site.find_or_create_by(
   is_mirrored: true
 )
 
-lifestage_layout = english_site.layouts.find_or_create_by(
-  identifier: 'lifestage',
-  label: 'Lifestage',
+what_works_layout = english_site.layouts.find_or_create_by(
+  identifier: 'what_works',
+  label: 'What Works',
   content:  <<-CONTENT
     {{ cms:page:content:rich_text }}
     {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
@@ -39,24 +39,17 @@ lifestage_layout = english_site.layouts.find_or_create_by(
 mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
 
 [
-  'Young Adults',
-  'Children and Young People',
-  'Working Age Adults',
-  'Older People in Retirement',
-  'People planning to retire',
-  'People in Financial difficulties',
-  'People trying to save',
-  'Dummy category 1',
-  'Dummy category 2',
-  'Dummy category 3',
-  'Dummy category 4',
-  'Dummy category 5',
-].each do |stage|
+  'What Works 1',
+  'What Works 2',
+  'What Works 3',
+  'What Works 4',
+  'What Works 5',
+].each do |page|
   english_site.pages.create!(
-    label: stage,
-    meta_description: 'This is an example paragraph containing a description about a specific lifestage.',
-    slug: stage.gsub(' ', '-').downcase,
-    layout: lifestage_layout,
+    label: page,
+    meta_description: 'This is an example paragraph containing a description about a specific \'What Works\' page.',
+    slug: page.gsub(' ', '-').downcase,
+    layout: what_works_layout,
     keywords: [mobile_payments_tag],
 
     state: 'published',
@@ -64,7 +57,8 @@ mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
       Comfy::Cms::Block.new(
         identifier: 'content',
         content: <<-CONTENT
-          This is an example paragraph containing information about a specific lifestage.
+          This is an example paragraph containing information about a specific what works page.
+          It will contain useful information and searchable text.
         CONTENT
       ),
       Comfy::Cms::Block.new(
@@ -73,11 +67,11 @@ mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
       ),
       Comfy::Cms::Block.new(
         identifier: 'component_hero_description',
-        content: "Research suggests that #{stage} typically display lower levels of financial capability than other age groups."
+        content: "Research suggests that #{page} typically display useful information that can be extremely useful when used appropriately."
       ),
       Comfy::Cms::Block.new(
         identifier: 'teaser_section_title',
-        content: 'Financial capability in action'
+        content: 'What Works'
       ),
       Comfy::Cms::Block.new(
         identifier: 'teaser1_title',
@@ -154,7 +148,7 @@ mobile_payments_tag = Tag.find_or_create_by(value: 'mobile-payments')
       Comfy::Cms::Block.new(
         identifier: 'component_download',
         content: <<-CONTENT
-        [Lifestage category download](/financial+capability+strategy.pdf)
+        [What works category download](/financial+capability+strategy.pdf)
         CONTENT
       ),
     ]
