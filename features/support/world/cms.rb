@@ -12,15 +12,22 @@ module World
       cms_site("cy")
     end
 
-    def cms_layout(locale='en')
+    def cms_layout(locale = 'en', required_fields = [])
+      content = '{{ cms:page:content:rich_text }}'
+      required_fields.each do |identifier|
+        content << "{{ cms:field:#{identifier}:required }}"
+      end
+
       self.layout ||= cms_site(locale).layouts.create!(
         identifier: 'article',
-        content: '{{ cms:page:content:rich_text }}'
+        content: content
       )
     end
 
-    def cms_root(locale='en')
-      self.root ||= cms_site(locale).pages.create!(layout: cms_layout, label: 'root')
+    def cms_root(locale = 'en', required_fields = [])
+      self.root ||= cms_site(locale).pages.create!(
+        layout: cms_layout(locale, required_fields), label: 'root'
+      )
     end
 
     def cms_categories
@@ -37,10 +44,13 @@ module World
       ).save!
     end
 
-    def build_cms_page(page: nil, published: true, locale: 'en', label: identifier())
+    def build_cms_page(
+      page: nil, published: true, locale: 'en',
+      label: identifier(), required_fields: []
+    )
       page ||= cms_site(locale).pages.create!(
-        parent: cms_root(locale),
-        layout: cms_layout(locale),
+        parent: cms_root(locale, required_fields),
+        layout: cms_layout(locale, required_fields),
         label: label,
         slug: label.parameterize
       )
@@ -52,8 +62,8 @@ module World
       page
     end
 
-    def build_cms_new_unsaved_page(page: nil)
-      page ||= build_cms_page
+    def build_cms_new_unsaved_page(page: nil, required_fields: [])
+      page ||= build_cms_page(page: page, required_fields: required_fields)
       page.save!
       page
     end

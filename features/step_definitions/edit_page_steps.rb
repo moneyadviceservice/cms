@@ -53,6 +53,14 @@ When(/^I (?:am working on|edit) a new unsaved article$/) do
   load_page_in_editor(page: build_cms_new_unsaved_page)
 end
 
+When(/^I am working on a new unsaved article with required fields$/) do |table|
+  fields = table.rows.flatten
+
+  load_page_in_editor(
+    page: build_cms_new_unsaved_page(required_fields: fields)
+  )
+end
+
 When(/^I (?:am working on|edit) a new draft article$/) do
   load_page_in_editor(page: build_cms_new_draft_page)
 end
@@ -180,3 +188,12 @@ Then(/^the "([a-zA-Z]{2})" and "([a-zA-Z]{2})" versions are available for linkin
   end
 end
 
+Then(/^I should see the fields marked as required$/) do |table|
+  table.rows.each do |row|
+    field_name = row[0].split(':').first
+    selector = "label[for=\"#{field_name.capitalize}\"] + input[type=\"text\"]"
+    element = page.find(selector)
+
+    expect(element.native.attributes['required']).to eq('required')
+  end
+end
