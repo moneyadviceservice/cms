@@ -315,6 +315,84 @@ daily lives.
   ]
 )
 
+english_site.pages.create!(
+  label: 'Evaluation without some blocks',
+  slug: 'evaluation-without-some-blocks',
+  meta_description: common_dummy_description,
+  layout: evaluation_layout,
+  state: 'published',
+  blocks: [
+    Comfy::Cms::Block.new(
+      identifier: 'content',
+      content: <<-CONTENT
+The trackers are all available as free smartphone apps (although at the
+time of writing, Toshl is discontinued). Overall user numbers of the apps
+are not given. However, 797 customers entered into the project (by
+completing a first questionnaire and downloading an app) from across
+the UK between July and November 2016.
+
+The intervention was undertaken in participants’ own time as part their
+daily lives.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'overview',
+      content: <<-CONTENT
+        An evaluation, commissioned by Royal London, of the impacts of using
+        simple budgeting tools on customers’ money management attitudes and
+        behaviours.
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Working age (18 - 65)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'client_groups',
+      content: 'Older people (65+)'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'topics',
+      content: 'Budgeting and keeping track'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'countries',
+      content: 'United Kingdom'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'year_of_publication',
+      content: '2017'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'data_types',
+      content: 'Measured Outcomes'
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'links_to_research',
+      processed_content: %{
+        <a href='https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf'>Looking after the pennies - full report</a>
+        <a href='https://fincap-two.cdn.prismic.io/fincap-two%2F0efeee0b-252a-4b13-b7f5-d05e66bdc6aa_final+report+-+royal+london+fincap.pptx'>Follow-up report</a>
+      },
+      content: <<-CONTENT
+      [Looking after the pennies - full report](https://www.royallondon.com/Documents/PDFs/2017/Royal%20London%20-%20Looking%20after%20the%20pennies.pdf)
+
+      [Follow-up report](https://fincap-two.cdn.prismic.io/fincap-two%2F0efeee0b-252a-4b13-b7f5-d05e66bdc6aa_final+report+-+royal+london+fincap.pptx)
+      CONTENT
+    ),
+    Comfy::Cms::Block.new(
+      identifier: 'contact_information',
+      processed_content: %{
+      <p>MASPD (in partnership with Company S.A)
+         T +44 (0)20 1234 5678 F +44 (0)20 4567 1234</p>
+      },
+      content: <<-CONTENT
+        MASPD (in partnership with Company S.A)
+        T +44 (0)20 1234 5678 F +44 (0)20 4567 1234
+      CONTENT
+    )
+  ]
+)
+
 review_page = english_site.pages.create!(
   label: 'Raising household saving',
   slug: 'raising-household-saving',
