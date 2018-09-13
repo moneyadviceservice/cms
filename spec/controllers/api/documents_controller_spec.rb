@@ -113,7 +113,12 @@ RSpec.describe API::DocumentsController, type: :request do
         create(:page, site: site)
       end
       let!(:page_with_a_different_tag) do
-        create(:page_with_tag, site: site, tag_name: 'sorry-not-a-pensions')
+        create(
+          :page_with_tag,
+          label: 'Page with another tag',
+          site: site,
+          tag_name: 'sorry-not-a-pensions'
+        )
       end
 
       context 'when searching an existent tag' do
@@ -125,6 +130,22 @@ RSpec.describe API::DocumentsController, type: :request do
           expect(documents.size).to be(1)
           expect(documents.first).to include(
             'label' => 'Page with tag'
+          )
+        end
+      end
+
+      context 'when searching multiple tags' do
+        before do
+          get '/api/en/documents', { tag: ['pensions', 'sorry-not-a-pensions'] }, headers
+        end
+
+        it 'returns pages with matching tags' do
+          expect(documents.size).to be(2)
+          expect(documents).to include(
+            hash_including(
+              'label' => 'Page with tag',
+              'label' => 'Page with another tag'
+            )
           )
         end
       end

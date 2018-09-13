@@ -47,6 +47,31 @@ RSpec.describe DocumentProvider do
     end
   end
 
+  describe 'filter_by_tag' do
+    let!(:tagged_page) { create(:page_with_tag, site: site, layout: insight_layout) }
+    let!(:untagged_page) { create(:english_article, site: site, layout: insight_layout) }
+    let(:document_type) { 'insight' }
+
+    context 'with a single tag' do
+      let(:tag) { ['tag'] }
+
+      it 'returns all documents tagged' do
+        expect(subject.size).to eq(1)
+        expect(subject).to match_array([tagged_page])
+      end
+    end
+
+    context 'with multiple tags' do
+      let!(:another_tagged_page) { create(:page_with_multiple_tags, site: site, layout: insight_layout) }
+      let(:tag) { ['tag', 'tag-2'] }
+
+      it 'returns the tagged pages' do
+        expect(subject.size).to eq(2)
+        expect(subject).to match_array([tagged_page, another_tagged_page])
+      end
+    end
+  end
+
   describe 'filter_by_keyword' do
     context 'when a keyword is provided' do
       context 'searching the title' do
@@ -277,7 +302,6 @@ RSpec.describe DocumentProvider do
         order_by_date: '2017-03-16'
       )
     end
-    let(:tag) { ['test'] }
 
     context 'when ordering by "order_by_date"' do
       let(:order_by_date) { 'true' }
