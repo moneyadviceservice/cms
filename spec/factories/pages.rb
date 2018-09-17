@@ -30,6 +30,18 @@ FactoryGirl.define do
       end
     end
 
+    factory :page_with_multiple_tags do
+      site { create :site, identifier: 'test-documents' }
+      label 'A page with two tags'
+      after(:create) do |page, evaluator|
+        page.keywords.concat [
+          create(:tag, value: "#{evaluator.tag_name}-2"),
+          create(:tag, value: "#{evaluator.tag_name}-3")
+        ]
+        create :block, identifier: 'content', blockable: page
+      end
+    end
+
     factory :english_article do
       site { create :site, label: 'en' }
       layout { create :layout, identifier: 'article' }
@@ -117,7 +129,7 @@ FactoryGirl.define do
       transient { order_by_date '2017-03-15' }
       after(:create) do |page, evaluator|
         page.keywords << Tag.find_or_create_by(value: 'test')
-        create(:block, identifier: 'content', blockable: page)
+        create :block, identifier: 'content', blockable: page
         create(
           :block,
           :order_by_date,

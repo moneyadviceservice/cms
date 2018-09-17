@@ -50,7 +50,8 @@ class DocumentProvider
     return @documents if tag.blank?
 
     @documents = @documents
-      .joins(:keywords).where('tags.value = ?', tag)
+      .joins(:keywords).where('tags.value IN (?)', tag)
+      .uniq
   end
 
   def filter_documents
@@ -85,6 +86,7 @@ class DocumentProvider
                 .where("comfy_cms_blocks.identifier = 'order_by_date'")
                 .select("comfy_cms_pages.*, STR_TO_DATE(comfy_cms_blocks.content, '%Y-%m-%d') AS order_by_date")
                 .reorder('order_by_date DESC')
+                .uniq
     else
       @documents = @documents.order('created_at DESC')
     end
