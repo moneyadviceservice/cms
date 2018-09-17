@@ -26,7 +26,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def edit
     @blocks_attributes = if params[:alternate]
-      AlternatePageBlocksRetriever.new(@page).blocks_attributes
+                           AlternatePageBlocksRetriever.new(@page).blocks_attributes
     else
       PageBlocksRetriever.new(@page).blocks_attributes
     end
@@ -58,7 +58,7 @@ class PagesController < Comfy::Admin::Cms::PagesController
       AlternatePageBlocksRemover.new(@page, remover: current_user).remove!
       flash[:success] = "Draft update for #{@page.layout.label.downcase} removed"
     end
-    redirect_to :action => :index
+    redirect_to action: :index
   end
 
   protected

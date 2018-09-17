@@ -42,8 +42,8 @@ class BlocksCollection
 
   def current_collection_blocks
     @current_collection_blocks ||= page.blocks.reject do|b|
-      @non_collection_blocks.map{|b| b[:identifier]}.include?(b.identifier)
-    end.map{|b| {b.identifier => b.content}}
+      @non_collection_blocks.map { |b| b[:identifier] }.include?(b.identifier)
+    end.map { |b| { b.identifier => b.content } }
   end
 
   def find_collections

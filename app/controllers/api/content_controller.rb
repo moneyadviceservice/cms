@@ -51,6 +51,7 @@ module API
     end
 
     private
+
     def render_page(page, scope: nil)
       if page
         render json: page, scope: scope

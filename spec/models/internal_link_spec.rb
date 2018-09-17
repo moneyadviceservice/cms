@@ -5,7 +5,8 @@ describe InternalLink do
 
   describe '.call' do
     context 'when internal links menu is missing' do
-      let(:source) { s = <<EOF
+      let(:source) do
+        s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <h2>Section 1, and this</h2>
@@ -16,9 +17,10 @@ describe InternalLink do
 <p>some text</p>
 EOF
         s
-      }
+      end
 
-      let(:generated_output) { s=<<EOF
+      let(:generated_output) do
+        s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <ul>
@@ -34,7 +36,7 @@ EOF
 <p>some text</p>
 EOF
         s
-      }
+      end
 
       it 'generates internal links menu' do
         expect(subject).to eq generated_output
@@ -42,7 +44,8 @@ EOF
     end
 
     context 'when internal links menu was manually entered' do
-      let(:source) { s=<<EOF
+      let(:source) do
+        s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <ul>
@@ -58,7 +61,7 @@ EOF
 <p>some text</p>
 EOF
         s
-      }
+      end
 
       it 'does nothing' do
         expect(subject).to eq source
@@ -68,7 +71,8 @@ EOF
 
   describe 'Punctuation marks' do
     context 'are removed in tag id' do
-      let(:source) { s=<<EOF
+      let(:source) do
+        s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <h2>'Section 1', and this</h2>
@@ -79,9 +83,10 @@ EOF
 <p>some text</p>
 EOF
         s
-      }
+      end
 
-      let(:generated_output) { s=<<EOF
+      let(:generated_output) do
+        s = <<EOF
 <h1>Page Title</h1>
 <p>some description</p>
 <ul>
@@ -97,7 +102,7 @@ EOF
 <p>some text</p>
 EOF
         s
-      }
+      end
       it 'does nothing' do
         expect(subject).to eq generated_output
       end

@@ -10,7 +10,7 @@ describe PageSerializer do
   describe 'supports_amp' do
     let(:serialized_page) { build(:page).to_json }
     it 'exposes supports_amp' do
-      expect(JSON.parse(serialized_page)).to have_key("supports_amp")
+      expect(JSON.parse(serialized_page)).to have_key('supports_amp')
     end
   end
 
@@ -280,10 +280,10 @@ describe PageSerializer do
     context 'when article has keywords' do
       before { allow(article).to receive(:keywords).and_return(tags) }
 
-      let(:tags){ [build(:tag, value: 'mobile_payments')] }
+      let(:tags) { [build(:tag, value: 'mobile_payments')] }
 
       it 'returns array of keyword values' do
-        expect(subject.tags).to eql(%w[mobile_payments])
+        expect(subject.tags).to eql(%w(mobile_payments))
       end
     end
 

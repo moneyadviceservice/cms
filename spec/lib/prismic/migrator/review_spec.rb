@@ -19,16 +19,16 @@ RSpec.describe Prismic::Migrator::Review do
         contact_details: '<p>OECD Publishing</p>',
         contact_details_markdown: '',
         year_of_publication: '2016',
-        topics: [{"topic"=>"Pensions and Retirement Planning"}],
+        topics: [{ 'topic' => 'Pensions and Retirement Planning' }],
         country_search_filter_group: [
-          {"country_search_filter"=>"0United Kingdom"},
-          {"country_search_filter"=>"1United States"},
-          {"country_search_filter"=>"2Other"}
+          { 'country_search_filter' => '0United Kingdom' },
+          { 'country_search_filter' => '1United States' },
+          { 'country_search_filter' => '2Other' }
         ],
         client_groups: [
-          {"client_group"=>"Young adults (17 - 24)"},
-          {"client_group"=>"Working age (18 - 65)"},
-          {"client_group"=>"Older people (65+)"}
+          { 'client_group' => 'Young adults (17 - 24)' },
+          { 'client_group' => 'Working age (18 - 65)' },
+          { 'client_group' => 'Older people (65+)' }
         ],
         review_type: 'Systematic review',
         review_sections: [

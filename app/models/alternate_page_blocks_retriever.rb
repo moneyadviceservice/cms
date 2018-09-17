@@ -22,7 +22,7 @@ class AlternatePageBlocksRetriever
     elsif page.scheduled? && page.scheduled_on > Time.current && page.active_revision.present?
       page.blocks_attributes
 
-    # Any other states only have primary blocks
+      # Any other states only have primary blocks
     end
   end
 

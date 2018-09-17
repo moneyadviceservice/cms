@@ -3,7 +3,7 @@ class FilePresenter < Presenter
     "file_#{object.id}"
   end
 
-  def full_path(options={})
+  def full_path(options = {})
     object.file.url(options[:style])
   end
 

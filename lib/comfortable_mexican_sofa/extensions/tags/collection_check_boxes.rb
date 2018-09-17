@@ -8,6 +8,6 @@ class ComfortableMexicanSofa::Tag::CollectionCheckBoxes
   end
 
   def collection_params
-    self.params.first.split(', ')
+    params.first.split(', ')
   end
 end

@@ -71,7 +71,7 @@ class PageContentRegister
   end
 
   def home_page?
-     layout_identifier == 'home_page'
+    layout_identifier == 'home_page'
   end
 
   def footer?
