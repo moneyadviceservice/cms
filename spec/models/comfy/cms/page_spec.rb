@@ -376,10 +376,10 @@ RSpec.describe Comfy::Cms::Page do
       it 'leaves published_at stamp' do
         subject.create_initial_draft
         subject.publish
-        expect {
+        expect do
           subject.create_new_draft
           subject.schedule
-        }.to_not change(subject, :published_at)
+        end.to_not change(subject, :published_at)
       end
     end
 

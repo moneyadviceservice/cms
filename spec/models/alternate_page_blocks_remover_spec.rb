@@ -31,9 +31,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'unsaved' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -41,9 +41,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'draft' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -51,9 +51,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'published' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -101,9 +101,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'scheduled' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
 
@@ -111,9 +111,9 @@ RSpec.describe AlternatePageBlocksRemover do
       let(:state) { 'unpublished' }
 
       it 'raises an exception' do
-        expect {
+        expect do
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        end.to raise_exception
       end
     end
   end

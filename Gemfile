@@ -71,7 +71,7 @@ group :test, :development do
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.0'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.59.1', require: false
   gem 'ruby-prof', require: false
   gem 'valid_attribute', require: false
 end

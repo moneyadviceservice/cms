@@ -27,7 +27,7 @@ class AlternatePageBlocksRemover
 
     # Anything else can't be removed. Scheduled articles must be unscheduled (returned to draft) to be removed.
     else
-      raise Error.new('Only pages in a state of published_being_edited have alternate content that can be removed')
+      fail Error.new('Only pages in a state of published_being_edited have alternate content that can be removed')
     end
   end
 end

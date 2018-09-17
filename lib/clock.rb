@@ -18,5 +18,4 @@ module Clockwork
   every(1.day, 'publish_scheduled_pages.job', at: '04:00') do
     ::PublishScheduledPagesTask.run
   end
-  
 end

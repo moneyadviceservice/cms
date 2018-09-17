@@ -1,5 +1,4 @@
 class Clump < ActiveRecord::Base
-
   has_many :clumpings, -> { order(:ordinal) }, inverse_of: :clump
 
   # Category model has a default scope on label, so have to override this
@@ -22,5 +21,4 @@ class Clump < ActiveRecord::Base
   def set_default_ordinal
     self.ordinal ||= Clump.count
   end
-
 end

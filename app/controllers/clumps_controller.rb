@@ -1,5 +1,4 @@
 class ClumpsController < Comfy::Admin::Cms::BaseController
-
   def index
     @clumps = Clump.order('ordinal ASC')
   end
@@ -62,5 +61,4 @@ class ClumpsController < Comfy::Admin::Cms::BaseController
   def clump_params
     params.require(:clump).permit(PERMITTED_PARAMS)
   end
-
 end

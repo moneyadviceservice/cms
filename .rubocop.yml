@@ -1,14 +1,13 @@
+inherit_from:
+  - .rubocop_todo.yml
+
 Documentation:
   Enabled: false
-Metrics/LineLength:
-  Max: 120
-Metrics/MethodLength:
-  Max: 15
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/CollectionMethods:
   Enabled: false
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: leading
 Style/FormatString:
   Enabled: false
@@ -37,6 +36,7 @@ AllCops:
   - 'node_modules/**/*'
   - 'script/**/*'
   - 'spec/spec_helper.rb'
+  - 'spec/lib/prismic/*'
   - 'spec/cassettes/**/*'
   - 'features/**/*'
   - 'tmp/**/*'
