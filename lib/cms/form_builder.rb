@@ -97,6 +97,8 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   # This is because we handle the block attributes independently from the page
   # attributes in forms.
   def default_tag_field(tag, index, method = :text_field_tag, options = {})
+    options.merge!(required: true) if tag.required
+
     label       = tag.blockable.class.human_attribute_name(tag.identifier.to_s)
     content     = ''
     current_value = find_current_value_for_field(tag)
