@@ -3,8 +3,8 @@
 module ComfortableMexicanSofa
   module Extensions
     module Tag
-      MAS_CMS_BLOCKS = %w(page field collection simple image datetime required).freeze
-
+      MAS_CMS_BLOCKS = %w(page field collection simple image datetime).freeze
+      
       # rubocop:disable Style/PredicateName
       def is_cms_block?
         MAS_CMS_BLOCKS.member?(

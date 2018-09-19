@@ -73,10 +73,6 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
     default_tag_field(tag, index)
   end
 
-  def required_field(tag, index)
-    default_tag_field(tag, index, :text_field_tag, required: true)
-  end
-
   def field_date_time(tag, index)
     default_tag_field(
       tag,
