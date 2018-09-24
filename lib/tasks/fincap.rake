@@ -27,7 +27,7 @@ namespace :fincap do
           {{ cms:page:year_of_publication }}
           {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
           {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
-          {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
+          {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
           {{ cms:page:data_types:collection_check_boxes/Quantitative, Qualitative }}
         CONTENT
       )
@@ -47,7 +47,7 @@ namespace :fincap do
         {{ cms:page:programme_delivery }}
         {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
         {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
-        {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
+        {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
         {{ cms:page:data_types:collection_check_boxes/Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money }}
         {{ cms:page:measured_outcomes:collection_check_boxes/Financial wellbeing, Financial behaviour, Financial capability (connection), Financial capability (mindset), Financial capability (Ability) }}
       CONTENT
@@ -65,7 +65,7 @@ namespace :fincap do
         {{ cms:page:year_of_publication }}
         {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
         {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
-        {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents/Families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers/practitioners, Other }}
+        {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
         {{ cms:page:data_types:collection_check_boxes/Literature review, Systematic review }}
       CONTENT
     )
@@ -272,73 +272,29 @@ namespace :fincap do
       )
   end
 
-  desc 'Normalise Layout content'
-  task normalise_layouts: :environment do
+  desc 'Update evidence hub layouts'
+  task update_evidence_hub_layouts: :environment do
     ActiveRecord::Base.logger = Logger.new(STDOUT)
 
-    puts 'Resetting lifestage Layout...'
-    layout = Comfy::Cms::Layout.find_by(identifier: 'lifestage')
-    layout.update(
-      content: <<-CONTENT
-        {{ cms:page:content:rich_text }}
-        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-        {{ cms:page:hero_description:simple_component/Description }}
-        {{ cms:page:teaser_section_title }}
-        {{ cms:page:teaser1_title }}
-        {{ cms:page:teaser1_image }}
-        {{ cms:page:teaser1_text }}
-        {{ cms:page:teaser1_link }}
-        {{ cms:page:teaser2_title }}
-        {{ cms:page:teaser2_image }}
-        {{ cms:page:teaser2_text }}
-        {{ cms:page:teaser2_link }}
-        {{ cms:page:teaser3_title }}
-        {{ cms:page:teaser3_image }}
-        {{ cms:page:teaser3_text }}
-        {{ cms:page:teaser3_link }}
-        {{ cms:page:strategy_title }}
-        {{ cms:page:strategy_overview }}
-        {{ cms:page:strategy_link }}
-        {{ cms:page:steering_group_title }}
-        {{ cms:page:steering_group_links }}
-        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-      CONTENT
-    )
+    %w(insight evaluation review).each do |identifier|
+      puts
+      puts "Updating layout content for #{identifier}..."
 
-    puts 'Resetting regional_strategy Layout...'
-    layout = Comfy::Cms::Layout.find_by(identifier: 'regional_strategy')
-    layout.update(
-      content: <<-CONTENT
-        {{ cms:page:content:rich_text }}
-        {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
-        {{ cms:page:hero_description:simple_component/Description }}
-        {{ cms:page:teaser_section_title }}
-        {{ cms:page:teaser1_title }}
-        {{ cms:page:teaser1_image }}
-        {{ cms:page:teaser1_text }}
-        {{ cms:page:teaser1_link }}
-        {{ cms:page:teaser2_title }}
-        {{ cms:page:teaser2_image }}
-        {{ cms:page:teaser2_text }}
-        {{ cms:page:teaser2_link }}
-        {{ cms:page:teaser3_title }}
-        {{ cms:page:teaser3_image }}
-        {{ cms:page:teaser3_text }}
-        {{ cms:page:teaser3_link }}
-        {{ cms:page:strategy_title }}
-        {{ cms:page:strategy_text }}
-        {{ cms:page:strategy_link }}
-        {{ cms:page:forum_title}}
-        {{ cms:page:forum_links}}
-        {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
-      CONTENT
-    )
-    puts 'Resetting blocks identifiers...'
-    blocks = Comfy::Cms::Block.where(identifier: 'component_teaser_section_title')
-    blocks_size = blocks.count
-    puts '=' * 120
-    puts "Updating #{blocks_size} blocks with identifier component_teaser_section_title"
-    puts '=' * 120
-    blocks.update_all(identifier: 'teaser_section_title')
+      layout = Comfy::Cms::Layout.find_by(identifier: identifier)
+      current_content = layout.content
+      updated_content = current_content
+        .gsub('Parents/Families', 'Parents / families')
+        .gsub('Teachers/practitioners', 'Teachers / practitioners')
+
+      if current_content == updated_content
+        puts "Layout for #{identifier} already up to date, skipping."
+        next
+      end
+
+      layout.update!(content: updated_content)
+
+      puts "New #{identifier} layout content:"
+      puts layout.reload.content
+    end
   end
 end
