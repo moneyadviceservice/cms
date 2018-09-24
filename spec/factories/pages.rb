@@ -126,6 +126,19 @@ FactoryGirl.define do
           create :block, :raw_cta_text_content, blockable: page
         end
       end
+
+      factory :insight_page_with_year_of_publication do
+        transient do
+          year { '2018' }
+        end
+
+        after(:create) do |page, evaluator|
+          create :block,
+                 :year_of_publication,
+                 content: evaluator.year,
+                 blockable: page
+        end
+      end
     end
 
     factory :page_with_order_by_date_block do

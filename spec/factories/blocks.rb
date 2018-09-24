@@ -68,5 +68,10 @@ FactoryGirl.define do
       identifier { 'order_by_date' }
       content { '2017-03-15' }
     end
+
+    trait :year_of_publication do
+      identifier { 'year_of_publication' }
+      content { '2018' }
+    end
   end
 end
