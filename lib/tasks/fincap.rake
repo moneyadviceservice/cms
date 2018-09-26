@@ -271,30 +271,4 @@ namespace :fincap do
         CONTENT
       )
   end
-
-  desc 'Update evidence hub layouts'
-  task update_evidence_hub_layouts: :environment do
-    ActiveRecord::Base.logger = Logger.new(STDOUT)
-
-    %w(insight evaluation review).each do |identifier|
-      puts
-      puts "Updating layout content for #{identifier}..."
-
-      layout = Comfy::Cms::Layout.find_by(identifier: identifier)
-      current_content = layout.content
-      updated_content = current_content
-        .gsub('Parents/Families', 'Parents / families')
-        .gsub('Teachers/practitioners', 'Teachers / practitioners')
-
-      if current_content == updated_content
-        puts "Layout for #{identifier} already up to date, skipping."
-        next
-      end
-
-      layout.update!(content: updated_content)
-
-      puts "New #{identifier} layout content:"
-      puts layout.reload.content
-    end
-  end
 end
