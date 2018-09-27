@@ -317,6 +317,13 @@ RSpec.describe DocumentProvider do
       it 'returns pages in descending order of creation date' do
         expect(subject).to eq([news_page1, news_page2])
       end
+
+      it 'prioritizes the creation date over the default cms position value' do
+        news_page1.update_attributes(position: 2)
+        news_page2.update_attributes(position: 1)
+
+        expect(subject).to eq([news_page1, news_page2])
+      end
     end
   end
 
