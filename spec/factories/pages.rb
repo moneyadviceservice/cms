@@ -84,42 +84,60 @@ FactoryGirl.define do
       end
     end
 
-    factory :insight_page_about_pensions do
-      site { create :site, identifier: 'test-documents' }
-      after(:create) do |page|
-        create :block, :pension_content, blockable: page
-      end
-    end
-
-    factory :insight_page_titled_pensions do
-      site { create :site, identifier: 'test-documents' }
-      label 'pensions'
-      after(:create) do |page|
-        create :block, :debt_content, blockable: page
-      end
-    end
-
     factory :insight_page do
       site { create :site, identifier: 'test-documents' }
+      layout { create :layout, identifier: 'insight' }
+
       after(:create) do |page|
         create :block, :financial_wellbeing_content, blockable: page
       end
-    end
 
-    factory :insight_page_titled_annuities do
-      site { create :site, identifier: 'test-documents' }
-      label 'Annuities'
-      after(:create) do |page|
-        create :block, identifier: 'content', blockable: page
+      factory :insight_page_about_pensions do
+        after(:create) do |page|
+          create :block, :pension_content, blockable: page
+        end
       end
-    end
 
-    factory :insight_page_with_overview_block do
-      site { create :site, identifier: 'test-documents' }
-      label 'Overview'
-      after(:create) do |page|
-        create :block, :redundancy_overview, blockable: page
-        create :block, :redundancy_topic, blockable: page
+      factory :insight_page_titled_pensions do
+        label 'pensions'
+        after(:create) do |page|
+          create :block, :debt_content, blockable: page
+        end
+      end
+
+      factory :insight_page_titled_annuities do
+        label 'Annuities'
+        after(:create) do |page|
+          create :block, identifier: 'content', blockable: page
+        end
+      end
+
+      factory :insight_page_with_overview_block do
+        label 'Overview'
+        after(:create) do |page|
+          create :block, :redundancy_overview, blockable: page
+          create :block, :redundancy_topic, blockable: page
+        end
+      end
+
+      factory :insight_page_with_raw_cta_text_block do
+        label 'Page with block other than content or identifier'
+        after(:create) do |page|
+          create :block, :raw_cta_text_content, blockable: page
+        end
+      end
+
+      factory :insight_page_with_year_of_publication do
+        transient do
+          year { '2018' }
+        end
+
+        after(:create) do |page, evaluator|
+          create :block,
+                 :year_of_publication,
+                 content: evaluator.year,
+                 blockable: page
+        end
       end
     end
 
@@ -136,14 +154,6 @@ FactoryGirl.define do
           content: evaluator.order_by_date,
           blockable: page
         )
-      end
-    end
-
-    factory :insight_page_with_raw_cta_text_block do
-      site { create :site, identifier: 'test-documents' }
-      label 'Page with block other than content or identifier'
-      after(:create) do |page|
-        create :block, :raw_cta_text_content, blockable: page
       end
     end
 

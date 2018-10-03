@@ -88,7 +88,7 @@ class DocumentProvider
                 .reorder('order_by_date DESC')
                 .uniq
     else
-      @documents = @documents.order('created_at DESC')
+      @documents = @documents.reorder('created_at DESC')
     end
   end
 end
