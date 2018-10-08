@@ -64,5 +64,5 @@ Then(/^I should see the checkbox fields with the value$/) do |table|
 end
 
 Then(/^I should see an order_by date of "([^"]*)"$/) do |date_string|
-  expect(edit_page.order_by_date.text).to eq(date_string)
+  expect(edit_page.order_by_date.value).to eq(date_string)
 end

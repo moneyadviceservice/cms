@@ -61,9 +61,9 @@ module UI::Pages
     element :usa, 'input[value="USA"]'
     element :scotland, 'input[value="Scotland"]'
 
-    element :parents_families, 'input[value="Parents / Families"]'
-    element :children, 'input[value="Children (3-11)"]'
-    element :young_people, 'input[value="Young People (12-16)"]'
+    element :parents_families, 'input[value="Parents / families"]'
+    element :children, 'input[value="Children (3 - 11)"]'
+    element :young_people, 'input[value="Young People (12 - 16)"]'
 
     element :qualitative, 'input[value="Qualitative"]'
     element :quantitative, 'input[value="Quantitative"]'
