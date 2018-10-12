@@ -1,0 +1,216 @@
+:article:
+  :identifier: article
+  :label: Article
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+:evaluation:
+  :identifier: evaluation
+  :label: Evaluation
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:countries }}
+    {{ cms:page:links_to_research }}
+    {{ cms:page:contact_information }}
+    {{ cms:page:year_of_publication }}
+    {{ cms:page:activities_and_setting }}
+    {{ cms:page:programme_delivery }}
+    {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+    {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+    {{ cms:page:data_types:collection_check_boxes/Programme Theory, Measured Outcomes, Causality, Process Evaluation, Value for money }}
+    {{ cms:page:measured_outcomes:collection_check_boxes/Financial wellbeing, Financial behaviour, Financial capability (connection), Financial capability (mindset), Financial capability (Ability) }}
+:homepage:
+  :identifier: homepage
+  :label: Homepage
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:horizontal_teaser_title }}
+    {{ cms:page:horizontal_teaser_image }}
+    {{ cms:page:horizontal_teaser_text }}
+    {{ cms:page:horizontal_teaser_link }}
+:insight:
+  :identifier: insight
+  :label: Insight
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:countries }}
+    {{ cms:page:links_to_research }}
+    {{ cms:page:contact_information }}
+    {{ cms:page:year_of_publication }}
+    {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+    {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+    {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+    {{ cms:page:data_types:collection_check_boxes/Quantitative, Qualitative }}
+:latest_news:
+  :identifier: latest_news
+  :label: Latest News
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+:lifestage:
+  :identifier: lifestage
+  :label: Lifestage
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:strategy_title }}
+    {{ cms:page:strategy_overview }}
+    {{ cms:page:strategy_link }}
+    {{ cms:page:steering_group_title }}
+    {{ cms:page:steering_group_links }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+:news:
+  :identifier: news
+  :label: News
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:field:order_by_date:datetime }}
+    {{ cms:page:cta_links:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+:regional_strategy:
+  :identifier: regional_strategy
+  :label: Regional Strategy
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:strategy_title }}
+    {{ cms:page:strategy_text }}
+    {{ cms:page:strategy_link }}
+    {{ cms:page:forum_title}}
+    {{ cms:page:forum_links}}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+:review:
+  :identifier: review
+  :label: Review
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:countries }}
+    {{ cms:page:links_to_research }}
+    {{ cms:page:contact_information }}
+    {{ cms:page:year_of_publication }}
+    {{ cms:page:topics:collection_check_boxes/Saving, Pensions and Retirement Planning, Credit Use and Debt, Budgeting and Keeping Track, Insurance and Protection, Financial Education, Financial Capability }}
+    {{ cms:page:countries_of_delivery:collection_check_boxes/United Kingdom, England, Northern Ireland, Scotland, Wales, USA, Other }}
+      {{ cms:page:client_groups:collection_check_boxes/Children (3 - 11), Young People (12 - 16), Parents / families, Young Adults (17 - 24), Working Age (18 - 65), Older People (65+), Over-indebted people, Social housing tenants, Teachers / practitioners, Other }}
+    {{ cms:page:data_types:collection_check_boxes/Literature review, Systematic review }}
+:thematic_review:
+  :identifier: thematic_review
+  :label: Thematic Review
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:overview }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:cta_links:simple_component/[Text Link](/en/evidence_hub?tag=something) }}
+    {{ cms:page:download:simple_component/[Text Link](link) }}
+    {{ cms:page:feedback:simple_component/email@moneyadviceservice.org.uk.org.uk) }}
+:thematic_reviews_landing_page:
+  :identifier: thematic_reviews_landing_page
+  :label: Thematic Reviews Landing Page
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Thematic Reviews }}
+:uk_strategy:
+  :identifier: uk_strategy
+  :label: UK Strategy
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:regional_strategy_title }}
+    {{ cms:page:regional_strategy_text }}
+    {{ cms:page:regional_strategy_link }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
+:what_works:
+  :identifier: what_works
+  :label: What Works
+  :content: |
+    {{ cms:page:content:rich_text }}
+    {{ cms:page:hero_image:simple_component/https://moneyadviceservice.org.uk/image.jpg }}
+    {{ cms:page:hero_description:simple_component/Description }}
+    {{ cms:page:teaser_section_title }}
+    {{ cms:page:teaser1_title }}
+    {{ cms:page:teaser1_image }}
+    {{ cms:page:teaser1_text }}
+    {{ cms:page:teaser1_link }}
+    {{ cms:page:teaser2_title }}
+    {{ cms:page:teaser2_image }}
+    {{ cms:page:teaser2_text }}
+    {{ cms:page:teaser2_link }}
+    {{ cms:page:teaser3_title }}
+    {{ cms:page:teaser3_image }}
+    {{ cms:page:teaser3_text }}
+    {{ cms:page:teaser3_link }}
+    {{ cms:page:strategy_title }}
+    {{ cms:page:strategy_overview }}
+    {{ cms:page:strategy_link }}
+    {{ cms:page:steering_group_title }}
+    {{ cms:page:steering_group_links }}
+    {{ cms:page:download:simple_component/[Text Link](https://moneyadviceservice.org.uk/link) }}
