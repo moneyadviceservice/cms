@@ -1,0 +1,76 @@
+Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 80
+Metrics/MethodLength:
+  Max: 15
+Metrics/ModuleLength:
+  Exclude:
+    - '**/*_spec.rb'
+    - '**/support/*.rb'
+Metrics/BlockLength:
+  Exclude:
+    - '**/*_spec.rb'
+    - '**/shared_examples/*.rb'
+    - '**/support/*.rb'
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+    - include
+    - prepend
+    - extend
+  ExpectedOrder:
+  - module_inclusion
+  - constants
+  - public_class_methods
+  - initializer
+  - public_methods
+  - protected_methods
+  - private_methods
+Layout/DotPosition:
+  EnforcedStyle: leading
+Layout/EmptyLineAfterGuardClause:
+  Enabled: true
+Style/AndOr:
+  EnforcedStyle: conditionals
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/CollectionMethods:
+  Enabled: false
+Style/FormatString:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/MethodDefParentheses:
+  EnforcedStyle: require_parentheses
+Style/OptionHash:
+  Enabled: true
+Style/RaiseArgs:
+  Enabled: false
+Style/RegexpLiteral:
+  Enabled: false
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+Rails:
+  Enabled: true
+Rails/HttpPositionalArguments:
+  Enabled: true
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+  - 'bin/**/*'
+  - 'config/**/*'
+  - 'db/schema.rb'
+  - 'lib/tasks/cucumber.rake'
+  - 'script/cucumber'
+  - 'tmp/**/*'
+  - 'vendor/**/*'
+  - 'Rakefile'
+  - 'spec/dummy/bin/**/*'
+  - 'spec/dummy/config/**/*'
+  - 'spec/dummy/script/**/*'
+  - 'features/**/*'
+  - 'node_modules/**/*'
