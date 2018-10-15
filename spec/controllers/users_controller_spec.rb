@@ -1,4 +1,4 @@
-RSpec.describe UsersController, type: :controller  do
+RSpec.describe UsersController, type: :controller do
   describe 'GET edit' do
     let!(:site) { create(:site) }
 

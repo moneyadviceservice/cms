@@ -6,7 +6,7 @@ describe Rack::RedirectMiddleware::Responder do
   end
 
   def root_app
-    -> (_env) { [200, {}, 'root app'] }
+    ->(_env) { [200, {}, 'root app'] }
   end
 
   describe '#call' do
@@ -31,8 +31,8 @@ describe Rack::RedirectMiddleware::Responder do
 
       it 'returns location header' do
         get '/api/en/foo.json'
-        expect(last_response.headers['Location']).
-          to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
+        expect(last_response.headers['Location'])
+          .to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
       end
     end
 
@@ -53,8 +53,8 @@ describe Rack::RedirectMiddleware::Responder do
 
         it 'returns location header' do
           get "/api/en/foo.#{extension}"
-          expect(last_response.headers['Location']).
-            to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
+          expect(last_response.headers['Location'])
+            .to eql(ENV['MAS_PUBLIC_WEBSITE_URL'] + redirect.destination)
         end
       end
     end

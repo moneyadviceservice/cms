@@ -20,17 +20,16 @@ describe PageContentRegister do
       [{ content: 'super awesome content' }]
     end
 
-
     context 'when page is an article' do
       let(:layout) { double(identifier: 'article') }
 
       it 'converts content to html as processed content' do
         expect(subject).to eq([
-          {
-            content: 'super awesome content',
-            processed_content: "<p>super awesome content</p>\n"
-          }
-        ])
+                                {
+                                  content: 'super awesome content',
+                                  processed_content: "<p>super awesome content</p>\n"
+                                }
+                              ])
       end
     end
 
@@ -102,7 +101,6 @@ describe PageContentRegister do
     let!(:client_groups) do
       create(:block, identifier: 'client_groups', content: 'Young People', blockable: page)
     end
-
 
     before(:each) do
       page.reload
@@ -182,7 +180,6 @@ describe PageContentRegister do
     end
 
     context 'multiple blocks (collections)' do
-
       context 'when no content in new_blocks_attributes' do
         let(:new_blocks_attributes) do
           [

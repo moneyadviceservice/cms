@@ -21,8 +21,8 @@ RSpec.describe DocumentProvider do
   let(:order_by_date) { nil }
 
   let(:insight_layout) { create :layout, identifier: 'insight' }
-  let(:news_layout)  { create :layout, identifier: 'news' }
-  let(:review_layout)  { create :layout, identifier: 'review' }
+  let(:news_layout) { create :layout, identifier: 'news' }
+  let(:review_layout) { create :layout, identifier: 'review' }
 
   describe 'no filtering' do
     let!(:insight_page) { create(:insight_page, site: site, layout: insight_layout) }

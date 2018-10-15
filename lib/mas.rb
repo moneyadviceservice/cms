@@ -5,4 +5,3 @@ module MAS
     )
   end
 end
-

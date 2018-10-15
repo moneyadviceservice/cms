@@ -16,6 +16,7 @@ module PagesHelper
 
   def page_form_component(condition, default: [], optional: [], display: true)
     return {} unless display
+
     { dough_component: components(condition, default, optional).join(' ') }
   end
 

@@ -234,5 +234,4 @@ RSpec.describe AlternatePageBlocksRegister do
       end
     end
   end
-
 end

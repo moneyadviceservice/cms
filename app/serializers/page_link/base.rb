@@ -8,6 +8,7 @@ module PageLink
 
     def navigation_link(adjacent_page)
       return {} if adjacent_page.nil?
+
       build_hash_for adjacent_page
     end
 
@@ -47,6 +48,7 @@ module PageLink
 
     def fetch_page(pages, page_index)
       return nil if page_index < 0 || page_index >= pages.length
+
       pages[page_index]
     end
   end

@@ -4,18 +4,18 @@ RSpec.describe PublishScheduledPagesTask do
   describe '.run' do
     let!(:publish_later_today) do
       create :page,
-        state: :scheduled,
-        scheduled_on: Time.now.end_of_day - 2.hours
+             state: :scheduled,
+             scheduled_on: Time.now.end_of_day - 2.hours
     end
     let!(:publish_now) do
       create :page,
-        state: :scheduled,
-        scheduled_on: Time.now
+             state: :scheduled,
+             scheduled_on: Time.now
     end
     let!(:publish_tomorrow) do
       create :page,
-        state: :scheduled,
-        scheduled_on: Time.now.end_of_day + 1.day
+             state: :scheduled,
+             scheduled_on: Time.now.end_of_day + 1.day
     end
 
     before(:each) do

@@ -11,8 +11,8 @@ class CategoriesController < Comfy::Admin::Cms::BaseController
     @categories = Comfy::Cms::Category.where(site_id: 1).reorder(:label)
     @english_pages, @welsh_pages =
       Comfy::Cms::Page
-        .in_category(@category.id)
-        .partition { |p| p.site == english_site }
+      .in_category(@category.id)
+      .partition { |p| p.site == english_site }
   end
 
   def update

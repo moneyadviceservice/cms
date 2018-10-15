@@ -1,5 +1,5 @@
 module API
-  class InvalidLocale < Exception;  end
+  class InvalidLocale < Exception; end
 
   class CategoryContentsController < ApplicationController
     skip_before_action :load_cms_page

@@ -8,7 +8,7 @@ class BlocksCollection
     blocks_to_be_deleted = @page.blocks.select do |block|
       deletable_blocks.detect do |d_block|
         block.identifier == d_block.keys.first &&
-        block.content == d_block.values.first
+          block.content == d_block.values.first
       end
     end
 
@@ -41,9 +41,9 @@ class BlocksCollection
   end
 
   def current_collection_blocks
-    @current_collection_blocks ||= page.blocks.reject do|b|
-      @non_collection_blocks.map{|b| b[:identifier]}.include?(b.identifier)
-    end.map{|b| {b.identifier => b.content}}
+    @current_collection_blocks ||= page.blocks.reject do |b|
+      @non_collection_blocks.map { |b| b[:identifier] }.include?(b.identifier)
+    end.map { |b| { b.identifier => b.content } }
   end
 
   def find_collections

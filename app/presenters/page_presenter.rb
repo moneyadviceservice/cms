@@ -25,7 +25,7 @@ class PagePresenter < Presenter
   end
 
   def language_label_tag(language)
-    mirror  = PageMirror.new(object).mirror(language)
+    mirror = PageMirror.new(object).mirror(language)
     label = language.to_s.upcase
     label = "#{label} #{missing_language_icon_tag}" if mirror.blank?
 

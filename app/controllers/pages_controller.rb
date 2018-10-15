@@ -26,10 +26,10 @@ class PagesController < Comfy::Admin::Cms::PagesController
 
   def edit
     @blocks_attributes = if params[:alternate]
-      AlternatePageBlocksRetriever.new(@page).blocks_attributes
-    else
-      PageBlocksRetriever.new(@page).blocks_attributes
-    end
+                           AlternatePageBlocksRetriever.new(@page).blocks_attributes
+                         else
+                           PageBlocksRetriever.new(@page).blocks_attributes
+                         end
   end
 
   def update

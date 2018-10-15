@@ -1,5 +1,5 @@
 RSpec.describe Prismic::Migrator::Evaluation do
-  subject(:evaluation) { described_class.new(document)  }
+  subject(:evaluation) { described_class.new(document) }
 
   describe '#migrate' do
     subject(:migrated_page) { evaluation.migrate }

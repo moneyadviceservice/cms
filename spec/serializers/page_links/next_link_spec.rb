@@ -1,5 +1,4 @@
 RSpec.describe PageLink::NextLink do
-
   describe '#as_json' do
     let(:english_site) { create :site }
     let(:welsh_site) { create :site, :welsh }

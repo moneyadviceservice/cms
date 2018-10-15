@@ -59,14 +59,14 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
   def page_rich_text(tag, index)
     @template.render(partial: 'comfy/admin/cms/pages/editor', object: tag.block,
-        locals: {
-          index: index,
-          fieldname: field_name_for(tag)
-        })
+                     locals: {
+                       index: index,
+                       fieldname: field_name_for(tag)
+                     })
   end
 
   def page_text(tag, index)
-    default_tag_field(tag, index, :text_area_tag, :data => {'cms-cm-mode' => 'text/html'})
+    default_tag_field(tag, index, :text_area_tag, :data => { 'cms-cm-mode' => 'text/html' })
   end
 
   def page_string(tag, index)
@@ -87,7 +87,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
   end
 
   def field_name_for(tag)
-    tag.blockable.class.name.demodulize.underscore.gsub(/\//,'_')
+    tag.blockable.class.name.demodulize.underscore.gsub(/\//, '_')
   end
 
   # This is overriding comfy with an almost identical method, just that the
@@ -103,7 +103,7 @@ class Cms::FormBuilder < ActionView::Helpers::FormBuilder
 
     case method
     when :file_field_tag
-      input_params = {:id => nil, value: current_value}
+      input_params = { :id => nil, value: current_value }
       name = "blocks_attributes[#{index}][content]"
 
       if options.delete(:multiple)
