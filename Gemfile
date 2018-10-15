@@ -1,7 +1,7 @@
 source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
 
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.9.0'
 gem 'algoliasearch'
 gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails'
@@ -10,8 +10,9 @@ gem 'bowndler', git: 'git@github.com:moneyadviceservice/bowndler'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.0.1.87.87', source: 'http://gems.dev.mas.local'
-gem 'devise'
+# gem 'comfortable_mexican_sofa', '2.0.1.87.87', source: 'http://gems.dev.mas.local'
+gem 'comfortable_mexican_sofa', branch: 'update-rails-and-gems', git: 'https://github.com/moneyadviceservice/comfortable-mexican-sofa.git'
+gem 'devise', '~> 3.5.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
 gem 'fog'
@@ -27,12 +28,14 @@ gem 'mailjet'
 gem 'mastalk', '0.9.1'
 gem 'mysql2', '~> 0.3.18'
 gem 'newrelic_rpm'
+gem 'nokogiri', '~>1.6.0'
 gem 'oauth2', '1.0.0'
 gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
 gem 'preamble', '0.0.3'
-gem 'rails', '4.1.16'
+gem 'rails', '4.2.10'
 gem 'remotipart', '~> 1.2'
+gem 'responders', '~> 2.0'
 gem 'reverse_markdown'
 gem 'sass-rails', '~> 4.0.3'
 gem 'terminal-table'
@@ -46,6 +49,7 @@ group :development do
   gem 'spring'
   gem 'spring-commands-cucumber'
   gem 'spring-commands-rspec'
+  gem 'web-console', '~> 2.0'
 end
 
 group :test do
@@ -70,7 +74,7 @@ group :test, :development do
   gem 'faker'
   gem 'launchy'
   gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.0'
+  gem 'rspec-rails', '~> 3.8.0'
   gem 'rubocop', '~> 0.59', require: false
   gem 'ruby-prof', require: false
   gem 'valid_attribute', require: false
