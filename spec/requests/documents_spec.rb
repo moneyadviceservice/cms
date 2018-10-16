@@ -15,7 +15,7 @@ RSpec.describe 'documents endpoint', type: :request do
       let(:blocks) { [{ identifier: 'bar', value: 'bar' }] }
 
       it 'returns success' do
-        get 'api/en/documents', { blocks: blocks }, headers
+        get '/api/en/documents', { blocks: blocks }, headers
 
         expect(response.status).to eq(200)
       end
@@ -27,7 +27,7 @@ RSpec.describe 'documents endpoint', type: :request do
       end
 
       it 'returns bad request' do
-        get 'api/en/documents', { blocks: blocks }, headers
+        get '/api/en/documents', { blocks: blocks }, headers
 
         expect(response.status).to eq(400)
       end
