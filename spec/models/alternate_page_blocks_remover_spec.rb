@@ -33,7 +33,7 @@ RSpec.describe AlternatePageBlocksRemover do
       it 'raises an exception' do
         expect {
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRemover::Error)
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe AlternatePageBlocksRemover do
       it 'raises an exception' do
         expect {
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRemover::Error)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe AlternatePageBlocksRemover do
       it 'raises an exception' do
         expect {
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRemover::Error)
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe AlternatePageBlocksRemover do
       it 'raises an exception' do
         expect {
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRemover::Error)
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe AlternatePageBlocksRemover do
       it 'raises an exception' do
         expect {
           described_class.new(page, remover: remover).remove!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRemover::Error)
       end
     end
   end
