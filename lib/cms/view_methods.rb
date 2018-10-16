@@ -3,6 +3,7 @@ module Cms
     module Helpers
       def highlighted_terms(content, term = '')
         return content if term.blank?
+
         highlight_term(content, term).html_safe
       end
 

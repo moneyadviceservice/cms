@@ -11,7 +11,7 @@ RSpec.describe PagesController do
 
   describe 'POST create' do
     let(:label) { Faker::Lorem.sentence }
-    let(:slug) { Faker::Internet.slug(label, '-')}
+    let(:slug) { Faker::Internet.slug(label, '-') }
     let(:content) { Faker::Lorem.sentence }
 
     let(:params) do

@@ -53,7 +53,7 @@ class Comfy::Cms::Category < ActiveRecord::Base
 
   def find_children(legacy: false)
     column_name = legacy ? :legacy_parent_id : :parent_id
-    self.class.where(column_name  => id).reorder(:ordinal)
+    self.class.where(column_name => id).reorder(:ordinal)
   end
 
   private

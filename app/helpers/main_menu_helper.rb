@@ -17,6 +17,7 @@ module MainMenuHelper
 
   def admin_links(site)
     return [] unless current_user.admin?
+
     [
       MenuLink.new(
         name:     t('comfy.admin.cms.base.admin'),

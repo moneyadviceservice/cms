@@ -15,6 +15,7 @@ class PageContentRegister
   # so this is just a custom reader to handle that.
   def new_blocks_attributes
     return [] if @new_blocks_attributes.empty?
+
     blocks_attributes = if @new_blocks_attributes.is_a?(Hash)
                           @new_blocks_attributes.values
                         else
@@ -71,7 +72,7 @@ class PageContentRegister
   end
 
   def home_page?
-     layout_identifier == 'home_page'
+    layout_identifier == 'home_page'
   end
 
   def footer?

@@ -12,9 +12,9 @@ describe Redirect do
       described_class.new(valid_attributes)
     end
 
-    it { is_expected.to validate_presence_of(:source)  }
-    it { is_expected.to validate_presence_of(:destination)  }
-    it { is_expected.to validate_presence_of(:redirect_type)  }
+    it { is_expected.to validate_presence_of(:source) }
+    it { is_expected.to validate_presence_of(:destination) }
+    it { is_expected.to validate_presence_of(:redirect_type) }
 
     it { is_expected.to validate_uniqueness_of(:source).scoped_to(:active) }
 

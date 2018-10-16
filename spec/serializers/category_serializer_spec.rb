@@ -8,8 +8,7 @@ describe CategorySerializer do
           title_cy: 'cy_title',
           description_en: 'description_en',
           description_cy: 'description_cy',
-          third_level_navigation: true
-         )
+          third_level_navigation: true)
   end
 
   subject { described_class.new(category, scope: scope) }

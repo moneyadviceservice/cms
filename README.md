@@ -109,6 +109,29 @@ Or for the direct command:
 
 Use `--single-run` if you only want it to run once.
 
+## Hooks
+
+This project uses git hooks to ensure every commit follows best practices.
+The test script runs the code lints and the tests.
+
+In order to use the hooks just run this commands:
+
+```sh
+  cp hooks/pre-push .git/hooks/pre-push
+  chmod u+x .git/hooks/pre-push
+```
+
+If using the hook, you will have to set the `APP_NAME` ENV variable:
+```sh
+APP_NAME=MAS git push origin feature/my-branch
+```
+
+Note: *It is not recommended but if you want to ignore the hook, you can run*:
+
+```
+git push --no-verify origin <your_branch>
+```
+
 ## Using for front-end development
 
 When developing [the front end](https://github.com/moneyadviceservice/frontend) it is usual to point it to a locally running instance of this CMS. In this case it is useful to clone the QA database to your local database.

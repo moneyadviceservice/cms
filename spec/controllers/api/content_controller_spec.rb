@@ -201,7 +201,7 @@ RSpec.describe API::ContentController, type: :request do
 
     context 'when existing page' do
       let(:article_url) { '/en/articles/borrow' }
-      let(:translations) { [{ 'label' => 'Benthyciad', 'link' => '/cy/articles/benthyciad', 'language' => 'cy'  }] }
+      let(:translations) { [{ 'label' => 'Benthyciad', 'link' => '/cy/articles/benthyciad', 'language' => 'cy' }] }
 
       it 'renders article resource' do
         expect(response_body).to include(label: 'Borrow', slug: 'borrow')

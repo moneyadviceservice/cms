@@ -54,6 +54,7 @@ class UsersController < Comfy::Admin::Cms::BaseController
 
   def check_user
     return if current_user.admin?
+
     redirect_to :root unless current_user.to_param == params[:id]
   end
 end

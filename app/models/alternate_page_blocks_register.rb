@@ -42,5 +42,4 @@ class AlternatePageBlocksRegister < PageContentRegister
       raise Error.new('Only pages in a state of published_being_edited, or scheduled with an active revision and with scheduled_on in the future can have alternate blocks')
     end
   end
-
 end

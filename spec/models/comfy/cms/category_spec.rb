@@ -69,7 +69,6 @@ RSpec.describe Comfy::Cms::Category do
     let(:clump) { create(:clump) }
 
     context 'assigning a new clump' do
-
       it 'associates the clump (through a clumping)' do
         subject.clump_id = clump.id
         expect(subject.reload.clump).to eq(clump)

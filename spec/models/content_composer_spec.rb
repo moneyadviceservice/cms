@@ -35,11 +35,10 @@ RSpec.describe ContentComposer do
       end
     end
 
-   describe '#post_processors' do
-     it 'returns TableWrapper, TableCaptioner, ExternalLink and InternalLink' do
-       expect(subject.post_processors).to match_array [TableWrapper, TableCaptioner, ExternalLink, InternalLink]
-     end
-   end
-
+    describe '#post_processors' do
+      it 'returns TableWrapper, TableCaptioner, ExternalLink and InternalLink' do
+        expect(subject.post_processors).to match_array [TableWrapper, TableCaptioner, ExternalLink, InternalLink]
+      end
+    end
   end
 end

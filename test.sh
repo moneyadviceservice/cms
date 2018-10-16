@@ -28,4 +28,5 @@ CI_EXECUTOR_NUMBER=${EXECUTOR_NUMBER-0}
 
 bundle exec rspec spec --format html --out tmp/spec.html --format RspecJunitFormatter --out tmp/spec.xml --format progress --profile --deprecation-out log/rspec_deprecations.txt
 bundle exec cucumber
+bundle exec rubocop
 ./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js --single-run

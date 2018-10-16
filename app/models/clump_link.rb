@@ -1,5 +1,4 @@
 class ClumpLink < ActiveRecord::Base
-
   belongs_to :clump
 
   validates :text_en, presence: true, unless: :empty?
@@ -15,5 +14,4 @@ class ClumpLink < ActiveRecord::Base
   def complete?
     [text_en, text_cy, url_en, url_cy, style].all?(&:present?)
   end
-
 end

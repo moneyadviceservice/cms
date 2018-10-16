@@ -5,7 +5,6 @@
 # - update pages in published_being_edited state
 # - update pages in scheduled state that are not live yet (published_on is in the future)
 class PermissionCheck
-
   attr_accessor :user, :page, :action, :event
 
   FORBIDDEN_ACTIONS = %w(destroy)
@@ -66,5 +65,4 @@ class PermissionCheck
   def updating_is_permitted?
     ALLOWED_EDITOR_UPDATE_STATES.include?(page.state) && (!page_scheduled? || !scheduled_page_is_live?)
   end
-
 end

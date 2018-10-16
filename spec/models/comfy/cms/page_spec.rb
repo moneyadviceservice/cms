@@ -145,7 +145,6 @@ RSpec.describe Comfy::Cms::Page do
       it 'order by most matching tags' do
         expect(animals_article.related_links(2)).to eq([not_suppressed_match_article])
       end
-
     end
 
     context 'page_view ordering matches' do
@@ -198,7 +197,6 @@ RSpec.describe Comfy::Cms::Page do
         expect(animals_article.related_links(1)).to eq([related_popular_article])
       end
     end
-
   end
 
   describe 'all_english_articles' do
@@ -225,7 +223,6 @@ RSpec.describe Comfy::Cms::Page do
 
       expect(Comfy::Cms::Page.all_english_articles.all).to eq([article_page])
     end
-
   end
 
   describe '#update_page_views' do
@@ -270,7 +267,6 @@ RSpec.describe Comfy::Cms::Page do
   end
 
   describe '#most_popular scope' do
-
     it 'has the three most popular articles' do
       create :page, page_views: 100, position: 1
       create :page, page_views: 5,   position: 2

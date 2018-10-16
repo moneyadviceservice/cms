@@ -13,9 +13,7 @@ module Prismic
 
       fragments.each_with_index do |fragment, index|
         if fragment.field_type.in?(LIST_ITEMS)
-          if index.zero? || !fragments[index - 1].field_type.in?(LIST_ITEMS)
-            ordered_fragments << map_html_list(fragments, fragment, index)
-          end
+          ordered_fragments << map_html_list(fragments, fragment, index) if index.zero? || !fragments[index - 1].field_type.in?(LIST_ITEMS)
         else
           ordered_fragments << fragment
         end

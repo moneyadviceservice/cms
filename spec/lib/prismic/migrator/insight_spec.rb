@@ -1,5 +1,5 @@
 RSpec.describe Prismic::Migrator::Insight do
-  subject(:insight) { described_class.new(document)  }
+  subject(:insight) { described_class.new(document) }
 
   describe '#migrate' do
     subject(:migrated_page) { insight.migrate }
@@ -62,7 +62,6 @@ RSpec.describe Prismic::Migrator::Insight do
         expect(blocks[8].processed_content).to eq(
           "<p>Over-indebted people</p>\n"
         )
-
       end
     end
 

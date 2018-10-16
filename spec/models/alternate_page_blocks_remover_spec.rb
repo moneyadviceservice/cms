@@ -70,8 +70,7 @@ RSpec.describe AlternatePageBlocksRemover do
                      processed_content: "<p>some content</p>\n"
                    }
                  ]
-               }
-              )
+               })
       end
 
       before do
@@ -117,5 +116,4 @@ RSpec.describe AlternatePageBlocksRemover do
       end
     end
   end
-
 end

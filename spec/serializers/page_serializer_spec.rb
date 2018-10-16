@@ -47,7 +47,6 @@ describe PageSerializer do
           path: 'http://a.com'
         )
       end
-
     end
 
     context 'related links' do
@@ -57,9 +56,9 @@ describe PageSerializer do
 
       before do
         allow(article)
-        .to receive(:related_links)
-        .with(3)
-        .and_return(pages)
+          .to receive(:related_links)
+          .with(3)
+          .and_return(pages)
       end
 
       context 'when has most related articles in english' do
@@ -82,9 +81,9 @@ describe PageSerializer do
 
         it 'returns english related links' do
           expect(related_links).to eq([
-            { title: 'First Article', path: '/en/articles/first-article' },
-            { title: 'Second Article', path: '/en/articles/second-article' }
-          ])
+                                        { title: 'First Article', path: '/en/articles/first-article' },
+                                        { title: 'Second Article', path: '/en/articles/second-article' }
+                                      ])
         end
       end
 
@@ -116,8 +115,8 @@ describe PageSerializer do
 
         it 'returns welsh related links' do
           expect(related_links).to eq([
-            { title: 'Welsh Article', path: '/cy/articles/welsh-article' }
-          ])
+                                        { title: 'Welsh Article', path: '/cy/articles/welsh-article' }
+                                      ])
         end
       end
     end
@@ -129,9 +128,9 @@ describe PageSerializer do
 
       before do
         allow(Comfy::Cms::Page)
-        .to receive(:most_popular)
-        .with(3)
-        .and_return(pages)
+          .to receive(:most_popular)
+          .with(3)
+          .and_return(pages)
       end
 
       context 'when has three most popular articles in english' do
@@ -154,9 +153,9 @@ describe PageSerializer do
 
         it 'returns english popular links' do
           expect(popular_links).to eq([
-            { title: 'First Article', path: '/en/articles/first-article' },
-            { title: 'Second Article', path: '/en/articles/second-article' }
-          ])
+                                        { title: 'First Article', path: '/en/articles/first-article' },
+                                        { title: 'Second Article', path: '/en/articles/second-article' }
+                                      ])
         end
       end
 
@@ -188,8 +187,8 @@ describe PageSerializer do
 
         it 'returns popular articles in welsh' do
           expect(popular_links).to eq([
-            { title: 'First Article in Welsh', path: '/cy/articles/first-article-in-welsh' }
-          ])
+                                        { title: 'First Article in Welsh', path: '/cy/articles/first-article-in-welsh' }
+                                      ])
         end
       end
     end
@@ -273,14 +272,13 @@ describe PageSerializer do
         end
       end
     end
-
   end
 
   describe '#tags' do
     context 'when article has keywords' do
       before { allow(article).to receive(:keywords).and_return(tags) }
 
-      let(:tags){ [build(:tag, value: 'mobile_payments')] }
+      let(:tags) { [build(:tag, value: 'mobile_payments')] }
 
       it 'returns array of keyword values' do
         expect(subject.tags).to eql(%w[mobile_payments])
