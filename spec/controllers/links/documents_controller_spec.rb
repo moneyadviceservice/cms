@@ -4,14 +4,13 @@ RSpec.describe Links::DocumentsController do
   end
 
   describe 'GET /links/documents' do
-    before do
-      get :index, site_id: site.id
-    end
+    subject(:get_index) { get :index, site_id: site.id }
 
     context 'when site has no files' do
       let!(:site) { create(:site) }
 
       it 'assigns empty files' do
+        get_index
         expect(assigns[:files]).to eq([])
       end
     end
@@ -20,6 +19,7 @@ RSpec.describe Links::DocumentsController do
       let!(:site) { create(:site, :with_files) }
 
       it 'assigns empty files' do
+        get_index
         expect(assigns[:files]).to eq([])
       end
     end
@@ -27,8 +27,8 @@ RSpec.describe Links::DocumentsController do
     context 'when site has only document files' do
       let!(:site) { create(:site, :with_document_files) }
 
-      it 'assigns document files' do
-        expect(assigns[:files]).to match_array(site.files)
+      include_examples 'controller assigns presented site files' do
+        let(:sites) { [site] }
       end
     end
   end
