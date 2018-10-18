@@ -49,7 +49,7 @@ RSpec.describe PagePresenter do
       let(:language) { :en }
 
       it 'returns checked input' do
-        expect(language_input_tag).to include('input checked="checked"')
+        expect(language_input_tag).to include('input', 'checked="checked"')
       end
 
       it 'returns the current path in the data attribute on input' do
