@@ -142,10 +142,8 @@ RSpec.describe API::DocumentsController, type: :request do
         it 'returns pages with matching tags' do
           expect(documents.size).to be(2)
           expect(documents).to include(
-            hash_including(
-              'label' => 'Page with tag',
-              'label' => 'Page with another tag'
-            )
+            hash_including('label' => 'Page with tag'),
+            hash_including('label' => 'Page with another tag')
           )
         end
       end
