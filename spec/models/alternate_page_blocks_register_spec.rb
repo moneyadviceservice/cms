@@ -43,7 +43,7 @@ RSpec.describe AlternatePageBlocksRegister do
       it 'raises an exception' do
         expect {
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRegister::Error)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe AlternatePageBlocksRegister do
       it 'raises an exception' do
         expect {
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRegister::Error)
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe AlternatePageBlocksRegister do
       it 'raises an exception' do
         expect {
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRegister::Error)
       end
     end
 
@@ -174,7 +174,7 @@ RSpec.describe AlternatePageBlocksRegister do
           it 'raises an exception' do
             expect {
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            }.to raise_exception(AlternatePageBlocksRegister::Error)
           end
         end
 
@@ -184,7 +184,7 @@ RSpec.describe AlternatePageBlocksRegister do
           it 'raises an exception' do
             expect {
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            }.to raise_exception(AlternatePageBlocksRegister::Error)
           end
         end
       end
@@ -196,7 +196,7 @@ RSpec.describe AlternatePageBlocksRegister do
           it 'raises an exception' do
             expect {
               described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-            }.to raise_exception
+            }.to raise_exception(AlternatePageBlocksRegister::Error)
           end
         end
 
@@ -230,7 +230,7 @@ RSpec.describe AlternatePageBlocksRegister do
       it 'raises an exception' do
         expect {
           described_class.new(page, author: author, new_blocks_attributes: new_blocks_attributes).save!
-        }.to raise_exception
+        }.to raise_exception(AlternatePageBlocksRegister::Error)
       end
     end
   end
