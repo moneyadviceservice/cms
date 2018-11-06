@@ -1,5 +1,3 @@
-# coding: utf-8
-
 # This class wraps logic for updating the "current" blocks_attributes of a page, taking into account
 # situations where it might have an "alternate" version.
 #

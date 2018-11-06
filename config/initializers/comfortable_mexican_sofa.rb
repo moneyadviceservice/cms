@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 ComfortableMexicanSofa.configure do |config|
   # TODO Change this stuff to use config_for gem unless updating Rails to 4.2
 

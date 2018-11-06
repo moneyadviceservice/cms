@@ -1,5 +1,3 @@
-# coding: utf-8
-
 describe InternalLink do
   let(:locale) { 'en' }
   subject { InternalLink.new(locale, source).call }
