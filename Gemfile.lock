@@ -1,11 +1,4 @@
 GIT
-  remote: git@github.com:moneyadviceservice/bowndler
-  revision: f836a295f0eac8ba02a6dc4733d000a7f1fc8a00
-  specs:
-    bowndler (1.0.2)
-      thor
-
-GIT
   remote: https://github.com/moneyadviceservice/dough.git
   revision: cf4e4cbd5ee86ef49b2db16fc44dde1ed9f2c0f4
   specs:
@@ -114,6 +107,8 @@ GEM
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
     bootstrap_form (2.1.1)
+    bowndler (1.0.2)
+      thor
     brakeman (4.2.0)
     bugsnag (2.8.12)
       json (~> 1.7, >= 1.7.7)
@@ -621,7 +616,7 @@ DEPENDENCIES
   azure (= 0.7.7)
   better_errors
   binding_of_caller
-  bowndler!
+  bowndler (~> 1.0)
   brakeman
   bugsnag
   capybara (= 2.4.1)
