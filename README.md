@@ -5,11 +5,12 @@ The MAS CMS.
 ## Prerequisites
 
 - Ruby/Rails
-- ImageMagic
+- ImageMagick
 - MySQL
 - Node.js (for Bower)
 - Bower (Install via NPM)
 - Access to the MAS network (so that you can bundle install the private gems)
+- PhantomJS
 
 ## Installation
 
