@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   apipie
-  
+
   devise_for :users, class_name: 'Comfy::Cms::User'
 
   resources :word_documents
@@ -61,6 +61,7 @@ Rails.application.routes.draw do
   namespace :api do
     scope ":locale", locale: /en|cy/ do
       resources :documents, only: :index
+      resources :clumps, only: :index
     end
 
     get '/:locale/latest_news' => 'documents#index'
