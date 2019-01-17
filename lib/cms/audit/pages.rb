@@ -27,33 +27,35 @@ module Cms
           )
       end
 
-      def self.generate_report
-        new(all).generate
+      def self.generate_report(file: '/tmp/audit.csv')
+        new(all).generate(file)
       end
 
       def initialize(pages)
-        @pages = pages
+        # @pages = pages
+        @pages = pages.map { |page| PageSerializer.new(page) }
       end
 
-      def generate
-        CSV.open("audit-#{Rails.env}.csv", 'wb') do |csv|
+      def generate(file)
+        CSV.open(file, 'wb') do |csv|
           csv << HEADERS
           @pages.map do |page|
+            page_obj = page.object
             csv << [
-              page.label,
-              page.full_path,
-              page.layout_identifier,
-              page.category_names,
-              page.tags,
-              page.meta_description,
-              page.meta_title,
-              page.meta_keywords,
-              page.suppress_from_links_recirculation,
-              page.regulated,
-              page.supports_amp,
-              I18n.l(page.updated_at, format: :date_with_time),
-              ActivityLog.fetch(from: page).first.try(:author),
-              page.state
+              page_obj.label,
+              page_obj.full_path,
+              page_obj.layout_identifier,
+              page_obj.category_names,
+              page_obj.keywords.map { |keyword| keyword.value },
+              page_obj.meta_description,
+              page_obj.meta_title,
+              page_obj.meta_keywords,
+              page_obj.suppress_from_links_recirculation,
+              page_obj.regulated,
+              page_obj.supports_amp,
+              I18n.l(page_obj.updated_at, format: :date_with_time),
+              ActivityLog.fetch(from: page_obj).first.try(:author),
+              page_obj.state
             ]
           end
         end

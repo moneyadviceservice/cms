@@ -24,6 +24,7 @@ FactoryGirl.define do
     end
 
     factory :page_with_tag do
+      layout { create :layout, identifier: 'article' }
       after(:create) do |page, evaluator|
         page.keywords << create(:tag, value: evaluator.tag_name)
         page.reload
@@ -54,7 +55,10 @@ FactoryGirl.define do
 
     factory :article_with_metadata do
       site { create :site, label: 'en' }
-      layout { create :layout, identifier: 'article' }
+      layout { create :layout, identifier: 'video' }
+      label 'Video Page Added'
+      slug 'video-page-added'
+      full_path '/video-page-added'
       meta_description 'Just a meta description'
       meta_title 'Meta title'
       meta_keywords 'Csv, test'
