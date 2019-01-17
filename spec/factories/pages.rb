@@ -52,6 +52,14 @@ FactoryGirl.define do
       layout { create :layout, identifier: 'article' }
     end
 
+    factory :article_with_metadata do
+      site { create :site, label: 'en' }
+      layout { create :layout, identifier: 'article' }
+      meta_description 'Just a meta description'
+      meta_title 'Meta title'
+      meta_keywords 'Csv, test'
+    end
+
     factory :homepage do
       site { create :site, identifier: 'test-homepage' }
       after(:create) do |page|
