@@ -16,8 +16,11 @@ module Cms
         'Supports AMP',
         'Last edited',
         'Last edited by',
-        'Status'
+        'Status',
+        'Language'
       ].freeze
+      DEFAULT_FILE = '/tmp/audit.csv'.freeze
+      ENCODING = 'ISO-8859-1'.freeze
 
       def self.all
         Comfy::Cms::Page
@@ -27,7 +30,7 @@ module Cms
           )
       end
 
-      def self.generate_report(file: '/tmp/audit.csv')
+      def self.generate_report(file: DEFAULT_FILE)
         new(all).generate(file)
       end
 
@@ -36,7 +39,7 @@ module Cms
       end
 
       def generate(file)
-        CSV.open(file, 'wb', encoding: 'ISO-8859-1') do |csv|
+        CSV.open(file, 'wb', encoding: ENCODING) do |csv|
           csv << HEADERS
           @pages.map do |page|
             page_obj = page.object
@@ -54,7 +57,8 @@ module Cms
               page_obj.supports_amp,
               I18n.l(page_obj.updated_at, format: :date_with_time),
               ActivityLog.fetch(from: page_obj).first.try(:author),
-              page_obj.state
+              page_obj.state,
+              page_obj.site.label
             ]
           end
         end

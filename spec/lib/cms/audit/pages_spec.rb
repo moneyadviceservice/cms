@@ -2,37 +2,32 @@ describe Cms::Audit::Pages do
   let(:role) { :user }
   let(:current_user) { create(:user, role: Comfy::Cms::User.roles[role]) }
   let(:state) { 'published' }
-  let(:site) { create(:site) }
-  let(:page_with_tags) { create(:page_with_multiple_tags, site: site, state: state) }
-  let(:page_with_meta) { create(:article_with_metadata, site: site, state: state) }
-  let!(:revision) do
+  let(:en_site) { create(:site) }
+  let(:cy_site) { create(:site, label: 'cy') }
+  let(:page_with_tags) { create(:page_with_multiple_tags, site: en_site, state: state) }
+  let(:page_with_meta) { create(:article_with_metadata, site: cy_site, state: state) }
+  let(:category) { create(:category, site: en_site) }
+
+  before do
+    Timecop.freeze(Time.zone.local(1990))
     create(
       :revision_with_event,
       record: page_with_tags,
       user_id: current_user.id,
       user_name: current_user.name
     )
-  end
-  let!(:revision_2) do
     create(
       :revision_with_event,
       record: page_with_meta,
       user_id: current_user.id,
       user_name: current_user.name
     )
-  end
-  let!(:category) { create(:category, site: site) }
-  let!(:categorization) do
     create(
       :categorization,
       categorized_id: page_with_tags.id,
       category: category,
       categorized_type: 'Comfy::Cms::Page'
     )
-  end
-
-  before do
-    Timecop.freeze(Time.zone.local(1990))
   end
 
   describe 'self.generate' do
@@ -44,15 +39,13 @@ describe Cms::Audit::Pages do
       expect(subject).to eq 2
     end
 
-    context 'csv file content' do
-      before do
-        subject
+    describe 'csv file content' do
+      subject(:parse_csv) do
+        described_class.generate_report(file: temp_file)
         @parsed_csv = CSV.read(temp_file)
       end
 
-      after(:all) do
-        Timecop.return
-      end
+      after(:all) { Timecop.return }
 
       let(:expected_page_1) do
         [
@@ -69,7 +62,8 @@ describe Cms::Audit::Pages do
           'true',
           '01/01/1990, 00:00',
           current_user.name,
-          state
+          state,
+          'en'
         ]
       end
 
@@ -88,20 +82,21 @@ describe Cms::Audit::Pages do
           'true',
           '01/01/1990, 00:00',
           current_user.name,
-          state
+          state,
+          'cy'
         ]
       end
 
       it 'creates a file with correct headers' do
-        expect(@parsed_csv.first).to eq Cms::Audit::Pages::HEADERS
+        expect(parse_csv.first).to eq Cms::Audit::Pages::HEADERS
       end
 
       it 'populates the fields from the queried pages' do
-        expect(@parsed_csv.second).to eq expected_page_1
+        expect(parse_csv.second).to eq expected_page_1
       end
 
       it 'populates all fields if present' do
-        expect(@parsed_csv.last).to eq expected_page_2
+        expect(parse_csv.last).to eq expected_page_2
       end
     end
   end
