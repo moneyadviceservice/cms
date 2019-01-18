@@ -1,10 +1,10 @@
 describe Cms::Audit::Pages do
-  let!(:role) { :user }
-  let!(:current_user) { create(:user, role: Comfy::Cms::User.roles[role]) }
-  let!(:state) { 'published' }
-  let!(:site) { create(:site) }
-  let!(:page_with_tags) { create(:page_with_multiple_tags, site: site, state: state) }
-  let!(:page_with_meta) { create(:article_with_metadata, site: site, state: state) }
+  let(:role) { :user }
+  let(:current_user) { create(:user, role: Comfy::Cms::User.roles[role]) }
+  let(:state) { 'published' }
+  let(:site) { create(:site) }
+  let(:page_with_tags) { create(:page_with_multiple_tags, site: site, state: state) }
+  let(:page_with_meta) { create(:article_with_metadata, site: site, state: state) }
   let!(:revision) do
     create(
       :revision_with_event,
