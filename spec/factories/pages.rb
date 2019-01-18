@@ -33,7 +33,7 @@ FactoryGirl.define do
     end
 
     factory :page_with_multiple_tags do
-      site { create :site, identifier: 'test-documents' }
+      layout { create :layout, identifier: 'article' }
       label 'A page with two tags'
       after(:create) do |page, evaluator|
         page.keywords.concat [

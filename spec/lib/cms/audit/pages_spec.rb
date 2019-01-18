@@ -3,13 +3,12 @@ describe Cms::Audit::Pages do
   let!(:current_user) { create(:user, role: Comfy::Cms::User.roles[role]) }
   let!(:state) { 'published' }
   let!(:site) { create(:site) }
-  let!(:layout) { create(:layout) }
-  let!(:page_with_tag) { create(:page_with_tag, site: site, state: state) }
+  let!(:page_with_tags) { create(:page_with_multiple_tags, site: site, state: state) }
   let!(:page_with_meta) { create(:article_with_metadata, site: site, state: state) }
   let!(:revision) do
     create(
       :revision_with_event,
-      record: page_with_tag,
+      record: page_with_tags,
       user_id: current_user.id,
       user_name: current_user.name
     )
@@ -26,7 +25,7 @@ describe Cms::Audit::Pages do
   let!(:categorization) do
     create(
       :categorization,
-      categorized_id: page_with_tag.id,
+      categorized_id: page_with_tags.id,
       category: category,
       categorized_type: 'Comfy::Cms::Page'
     )
@@ -41,7 +40,7 @@ describe Cms::Audit::Pages do
 
     let(:temp_file) { Tempfile.new('temp_file.csv') }
 
-    it 'generates a csv file and returns the count' do
+    it 'generates a csv file and returns the count of pages added' do
       expect(subject).to eq 2
     end
 
@@ -57,11 +56,11 @@ describe Cms::Audit::Pages do
 
       let(:expected_page_1) do
         [
-          'Default Page',
+          'A page with two tags',
           '/',
           'article',
-          "[\"#{category.label}\"]",
-          '["tag"]',
+          category.label,
+          'tag-2,tag-3',
           nil,
           nil,
           nil,
@@ -79,8 +78,8 @@ describe Cms::Audit::Pages do
           'Video Page Added',
           '/video-page-added',
           'video',
-          '[]',
-          '[]',
+          '',
+          '',
           'Just a meta description',
           'Meta title',
           'Csv, test',

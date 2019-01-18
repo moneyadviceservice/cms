@@ -32,12 +32,11 @@ module Cms
       end
 
       def initialize(pages)
-        # @pages = pages
         @pages = pages.map { |page| PageSerializer.new(page) }
       end
 
       def generate(file)
-        CSV.open(file, 'wb') do |csv|
+        CSV.open(file, 'wb', encoding: 'ISO-8859-1') do |csv|
           csv << HEADERS
           @pages.map do |page|
             page_obj = page.object
@@ -45,8 +44,8 @@ module Cms
               page_obj.label,
               page_obj.full_path,
               page_obj.layout_identifier,
-              page_obj.category_names,
-              page_obj.keywords.map(&:value),
+              page_obj.category_names.join(','),
+              page_obj.keywords.map(&:value).join(','),
               page_obj.meta_description,
               page_obj.meta_title,
               page_obj.meta_keywords,
