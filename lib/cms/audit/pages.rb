@@ -1,7 +1,7 @@
 module Cms
   module Audit
     class Pages
-      PAGE_TYPES = ['article', 'corporate', 'video']
+      PAGE_TYPES = ['article', 'corporate', 'video'].freeze
       HEADERS = [
         'Page title',
         'URL',
@@ -17,7 +17,7 @@ module Cms
         'Last edited',
         'Last edited by',
         'Status'
-      ]
+      ].freeze
 
       def self.all
         Comfy::Cms::Page
@@ -46,7 +46,7 @@ module Cms
               page_obj.full_path,
               page_obj.layout_identifier,
               page_obj.category_names,
-              page_obj.keywords.map { |keyword| keyword.value },
+              page_obj.keywords.map(&:value),
               page_obj.meta_description,
               page_obj.meta_title,
               page_obj.meta_keywords,
@@ -64,4 +64,3 @@ module Cms
     end
   end
 end
-

@@ -7,20 +7,20 @@ describe Cms::Audit::Pages do
   let!(:page_with_tag) { create(:page_with_tag, site: site, state: state) }
   let!(:page_with_meta) { create(:article_with_metadata, site: site, state: state) }
   let!(:revision) do
-   create(
-     :revision_with_event,
-     record: page_with_tag,
-     user_id: current_user.id,
-     user_name: current_user.name
-  )
+    create(
+      :revision_with_event,
+      record: page_with_tag,
+      user_id: current_user.id,
+      user_name: current_user.name
+    )
   end
   let!(:revision_2) do
-   create(
-     :revision_with_event,
-     record: page_with_meta,
-     user_id: current_user.id,
-     user_name: current_user.name
-  )
+    create(
+      :revision_with_event,
+      record: page_with_meta,
+      user_id: current_user.id,
+      user_name: current_user.name
+    )
   end
   let!(:category) { create(:category, site: site) }
   let!(:categorization) do
@@ -33,13 +33,13 @@ describe Cms::Audit::Pages do
   end
 
   before do
-    Timecop.freeze(Time.local(1990))
+    Timecop.freeze(Time.zone.local(1990))
   end
 
   describe 'self.generate' do
     subject { described_class.generate_report(file: temp_file) }
 
-    let(:temp_file) { Tempfile.new('temp_file.csv')}
+    let(:temp_file) { Tempfile.new('temp_file.csv') }
 
     it 'generates a csv file and returns the count' do
       expect(subject).to eq 2

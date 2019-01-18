@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryGirl.define do
   factory :page, class: Comfy::Cms::Page do
     site
@@ -194,3 +195,4 @@ FactoryGirl.define do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength
