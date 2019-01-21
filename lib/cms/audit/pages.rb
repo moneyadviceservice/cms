@@ -20,7 +20,7 @@ module Cms
         'Language'
       ].freeze
       DEFAULT_FILE = '/tmp/audit.csv'.freeze
-      ENCODING = 'ISO-8859-1'.freeze
+      ENCODING = 'UTF-8'.freeze
 
       def self.all
         Comfy::Cms::Page
