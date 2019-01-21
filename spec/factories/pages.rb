@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryGirl.define do
   factory :page, class: Comfy::Cms::Page do
     site
@@ -24,6 +25,7 @@ FactoryGirl.define do
     end
 
     factory :page_with_tag do
+      layout { create :layout, identifier: 'article' }
       after(:create) do |page, evaluator|
         page.keywords << create(:tag, value: evaluator.tag_name)
         page.reload
@@ -31,7 +33,7 @@ FactoryGirl.define do
     end
 
     factory :page_with_multiple_tags do
-      site { create :site, identifier: 'test-documents' }
+      layout { create :layout, identifier: 'article' }
       label 'A page with two tags'
       after(:create) do |page, evaluator|
         page.keywords.concat [
@@ -50,6 +52,17 @@ FactoryGirl.define do
     factory :welsh_article do
       site { create :site, :welsh }
       layout { create :layout, identifier: 'article' }
+    end
+
+    factory :article_with_metadata do
+      site { create :site, label: 'en' }
+      layout { create :layout, identifier: 'video' }
+      label 'Video Page Added'
+      slug 'video-page-added'
+      full_path '/video-page-added'
+      meta_description 'Just a meta description'
+      meta_title 'Meta title'
+      meta_keywords 'Csv, test'
     end
 
     factory :homepage do
@@ -182,3 +195,4 @@ FactoryGirl.define do
     )
   end
 end
+# rubocop:enable Metrics/BlockLength

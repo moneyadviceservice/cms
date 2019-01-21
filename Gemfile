@@ -76,6 +76,7 @@ group :test, :development do
   gem 'rspec-rails', '~> 3.8.0'
   gem 'rubocop', '~> 0.59', require: false
   gem 'ruby-prof', require: false
+  gem 'timecop'
   gem 'valid_attribute', require: false
 end
 
