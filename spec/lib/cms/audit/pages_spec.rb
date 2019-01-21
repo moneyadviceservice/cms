@@ -87,6 +87,10 @@ describe Cms::Audit::Pages do
         ]
       end
 
+      it 'used UTF-8 encoding' do
+        expect(described_class::ENCODING).to eq 'UTF-8'
+      end
+
       it 'creates a file with correct headers' do
         expect(parse_csv.first).to eq Cms::Audit::Pages::HEADERS
       end
