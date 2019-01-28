@@ -224,6 +224,26 @@ RSpec.describe DocumentProvider do
         expect(subject.size).to eq(2)
         expect(subject).to match_array([page_with_filter_type1, page_with_filter_type2])
       end
+
+      context 'when there are documents with multiple topic blocks' do
+        let!(:page_with_2_filters) { create(:uk_study_about_work_and_stress, site: site, layout: insight_layout) }
+        let(:filters) do
+          [
+            {
+              identifier: 'topic',
+              value: 'Saving'
+            },
+            {
+              identifier: 'topic',
+              value: 'Pensions and retirement planning'
+            }
+          ]
+        end
+        it 'returns unique documents' do
+          expect(subject.size).to eq(1)
+          expect(subject).to match_array([page_with_2_filters])
+        end
+      end
     end
   end
 

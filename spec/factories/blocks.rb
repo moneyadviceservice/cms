@@ -54,6 +54,11 @@ FactoryGirl.define do
       content { 'Young adults (17 - 24)' }
     end
 
+    trait :pensions_and_retirement_topic do
+      identifier { 'topic' }
+      content { 'Pensions and retirement planning' }
+    end
+
     trait :saving_topic do
       identifier { 'topic' }
       content { 'Saving' }
