@@ -92,6 +92,7 @@ FactoryGirl.define do
         create :block, :debt_content, blockable: page
         create :block, :working_age_client_group, blockable: page
         create :block, :saving_topic, blockable: page
+        create :block, :pensions_and_retirement_topic, blockable: page
         create :block, :published_by_uk, blockable: page
       end
     end
