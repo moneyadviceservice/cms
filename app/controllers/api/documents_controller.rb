@@ -42,7 +42,7 @@ module API
 
     def meta_data
       {
-        results: documents.size,
+        results: documents.reload.size,
         page: page,
         per_page: per_page,
         total_pages: paginated_documents.total_pages

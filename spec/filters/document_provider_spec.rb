@@ -81,7 +81,7 @@ RSpec.describe DocumentProvider do
           let(:keyword) { 'Annuities' }
 
           it 'returns documents where the keyword is the document title' do
-            expect(subject.size).to eq(1)
+            expect(subject.length).to eq(1)
             expect(subject).to match_array([page_entitled_keyword])
           end
         end
@@ -92,7 +92,7 @@ RSpec.describe DocumentProvider do
           let(:keyword) { 'stress' }
 
           it 'returns documents with the keyword in the title' do
-            expect(subject.count).to eq(1)
+            expect(subject.length).to eq(1)
             expect(subject).to match_array([page_entitled_keyword])
           end
         end
@@ -103,7 +103,7 @@ RSpec.describe DocumentProvider do
           let(:keyword) { 'debt' }
 
           it 'returns documents with the keyword in the title' do
-            expect(subject.count).to eq(1)
+            expect(subject.length).to eq(1)
             expect(subject).to match_array([page_entitled_keyword])
           end
         end
@@ -221,7 +221,7 @@ RSpec.describe DocumentProvider do
       end
 
       it 'returns only documents that meet the filter type' do
-        expect(subject.size).to eq(2)
+        expect(subject.length).to eq(2)
         expect(subject).to match_array([page_with_filter_type1, page_with_filter_type2])
       end
 
@@ -240,7 +240,7 @@ RSpec.describe DocumentProvider do
         ]
       end
         it 'returns documents only once' do
-          expect(subject.size).to eq(1)
+          expect(subject.length).to eq(1)
           expect(subject).to match_array([page_with_2_filters])
         end
       end
@@ -257,7 +257,7 @@ RSpec.describe DocumentProvider do
       let(:filters) { [{ identifier: 'client_groups', value: 'Working age (18 - 65)' }] }
 
       it 'returns only documents that have the keyword and meet the filter type' do
-        expect(subject.size).to eq(1)
+        expect(subject.length).to eq(1)
         expect(subject).to match_array([page_with_filter_type_and_keyword])
       end
     end
@@ -277,7 +277,7 @@ RSpec.describe DocumentProvider do
       let(:filter3) { { identifier: 'countries_of_delivery', value: 'United Kingdom' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
-        expect(subject.size).to eq(1)
+        expect(subject.length).to eq(1)
         expect(subject).to match_array([page_with_3_filter_types_and_keyword])
       end
     end
@@ -295,7 +295,7 @@ RSpec.describe DocumentProvider do
       let(:filter2) { { identifier: 'client_groups', value: 'Young adults (17 - 24)' } }
 
       it 'returns documents that have the keyword and all the given filter types' do
-        expect(subject.size).to eq(2)
+        expect(subject.length).to eq(2)
         expect(subject).to match_array(
           [page_with_3_filter_types_and_keyword, page_with_a_diff_filter_and_keyword]
         )

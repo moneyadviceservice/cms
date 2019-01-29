@@ -67,7 +67,6 @@ class DocumentProvider
                    .where('comfy_cms_blocks.identifier' => filter)
                    .where('comfy_cms_blocks.content' => value)
     end
-
     @documents
   end
 
