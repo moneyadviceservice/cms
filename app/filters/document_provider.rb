@@ -60,13 +60,12 @@ class DocumentProvider
     filters_to_hash.each do |filter, value|
       @documents = Comfy::Cms::Page
                    .unscoped
-                   .select('pages.*').from("(#{@documents.to_sql}) as pages")
+                   .select('DISTINCT(pages.id), pages.*').from("(#{@documents.to_sql}) as pages")
                    .joins("INNER JOIN comfy_cms_blocks ON comfy_cms_blocks.blockable_id = pages.id AND
           comfy_cms_blocks.blockable_type = 'Comfy::Cms::Page'")
                    .where('comfy_cms_blocks.identifier' => filter)
                    .where('comfy_cms_blocks.content' => value)
     end
-
     @documents
   end
 
