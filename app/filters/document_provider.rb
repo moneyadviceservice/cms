@@ -23,6 +23,7 @@ class DocumentProvider
     filter_by_tag
     filter_documents
     order_documents
+    @documents.load
   end
 
   private
@@ -60,7 +61,7 @@ class DocumentProvider
     filters_to_hash.each do |filter, value|
       @documents = Comfy::Cms::Page
                    .unscoped
-                   .select('pages.*').from("(#{@documents.to_sql}) as pages")
+                   .select('DISTINCT pages.*').from("(#{@documents.to_sql}) as pages")
                    .joins("INNER JOIN comfy_cms_blocks ON comfy_cms_blocks.blockable_id = pages.id AND
           comfy_cms_blocks.blockable_type = 'Comfy::Cms::Page'")
                    .where('comfy_cms_blocks.identifier' => filter)
@@ -82,7 +83,7 @@ class DocumentProvider
 
   def order_documents
     if order_by_date == 'true'
-      @documents.joins(:blocks)
+      @documents = @documents.joins(:blocks)
                 .where("comfy_cms_blocks.identifier = 'order_by_date'")
                 .select("comfy_cms_pages.*, STR_TO_DATE(comfy_cms_blocks.content, '%Y-%m-%d') AS order_by_date")
                 .reorder('order_by_date DESC')
