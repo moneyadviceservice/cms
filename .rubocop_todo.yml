@@ -374,6 +374,7 @@ Style/BlockDelimiters:
 Style/ConditionalAssignment:
   Exclude:
     - 'app/models/comfy/cms/category.rb'
+    - 'app/filters/document_provider.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
