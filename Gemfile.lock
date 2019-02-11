@@ -1,4 +1,13 @@
 GIT
+  remote: git@github.com:moneyadviceservice/mastalk.git
+  revision: 8515547feebcfd0b55ba050f93b793c5a9b18602
+  ref: 8515547feebcfd0b55ba050f93b793c5a9b18602
+  specs:
+    mastalk (0.10.0)
+      htmlentities (~> 4.3.2, >= 4.3.2)
+      kramdown (~> 1.13, >= 1.13)
+
+GIT
   remote: https://github.com/moneyadviceservice/dough.git
   revision: cf4e4cbd5ee86ef49b2db16fc44dde1ed9f2c0f4
   specs:
@@ -363,7 +372,7 @@ GEM
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
     kgio (2.9.2)
-    kramdown (1.13)
+    kramdown (1.17.0)
     launchy (2.4.2)
       addressable (~> 2.3)
     legato (0.4.0)
@@ -377,9 +386,6 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mastalk (0.9.1)
-      htmlentities (~> 4.3.2, >= 4.3.2)
-      kramdown (~> 1.13, >= 1.13)
     method_source (0.8.2)
     mime-types (2.99.3)
     mimemagic (0.3.0)
@@ -641,7 +647,7 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk (= 0.9.1)
+  mastalk!
   mysql2 (~> 0.3.18)
   newrelic_rpm
   nokogiri (~> 1.6.0)
@@ -679,4 +685,4 @@ DEPENDENCIES
   word-to-markdown!
 
 BUNDLED WITH
-   1.16.4
+   1.17.0
