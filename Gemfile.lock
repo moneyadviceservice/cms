@@ -363,7 +363,7 @@ GEM
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
     kgio (2.9.2)
-    kramdown (1.13)
+    kramdown (1.17.0)
     launchy (2.4.2)
       addressable (~> 2.3)
     legato (0.4.0)
@@ -377,7 +377,7 @@ GEM
       activesupport (>= 3.1.0)
       rack (>= 1.4.0)
       rest-client
-    mastalk (0.9.1)
+    mastalk (0.10.0)
       htmlentities (~> 4.3.2, >= 4.3.2)
       kramdown (~> 1.13, >= 1.13)
     method_source (0.8.2)
@@ -641,7 +641,7 @@ DEPENDENCIES
   launchy
   legato (= 0.4.0)
   mailjet
-  mastalk (= 0.9.1)
+  mastalk (~> 0.10.0)
   mysql2 (~> 0.3.18)
   newrelic_rpm
   nokogiri (~> 1.6.0)
@@ -679,4 +679,4 @@ DEPENDENCIES
   word-to-markdown!
 
 BUNDLED WITH
-   1.16.4
+   1.17.0
