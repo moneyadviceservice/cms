@@ -3,9 +3,8 @@ MAINTAINER development.team@moneyadviceservice.org.uk
 
 RUN apt-get -qq update > /dev/null && \
   apt-get -qq dist-upgrade > /dev/null && \
+  apt-get install -y imagemagick && \
   apt-get -qq clean  > /dev/null && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN apt-get install build-dep imagemagick
 
 COPY . /var/tmp/app/
