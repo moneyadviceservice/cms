@@ -5,7 +5,7 @@ ruby File.read('.ruby-version', &:readline)
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'algoliasearch'
 gem 'apipie-rails', '~> 0.5.6'
-gem 'autoprefixer-rails', '~> 8.0'
+gem 'autoprefixer-rails', '~> 5.0.0.1'
 gem 'azure', '0.7.7'
 gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
@@ -56,7 +56,7 @@ end
 
 group :test do
   gem 'aruba', '~> 0.14.5'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '~> 1.4.3', require: false
   gem 'database_cleaner'
   gem 'poltergeist', '~> 1.3'
   gem 'rspec_junit_formatter'
