@@ -5,6 +5,17 @@ require 'cucumber/rails'
 require 'capybara/rails'
 require 'capybara/poltergeist'
 require 'aruba/cucumber'
+require 'database_cleaner/cucumber'
+
+begin
+  DatabaseCleaner.strategy = :truncation
+rescue NameError
+  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
+end
+
+Around do |scenario, block|
+  DatabaseCleaner.cleaning(&block)
+end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
@@ -19,8 +30,7 @@ Capybara.ignore_hidden_elements = false
 
 World(FactoryGirl::Syntax::Methods)
 
-DatabaseCleaner.strategy = :truncation
-
 Aruba.configure do |config|
   config.command_runtime_environment = { 'INDEXERS_ADAPTER' => 'local' }
 end
+
