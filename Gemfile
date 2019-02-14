@@ -1,5 +1,6 @@
 source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
+ruby File.read('.ruby-version', &:readline)
 
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'algoliasearch'
@@ -10,8 +11,8 @@ gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.1.0.89.89', source: 'http://gems.dev.mas.local'
-gem 'devise', '~> 3.5.0'
+gem 'comfortable_mexican_sofa', '2.2.0', source: 'http://gems.dev.mas.local'
+gem 'devise', '~> 4.6.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
 gem 'fog'
@@ -41,6 +42,8 @@ gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
+gem 'xmlrpc'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -61,7 +64,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'site_prism'
   gem 'vcr'
-  gem 'webmock'
+  gem 'webmock', '~> 2.3.1'
 end
 
 group :test, :development do
