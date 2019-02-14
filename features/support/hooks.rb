@@ -12,6 +12,9 @@ After do |scenario|
     unless saved_page.empty?
       puts "saved page for scenario \"#{scenario.name}\" to #{saved_page}"
     end
+    
+    # Tell Cucumber to quit after this scenario is done - if it failed. 
+    Cucumber.wants_to_quit = true 
   end
 end
 
