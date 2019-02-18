@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby File.read('.ruby-version', &:readline)
 
 gem 'active_model_serializers', '~> 0.9.0'
+gem 'addressable', '~> 2.5'
 gem 'algoliasearch'
 gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails', '~> 5.0.0.1'
