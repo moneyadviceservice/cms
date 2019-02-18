@@ -139,7 +139,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    comfortable_mexican_sofa (2.2.0)
+    comfortable_mexican_sofa (2.1.0.89.89)
       active_link_to (>= 1.0.0)
       bootstrap-sass (>= 3.2.0)
       bootstrap_form (~> 2.1.1)
@@ -519,7 +519,7 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-prof (0.16.2)
     ruby-progressbar (1.10.0)
-    ruby_parser (3.12.0)
+    ruby_parser (3.11.0)
       sexp_processor (~> 4.9)
     safe_yaml (1.0.4)
     sass (3.2.19)
@@ -565,7 +565,7 @@ GEM
     thread_safe (0.3.6)
     tilt (1.4.1)
     timecop (0.9.1)
-    tinymce-rails (5.0.0)
+    tinymce-rails (4.8.4)
       railties (>= 3.1.1)
     transitions (1.2.1)
     tzinfo (1.2.5)
@@ -623,7 +623,7 @@ DEPENDENCIES
   capybara (= 2.4.1)
   clockwork
   coffee-rails (~> 4.0.0)
-  comfortable_mexican_sofa (= 2.2.0)!
+  comfortable_mexican_sofa (= 2.1.0.89.89)!
   cucumber-rails
   database_cleaner
   devise (~> 3.5.0)
