@@ -36,7 +36,6 @@ gem 'rails', '4.2.10'
 gem 'remotipart', '~> 1.2'
 gem 'responders', '~> 2.0'
 gem 'reverse_markdown'
-gem 'ruby_parser', '~> 3.11.0' # Locked as 3.12 bump broke tests at Go Pipeline
 gem 'sass-rails', '~> 4.0.3'
 gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
