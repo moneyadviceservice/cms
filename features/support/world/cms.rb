@@ -29,7 +29,7 @@ module World
       self.categories
     end
 
-    def register_page_blocks(page: page, blocks_registrar: PageBlocksRegister)
+    def register_page_blocks(page:, blocks_registrar: PageBlocksRegister)
       blocks_registrar.new(
         page,
         author: set_current_user,
