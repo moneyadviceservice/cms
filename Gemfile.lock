@@ -687,7 +687,7 @@ DEPENDENCIES
   mastalk (~> 0.10.0)
   mysql2 (~> 0.3.18)
   newrelic_rpm
-  nokogiri (~> 1.6.0)
+  nokogiri
   oauth2 (= 1.0.0)
   paper_trail
   paperclip-azure (~> 0.2)
