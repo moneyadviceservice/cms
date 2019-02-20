@@ -1,0 +1,19 @@
+test: &test
+  adapter: mysql2
+  username: mas
+  password: mas
+  host: database
+  port: 3306
+  database: cms_test
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+
+assets:
+  adapter: sqlite3
+  database: db/assets.sqlite3
+  pool: 5
+  timeout: 5000
+
+production:
+  <<: *test

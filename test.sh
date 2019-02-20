@@ -5,6 +5,8 @@ set -e
 export PATH=./bin:$PATH
 export RAILS_ENV=test
 export BUNDLE_WITHOUT=development
+# Workaround to remove ::Fixnum warnings until Rails upgrade
+export RUBYOPT=-W0
 
 CORES=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || sysctl -n hw.ncpu)
 BUNDLE_JOBS=$((CORES-1))

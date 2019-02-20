@@ -151,6 +151,14 @@ Note that the database is quite large, so it may take a while.
 
 This can easily be deployed to Heroku but the MAS organisation uses its own deployment infrastructure. If you're a MAS employee, you can deploy this to QA by triggering the `cms_commit` pipeline . Refer to the organisational [wiki](https://moneyadviceserviceuk.atlassian.net/wiki/display/TEAMB/Contento+CMS) on how to deploy to our production environment.
 
+## Docker testing
+
+You can run the tests locally within a docker container. This will setup all of the required dependencies within the container and replicates how the tests are executed in Jenkins. Please run the following command:
+
+```sh
+docker-compose down && docker-compose build && docker-compose -f docker-compose.yml run --rm rails ./jenkins/test
+```
+
 ## Additional Notes
 
 ### Technical Docs
