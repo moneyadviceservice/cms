@@ -14,15 +14,13 @@ export RAILS_ENV=test
 export BUNDLE_WITHOUT=development:build
 export APP_NAME=MAS
 
-exit_code=0
-
 function run {
     declare -a tests_command=("$@")
     echo ''
     echo "=== Running \`${tests_command[*]}\`"
     if ! ${tests_command[*]}; then
         echo "=== These tests failed."
-        exit_code=1
+        exit 1
     fi
 }
 
@@ -45,5 +43,3 @@ run bundle exec cucumber
 run ./node_modules/karma/bin/karma start spec/javascripts/karma.conf.js --single-run
 info brakeman -q --no-pager --ensure-latest
 run bundle exec danger --dangerfile=jenkins/Dangerfile --verbose
-
-exit "$exit_code"
