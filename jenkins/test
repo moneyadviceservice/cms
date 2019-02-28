@@ -5,6 +5,7 @@ set -e
 if [ -f /.dockerenv ]; then
     source ~/.bashrc
     rvm use default
+    rvm gemset use cms
     bundle config github.com $GITHUB_USER:$GITHUB_PASS
     mv config/database{-jenkins,}.yml
     mv .env{-example,}
@@ -33,7 +34,6 @@ function info {
     fi
 }
 
-run rm -rf vendor/cache .bundle/config
 run bundle install --quiet
 run npm install --quiet
 run bundle exec bowndler update --allow-root
