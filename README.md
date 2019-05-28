@@ -168,7 +168,7 @@ We use [apipie](https://github.com/Apipie/apipie-rails) to document the cms api.
 
 ### Component Styleguide
 
-[The styleguide](http://0.0.0.0:3000/styleguide) lists all HTML/CSS components used within the CMS.
+[The styleguide](https://www.moneyadviceservice.org.uk/en/styleguide) lists all HTML/CSS components used within the CMS.
 
 Any new components should be built here first, then integrated into the views.
 
