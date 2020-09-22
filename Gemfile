@@ -34,7 +34,20 @@ gem 'oauth2', '1.0.0'
 gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
 gem 'preamble', '0.0.3'
-gem 'rails', '4.2.11.1'
+
+source "https://gems.railslts.com" do
+  gem 'rails', '~> 4.2.11'
+  gem 'actionmailer',     require: false
+  gem 'actionpack',       require: false
+  gem 'activemodel',      require: false
+  gem 'activerecord',     require: false
+  gem 'activesupport',    require: false
+  gem 'railties',         require: false
+  gem 'actionview',       require: false
+  gem 'activejob',        require: false
+  gem 'railslts-version', require: false
+end
+
 gem 'remotipart', '~> 1.2'
 gem 'responders', '~> 2.0'
 gem 'reverse_markdown'

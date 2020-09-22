@@ -21,6 +21,10 @@ echo "Cleaning temporary files"
 echo "----"
 rm -rf public/assets vendor/cache coverage log/* tmp/* .bundle/config
 
+echo "Configuring credentials for Rails LTS"
+echo "----"
+bundle config gems.railslts.com RAILS_LTS_USERNAME:RAILS_LTS_PASSWORD
+
 echo "Running Bundle package"
 echo "----"
 bundle package --all
