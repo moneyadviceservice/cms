@@ -44,8 +44,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'whenever', require: false
 gem 'word-to-markdown', git: 'https://github.com/moneyadviceservice/word-to-markdown.git'
 gem 'xmlrpc'
+gem 'omniauth-saml', '~> 1.10.3'
 
 group :development do
+  gem 'byebug', '~> 11.1.3'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'seedbank'
