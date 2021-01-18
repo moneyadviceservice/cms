@@ -14,9 +14,6 @@
 
       <div>
         <%= f.label :password %>
-        <span class='pull-right'>
-          <%= render "devise/shared/links" %>
-        </span>
         <%= f.password_field :password, autocomplete: "off" %>
       </div>
 
@@ -24,7 +21,17 @@
         <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
       <% end -%>
 
-      <div><%= f.submit "Log in", class: 'pull-right button--action login__button' %></div>
+      <div>
+        <%= f.submit "Log in", class: 'pull-right button--action login__button' %>
+
+        <% if devise_mapping.omniauthable? %>
+          <%= link_to "Sign in with OKTA", omniauth_authorize_path(resource_name, :saml), class: '' %>
+        <% end %>
+
+        <span class='pull-right'>
+          <%= render "devise/shared/links" %>
+        </span>
+      </div>
     <% end %>
   </div>
 </div>
