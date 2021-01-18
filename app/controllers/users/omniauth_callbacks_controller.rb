@@ -25,6 +25,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       session['devise.google_data'] = auth.except(:extra) # Removing extra as it can overflow some session stores
       redirect_to root_path, alert: @user.errors.full_messages.join("\n")
     end
+  rescue
+    redirect_to root_path, alert: "Invalid login"
   end
 
   def after_omniauth_failure_path_for(scope)
