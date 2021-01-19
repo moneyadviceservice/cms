@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   apipie
 
-  devise_for :users, class_name: 'Comfy::Cms::User'
+  devise_for :users, class_name: 'Comfy::Cms::User',
+    controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :word_documents
 

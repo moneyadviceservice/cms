@@ -84,3 +84,23 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+
+OmniAuth.config.test_mode = true
+
+omniauth_hash = {
+  'provider'  => 'saml',
+  'uid'       => 'test@test.com',
+  'info'      => {},
+  'extra' => {
+    'response_object' => {
+      'attributes' => {
+        'firstName' => 'Test',
+        'lastName'  => 'Testington',
+        'role'      => 'THING'
+      }
+    }
+  }
+}
+
+OmniAuth.config.add_mock(:okta, OmniAuth::AuthHash.new(omniauth_hash))
