@@ -78,8 +78,6 @@ Rails.application.routes.draw do
   end
 
   namespace :api, path: '/' do
-    get '/:locale/clumps(.:format)' => 'clumps#index'
-
     get '/:locale/categories(.:format)' => 'category_contents#index'
     get '/:locale/categories/(*id)(.:format)' => 'category_contents#show'
     get '/preview/:locale/(*slug)(.:format)' => 'content#preview'

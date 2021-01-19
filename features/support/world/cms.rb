@@ -29,7 +29,7 @@ module World
       self.categories
     end
 
-    def register_page_blocks(page: page, blocks_registrar: PageBlocksRegister)
+    def register_page_blocks(page:, blocks_registrar: PageBlocksRegister)
       blocks_registrar.new(
         page,
         author: set_current_user,
@@ -37,7 +37,7 @@ module World
       ).save!
     end
 
-    def build_cms_page(page: nil, published: true, locale: 'en', label: identifier())
+    def build_cms_page(page: nil, published: true, locale: 'en', label: identifier)
       page ||= cms_site(locale).pages.create!(
         parent: cms_root(locale),
         layout: cms_layout(locale),
@@ -52,20 +52,20 @@ module World
       page
     end
 
-    def build_cms_new_unsaved_page(page: nil)
+    def build_cms_new_unsaved_page
       page ||= build_cms_page
       page.save!
       page
     end
 
-    def build_cms_new_draft_page(page: nil, label: identifier(), locale: 'en')
+    def build_cms_new_draft_page(page: nil, label: identifier, locale: 'en')
       page ||= build_cms_page(label: label, locale: locale)
       page.create_initial_draft
       register_page_blocks(page: page)
       page
     end
 
-    def build_cms_published_page(page: nil, label: identifier(), locale: 'en')
+    def build_cms_published_page(page: nil, label: identifier, locale: 'en')
       page ||= build_cms_new_draft_page(label: label, locale: locale)
 
       page.publish
@@ -84,7 +84,7 @@ module World
       page
     end
 
-    def build_cms_scheduled_page(page: nil, live: false, label: identifier(), locale: 'en')
+    def build_cms_scheduled_page(page: nil, live: false, label: identifier, locale: 'en')
       page ||= build_cms_new_draft_page(label: label, locale: locale)
 
       page.schedule

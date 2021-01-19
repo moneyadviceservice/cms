@@ -5,13 +5,11 @@ class CategoryImport
     create_parent_categories
 
     CSV.open("#{Rails.root}/lib/cms/categories.csv", headers: true).each do |category|
-      begin
-        puts "Migrating #{category['public_id']}"
-        c = Comfy::Cms::Category.find_by!(label: category['public_id'])
-        c.update_attributes!(attributes_for(category))
-      rescue ActiveRecord::RecordNotFound
-        puts "Can not find category #{category['public_id']}"
-      end
+      puts "Migrating #{category['public_id']}"
+      c = Comfy::Cms::Category.find_by!(label: category['public_id'])
+      c.update_attributes!(attributes_for(category))
+    rescue ActiveRecord::RecordNotFound
+      puts "Can not find category #{category['public_id']}"
     end
   end
 
