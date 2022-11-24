@@ -1,5 +1,6 @@
-source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
+source 'https://gem.fury.io/benlovell'
+
 ruby File.read('.ruby-version', &:readline)
 
 gem 'active_model_serializers', '~> 0.9.0'
@@ -12,11 +13,10 @@ gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.2.0', source: 'http://gems.dev.mas.local'
+gem 'comfortable_mexican_sofa', '2.2.0', source: 'https://gem.fury.io/benlovell'
 gem 'devise', '~> 4.6.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
-gem 'fog', '~> 1.40.0'
 gem 'google-api-client', '0.7.1'
 gem 'httparty', '~> 0.13.7'
 gem 'jbuilder', '~> 2.0'
