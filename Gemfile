@@ -93,4 +93,5 @@ end
 
 group :production do
   gem 'syslog-logger'
+  gem 'rails_12factor'
 end
