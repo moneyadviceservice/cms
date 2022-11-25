@@ -3,6 +3,10 @@ source 'https://gem.fury.io/benlovell'
 
 ruby File.read('.ruby-version', &:readline)
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-font-awesome', '~> 4.2.0'
+end
+
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'addressable', '~> 2.5'
 gem 'algoliasearch'
