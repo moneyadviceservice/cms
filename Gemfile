@@ -38,6 +38,7 @@ gem 'oauth2', '1.0.0'
 gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
 gem 'preamble', '0.0.3'
+gem 'puma'
 gem 'rails', '4.2.11.1'
 gem 'remotipart', '~> 1.2'
 gem 'responders', '~> 2.0'
@@ -89,10 +90,6 @@ group :test, :development do
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'valid_attribute', require: false
-end
-
-group :development, :production do
-  gem 'unicorn-rails'
 end
 
 group :production do
