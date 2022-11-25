@@ -1,0 +1,57 @@
+name: "CI"
+on:
+  push:
+    branches: [ "heroku" ]
+  pull_request:
+    branches: [ "heroku" ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_DB: cms_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        ports:
+          - '3306:3306'
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    env:
+      ALGOLIA_APP_ID: test
+      ALGOLIA_API_KEY: test
+      APP_NAME: MAS
+      BUNDLE_GEM__FURY__IO: ${{ secrets.BUNDLE_GEM__FURY__IO }}
+      FARADAY_HOST: 'localhost:5000'
+      FARADAY_X_FORWARDED_PROTO: 'http'
+      MAILJET_DEFAULT_FROM_ADDRESS: notmonitored@notify.moneyadviceservice.org.uk
+      MAS_CMS_URL: 'http://localhost:3000/'
+      MAS_PUBLIC_WEBSITE_URL: 'http://localhost:5000'
+      MAS_PUBLIC_WEBSITE_DOMAIN: 'localhost:5000'
+      MAS_CMS_API_TOKEN: mytoken
+      RAILS_ENV: test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 4.1.1
+      - name: Install bower
+        run: npm install -g bower
+      - name: Install bowndler packages
+        run: bin/bowndler update
+      - name: Set up database schema
+        run: |
+          bin/rake db:create db:schema:load
+      - name: Run tests
+        run: |
+          bin/rspec
+          bin/cucumber
