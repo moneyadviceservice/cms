@@ -54,9 +54,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'seedbank'
-  gem 'spring'
-  gem 'spring-commands-cucumber'
-  gem 'spring-commands-rspec'
   gem 'web-console', '~> 2.0'
 end
 
