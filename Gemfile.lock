@@ -20,7 +20,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
-  remote: https://gem.fury.io/benlovell/
+  remote: https://gem.fury.io/h_app288206558/
   specs:
     actionmailer (4.2.11.1)
       actionpack (= 4.2.11.1)

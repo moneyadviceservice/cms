@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source 'https://gem.fury.io/benlovell'
+source 'https://gem.fury.io/h_app288206558'
 
 ruby File.read('.ruby-version', &:readline)
 
@@ -17,7 +17,7 @@ gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.2.0', source: 'https://gem.fury.io/benlovell'
+gem 'comfortable_mexican_sofa', '2.2.0', source: 'https://gem.fury.io/h_app288206558'
 gem 'devise', '~> 4.6.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
