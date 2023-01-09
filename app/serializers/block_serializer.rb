@@ -5,7 +5,7 @@ class BlockSerializer < ActiveModel::Serializer
   CONTENT_IDENTIFIER = 'content'
 
   def content
-    block = if object.identifier == CONTENT_IDENTIFIER
+    block = if object.identifier == CONTENT_IDENTIFIER # rubocop:disable Style/GuardClause
               BlocksRetriever.new(object, scope).retrieve || return
             else
               object

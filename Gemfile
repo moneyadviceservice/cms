@@ -13,6 +13,7 @@ gem 'algoliasearch'
 gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails', '~> 5.0.0.1'
 gem 'azure', '0.7.10'
+gem 'bigdecimal', '~> 1.3.5'
 gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
 gem 'clockwork'
@@ -22,18 +23,19 @@ gem 'devise', '~> 4.6.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
 gem 'google-api-client', '0.7.1'
-gem 'httparty', '~> 0.13.7'
+gem 'httparty'
 gem 'jbuilder', '~> 2.0'
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
 # Used in comfy. pegging version fixes asset pipeline error.
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
+gem 'json', '~> 2.6.3'
 gem 'legato', '0.4.0'
 gem 'mailjet'
 gem 'mastalk', '~> 0.10.0'
 gem 'mysql2'
 gem 'newrelic_rpm'
-gem 'nokogiri', '1.10.1'
+gem 'nokogiri'
 gem 'oauth2', '1.0.0'
 gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
@@ -82,7 +84,7 @@ group :test, :development do
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8.0'
-  gem 'rubocop', '~> 0.59', require: false
+  gem 'rubocop', '~> 0.82.0', require: false
   gem 'ruby-prof', require: false
   gem 'timecop'
   gem 'tzinfo-data'
@@ -90,6 +92,6 @@ group :test, :development do
 end
 
 group :production do
-  gem 'syslog-logger'
   gem 'rails_12factor'
+  gem 'syslog-logger'
 end

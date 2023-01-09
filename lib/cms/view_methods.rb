@@ -17,5 +17,5 @@ module Cms
     end
   end
 
-  ActionView::Base.send :include, Cms::ViewMethods::Helpers
+  ActionView::Base.include Cms::ViewMethods::Helpers
 end

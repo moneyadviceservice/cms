@@ -54,7 +54,7 @@ module API
 
     def render_page(page, scope: nil)
       if page
-        render json: page, scope: scope
+        render json: page, scope: scope, serializer: PageSerializer
       else
         render json: { message: 'Page not found' }, status: 404
       end
