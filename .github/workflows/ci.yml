@@ -1,9 +1,9 @@
 name: "CI"
 on:
   push:
-    branches: [ "heroku" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "heroku" ]
+    branches: [ "main", "master" ]
 jobs:
   test:
     runs-on: ubuntu-latest
