@@ -8,11 +8,13 @@ development:
 
 test:
   adapter: mysql2
+  host: 127.0.0.1
   username: root
-  database: cms_test<%= ENV['TEST_ENV_NUMBER'] %>
+  database: cms_test
   pool: 5
   timeout: 5000
   encoding: utf8
+  port: 3306
 
 # Do not keep production credentials in the repository,
 # instead read the configuration from the environment.

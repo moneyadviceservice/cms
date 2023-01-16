@@ -15,7 +15,7 @@ module API
     param :order_by_date, String, required: false
     def index
       if documents
-        render json: paginated_documents, meta: meta_data, root: 'documents'
+        render json: paginated_documents, meta: meta_data, root: 'documents', each_serializer: PageSerializer
       else
         render json: { message: 'Bad request' }, status: 400
       end

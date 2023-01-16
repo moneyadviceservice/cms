@@ -15,4 +15,4 @@ module ComfortableMexicanSofa
   end
 end
 
-ComfortableMexicanSofa::Tag::InstanceMethods.send :prepend, ComfortableMexicanSofa::Extensions::Tag
+ComfortableMexicanSofa::Tag::InstanceMethods.prepend ComfortableMexicanSofa::Extensions::Tag

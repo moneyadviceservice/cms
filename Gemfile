@@ -1,6 +1,11 @@
-source 'http://gems.dev.mas.local'
 source 'https://rubygems.org'
+source 'https://gem.fury.io/h_app288206558'
+
 ruby File.read('.ruby-version', &:readline)
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-font-awesome', '~> 4.2.0'
+end
 
 gem 'active_model_serializers', '~> 0.9.0'
 gem 'addressable', '~> 2.5'
@@ -8,32 +13,34 @@ gem 'algoliasearch'
 gem 'apipie-rails', '~> 0.5.6'
 gem 'autoprefixer-rails', '~> 5.0.0.1'
 gem 'azure', '0.7.10'
+gem 'bigdecimal', '~> 1.3.5'
 gem 'bowndler', '~> 1.0'
 gem 'bugsnag'
 gem 'clockwork'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'comfortable_mexican_sofa', '2.2.0', source: 'http://gems.dev.mas.local'
+gem 'comfortable_mexican_sofa', '2.2.0', source: 'https://gem.fury.io/h_app288206558'
 gem 'devise', '~> 4.6.0'
 gem 'dough-ruby', '~> 5.0', git: 'https://github.com/moneyadviceservice/dough.git'
 gem 'feature'
-gem 'fog', '~> 1.40.0'
 gem 'google-api-client', '0.7.1'
-gem 'httparty', '~> 0.13.7'
+gem 'httparty'
 gem 'jbuilder', '~> 2.0'
 # See: https://github.com/comfy/comfortable-mexican-sofa/issues/486
 # Used in comfy. pegging version fixes asset pipeline error.
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '~> 5.0'
+gem 'json', '~> 2.6.3'
 gem 'legato', '0.4.0'
 gem 'mailjet'
 gem 'mastalk', '~> 0.10.0'
-gem 'mysql2', '~> 0.3.18'
+gem 'mysql2'
 gem 'newrelic_rpm'
-gem 'nokogiri', '1.10.1'
+gem 'nokogiri'
 gem 'oauth2', '1.0.0'
 gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
 gem 'preamble', '0.0.3'
+gem 'puma'
 gem 'rails', '4.2.11.1'
 gem 'remotipart', '~> 1.2'
 gem 'responders', '~> 2.0'
@@ -49,9 +56,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'seedbank'
-  gem 'spring'
-  gem 'spring-commands-cucumber'
-  gem 'spring-commands-rspec'
   gem 'web-console', '~> 2.0'
 end
 
@@ -80,17 +84,14 @@ group :test, :development do
   gem 'launchy'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 3.8.0'
-  gem 'rubocop', '~> 0.59', require: false
+  gem 'rubocop', '~> 0.82.0', require: false
   gem 'ruby-prof', require: false
   gem 'timecop'
   gem 'tzinfo-data'
   gem 'valid_attribute', require: false
 end
 
-group :development, :production do
-  gem 'unicorn-rails'
-end
-
 group :production do
+  gem 'rails_12factor'
   gem 'syslog-logger'
 end
