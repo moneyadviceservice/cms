@@ -12,10 +12,10 @@ class BlockSerializer < ActiveModel::Serializer
             end
 
     if block[:processed_content].present?
-      Rails.logger.info("Cache HIT for #{page.slug}")
+      Rails.logger.debug("Cache HIT for #{page.slug}")
       block[:processed_content]
     else
-      Rails.logger.info("Cache MISS for #{page.slug}")
+      Rails.logger.debug("Cache MISS for #{page.slug}")
       convert_markdown_to_html(block)
     end
   end
