@@ -448,6 +448,7 @@ GEM
     reverse_markdown (0.6.0)
       nokogiri
     rexml (3.2.5)
+    rollbar (3.4.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -621,6 +622,7 @@ DEPENDENCIES
   remotipart (~> 1.2)
   responders (~> 2.0)
   reverse_markdown
+  rollbar
   rspec-rails (~> 3.8.0)
   rspec_junit_formatter
   rubocop (~> 0.82.0)
