@@ -5,12 +5,12 @@ module World
       when :layout
         editor_element = edit_page.editor_default
       when :advanced
-        edit_page.edit_in_markdown.trigger('click')
+        edit_page.find('label', text: 'Advanced').click
         editor_element = edit_page.content
       end
 
       editor_element.tap do |node|
-        node.native.trigger('click')
+        node.click
         node.text.length.times { node.native.send_key(:backspace) }
         node.native.send_keys(text)
       end

@@ -70,7 +70,7 @@ end
 
 def simulate_associate_tag(value)
   @page.wait_for_tags_input_box
-  @page.tags_input_box.trigger('click')
+  @page.tags_input_box.click
   wait_for_ajax_complete
 end
 

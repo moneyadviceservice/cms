@@ -9,9 +9,7 @@ When(/^I populate the editor with the markdown$/) do |text|
 end
 
 When(/^I press the button "(.*?)"$/) do |button_text|
-  # Using #find_button > #click because of problems with the pop up buttons
-  # https://github.com/teampoltergeist/poltergeist/issues/530
-  find_button(button_text).trigger('click')
+  find_button(button_text).click
 end
 
 Then(/^I should see the text "(.*?)" in the editor$/) do |text|

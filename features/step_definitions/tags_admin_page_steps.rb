@@ -32,14 +32,15 @@ end
 
 Then(/^(?:I|The) new tag should be persisted after hitting (.+)$/) do |key_pressed|
   expect do
-    @page.tags_creation.box.native.send_key(key_pressed.capitalize.to_sym)
+    key_pressed = key_pressed.to_sym unless key_pressed == ','
+    @page.tags_creation.box.native.send_key(key_pressed)
     wait_for_ajax_complete
   end.to change(Tag, :count).by(1)
 end
 
 Then(/^(?:I|The) new tag should not be persisted$/) do
   expect do
-    @page.tags_creation.box.native.send_key(:Enter)
+    @page.tags_creation.box.native.send_key(:enter)
     wait_for_ajax_complete
   end.not_to change(Tag, :count)
 end
@@ -110,7 +111,7 @@ end
 
 def simulate_create_tag(value)
   @page.tags_creation.wait_for_box
-  @page.tags_creation.box.native.send_keys(value, :Enter)
+  @page.tags_creation.box.native.send_keys(value, :enter)
   wait_for_ajax_complete
   tag_article!(article: create_article!, tags: [value])
 end
@@ -126,7 +127,7 @@ def click_first_tag_in_listing
   @page.tags_listing.list.wait_for_tags
   @page.tags_listing.list.tags.first.close.click
   @page.dialog.wait_for_delete_btn
-  @page.dialog.delete_btn.trigger('click')
+  @page.dialog.delete_btn.click
   wait_for_ajax_complete
 end
 

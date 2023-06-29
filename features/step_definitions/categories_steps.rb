@@ -29,7 +29,7 @@ When(/^I change the article's category$/) do
 end
 
 When(/^I remove the article's categories$/) do
-  edit_page.category_remove.trigger('click')
+  edit_page.category_remove.click
 end
 
 Then(/^I see no categories listed on the article's page$/) do

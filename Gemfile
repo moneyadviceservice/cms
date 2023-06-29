@@ -64,11 +64,12 @@ group :test do
   gem 'aruba', '~> 0.14.5'
   gem 'cucumber-rails', '~> 1.4.3', require: false
   gem 'database_cleaner'
-  gem 'poltergeist', '~> 1.3'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver', '3.142.7'
   gem 'shoulda-matchers'
   gem 'site_prism'
   gem 'vcr'
+  gem 'webdrivers', '4.4.1'
   gem 'webmock', '~> 2.3.1'
 end
 

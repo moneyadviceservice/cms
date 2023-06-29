@@ -11,16 +11,16 @@ Feature: Tags administration
     And  also a tags existing section
 
   @javascript
-  Scenario: Creating a valid tag hitting Enter
+  Scenario: Creating a valid tag hitting enter
     Given I am on the tags admin page
     When  I introduce a non-existing value in the tags creation box
-    Then  The new tag should be persisted after hitting Enter
+    Then  The new tag should be persisted after hitting enter
 
   @javascript
-  Scenario: Creating a valid tag hitting Comma
+  Scenario: Creating a valid tag hitting comma
     Given I am on the tags admin page
     When  I introduce a non-existing value in the tags creation box
-    Then  The new tag should be persisted after hitting Comma
+    Then  The new tag should be persisted after hitting ,
 
   @javascript
   Scenario: Creating an invalid tag

@@ -3,9 +3,10 @@ ENV['RAILS_ROOT'] = File.expand_path('../../../', __FILE__)
 
 require 'cucumber/rails'
 require 'capybara/rails'
-require 'capybara/poltergeist'
 require 'aruba/cucumber'
 require 'database_cleaner/cucumber'
+require 'selenium/webdriver'
+require 'webdrivers/chromedriver'
 
 DatabaseCleaner.strategy = :truncation
 
@@ -15,11 +16,15 @@ end
 
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, js_errors: true, inspector: true, window_size: [2048, 1536])
+Capybara.register_driver :chrome_headless do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+    args: %w(headless no-sandbox disable-gpu window-size=2500,2500)
+  )
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :chrome_headless
 Capybara.default_wait_time = 20
 
 Capybara.ignore_hidden_elements = false
