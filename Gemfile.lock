@@ -393,7 +393,7 @@ GEM
     puma (6.0.0)
       nio4r (~> 2.0)
     racc (1.7.1)
-    rack (1.6.13.15)
+    rack (1.6.13)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.11.1)
@@ -614,6 +614,7 @@ DEPENDENCIES
   preamble (= 0.0.3)
   pry-rails
   puma
+  rack (= 1.6.13)
   rails (= 4.2.11.1)
   rails-assets-font-awesome (~> 4.2.0)!
   rails_12factor
