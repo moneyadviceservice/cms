@@ -9,7 +9,7 @@ When(/^I populate the editor with the markdown$/) do |text|
 end
 
 When(/^I press the button "(.*?)"$/) do |button_text|
-  find_button(button_text).click
+  click_button(button_text)
 end
 
 Then(/^I should see the text "(.*?)" in the editor$/) do |text|
