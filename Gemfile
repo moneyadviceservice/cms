@@ -63,7 +63,7 @@ end
 
 group :test do
   gem 'aruba', '~> 0.14.5'
-  gem 'cucumber-rails', '~> 1.4.3', require: false
+  gem 'cucumber-rails', '~> 1.6.0', require: false
   gem 'database_cleaner'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver', '3.142.7'

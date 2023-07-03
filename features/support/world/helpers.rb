@@ -34,7 +34,7 @@ module World
     # Waits for all ajax calls
     def wait_for_ajax
       if Capybara.current_driver == :chrome_headless
-        Timeout.timeout(Capybara.default_wait_time) do
+        Timeout.timeout(Capybara.default_max_wait_time) do
           loop until page.evaluate_script('jQuery.active').zero?
         end
       else
