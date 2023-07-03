@@ -17,7 +17,7 @@ Then(/^(?:I should see |also )?a tags (.+) section$/) do |section|
 end
 
 Then(/^I introduce a non-existing value in the tags creation box$/) do
-  @page.tags_creation.wait_for_box
+  @page.tags_creation.wait_until_box_visible
   @page.tags_creation.box.native.send_key("a-non-existing-tag")
 end
 
@@ -110,7 +110,7 @@ Then(/^The items tagged with it should not lose it$/) do
 end
 
 def simulate_create_tag(value)
-  @page.tags_creation.wait_for_box
+  @page.tags_creation.wait_until_box_visible
   @page.tags_creation.box.native.send_keys(value, :enter)
   wait_for_ajax_complete
   tag_article!(article: create_article!, tags: [value])
@@ -120,13 +120,12 @@ def show_existing_tags(prefix:)
   @page.tags_listing.wait_until_tag_index_links_visible
   click_link_or_button(prefix)
   wait_for_ajax_complete
-  @page.tags_listing.list.wait_for_tags
 end
 
 def click_first_tag_in_listing
-  @page.tags_listing.list.wait_for_tags
+  @page.tags_listing.list.wait_until_tags_visible
   @page.tags_listing.list.tags.first.close.click
-  @page.dialog.wait_for_delete_btn
+  @page.dialog.wait_until_delete_btn_visible
   @page.dialog.delete_btn.click
   wait_for_ajax_complete
 end
