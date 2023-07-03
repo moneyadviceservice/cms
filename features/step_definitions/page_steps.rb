@@ -33,6 +33,8 @@ Then(/^I should not see the button "(.*?)"$/) do |button_text|
 end
 
 Then(/^I click the caret to show more buttons$/) do
+  wait_for_ajax_complete
+
   # Should see if we can bind a t- id to this
   page.find('.button-menu button.unstyled-button').click
 end
