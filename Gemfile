@@ -66,11 +66,11 @@ group :test do
   gem 'cucumber-rails', '~> 1.6.0', require: false
   gem 'database_cleaner'
   gem 'rspec_junit_formatter'
-  gem 'selenium-webdriver', '3.142.7'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'site_prism'
   gem 'vcr'
-  gem 'webdrivers', '4.4.1'
+  gem 'webdrivers'
   gem 'webmock', '~> 2.3.1'
 end
 

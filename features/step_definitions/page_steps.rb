@@ -23,8 +23,8 @@ Then(/^I should see the markdown in the editor$/) do |text|
 end
 
 Then(/^I should see the button "(.*?)"$/) do |button_text|
-  within('.nav-article') do
-    expect(page).to have_content(button_text)
+  within('.nav-article') do |nav|
+    expect(nav).to have_content(button_text)
   end
 end
 
