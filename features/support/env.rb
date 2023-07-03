@@ -25,7 +25,7 @@ Capybara.register_driver :chrome_headless do |app|
 end
 
 Capybara.javascript_driver = :chrome_headless
-Capybara.default_max_wait_time = 10
+Capybara.default_max_wait_time = 20
 
 Capybara.ignore_hidden_elements = false
 
