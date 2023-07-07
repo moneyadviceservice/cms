@@ -9,9 +9,7 @@ When(/^I populate the editor with the markdown$/) do |text|
 end
 
 When(/^I press the button "(.*?)"$/) do |button_text|
-  # Using #find_button > #click because of problems with the pop up buttons
-  # https://github.com/teampoltergeist/poltergeist/issues/530
-  find_button(button_text).trigger('click')
+  click_button(button_text)
 end
 
 Then(/^I should see the text "(.*?)" in the editor$/) do |text|
@@ -25,8 +23,8 @@ Then(/^I should see the markdown in the editor$/) do |text|
 end
 
 Then(/^I should see the button "(.*?)"$/) do |button_text|
-  within('.nav-article') do
-    expect(page).to have_content(button_text)
+  within('.nav-article') do |nav|
+    expect(nav).to have_content(button_text)
   end
 end
 
@@ -35,6 +33,8 @@ Then(/^I should not see the button "(.*?)"$/) do |button_text|
 end
 
 Then(/^I click the caret to show more buttons$/) do
+  wait_for_ajax_complete
+
   # Should see if we can bind a t- id to this
   page.find('.button-menu button.unstyled-button').click
 end

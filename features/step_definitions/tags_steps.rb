@@ -69,8 +69,8 @@ def create_tag(value)
 end
 
 def simulate_associate_tag(value)
-  @page.wait_for_tags_input_box
-  @page.tags_input_box.trigger('click')
+  @page.wait_until_tags_input_box_visible
+  @page.tags_input_box.click
   wait_for_ajax_complete
 end
 

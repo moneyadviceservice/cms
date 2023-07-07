@@ -13,7 +13,7 @@ module World
 
     # Waits for all the dough components to be loaded
     def wait_for_page_load
-      if Capybara.current_driver == :poltergeist
+      if Capybara.current_driver == :chrome_headless
         find('body[data-dough-component-loader-all-loaded="yes"]')
       else
         sleep(0.1)
@@ -33,8 +33,8 @@ module World
 
     # Waits for all ajax calls
     def wait_for_ajax
-      if Capybara.current_driver == :poltergeist
-        Timeout.timeout(Capybara.default_wait_time) do
+      if Capybara.current_driver == :chrome_headless
+        Timeout.timeout(Capybara.default_max_wait_time) do
           loop until page.evaluate_script('jQuery.active').zero?
         end
       else

@@ -41,10 +41,12 @@ gem 'paper_trail'
 gem 'paperclip-azure', '~> 0.2'
 gem 'preamble', '0.0.3'
 gem 'puma'
+gem 'rack', '1.6.13'
 gem 'rails', '4.2.11.1'
 gem 'remotipart', '~> 1.2'
 gem 'responders', '~> 2.0'
 gem 'reverse_markdown'
+gem 'rollbar'
 gem 'sass-rails', '~> 4.0.3'
 gem 'terminal-table'
 gem 'uglifier', '>= 1.3.0'
@@ -61,13 +63,14 @@ end
 
 group :test do
   gem 'aruba', '~> 0.14.5'
-  gem 'cucumber-rails', '~> 1.4.3', require: false
+  gem 'cucumber-rails', '~> 1.6.0', require: false
   gem 'database_cleaner'
-  gem 'poltergeist', '~> 1.3'
   gem 'rspec_junit_formatter'
+  gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'site_prism'
   gem 'vcr'
+  gem 'webdrivers'
   gem 'webmock', '~> 2.3.1'
 end
 
