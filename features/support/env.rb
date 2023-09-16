@@ -6,7 +6,6 @@ require 'capybara/rails'
 require 'aruba/cucumber'
 require 'database_cleaner/cucumber'
 require 'selenium/webdriver'
-require 'webdrivers/chromedriver'
 
 DatabaseCleaner.strategy = :truncation
 

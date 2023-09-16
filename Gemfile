@@ -70,7 +70,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'site_prism'
   gem 'vcr'
-  gem 'webdrivers'
   gem 'webmock', '~> 2.3.1'
 end
 
