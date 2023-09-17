@@ -6,7 +6,7 @@ Rails.application.configure do
   config.assets.precompile << /\.(?:png|svg|eot|woff|ttf)$/
 
 # Application Stylesheets
-  config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css)
+  config.assets.precompile += %w(comfortable_mexican_sofa/admin/basic.css components-font-awesome/css/font-awesome.css)
 
 # Application JavaScript
   config.assets.precompile += %w(application.js)
