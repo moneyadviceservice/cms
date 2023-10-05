@@ -3,10 +3,6 @@ describe PageSerializer do
   let(:article) { Comfy::Cms::Page.new(site: site, slug: 'i-am-slug') }
   subject { described_class.new(article) }
 
-  before do
-    allow(Publify::API).to receive(:latest_links).and_return([])
-  end
-
   describe 'supports_amp' do
     let(:serialized_page) { build(:page).to_json }
     it 'exposes supports_amp' do
@@ -21,34 +17,6 @@ describe PageSerializer do
   end
 
   describe '#related_content' do
-    context 'latest blog post links' do
-      let(:latest_links) do
-        [
-          { 'title' => 'First post', 'link' => 'http://a.com' },
-          { 'title' => 'Second post', 'link' => 'http://b.com' },
-          { 'title' => 'Third post', 'link' => 'http://c.com' }
-        ]
-      end
-
-      before do
-        allow(Publify::API).to receive(:latest_links).with(3).and_return(latest_links)
-      end
-
-      it 'maps the 3 latest links' do
-        result = subject.related_content[:latest_blog_post_links].as_json
-        expect(result.length).to eq(3)
-      end
-
-      it 'maps the latest links correctly' do
-        result = subject.related_content[:latest_blog_post_links].as_json
-
-        expect(result.first).to eq(
-          title: 'First post',
-          path: 'http://a.com'
-        )
-      end
-    end
-
     context 'related links' do
       let(:related_links) do
         subject.related_content[:related_links].as_json
