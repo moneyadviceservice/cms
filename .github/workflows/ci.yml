@@ -49,13 +49,13 @@ jobs:
       - name: Install bower
         run: npm install -g bower
       - name: Install bowndler packages
-        run: bin/bowndler update
+        run: bundle exec bowndler update
       - name: Precompile assets to speed up Puma test server start time
-        run: bin/rake assets:precompile
+        run: bundle exec rake assets:precompile
       - name: Set up database schema
         run: |
-          bin/rake db:create db:schema:load
+          bundle exec rake db:create db:schema:load
       - name: Run tests
         run: |
-          bin/rspec
-          bin/cucumber
+          bundle exec rspec
+          bundle exec cucumber
