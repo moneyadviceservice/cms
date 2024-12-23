@@ -21,7 +21,7 @@ RUN npm install -g bower@1.8.8
 
 COPY . /myapp
 
-RUN rm -rf vendor/assets
+RUN rm -rf vendor/assets/bower_components
 RUN bundle exec bowndler update --allow-root
 RUN bundle exec rake assets:precompile
 
