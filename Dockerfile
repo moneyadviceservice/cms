@@ -1,6 +1,6 @@
 FROM ruby:2.7.7
 
-RUN apt-get update -qq && apt-get install -y build-essential nodejs npm
+RUN apt-get update -qq && apt-get install -y build-essential nodejs npm imagemagick
 
 RUN mkdir /myapp
 WORKDIR /myapp
