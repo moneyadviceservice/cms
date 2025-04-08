@@ -21,17 +21,16 @@ jobs:
           --health-timeout=5s
           --health-retries=3
     env:
-      ALGOLIA_APP_ID: test
-      ALGOLIA_API_KEY: test
-      APP_NAME: MAS
+      FINCAP_ALGOLIA_APP_ID: test
+      FINCAP_ALGOLIA_API_KEY: test
+      APP_NAME: FINCAP
       BUNDLE_GEM__FURY__IO: ${{ secrets.BUNDLE_GEM__FURY__IO }}
-      FARADAY_HOST: 'localhost:5000'
       FARADAY_X_FORWARDED_PROTO: 'http'
       MAILJET_DEFAULT_FROM_ADDRESS: notmonitored@notify.moneyadviceservice.org.uk
-      MAS_CMS_URL: 'http://localhost:3000/'
-      MAS_PUBLIC_WEBSITE_URL: 'http://localhost:5000'
-      MAS_PUBLIC_WEBSITE_DOMAIN: 'localhost:5000'
-      MAS_CMS_API_TOKEN: mytoken
+      FINCAP_CMS_URL: 'http://localhost:3000/'
+      FINCAP_PUBLIC_WEBSITE_URL: 'http://localhost:5000'
+      FINCAP_PUBLIC_WEBSITE_DOMAIN: 'localhost:5000'
+      FINCAP_CMS_API_TOKEN: mytoken
       RAILS_ENV: test
     steps:
       - name: Checkout code
