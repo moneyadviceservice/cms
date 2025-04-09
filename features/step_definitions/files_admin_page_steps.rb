@@ -93,7 +93,8 @@ def add_file(filename)
   attach_file('file_file', filename)
   fill_in('file_description', with: sample_file_description(filename))
   click_link_or_button('Upload File')
-  wait_for_ajax_complete
+  @page = UI::Pages::FilesEdit.new
+  expect(@page).to be_displayed
 end
 
 def file_type_options; %w(doc jpg pdf xls) end
