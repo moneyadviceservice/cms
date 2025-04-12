@@ -58,3 +58,12 @@ jobs:
         run: |
           bundle exec rspec
           bundle exec cucumber
+      - name: Archive capybara screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: capybara-outputs
+          path: |
+            tmp/*.png
+            tmp/*.html
+          if-no-files-found: ignore
