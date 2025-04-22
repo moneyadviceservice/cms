@@ -44,7 +44,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 4.1.1
+          node-version: 23.9.0
       - name: Install bower
         run: npm install -g bower
       - name: Install bowndler packages
