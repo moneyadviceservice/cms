@@ -64,6 +64,6 @@ jobs:
         with:
           name: capybara-outputs
           path: |
-            tmp/*.png
-            tmp/*.html
+            /tmp/*.png
+            /tmp/*.html
           if-no-files-found: ignore
