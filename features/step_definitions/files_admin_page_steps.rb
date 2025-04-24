@@ -129,5 +129,5 @@ def simulate_filling_search_term
   @page.wait_until_search_box_visible
   @page.search_box.native.send_keys("9")
   @page.search_button.click
-  wait_for_ajax_complete
+  expect(@page).to have_text('Search Results')
 end
