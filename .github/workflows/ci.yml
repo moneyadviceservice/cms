@@ -33,6 +33,8 @@ jobs:
       FINCAP_CMS_API_TOKEN: mytoken
       RAILS_ENV: test
     steps:
+      - name: Install imagemagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install matching chromedriver
