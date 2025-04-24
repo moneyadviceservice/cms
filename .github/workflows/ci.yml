@@ -66,4 +66,5 @@ jobs:
           path: |
             /tmp/*.png
             /tmp/*.html
+            log/test.log
           if-no-files-found: ignore
