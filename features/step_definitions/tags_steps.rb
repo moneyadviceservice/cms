@@ -75,7 +75,7 @@ def simulate_associate_tag(value)
 end
 
 def click_save_button(name_page: true)
-  @page.page_name.set('This is a new page') if (name_page && @page.respond_to?(:page_name))
+  @page.page_name.set('This is a new page') if name_page
   @page_name = @page.page_name.value
   @page_tags = @page.tags_chosen.map(&:text)
   @page.save_button.click

@@ -93,7 +93,8 @@ def add_file(filename)
   attach_file('file_file', filename)
   fill_in('file_description', with: sample_file_description(filename))
   click_link_or_button('Upload File')
-  wait_for_ajax_complete
+  @page = UI::Pages::FilesEdit.new
+  expect(@page).to be_displayed
 end
 
 def file_type_options; %w(doc jpg pdf xls) end
@@ -128,5 +129,5 @@ def simulate_filling_search_term
   @page.wait_until_search_box_visible
   @page.search_box.native.send_keys("9")
   @page.search_button.click
-  wait_for_ajax_complete
+  expect(@page).to have_text('Search Results')
 end

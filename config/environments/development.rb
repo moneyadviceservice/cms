@@ -30,7 +30,7 @@ Rails.application.configure do
   # yet still be able to expire them through the digest params.
   config.assets.digest = true
 
-  config.action_controller.asset_host = ENV.fetch('MAS_CMS_URL', 'http://localhost:3000')
+  config.action_controller.asset_host = ENV.fetch('FINCAP_CMS_URL', 'http://localhost:3000')
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.

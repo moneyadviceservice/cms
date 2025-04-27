@@ -21,19 +21,20 @@ jobs:
           --health-timeout=5s
           --health-retries=3
     env:
-      ALGOLIA_APP_ID: test
-      ALGOLIA_API_KEY: test
-      APP_NAME: MAS
+      FINCAP_ALGOLIA_APP_ID: test
+      FINCAP_ALGOLIA_API_KEY: test
+      APP_NAME: FINCAP
       BUNDLE_GEM__FURY__IO: ${{ secrets.BUNDLE_GEM__FURY__IO }}
-      FARADAY_HOST: 'localhost:5000'
       FARADAY_X_FORWARDED_PROTO: 'http'
       MAILJET_DEFAULT_FROM_ADDRESS: notmonitored@notify.moneyadviceservice.org.uk
-      MAS_CMS_URL: 'http://localhost:3000/'
-      MAS_PUBLIC_WEBSITE_URL: 'http://localhost:5000'
-      MAS_PUBLIC_WEBSITE_DOMAIN: 'localhost:5000'
-      MAS_CMS_API_TOKEN: mytoken
+      FINCAP_CMS_URL: 'http://localhost:3000/'
+      FINCAP_PUBLIC_WEBSITE_URL: 'http://localhost:5000'
+      FINCAP_PUBLIC_WEBSITE_DOMAIN: 'localhost:5000'
+      FINCAP_CMS_API_TOKEN: mytoken
       RAILS_ENV: test
     steps:
+      - name: Install imagemagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install matching chromedriver
@@ -45,17 +46,27 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 4.1.1
+          node-version: 23.9.0
       - name: Install bower
         run: npm install -g bower
       - name: Install bowndler packages
-        run: bin/bowndler update
+        run: bundle exec bowndler update
       - name: Precompile assets to speed up Puma test server start time
-        run: bin/rake assets:precompile
+        run: bundle exec rake assets:precompile
       - name: Set up database schema
         run: |
-          bin/rake db:create db:schema:load
+          bundle exec rake db:create db:schema:load
       - name: Run tests
         run: |
-          bin/rspec
-          bin/cucumber
+          bundle exec rspec
+          bundle exec cucumber
+      - name: Archive capybara screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: capybara-outputs
+          path: |
+            /tmp/*.png
+            /tmp/*.html
+            log/test.log
+          if-no-files-found: ignore

@@ -51,38 +51,20 @@ module Domain
 end
 
 Domain.configure do |config|
-  fail "Please set ENV['APP_NAME']" unless Rails.env.production? || ENV['APP_NAME']
-  if ENV['APP_NAME'] == 'FINCAP' || ENV['PWD'] == '/srv/fincap-cms'
-    config.app_name              ||= 'FINCAP'
-    config.public_website_domain ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
-    config.public_website_url    ||= ENV['FINCAP_PUBLIC_WEBSITE_URL']
-    config.cms_public_url        ||= ENV['FINCAP_CMS_PUBLIC_URL']
-    config.cms_url               ||= ENV['FINCAP_CMS_URL']
-    config.cms_api_token         ||= ENV['FINCAP_CMS_API_TOKEN']
-    config.prod_db_url           ||= ENV['MAS_FINCAP_CMS_DATABASE_URL']
-    config.dev_db_name           ||= 'cms_fincap_development'
-    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_KEY']
-    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_CONTAINER']
-    config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_NAME']
-    config.algolia_app_id        ||= ENV['FINCAP_ALGOLIA_APP_ID']
-    config.algolia_api_key       ||= ENV['FINCAP_ALGOLIA_API_KEY']
-    config.redirect_domain       ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
-  else
-    config.app_name              ||= 'MAS'
-    config.public_website_domain ||= ENV['MAS_PUBLIC_WEBSITE_DOMAIN']
-    config.public_website_url    ||= ENV['MAS_PUBLIC_WEBSITE_URL']
-    config.cms_public_url        ||= ENV['MAS_CMS_PUBLIC_URL']
-    config.cms_url               ||= ENV['MAS_CMS_URL']
-    config.cms_api_token         ||= ENV['MAS_CMS_API_TOKEN']
-    config.prod_db_url           ||= ENV['MAS_CMS_DATABASE_URL']
-    config.dev_db_name           ||= 'cms_mas_development'
-    config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_KEY']
-    config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_CMS_CONTAINER']
-    config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_CMS_ACCOUNT_NAME']
-    config.algolia_app_id        ||= ENV['ALGOLIA_APP_ID']
-    config.algolia_api_key       ||= ENV['ALGOLIA_API_KEY']
-    config.redirect_domain       ||= ENV['FARADAY_HOST']
-  end
+  config.app_name              ||= 'FINCAP'
+  config.public_website_domain ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
+  config.public_website_url    ||= ENV['FINCAP_PUBLIC_WEBSITE_URL']
+  config.cms_public_url        ||= ENV['FINCAP_CMS_PUBLIC_URL']
+  config.cms_url               ||= ENV['FINCAP_CMS_URL']
+  config.cms_api_token         ||= ENV['FINCAP_CMS_API_TOKEN']
+  config.prod_db_url           ||= ENV['MAS_FINCAP_CMS_DATABASE_URL']
+  config.dev_db_name           ||= 'cms_fincap_development'
+  config.azure_access_key      ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_KEY']
+  config.azure_container       ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_CONTAINER']
+  config.azure_account_name    ||= ENV['AZURE_ASSETS_STORAGE_FINCAP_CMS_ACCOUNT_NAME']
+  config.algolia_app_id        ||= ENV['FINCAP_ALGOLIA_APP_ID']
+  config.algolia_api_key       ||= ENV['FINCAP_ALGOLIA_API_KEY']
+  config.redirect_domain       ||= ENV['FINCAP_PUBLIC_WEBSITE_DOMAIN']
 end
 
 puts("=" * 80)

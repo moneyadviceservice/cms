@@ -59,7 +59,7 @@ end
 When(/^I set the schedule time to a time in the future$/) do
   scheduled_on = 1.hour.from_now
 
-  fill_in('scheduled_date', with: scheduled_on.strftime('%d/%m/%Y'))
+  find_field('scheduled_date').send_keys(scheduled_on.day, :tab, scheduled_on.month, :tab, scheduled_on.year)
   fill_in('scheduled_time', with: scheduled_on.strftime('%H:%M'))
 end
 
