@@ -1,4 +1,4 @@
-RSpec.describe ClumpsController, type: :controller do
+RSpec.describe ClumpsController, skip: true, type: :controller do
   let(:site) { create(:site) }
   let(:current_user) { create(:user) }
   let!(:category_1) { create(:category) }

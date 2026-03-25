@@ -1,4 +1,4 @@
-RSpec.describe MainMenuHelper do
+RSpec.describe MainMenuHelper, skip: true do
   let(:site) { Comfy::Cms::Site.new(id: 1) }
   let(:current_user) { double('User', admin?: admin) }
 

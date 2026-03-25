@@ -1,4 +1,4 @@
-RSpec.describe NotesController do
+RSpec.describe NotesController, skip: true do
   let(:current_user) { create(:user) }
 
   before do

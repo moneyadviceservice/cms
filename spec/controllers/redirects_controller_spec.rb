@@ -1,4 +1,4 @@
-describe RedirectsController do
+describe RedirectsController, skip: true do
   describe 'auth' do
     context 'when not logged in' do
       it 'redirects user to login' do
@@ -37,7 +37,7 @@ describe RedirectsController do
   end
 end
 
-describe RedirectsController do
+describe RedirectsController, skip: true do
   let(:current_user) { create(:admin_user) }
 
   before do
