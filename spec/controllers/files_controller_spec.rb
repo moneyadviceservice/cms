@@ -1,4 +1,4 @@
-RSpec.describe FilesController, skip: true do
+RSpec.describe FilesController do
   before do
     sign_in create(:user)
   end

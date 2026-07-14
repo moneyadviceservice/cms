@@ -1,4 +1,4 @@
-RSpec.describe PageFeedbacksController, skip: true do
+RSpec.describe PageFeedbacksController do
   let(:current_user) { create(:user, role: Comfy::Cms::User.roles[:user]) }
 
   before do

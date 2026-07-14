@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RevisionMailer, skip: true, type: :mailer do
+RSpec.describe RevisionMailer, type: :mailer do
   let(:user) { FactoryGirl.build(:user, name: 'Mr. Ed Itor') }
   let(:page) { FactoryGirl.create(:page, label: 'How to save 50p a day.') }
 

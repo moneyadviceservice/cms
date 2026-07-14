@@ -1,4 +1,4 @@
-RSpec.describe PagesController, skip: true do
+RSpec.describe PagesController do
   let(:site) { create(:site) }
   let(:layout) { create(:layout) }
   let(:role) { :user }

@@ -1,4 +1,4 @@
-RSpec.describe LinksController, skip: true do
+RSpec.describe LinksController do
   let(:response_body) { JSON.load(response.body).symbolize_keys }
 
   describe 'GET /links/:url' do

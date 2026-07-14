@@ -1,4 +1,4 @@
-RSpec.describe FilePresenter, skip: true do
+RSpec.describe FilePresenter do
   subject(:presenter) { described_class.new(file) }
   let(:file) { build(:file) }
 

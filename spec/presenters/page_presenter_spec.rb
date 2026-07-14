@@ -1,4 +1,4 @@
-RSpec.describe PagePresenter, skip: true do
+RSpec.describe PagePresenter do
   subject(:presenter) do
     described_class.new(object)
   end

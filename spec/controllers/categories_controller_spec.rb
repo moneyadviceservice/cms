@@ -1,4 +1,4 @@
-RSpec.describe CategoriesController, skip: true, type: :controller do
+RSpec.describe CategoriesController, type: :controller do
   let(:site) { create(:site) }
   let(:current_user) { create(:user) }
   let(:category_promo) do

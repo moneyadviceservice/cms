@@ -1,4 +1,4 @@
-RSpec.describe Links::ImagesController, skip: true do
+RSpec.describe Links::ImagesController do
   before do
     sign_in create(:user)
   end

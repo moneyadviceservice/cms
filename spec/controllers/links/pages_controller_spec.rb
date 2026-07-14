@@ -1,4 +1,4 @@
-RSpec.describe Links::PagesController, skip: true do
+RSpec.describe Links::PagesController do
   before do
     sign_in create(:user)
   end
